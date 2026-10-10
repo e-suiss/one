@@ -52,11 +52,26 @@ flowchart LR
 
 Rust (cloud services and a shared client core), PostgreSQL with pgvector, encrypted object storage, Suiss-operated open models (Qwen3.5 4B and 27B, EmbeddingGemma 2) with per-user adapters, native iOS/Android/desktop surfaces and a shared TypeScript workspace. Languages: Turkish and English.
 
+## Repository
+
+| Path | Contents |
+|---|---|
+| `crates/` | Cloud libraries; business logic lives here |
+| `bins/` | `one-server` (one binary, module roles) and `one-cli` |
+| `core/` | `one-core`, the client core shared by every surface |
+| `apps/`, `packages/` | Native surfaces and TypeScript packages |
+| `ml/` | Machine learning, evaluation and simulation (Python) |
+| `conformance/` | Rule catalog, data inventory, platform allowlists, schemas and vectors |
+| `deploy/` | Local environment, images and the compatibility table |
+| `fuzz/`, `load/`, `xtask/` | Fuzz targets, the open-loop load generator, repository checks |
+
 ## Development
 
 ```sh
-just dev    # PostgreSQL, object storage, local Access, Relay and Work, model server
-just test
+just deps     # PostgreSQL + pgvector, object store, monitoring
+just test     # the tests CI runs on every push
+just check    # the checks CI runs on every push
+just dev      # adds local Access, Relay, Work and Executor once their images are pinned
 ```
 
 See [CONTRIBUTING.md](CONTRIBUTING.md).

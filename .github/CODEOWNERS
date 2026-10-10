@@ -1,12 +1,23 @@
-# Default owner for the whole repository.
-*                         @ademceper
+# T-44 (3)
+*                                   @ademceper
 
-# Security-sensitive paths: changes here need a threat assessment.
-/crates/core/             @ademceper
-/crates/memory/           @ademceper
-/crates/keys/             @ademceper
-/crates/policy/           @ademceper
-/crates/federation/       @ademceper
-/models/                  @ademceper
-/Cargo.toml               @ademceper
-/Cargo.lock               @ademceper
+/crates/keys/                       @ademceper
+/crates/tee/                        @ademceper
+/core/src/crypto/                   @ademceper
+/crates/memory/                     @ademceper
+/crates/provenance/                 @ademceper
+/crates/router/                     @ademceper
+/crates/federation/                 @ademceper
+/serving/                           @ademceper
+/ml/train/                          @ademceper
+/ml/datasets/                       @ademceper
+/crates/store/                      @ademceper
+/conformance/data-inventory.toml    @ademceper
+/crates/telemetry/src/fields.rs     @ademceper
+/conformance/platform/              @ademceper
+/apps/**/AndroidManifest.xml        @ademceper
+/apps/**/*.entitlements             @ademceper
+/apps/**/Info.plist                 @ademceper
+/.github/workflows/release.yml      @ademceper
+/deploy/compat.toml                 @ademceper
+/Cargo.toml                         @ademceper

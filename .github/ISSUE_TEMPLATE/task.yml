@@ -1,0 +1,21 @@
+name: Task
+description: Work that implements or changes a specification rule.
+body:
+  - type: input
+    id: rules
+    attributes:
+      label: Specification rule IDs
+    validations:
+      required: true
+  - type: textarea
+    id: work
+    attributes:
+      label: What needs to be done
+    validations:
+      required: true
+  - type: checkboxes
+    id: decision
+    attributes:
+      label: Decision
+      options:
+        - label: This adds or changes a specification decision (label `decision`)
