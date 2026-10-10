@@ -1,0 +1,133 @@
+# T-41 (2, 6, 7), T-39 (6, 7), T-54, T-57
+name: Release
+
+on:
+  push:
+    tags: ["v[0-9]+.[0-9]+.[0-9]+"]
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  CARGO_TERM_COLOR: always
+  CARGO_INCREMENTAL: "0"
+  IMAGE: ghcr.io/e-suiss/one-server
+
+jobs:
+  build:
+    name: build (${{ matrix.builder }})
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    permissions:
+      contents: read
+    strategy:
+      matrix:
+        builder: [first, second]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup
+        with:
+          cache: "false"
+          tools: auditable cyclonedx syft
+      - name: Offline, vendored, path-remapped build
+        run: just release-build x86_64-unknown-linux-gnu
+      - name: Digest
+        run: sha256sum target/x86_64-unknown-linux-gnu/release/one-server | tee "digest-${{ matrix.builder }}.txt"
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: build-${{ matrix.builder }}
+          path: |
+            digest-${{ matrix.builder }}.txt
+            target/x86_64-unknown-linux-gnu/release/one-server
+          retention-days: 7
+
+  reproducibility:
+    name: reproducibility
+    needs: build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          pattern: build-*
+          merge-multiple: true
+      - name: Compare digests
+        run: |
+          a="$(cut -d' ' -f1 digest-first.txt)"
+          b="$(cut -d' ' -f1 digest-second.txt)"
+          if [[ "$a" == "$b" ]]; then
+            echo "reproducible: $a"
+          else
+            echo "::warning::one-server builds differ ($a vs $b); informational outside TEE images (T-54)"
+          fi
+
+  image:
+    name: image
+    needs: reproducibility
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup
+        with:
+          cache: "false"
+          tools: cosign syft
+      - name: Signing key reference is configured
+        env:
+          KEY_REF: ${{ vars.ONE_SIGNING_KEY_REF }}
+        run: |
+          if [[ -z "$KEY_REF" ]]; then
+            echo "::error::ONE_SIGNING_KEY_REF is not set; releases are never published unsigned (T-39 (7), T-57)"
+            exit 1
+          fi
+      - name: Log in to GHCR with the job token
+        env:
+          TOKEN: ${{ github.token }}
+          ACTOR: ${{ github.actor }}
+        run: printf '%s' "$TOKEN" | docker login ghcr.io -u "$ACTOR" --password-stdin
+      - name: Build and push amd64 and arm64
+        run: |
+          docker buildx create --use
+          docker buildx build --platform linux/amd64,linux/arm64 \
+            -f deploy/docker/Dockerfile \
+            -t "$IMAGE:${GITHUB_REF_NAME}" \
+            --provenance=mode=max --sbom=true --push \
+            --metadata-file "$RUNNER_TEMP/metadata.json" .
+      - name: Sign without the public log
+        env:
+          KEY_REF: ${{ vars.ONE_SIGNING_KEY_REF }}
+        run: |
+          digest="$(jq -r '."containerimage.digest"' "$RUNNER_TEMP/metadata.json")"
+          cosign sign --yes --tlog-upload=false --key "$KEY_REF" "$IMAGE@$digest"
+
+  changelog:
+    name: changelog
+    needs: image
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: ./.github/actions/setup
+        with:
+          tools: git-cliff
+      - name: Release notes
+        run: git cliff --latest --strip header > "$RUNNER_TEMP/notes.md" && cat "$RUNNER_TEMP/notes.md"

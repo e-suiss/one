@@ -1,0 +1,127 @@
+# T-41 (2), T-39, T-38 (1)
+name: Nightly
+
+on:
+  schedule:
+    - cron: "41 1 * * *"
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: nightly-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  CARGO_TERM_COLOR: always
+  CARGO_INCREMENTAL: "0"
+
+jobs:
+  audit:
+    name: audit
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup
+        with:
+          cache-key: tools
+          tools: audit uv
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .node-version
+      - name: cargo-audit
+        run: just audit
+      - name: pip-audit
+        working-directory: ml
+        run: uv run --locked pip-audit --skip-editable
+      - name: npm audit
+        run: just web-audit
+
+  cooldown:
+    name: cooldown
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup
+        with:
+          cache-key: lint
+      - name: Seven-day cooldown
+        env:
+          XTASK_ONLINE: "1"
+        run: cargo xtask check cooldown
+      - name: Platform and protocol watch list
+        run: cargo xtask watchlist
+
+  coverage:
+    name: coverage
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup
+        with:
+          cache-key: lint
+      - name: Rule coverage report
+        run: cargo xtask coverage | tee "$RUNNER_TEMP/coverage.txt"
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: rule-coverage
+          path: ${{ runner.temp }}/coverage.txt
+          retention-days: 30
+
+  fuzz:
+    name: fuzz
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup
+        with:
+          cache-key: fuzz
+          toolchain: nightly-2026-10-01
+      - name: Install cargo-fuzz 0.13.2
+        run: cargo +nightly-2026-10-01 install --locked cargo-fuzz --version 0.13.2
+      - name: Fuzz every target for ten minutes
+        working-directory: fuzz
+        run: |
+          for target in $(cargo +nightly-2026-10-01 fuzz list); do
+            cargo +nightly-2026-10-01 fuzz run "$target" -- -max_total_time=600
+          done
+
+  load:
+    name: load
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup
+        with:
+          cache-key: load
+      - name: Open-loop load against a local server
+        run: |
+          cargo build --locked --release -p one-server -p one-load
+          target/release/one-server &
+          for _ in $(seq 50); do curl -fs http://127.0.0.1:8091/livez && break; sleep 0.2; done
+          target/release/one-load --addr 127.0.0.1:8091 --path /livez --rate 500 --seconds 30
