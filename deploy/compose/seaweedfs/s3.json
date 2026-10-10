@@ -1,0 +1,19 @@
+{
+  "identities": [
+    {
+      "name": "one-dev",
+      "credentials": [
+        {
+          "accessKey": "one-dev-access",
+          "secretKey": "local-only-not-a-secret"
+        }
+      ],
+      "actions": [
+        "Read:one-dev",
+        "Write:one-dev",
+        "List:one-dev",
+        "Tagging:one-dev"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,218 @@
+# T-42 (1), T-52
+
+name: one-dev
+
+x-hardening: &hardening
+  cap_drop: [ALL]
+  security_opt: ["no-new-privileges:true"]
+  restart: unless-stopped
+
+x-model-server: &model-server
+  <<: *hardening
+  image: vllm/vllm-openai@sha256:8a69ffad015f138d7170c4ddc429e230a3bc1c1719f67e14324749df200a4b90 # v0.30.0
+  profiles: [model]
+  user: "2000:0"
+  read_only: true
+  shm_size: 2gb
+  environment:
+    HF_HOME: /home/vllm/.cache/huggingface
+    HF_HUB_DISABLE_TELEMETRY: "1"
+    VLLM_NO_USAGE_STATS: "1"
+    DO_NOT_TRACK: "1"
+    HF_TOKEN:
+    ONE_DEV_MODEL:
+    ONE_DEV_EMBED_MODEL:
+  tmpfs:
+    - /tmp:uid=2000,gid=0
+    - /home/vllm/.config:uid=2000,gid=0
+    - /home/vllm/.triton:uid=2000,gid=0
+    - /home/vllm/.nv:uid=2000,gid=0
+  volumes:
+    - hf-cache:/home/vllm/.cache
+  deploy:
+    resources:
+      reservations:
+        devices:
+          - driver: nvidia
+            count: all
+            capabilities: [gpu]
+  healthcheck:
+    test: ["CMD", "curl", "-fsS", "http://127.0.0.1:8000/health"]
+    interval: 5s
+    timeout: 3s
+    retries: 30
+    start_period: 15m
+
+services:
+  # T-32 (6), T-32 (8)
+  postgres:
+    <<: *hardening
+    image: pgvector/pgvector@sha256:9d9c930220cb9bf2f956d10a8f909cf9973d9672ca0278aef2c1e6facccad2e0 # 0.8.7-pg18-trixie
+    user: "999:999"
+    read_only: true
+    tmpfs:
+      - /var/run/postgresql:uid=999,gid=999
+      - /tmp:uid=999,gid=999
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: local-only-not-a-secret
+      POSTGRES_INITDB_ARGS: --auth=scram-sha-256 --data-checksums
+      ONE_DB_NAME: one
+      ONE_OWNER_PASSWORD: local-only-not-a-secret
+      ONE_APP_PASSWORD: local-only-not-a-secret
+    volumes:
+      - pgdata:/var/lib/postgresql
+      - ./postgres/initdb:/docker-entrypoint-initdb.d:ro
+    ports:
+      - "127.0.0.1:${ONE_DEV_PG_PORT:-5433}:5432"
+    healthcheck:
+      test: ["CMD", "pg_isready", "-h", "127.0.0.1", "-U", "postgres", "-d", "one"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+
+  objects:
+    <<: *hardening
+    image: chrislusf/seaweedfs@sha256:4e61d15fd35994cb1e43e1e553dff106794841fd9a99ade2fc8c8bfce4d7872d # 4.48
+    user: "1000:1000"
+    read_only: true
+    command:
+      - mini
+      - -ip=127.0.0.1
+      - -ip.bind=0.0.0.0
+      - -bucket=one-dev
+      - -s3.config=/etc/seaweedfs/s3.json
+      - -s3.autoCreateBucket=false
+      - -s3.iam=false
+      - -s3.port.iceberg=0
+      - -s3.port.lance=0
+      - -webdav=false
+      - -admin.ui=false
+      - -master.telemetry=false
+    tmpfs:
+      - /tmp:uid=1000,gid=1000
+    volumes:
+      - objects:/data
+      - ./seaweedfs/s3.json:/etc/seaweedfs/s3.json:ro
+    ports:
+      - "127.0.0.1:${ONE_DEV_S3_PORT:-8334}:8333"
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O-", "http://127.0.0.1:8333/healthz"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+
+  # T-42 (2)
+  model:
+    <<: *model-server
+    entrypoint:
+      - /bin/sh
+      - -c
+      - exec vllm serve "$${ONE_DEV_MODEL:?set ONE_DEV_MODEL to the Hugging Face repository of the local generation model}" "$$@"
+      - vllm
+    command:
+      - --host=0.0.0.0
+      - --port=8000
+      - --enable-lora
+      - --max-loras=${ONE_DEV_MAX_LORAS:-4}
+      - --max-model-len=${ONE_DEV_MODEL_MAX_LEN:-8192}
+      - --gpu-memory-utilization=${ONE_DEV_MODEL_GPU_MEMORY:-0.75}
+    ports:
+      - "127.0.0.1:${ONE_DEV_MODEL_PORT:-8100}:8000"
+
+  embedding:
+    <<: *model-server
+    entrypoint:
+      - /bin/sh
+      - -c
+      - exec vllm serve "$${ONE_DEV_EMBED_MODEL:?set ONE_DEV_EMBED_MODEL to the Hugging Face repository of the local embedding model}" "$$@"
+      - vllm
+    command:
+      - --host=0.0.0.0
+      - --port=8000
+      - --runner=pooling
+      - --gpu-memory-utilization=${ONE_DEV_EMBED_GPU_MEMORY:-0.15}
+    ports:
+      - "127.0.0.1:${ONE_DEV_EMBED_PORT:-8101}:8000"
+
+  # T-52
+  otel-collector:
+    <<: *hardening
+    image: otel/opentelemetry-collector@sha256:310a800ad69ee430e7c541796852a242c9c7db97aaad4daa5ccf843c525fbdb2 # 0.162.0
+    user: "10001:10001"
+    read_only: true
+    command: ["--config", "/etc/otelcol/config.yaml"]
+    volumes:
+      - ./observability/otel-collector.yaml:/etc/otelcol/config.yaml:ro
+    ports:
+      - "127.0.0.1:${ONE_DEV_OTLP_GRPC_PORT:-4327}:4317"
+      - "127.0.0.1:${ONE_DEV_OTLP_HTTP_PORT:-4328}:4318"
+    depends_on:
+      jaeger:
+        condition: service_healthy
+
+  jaeger:
+    <<: *hardening
+    image: jaegertracing/jaeger@sha256:46a886260e04002d8f45e213fc39063fa11a50446048fdaa64786fc0840cb9f8 # 2.20.0
+    user: "10001:10001"
+    read_only: true
+    tmpfs:
+      - /tmp:uid=10001,gid=10001
+    ports:
+      - "127.0.0.1:${ONE_DEV_JAEGER_UI_PORT:-16687}:16686"
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O-", "http://127.0.0.1:13133/status"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+
+  prometheus:
+    <<: *hardening
+    image: prom/prometheus@sha256:b2a413d5a03ea6a76782a508d1c7947440bba3b973931a25676e278431891b01 # v3.15.0-distroless
+    user: "65532:65532"
+    read_only: true
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.path=/prometheus
+      - --storage.tsdb.retention.time=1d
+    tmpfs:
+      - /prometheus:uid=65532,gid=65532
+    volumes:
+      - ./observability/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    ports:
+      - "127.0.0.1:${ONE_DEV_PROMETHEUS_PORT:-9091}:9090"
+    healthcheck:
+      test: ["CMD", "promtool", "check", "healthy", "--url=http://127.0.0.1:9090"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+
+  grafana:
+    <<: *hardening
+    image: grafana/grafana@sha256:83be3e511ede559bee80e2215bb1987cb1246075461cb961beb515b0341e7aea # 12.4.12
+    user: "472:0"
+    read_only: true
+    environment:
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: local-only-not-a-secret
+      GF_ANALYTICS_REPORTING_ENABLED: "false"
+      GF_ANALYTICS_CHECK_FOR_UPDATES: "false"
+      GF_ANALYTICS_CHECK_FOR_PLUGIN_UPDATES: "false"
+      GF_PLUGINS_PREINSTALL_DISABLED: "true"
+    tmpfs:
+      - /var/lib/grafana:uid=472,gid=0
+      - /tmp:uid=472,gid=0
+    volumes:
+      - ./observability/grafana-datasources.yaml:/etc/grafana/provisioning/datasources/one.yaml:ro
+    ports:
+      - "127.0.0.1:${ONE_DEV_GRAFANA_PORT:-3301}:3000"
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O-", "http://127.0.0.1:3000/api/health"]
+      interval: 3s
+      timeout: 3s
+      retries: 60
+
+volumes:
+  pgdata:
+  objects:
+  hf-cache:

@@ -1,0 +1,30 @@
+# T-41 (1), T-42 (1), T-48
+server = "0.0.0"
+client_compatibility_window = ""
+work_spec_version = ""
+
+[shared_crates]
+esuiss-crypto = ""
+esuiss-ledger = ""
+esuiss-restriction = ""
+
+[siblings.access]
+image = ""
+compose = ""
+
+[siblings.relay]
+image = ""
+compose = ""
+
+[siblings.work]
+image = ""
+compose = ""
+
+[siblings.executor]
+image = ""
+compose = ""
+
+[siblings.pay]
+image = ""
+compose = ""
+required_for_dev = false
