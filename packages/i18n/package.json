@@ -1,0 +1,31 @@
+{
+  "name": "@esuiss/one-i18n",
+  "version": "0.0.0",
+  "private": true,
+  "description": "The one localisation key source for One; native and web catalogs are generated from messages/*.json.",
+  "type": "module",
+  "exports": {
+    "./messages/en.json": "./messages/en.json",
+    "./messages/tr.json": "./messages/tr.json"
+  },
+  "engines": {
+    "node": ">=24.20.0 <25",
+    "npm": ">=11.19.0 <12"
+  },
+  "scripts": {
+    "check": "node scripts/check.ts",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@esuiss/one-config": "file:../config",
+    "@types/node": "24.19.1",
+    "eslint": "9.39.5",
+    "prettier": "3.9.9",
+    "typescript": "6.0.3",
+    "vitest": "5.0.3"
+  }
+}

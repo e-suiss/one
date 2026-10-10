@@ -1,0 +1,13 @@
+[xcode]
+version = "27.0"
+build = "27A266a"
+
+[swift]
+version = "6.4"
+language-mode = "6"
+
+[swiftlint]
+version = "0.65.1"
+
+[swift-format]
+source = "xcode-toolchain"

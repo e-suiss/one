@@ -1,0 +1,32 @@
+config:
+  validation: true
+  warningsAsErrors: true
+
+build:
+  maxIssues: 0
+
+potential-bugs:
+  UnsafeCallOnNullableType:
+    active: true
+  MapGetWithNotNullAssertionOperator:
+    active: true
+  UnsafeCast:
+    active: true
+  CastNullableToNonNullableType:
+    active: true
+  LateinitUsage:
+    active: true
+  UnnecessaryNotNullOperator:
+    active: true
+
+style:
+  ForbiddenComment:
+    active: true
+
+coroutines:
+  GlobalCoroutineUsage:
+    active: true
+  InjectDispatcher:
+    active: true
+  SuspendFunWithFlowReturnType:
+    active: true

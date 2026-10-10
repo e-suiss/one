@@ -1,0 +1,8 @@
+[versions]
+jdk = "25.0.4.1+1"
+gradle = "9.8.0"
+agp = "9.4.1"
+kotlin = "2.4.20"
+ktlint = "1.8.0"
+detekt = "1.23.8"
+

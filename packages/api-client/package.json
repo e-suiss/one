@@ -1,0 +1,12 @@
+{
+  "name": "@esuiss/one-api-client",
+  "version": "0.0.0",
+  "private": true,
+  "description": "GENERATED from the One OpenAPI contract; the only way One TypeScript code reaches the API. Never edited by hand; regenerated instead.",
+  "type": "module",
+  "files": [],
+  "engines": {
+    "node": ">=24.20.0 <25",
+    "npm": ">=11.19.0 <12"
+  }
+}

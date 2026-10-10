@@ -1,0 +1,29 @@
+strict: true
+
+opt_in_rules:
+  - force_unwrapping
+  - implicitly_unwrapped_optional
+  - discouraged_optional_boolean
+  - discouraged_optional_collection
+  - empty_count
+  - fatal_error_message
+  - first_where
+  - unowned_variable_capture
+  - unused_parameter
+  - weak_delegate
+
+analyzer_rules:
+  - unused_declaration
+  - unused_import
+
+force_cast: error
+force_try: error
+force_unwrapping: error
+implicitly_unwrapped_optional:
+  severity: error
+  mode: all_except_iboutlets
+
+excluded:
+  - "**/.build"
+  - "**/DerivedData"
+  - "**/Generated"
