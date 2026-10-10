@@ -1,0 +1,14 @@
+# T-39 (1)
+figment
+httparse
+libc
+proc-macro2
+proc-macro2-diagnostics
+quote
+serde
+serde_core
+serde_json
+thiserror
+uncased
+valuable
+zmij

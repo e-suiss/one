@@ -1,0 +1,24 @@
+# T-39 (9), Access F-13
+title = "One gitleaks configuration"
+
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Generated and third-party files"
+paths = [
+    '''(^|/)target/''',
+    '''(^|/)node_modules/''',
+    '''(^|/)Cargo\.lock$''',
+    '''(^|/)package-lock\.json$''',
+    '''(^|/)uv\.lock$''',
+    '''^supply-chain/imports\.lock$''',
+]
+
+[[allowlists]]
+description = "Synthetic local-only credentials"
+regexes = ['''local-only-not-a-secret''', '''ci-only-not-a-secret''']
+
+[[allowlists]]
+description = "Leak scanner fixtures"
+paths = ['''^crates/telemetry/src/leak\.rs$''', '''^crates/telemetry/tests/''']

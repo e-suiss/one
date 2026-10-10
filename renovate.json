@@ -1,0 +1,77 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "T-39: dependency updates wait 7 days unless they fix a known vulnerability.",
+  "extends": [
+    "config:recommended",
+    "helpers:pinGitHubActionDigests"
+  ],
+  "minimumReleaseAge": "7 days",
+  "internalChecksFilter": "strict",
+  "labels": [
+    "dependencies"
+  ],
+  "vulnerabilityAlerts": {
+    "enabled": true,
+    "minimumReleaseAge": null,
+    "labels": [
+      "security"
+    ]
+  },
+  "osvVulnerabilityAlerts": true,
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": [
+      "before 6am on monday"
+    ]
+  },
+  "packageRules": [
+    {
+      "description": "Rust crates in one pull request (T-39).",
+      "matchManagers": [
+        "cargo"
+      ],
+      "groupName": "rust dependencies"
+    },
+    {
+      "description": "npm packages in one pull request (T-53).",
+      "matchManagers": [
+        "npm"
+      ],
+      "groupName": "npm dependencies"
+    },
+    {
+      "description": "GitHub Actions stay pinned to a commit SHA with a version comment (T-39).",
+      "matchManagers": [
+        "github-actions"
+      ],
+      "groupName": "github actions",
+      "pinDigests": true
+    },
+    {
+      "description": "The Rust toolchain is pinned in rust-toolchain.toml and adopted after the same cooldown (T-28, T-39).",
+      "matchDepNames": [
+        "rust"
+      ],
+      "groupName": "rust toolchain"
+    },
+    {
+      "description": "Python dependencies of ml/ in one pull request (T-39 (4)).",
+      "matchManagers": [
+        "pep621"
+      ],
+      "groupName": "python dependencies"
+    },
+    {
+      "description": "Container images stay pinned by digest (T-39).",
+      "matchManagers": [
+        "docker-compose",
+        "dockerfile"
+      ],
+      "groupName": "container images",
+      "pinDigests": true
+    }
+  ],
+  "npm": {
+    "rangeStrategy": "pin"
+  }
+}

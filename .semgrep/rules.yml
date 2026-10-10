@@ -1,0 +1,77 @@
+# T-39 (9)
+rules:
+  - id: sql-outside-store
+    message: Database access outside crates/store and the core local store (T-32 (2)).
+    severity: ERROR
+    languages: [rust]
+    paths:
+      exclude:
+        - "crates/store/**"
+        - "core/src/local_store/**"
+        - "xtask/**"
+    pattern-either:
+      - pattern: sqlx::query(...)
+      - pattern: sqlx::query_as(...)
+      - pattern: sqlx::query_scalar(...)
+      - pattern: sqlx::query!(...)
+      - pattern: sqlx::query_as!(...)
+      - pattern: sqlx::query_scalar!(...)
+      - pattern-regex: '\b(sqlx|tokio_postgres|deadpool_postgres|rusqlite)::'
+
+  - id: content-type-derives-debug
+    message: Types carrying secrets, keys, tokens, personal content, prompts, model output or opened TEE values never derive Debug (T-28 (7), T-35 (4), T-37 (1)).
+    severity: ERROR
+    languages: [rust]
+    paths:
+      exclude:
+        - "**/tests/**"
+        - "xtask/**"
+    pattern-regex: '#\[derive\([^)]*\bDebug\b[^)]*\)\]\s*(pub(\([a-z]+\))?\s+)?(struct|enum)\s+\w*(Secret|Key|Token|Password|Cookie|Opened|Sealed|Prompt|Transcript|ModelOutput|Content|Plaintext)\w*'
+
+  - id: secret-formatted
+    message: An exposed secret is formatted or logged (T-35 (4), SEC-6).
+    severity: ERROR
+    languages: [rust]
+    paths:
+      exclude:
+        - "**/tests/**"
+    pattern-either:
+      - pattern-regex: '\b(trace|debug|info|warn|error|event)!\([^;]*\.expose(_secret)?\(\)'
+      - pattern-regex: '\b(e?print(ln)?|format(_args)?|write(ln)?|panic)!\([^;]*\.expose(_secret)?\(\)'
+
+  - id: wall-clock-or-entropy-outside-ports
+    message: Read time and randomness through the Clock and Rng ports (T-27 (2)).
+    severity: ERROR
+    languages: [rust]
+    paths:
+      exclude:
+        - "bins/one-server/src/system.rs"
+        - "load/**"
+        - "xtask/**"
+        - "**/tests/**"
+    pattern-either:
+      - pattern: std::time::SystemTime::now()
+      - pattern: std::time::Instant::now()
+      - pattern: SystemTime::now()
+      - pattern: Instant::now()
+      - pattern: rand::thread_rng()
+      - pattern: rand::rng()
+      - pattern: rand::random()
+      - pattern: getrandom::fill(...)
+
+  - id: unwrap-in-request-path
+    message: unwrap()/expect() outside tests (T-28 (3, 4)); return a typed error.
+    severity: ERROR
+    languages: [rust]
+    paths:
+      exclude:
+        - "**/tests/**"
+        - "**/benches/**"
+        - "xtask/**"
+        - "load/**"
+    patterns:
+      - pattern-not-inside: |
+          mod tests { ... }
+      - pattern-either:
+          - pattern: $X.unwrap()
+          - pattern: $X.expect(...)
