@@ -1,0 +1,17 @@
+[package]
+name = "one-config"
+description = "Typed process configuration, validated at start-up (T-27 (9))."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish = false
+
+[dependencies]
+figment = { workspace = true, features = ["env", "toml"] }
+serde = { workspace = true, features = ["derive", "std"] }
+thiserror = { workspace = true, features = ["std"] }
+
+[lints]
+workspace = true

@@ -1,0 +1,24 @@
+[package]
+name = "one-http"
+description = "HTTP layer: RFC 9457 problems, hardened router, internal health endpoints (T-31, T-40 (7))."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish = false
+
+[dependencies]
+axum = { workspace = true, features = ["http1", "http2", "tokio", "json"] }
+serde = { workspace = true, features = ["derive", "std"] }
+serde_json = { workspace = true, features = ["std"] }
+tower-http = { workspace = true, features = ["catch-panic", "limit", "timeout"] }
+tracing = { workspace = true, features = ["std"] }
+
+[dev-dependencies]
+http-body-util = { workspace = true }
+tokio = { workspace = true, features = ["macros", "rt-multi-thread"] }
+tower = { workspace = true, features = ["util"] }
+
+[lints]
+workspace = true

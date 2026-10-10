@@ -1,0 +1,20 @@
+[package]
+name = "one-server"
+description = "The single One server binary; modules run as roles (T-4)."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish = false
+
+[dependencies]
+axum = { workspace = true, features = ["http1", "http2", "tokio"] }
+one-config.workspace = true
+one-http.workspace = true
+one-telemetry.workspace = true
+tokio = { workspace = true, features = ["macros", "net", "rt-multi-thread", "signal"] }
+tracing = { workspace = true, features = ["std"] }
+
+[lints]
+workspace = true
