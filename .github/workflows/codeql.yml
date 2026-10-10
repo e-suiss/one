@@ -21,9 +21,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     permissions:
-      actions: read
       contents: read
-      security-events: write
     strategy:
       fail-fast: false
       matrix:
@@ -41,6 +39,7 @@ jobs:
         with:
           category: /language:${{ matrix.language }}
           output: ${{ runner.temp }}/codeql
+          upload: never
       - uses: ./.github/actions/setup
         with:
           cache-key: lint
