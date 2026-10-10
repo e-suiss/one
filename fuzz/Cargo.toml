@@ -1,0 +1,23 @@
+[package]
+name = "one-fuzz"
+version = "0.0.0"
+edition = "2024"
+license = "LicenseRef-Suiss-Proprietary"
+publish = false
+
+[package.metadata]
+cargo-fuzz = true
+
+[dependencies]
+libfuzzer-sys = "=0.4.13"
+one-telemetry = { path = "../crates/telemetry" }
+
+[workspace]
+members = ["."]
+
+[[bin]]
+name = "leak_scan"
+path = "fuzz_targets/leak_scan.rs"
+test = false
+doc = false
+bench = false

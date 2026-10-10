@@ -1,0 +1,15 @@
+[package]
+name = "one-load"
+description = "Open-loop load generator: requests leave on a fixed schedule and latency counts from the intended send time (T-26 (5), F-21)."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish = false
+
+[dependencies]
+tokio = { workspace = true, features = ["io-util", "macros", "net", "rt-multi-thread", "time"] }
+
+[lints]
+workspace = true
