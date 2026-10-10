@@ -1,0 +1,58 @@
+# MF-45
+# MF-9
+
+[[component]]
+name = "Qwen3.5"
+license = "Apache-2.0"
+status = "allowed"
+
+[[component]]
+name = "Gemma 4"
+license = "Apache-2.0"
+status = "allowed"
+
+[[component]]
+name = "e5-small"
+license = "MIT"
+status = "allowed"
+
+[[component]]
+name = "EmbeddingGemma 2"
+license = "unverified"
+status = "unverified"
+
+[[component]]
+name = "Llama"
+license = "Llama Community License"
+status = "flagged"
+condition = "user_count"
+
+[[component]]
+name = "LaMP"
+license = "CC-BY-NC-SA-4.0"
+status = "forbidden"
+
+[[component]]
+name = "OPPU"
+license = "none"
+status = "forbidden"
+
+[[component]]
+name = "OSim"
+license = "unverified"
+status = "eval_simulation_only"
+
+[[component]]
+name = "Ditto"
+license = "unverified"
+status = "eval_simulation_only"
+
+[[component]]
+name = "UserLM"
+license = "unverified"
+status = "eval_simulation_only"
+
+[[component]]
+name = "Suiss synthetic"
+license = "LicenseRef-Suiss-Proprietary"
+status = "allowed"

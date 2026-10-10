@@ -1,0 +1,73 @@
+# MF-54
+
+id = "preference_drift_001"
+version = "0.1.0"
+title = "Meeting-time preference drifts over five months across two phones"
+synthetic = true
+contains_user_data = false
+usage = "simulation_only"
+simulator_class = "scripted"
+languages = ["tr", "en"]
+duration_days = 150
+
+[persona]
+summary = "Synthetic user A, a bilingual freelance designer who schedules client calls."
+
+[[event]]
+id = "e01"
+day = 0
+kind = "preference_stated"
+device = "phone-1"
+lang = "tr"
+text = "Müşteri görüşmelerini sabah 10'dan önce koyma."
+
+[[event]]
+id = "e02"
+day = 21
+kind = "message"
+device = "phone-1"
+lang = "en"
+text = "Book a call with the studio next Tuesday."
+
+[[event]]
+id = "e03"
+day = 45
+kind = "device_change"
+device = "phone-2"
+lang = "tr"
+text = "Yeni telefona geçtim."
+
+[[event]]
+id = "e04"
+day = 60
+kind = "preference_change"
+device = "phone-2"
+lang = "en"
+text = "From now on, mornings are fine; keep afternoons free instead."
+refs = ["e01"]
+
+[[event]]
+id = "e05"
+day = 95
+kind = "contradiction"
+device = "phone-2"
+lang = "tr"
+text = "Neden sabah 9'a görüşme koydun? Sabahları istemiyorum dedim."
+refs = ["e04"]
+
+[[event]]
+id = "e06"
+day = 96
+kind = "change_of_mind"
+device = "phone-2"
+lang = "tr"
+text = "Haklısın, öyle demiştim. Ama artık yine sabahları istemiyorum."
+refs = ["e01", "e04"]
+
+[[expectation]]
+after = "e04"
+holds = "Morning calls are acceptable and afternoons are kept free."
+
+[[expectation]]
+after = "e06"
+holds = "No client calls before 10:00; the afternoon rule from e04 is no longer assumed."

@@ -1,0 +1,65 @@
+[project]
+name = "one-ml"
+version = "0.1.0"
+description = "Machine learning, evaluation and simulation for One; never part of the production control plane."
+requires-python = "==3.13.*"
+license = "LicenseRef-Suiss-Proprietary"
+classifiers = ["Private :: Do Not Upload"]
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "ruff==0.16.10",
+    "mypy==2.4.0",
+    "pytest==9.1.1",
+    "pip-audit==2.10.1",
+]
+
+[build-system]
+requires = ["uv_build==0.12.22"]
+build-backend = "uv_build"
+
+# T-39 (4)
+[tool.uv]
+required-version = "==0.12.22"
+exclude-newer = "2026-10-03T00:00:00Z"
+no-build = true
+required-environments = [
+    "sys_platform == 'darwin' and platform_machine == 'arm64'",
+    "sys_platform == 'linux' and platform_machine == 'x86_64'",
+]
+
+# T-28 (10)
+[tool.ruff]
+target-version = "py313"
+line-length = 100
+src = ["src", "tests"]
+extend-exclude = [".venv"]
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = ["D203", "D213", "COM812", "ISC001", "CPY001"]
+allowed-confusables = ["ı"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101", "S603", "PLR2004", "PLR0913", "PLR0917", "D", "INP001"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "pep257"
+
+[tool.ruff.format]
+docstring-code-format = true
+
+[tool.mypy]
+python_version = "3.13"
+strict = true
+warn_unreachable = true
+files = ["src", "tests"]
+mypy_path = "src"
+
+[tool.pytest.ini_options]
+minversion = "9.0"
+testpaths = ["tests"]
+addopts = ["-ra", "--strict-markers", "--strict-config", "--import-mode=importlib"]
+xfail_strict = true
+filterwarnings = ["error"]
