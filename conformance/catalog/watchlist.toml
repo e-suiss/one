@@ -1,0 +1,77 @@
+# X-59, CP-24, CP-41, CP-13, MF-46, A-47, PV-49, PV-63
+every_days = 90
+
+[[watch]]
+rule = "X-59"
+topic = "A2UI 1.0 status"
+checked = "2026-10-10"
+
+[[watch]]
+rule = "X-59"
+topic = "MCP Apps extension status"
+checked = "2026-10-10"
+
+[[watch]]
+rule = "X-59"
+topic = "Android AppFunctions allowlist"
+checked = "2026-10-10"
+
+[[watch]]
+rule = "X-59"
+topic = "Android Auto conversational assistant category"
+checked = "2026-10-10"
+
+[[watch]]
+rule = "X-59"
+topic = "iOS 27 AI extensions"
+checked = "2026-10-10"
+
+[[watch]]
+rule = "X-59"
+topic = "Wear OS 7"
+checked = "2026-10-10"
+
+[[watch]]
+rule = "X-59"
+topic = "macOS screen recording permission prompt frequency"
+checked = "2026-10-10"
+
+[[watch]]
+rule = "X-59"
+topic = "EU Trusted System Agent"
+checked = "2026-10-10"
+
+[[watch]]
+rule = "CP-24"
+topic = "MCP protocol version distribution"
+checked = "2026-10-10"
+
+[[watch]]
+rule = "CP-41"
+topic = "Claude Code and Codex provider terms"
+checked = "2026-10-10"
+
+[[watch]]
+rule = "CP-13"
+topic = "Android and iOS accessibility and app-driving policies"
+checked = "2026-10-10"
+
+[[watch]]
+rule = "MF-46"
+topic = "EU AI Act GPAI thresholds for fine-tunes"
+checked = "2026-10-10"
+
+[[watch]]
+rule = "A-47"
+topic = "Agent tokens and single-use cards in Turkey"
+checked = "2026-10-10"
+
+[[watch]]
+rule = "PV-49"
+topic = "Per-country age thresholds"
+checked = "2026-10-10"
+
+[[watch]]
+rule = "PV-63"
+topic = "Watched legislation"
+checked = "2026-10-10"

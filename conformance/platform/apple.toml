@@ -1,0 +1,14 @@
+# T-30 (1), T-22, X-41
+forbidden = [
+    "kTCCServiceSystemPolicyAllFiles",
+    "SystemPolicyAllFiles",
+    "com.apple.private.",
+]
+
+[[background_mode]]
+name = "processing"
+reason = "T-30 (1)"
+
+[[background_mode]]
+name = "remote-notification"
+reason = "X-41"

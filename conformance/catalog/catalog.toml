@@ -1,0 +1,13 @@
+# T-55, T-38 (1)
+current_stage = 0
+test_roots = ["crates", "bins", "core", "load", "xtask", "ml/tests", "packages"]
+
+[[deferred]]
+id = "T-24"
+until_stage = 13
+reason = "T-56"
+
+[[deferred]]
+id = "T-45"
+until_stage = 1
+reason = "T-56"

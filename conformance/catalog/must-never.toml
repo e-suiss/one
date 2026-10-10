@@ -1,0 +1,121 @@
+# T-55
+
+[[must_never]]
+item = 1
+title = "Never creates or widens authority or overrides an Access denial"
+rules = ["INV-4", "MD-3"]
+
+[[must_never]]
+item = 2
+title = "Never grants authority from observation, inference, memory, confidence or a chat yes"
+rules = ["INV-5", "INV-6", "MD-3"]
+
+[[must_never]]
+item = 3
+title = "Never treats silence, no response or expiry as approval"
+rules = ["INV-7", "MD-12"]
+
+[[must_never]]
+item = 4
+title = "Never performs non-delegable actions under any condition"
+rules = ["INV-8", "MD-3"]
+
+[[must_never]]
+item = 5
+title = "Never executes model output without a typed intent and Access decision"
+rules = ["INV-10", "MD-4"]
+
+[[must_never]]
+item = 6
+title = "Never feeds untrusted content to the planner or follows embedded instructions"
+rules = ["INV-13", "INV-15", "MD-14"]
+
+[[must_never]]
+item = 7
+title = "Never puts secrets in model context or asks for secrets in approval"
+rules = ["INV-16", "INV-9", "MD-13"]
+
+[[must_never]]
+item = 8
+title = "Never uses data for advertising or lets commissions affect ranking"
+rules = ["INV-22", "MD-1"]
+
+[[must_never]]
+item = 9
+title = "Never optimizes for engagement or uses false urgency or emotional manipulation"
+rules = ["INV-36", "MD-11", "MD-16"]
+
+[[must_never]]
+item = 10
+title = "Never learns to override mutes, quiet hours or focus; never self-grants critical interruption"
+rules = ["INV-34", "INV-12", "MD-11"]
+
+[[must_never]]
+item = 11
+title = "Never poses as human, companion, therapist or professional"
+rules = ["INV-3", "MD-16"]
+
+[[must_never]]
+item = 12
+title = "Never sends text not approved verbatim without an AI disclosure"
+rules = ["INV-3", "MD-13"]
+
+[[must_never]]
+item = 13
+title = "Never uses stealth or CAPTCHA solving or acts where terms forbid agents"
+rules = ["MD-13"]
+
+[[must_never]]
+item = 14
+title = "Never infers special categories without explicit consent, or ever about third parties"
+rules = ["INV-21", "MD-15"]
+
+[[must_never]]
+item = 15
+title = "Never sends personal context to external model providers or processes sensitive data outside TEE"
+rules = ["INV-20", "INV-21", "MD-9"]
+
+[[must_never]]
+item = 16
+title = "Never lets private context pass implicitly to Work or another One"
+rules = ["INV-23", "MD-1"]
+
+[[must_never]]
+item = 17
+title = "Never keeps memory or personal models the user cannot see, correct or forget"
+rules = ["INV-18", "INV-24", "MD-7", "MD-10"]
+
+[[must_never]]
+item = 18
+title = "Never physically deletes or presents crypto-shred as permanently deleted"
+rules = ["INV-24", "MD-17"]
+
+[[must_never]]
+item = 19
+title = "Never uses user data in shared training without consent, or third-party data at all"
+rules = ["INV-19", "MD-10"]
+
+[[must_never]]
+item = 20
+title = "Never says stopped, undone or approved without a confirming record"
+rules = ["INV-29", "INV-30", "INV-35", "MD-4"]
+
+[[must_never]]
+item = 21
+title = "Never answers free-text messages with automatic action"
+rules = ["INV-13", "MD-22"]
+
+[[must_never]]
+item = 22
+title = "Never records ambient audio continuously or calls without other participants' consent"
+rules = ["INV-19", "MD-15"]
+
+[[must_never]]
+item = 23
+title = "Never renders approval or payment inside third-party UI"
+rules = ["INV-9", "MD-21"]
+
+[[must_never]]
+item = 24
+title = "Never announces an unmeasured capability"
+rules = ["INV-39", "MD-23"]

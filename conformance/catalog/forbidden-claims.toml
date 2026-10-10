@@ -1,0 +1,173 @@
+# INV-40, SEC-34, F-23, §3.3a
+
+[[claim]]
+id = "SEC-34"
+lang = "tr"
+phrase = "biliyorum"
+instead = "\"Bunu bana sen söyledin.\" / \"Sanırım; ...\" / \"Emin değilim.\""
+
+[[claim]]
+id = "SEC-34"
+lang = "en"
+phrase = "I know you"
+instead = "\"You told me this.\" / \"I think so, because ...\" / \"I'm not sure.\""
+
+[[claim]]
+id = "SEC-34"
+lang = "tr"
+phrase = "sildim"
+instead = "\"Bunu artık kullanmayacağım.\" / \"Kalıcı olarak unuttum; geri getirilemez.\""
+
+[[claim]]
+id = "SEC-34"
+lang = "tr"
+phrase = "kalıcı olarak silindi"
+instead = "\"Kalıcı olarak unuttum; geri getirilemez.\""
+
+[[claim]]
+id = "SEC-34"
+lang = "tr"
+phrase = "bütün verilerin silindi"
+instead = "\"One verilerin erişilemez kılındı; kanunen saklananlar ayrı tutuluyor.\""
+
+[[claim]]
+id = "SEC-34"
+lang = "en"
+phrase = "I deleted"
+instead = "\"I won't use this anymore.\" / \"Permanently forgotten; it cannot be brought back.\""
+
+[[claim]]
+id = "SEC-34"
+lang = "en"
+phrase = "permanently deleted"
+instead = "\"Permanently forgotten; it cannot be brought back.\""
+
+[[claim]]
+id = "SEC-34"
+lang = "en"
+phrase = "all your data was deleted"
+instead = "\"Your One data was made unreadable; records the law requires are kept separately.\""
+
+[[claim]]
+id = "SEC-34"
+lang = "en"
+phrase = "all your data has been deleted"
+instead = "\"Your One data was made unreadable; records the law requires are kept separately.\""
+
+[[claim]]
+id = "SEC-34"
+lang = "tr"
+phrase = "durduruldu"
+instead = "\"Durdurmayı istedim; işlem durduğunu bildirdi.\""
+
+[[claim]]
+id = "SEC-34"
+lang = "tr"
+phrase = "iş durdu"
+instead = "\"Durdurmayı istedim; işlem durduğunu bildirdi.\""
+
+[[claim]]
+id = "SEC-34"
+lang = "en"
+phrase = "has been stopped"
+instead = "\"I asked it to stop; it reported that it stopped.\""
+
+[[claim]]
+id = "SEC-34"
+lang = "tr"
+phrase = "onaylandı"
+instead = "\"Onayın kaydedildi (Access onay ekranı).\""
+
+[[claim]]
+id = "SEC-34"
+lang = "en"
+phrase = "approved"
+instead = "\"Your approval was recorded on the Access approval screen.\""
+
+[[claim]]
+id = "SEC-34"
+lang = "tr"
+phrase = "okundu"
+instead = "\"Gönderildi; teslim bekleniyor.\" / \"Teslim edildi.\""
+
+[[claim]]
+id = "SEC-34"
+lang = "en"
+phrase = "has been read"
+instead = "\"Sent; waiting for delivery.\" / \"Delivered.\""
+
+[[claim]]
+id = "SEC-34"
+lang = "tr"
+phrase = "kabul edildi"
+instead = "\"Teslim edildi.\""
+
+[[claim]]
+id = "SEC-34"
+lang = "tr"
+phrase = "hiç kimse asla erişemez"
+instead = "\"Verin senin anahtarınla şifreli; Suiss onu okuyamayacak biçimde işleniyor.\""
+
+[[claim]]
+id = "SEC-34"
+lang = "tr"
+phrase = "kırılamaz"
+instead = "\"Verin senin anahtarınla şifreli; Suiss onu okuyamayacak biçimde işleniyor.\""
+
+[[claim]]
+id = "SEC-34"
+lang = "en"
+phrase = "no one can ever access"
+instead = "\"Your data is encrypted with your key and processed so that Suiss cannot read it.\""
+
+[[claim]]
+id = "SEC-34"
+lang = "en"
+phrase = "unbreakable"
+instead = "\"Your data is encrypted with your key and processed so that Suiss cannot read it.\""
+
+[[claim]]
+id = "SEC-34"
+lang = "en"
+phrase = "uncrackable"
+instead = "\"Your data is encrypted with your key and processed so that Suiss cannot read it.\""
+
+[[claim]]
+id = "SEC-34"
+lang = "tr"
+phrase = "uçtan uca şifreli"
+instead = "only for messages between Ones; cloud processing: \"Suiss onu okuyamayacak biçimde işleniyor\""
+
+[[claim]]
+id = "SEC-34"
+lang = "en"
+phrase = "end-to-end encrypted"
+instead = "only for messages between Ones; cloud processing: \"processed so that Suiss cannot read it\""
+
+[[claim]]
+id = "SEC-34"
+lang = "tr"
+phrase = "modelden çıkarıldı"
+instead = "\"İznin geri çekildi; verin sonraki eğitimlere girmeyecek.\""
+
+[[claim]]
+id = "SEC-34"
+lang = "en"
+phrase = "removed from the model"
+instead = "\"Consent withdrawn; your data will not enter future training.\""
+
+[[claim]]
+id = "SEC-34"
+lang = "en"
+phrase = "exactly-once"
+instead = "\"Done once (recorded); if the other system does not prevent repeats I cannot guarantee it.\""
+
+[[claim]]
+id = "SEC-34"
+lang = "en"
+phrase = "exactly once"
+instead = "\"Done once (recorded); if the other system does not prevent repeats I cannot guarantee it.\""
+[[allow]]
+location = "README.md:29"
+phrase = "end-to-end encrypted"
+rule = "OO-7"

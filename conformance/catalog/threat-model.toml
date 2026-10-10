@@ -1,0 +1,64 @@
+# T-55
+
+[[threat]]
+row = 1
+title = "Indirect prompt injection"
+stride = ["T", "E"]
+linddun = ["Data disclosure"]
+rules = ["SEC-3", "SEC-8"]
+
+[[threat]]
+row = 2
+title = "Tool poisoning and rug pull"
+stride = ["S", "T", "E"]
+linddun = ["Data disclosure"]
+rules = []
+
+[[threat]]
+row = 3
+title = "Memory poisoning"
+stride = ["T", "E"]
+linddun = []
+rules = []
+
+[[threat]]
+row = 4
+title = "Secret leakage"
+stride = ["I"]
+linddun = ["Data disclosure"]
+rules = ["SEC-6"]
+
+[[threat]]
+row = 5
+title = "Forged approval"
+stride = ["S", "T", "R", "E"]
+linddun = []
+rules = ["SEC-7"]
+
+[[threat]]
+row = 6
+title = "Unwanted One or person"
+stride = ["S", "D"]
+linddun = ["Linking", "Identifying", "Detecting"]
+rules = []
+
+[[threat]]
+row = 7
+title = "Compromised device"
+stride = ["S", "I", "E"]
+linddun = ["Data disclosure"]
+rules = []
+
+[[threat]]
+row = 8
+title = "Operator and host"
+stride = ["T", "I"]
+linddun = ["Data disclosure", "Linking", "Identifying"]
+rules = []
+
+[[threat]]
+row = 9
+title = "Supply chain"
+stride = ["T", "I", "E"]
+linddun = ["Data disclosure"]
+rules = []

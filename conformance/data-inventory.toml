@@ -1,0 +1,32 @@
+# T-37 (3)
+version = 1
+
+[[telemetry_field]]
+name = "request_id"
+kind = "id"
+label = false
+
+[[telemetry_field]]
+name = "task_id"
+kind = "id"
+label = false
+
+[[telemetry_field]]
+name = "http_status"
+kind = "number"
+label = true
+
+[[telemetry_field]]
+name = "duration_ms"
+kind = "millis"
+label = false
+
+[[telemetry_field]]
+name = "items"
+kind = "count"
+label = false
+
+[[telemetry_field]]
+name = "attempt"
+kind = "count"
+label = false

@@ -1,0 +1,14 @@
+# T-30 (1), T-22, CP-13
+forbidden = [
+    "android.accessibilityservice.AccessibilityService",
+    "android.permission.BIND_ACCESSIBILITY_SERVICE",
+    "android.permission.QUERY_ALL_PACKAGES",
+]
+
+[[permission]]
+name = "android.permission.INTERNET"
+reason = "T-19"
+
+[[permission]]
+name = "android.permission.POST_NOTIFICATIONS"
+reason = "X-41"

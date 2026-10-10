@@ -1,0 +1,6386 @@
+# T-55
+
+[[rule]]
+id = "MD-1"
+family = "MD"
+section = "1"
+status = "central"
+stage = 3
+title = "One is the person's own agent, working for the user, not advertisers"
+
+[[rule]]
+id = "MD-2"
+family = "MD"
+section = "1"
+status = "central"
+day1 = true
+stage = 0
+title = "Suiss is one whole; One has no own identity, permission, delivery or payment"
+
+[[rule]]
+id = "MD-3"
+family = "MD"
+section = "1"
+status = "central"
+stage = 3
+title = "Observation, inference, memory and authority are distinct; Grant intersect Mandate bounds autonomy"
+
+[[rule]]
+id = "MD-4"
+family = "MD"
+section = "1"
+status = "central"
+stage = 1
+title = "One plans, Access decides, Executor executes; stop always works"
+
+[[rule]]
+id = "MD-5"
+family = "MD"
+section = "1"
+status = "central"
+stage = 3
+title = "A single One faces outward; sub-agents are separate instances with narrowing authority"
+
+[[rule]]
+id = "MD-6"
+family = "MD"
+section = "1"
+status = "central"
+day1 = true
+stage = 0
+title = "Small fixed core plus references; chat is a mode and tasks belong to One"
+
+[[rule]]
+id = "MD-7"
+family = "MD"
+section = "1"
+status = "central"
+day1 = true
+stage = 1
+title = "Memory is evidence-bound and bitemporal, never instruction or authority"
+
+[[rule]]
+id = "MD-8"
+family = "MD"
+section = "1"
+status = "central"
+day1 = true
+stage = 1
+title = "Key on user device, attested TEE per request, full export and shutdown guarantee"
+
+[[rule]]
+id = "MD-9"
+family = "MD"
+section = "1"
+status = "central"
+stage = 5
+title = "Suiss-operated open models only; no external model APIs; small models on phone"
+
+[[rule]]
+id = "MD-10"
+family = "MD"
+section = "1"
+status = "central"
+stage = 5
+title = "Personal models trained only on the person's data in encrypted cloud space"
+
+[[rule]]
+id = "MD-11"
+family = "MD"
+section = "1"
+status = "central"
+stage = 3
+title = "Attention is the scarcest resource; calibrated interruption with daily budget and finite digest"
+
+[[rule]]
+id = "MD-12"
+family = "MD"
+section = "1"
+status = "central"
+stage = 7
+title = "Background is read-only; unattended action only via bounded Mandate and Trigger"
+
+[[rule]]
+id = "MD-13"
+family = "MD"
+section = "1"
+status = "central"
+stage = 6
+title = "Ordered action paths; no cloaking or CAPTCHA solving; credentials never reach the model"
+
+[[rule]]
+id = "MD-14"
+family = "MD"
+section = "1"
+status = "central"
+stage = 1
+title = "Planner never sees untrusted content; quarantine model, provenance labels, Rule of Two"
+
+[[rule]]
+id = "MD-15"
+family = "MD"
+section = "1"
+status = "central"
+stage = 4
+title = "Data minimization; no default inference on special categories; private sharing by default"
+
+[[rule]]
+id = "MD-16"
+family = "MD"
+section = "1"
+status = "central"
+stage = 11
+title = "One is not a companion; no manipulation, crisis protocol and child protections"
+
+[[rule]]
+id = "MD-17"
+family = "MD"
+section = "1"
+status = "central"
+day1 = true
+stage = 2
+title = "No physical deletion; crypto-shred and never claim permanently deleted"
+
+[[rule]]
+id = "MD-18"
+family = "MD"
+section = "1"
+status = "central"
+stage = 0
+title = "Closed source, operated only by Suiss; open reader, extensions and SDK"
+
+[[rule]]
+id = "MD-19"
+family = "MD"
+section = "1"
+status = "central"
+day1 = true
+stage = 0
+title = "Rust cloud, PostgreSQL with pgvector, encrypted object store; server-authoritative core"
+
+[[rule]]
+id = "MD-20"
+family = "MD"
+section = "1"
+status = "central"
+stage = 4
+title = "Turkish and English as first-class languages with language-independent memory"
+
+[[rule]]
+id = "MD-21"
+family = "MD"
+section = "1"
+status = "central"
+stage = 1
+title = "No required device; smallest sufficient surface; no approvals in third-party UI"
+
+[[rule]]
+id = "MD-22"
+family = "MD"
+section = "1"
+status = "central"
+stage = 9
+title = "One-to-One via A2A profile, Relay mailbox and end-to-end encrypted envelopes"
+
+[[rule]]
+id = "MD-23"
+family = "MD"
+section = "1"
+status = "central"
+stage = 5
+title = "No claims without measurement; only tested capabilities enter the registry"
+
+[[rule]]
+id = "F-1"
+family = "F"
+section = "2"
+status = "frozen-product"
+stage = 0
+title = "Thesis: One is a personal representative bounded to context, planning, attention, surface"
+
+[[rule]]
+id = "F-2"
+family = "F"
+section = "2"
+status = "frozen-product"
+stage = 0
+title = "One's core problem and single question are as defined in sections 1.4 and 1.6"
+
+[[rule]]
+id = "F-3"
+family = "F"
+section = "2"
+status = "frozen-product"
+stage = 0
+title = "The section 2.2 scope table defines One's product boundary"
+
+[[rule]]
+id = "F-4"
+family = "F"
+section = "2"
+status = "frozen-product"
+stage = 3
+title = "One is the person's side, Work the neutral space; One joins as unprivileged Party"
+
+[[rule]]
+id = "F-5"
+family = "F"
+section = "2"
+status = "frozen-product"
+stage = 0
+title = "Product principles 1 to 19 in section 2.5 are binding"
+
+[[rule]]
+id = "F-6"
+family = "F"
+section = "2"
+status = "frozen-product"
+stage = 0
+title = "Concept test applies through the five questions in section 2.6"
+
+[[rule]]
+id = "F-7"
+family = "F"
+section = "2"
+status = "frozen-product"
+stage = 0
+bound_stage = 0
+title = "Architecture review test items 1 to 16 in section 2.7 are binding"
+
+[[rule]]
+id = "F-8"
+family = "F"
+section = "2"
+status = "frozen-product"
+stage = 11
+title = "One is not a companion; the aim is familiarity, not attachment"
+
+[[rule]]
+id = "F-9"
+family = "F"
+section = "2"
+status = "frozen-product"
+stage = 0
+title = "The must-never list items 1 to 24 in section 2.10 is binding"
+
+[[rule]]
+id = "F-10"
+family = "F"
+section = "2"
+status = "frozen-product"
+stage = 2
+title = "User-owned is a product principle, not legal status; Suiss is the controller"
+
+[[rule]]
+id = "F-11"
+family = "F"
+section = "2"
+status = "frozen-product"
+stage = 10
+title = "Users are persons, households and child profiles; non-technical user is the default"
+
+[[rule]]
+id = "F-12"
+family = "F"
+section = "2"
+status = "frozen-product"
+stage = 7
+title = "Every user-facing setting has a plain UI asked in everyday language"
+
+[[rule]]
+id = "F-13"
+family = "F"
+section = "2"
+status = "out-of-scope"
+title = "Pricing, business model, go-to-market and competitor positioning are out of scope"
+
+[[rule]]
+id = "F-14"
+family = "F"
+section = "2"
+status = "out-of-scope"
+title = "A required device or phone-replacing hardware is out of scope"
+
+[[rule]]
+id = "F-15"
+family = "F"
+section = "2"
+status = "out-of-scope"
+title = "Super-app absorbing services or rewriting commerce systems is out of scope"
+
+[[rule]]
+id = "F-16"
+family = "F"
+section = "2"
+status = "out-of-scope"
+title = "Self-hosted and open-source One are out of scope"
+
+[[rule]]
+id = "F-17"
+family = "F"
+section = "2"
+status = "out-of-scope"
+title = "One is never used for high-risk assessments or decisions about others"
+
+[[rule]]
+id = "F-18"
+family = "F"
+section = "3"
+status = "frozen-product"
+stage = 0
+title = "Nine statuses; each decision carries exactly one; parameters qualified as PD, EA or WATCH"
+
+[[rule]]
+id = "F-19"
+family = "F"
+section = "3"
+status = "frozen-product"
+stage = 0
+title = "DAY-1 is an orthogonal attribute; DAY-1 decisions lock before implementation"
+
+[[rule]]
+id = "F-20"
+family = "F"
+section = "3"
+status = "frozen-technical"
+stage = 0
+title = "FROZEN technical and protocol decisions carry acceptance test, counterexample and guarantee class"
+
+[[rule]]
+id = "F-21"
+family = "F"
+section = "3"
+status = "frozen-product"
+stage = 0
+title = "EA and model quality numbers await reproduction; vendor and paper figures are claims"
+
+[[rule]]
+id = "F-22"
+family = "F"
+section = "3"
+status = "frozen-product"
+stage = 0
+title = "Reopening only under section 3.2 conditions; IDs are never reused"
+
+[[rule]]
+id = "F-23"
+family = "F"
+section = "3"
+status = "frozen-product"
+stage = 0
+title = "Guarantee classes and claim language bind product and documentation wording"
+
+[[rule]]
+id = "F-24"
+family = "F"
+section = "3"
+status = "watch"
+stage = 0
+title = "WATCH, PD and EA items never leak into invariant language"
+
+[[rule]]
+id = "F-25"
+family = "F"
+section = "3"
+status = "frozen-product"
+stage = 0
+title = "Every policy default states who may change it, limits and direction; tighten-only security"
+
+[[rule]]
+id = "F-26"
+family = "F"
+section = "3"
+status = "frozen-product"
+stage = 0
+title = "Unvalued PD is written as value-by-measurement; dependent features ship only once set"
+
+[[rule]]
+id = "F-27"
+family = "F"
+section = "3"
+status = "frozen-product"
+stage = 0
+title = "When the spec is ambiguous, implementation does not decide; a new ID comes first"
+
+[[rule]]
+id = "F-28"
+family = "F"
+section = "3"
+status = "frozen-product"
+stage = 0
+title = "Register format, ID families, sibling citation and decision label per section 3.8"
+
+[[rule]]
+id = "F-29"
+family = "F"
+section = "2"
+status = "frozen-product"
+title = "Preparing the user's own high-stakes applications is allowed; One never makes the decision"
+
+[[rule]]
+id = "L-1"
+family = "L"
+section = "4"
+status = "frozen-product"
+stage = 3
+title = "Planner, approver and executor are separate; control sits beyond the agent's reach"
+
+[[rule]]
+id = "L-2"
+family = "L"
+section = "4"
+status = "frozen-product"
+stage = 7
+title = "Four behaviors per action instead of a single autonomy slider"
+
+[[rule]]
+id = "L-3"
+family = "L"
+section = "4"
+status = "frozen-product"
+stage = 7
+title = "Fixed list of non-delegable actions"
+
+[[rule]]
+id = "L-4"
+family = "L"
+section = "4"
+status = "frozen-product"
+stage = 7
+title = "Background is read-only; scheduled and event-triggered tasks are separate"
+
+[[rule]]
+id = "L-5"
+family = "L"
+section = "4"
+status = "frozen-product"
+stage = 6
+title = "Read and send permissions are separate per app"
+
+[[rule]]
+id = "L-6"
+family = "L"
+section = "4"
+status = "frozen-product"
+stage = 6
+title = "Credentials are hidden from the agent and the model"
+
+[[rule]]
+id = "L-7"
+family = "L"
+section = "4"
+status = "frozen-product"
+stage = 3
+title = "Isolated cloud machine per user; browser context is not a security boundary"
+
+[[rule]]
+id = "L-8"
+family = "L"
+section = "4"
+status = "frozen-product"
+stage = 10
+title = "Activity log showing performed and planned actions"
+
+[[rule]]
+id = "L-9"
+family = "L"
+section = "4"
+status = "frozen-product"
+stage = 7
+title = "Explicit mandate setup with strong auth; each order is a separate exercise"
+
+[[rule]]
+id = "L-10"
+family = "L"
+section = "4"
+status = "frozen-product"
+stage = 6
+title = "Agent has its own identity, never impersonates the user, and identifies itself"
+
+[[rule]]
+id = "L-11"
+family = "L"
+section = "4"
+status = "frozen-product"
+stage = 4
+title = "Personal context is off by default; answer without personalization option"
+
+[[rule]]
+id = "L-12"
+family = "L"
+section = "4"
+status = "frozen-product"
+stage = 4
+title = "Observation is not preference; no proactive assumptions on sensitive topics"
+
+[[rule]]
+id = "L-13"
+family = "L"
+section = "4"
+status = "frozen-product"
+stage = 4
+title = "Time-aware memory rewriting with a readable, editable view"
+
+[[rule]]
+id = "L-14"
+family = "L"
+section = "4"
+status = "frozen-product"
+stage = 2
+title = "Key on user device; per-request attested enclave decryption in the cloud"
+
+[[rule]]
+id = "L-15"
+family = "L"
+section = "4"
+status = "frozen-product"
+stage = 11
+title = "Visible on-device-only processing option"
+
+[[rule]]
+id = "L-16"
+family = "L"
+section = "4"
+status = "frozen-product"
+stage = 6
+title = "Actions and context use app-defined entity and intent schemas"
+
+[[rule]]
+id = "L-17"
+family = "L"
+section = "4"
+status = "frozen-product"
+stage = 8
+title = "Interruption decided by weighing information value against expected interruption cost"
+
+[[rule]]
+id = "L-18"
+family = "L"
+section = "4"
+status = "frozen-product"
+stage = 8
+title = "Non-urgent notifications deferred to a natural breakpoint"
+
+[[rule]]
+id = "L-19"
+family = "L"
+section = "4"
+status = "frozen-product"
+stage = 8
+title = "Daily digest is finite and ends"
+
+[[rule]]
+id = "L-20"
+family = "L"
+section = "4"
+status = "frozen-product"
+stage = 7
+title = "Routines start as suggestions; applying them requires user approval"
+
+[[rule]]
+id = "L-21"
+family = "L"
+section = "4"
+status = "frozen-product"
+stage = 6
+title = "Tool selection via retrieval; planner sees only permitted capabilities"
+
+[[rule]]
+id = "L-22"
+family = "L"
+section = "4"
+status = "frozen-product"
+stage = 4
+title = "No required device or full cloud dependency; company death is not data death"
+
+[[rule]]
+id = "L-23"
+family = "L"
+section = "4"
+status = "frozen-product"
+stage = 4
+title = "Long shutdown notice and post-shutdown data export"
+
+[[rule]]
+id = "L-24"
+family = "L"
+section = "4"
+status = "frozen-product"
+stage = 2
+title = "Operator cannot read personal space; shared training is opt-in only"
+
+[[rule]]
+id = "L-25"
+family = "L"
+section = "4"
+status = "frozen-product"
+stage = 4
+title = "Memory permission is separate from training permission"
+
+[[rule]]
+id = "L-26"
+family = "L"
+section = "4"
+status = "frozen-product"
+stage = 4
+title = "Item-level memory control"
+
+[[rule]]
+id = "L-27"
+family = "L"
+section = "4"
+status = "frozen-product"
+stage = 5
+title = "Personality regression testing and announcement; sycophancy evaluation"
+
+[[rule]]
+id = "L-28"
+family = "L"
+section = "4"
+status = "frozen-product"
+stage = 6
+title = "Authority layer, sandbox and signed capabilities for a user-owned agent"
+
+[[rule]]
+id = "L-29"
+family = "L"
+section = "4"
+status = "frozen-product"
+stage = 2
+title = "Secrets in vault, crypto-shred, and no claims without measurement"
+
+[[rule]]
+id = "L-30"
+family = "L"
+section = "4"
+status = "frozen-product"
+stage = 12
+title = "Fetched content is never treated as instructions"
+
+[[rule]]
+id = "L-31"
+family = "L"
+section = "4"
+status = "frozen-product"
+stage = 6
+title = "No separate email address for the agent"
+
+[[rule]]
+id = "L-32"
+family = "L"
+section = "4"
+status = "frozen-product"
+stage = 6
+title = "No cloaking; agent mode in local browser only on explicit invocation"
+
+[[rule]]
+id = "L-33"
+family = "L"
+section = "4"
+status = "frozen-product"
+stage = 6
+title = "Browser is not the only action path; no rewriting the browser"
+
+[[rule]]
+id = "L-34"
+family = "L"
+section = "4"
+status = "frozen-product"
+stage = 10
+title = "Assistant does not enter every surface unasked"
+
+[[rule]]
+id = "L-35"
+family = "L"
+section = "4"
+status = "frozen-product"
+stage = 8
+title = "Proactivity does not serve the provider's business model"
+
+[[rule]]
+id = "L-36"
+family = "L"
+section = "4"
+status = "frozen-product"
+stage = 8
+title = "Summaries are source-linked and can be turned off"
+
+[[rule]]
+id = "L-37"
+family = "L"
+section = "4"
+status = "frozen-product"
+stage = 11
+title = "Ambient capture is opt-in and protected"
+
+[[rule]]
+id = "L-38"
+family = "L"
+section = "4"
+status = "frozen-product"
+stage = 5
+title = "No promises without measurement"
+
+[[rule]]
+id = "L-39"
+family = "L"
+section = "4"
+status = "frozen-product"
+stage = 5
+title = "Deterministic fast path for simple commands"
+
+[[rule]]
+id = "L-40"
+family = "L"
+section = "4"
+status = "frozen-product"
+stage = 11
+title = "No emotional attachment design"
+
+[[rule]]
+id = "L-41"
+family = "L"
+section = "4"
+status = "frozen-product"
+stage = 11
+title = "Personality is distinct from lasting usefulness"
+
+[[rule]]
+id = "L-42"
+family = "L"
+section = "4"
+status = "frozen-product"
+stage = 10
+title = "Sharing is private by default"
+
+[[rule]]
+id = "L-43"
+family = "L"
+section = "4"
+status = "frozen-product"
+stage = 6
+title = "No in-chat app store"
+
+[[rule]]
+id = "L-44"
+family = "L"
+section = "4"
+status = "frozen-product"
+stage = 11
+title = "No ambient recording without third-party consent"
+
+[[rule]]
+id = "C-1"
+family = "C"
+section = "5"
+status = "canonical"
+stage = 0
+bound_stage = 1
+title = "Canonical concept criterion: has its own identity and is referenced"
+
+[[rule]]
+id = "C-2"
+family = "C"
+section = "5"
+status = "canonical"
+stage = 0
+bound_stage = 1
+title = "Nine canonical concepts and six canonical relations are fixed"
+
+[[rule]]
+id = "C-3"
+family = "C"
+section = "5"
+status = "canonical"
+stage = 0
+title = "Extension via content types, interaction types, capabilities, typed extensions and views"
+
+[[rule]]
+id = "C-4"
+family = "C"
+section = "5"
+status = "canonical"
+stage = 1
+bound_stage = 3
+title = "Other products' concepts come by reference; One keeps only caches"
+
+[[rule]]
+id = "C-5"
+family = "C"
+section = "5"
+status = "canonical"
+stage = 1
+title = "Chat is a mode; a conversation is an Episode"
+
+[[rule]]
+id = "C-6"
+family = "C"
+section = "5"
+status = "canonical"
+stage = 1
+title = "Protocol objects are projections; protocol changes affect only the mapping layer"
+
+[[rule]]
+id = "C-7"
+family = "C"
+section = "5"
+status = "frozen-protocol"
+stage = 1
+bound_stage = 1
+title = "Extension points are reverse-DNS namespaced and versioned; enums map to core categories"
+
+[[rule]]
+id = "C-8"
+family = "C"
+section = "5"
+status = "canonical"
+stage = 1
+bound_stage = 1
+title = "Observation, inference, memory and authority are distinct; layer transitions explicit and logged"
+
+[[rule]]
+id = "C-9"
+family = "C"
+section = "5"
+status = "frozen-technical"
+stage = 1
+title = "Ontology covers domain concepts; models, keys and routing are operational objects"
+
+[[rule]]
+id = "C-10"
+family = "C"
+section = "5"
+status = "canonical"
+stage = 1
+title = "Observation: provenance-labeled input record; raw observations not stored by default"
+
+[[rule]]
+id = "C-11"
+family = "C"
+section = "5"
+status = "canonical"
+stage = 1
+title = "Episode: the unit of evidence; conversation history is an Episode"
+
+[[rule]]
+id = "C-12"
+family = "C"
+section = "5"
+status = "canonical"
+stage = 5
+title = "Memory record: bitemporal with separate content, epistemic, layer and time fields"
+
+[[rule]]
+id = "C-13"
+family = "C"
+section = "5"
+status = "canonical"
+stage = 1
+bound_stage = 7
+title = "Goal: stable identity across versions; not authority"
+
+[[rule]]
+id = "C-14"
+family = "C"
+section = "5"
+status = "canonical"
+stage = 1
+bound_stage = 7
+title = "Routine: typed hypothesis with no authority; action only via suggestion, approval, Grant"
+
+[[rule]]
+id = "C-15"
+family = "C"
+section = "5"
+status = "canonical"
+stage = 1
+bound_stage = 3
+title = "Task: single-person work owned by One; promises are Work Commitments"
+
+[[rule]]
+id = "C-16"
+family = "C"
+section = "5"
+status = "canonical"
+stage = 1
+title = "Interaction: surface-independent semantic unit; approval under Access rules"
+
+[[rule]]
+id = "C-17"
+family = "C"
+section = "5"
+status = "canonical"
+stage = 1
+bound_stage = 6
+title = "Capability definition: reverse-DNS name, version, extends; not authority; tested only"
+
+[[rule]]
+id = "C-18"
+family = "C"
+section = "5"
+status = "canonical"
+stage = 1
+bound_stage = 10
+title = "Surface capability declares presentation and interaction; cannot raise approval ceiling"
+
+[[rule]]
+id = "C-19"
+family = "C"
+section = "5"
+status = "frozen-protocol"
+stage = 0
+bound_stage = 1
+title = "Common fields shared by all canonical records"
+
+[[rule]]
+id = "C-20"
+family = "C"
+section = "5"
+status = "canonical"
+stage = 2
+bound_stage = 2
+title = "Records are immutable in place; correct, stop using, or permanently forget"
+
+[[rule]]
+id = "C-21"
+family = "C"
+section = "5"
+status = "canonical"
+stage = 2
+bound_stage = 2
+title = "Derivatives are version-bound to sources; permanent forgetting propagates to them"
+
+[[rule]]
+id = "C-22"
+family = "C"
+section = "5"
+status = "canonical"
+stage = 10
+bound_stage = 10
+title = "Views create no canonical state and are recomputable"
+
+[[rule]]
+id = "C-23"
+family = "C"
+section = "5"
+status = "frozen-product"
+stage = 1
+bound_stage = 1
+title = "Six relations; relations carry no authority"
+
+[[rule]]
+id = "C-24"
+family = "C"
+section = "5"
+status = "canonical"
+stage = 1
+title = "Table of concepts that come by reference"
+
+[[rule]]
+id = "C-25"
+family = "C"
+section = "5"
+status = "frozen-protocol"
+stage = 1
+bound_stage = 1
+title = "Summary of Interaction fields; canonical schema in section 14 X-12"
+
+[[rule]]
+id = "C-26"
+family = "C"
+section = "5"
+status = "frozen-protocol"
+stage = 1
+bound_stage = 1
+title = "InteractionResponse carries identity, nonce, device, evidence level; first valid wins"
+
+[[rule]]
+id = "C-27"
+family = "C"
+section = "5"
+status = "frozen-protocol"
+stage = 1
+title = "Projection table"
+
+[[rule]]
+id = "C-28"
+family = "C"
+section = "5"
+status = "canonical"
+stage = 1
+bound_stage = 1
+title = "Non-canonical concepts and their equivalents"
+
+[[rule]]
+id = "C-29"
+family = "C"
+section = "5"
+status = "frozen-product"
+stage = 0
+title = "Canonical terminology"
+
+[[rule]]
+id = "INV-1"
+family = "INV"
+section = "6"
+status = "canonical"
+stage = 3
+bound_stage = 3
+title = "A single One; sub-agents are separate instances with only narrowing authority"
+
+[[rule]]
+id = "INV-2"
+family = "INV"
+section = "6"
+status = "canonical"
+stage = 3
+bound_stage = 3
+title = "One has no semantic privilege in Access, Relay or Work"
+
+[[rule]]
+id = "INV-3"
+family = "INV"
+section = "6"
+status = "canonical"
+stage = 11
+bound_stage = 11
+title = "Being AI is never hidden; sent messages are marked; no companion impersonation"
+
+[[rule]]
+id = "INV-4"
+family = "INV"
+section = "6"
+status = "canonical"
+stage = 3
+bound_stage = 3
+title = "One creates no authority; it only prepares actions needing user authority"
+
+[[rule]]
+id = "INV-5"
+family = "INV"
+section = "6"
+status = "canonical"
+stage = 7
+bound_stage = 7
+title = "Predictions, memory, routines, trust and chat approval phrases are not authority"
+
+[[rule]]
+id = "INV-6"
+family = "INV"
+section = "6"
+status = "canonical"
+stage = 7
+bound_stage = 7
+title = "Trust never replaces approval; it only moves toward asking anyway"
+
+[[rule]]
+id = "INV-7"
+family = "INV"
+section = "6"
+status = "canonical"
+stage = 7
+bound_stage = 7
+title = "Silence is not approval; work stops on expiry"
+
+[[rule]]
+id = "INV-8"
+family = "INV"
+section = "6"
+status = "canonical"
+stage = 7
+bound_stage = 7
+title = "Non-delegable floor that no one can relax"
+
+[[rule]]
+id = "INV-9"
+family = "INV"
+section = "6"
+status = "canonical"
+stage = 7
+bound_stage = 7
+title = "Approval is a user action bound to exact content; never in third-party UI"
+
+[[rule]]
+id = "INV-10"
+family = "INV"
+section = "6"
+status = "canonical"
+stage = 1
+bound_stage = 1
+title = "Model output is never executed directly: typed intent, Access, Executor"
+
+[[rule]]
+id = "INV-11"
+family = "INV"
+section = "6"
+status = "canonical"
+stage = 7
+bound_stage = 7
+title = "State-changing actions without the user only within a Mandate; background read-only"
+
+[[rule]]
+id = "INV-12"
+family = "INV"
+section = "6"
+status = "canonical"
+stage = 3
+bound_stage = 8
+title = "Right to interrupt is not authority to act; critical only with explicit Grant"
+
+[[rule]]
+id = "INV-13"
+family = "INV"
+section = "6"
+status = "canonical"
+stage = 6
+bound_stage = 4
+title = "Content is not instruction; commands only from the verified owner"
+
+[[rule]]
+id = "INV-14"
+family = "INV"
+section = "6"
+status = "canonical"
+stage = 1
+bound_stage = 1
+title = "Memory is neither instruction nor authority; it is a marked data block"
+
+[[rule]]
+id = "INV-15"
+family = "INV"
+section = "6"
+status = "canonical"
+stage = 1
+bound_stage = 1
+title = "Planner never sees untrusted content; provenance degrades to worst; Rule of Two"
+
+[[rule]]
+id = "INV-16"
+family = "INV"
+section = "6"
+status = "canonical"
+stage = 6
+bound_stage = 6
+title = "Secrets never enter model context; coding agent credentials are never taken"
+
+[[rule]]
+id = "INV-17"
+family = "INV"
+section = "6"
+status = "canonical"
+stage = 4
+bound_stage = 4
+title = "Externally sourced memory is a candidate; imports are unverified and excluded from training"
+
+[[rule]]
+id = "INV-18"
+family = "INV"
+section = "6"
+status = "canonical"
+stage = 5
+bound_stage = 2
+title = "Personal model and data serve only that person; exportable and crypto-shreddable"
+
+[[rule]]
+id = "INV-19"
+family = "INV"
+section = "6"
+status = "canonical"
+stage = 5
+bound_stage = 5
+title = "Shared training only with explicit consent; never third-party data"
+
+[[rule]]
+id = "INV-20"
+family = "INV"
+section = "6"
+status = "canonical"
+stage = 3
+bound_stage = 5
+title = "One context only on Suiss-operated models; no external model APIs; fail-closed"
+
+[[rule]]
+id = "INV-21"
+family = "INV"
+section = "6"
+status = "canonical"
+stage = 11
+bound_stage = 11
+title = "Sensitive classes off by default; never special-category inference about third parties"
+
+[[rule]]
+id = "INV-22"
+family = "INV"
+section = "6"
+status = "canonical"
+stage = 11
+bound_stage = 11
+title = "One data is never used for advertising or targeting"
+
+[[rule]]
+id = "INV-23"
+family = "INV"
+section = "6"
+status = "canonical"
+stage = 3
+bound_stage = 3
+title = "Private context never crosses boundaries implicitly; minimal typed fields, explicit disclosure"
+
+[[rule]]
+id = "INV-24"
+family = "INV"
+section = "6"
+status = "canonical"
+stage = 2
+bound_stage = 2
+title = "No physical deletion; forgetting has three verbs; never claim permanently deleted"
+
+[[rule]]
+id = "INV-25"
+family = "INV"
+section = "6"
+status = "canonical"
+stage = 2
+bound_stage = 2
+title = "Data under legal retention never enters the user-keyed space"
+
+[[rule]]
+id = "INV-26"
+family = "INV"
+section = "6"
+status = "canonical"
+stage = 0
+bound_stage = 0
+title = "Privacy promises never change retroactively; no fail-open"
+
+[[rule]]
+id = "INV-27"
+family = "INV"
+section = "6"
+status = "canonical"
+stage = 1
+bound_stage = 1
+title = "Full versioned export, identical in all regions and open at shutdown"
+
+[[rule]]
+id = "INV-28"
+family = "INV"
+section = "6"
+status = "canonical"
+stage = 6
+bound_stage = 6
+title = "Tasks belong to One, not to a device, surface, conversation or provider"
+
+[[rule]]
+id = "INV-29"
+family = "INV"
+section = "6"
+status = "canonical"
+stage = 10
+bound_stage = 10
+title = "What did you do is answered only from linked records"
+
+[[rule]]
+id = "INV-30"
+family = "INV"
+section = "6"
+status = "canonical"
+stage = 1
+bound_stage = 1
+title = "Cancelled is not stopped; stopped only with Executor confirmation"
+
+[[rule]]
+id = "INV-31"
+family = "INV"
+section = "6"
+status = "canonical"
+stage = 2
+bound_stage = 2
+title = "External effects are idempotent and logged; never resent after a crash"
+
+[[rule]]
+id = "INV-32"
+family = "INV"
+section = "6"
+status = "canonical"
+stage = 3
+bound_stage = 3
+title = "Stop always works, confirmed by Executor"
+
+[[rule]]
+id = "INV-33"
+family = "INV"
+section = "6"
+status = "canonical"
+stage = 10
+bound_stage = 10
+title = "Explanations are record-linked decision rationale, not raw chain of thought"
+
+[[rule]]
+id = "INV-34"
+family = "INV"
+section = "6"
+status = "canonical"
+stage = 8
+bound_stage = 8
+title = "Muting binds; a closed channel never reopens through learning"
+
+[[rule]]
+id = "INV-35"
+family = "INV"
+section = "6"
+status = "canonical"
+stage = 7
+bound_stage = 7
+title = "Undo only when truly reversible; honest labels for compensation"
+
+[[rule]]
+id = "INV-36"
+family = "INV"
+section = "6"
+status = "canonical"
+stage = 8
+bound_stage = 8
+title = "Forbidden rewards; no attachment or false urgency"
+
+[[rule]]
+id = "INV-37"
+family = "INV"
+section = "6"
+status = "canonical"
+stage = 0
+bound_stage = 0
+title = "Suiss is one whole; One has no own identity, permission, push, wait or payment"
+
+[[rule]]
+id = "INV-38"
+family = "INV"
+section = "6"
+status = "canonical"
+stage = 1
+bound_stage = 1
+title = "Protocols and orchestration frameworks are adapters"
+
+[[rule]]
+id = "INV-39"
+family = "INV"
+section = "6"
+status = "canonical"
+stage = 5
+bound_stage = 0
+title = "No claims without measurement; vendor benchmarks are claims"
+
+[[rule]]
+id = "INV-40"
+family = "INV"
+section = "6"
+status = "canonical"
+stage = 0
+bound_stage = 0
+title = "Wording never exceeds the guarantee"
+
+[[rule]]
+id = "INV-41"
+family = "INV"
+section = "6"
+status = "canonical"
+stage = 0
+bound_stage = 0
+title = "Change test for architecture review"
+
+[[rule]]
+id = "E-1"
+family = "E"
+section = "7"
+status = "canonical"
+stage = 3
+title = "Ownership matrix: every piece of information has a single owner"
+
+[[rule]]
+id = "E-2"
+family = "E"
+section = "7"
+status = "central"
+stage = 0
+bound_stage = 3
+title = "Access, Relay, Work and Pay are mandatory; One has no parallel paths"
+
+[[rule]]
+id = "E-3"
+family = "E"
+section = "7"
+status = "frozen-product"
+stage = 0
+title = "Frictionless connection via discovery, CloudEvents, Access TN-136 and shared tenant mapping"
+
+[[rule]]
+id = "E-4"
+family = "E"
+section = "7"
+status = "canonical"
+stage = 0
+bound_stage = 3
+title = "Public contracts only; no One-specific API; shared crates, no shared data or keys"
+
+[[rule]]
+id = "E-5"
+family = "E"
+section = "7"
+status = "frozen-product"
+stage = 13
+title = "One operated only by Suiss; clients from app stores; org users via federation"
+
+[[rule]]
+id = "E-6"
+family = "E"
+section = "7"
+status = "frozen-product"
+stage = 3
+bound_stage = 11
+title = "Identity comes from Access; One is an agent Party, sub-agents separate instances"
+
+[[rule]]
+id = "E-7"
+family = "E"
+section = "7"
+status = "canonical"
+stage = 3
+bound_stage = 7
+title = "Authority comes from Access; Grant intersect Mandate; users validate rule proposals in Access"
+
+[[rule]]
+id = "E-8"
+family = "E"
+section = "7"
+status = "frozen-product"
+stage = 10
+bound_stage = 10
+title = "Pending is the coordinator surface; trusted approval screen is an Access component"
+
+[[rule]]
+id = "E-9"
+family = "E"
+section = "7"
+status = "canonical"
+stage = 3
+bound_stage = 3
+title = "Minimal data to Access; memory is not a Claim by default"
+
+[[rule]]
+id = "E-10"
+family = "E"
+section = "7"
+status = "frozen-protocol"
+stage = 3
+bound_stage = 3
+title = "Parameters carry Access E54 provenance labels; origin set lives in the Mandate"
+
+[[rule]]
+id = "E-11"
+family = "E"
+section = "7"
+status = "frozen-technical"
+stage = 2
+bound_stage = 2
+title = "One retention classes per Annex C C.3.7; key with user; recovery via Access E52"
+
+[[rule]]
+id = "E-12"
+family = "E"
+section = "7"
+status = "frozen-product"
+stage = 11
+bound_stage = 11
+title = "Household, guardianship and age live in Access; shared resources are not personal memory"
+
+[[rule]]
+id = "E-13"
+family = "E"
+section = "7"
+status = "frozen-protocol"
+stage = 7
+bound_stage = 7
+title = "Access issues first-contact tokens, Relay verifies; relationship level grants no authority"
+
+[[rule]]
+id = "E-14"
+family = "E"
+section = "7"
+status = "central"
+stage = 3
+bound_stage = 3
+title = "One plans, Access decides, Executor executes; One builds no separate runtime"
+
+[[rule]]
+id = "E-15"
+family = "E"
+section = "7"
+status = "frozen-product"
+stage = 3
+bound_stage = 6
+title = "Rule-based execution location: API, then cloud microVM, then on-device local runner"
+
+[[rule]]
+id = "E-16"
+family = "E"
+section = "7"
+status = "frozen-technical"
+stage = 3
+bound_stage = 3
+title = "Tasks in One; long-running task engine in Executor; waits in Relay"
+
+[[rule]]
+id = "E-17"
+family = "E"
+section = "7"
+status = "frozen-product"
+stage = 6
+bound_stage = 6
+title = "Browser profiles and credentials live in Executor; Web Bot Auth; no cloaking"
+
+[[rule]]
+id = "E-18"
+family = "E"
+section = "7"
+status = "canonical"
+stage = 3
+bound_stage = 3
+title = "Effect reports are Executor Claims; stopped only with Executor confirmation"
+
+[[rule]]
+id = "E-19"
+family = "E"
+section = "7"
+status = "frozen-product"
+stage = 6
+bound_stage = 6
+title = "User's Claude Code and Codex run locally under the user's account; no credentials taken"
+
+[[rule]]
+id = "E-20"
+family = "E"
+section = "7"
+status = "frozen-product"
+stage = 3
+title = "Delivery via Relay; One is agent recipient and producer under the agent ceiling"
+
+[[rule]]
+id = "E-21"
+family = "E"
+section = "7"
+status = "frozen-product"
+stage = 8
+bound_stage = 8
+title = "Interruption level and urgency in One; delivery timing and redaction in Relay"
+
+[[rule]]
+id = "E-22"
+family = "E"
+section = "7"
+status = "frozen-technical"
+stage = 8
+bound_stage = 8
+title = "Device state lives in Relay; One reads presence without storing or logging"
+
+[[rule]]
+id = "E-23"
+family = "E"
+section = "7"
+status = "frozen-product"
+stage = 3
+bound_stage = 10
+title = "Approval invites are Relay waitpoints; a Relay reply is not approval"
+
+[[rule]]
+id = "E-24"
+family = "E"
+section = "7"
+status = "frozen-protocol"
+stage = 9
+bound_stage = 9
+title = "One-to-One transport via end-to-end encrypted Relay agent mailboxes using MLS"
+
+[[rule]]
+id = "E-25"
+family = "E"
+section = "7"
+status = "frozen-product"
+stage = 11
+bound_stage = 11
+title = "Parental approval is a timed guardian_approval in Relay with no default answer"
+
+[[rule]]
+id = "E-26"
+family = "E"
+section = "7"
+status = "canonical"
+stage = 3
+bound_stage = 3
+title = "Human waits live in Relay; One keeps no wait timer; work stops on expiry"
+
+[[rule]]
+id = "E-27"
+family = "E"
+section = "7"
+status = "canonical"
+stage = 3
+bound_stage = 3
+title = "One is on the person's side, Work neutral; private context never enters Work"
+
+[[rule]]
+id = "E-28"
+family = "E"
+section = "7"
+status = "canonical"
+stage = 3
+bound_stage = 3
+title = "Work with promises is a Work Commitment; single-person work is a One Task"
+
+[[rule]]
+id = "E-29"
+family = "E"
+section = "7"
+status = "frozen-product"
+stage = 3
+title = "Personal Work tenant opens at the first shared commitment, triggered by One"
+
+[[rule]]
+id = "E-30"
+family = "E"
+section = "7"
+status = "frozen-protocol"
+stage = 9
+bound_stage = 9
+title = "One-to-One offer flow is a Work record; Mandate-covered offers accepted without approval"
+
+[[rule]]
+id = "E-31"
+family = "E"
+section = "7"
+status = "frozen-product"
+stage = 10
+bound_stage = 10
+title = "Pending shows Work items as views without changing record ownership"
+
+[[rule]]
+id = "E-32"
+family = "E"
+section = "7"
+status = "frozen-product"
+stage = 3
+bound_stage = 7
+title = "Payments always via Pay; unattended only within Mandate; each order an Exercise"
+
+[[rule]]
+id = "E-33"
+family = "E"
+section = "7"
+status = "canonical"
+stage = 2
+bound_stage = 2
+title = "Legally retained records stay in the owner's class; One links by reference"
+
+[[rule]]
+id = "E-34"
+family = "E"
+section = "7"
+status = "out-of-scope"
+stage = 6
+title = "Commerce and Serve are only capability providers with equal ranking"
+
+[[rule]]
+id = "E-35"
+family = "E"
+section = "7"
+status = "frozen-product"
+stage = 6
+bound_stage = 6
+title = "No secrets to third-party capabilities; external assistants get Grant-bound read-only endpoints"
+
+[[rule]]
+id = "E-36"
+family = "E"
+section = "7"
+status = "frozen-product"
+stage = 3
+bound_stage = 3
+title = "Failure ownership table; no failure ever widens permissions"
+
+[[rule]]
+id = "E-37"
+family = "E"
+section = "7"
+status = "canonical"
+stage = 3
+bound_stage = 3
+title = "Only what is needed crosses boundaries; secrets cross none"
+
+[[rule]]
+id = "E-38"
+family = "E"
+section = "7"
+status = "central"
+stage = 0
+title = "Sibling spec counterparts map one-to-one; changes reopen the section"
+
+[[rule]]
+id = "M-1"
+family = "M"
+section = "8"
+status = "canonical"
+stage = 1
+bound_stage = 1
+title = "Observation, inference, memory and authority are distinct; memory never creates authority"
+
+[[rule]]
+id = "M-2"
+family = "M"
+section = "8"
+status = "canonical"
+stage = 4
+bound_stage = 4
+title = "Memory is a marked data block, never an instruction"
+
+[[rule]]
+id = "M-3"
+family = "M"
+section = "8"
+status = "frozen-product"
+stage = 4
+bound_stage = 4
+title = "Source data is read by reference, not copied into memory"
+
+[[rule]]
+id = "M-4"
+family = "M"
+section = "8"
+status = "canonical"
+stage = 4
+bound_stage = 5
+title = "Memory, task state and persona live in One, not providers or weights"
+
+[[rule]]
+id = "M-5"
+family = "M"
+section = "8"
+status = "canonical"
+stage = 3
+bound_stage = 4
+title = "One memory never flows on its own to Work, Access or another One"
+
+[[rule]]
+id = "M-6"
+family = "M"
+section = "8"
+status = "frozen-technical"
+day1 = true
+stage = 1
+bound_stage = 2
+title = "Canonical memory is structured, sourced, versioned records; model text is a view"
+
+[[rule]]
+id = "M-7"
+family = "M"
+section = "8"
+status = "frozen-product"
+day1 = true
+stage = 1
+title = "Record fields keep content type, epistemic state, layer and time type separate"
+
+[[rule]]
+id = "M-8"
+family = "M"
+section = "8"
+status = "frozen-product"
+stage = 1
+bound_stage = 4
+title = "Six epistemic states; verified only by user confirmation or independent second source"
+
+[[rule]]
+id = "M-9"
+family = "M"
+section = "8"
+status = "frozen-product"
+stage = 1
+title = "Memory has three layers: event, consolidated fact, behavior rule"
+
+[[rule]]
+id = "M-10"
+family = "M"
+section = "8"
+status = "frozen-product"
+day1 = true
+stage = 1
+title = "Facts and relations carry valid time, record time and a time type"
+
+[[rule]]
+id = "M-11"
+family = "M"
+section = "8"
+status = "frozen-technical"
+stage = 2
+title = "Storage in typed PostgreSQL tables with hybrid search inside TEE"
+
+[[rule]]
+id = "M-12"
+family = "M"
+section = "8"
+status = "frozen-technical"
+stage = 2
+bound_stage = 2
+title = "Vectors carry model version; embedding change recomputes all; retrieval always hybrid"
+
+[[rule]]
+id = "M-13"
+family = "M"
+section = "8"
+status = "frozen-product"
+stage = 1
+bound_stage = 1
+title = "Confidence is computed from evidence with a versioned formula, not model self-reports"
+
+[[rule]]
+id = "M-14"
+family = "M"
+section = "8"
+status = "frozen-product"
+stage = 4
+bound_stage = 4
+title = "Users see confidence classes, not numbers; confidence only pushes toward asking"
+
+[[rule]]
+id = "M-15"
+family = "M"
+section = "8"
+status = "frozen-product"
+stage = 4
+bound_stage = 4
+title = "Tiered writes: normal auto-visible; sensitive and behavior rules need approval"
+
+[[rule]]
+id = "M-16"
+family = "M"
+section = "8"
+status = "frozen-product"
+stage = 4
+bound_stage = 4
+title = "Only explicit remember is written live; inferences consolidate at session end and daily"
+
+[[rule]]
+id = "M-17"
+family = "M"
+section = "8"
+status = "frozen-technical"
+stage = 4
+bound_stage = 4
+title = "Candidate detection on phone without LLM; consolidation in cloud TEE"
+
+[[rule]]
+id = "M-18"
+family = "M"
+section = "8"
+status = "canonical"
+stage = 4
+bound_stage = 4
+title = "External-content records stay candidates until confirmed and never become behavior rules"
+
+[[rule]]
+id = "M-19"
+family = "M"
+section = "8"
+status = "canonical"
+stage = 4
+bound_stage = 4
+title = "Behavior rules are proposed by One, approved by user, versioned and revocable"
+
+[[rule]]
+id = "M-20"
+family = "M"
+section = "8"
+status = "frozen-product"
+stage = 1
+bound_stage = 4
+title = "Change, exception and contradiction are distinct; no deletion or silent overwrite"
+
+[[rule]]
+id = "M-21"
+family = "M"
+section = "8"
+status = "frozen-product"
+stage = 4
+bound_stage = 4
+title = "Future-tense records are rewritten to past tense as a new version"
+
+[[rule]]
+id = "M-22"
+family = "M"
+section = "8"
+status = "frozen-product"
+stage = 4
+bound_stage = 4
+title = "Temporary records get an end estimate and a confirmation question when due"
+
+[[rule]]
+id = "M-23"
+family = "M"
+section = "8"
+status = "frozen-product"
+stage = 4
+bound_stage = 4
+title = "Decay lowers retrieval priority only; retention comes from the retention class"
+
+[[rule]]
+id = "M-24"
+family = "M"
+section = "8"
+status = "canonical"
+stage = 2
+bound_stage = 2
+title = "Forgetting has three verbs: correct, do not use, permanently forget"
+
+[[rule]]
+id = "M-25"
+family = "M"
+section = "8"
+status = "frozen-technical"
+day1 = true
+stage = 2
+bound_stage = 2
+title = "Permanent forget crypto-shreds the record and all derivatives with explicit confirmation"
+
+[[rule]]
+id = "M-26"
+family = "M"
+section = "8"
+status = "canonical"
+stage = 10
+bound_stage = 10
+title = "Memory is item-level visible, correctable, disableable and forgettable with sources shown"
+
+[[rule]]
+id = "M-27"
+family = "M"
+section = "8"
+status = "frozen-product"
+stage = 4
+bound_stage = 4
+title = "Memory and personal training consent are separate and independent"
+
+[[rule]]
+id = "M-28"
+family = "M"
+section = "8"
+status = "frozen-product"
+stage = 4
+title = "Ten fixed life areas; users add projects, not areas"
+
+[[rule]]
+id = "M-29"
+family = "M"
+section = "8"
+status = "frozen-product"
+stage = 4
+title = "User projects sit under areas; closed projects are kept but not retrieved"
+
+[[rule]]
+id = "M-30"
+family = "M"
+section = "8"
+status = "frozen-product"
+stage = 4
+bound_stage = 4
+title = "Retrieval is a fixed eight-step pipeline with a shared policy gate"
+
+[[rule]]
+id = "M-31"
+family = "M"
+section = "8"
+status = "canonical"
+stage = 4
+bound_stage = 4
+title = "LLM receives only the minimal subset; sensitive classes only in One models in TEE"
+
+[[rule]]
+id = "M-32"
+family = "M"
+section = "8"
+status = "frozen-product"
+stage = 4
+bound_stage = 4
+title = "Opinion and belief records are excluded from factual questions"
+
+[[rule]]
+id = "M-33"
+family = "M"
+section = "8"
+status = "frozen-product"
+stage = 4
+bound_stage = 4
+title = "Temporary mode writes nothing to memory; Access decisions and action logs still recorded"
+
+[[rule]]
+id = "M-34"
+family = "M"
+section = "8"
+status = "frozen-product"
+stage = 4
+title = "Answer without personalization is one tap away on every answer"
+
+[[rule]]
+id = "M-35"
+family = "M"
+section = "8"
+status = "canonical"
+stage = 3
+bound_stage = 4
+title = "Every memory egress is explicit, minimal and logged; sharing with assistants is a Grant"
+
+[[rule]]
+id = "M-36"
+family = "M"
+section = "8"
+status = "frozen-technical"
+stage = 4
+bound_stage = 4
+title = "Canonical memory in cloud; device caches encrypted subset; server-authoritative sync"
+
+[[rule]]
+id = "M-37"
+family = "M"
+section = "8"
+status = "frozen-product"
+stage = 10
+bound_stage = 11
+title = "Device-only sensitive class never leaves device and has no LLM features"
+
+[[rule]]
+id = "M-38"
+family = "M"
+section = "8"
+status = "frozen-product"
+stage = 2
+bound_stage = 2
+title = "Every memory part belongs to an Appendix C One class; derivatives take strictest"
+
+[[rule]]
+id = "M-39"
+family = "M"
+section = "8"
+status = "canonical"
+stage = 4
+bound_stage = 4
+title = "Full structured export of all memory, persona, adapter and history with strong verification"
+
+[[rule]]
+id = "M-40"
+family = "M"
+section = "8"
+status = "frozen-protocol"
+stage = 1
+bound_stage = 1
+title = "Export schema defined in CDDL, open, versioned, backward compatible, JSON encoded"
+
+[[rule]]
+id = "M-41"
+family = "M"
+section = "8"
+status = "frozen-product"
+stage = 4
+bound_stage = 4
+title = "Export is identical in all regions"
+
+[[rule]]
+id = "M-42"
+family = "M"
+section = "8"
+status = "frozen-product"
+stage = 4
+title = "Package reader tool is open source under Apache-2.0 in one-open"
+
+[[rule]]
+id = "M-43"
+family = "M"
+section = "8"
+status = "canonical"
+stage = 4
+bound_stage = 4
+title = "Imported records arrive as unverified candidate data, never instructions or rules"
+
+[[rule]]
+id = "M-44"
+family = "M"
+section = "8"
+status = "canonical"
+stage = 4
+bound_stage = 4
+title = "Imported records never enter personal training"
+
+[[rule]]
+id = "M-45"
+family = "M"
+section = "8"
+status = "frozen-product"
+stage = 4
+title = "HCP, DTI and similar transfer protocols are adapters mapped to One schema"
+
+[[rule]]
+id = "M-46"
+family = "M"
+section = "8"
+status = "frozen-product"
+stage = 13
+bound_stage = 13
+title = "Shutdown guarantee: 90 days notice, 30 days export-only, then crypto-shred"
+
+[[rule]]
+id = "M-47"
+family = "M"
+section = "8"
+status = "canonical"
+stage = 11
+bound_stage = 11
+title = "Sensitive, third-party and child profile rules apply at all memory gates"
+
+[[rule]]
+id = "M-48"
+family = "M"
+section = "8"
+status = "frozen-product"
+stage = 4
+bound_stage = 4
+title = "Memory evaluation suite covers defined dimensions with full-context baseline"
+
+[[rule]]
+id = "M-49"
+family = "M"
+section = "8"
+status = "frozen-product"
+stage = 4
+bound_stage = 13
+title = "Memory-affecting changes do not ship if correction or stale-use rates regress"
+
+[[rule]]
+id = "M-50"
+family = "M"
+section = "8"
+status = "frozen-product"
+stage = 0
+title = "Vendor benchmark numbers are claims; decisions rest on One own suite"
+
+[[rule]]
+id = "M-51"
+family = "M"
+section = "8"
+status = "frozen-product"
+stage = 10
+bound_stage = 10
+title = "How One knows you screen set without technical field names"
+
+[[rule]]
+id = "M-52"
+family = "M"
+section = "8"
+status = "frozen-product"
+stage = 10
+bound_stage = 10
+title = "Every memory action has a natural-language equivalent with identical result"
+
+[[rule]]
+id = "MF-1"
+family = "MF"
+section = "9"
+status = "canonical"
+stage = 0
+title = "Personalization lives in context; adapters are style only, facts stay in memory"
+
+[[rule]]
+id = "MF-2"
+family = "MF"
+section = "9"
+status = "frozen-product"
+stage = 5
+title = "Users do not choose models; model role and version shown in details"
+
+[[rule]]
+id = "MF-3"
+family = "MF"
+section = "9"
+status = "frozen-product"
+stage = 5
+bound_stage = 5
+title = "Model failure is not One failure; no suitable model means wait, fail-closed"
+
+[[rule]]
+id = "MF-4"
+family = "MF"
+section = "9"
+status = "canonical"
+stage = 5
+bound_stage = 5
+title = "Task state, plan and history live in One; model serving is stateless"
+
+[[rule]]
+id = "MF-5"
+family = "MF"
+section = "9"
+status = "frozen-technical"
+stage = 5
+bound_stage = 5
+title = "Simple work takes a deterministic fast path; LLM only for semantic work"
+
+[[rule]]
+id = "MF-6"
+family = "MF"
+section = "9"
+status = "frozen-technical"
+stage = 1
+title = "Orchestration frameworks are adapters; One defines its own model interface and errors"
+
+[[rule]]
+id = "MF-7"
+family = "MF"
+section = "9"
+status = "central"
+stage = 5
+bound_stage = 5
+title = "One brain is Suiss-operated open models in user encrypted space; no external APIs"
+
+[[rule]]
+id = "MF-8"
+family = "MF"
+section = "9"
+status = "engineering-assumption"
+stage = 5
+title = "Qwen3.5-4B, Qwen3.5-27B and EmbeddingGemma 2 stay unless they fall behind"
+
+[[rule]]
+id = "MF-9"
+family = "MF"
+section = "9"
+status = "engineering-assumption"
+stage = 0
+title = "Fallback model families are Gemma 4 and multilingual-e5-small, continuously measured"
+
+[[rule]]
+id = "MF-10"
+family = "MF"
+section = "9"
+status = "frozen-technical"
+stage = 5
+bound_stage = 5
+title = "Models are shared and stateless; only encrypted data and per-request LoRA are personal"
+
+[[rule]]
+id = "MF-11"
+family = "MF"
+section = "9"
+status = "frozen-technical"
+stage = 5
+bound_stage = 5
+title = "Quarantine model is a toolless, isolated, adapterless small model with tagged output"
+
+[[rule]]
+id = "MF-12"
+family = "MF"
+section = "9"
+status = "frozen-technical"
+stage = 5
+bound_stage = 5
+title = "Voice models are Suiss-operated with own tool calls disabled; first response on device"
+
+[[rule]]
+id = "MF-13"
+family = "MF"
+section = "9"
+status = "frozen-technical"
+stage = 5
+title = "Phone runs only small models within a 250 MB budget"
+
+[[rule]]
+id = "MF-14"
+family = "MF"
+section = "9"
+status = "out-of-scope"
+title = "On-device language models are out of scope"
+
+[[rule]]
+id = "MF-15"
+family = "MF"
+section = "9"
+status = "frozen-technical"
+stage = 5
+bound_stage = 5
+title = "Background decisions never depend on an LLM; LLM background work runs in cloud"
+
+[[rule]]
+id = "MF-16"
+family = "MF"
+section = "9"
+status = "engineering-assumption"
+stage = 1
+title = "Multiple device runtimes with versioned model formats; no architecture on preview SDKs"
+
+[[rule]]
+id = "MF-17"
+family = "MF"
+section = "9"
+status = "policy-default"
+stage = 5
+bound_stage = 5
+title = "Device models download on Wi-Fi, not bundled; cloud fallback until ready"
+
+[[rule]]
+id = "MF-18"
+family = "MF"
+section = "9"
+status = "canonical"
+stage = 5
+bound_stage = 5
+title = "Risk model and model confidence only add ask-anyway after Access ALLOW"
+
+[[rule]]
+id = "MF-19"
+family = "MF"
+section = "9"
+status = "frozen-technical"
+stage = 5
+bound_stage = 5
+title = "Two-stage router: non-bypassable rule gate, then learned quality and cost estimate"
+
+[[rule]]
+id = "MF-20"
+family = "MF"
+section = "9"
+status = "canonical"
+stage = 5
+bound_stage = 5
+title = "Rule gate inputs: data class, consent, Grant or budget, connection, region, mode"
+
+[[rule]]
+id = "MF-21"
+family = "MF"
+section = "9"
+status = "engineering-assumption"
+stage = 5
+title = "Second routing stage starts from difficulty heuristic and learns from feedback"
+
+[[rule]]
+id = "MF-22"
+family = "MF"
+section = "9"
+status = "frozen-technical"
+stage = 1
+title = "Every routing decision is logged without content"
+
+[[rule]]
+id = "MF-23"
+family = "MF"
+section = "9"
+status = "frozen-product"
+stage = 5
+bound_stage = 5
+title = "Fallback order stays inside the rule gate; large-model work never silently downgraded"
+
+[[rule]]
+id = "MF-24"
+family = "MF"
+section = "9"
+status = "canonical"
+stage = 5
+bound_stage = 5
+title = "Sensitive classes only in One models in attested TEE; device-only has no LLM"
+
+[[rule]]
+id = "MF-25"
+family = "MF"
+section = "9"
+status = "canonical"
+stage = 6
+bound_stage = 6
+title = "Personal context goes to external assistants only under zero-retention, no-training terms"
+
+[[rule]]
+id = "MF-26"
+family = "MF"
+section = "9"
+status = "out-of-scope"
+stage = 5
+bound_stage = 5
+title = "External model APIs and bring-your-own-AI are out of scope"
+
+[[rule]]
+id = "MF-27"
+family = "MF"
+section = "9"
+status = "frozen-product"
+stage = 6
+bound_stage = 6
+title = "User Claude Code and Codex are not One models and get no One context"
+
+[[rule]]
+id = "MF-28"
+family = "MF"
+section = "9"
+status = "canonical"
+stage = 2
+bound_stage = 2
+title = "Models trained on personal data belong to the user: exportable, shreddable, unshared"
+
+[[rule]]
+id = "MF-29"
+family = "MF"
+section = "9"
+status = "frozen-product"
+stage = 5
+bound_stage = 5
+title = "Memory and training consent are separate; disabling one keeps the other"
+
+[[rule]]
+id = "MF-30"
+family = "MF"
+section = "9"
+status = "central"
+stage = 2
+bound_stage = 2
+title = "All personal training in user encrypted cloud space inside TEE; no phone training"
+
+[[rule]]
+id = "MF-31"
+family = "MF"
+section = "9"
+status = "policy-default"
+stage = 5
+title = "Personal models grow from a general starter model; adapter trains nightly past threshold"
+
+[[rule]]
+id = "MF-32"
+family = "MF"
+section = "9"
+status = "canonical"
+stage = 5
+bound_stage = 5
+title = "Personal adapter only on Qwen3.5-4B, style and behavior only, no facts"
+
+[[rule]]
+id = "MF-33"
+family = "MF"
+section = "9"
+status = "frozen-product"
+stage = 2
+bound_stage = 5
+title = "Fixed training data table; facts masked, suspicious samples dropped, no persistent copy"
+
+[[rule]]
+id = "MF-34"
+family = "MF"
+section = "9"
+status = "engineering-assumption"
+stage = 2
+bound_stage = 2
+title = "New adapter activates only after passing regression, holdout and safety checks"
+
+[[rule]]
+id = "MF-35"
+family = "MF"
+section = "9"
+status = "canonical"
+stage = 2
+bound_stage = 2
+title = "Permanent forget retrains from remaining data and crypto-shreds old versions"
+
+[[rule]]
+id = "MF-36"
+family = "MF"
+section = "9"
+status = "frozen-product"
+stage = 5
+bound_stage = 5
+title = "Personal models export with base model info; imported records never train"
+
+[[rule]]
+id = "MF-37"
+family = "MF"
+section = "9"
+status = "frozen-product"
+stage = 5
+bound_stage = 5
+title = "Child profiles get no personal adapter and child data never enters shared training"
+
+[[rule]]
+id = "MF-38"
+family = "MF"
+section = "9"
+status = "frozen-product"
+stage = 5
+bound_stage = 5
+title = "Personal model training is a separate unchecked consent toggle"
+
+[[rule]]
+id = "MF-39"
+family = "MF"
+section = "9"
+status = "central"
+stage = 5
+title = "Shared training only with explicit consent via synthetic data and DP counts"
+
+[[rule]]
+id = "MF-40"
+family = "MF"
+section = "9"
+status = "canonical"
+stage = 5
+bound_stage = 5
+title = "Withdrawn consent excludes future training but not past weights, stated plainly"
+
+[[rule]]
+id = "MF-41"
+family = "MF"
+section = "9"
+status = "frozen-product"
+stage = 2
+bound_stage = 2
+title = "Contribution provenance for each shared model version is logged without content"
+
+[[rule]]
+id = "MF-42"
+family = "MF"
+section = "9"
+status = "canonical"
+stage = 5
+bound_stage = 5
+title = "Third-party, sensitive, child, imported and other protected data never enter shared training"
+
+[[rule]]
+id = "MF-43"
+family = "MF"
+section = "9"
+status = "policy-default"
+stage = 5
+bound_stage = 5
+title = "Per-user DP budget required before shared training runs"
+
+[[rule]]
+id = "MF-44"
+family = "MF"
+section = "9"
+status = "frozen-technical"
+stage = 5
+title = "Base models taken off the shelf; behavior training and adapters redone per base version"
+
+[[rule]]
+id = "MF-45"
+family = "MF"
+section = "9"
+status = "frozen-technical"
+stage = 0
+title = "Behavior training data is open commercial-licensed plus synthetic under license rules"
+
+[[rule]]
+id = "MF-46"
+family = "MF"
+section = "9"
+status = "watch"
+stage = 5
+title = "Fine-tunes stay below the substantial modification threshold; Suiss not a GPAI provider"
+
+[[rule]]
+id = "MF-47"
+family = "MF"
+section = "9"
+status = "frozen-product"
+stage = 1
+title = "Persona is a user-held, versioned behavior profile; One proposes, user writes"
+
+[[rule]]
+id = "MF-48"
+family = "MF"
+section = "9"
+status = "policy-default"
+stage = 5
+title = "Every model change passes persona regression; significant differences announced"
+
+[[rule]]
+id = "MF-49"
+family = "MF"
+section = "9"
+status = "canonical"
+stage = 5
+bound_stage = 5
+title = "Aim is familiarity, not attachment; no engagement goals, AI nature never hidden"
+
+[[rule]]
+id = "MF-50"
+family = "MF"
+section = "9"
+status = "central"
+stage = 0
+title = "Turkish and English are first-class with mid-conversation switching"
+
+[[rule]]
+id = "MF-51"
+family = "MF"
+section = "9"
+status = "frozen-technical"
+stage = 0
+title = "One TR+EN evaluation set covers defined areas and contains no user data"
+
+[[rule]]
+id = "MF-52"
+family = "MF"
+section = "9"
+status = "canonical"
+stage = 5
+bound_stage = 5
+title = "New models and behavior ship only without regression on all evaluation suites"
+
+[[rule]]
+id = "MF-53"
+family = "MF"
+section = "9"
+status = "frozen-product"
+stage = 0
+title = "Vendor benchmark numbers are claims; One measures on its own set"
+
+[[rule]]
+id = "MF-54"
+family = "MF"
+section = "9"
+status = "frozen-technical"
+stage = 0
+title = "Synthetic user simulation and multi-agent privacy tests are part of evaluation"
+
+[[rule]]
+id = "MF-55"
+family = "MF"
+section = "9"
+status = "frozen-technical"
+stage = 1
+bound_stage = 5
+title = "Versioned model registry; embeddings versioned, hybrid retrieval, dimension 256"
+
+[[rule]]
+id = "MF-56"
+family = "MF"
+section = "9"
+status = "frozen-product"
+stage = 10
+title = "Every model and personalization setting has a plain UI equivalent"
+
+[[rule]]
+id = "A-1"
+family = "A"
+section = "10"
+status = "canonical"
+stage = 1
+bound_stage = 7
+title = "Autonomy ceiling is the Access Mandate behavior field per capability and context"
+
+[[rule]]
+id = "A-2"
+family = "A"
+section = "10"
+status = "canonical"
+stage = 3
+bound_stage = 3
+title = "One may be stricter than the ceiling, never looser; chat yes is not approval"
+
+[[rule]]
+id = "A-3"
+family = "A"
+section = "10"
+status = "frozen-product"
+stage = 7
+title = "Natural-language rules become Grant or Mandate proposals effective only after approval"
+
+[[rule]]
+id = "A-4"
+family = "A"
+section = "10"
+status = "canonical"
+stage = 3
+bound_stage = 3
+title = "Sub-agent and execution instance authority only narrows, separately traced and stoppable"
+
+[[rule]]
+id = "A-5"
+family = "A"
+section = "10"
+status = "canonical"
+stage = 3
+bound_stage = 3
+title = "User authority actions come from the user Instance; One only prepares"
+
+[[rule]]
+id = "A-6"
+family = "A"
+section = "10"
+status = "canonical"
+stage = 3
+bound_stage = 3
+title = "Model output becomes a schema-validated typed intent, then Access, then execution"
+
+[[rule]]
+id = "A-7"
+family = "A"
+section = "10"
+status = "canonical"
+stage = 3
+bound_stage = 3
+title = "Routine, relationship and trust level never create authority"
+
+[[rule]]
+id = "A-8"
+family = "A"
+section = "10"
+status = "canonical"
+stage = 3
+bound_stage = 3
+title = "Observed content is data; external parameters are untrusted-external"
+
+[[rule]]
+id = "A-9"
+family = "A"
+section = "10"
+status = "canonical"
+stage = 7
+bound_stage = 3
+title = "Trust cannot widen authority; it only adds ask-anyway after Access ALLOW"
+
+[[rule]]
+id = "A-10"
+family = "A"
+section = "10"
+status = "frozen-product"
+stage = 7
+title = "Ask-anyway factors: low confidence, novelty, intent conflict, external origin, irreversibility, drift"
+
+[[rule]]
+id = "A-11"
+family = "A"
+section = "10"
+status = "canonical"
+stage = 7
+bound_stage = 7
+title = "Eight non-delegable actions are handoff-only for One"
+
+[[rule]]
+id = "A-12"
+family = "A"
+section = "10"
+status = "frozen-product"
+stage = 10
+bound_stage = 7
+title = "Non-delegable floor shown as a read-only list, not a setting"
+
+[[rule]]
+id = "A-13"
+family = "A"
+section = "10"
+status = "canonical"
+stage = 7
+bound_stage = 7
+title = "Background is read-only by default; unattended writes need a named bounded Mandate"
+
+[[rule]]
+id = "A-14"
+family = "A"
+section = "10"
+status = "frozen-product"
+stage = 1
+bound_stage = 7
+title = "Trigger fields: event source, condition, allowed action, budget, mandatory end, Mandate"
+
+[[rule]]
+id = "A-15"
+family = "A"
+section = "10"
+status = "canonical"
+stage = 7
+bound_stage = 7
+title = "Fired triggers get a continuation decision; no action if authority lapsed"
+
+[[rule]]
+id = "A-16"
+family = "A"
+section = "10"
+status = "frozen-product"
+stage = 7
+title = "Trigger card with one-tap pause or remove; One-to-One unattended only typed replies"
+
+[[rule]]
+id = "A-17"
+family = "A"
+section = "10"
+status = "canonical"
+stage = 7
+bound_stage = 7
+title = "Approval need set by Access class, reversibility and user rule"
+
+[[rule]]
+id = "A-18"
+family = "A"
+section = "10"
+status = "frozen-product"
+stage = 7
+bound_stage = 7
+title = "Purchases, sending, legal acceptance and account settings always require approval"
+
+[[rule]]
+id = "A-19"
+family = "A"
+section = "10"
+status = "canonical"
+stage = 7
+bound_stage = 7
+title = "Approval requests expire and stop the work; silence is not approval"
+
+[[rule]]
+id = "A-20"
+family = "A"
+section = "10"
+status = "canonical"
+stage = 7
+bound_stage = 7
+title = "Access trusted surface renders approvals; agent text is not the subject; CT2+ passkey"
+
+[[rule]]
+id = "A-21"
+family = "A"
+section = "10"
+status = "canonical"
+stage = 7
+bound_stage = 7
+title = "Approval channel never collects secrets"
+
+[[rule]]
+id = "A-22"
+family = "A"
+section = "10"
+status = "frozen-product"
+stage = 7
+bound_stage = 7
+title = "Approval fatigue is measured; One proposes rules but never grants them"
+
+[[rule]]
+id = "A-23"
+family = "A"
+section = "10"
+status = "frozen-product"
+stage = 7
+bound_stage = 7
+title = "Batch approval list; approve-all only for CT0-CT1 reversible actions"
+
+[[rule]]
+id = "A-24"
+family = "A"
+section = "10"
+status = "frozen-product"
+stage = 1
+bound_stage = 7
+title = "Reversibility is a field separate from CT; undeclared means irreversible"
+
+[[rule]]
+id = "A-25"
+family = "A"
+section = "10"
+status = "frozen-product"
+stage = 7
+bound_stage = 7
+title = "Irreversible actions get a delayed commit window by default"
+
+[[rule]]
+id = "A-26"
+family = "A"
+section = "10"
+status = "frozen-product"
+stage = 7
+bound_stage = 7
+title = "Honest labels: undo only for reversible actions; compensations named as such"
+
+[[rule]]
+id = "A-27"
+family = "A"
+section = "10"
+status = "frozen-product"
+stage = 7
+title = "Refund and dispute path stored for every purchase"
+
+[[rule]]
+id = "A-28"
+family = "A"
+section = "10"
+status = "canonical"
+stage = 7
+bound_stage = 7
+title = "Voice and watch allow only low-tier reversible actions within Mandate and budget"
+
+[[rule]]
+id = "A-29"
+family = "A"
+section = "10"
+status = "frozen-protocol"
+stage = 1
+title = "Every surface returns a uniform InteractionResponse"
+
+[[rule]]
+id = "A-30"
+family = "A"
+section = "10"
+status = "frozen-product"
+stage = 7
+bound_stage = 7
+title = "Approval goes to one surface, parallel on timeout; first valid answer wins"
+
+[[rule]]
+id = "A-31"
+family = "A"
+section = "10"
+status = "central"
+stage = 3
+bound_stage = 3
+title = "Payments always go through Pay; unattended payment only within a named Mandate"
+
+[[rule]]
+id = "A-32"
+family = "A"
+section = "10"
+status = "canonical"
+stage = 7
+bound_stage = 7
+title = "Mandate setup is phishing-resistant with amount and payee bound step-up"
+
+[[rule]]
+id = "A-33"
+family = "A"
+section = "10"
+status = "canonical"
+stage = 3
+bound_stage = 3
+title = "Every order is an Access Exercise with Pay as PEP"
+
+[[rule]]
+id = "A-34"
+family = "A"
+section = "10"
+status = "canonical"
+stage = 7
+bound_stage = 3
+title = "One never sees raw card or bank credentials; agent tokens come from Pay"
+
+[[rule]]
+id = "A-35"
+family = "A"
+section = "10"
+status = "canonical"
+stage = 7
+bound_stage = 3
+title = "Narrowest limit wins; One derives limits from Access decisions and shows differences"
+
+[[rule]]
+id = "A-36"
+family = "A"
+section = "10"
+status = "frozen-protocol"
+stage = 7
+title = "Commerce projections: UCP and ACP checkout, AP2 and Verifiable Intent, network tokens via Pay"
+
+[[rule]]
+id = "A-37"
+family = "A"
+section = "10"
+status = "frozen-product"
+stage = 7
+bound_stage = 7
+title = "MPP and x402 only for One operating spend, separate from user budget"
+
+[[rule]]
+id = "A-38"
+family = "A"
+section = "10"
+status = "canonical"
+stage = 7
+bound_stage = 7
+title = "Commissions, paid placement and affiliate revenue are never ranking inputs"
+
+[[rule]]
+id = "A-39"
+family = "A"
+section = "10"
+status = "canonical"
+stage = 7
+bound_stage = 7
+title = "Suiss products ranked equal to other providers; only user preference promotes"
+
+[[rule]]
+id = "A-40"
+family = "A"
+section = "10"
+status = "frozen-product"
+stage = 7
+title = "Conflicts of interest are disclosed explicitly"
+
+[[rule]]
+id = "A-41"
+family = "A"
+section = "10"
+status = "frozen-product"
+stage = 10
+title = "Every autonomy setting has a plain UI; narrowing easy, widening on trusted surface"
+
+[[rule]]
+id = "A-42"
+family = "A"
+section = "10"
+status = "out-of-scope"
+stage = 1
+bound_stage = 7
+title = "A single global autonomy slider is out of scope"
+
+[[rule]]
+id = "A-43"
+family = "A"
+section = "10"
+status = "out-of-scope"
+stage = 7
+bound_stage = 7
+title = "Any path to relax the non-delegable floor is out of scope"
+
+[[rule]]
+id = "A-44"
+family = "A"
+section = "10"
+status = "out-of-scope"
+stage = 7
+bound_stage = 7
+title = "General unattended do low-risk tasks authority is out of scope"
+
+[[rule]]
+id = "A-45"
+family = "A"
+section = "10"
+status = "out-of-scope"
+stage = 3
+title = "One holding raw payment data or its own payment rail is out of scope"
+
+[[rule]]
+id = "A-46"
+family = "A"
+section = "10"
+status = "out-of-scope"
+stage = 7
+bound_stage = 7
+title = "Auto-approval based on classifiers or model confidence is out of scope"
+
+[[rule]]
+id = "A-47"
+family = "A"
+section = "10"
+status = "watch"
+stage = 7
+title = "Agent token and single-use card acceptance in Turkey is under watch"
+
+[[rule]]
+id = "A-48"
+family = "A"
+section = "10"
+status = "frozen-product"
+stage = 3
+title = "Ten requirements One expects from Pay; Pay-dependent features wait for Pay"
+
+[[rule]]
+id = "A-49"
+family = "A"
+section = "10"
+status = "frozen-product"
+stage = 1
+title = "Purchase intent, offer, order and receipt are not canonical concepts in One"
+
+[[rule]]
+id = "A-50"
+family = "A"
+section = "10"
+status = "canonical"
+stage = 11
+bound_stage = 11
+title = "Child purchase requests need timed guardian approval; payment from household budget"
+
+[[rule]]
+id = "AT-1"
+family = "AT"
+section = "11"
+status = "frozen-technical"
+stage = 1
+bound_stage = 8
+title = "Calibrated on-phone attention head without LLM with five outcomes"
+
+[[rule]]
+id = "AT-2"
+family = "AT"
+section = "11"
+status = "frozen-technical"
+stage = 8
+bound_stage = 8
+title = "Cloud value estimate between two thresholds; digest when cloud unavailable"
+
+[[rule]]
+id = "AT-3"
+family = "AT"
+section = "11"
+status = "canonical"
+stage = 5
+title = "Personal attention model trained only on own data in cloud, deployed to phone"
+
+[[rule]]
+id = "AT-4"
+family = "AT"
+section = "11"
+status = "frozen-technical"
+stage = 1
+bound_stage = 2
+title = "Attention decision logs stay in user-keyed space; telemetry gets only counters"
+
+[[rule]]
+id = "AT-5"
+family = "AT"
+section = "11"
+status = "frozen-protocol"
+stage = 1
+bound_stage = 3
+title = "Four interruption levels are a contract; Relay may only lower them"
+
+[[rule]]
+id = "AT-6"
+family = "AT"
+section = "11"
+status = "canonical"
+stage = 3
+bound_stage = 3
+title = "Critical level only via explicit scoped user Grant; One cannot self-grant"
+
+[[rule]]
+id = "AT-7"
+family = "AT"
+section = "11"
+status = "canonical"
+stage = 0
+bound_stage = 7
+title = "Urgency does not create authority; authority does not grant interruption rights"
+
+[[rule]]
+id = "AT-8"
+family = "AT"
+section = "11"
+status = "canonical"
+stage = 0
+bound_stage = 8
+title = "Quiet hours, focus, mute and budget are hard limits for learned policy"
+
+[[rule]]
+id = "AT-9"
+family = "AT"
+section = "11"
+status = "canonical"
+stage = 1
+bound_stage = 8
+title = "Per-type muting binds One; dismissed live process notices are not resent"
+
+[[rule]]
+id = "AT-10"
+family = "AT"
+section = "11"
+status = "frozen-product"
+stage = 8
+bound_stage = 8
+title = "User-set daily active interruption budget; overflow goes to digest"
+
+[[rule]]
+id = "AT-11"
+family = "AT"
+section = "11"
+status = "frozen-product"
+stage = 8
+bound_stage = 8
+title = "Pending items never disappear and appear in deferred list"
+
+[[rule]]
+id = "AT-12"
+family = "AT"
+section = "11"
+status = "frozen-product"
+stage = 1
+title = "Non-urgent items use next_break and max_defer; Relay detects break points"
+
+[[rule]]
+id = "AT-13"
+family = "AT"
+section = "11"
+status = "canonical"
+stage = 1
+bound_stage = 8
+title = "Sensitive content flagged and kept off lock screen and voice"
+
+[[rule]]
+id = "AT-14"
+family = "AT"
+section = "11"
+status = "frozen-product"
+stage = 8
+title = "Ongoing work is a single updating item with passive updates"
+
+[[rule]]
+id = "AT-15"
+family = "AT"
+section = "11"
+status = "frozen-product"
+stage = 8
+title = "Silence is made visible to the user"
+
+[[rule]]
+id = "AT-16"
+family = "AT"
+section = "11"
+status = "frozen-product"
+stage = 8
+title = "Every proactive output carries an evidence-based why-now explanation"
+
+[[rule]]
+id = "AT-17"
+family = "AT"
+section = "11"
+status = "frozen-product"
+stage = 8
+title = "Finite daily digest at a user-chosen time"
+
+[[rule]]
+id = "AT-18"
+family = "AT"
+section = "11"
+status = "frozen-product"
+stage = 8
+title = "Digest is source-linked, visually distinct and closable per source"
+
+[[rule]]
+id = "AT-19"
+family = "AT"
+section = "11"
+status = "frozen-product"
+stage = 8
+title = "Digest feedback becomes structured preferences"
+
+[[rule]]
+id = "AT-20"
+family = "AT"
+section = "11"
+status = "frozen-product"
+stage = 8
+title = "Proactive candidates come only from the user own data, goals and pending work"
+
+[[rule]]
+id = "AT-21"
+family = "AT"
+section = "11"
+status = "canonical"
+stage = 8
+title = "Reward table favors completed and useful work, penalizes interruptions and wrong actions"
+
+[[rule]]
+id = "AT-22"
+family = "AT"
+section = "11"
+status = "canonical"
+stage = 8
+bound_stage = 8
+title = "Forbidden rewards: opens, clicks, session length, time in app, daily actives"
+
+[[rule]]
+id = "AT-23"
+family = "AT"
+section = "11"
+status = "frozen-product"
+stage = 1
+title = "Habituation modeled; rejected suggestions not repeated before cooldown"
+
+[[rule]]
+id = "AT-24"
+family = "AT"
+section = "11"
+status = "frozen-technical"
+day1 = true
+stage = 1
+bound_stage = 8
+title = "Attention decisions log propensity and policy version; changes evaluated off-policy first"
+
+[[rule]]
+id = "AT-25"
+family = "AT"
+section = "11"
+status = "frozen-product"
+stage = 3
+bound_stage = 3
+title = "Approval requests always in Pending; their notification is an attention decision"
+
+[[rule]]
+id = "AT-26"
+family = "AT"
+section = "11"
+status = "canonical"
+stage = 8
+bound_stage = 8
+title = "Experiments only between digest and next break; default off, asked once"
+
+[[rule]]
+id = "AT-27"
+family = "AT"
+section = "11"
+status = "canonical"
+stage = 1
+bound_stage = 8
+title = "Routines are typed hypotheses detected by counting and rules, not LLM; no authority"
+
+[[rule]]
+id = "AT-28"
+family = "AT"
+section = "11"
+status = "frozen-product"
+stage = 8
+title = "Why answers built from evidence fields"
+
+[[rule]]
+id = "AT-29"
+family = "AT"
+section = "11"
+status = "frozen-product"
+stage = 1
+title = "Intent overrides habit; post-suggestion observations are weaker evidence"
+
+[[rule]]
+id = "AT-30"
+family = "AT"
+section = "11"
+status = "frozen-product"
+stage = 8
+bound_stage = 8
+title = "Repeatedly missed routines are silently suspended; reactivation requires user yes"
+
+[[rule]]
+id = "AT-31"
+family = "AT"
+section = "11"
+status = "canonical"
+stage = 8
+bound_stage = 8
+title = "No routine inference or proactive assumptions in special category data"
+
+[[rule]]
+id = "AT-32"
+family = "AT"
+section = "11"
+status = "canonical"
+stage = 7
+bound_stage = 7
+title = "Routine to action path: silent use, single suggestion, approval, rule flow"
+
+[[rule]]
+id = "AT-33"
+family = "AT"
+section = "11"
+status = "frozen-product"
+stage = 8
+title = "What One noticed list with verify, correct, do not use, invalidate"
+
+[[rule]]
+id = "AT-34"
+family = "AT"
+section = "11"
+status = "frozen-product"
+stage = 8
+title = "Two-tier metrics: value trends plus a quality gate"
+
+[[rule]]
+id = "AT-35"
+family = "AT"
+section = "11"
+status = "canonical"
+stage = 8
+bound_stage = 8
+title = "New proactive behavior does not ship if the quality gate regresses"
+
+[[rule]]
+id = "AT-36"
+family = "AT"
+section = "11"
+status = "frozen-product"
+stage = 8
+bound_stage = 8
+title = "Regret question at most weekly, counted in budget, closable"
+
+[[rule]]
+id = "AT-37"
+family = "AT"
+section = "11"
+status = "frozen-product"
+stage = 10
+title = "Every attention setting has a plain UI equivalent"
+
+[[rule]]
+id = "AT-38"
+family = "AT"
+section = "11"
+status = "out-of-scope"
+title = "Interest feeds and discover feeds are out of scope"
+
+[[rule]]
+id = "AT-39"
+family = "AT"
+section = "11"
+status = "out-of-scope"
+title = "Engagement-maximizing design is out of scope"
+
+[[rule]]
+id = "AT-40"
+family = "AT"
+section = "11"
+status = "out-of-scope"
+bound_stage = 8
+title = "Attention decisions by an on-phone LLM are out of scope"
+
+[[rule]]
+id = "AT-41"
+family = "AT"
+section = "11"
+status = "canonical"
+stage = 11
+bound_stage = 11
+title = "Break and AI reminders are in-session only and outside interruption budget"
+
+[[rule]]
+id = "AT-42"
+family = "AT"
+section = "11"
+status = "frozen-protocol"
+stage = 1
+bound_stage = 8
+title = "Mapping of One outputs to Relay classes; security class never used"
+
+[[rule]]
+id = "CP-1"
+family = "CP"
+section = "12"
+status = "canonical"
+stage = 1
+bound_stage = 3
+title = "Task is One single-person work record; anything with a promise is a Work Commitment"
+
+[[rule]]
+id = "CP-2"
+family = "CP"
+section = "12"
+status = "canonical"
+stage = 1
+bound_stage = 6
+title = "Task belongs to One, not device, conversation or model; plan is durable"
+
+[[rule]]
+id = "CP-3"
+family = "CP"
+section = "12"
+status = "frozen-product"
+stage = 1
+bound_stage = 1
+title = "Task states are a closed list derived from event history"
+
+[[rule]]
+id = "CP-4"
+family = "CP"
+section = "12"
+status = "frozen-product"
+stage = 1
+title = "Minimum Task fields defined; activity ledger references records"
+
+[[rule]]
+id = "CP-5"
+family = "CP"
+section = "12"
+status = "canonical"
+stage = 1
+bound_stage = 3
+title = "Model output never executes directly; typed intent through policy, Access and Executor"
+
+[[rule]]
+id = "CP-6"
+family = "CP"
+section = "12"
+status = "frozen-product"
+stage = 1
+bound_stage = 6
+title = "Batch actions stop at first failure with done, failed and not-run shown"
+
+[[rule]]
+id = "CP-7"
+family = "CP"
+section = "12"
+status = "canonical"
+stage = 1
+bound_stage = 3
+title = "Execution happens in Access Executor; effect evidence is a Claim, unknown first-class"
+
+[[rule]]
+id = "CP-8"
+family = "CP"
+section = "12"
+status = "frozen-technical"
+stage = 0
+title = "Cloud executor is a per-user microVM plus a registered local device executor"
+
+[[rule]]
+id = "CP-9"
+family = "CP"
+section = "12"
+status = "frozen-product"
+stage = 3
+bound_stage = 3
+title = "Execution location chosen by fixed rules; Exercise rule identical everywhere"
+
+[[rule]]
+id = "CP-10"
+family = "CP"
+section = "12"
+status = "canonical"
+stage = 6
+bound_stage = 6
+title = "No consequential effects while offline; commands wait as Tasks"
+
+[[rule]]
+id = "CP-11"
+family = "CP"
+section = "12"
+status = "canonical"
+stage = 3
+bound_stage = 3
+title = "Stop always works; stopped claimed only after Executor confirmation"
+
+[[rule]]
+id = "CP-12"
+family = "CP"
+section = "12"
+status = "frozen-product"
+stage = 6
+bound_stage = 6
+title = "Action path order: API or MCP, OS intents, declared cloud browser, user handoff"
+
+[[rule]]
+id = "CP-13"
+family = "CP"
+section = "12"
+status = "frozen-product"
+stage = 0
+title = "No Accessibility driving on Android or other-app driving on iOS"
+
+[[rule]]
+id = "CP-14"
+family = "CP"
+section = "12"
+status = "frozen-product"
+stage = 6
+bound_stage = 6
+title = "On sites whose terms forbid agents, One says so and hands off"
+
+[[rule]]
+id = "CP-15"
+family = "CP"
+section = "12"
+status = "frozen-protocol"
+day1 = true
+stage = 1
+bound_stage = 1
+title = "Capability names are semantic, versioned reverse-DNS under one Suiss root"
+
+[[rule]]
+id = "CP-16"
+family = "CP"
+section = "12"
+status = "frozen-protocol"
+stage = 1
+bound_stage = 1
+title = "Capability registry fields defined"
+
+[[rule]]
+id = "CP-17"
+family = "CP"
+section = "12"
+status = "frozen-product"
+stage = 6
+bound_stage = 6
+title = "Planner sees only currently permitted capabilities via retrieval"
+
+[[rule]]
+id = "CP-18"
+family = "CP"
+section = "12"
+status = "frozen-product"
+stage = 6
+bound_stage = 6
+title = "One maintains a dynamic self-model of permissions, devices, models and Tasks"
+
+[[rule]]
+id = "CP-19"
+family = "CP"
+section = "12"
+status = "canonical"
+stage = 6
+bound_stage = 6
+title = "Only tested, working capabilities are registered; broken ones become invisible"
+
+[[rule]]
+id = "CP-20"
+family = "CP"
+section = "12"
+status = "frozen-product"
+stage = 6
+bound_stage = 6
+title = "Curated Suiss sub-registry is default; custom servers sandboxed under Advanced"
+
+[[rule]]
+id = "CP-21"
+family = "CP"
+section = "12"
+status = "canonical"
+stage = 6
+bound_stage = 6
+title = "Signed packages with declared permissions; tool definitions hash-pinned"
+
+[[rule]]
+id = "CP-22"
+family = "CP"
+section = "12"
+status = "canonical"
+stage = 6
+bound_stage = 6
+title = "Cross-server data flow is typed and policy-governed; triple combination needs approval"
+
+[[rule]]
+id = "CP-23"
+family = "CP"
+section = "12"
+status = "canonical"
+stage = 1
+bound_stage = 6
+title = "Secrets never given to capabilities; tokens stay in Access, no passthrough"
+
+[[rule]]
+id = "CP-24"
+family = "CP"
+section = "12"
+status = "frozen-technical"
+stage = 0
+bound_stage = 6
+title = "MCP client speaks three protocol versions; Sampling, Roots and Logging unused"
+
+[[rule]]
+id = "CP-25"
+family = "CP"
+section = "12"
+status = "frozen-product"
+stage = 6
+title = "Developer platform is part of this model with open format and open-source SDK"
+
+[[rule]]
+id = "CP-26"
+family = "CP"
+section = "12"
+status = "canonical"
+stage = 6
+bound_stage = 6
+title = "Messaging and email supported as untrusted input; commands only from bound owner"
+
+[[rule]]
+id = "CP-27"
+family = "CP"
+section = "12"
+status = "out-of-scope"
+stage = 6
+title = "One gets no separate agent email address"
+
+[[rule]]
+id = "CP-28"
+family = "CP"
+section = "12"
+status = "frozen-product"
+stage = 6
+bound_stage = 6
+title = "One exposed as Granted MCP server, A2A agent and App Intent endpoint"
+
+[[rule]]
+id = "CP-29"
+family = "CP"
+section = "12"
+status = "canonical"
+stage = 6
+bound_stage = 6
+title = "Personal context only to assistants meeting MF-25; others only assign and query"
+
+[[rule]]
+id = "CP-30"
+family = "CP"
+section = "12"
+status = "frozen-product"
+stage = 6
+bound_stage = 6
+title = "Elicitation form mode limited to low-sensitivity fields; URL mode always to user"
+
+[[rule]]
+id = "CP-31"
+family = "CP"
+section = "12"
+status = "canonical"
+stage = 6
+bound_stage = 6
+title = "Cloud browser signs with Web Bot Auth; no cloaking or CAPTCHA solving"
+
+[[rule]]
+id = "CP-32"
+family = "CP"
+section = "12"
+status = "frozen-product"
+stage = 6
+title = "On blocks hand off to user, wait if absent, stop on timeout"
+
+[[rule]]
+id = "CP-33"
+family = "CP"
+section = "12"
+status = "canonical"
+stage = 6
+bound_stage = 6
+title = "Browser profiles user-keyed in Executor; passwords, cookies and cards never reach model"
+
+[[rule]]
+id = "CP-34"
+family = "CP"
+section = "12"
+status = "frozen-product"
+stage = 6
+bound_stage = 6
+title = "Desktop agent runs in a separate OS account or virtual desktop"
+
+[[rule]]
+id = "CP-35"
+family = "CP"
+section = "12"
+status = "frozen-product"
+stage = 6
+bound_stage = 6
+title = "Browser extension in scope for major browsers; agent mode explicit with origin set"
+
+[[rule]]
+id = "CP-36"
+family = "CP"
+section = "12"
+status = "frozen-product"
+stage = 6
+bound_stage = 6
+title = "Agent cost is step count; Mandates carry step budgets"
+
+[[rule]]
+id = "CP-37"
+family = "CP"
+section = "12"
+status = "frozen-product"
+stage = 6
+title = "One is a single screen and remote for the user own claude and codex"
+
+[[rule]]
+id = "CP-38"
+family = "CP"
+section = "12"
+status = "canonical"
+stage = 6
+bound_stage = 6
+title = "One never uses these tools for itself; credentials stay in their local store"
+
+[[rule]]
+id = "CP-39"
+family = "CP"
+section = "12"
+status = "canonical"
+stage = 6
+bound_stage = 6
+title = "Every bridge step passes Access and is stoppable; output is untrusted-external"
+
+[[rule]]
+id = "CP-40"
+family = "CP"
+section = "12"
+status = "canonical"
+stage = 6
+bound_stage = 6
+title = "One sends no own context to these tools; transfer is the user own"
+
+[[rule]]
+id = "CP-41"
+family = "CP"
+section = "12"
+status = "watch"
+stage = 0
+title = "Bridge depends on provider terms; warns or shuts if terms change"
+
+[[rule]]
+id = "CP-42"
+family = "CP"
+section = "12"
+status = "frozen-technical"
+stage = 1
+bound_stage = 6
+title = "Long-task engine follows Temporal pattern, own implementation in Executor on PostgreSQL"
+
+[[rule]]
+id = "CP-43"
+family = "CP"
+section = "12"
+status = "canonical"
+stage = 1
+bound_stage = 6
+title = "External effects are idempotency-keyed; after crashes verify, never resend, else unknown"
+
+[[rule]]
+id = "CP-44"
+family = "CP"
+section = "12"
+status = "canonical"
+stage = 3
+bound_stage = 3
+title = "Human waits are Relay wait points; expiry stops work; resume needs new decision"
+
+[[rule]]
+id = "CP-45"
+family = "CP"
+section = "12"
+status = "frozen-product"
+stage = 6
+bound_stage = 6
+title = "Two-layer checkpoints with revalidation on resume and visible partial progress"
+
+[[rule]]
+id = "CP-46"
+family = "CP"
+section = "12"
+status = "canonical"
+stage = 6
+bound_stage = 6
+title = "Single One per person externally; each sub-agent a separate narrowed AgentInstance"
+
+[[rule]]
+id = "CP-47"
+family = "CP"
+section = "12"
+status = "frozen-product"
+stage = 6
+title = "Default One handles it, with optional advanced sub-agent surface"
+
+[[rule]]
+id = "CP-48"
+family = "CP"
+section = "12"
+status = "frozen-product"
+stage = 6
+title = "Third-party expert agents appear as capability providers; no agent store"
+
+[[rule]]
+id = "CP-49"
+family = "CP"
+section = "12"
+status = "frozen-product"
+stage = 3
+bound_stage = 3
+title = "Ten requirements One expects from Executor; dependent features wait for Access"
+
+[[rule]]
+id = "OO-1"
+family = "OO"
+section = "13"
+status = "canonical"
+stage = 1
+title = "One-to-One is typed messaging between Ones; promises become Work Commitments"
+
+[[rule]]
+id = "OO-2"
+family = "OO"
+section = "13"
+status = "central"
+stage = 3
+title = "Layer ownership: Access identity, Relay delivery, Work commitments, One meaning and replies"
+
+[[rule]]
+id = "OO-3"
+family = "OO"
+section = "13"
+status = "canonical"
+stage = 1
+bound_stage = 9
+title = "Every message carries person identity, agent identity and authority proof"
+
+[[rule]]
+id = "OO-4"
+family = "OO"
+section = "13"
+status = "frozen-protocol"
+stage = 1
+title = "Wire format is an A2A v1.0 profile plus the One Federation extension"
+
+[[rule]]
+id = "OO-5"
+family = "OO"
+section = "13"
+status = "frozen-protocol"
+stage = 1
+bound_stage = 9
+title = "Pending negotiation handles are integrity-protected, identity-bound, short-lived and single-use"
+
+[[rule]]
+id = "OO-6"
+family = "OO"
+section = "13"
+status = "canonical"
+stage = 3
+bound_stage = 9
+title = "Delivery uses the Relay agent mailbox; push is only a hint"
+
+[[rule]]
+id = "OO-7"
+family = "OO"
+section = "13"
+status = "frozen-protocol"
+stage = 9
+bound_stage = 9
+title = "Message content is end-to-end encrypted; Relay sees only metadata"
+
+[[rule]]
+id = "OO-8"
+family = "OO"
+section = "13"
+status = "canonical"
+stage = 9
+bound_stage = 9
+title = "Content rules apply after decryption; every peer field is untrusted-external"
+
+[[rule]]
+id = "OO-9"
+family = "OO"
+section = "13"
+status = "frozen-protocol"
+stage = 9
+bound_stage = 9
+title = "Address is a persistent did:web identity plus a two-way verified handle"
+
+[[rule]]
+id = "OO-10"
+family = "OO"
+section = "13"
+status = "canonical"
+stage = 9
+bound_stage = 9
+title = "Phone and email are discovery hints; no public directory or plain-hash matching"
+
+[[rule]]
+id = "OO-11"
+family = "OO"
+section = "13"
+status = "canonical"
+stage = 9
+bound_stage = 9
+title = "Relationship levels are Access Acceptances that create no authority"
+
+[[rule]]
+id = "OO-12"
+family = "OO"
+section = "13"
+status = "canonical"
+stage = 9
+bound_stage = 9
+title = "Messages from unknown senders go to a request inbox with no automatic action"
+
+[[rule]]
+id = "OO-13"
+family = "OO"
+section = "13"
+status = "frozen-protocol"
+stage = 9
+bound_stage = 9
+title = "First contact requires a free anonymous Privacy Pass token plus sender rate limits"
+
+[[rule]]
+id = "OO-14"
+family = "OO"
+section = "13"
+status = "frozen-product"
+stage = 9
+bound_stage = 9
+title = "Blocking is silent, sender-level and reversible; abuse reports carry only metadata"
+
+[[rule]]
+id = "OO-15"
+family = "OO"
+section = "13"
+status = "frozen-protocol"
+stage = 1
+bound_stage = 9
+title = "Typed message kinds: offer, counteroffer, commitment, rejection, query, reply"
+
+[[rule]]
+id = "OO-16"
+family = "OO"
+section = "13"
+status = "frozen-protocol"
+stage = 1
+bound_stage = 9
+title = "Mandatory message fields include monotonic offer version and expiry"
+
+[[rule]]
+id = "OO-17"
+family = "OO"
+section = "13"
+status = "canonical"
+stage = 1
+bound_stage = 9
+title = "Free text is an untrusted note for humans only and never triggers action"
+
+[[rule]]
+id = "OO-18"
+family = "OO"
+section = "13"
+status = "canonical"
+stage = 9
+bound_stage = 9
+title = "With the user away, cloud One answers only Mandate-covered typed messages"
+
+[[rule]]
+id = "OO-19"
+family = "OO"
+section = "13"
+status = "frozen-product"
+stage = 9
+bound_stage = 9
+title = "Offer acceptance needs no approval if a Mandate covers it, otherwise asks"
+
+[[rule]]
+id = "OO-20"
+family = "OO"
+section = "13"
+status = "canonical"
+stage = 9
+bound_stage = 9
+title = "Silence is not an answer; unanswered offers expire via a Relay wait"
+
+[[rule]]
+id = "OO-21"
+family = "OO"
+section = "13"
+status = "canonical"
+stage = 9
+bound_stage = 9
+title = "Replies carry minimum information; constraints shared, reasons and sensitive data withheld"
+
+[[rule]]
+id = "OO-22"
+family = "OO"
+section = "13"
+status = "frozen-protocol"
+stage = 9
+bound_stage = 9
+title = "Person attributes use Access SD-JWT VC selective disclosure with key binding"
+
+[[rule]]
+id = "OO-23"
+family = "OO"
+section = "13"
+status = "canonical"
+stage = 9
+bound_stage = 9
+title = "One's private context never passes to the peer One or to Work"
+
+[[rule]]
+id = "OO-24"
+family = "OO"
+section = "13"
+status = "frozen-product"
+stage = 12
+bound_stage = 12
+title = "Multi-agent privacy and injection scenarios are a One-to-One release gate"
+
+[[rule]]
+id = "OO-25"
+family = "OO"
+section = "13"
+status = "frozen-product"
+stage = 9
+title = "The pre-acceptance offer chain is a Work record without notes or private context"
+
+[[rule]]
+id = "OO-26"
+family = "OO"
+section = "13"
+status = "frozen-product"
+stage = 9
+title = "A personal Work tenant opens automatically at the first shared commitment"
+
+[[rule]]
+id = "OO-27"
+family = "OO"
+section = "13"
+status = "frozen-product"
+stage = 9
+title = "One creates and tracks commitments as on-behalf-of author; items shown as views"
+
+[[rule]]
+id = "OO-28"
+family = "OO"
+section = "13"
+status = "frozen-product"
+stage = 9
+title = "Business agents follow the same first-contact, typed-message and minimum-information rules"
+
+[[rule]]
+id = "OO-29"
+family = "OO"
+section = "13"
+status = "frozen-protocol"
+stage = 9
+bound_stage = 9
+title = "One-to-One encryption uses MLS with devices and cloud One in one group"
+
+[[rule]]
+id = "OO-30"
+family = "OO"
+section = "13"
+status = "frozen-product"
+stage = 0
+title = "One Federation extension and SDK are open source; One stays closed"
+
+[[rule]]
+id = "OO-31"
+family = "OO"
+section = "13"
+status = "frozen-product"
+stage = 9
+bound_stage = 9
+title = "One initiates first contact only on explicit request or Mandate, only to businesses"
+
+[[rule]]
+id = "OO-32"
+family = "OO"
+section = "13"
+status = "out-of-scope"
+title = "Out of scope: paid first contact (postage stamp)"
+
+[[rule]]
+id = "OO-33"
+family = "OO"
+section = "13"
+status = "out-of-scope"
+title = "Out of scope: public person directory and social graph"
+
+[[rule]]
+id = "OO-34"
+family = "OO"
+section = "13"
+status = "out-of-scope"
+title = "Out of scope: contact matching with plain hashes"
+
+[[rule]]
+id = "OO-35"
+family = "OO"
+section = "13"
+status = "out-of-scope"
+title = "Out of scope: Relay seeing content or content-scanning filters"
+
+[[rule]]
+id = "OO-36"
+family = "OO"
+section = "13"
+status = "out-of-scope"
+title = "Out of scope: DIDComm wire format or a One-specific protocol"
+
+[[rule]]
+id = "OO-37"
+family = "OO"
+section = "13"
+status = "out-of-scope"
+title = "Out of scope: automatic action on free-text requests"
+
+[[rule]]
+id = "X-1"
+family = "X"
+section = "14"
+status = "frozen-product"
+stage = 10
+title = "No mandatory device; native on existing surfaces; any Suiss device extends the phone"
+
+[[rule]]
+id = "X-2"
+family = "X"
+section = "14"
+status = "frozen-product"
+stage = 1
+title = "Three modes: presence, workspace and control; chat is only one mode"
+
+[[rule]]
+id = "X-3"
+family = "X"
+section = "14"
+status = "frozen-product"
+stage = 1
+title = "Surface classes set approval ceilings and size budgets"
+
+[[rule]]
+id = "X-4"
+family = "X"
+section = "14"
+status = "frozen-product"
+stage = 8
+bound_stage = 8
+title = "Presence is bound to a task"
+
+[[rule]]
+id = "X-5"
+family = "X"
+section = "14"
+status = "frozen-product"
+stage = 8
+bound_stage = 8
+title = "Persistent presence only in widgets, controls, shortcuts, menu bar, tray and complications"
+
+[[rule]]
+id = "X-6"
+family = "X"
+section = "14"
+status = "frozen-product"
+stage = 3
+bound_stage = 8
+title = "Task-bound live surface rules; dismissal is not cancellation; delivery via Relay"
+
+[[rule]]
+id = "X-7"
+family = "X"
+section = "14"
+status = "frozen-product"
+stage = 1
+title = "Ongoing work is a single item updated in place"
+
+[[rule]]
+id = "X-8"
+family = "X"
+section = "14"
+status = "canonical"
+stage = 0
+bound_stage = 3
+title = "One builds no delivery infrastructure; One decides interruption, Relay delivers"
+
+[[rule]]
+id = "X-9"
+family = "X"
+section = "14"
+status = "frozen-product"
+stage = 0
+bound_stage = 3
+title = "Device state lives in the Relay ephemeral channel with no history kept"
+
+[[rule]]
+id = "X-10"
+family = "X"
+section = "14"
+status = "frozen-product"
+stage = 1
+bound_stage = 10
+title = "Surfaces declare capabilities; no projection to undeclared capabilities"
+
+[[rule]]
+id = "X-11"
+family = "X"
+section = "14"
+status = "frozen-technical"
+stage = 0
+title = "Continuity comes from server task state, Relay subscription and surface lease"
+
+[[rule]]
+id = "X-12"
+family = "X"
+section = "14"
+status = "frozen-protocol"
+stage = 1
+bound_stage = 1
+title = "The semantic Interaction schema is canonical in One; surfaces are views"
+
+[[rule]]
+id = "X-13"
+family = "X"
+section = "14"
+status = "frozen-technical"
+stage = 1
+bound_stage = 1
+title = "Minimal projection and per-surface size budgets are mandatory and tested"
+
+[[rule]]
+id = "X-14"
+family = "X"
+section = "14"
+status = "frozen-product"
+stage = 1
+title = "Approved component catalog; the model does not freely generate UI"
+
+[[rule]]
+id = "X-15"
+family = "X"
+section = "14"
+status = "frozen-protocol"
+stage = 10
+bound_stage = 10
+title = "A2UI, AG-UI and MCP Apps are adapters; downgrading projections are rejected"
+
+[[rule]]
+id = "X-16"
+family = "X"
+section = "14"
+status = "canonical"
+stage = 10
+bound_stage = 10
+title = "Safe rendering of agent output: no auto-loaded remote content, marked origins"
+
+[[rule]]
+id = "X-17"
+family = "X"
+section = "14"
+status = "frozen-product"
+stage = 10
+bound_stage = 10
+title = "Third-party UI only on large surfaces, sandboxed, for information and choice"
+
+[[rule]]
+id = "X-18"
+family = "X"
+section = "14"
+status = "canonical"
+stage = 7
+bound_stage = 7
+title = "Access renders the approval surface and One shows it; CT2+ requires passkey"
+
+[[rule]]
+id = "X-19"
+family = "X"
+section = "14"
+status = "frozen-product"
+stage = 7
+bound_stage = 7
+title = "Surface approval ceilings are a fixed upper bound users can only tighten"
+
+[[rule]]
+id = "X-20"
+family = "X"
+section = "14"
+status = "canonical"
+stage = 10
+bound_stage = 10
+title = "Sensitive content and one-time codes never reach lock screen, previews or voice"
+
+[[rule]]
+id = "X-21"
+family = "X"
+section = "14"
+status = "frozen-product"
+stage = 7
+bound_stage = 3
+title = "Pending approvals go to one surface first, with Relay-driven escalation"
+
+[[rule]]
+id = "X-22"
+family = "X"
+section = "14"
+status = "frozen-protocol"
+stage = 1
+bound_stage = 1
+title = "InteractionResponse is a single signed, idempotent format mapped to AAS"
+
+[[rule]]
+id = "X-23"
+family = "X"
+section = "14"
+status = "canonical"
+stage = 3
+title = "Pending is the personal coordinator attention surface, including Work items as views"
+
+[[rule]]
+id = "X-24"
+family = "X"
+section = "14"
+status = "frozen-product"
+stage = 10
+title = "Pending item kinds and where each response is recorded"
+
+[[rule]]
+id = "X-25"
+family = "X"
+section = "14"
+status = "frozen-product"
+stage = 10
+title = "Every Pending item explains what, who, why now, deadline, risk and source"
+
+[[rule]]
+id = "X-26"
+family = "X"
+section = "14"
+status = "frozen-product"
+stage = 10
+bound_stage = 10
+title = "Pending is a view; an item closes only when its source closes"
+
+[[rule]]
+id = "X-27"
+family = "X"
+section = "14"
+status = "canonical"
+stage = 10
+bound_stage = 10
+title = "The activity log is a view; every row links to a record"
+
+[[rule]]
+id = "X-28"
+family = "X"
+section = "14"
+status = "frozen-product"
+stage = 7
+title = "Activity rows show verb, authority, confirmed result, cost, reason and honest undo labels"
+
+[[rule]]
+id = "X-29"
+family = "X"
+section = "14"
+status = "frozen-product"
+stage = 6
+title = "Subagent visibility defaults to One is handling it, with optional details"
+
+[[rule]]
+id = "X-30"
+family = "X"
+section = "14"
+status = "canonical"
+stage = 3
+bound_stage = 3
+title = "Five commands work on every surface; stop always works without ceiling"
+
+[[rule]]
+id = "X-31"
+family = "X"
+section = "14"
+status = "frozen-product"
+stage = 10
+title = "Voice entry points per platform"
+
+[[rule]]
+id = "X-32"
+family = "X"
+section = "14"
+status = "frozen-product"
+stage = 10
+title = "Wake word only on Android, opt-in and on device"
+
+[[rule]]
+id = "X-33"
+family = "X"
+section = "14"
+status = "canonical"
+stage = 10
+bound_stage = 10
+title = "Voice pipeline record is transcript, intent and action; voice models cannot call tools"
+
+[[rule]]
+id = "X-34"
+family = "X"
+section = "14"
+status = "frozen-technical"
+stage = 10
+title = "First response (VAD, intent, short acknowledgement) runs on device"
+
+[[rule]]
+id = "X-35"
+family = "X"
+section = "14"
+status = "frozen-technical"
+stage = 10
+bound_stage = 10
+title = "Voice connection is not the One conversation; identity and transcript survive drops"
+
+[[rule]]
+id = "X-36"
+family = "X"
+section = "14"
+status = "frozen-product"
+stage = 7
+title = "In the car, voice only with voice-class approval ceiling"
+
+[[rule]]
+id = "X-37"
+family = "X"
+section = "14"
+status = "frozen-product"
+stage = 10
+title = "Offline minimal core: fixed commands, local memory search, cache, small models, reminders"
+
+[[rule]]
+id = "X-38"
+family = "X"
+section = "14"
+status = "canonical"
+stage = 10
+bound_stage = 6
+title = "No action requiring an Access decision happens offline"
+
+[[rule]]
+id = "X-39"
+family = "X"
+section = "14"
+status = "frozen-technical"
+stage = 10
+bound_stage = 10
+title = "Sync is server-authoritative; CRDT only for free notes and lists; conflicts visible"
+
+[[rule]]
+id = "X-40"
+family = "X"
+section = "14"
+status = "frozen-technical"
+stage = 1
+title = "Client set: native presence surfaces, one web workspace, shared core"
+
+[[rule]]
+id = "X-41"
+family = "X"
+section = "14"
+status = "frozen-product"
+stage = 0
+bound_stage = 10
+title = "iOS: no driving other apps, publish App Intents, no background listening"
+
+[[rule]]
+id = "X-42"
+family = "X"
+section = "14"
+status = "frozen-product"
+stage = 0
+bound_stage = 10
+title = "Android: opt-in assistant role, no autonomous Accessibility driving"
+
+[[rule]]
+id = "X-43"
+family = "X"
+section = "14"
+status = "frozen-product"
+stage = 0
+bound_stage = 10
+title = "macOS: no reliance on Full Disk Access; desktop agent is watch-and-do only"
+
+[[rule]]
+id = "X-44"
+family = "X"
+section = "14"
+status = "frozen-product"
+stage = 6
+title = "Windows: agent has separate identity and workspace; registers with agent registry when allowed"
+
+[[rule]]
+id = "X-45"
+family = "X"
+section = "14"
+status = "frozen-product"
+stage = 7
+title = "Watch: status and low-risk approval with minimal projection only"
+
+[[rule]]
+id = "X-46"
+family = "X"
+section = "14"
+status = "frozen-product"
+stage = 10
+title = "Glasses extend the phone with a small component subset"
+
+[[rule]]
+id = "X-47"
+family = "X"
+section = "14"
+status = "frozen-product"
+stage = 10
+bound_stage = 10
+title = "Every setting has a plain question, impact preview and cautious default"
+
+[[rule]]
+id = "X-48"
+family = "X"
+section = "14"
+status = "frozen-product"
+stage = 10
+title = "Workspace sections table"
+
+[[rule]]
+id = "X-49"
+family = "X"
+section = "14"
+status = "frozen-product"
+stage = 10
+title = "Devices and surfaces screen contents"
+
+[[rule]]
+id = "X-50"
+family = "X"
+section = "14"
+status = "frozen-product"
+stage = 10
+title = "Progressive permissions; no permission wall; onboarding spread over days"
+
+[[rule]]
+id = "X-51"
+family = "X"
+section = "14"
+status = "canonical"
+stage = 10
+bound_stage = 10
+title = "Sharing is private by default, noindex, audience-visible, time-limited and revocable"
+
+[[rule]]
+id = "X-52"
+family = "X"
+section = "14"
+status = "frozen-product"
+stage = 10
+title = "TR and EN interface with platform accessibility, targeting WCAG 2.2 AA"
+
+[[rule]]
+id = "X-53"
+family = "X"
+section = "14"
+status = "frozen-product"
+stage = 8
+title = "Everything shown proactively offers a why am I seeing this explanation"
+
+[[rule]]
+id = "X-54"
+family = "X"
+section = "14"
+status = "out-of-scope"
+bound_stage = 7
+title = "Out of scope: high-risk approval by voice or watch"
+
+[[rule]]
+id = "X-55"
+family = "X"
+section = "14"
+status = "out-of-scope"
+bound_stage = 10
+title = "Out of scope: approval, payment or credential entry in third-party UI"
+
+[[rule]]
+id = "X-56"
+family = "X"
+section = "14"
+status = "out-of-scope"
+bound_stage = 8
+title = "Out of scope: an always-visible One capsule"
+
+[[rule]]
+id = "X-57"
+family = "X"
+section = "14"
+status = "out-of-scope"
+bound_stage = 3
+title = "Out of scope: One-specific presence registry and delivery infrastructure"
+
+[[rule]]
+id = "X-58"
+family = "X"
+section = "14"
+status = "out-of-scope"
+title = "Out of scope: default assistant and wake word on iOS"
+
+[[rule]]
+id = "X-59"
+family = "X"
+section = "14"
+status = "watch"
+stage = 0
+title = "Watched platform conditions"
+
+[[rule]]
+id = "X-60"
+family = "X"
+section = "14"
+status = "out-of-scope"
+title = "Out of scope: a mandatory Suiss device"
+
+[[rule]]
+id = "X-61"
+family = "X"
+section = "14"
+status = "frozen-product"
+stage = 5
+title = "Generated UI is the main reply format, composed from the catalog"
+
+[[rule]]
+id = "PV-1"
+family = "PV"
+section = "15"
+status = "frozen-product"
+stage = 11
+title = "Suiss is the controller; the household exemption does not protect Suiss"
+
+[[rule]]
+id = "PV-2"
+family = "PV"
+section = "15"
+status = "frozen-product"
+stage = 5
+title = "Under the AI Act Suiss is system and downstream provider, not GPAI provider"
+
+[[rule]]
+id = "PV-3"
+family = "PV"
+section = "15"
+status = "canonical"
+stage = 6
+bound_stage = 6
+title = "AI Act Annex III uses are blocked; One never issues significant automated decisions"
+
+[[rule]]
+id = "PV-4"
+family = "PV"
+section = "15"
+status = "canonical"
+stage = 2
+bound_stage = 2
+title = "Personal data lives in a user-keyed encrypted space; no plaintext at rest"
+
+[[rule]]
+id = "PV-5"
+family = "PV"
+section = "15"
+status = "canonical"
+stage = 2
+bound_stage = 2
+title = "Key hierarchy: KEK on device and passkey, per-person per-class wrapped DEKs"
+
+[[rule]]
+id = "PV-6"
+family = "PV"
+section = "15"
+status = "frozen-product"
+stage = 2
+title = "The metadata visible to the operator is listed explicitly and minimal"
+
+[[rule]]
+id = "PV-7"
+family = "PV"
+section = "15"
+status = "canonical"
+stage = 2
+bound_stage = 2
+title = "Data under legal retention is never placed in the encrypted space"
+
+[[rule]]
+id = "PV-8"
+family = "PV"
+section = "15"
+status = "canonical"
+stage = 3
+bound_stage = 3
+title = "Executor microVM disks are user-keyed; browser profile is one_browser_profile"
+
+[[rule]]
+id = "PV-9"
+family = "PV"
+section = "15"
+status = "frozen-technical"
+stage = 2
+bound_stage = 2
+title = "Local device storage is encrypted with the platform keystore and destroyable"
+
+[[rule]]
+id = "PV-10"
+family = "PV"
+section = "15"
+status = "canonical"
+stage = 0
+bound_stage = 0
+title = "Regional withdrawals are disclosed; encryption is never silently weakened"
+
+[[rule]]
+id = "PV-11"
+family = "PV"
+section = "15"
+status = "frozen-technical"
+stage = 2
+bound_stage = 2
+title = "Cloud processing runs per request in an attested, stateless, untargetable TEE"
+
+[[rule]]
+id = "PV-12"
+family = "PV"
+section = "15"
+status = "frozen-product"
+stage = 2
+title = "Four recovery paths, at least two set up; PIN attempt limit of 10"
+
+[[rule]]
+id = "PV-13"
+family = "PV"
+section = "15"
+status = "frozen-product"
+stage = 10
+title = "Recovery is explained plainly, with a recovery paths screen and single-path warning"
+
+[[rule]]
+id = "PV-14"
+family = "PV"
+section = "15"
+status = "canonical"
+stage = 2
+bound_stage = 2
+title = "If no recovery path remains, data loss is stated plainly; no escrow"
+
+[[rule]]
+id = "PV-15"
+family = "PV"
+section = "15"
+status = "canonical"
+stage = 2
+bound_stage = 2
+title = "Crypto-shred covers server, device, vault and backup copies, reapplied on restore"
+
+[[rule]]
+id = "PV-16"
+family = "PV"
+section = "15"
+status = "frozen-product"
+stage = 1
+title = "One data uses the One classes of Access Annex C; no separate retention table"
+
+[[rule]]
+id = "PV-17"
+family = "PV"
+section = "15"
+status = "canonical"
+stage = 2
+bound_stage = 2
+title = "Retention periods are enforced automatically"
+
+[[rule]]
+id = "PV-18"
+family = "PV"
+section = "15"
+status = "canonical"
+stage = 2
+title = "Account deletion crypto-shreds all One classes and lists legally retained data"
+
+[[rule]]
+id = "PV-19"
+family = "PV"
+section = "15"
+status = "canonical"
+stage = 2
+title = "The privacy promise is versioned and never changes retroactively"
+
+[[rule]]
+id = "PV-20"
+family = "PV"
+section = "15"
+status = "frozen-product"
+stage = 1
+bound_stage = 11
+title = "Sensitive classes: all KVKK art. 6 and GDPR art. 9-10 categories, location, relationship"
+
+[[rule]]
+id = "PV-21"
+family = "PV"
+section = "15"
+status = "canonical"
+stage = 4
+bound_stage = 4
+title = "No inference, storage, routines or proactive assumptions on sensitive classes by default"
+
+[[rule]]
+id = "PV-22"
+family = "PV"
+section = "15"
+status = "frozen-product"
+stage = 2
+bound_stage = 10
+title = "Sensitive domains open per field with explicit consent and extra protections"
+
+[[rule]]
+id = "PV-23"
+family = "PV"
+section = "15"
+status = "frozen-product"
+stage = 11
+bound_stage = 11
+title = "Sensitive domains stay locked off in strict-necessity jurisdictions"
+
+[[rule]]
+id = "PV-24"
+family = "PV"
+section = "15"
+status = "frozen-product"
+stage = 2
+bound_stage = 4
+title = "User's own sensitive statements are kept only with confirmation and equal protection"
+
+[[rule]]
+id = "PV-25"
+family = "PV"
+section = "15"
+status = "canonical"
+stage = 5
+bound_stage = 11
+title = "Health data excluded from ads and shared training; health platform data stays on device"
+
+[[rule]]
+id = "PV-26"
+family = "PV"
+section = "15"
+status = "canonical"
+stage = 11
+bound_stage = 11
+title = "Biometrics off by default with per-person consent; biometric categorization banned"
+
+[[rule]]
+id = "PV-27"
+family = "PV"
+section = "15"
+status = "frozen-product"
+stage = 4
+bound_stage = 4
+title = "About third parties One keeps only name, relationship or role, last interaction"
+
+[[rule]]
+id = "PV-28"
+family = "PV"
+section = "15"
+status = "canonical"
+stage = 4
+bound_stage = 4
+title = "Never infer special categories about third parties or use their data in shared training"
+
+[[rule]]
+id = "PV-29"
+family = "PV"
+section = "15"
+status = "canonical"
+stage = 11
+bound_stage = 11
+title = "Separate plain-language consent toggles per purpose; no service-bundled consent"
+
+[[rule]]
+id = "PV-30"
+family = "PV"
+section = "15"
+status = "frozen-product"
+stage = 5
+bound_stage = 11
+title = "Memory and training permissions are separate; disabling training keeps memory"
+
+[[rule]]
+id = "PV-31"
+family = "PV"
+section = "15"
+status = "canonical"
+stage = 5
+bound_stage = 5
+title = "Shared training withdrawal text: excluded from future training, not past weights"
+
+[[rule]]
+id = "PV-32"
+family = "PV"
+section = "15"
+status = "frozen-product"
+stage = 3
+bound_stage = 11
+title = "Consent changes are recorded, versioned and visible as contentless Access records"
+
+[[rule]]
+id = "PV-33"
+family = "PV"
+section = "15"
+status = "canonical"
+stage = 5
+bound_stage = 5
+title = "Personal models use only that person's data in the encrypted cloud space"
+
+[[rule]]
+id = "PV-34"
+family = "PV"
+section = "15"
+status = "canonical"
+stage = 4
+bound_stage = 5
+title = "Table of data that never enters any training"
+
+[[rule]]
+id = "PV-35"
+family = "PV"
+section = "15"
+status = "canonical"
+stage = 5
+bound_stage = 5
+title = "Shared training is opt-in, synthetic plus DP counts, with no raw data"
+
+[[rule]]
+id = "PV-36"
+family = "PV"
+section = "15"
+status = "canonical"
+stage = 6
+bound_stage = 6
+title = "No external model providers; external assistants get context only under no-retention terms"
+
+[[rule]]
+id = "PV-37"
+family = "PV"
+section = "15"
+status = "frozen-product"
+stage = 11
+bound_stage = 11
+title = "Data is processed in the user's region, which is shown to the user"
+
+[[rule]]
+id = "PV-38"
+family = "PV"
+section = "15"
+status = "canonical"
+stage = 2
+bound_stage = 11
+title = "Out-of-region processing only through lawful transfer mechanisms"
+
+[[rule]]
+id = "PV-39"
+family = "PV"
+section = "15"
+status = "frozen-product"
+stage = 6
+bound_stage = 6
+title = "The user's own coding agent is their own transfer; One sends it no context"
+
+[[rule]]
+id = "PV-40"
+family = "PV"
+section = "15"
+status = "canonical"
+stage = 11
+bound_stage = 11
+title = "Screen, camera and audio observation is opt-in, local, indicated and fully removable"
+
+[[rule]]
+id = "PV-41"
+family = "PV"
+section = "15"
+status = "canonical"
+stage = 11
+bound_stage = 11
+title = "No meeting or call recording without every other participant's consent"
+
+[[rule]]
+id = "PV-42"
+family = "PV"
+section = "15"
+status = "canonical"
+stage = 11
+bound_stage = 11
+title = "No continuous ambient audio recording; wake detection is not recording"
+
+[[rule]]
+id = "PV-43"
+family = "PV"
+section = "15"
+status = "frozen-product"
+stage = 11
+bound_stage = 11
+title = "Android notification reading is a separate opt-in with OTP redaction"
+
+[[rule]]
+id = "PV-44"
+family = "PV"
+section = "15"
+status = "frozen-product"
+stage = 11
+bound_stage = 11
+title = "Precise location only per task; background location only for user-enabled features"
+
+[[rule]]
+id = "PV-45"
+family = "PV"
+section = "15"
+status = "canonical"
+stage = 11
+bound_stage = 11
+title = "Every message not approved verbatim carries an AI disclosure"
+
+[[rule]]
+id = "PV-46"
+family = "PV"
+section = "15"
+status = "canonical"
+stage = 11
+bound_stage = 11
+title = "Voice calls start with a spoken AI disclosure that cannot be disabled"
+
+[[rule]]
+id = "PV-47"
+family = "PV"
+section = "15"
+status = "canonical"
+stage = 11
+bound_stage = 11
+title = "Generated media is machine-marked with C2PA content credentials"
+
+[[rule]]
+id = "PV-48"
+family = "PV"
+section = "15"
+status = "canonical"
+stage = 3
+bound_stage = 3
+title = "Age arrives only as a range, used only for age-appropriate experience"
+
+[[rule]]
+id = "PV-49"
+family = "PV"
+section = "15"
+status = "watch"
+stage = 11
+title = "Per-country age thresholds are verified before launch"
+
+[[rule]]
+id = "PV-50"
+family = "PV"
+section = "15"
+status = "frozen-product"
+stage = 11
+bound_stage = 11
+title = "Child profile rules: limited memory, parent can only tighten, break reminders"
+
+[[rule]]
+id = "PV-51"
+family = "PV"
+section = "15"
+status = "canonical"
+stage = 11
+bound_stage = 11
+title = "Safety signals carry no content; Suiss staff never see content"
+
+[[rule]]
+id = "PV-52"
+family = "PV"
+section = "15"
+status = "canonical"
+stage = 3
+bound_stage = 3
+title = "A household is an Access AuthorityDomain; shared resources differ from personal memory"
+
+[[rule]]
+id = "PV-53"
+family = "PV"
+section = "15"
+status = "frozen-product"
+stage = 11
+bound_stage = 11
+title = "At coming of age parental access ends and the child takes over"
+
+[[rule]]
+id = "PV-54"
+family = "PV"
+section = "15"
+status = "frozen-product"
+stage = 11
+bound_stage = 11
+title = "Child profiles have no analytics or ad SDKs and no ungated external links"
+
+[[rule]]
+id = "PV-55"
+family = "PV"
+section = "15"
+status = "frozen-product"
+stage = 11
+bound_stage = 11
+title = "One is not a companion, never hides being AI, discourages dependency"
+
+[[rule]]
+id = "PV-56"
+family = "PV"
+section = "15"
+status = "canonical"
+stage = 11
+bound_stage = 11
+title = "Crisis referral protocol applies in every region"
+
+[[rule]]
+id = "PV-57"
+family = "PV"
+section = "15"
+status = "canonical"
+stage = 11
+bound_stage = 11
+title = "Impersonating licensed professionals is prohibited"
+
+[[rule]]
+id = "PV-58"
+family = "PV"
+section = "15"
+status = "canonical"
+stage = 8
+bound_stage = 8
+title = "No manipulation: no engagement optimization, false urgency or exploiting vulnerability"
+
+[[rule]]
+id = "PV-59"
+family = "PV"
+section = "15"
+status = "canonical"
+stage = 11
+bound_stage = 11
+title = "One data is never used for advertising, targeting or sale"
+
+[[rule]]
+id = "PV-60"
+family = "PV"
+section = "15"
+status = "out-of-scope"
+title = "Out of scope: personal context to external model providers"
+
+[[rule]]
+id = "PV-61"
+family = "PV"
+section = "15"
+status = "out-of-scope"
+stage = 2
+bound_stage = 2
+title = "Out of scope: Suiss key escrow"
+
+[[rule]]
+id = "PV-62"
+family = "PV"
+section = "15"
+status = "out-of-scope"
+title = "Out of scope: continuous ambient audio recording"
+
+[[rule]]
+id = "PV-63"
+family = "PV"
+section = "15"
+status = "watch"
+stage = 13
+title = "Watched legislation"
+
+[[rule]]
+id = "PV-64"
+family = "PV"
+section = "15"
+status = "frozen-product"
+stage = 11
+bound_stage = 11
+title = "DPIA and VERBIS data inventory are generated from the spec"
+
+[[rule]]
+id = "PV-65"
+family = "PV"
+section = "15"
+status = "canonical"
+stage = 2
+bound_stage = 2
+title = "Cloud jobs with the user away use time-limited, purpose-bound key grants"
+
+[[rule]]
+id = "PV-66"
+family = "PV"
+section = "15"
+status = "frozen-product"
+stage = 11
+bound_stage = 11
+title = "Third-party access and erasure requests are fulfilled through the user's One"
+
+[[rule]]
+id = "PV-67"
+family = "PV"
+section = "15"
+status = "frozen-product"
+stage = 7
+bound_stage = 7
+title = "Users of unknown age start in restricted mode until an age range arrives"
+
+[[rule]]
+id = "SEC-1"
+family = "SEC"
+section = "16"
+status = "canonical"
+stage = 3
+bound_stage = 3
+title = "Planner, decider and executor are separate; Access makes the final decision"
+
+[[rule]]
+id = "SEC-2"
+family = "SEC"
+section = "16"
+status = "canonical"
+stage = 1
+bound_stage = 3
+title = "Content, memory, inference and predictions are neither authority nor instruction"
+
+[[rule]]
+id = "SEC-3"
+family = "SEC"
+section = "16"
+status = "canonical"
+stage = 9
+bound_stage = 9
+title = "The verified owner is the only source of instructions; everything else is data"
+
+[[rule]]
+id = "SEC-4"
+family = "SEC"
+section = "16"
+status = "canonical"
+stage = 1
+bound_stage = 1
+title = "Model output never executes directly; it goes intent, schema, Access, Executor"
+
+[[rule]]
+id = "SEC-5"
+family = "SEC"
+section = "16"
+status = "canonical"
+stage = 7
+bound_stage = 7
+title = "Confidence scores never widen authority, only push toward asking"
+
+[[rule]]
+id = "SEC-6"
+family = "SEC"
+section = "16"
+status = "canonical"
+stage = 0
+bound_stage = 3
+title = "Secrets never enter model, memory or logs; leaks are fixed by rotation"
+
+[[rule]]
+id = "SEC-7"
+family = "SEC"
+section = "16"
+status = "canonical"
+stage = 7
+bound_stage = 7
+title = "Agent text, notification buttons, chat yes or silence are not approval"
+
+[[rule]]
+id = "SEC-8"
+family = "SEC"
+section = "16"
+status = "canonical"
+stage = 7
+bound_stage = 7
+title = "Revocation is not physical stop; stop always available, stopped needs Executor confirmation"
+
+[[rule]]
+id = "SEC-9"
+family = "SEC"
+section = "16"
+status = "canonical"
+stage = 0
+bound_stage = 0
+title = "Security paths fail safe with no loosening flags or silent weakening"
+
+[[rule]]
+id = "SEC-10"
+family = "SEC"
+section = "16"
+status = "frozen-product"
+stage = 12
+title = "Threat posture is prevent, contain, detect, recover; probabilistic defenses are not boundaries"
+
+[[rule]]
+id = "SEC-11"
+family = "SEC"
+section = "16"
+status = "frozen-technical"
+stage = 12
+bound_stage = 12
+title = "A deterministic boundary with probabilistic layers on top; no single-layer guarantee"
+
+[[rule]]
+id = "SEC-12"
+family = "SEC"
+section = "16"
+status = "frozen-technical"
+stage = 6
+bound_stage = 6
+title = "The planner never sees untrusted content"
+
+[[rule]]
+id = "SEC-13"
+family = "SEC"
+section = "16"
+status = "frozen-technical"
+stage = 12
+bound_stage = 12
+title = "Quarantine model converts external content only into schema-valid typed fields"
+
+[[rule]]
+id = "SEC-14"
+family = "SEC"
+section = "16"
+status = "frozen-protocol"
+stage = 1
+bound_stage = 1
+title = "Every value carries a provenance label; combination takes the worst"
+
+[[rule]]
+id = "SEC-15"
+family = "SEC"
+section = "16"
+status = "frozen-technical"
+stage = 12
+bound_stage = 12
+title = "One data-flow policy and Access decision both precede consequential actions"
+
+[[rule]]
+id = "SEC-16"
+family = "SEC"
+section = "16"
+status = "frozen-technical"
+stage = 12
+bound_stage = 12
+title = "The monitor model sees no untrusted content and can only stop"
+
+[[rule]]
+id = "SEC-17"
+family = "SEC"
+section = "16"
+status = "frozen-technical"
+stage = 9
+bound_stage = 9
+title = "Egress gate in Executor with deterministic checks on model-generated URLs"
+
+[[rule]]
+id = "SEC-18"
+family = "SEC"
+section = "16"
+status = "frozen-technical"
+stage = 6
+bound_stage = 6
+title = "Rule of Two per session and subtask; all three require human approval"
+
+[[rule]]
+id = "SEC-19"
+family = "SEC"
+section = "16"
+status = "frozen-protocol"
+stage = 1
+bound_stage = 12
+title = "Per-task read and write origin sets; anything outside is denied"
+
+[[rule]]
+id = "SEC-20"
+family = "SEC"
+section = "16"
+status = "frozen-technical"
+stage = 12
+bound_stage = 12
+title = "Classifiers, spotlighting and injection-resistance training are extra layers only"
+
+[[rule]]
+id = "SEC-21"
+family = "SEC"
+section = "16"
+status = "frozen-product"
+stage = 1
+bound_stage = 1
+title = "Memory is never instruction or authority; external content cannot alter memory"
+
+[[rule]]
+id = "SEC-22"
+family = "SEC"
+section = "16"
+status = "canonical"
+stage = 0
+bound_stage = 3
+title = "Credential boundary: One never holds, sees or carries secrets"
+
+[[rule]]
+id = "SEC-23"
+family = "SEC"
+section = "16"
+status = "canonical"
+stage = 2
+bound_stage = 6
+title = "Security rules for approval and stop surfaces"
+
+[[rule]]
+id = "SEC-24"
+family = "SEC"
+section = "16"
+status = "frozen-product"
+stage = 6
+bound_stage = 6
+title = "Third-party capabilities are bounded by deterministic supply-chain rules"
+
+[[rule]]
+id = "SEC-25"
+family = "SEC"
+section = "16"
+status = "frozen-protocol"
+stage = 6
+bound_stage = 6
+title = "MCP client supports three protocol versions with identical security rules"
+
+[[rule]]
+id = "SEC-26"
+family = "SEC"
+section = "16"
+status = "frozen-technical"
+stage = 0
+bound_stage = 0
+title = "Code, dependencies, model weights and device models are signed and pinned"
+
+[[rule]]
+id = "SEC-27"
+family = "SEC"
+section = "16"
+status = "frozen-technical"
+stage = 2
+bound_stage = 2
+title = "Cloud processing of personal data runs in attested, untargetable per-request TEEs"
+
+[[rule]]
+id = "SEC-28"
+family = "SEC"
+section = "16"
+status = "canonical"
+stage = 2
+bound_stage = 13
+title = "Suiss staff cannot read user content; support sees only what users share"
+
+[[rule]]
+id = "SEC-29"
+family = "SEC"
+section = "16"
+status = "frozen-product"
+stage = 12
+bound_stage = 12
+title = "Injection robustness is measured per surface against adaptive attackers"
+
+[[rule]]
+id = "SEC-30"
+family = "SEC"
+section = "16"
+status = "frozen-product"
+stage = 12
+title = "The security design is published"
+
+[[rule]]
+id = "SEC-31"
+family = "SEC"
+section = "16"
+status = "canonical"
+stage = 1
+bound_stage = 1
+title = "The 13 guarantees by construction"
+
+[[rule]]
+id = "SEC-32"
+family = "SEC"
+section = "16"
+status = "frozen-product"
+stage = 2
+bound_stage = 2
+title = "The 9 guarantees under declared conditions"
+
+[[rule]]
+id = "SEC-33"
+family = "SEC"
+section = "16"
+status = "canonical"
+stage = 0
+bound_stage = 12
+title = "The 14 things that are not claimed"
+
+[[rule]]
+id = "SEC-34"
+family = "SEC"
+section = "16"
+status = "frozen-product"
+stage = 0
+bound_stage = 0
+title = "Claim language binds product copy, API field names and published documents"
+
+[[rule]]
+id = "SEC-35"
+family = "SEC"
+section = "16"
+status = "out-of-scope"
+title = "Out of scope items for the One security model"
+
+[[rule]]
+id = "T-1"
+family = "T"
+section = "17"
+status = "frozen-technical"
+day1 = true
+stage = 0
+title = "The cloud side is Rust only, sharing Suiss crates"
+
+[[rule]]
+id = "T-2"
+family = "T"
+section = "17"
+status = "frozen-technical"
+stage = 0
+title = "Python only for machine learning, evaluation and simulation, never production control plane"
+
+[[rule]]
+id = "T-3"
+family = "T"
+section = "17"
+status = "central"
+stage = 0
+title = "Closed code in a private repo, operated only by Suiss, no self-host"
+
+[[rule]]
+id = "T-4"
+family = "T"
+section = "17"
+status = "frozen-technical"
+stage = 0
+title = "One cloud application deployed in roles, split internally into modules"
+
+[[rule]]
+id = "T-5"
+family = "T"
+section = "17"
+status = "frozen-technical"
+stage = 2
+title = "Required components are PostgreSQL with pgvector and encrypted S3-compatible object storage"
+
+[[rule]]
+id = "T-6"
+family = "T"
+section = "17"
+status = "canonical"
+stage = 2
+bound_stage = 2
+title = "Every cloud job touching personal content decrypts only inside an attested TEE"
+
+[[rule]]
+id = "T-7"
+family = "T"
+section = "17"
+status = "frozen-technical"
+stage = 1
+title = "Caches and accelerators are not canonical and never hold decrypted personal content"
+
+[[rule]]
+id = "T-8"
+family = "T"
+section = "17"
+status = "frozen-technical"
+stage = 5
+bound_stage = 5
+title = "Models are shared and stateless; personal LoRA attaches per request inside TEE"
+
+[[rule]]
+id = "T-9"
+family = "T"
+section = "17"
+status = "frozen-technical"
+stage = 5
+bound_stage = 5
+title = "Quarantine and monitor models are separate-context instances from the planner"
+
+[[rule]]
+id = "T-10"
+family = "T"
+section = "17"
+status = "frozen-technical"
+stage = 5
+bound_stage = 5
+title = "Two-stage router with a non-bypassable rule gate, logging every decision"
+
+[[rule]]
+id = "T-11"
+family = "T"
+section = "17"
+status = "frozen-technical"
+stage = 5
+bound_stage = 5
+title = "Simple tasks take a deterministic fast path without the language model"
+
+[[rule]]
+id = "T-12"
+family = "T"
+section = "17"
+status = "central"
+stage = 3
+bound_stage = 3
+title = "One plans, Access decides, Executor executes, with per-row ownership"
+
+[[rule]]
+id = "T-13"
+family = "T"
+section = "17"
+status = "frozen-technical"
+stage = 3
+bound_stage = 3
+title = "Long-running task engine follows the Temporal pattern, built in-house in Executor"
+
+[[rule]]
+id = "T-14"
+family = "T"
+section = "17"
+status = "central"
+stage = 0
+bound_stage = 3
+title = "Sibling products used only via public APIs and shared crates, never reimplemented"
+
+[[rule]]
+id = "T-15"
+family = "T"
+section = "17"
+status = "frozen-protocol"
+stage = 1
+title = "Interface and protocol formats are defined per layer"
+
+[[rule]]
+id = "T-16"
+family = "T"
+section = "17"
+status = "frozen-technical"
+stage = 1
+title = "Clients are native surfaces plus a Rust core plus a shared web workspace"
+
+[[rule]]
+id = "T-17"
+family = "T"
+section = "17"
+status = "frozen-technical"
+stage = 10
+bound_stage = 10
+title = "Local store is an encrypted SQLite cache with a signed pending queue"
+
+[[rule]]
+id = "T-18"
+family = "T"
+section = "17"
+status = "frozen-product"
+stage = 10
+title = "Offline core runs on device; language model tasks wait for connectivity"
+
+[[rule]]
+id = "T-19"
+family = "T"
+section = "17"
+status = "frozen-technical"
+stage = 10
+bound_stage = 10
+title = "Sync is server-authoritative for authority, payment, execution and commitments"
+
+[[rule]]
+id = "T-20"
+family = "T"
+section = "17"
+status = "frozen-technical"
+stage = 10
+title = "Continuity derives from server task state; platform handoff is only a hint"
+
+[[rule]]
+id = "T-21"
+family = "T"
+section = "17"
+status = "frozen-technical"
+stage = 0
+bound_stage = 5
+title = "Only small models run on the phone, trained in the cloud and downloaded"
+
+[[rule]]
+id = "T-22"
+family = "T"
+section = "17"
+status = "frozen-technical"
+stage = 0
+bound_stage = 6
+title = "No driving other apps on iOS or via Android Accessibility; no Full Disk Access"
+
+[[rule]]
+id = "T-23"
+family = "T"
+section = "17"
+status = "frozen-technical"
+stage = 3
+bound_stage = 3
+title = "Failure behavior for every dependency outage is declared"
+
+[[rule]]
+id = "T-24"
+family = "T"
+section = "17"
+status = "central"
+stage = 0
+bound_stage = 0
+title = "Engineering rules align with Access OP-62 to OP-76 with no relaxed rules"
+
+[[rule]]
+id = "T-25"
+family = "T"
+section = "17"
+status = "out-of-scope"
+title = "Out of scope items for the One technical architecture"
+
+[[rule]]
+id = "T-26"
+family = "T"
+section = "17"
+status = "frozen-technical"
+stage = 0
+bound_stage = 0
+title = "Single private repo with enforced dependency direction; shared crates pinned from crates.io"
+
+[[rule]]
+id = "T-27"
+family = "T"
+section = "17"
+status = "frozen-technical"
+stage = 0
+bound_stage = 0
+title = "Access OP-63 code patterns apply; TEE boundary, provenance and user keys visible in code"
+
+[[rule]]
+id = "T-28"
+family = "T"
+section = "17"
+status = "frozen-technical"
+stage = 0
+bound_stage = 0
+title = "Access OP-64 code rules apply, including language profiles and hardening"
+
+[[rule]]
+id = "T-29"
+family = "T"
+section = "17"
+status = "frozen-technical"
+stage = 0
+bound_stage = 10
+title = "Clients use one core, generated API clients and a single design system"
+
+[[rule]]
+id = "T-30"
+family = "T"
+section = "17"
+status = "frozen-technical"
+stage = 0
+bound_stage = 0
+title = "Platform policies and device resource budgets are CI gates"
+
+[[rule]]
+id = "T-31"
+family = "T"
+section = "17"
+status = "frozen-protocol"
+stage = 1
+bound_stage = 1
+title = "Access OP-65 applies; every layer format is developed schema-first"
+
+[[rule]]
+id = "T-32"
+family = "T"
+section = "17"
+status = "frozen-technical"
+stage = 0
+bound_stage = 0
+title = "Access OP-66 applies: no ORM, SQL only in store, no physical deletion"
+
+[[rule]]
+id = "T-33"
+family = "T"
+section = "17"
+status = "frozen-technical"
+stage = 0
+bound_stage = 5
+title = "Datasets are governed; user data never enters development, test or evaluation sets"
+
+[[rule]]
+id = "T-34"
+family = "T"
+section = "17"
+status = "frozen-technical"
+stage = 5
+bound_stage = 5
+title = "Model registry and release gate are enforced in code"
+
+[[rule]]
+id = "T-35"
+family = "T"
+section = "17"
+status = "frozen-technical"
+stage = 5
+bound_stage = 5
+title = "Personal training is isolated per user inside a TEE; user keys never traced"
+
+[[rule]]
+id = "T-36"
+family = "T"
+section = "17"
+status = "frozen-technical"
+stage = 1
+bound_stage = 1
+title = "Provenance labels are types; the planner cannot receive untrusted values at compile time"
+
+[[rule]]
+id = "T-37"
+family = "T"
+section = "17"
+status = "frozen-technical"
+stage = 0
+bound_stage = 0
+title = "User content cannot reach telemetry, logs, crash reports or test data; crypto-shred is tested"
+
+[[rule]]
+id = "T-38"
+family = "T"
+section = "17"
+status = "frozen-technical"
+stage = 0
+bound_stage = 0
+title = "Access SA-59 testing applies, with rule coverage before line coverage"
+
+[[rule]]
+id = "T-39"
+family = "T"
+section = "17"
+status = "frozen-technical"
+stage = 0
+bound_stage = 0
+title = "Access supply-chain rules F-1 to F-18 apply, with equivalents for every language and model"
+
+[[rule]]
+id = "T-40"
+family = "T"
+section = "17"
+status = "frozen-technical"
+stage = 0
+bound_stage = 13
+title = "Access OP-67 observability applies; content cannot enter telemetry by type"
+
+[[rule]]
+id = "T-41"
+family = "T"
+section = "17"
+status = "frozen-technical"
+stage = 0
+bound_stage = 7
+title = "Access OP-68 versioning applies; separate versions, staged and reversible store releases"
+
+[[rule]]
+id = "T-42"
+family = "T"
+section = "17"
+status = "frozen-technical"
+stage = 0
+bound_stage = 0
+title = "Access OP-69 local development applies; just dev runs sibling products and models locally"
+
+[[rule]]
+id = "T-43"
+family = "T"
+section = "17"
+status = "frozen-technical"
+stage = 0
+title = "Access OP-70 documentation applies; spec registers are the decision record"
+
+[[rule]]
+id = "T-44"
+family = "T"
+section = "17"
+status = "frozen-technical"
+stage = 0
+title = "Access OP-71 process applies: signed direct pushes to main, no external contributions"
+
+[[rule]]
+id = "T-45"
+family = "T"
+section = "17"
+status = "frozen-technical"
+stage = 1
+bound_stage = 0
+title = "Access OP-72 performance applies; no security or privacy control relaxed for speed"
+
+[[rule]]
+id = "T-46"
+family = "T"
+section = "17"
+status = "out-of-scope"
+stage = 0
+bound_stage = 0
+title = "Out of scope engineering paths"
+
+[[rule]]
+id = "T-47"
+family = "T"
+section = "17"
+status = "frozen-technical"
+stage = 0
+title = "No explanatory comments in code"
+
+[[rule]]
+id = "T-48"
+family = "T"
+section = "17"
+status = "frozen-technical"
+title = "Registry package names carry the esuiss prefix"
+
+[[rule]]
+id = "T-49"
+family = "T"
+section = "17"
+status = "frozen-technical"
+title = "Main branch protections are enforced through GitHub rulesets"
+
+[[rule]]
+id = "T-50"
+family = "T"
+section = "17"
+status = "frozen-technical"
+stage = 3
+title = "CDN tunnel carries only traffic without personal content"
+
+[[rule]]
+id = "T-51"
+family = "T"
+section = "17"
+status = "frozen-technical"
+stage = 2
+title = "Key and secret access only through PKCS#11, no cloud KMS API"
+
+[[rule]]
+id = "T-52"
+family = "T"
+section = "17"
+status = "frozen-technical"
+title = "Local observability stack uses small official images"
+
+[[rule]]
+id = "T-53"
+family = "T"
+section = "17"
+status = "frozen-technical"
+title = "Every JS and TS package is an independent npm project"
+
+[[rule]]
+id = "T-54"
+family = "T"
+section = "17"
+status = "frozen-technical"
+title = "Reproducible builds gate releases of TEE images and are targets elsewhere"
+
+[[rule]]
+id = "T-55"
+family = "T"
+section = "17"
+status = "frozen-technical"
+title = "Rule catalog, must-never map and threat model are tracked as TOML in the repo"
+
+[[rule]]
+id = "T-56"
+family = "T"
+section = "17"
+status = "frozen-technical"
+title = "Stage 0 items verifiable only with later-stage code move to that stage"
+
+[[rule]]
+id = "T-57"
+family = "T"
+section = "17"
+status = "frozen-technical"
+stage = 0
+title = "Images are signed in private GHCR; CI identity is GitHub Actions OIDC"
+
+[[rule]]
+id = "OP-1"
+family = "OP"
+section = "18"
+status = "canonical"
+stage = 2
+bound_stage = 2
+title = "Canonical truth is One's typed records; derived structures are rebuildable"
+
+[[rule]]
+id = "OP-2"
+family = "OP"
+section = "18"
+status = "frozen-technical"
+stage = 2
+title = "Store inventory and labels; One shares no tables, roles or keys with siblings"
+
+[[rule]]
+id = "OP-3"
+family = "OP"
+section = "18"
+status = "canonical"
+stage = 2
+bound_stage = 2
+title = "Durability boundary: nothing leaves before its record is persisted, via outbox"
+
+[[rule]]
+id = "OP-4"
+family = "OP"
+section = "18"
+status = "frozen-technical"
+day1 = true
+stage = 2
+bound_stage = 2
+title = "Personal content uses per-record keys wrapped by class DEKs and the user KEK"
+
+[[rule]]
+id = "OP-5"
+family = "OP"
+section = "18"
+status = "canonical"
+stage = 2
+bound_stage = 4
+title = "Derived search structures are personal data under the source record's key scope"
+
+[[rule]]
+id = "OP-6"
+family = "OP"
+section = "18"
+status = "canonical"
+stage = 0
+bound_stage = 0
+title = "Access OP-73 and OP-74 apply: no physical deletion, soft delete plus crypto-shred"
+
+[[rule]]
+id = "OP-7"
+family = "OP"
+section = "18"
+status = "frozen-technical"
+stage = 2
+bound_stage = 2
+title = "One data maps to the One classes of Access Annex C"
+
+[[rule]]
+id = "OP-8"
+family = "OP"
+section = "18"
+status = "canonical"
+stage = 2
+bound_stage = 2
+title = "Legally retained data never goes into user-keyed classes"
+
+[[rule]]
+id = "OP-9"
+family = "OP"
+section = "18"
+status = "canonical"
+stage = 2
+bound_stage = 2
+title = "Crypto-shred covers all copies including devices, recovery vault and backups"
+
+[[rule]]
+id = "OP-10"
+family = "OP"
+section = "18"
+status = "frozen-technical"
+stage = 4
+bound_stage = 4
+title = "Operating forget: correct, do not use, permanently forget with model retraining"
+
+[[rule]]
+id = "OP-11"
+family = "OP"
+section = "18"
+status = "canonical"
+stage = 7
+bound_stage = 7
+title = "Account deletion and consent withdrawal trigger crypto-shred of affected classes"
+
+[[rule]]
+id = "OP-12"
+family = "OP"
+section = "18"
+status = "frozen-technical"
+stage = 2
+bound_stage = 2
+title = "Retention periods are enforced automatically with alarmed destruction jobs"
+
+[[rule]]
+id = "OP-13"
+family = "OP"
+section = "18"
+status = "frozen-product"
+stage = 4
+bound_stage = 11
+title = "User data is stored and processed in the user's region"
+
+[[rule]]
+id = "OP-14"
+family = "OP"
+section = "18"
+status = "frozen-technical"
+stage = 13
+title = "The canonical cluster runs under Access HA and backup rules"
+
+[[rule]]
+id = "OP-15"
+family = "OP"
+section = "18"
+status = "canonical"
+stage = 2
+bound_stage = 2
+title = "Suiss cannot restore user data without the user's key"
+
+[[rule]]
+id = "OP-16"
+family = "OP"
+section = "18"
+status = "frozen-technical"
+stage = 10
+bound_stage = 13
+title = "Model serving and jobs are stateless; losses only cause delay"
+
+[[rule]]
+id = "OP-17"
+family = "OP"
+section = "18"
+status = "canonical"
+stage = 0
+bound_stage = 0
+title = "Telemetry carries no content; audits are answered from records"
+
+[[rule]]
+id = "OP-18"
+family = "OP"
+section = "18"
+status = "frozen-technical"
+stage = 13
+title = "Operational signals table"
+
+[[rule]]
+id = "OP-19"
+family = "OP"
+section = "18"
+status = "frozen-product"
+stage = 8
+bound_stage = 8
+title = "Product quality metrics are contentless aggregates"
+
+[[rule]]
+id = "OP-20"
+family = "OP"
+section = "18"
+status = "frozen-technical"
+stage = 5
+bound_stage = 5
+title = "Model registry records every model; mismatched models are never loaded"
+
+[[rule]]
+id = "OP-21"
+family = "OP"
+section = "18"
+status = "frozen-product"
+stage = 5
+bound_stage = 5
+title = "Release and regression gate for models, capabilities and proactive behavior"
+
+[[rule]]
+id = "OP-22"
+family = "OP"
+section = "18"
+status = "frozen-technical"
+stage = 5
+bound_stage = 5
+title = "Operation of personal training inside a TEE in the user's space"
+
+[[rule]]
+id = "OP-23"
+family = "OP"
+section = "18"
+status = "frozen-technical"
+stage = 5
+bound_stage = 5
+title = "A base model change retrains all personal adapters"
+
+[[rule]]
+id = "OP-24"
+family = "OP"
+section = "18"
+status = "frozen-technical"
+stage = 4
+bound_stage = 4
+title = "An embedding model change recomputes all vectors"
+
+[[rule]]
+id = "OP-25"
+family = "OP"
+section = "18"
+status = "engineering-assumption"
+stage = 5
+title = "Capacity principles: no per-user model or GPU; numbers set by measurement"
+
+[[rule]]
+id = "OP-26"
+family = "OP"
+section = "18"
+status = "central"
+stage = 4
+bound_stage = 13
+title = "One is operated only by Suiss as a single package in a single mode"
+
+[[rule]]
+id = "OP-27"
+family = "OP"
+section = "18"
+status = "frozen-technical"
+stage = 0
+bound_stage = 1
+title = "Schema migrations follow Access OP-55 and OP-56"
+
+[[rule]]
+id = "OP-28"
+family = "OP"
+section = "18"
+status = "out-of-scope"
+title = "Out of scope items for the One data and operations model"
+
+[[rule]]
+id = "OP-29"
+family = "OP"
+section = "18"
+status = "frozen-product"
+stage = 11
+bound_stage = 11
+title = "Operational telemetry is separate from product analytics, which requires explicit opt-in"
+
+[[rule]]
+id = "OP-30"
+family = "OP"
+section = "18"
+status = "canonical"
+stage = 2
+bound_stage = 2
+title = "A legal hold suspends crypto-shred but never provides readability"
+
+[[rule]]
+id = "OP-31"
+family = "OP"
+section = "18"
+status = "frozen-product"
+stage = 13
+bound_stage = 13
+title = "One's availability class is below Access; One outages never weaken security"
+
+[[rule]]
+id = "OP-32"
+family = "OP"
+section = "18"
+status = "frozen-technical"
+stage = 2
+title = "The client's rebuildable local cache may be physically pruned"
