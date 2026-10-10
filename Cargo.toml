@@ -1,0 +1,80 @@
+[workspace]
+resolver = "3"
+# T-26 (5)
+members = ["crates/*", "bins/*", "core", "load", "xtask"]
+
+[workspace.package]
+version = "0.0.0"
+edition = "2024"
+rust-version = "1.99"
+# T-3
+license = "LicenseRef-Suiss-Proprietary"
+repository = "https://github.com/e-suiss/one"
+publish = false
+
+# T-26 (3), T-48
+[workspace.dependencies]
+one-runtime = { path = "crates/runtime" }
+one-telemetry = { path = "crates/telemetry" }
+one-config = { path = "crates/config" }
+one-http = { path = "crates/http" }
+one-store = { path = "crates/store" }
+one-proto = { path = "crates/proto" }
+one-provenance = { path = "crates/provenance", default-features = false }
+one-interaction = { path = "crates/interaction", default-features = false }
+one-testkit = { path = "crates/testkit" }
+
+thiserror = { version = "2.0.21", default-features = false }
+serde = { version = "1.0.229", default-features = false }
+serde_json = { version = "1.0.151", default-features = false }
+toml = { version = "1.1.6", default-features = false }
+tracing = { version = "0.1.44", default-features = false }
+tracing-subscriber = { version = "0.3.23", default-features = false }
+tokio = { version = "1.53.1", default-features = false }
+axum = { version = "0.8.9", default-features = false }
+tower = { version = "0.5.3", default-features = false }
+tower-http = { version = "0.7.1", default-features = false }
+figment = { version = "0.10.19", default-features = false }
+http-body-util = { version = "0.1.3", default-features = false }
+sqlx = { version = "0.9.0", default-features = false }
+proptest = { version = "1.11.0", default-features = false }
+regex = { version = "1.13.1", default-features = false }
+# T-45, Access OP-72
+gungraun = { version = "=0.20.0", default-features = false }
+
+[workspace.lints.rust]
+# T-28 (3, 9)
+unsafe_code = "forbid"
+missing_docs = "deny"
+unreachable_pub = "deny"
+unused_must_use = "deny"
+rust_2024_compatibility = { level = "deny", priority = -1 }
+
+[workspace.lints.clippy]
+pedantic = { level = "warn", priority = -1 }
+# T-28 (3, 4)
+unwrap_used = "deny"
+expect_used = "deny"
+indexing_slicing = "deny"
+panic = "deny"
+unimplemented = "deny"
+todo = "deny"
+unreachable = "deny"
+arithmetic_side_effects = "deny"
+cast_possible_truncation = "deny"
+cast_possible_wrap = "deny"
+cast_sign_loss = "deny"
+dbg_macro = "deny"
+print_stdout = "deny"
+print_stderr = "deny"
+mem_forget = "deny"
+# T-27 (2)
+disallowed_methods = "deny"
+
+# T-28 (4)
+[profile.release]
+overflow-checks = true
+panic = "unwind"
+lto = "thin"
+codegen-units = 1
+debug = "line-tables-only"

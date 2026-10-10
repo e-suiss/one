@@ -1,0 +1,25 @@
+/target/
+node_modules/
+dist/
+/fuzz/target/
+/fuzz/corpus/
+/fuzz/artifacts/
+/load/target/
+
+# T-42 (5)
+.env
+.env.*
+!.env.example
+
+# T-33
+/ml/.venv/
+/ml/data/
+/ml/runs/
+__pycache__/
+*.pyc
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+
+.DS_Store
+*.swp
