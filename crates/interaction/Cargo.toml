@@ -1,0 +1,15 @@
+[package]
+name = "one-interaction"
+description = "Interaction schema types and projection rules; no_std (T-26, X-13)."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish = false
+
+[dependencies]
+one-proto.workspace = true
+
+[lints]
+workspace = true

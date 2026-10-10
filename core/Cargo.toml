@@ -1,0 +1,18 @@
+[package]
+name = "one-core"
+description = "One client core: canonical types, provenance, Interaction projection, sync and local rules for every surface (T-16, T-29)."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish = false
+
+# T-26 (6)
+[dependencies]
+one-proto.workspace = true
+one-provenance.workspace = true
+one-interaction.workspace = true
+
+[lints]
+workspace = true

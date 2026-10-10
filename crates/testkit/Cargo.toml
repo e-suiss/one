@@ -1,0 +1,15 @@
+[package]
+name = "one-testkit"
+description = "Test support: virtual clock and fixed-seed generator behind the runtime ports (T-27, T-38)."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish = false
+
+[dependencies]
+one-runtime.workspace = true
+
+[lints]
+workspace = true

@@ -1,0 +1,12 @@
+[package]
+name = "one-proto"
+description = "One record, event, sync and API types; mapped to CDDL and JSON Schema vectors (T-26, T-31)."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish = false
+
+[lints]
+workspace = true

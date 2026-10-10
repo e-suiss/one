@@ -1,0 +1,15 @@
+[package]
+name = "one-provenance"
+description = "Provenance-labelled types and the join rule; no_std, shared with one-core (T-36)."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish = false
+
+[dependencies]
+one-proto.workspace = true
+
+[lints]
+workspace = true
