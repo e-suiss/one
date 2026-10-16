@@ -137,6 +137,41 @@ jobs:
           fi
           cargo xtask commits "$BASE" HEAD
 
+  api:
+    name: api
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: ./.github/actions/setup
+        with:
+          cache-key: test
+      - name: OpenAPI generated from code equals the committed document
+        run: cargo test --locked -p one-http --test openapi
+      - name: Install oasdiff 1.33.0
+        env:
+          OASDIFF_SHA256: 43a4e328e2d13ba1552d760aa68d2485c75c5621f309f6ff64ae895188345247
+        run: |
+          curl -fsSL -o "$RUNNER_TEMP/oasdiff.tar.gz" \
+            https://github.com/oasdiff/oasdiff/releases/download/v1.33.0/oasdiff_1.33.0_linux_amd64.tar.gz
+          echo "$OASDIFF_SHA256  $RUNNER_TEMP/oasdiff.tar.gz" | sha256sum --check --strict
+          tar -xzf "$RUNNER_TEMP/oasdiff.tar.gz" -C "$RUNNER_TEMP" oasdiff
+      - name: No breaking change without a new major version
+        env:
+          BASE: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}
+        run: |
+          if [[ -z "$BASE" || "$BASE" =~ ^0+$ ]] || ! git cat-file -e "$BASE:conformance/openapi/one.v1.json" 2>/dev/null; then
+            echo "::notice::no earlier OpenAPI document to compare"
+            exit 0
+          fi
+          git show "$BASE:conformance/openapi/one.v1.json" > "$RUNNER_TEMP/base.json"
+          "$RUNNER_TEMP/oasdiff" breaking "$RUNNER_TEMP/base.json" conformance/openapi/one.v1.json --fail-on ERR
+
   ml:
     name: ml
     runs-on: ubuntu-24.04

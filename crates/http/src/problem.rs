@@ -7,7 +7,7 @@ use axum::response::{IntoResponse, Response};
 use serde::Serialize;
 
 /// An RFC 9457 problem response.
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, utoipa::ToSchema)]
 pub struct Problem {
     #[serde(rename = "type")]
     type_uri: &'static str,
@@ -15,6 +15,7 @@ pub struct Problem {
     status: u16,
     code: &'static str,
     #[serde(skip)]
+    #[schema(ignore)]
     status_code: StatusCode,
 }
 
@@ -29,6 +30,14 @@ impl Problem {
             code,
             status_code: status,
         }
+    }
+}
+
+impl Problem {
+    /// The HTTP status.
+    #[must_use]
+    pub fn status(&self) -> StatusCode {
+        self.status_code
     }
 }
 

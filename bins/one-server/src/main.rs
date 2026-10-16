@@ -6,7 +6,9 @@ use std::sync::Arc;
 use std::sync::atomic::{AtomicU64, Ordering};
 
 use one_config::ServerConfig;
-use one_http::{Limits, internal_router, public_router};
+mod system;
+
+use one_http::{Limits, Sources, internal_router, public_router};
 use one_telemetry::LeakSink;
 use one_telemetry::leak::LeakKind;
 
@@ -62,6 +64,10 @@ fn main() -> ExitCode {
 
 async fn serve(config: &ServerConfig) -> std::io::Result<()> {
     let limits = Limits::default();
+    let sources = Sources {
+        clock: Arc::new(system::SystemClock::new()),
+        rng: Arc::new(system::OsRng),
+    };
     let public = tokio::net::TcpListener::bind(config.listen).await?;
     let internal = tokio::net::TcpListener::bind(config.internal_listen).await?;
     let roles: Vec<&str> = config.roles.iter().map(|r| r.as_str()).collect();
@@ -72,8 +78,9 @@ async fn serve(config: &ServerConfig) -> std::io::Result<()> {
         internal_listen = %config.internal_listen,
         roles = ?roles
     );
-    let public = axum::serve(public, public_router(limits)).with_graceful_shutdown(shutdown());
-    let internal = axum::serve(internal, internal_router(Vec::new(), limits))
+    let public = axum::serve(public, public_router(limits, sources.clone()))
+        .with_graceful_shutdown(shutdown());
+    let internal = axum::serve(internal, internal_router(Vec::new(), limits, sources))
         .with_graceful_shutdown(shutdown());
     let (a, b) = tokio::join!(public.into_future(), internal.into_future());
     a.and(b)

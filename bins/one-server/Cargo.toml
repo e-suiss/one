@@ -10,7 +10,9 @@ publish = false
 
 [dependencies]
 axum = { workspace = true, features = ["http1", "http2", "tokio"] }
+getrandom = { workspace = true, features = ["std"] }
 one-config.workspace = true
+one-runtime.workspace = true
 one-http.workspace = true
 one-telemetry.workspace = true
 tokio = { workspace = true, features = ["macros", "net", "rt-multi-thread", "signal"] }

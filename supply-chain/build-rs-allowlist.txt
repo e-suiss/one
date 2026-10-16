@@ -1,5 +1,6 @@
 # T-39 (1)
 figment
+getrandom
 httparse
 libc
 proc-macro2

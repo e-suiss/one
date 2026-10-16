@@ -119,7 +119,7 @@ serve:
     cargo run --locked -p one-server
 
 gen:
-    @echo "nothing is generated yet: OpenAPI, AsyncAPI, Protobuf, sqlx metadata, UniFFI, WASM and the TypeScript client come with their Stage 1 contracts"
+    ONE_UPDATE_OPENAPI=1 cargo test --locked -q -p one-http --test openapi
 
 eval set="evals/tr_en/set.toml" model="" out="runs":
     cd ml && {{uv}} run --locked python -m one_ml.evals run --set {{set}} --model "{{model}}" --code-version "$(git rev-parse HEAD)" --out {{out}}

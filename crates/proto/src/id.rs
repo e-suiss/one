@@ -184,6 +184,11 @@ typed_id!(
     AdapterId,
     "adp"
 );
+typed_id!(
+    /// An API request, returned in the `Request-Id` header.
+    RequestId,
+    "req"
+);
 
 #[cfg(test)]
 mod tests {

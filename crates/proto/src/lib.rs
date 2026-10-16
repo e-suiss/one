@@ -7,7 +7,7 @@ pub mod verdict;
 
 pub use id::{
     AdapterId, CapabilityId, DeviceId, EpisodeId, IdError, InteractionId, MemoryRecordId,
-    ModelVersionId, TaskId,
+    ModelVersionId, RequestId, TaskId,
 };
 pub use masked::Masked;
 pub use verdict::Verdict;

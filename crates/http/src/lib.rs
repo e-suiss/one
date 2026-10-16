@@ -1,6 +1,8 @@
 //! The HTTP layer of `one-server`: a hardened public router answering RFC 9457 problems and an internal router with `/livez` and `/readyz` (T-31, T-40 (7)).
 
+pub mod openapi;
 mod problem;
+pub mod rules;
 
 use std::future::Future;
 use std::pin::Pin;
@@ -16,6 +18,7 @@ use tower_http::limit::RequestBodyLimitLayer;
 use tower_http::timeout::TimeoutLayer;
 
 pub use problem::Problem;
+pub use rules::Sources;
 
 /// Explicit request limits; framework defaults are never relied on.
 #[derive(Clone, Copy, Debug)]
@@ -55,13 +58,23 @@ struct Readiness {
     probes: Vec<ProbeStatus>,
 }
 
-/// The public router: no routes yet beyond the problem fallback.
-pub fn public_router(limits: Limits) -> Router {
-    harden(Router::new().fallback(not_found), limits)
+/// The public router: no routes yet beyond the problem fallback; every response carries `Request-Id` and every mutation needs `Idempotency-Key`.
+pub fn public_router(limits: Limits, sources: Sources) -> Router {
+    let routes = Router::new()
+        .fallback(not_found)
+        .layer(axum::middleware::from_fn(rules::idempotency));
+    harden(with_request_id(routes, sources), limits)
+}
+
+fn with_request_id(routes: Router, sources: Sources) -> Router {
+    routes.layer(axum::middleware::from_fn_with_state(
+        sources,
+        rules::request_id,
+    ))
 }
 
 /// The internal router with `/livez` and `/readyz`.
-pub fn internal_router(probes: Vec<Arc<dyn Probe>>, limits: Limits) -> Router {
+pub fn internal_router(probes: Vec<Arc<dyn Probe>>, limits: Limits, sources: Sources) -> Router {
     let routes = Router::new()
         .route("/livez", get(|| async { StatusCode::NO_CONTENT }))
         .route(
@@ -72,7 +85,7 @@ pub fn internal_router(probes: Vec<Arc<dyn Probe>>, limits: Limits) -> Router {
             }),
         )
         .fallback(not_found);
-    harden(routes, limits)
+    harden(with_request_id(routes, sources), limits)
 }
 
 async fn readyz(probes: &[Arc<dyn Probe>]) -> (StatusCode, Json<Readiness>) {
