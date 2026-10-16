@@ -16,6 +16,10 @@ mod migrations;
 mod models;
 #[path = "one_platform.rs"]
 mod platform;
+#[path = "one_registry.rs"]
+mod registry;
+#[path = "one_types.rs"]
+mod types;
 
 use std::path::{Path, PathBuf};
 
@@ -66,6 +70,18 @@ pub(crate) fn checks() -> Vec<Check> {
         Check {
             name: "no-sibling-rewrite",
             run: boundaries::check_siblings,
+        },
+        Check {
+            name: "typed-ids",
+            run: types::check,
+        },
+        Check {
+            name: "model-registry",
+            run: registry::check_registry,
+        },
+        Check {
+            name: "native-supply-chain",
+            run: registry::check_native,
         },
     ]
 }

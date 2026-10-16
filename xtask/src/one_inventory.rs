@@ -20,6 +20,50 @@ pub(crate) struct Inventory {
     pub(crate) analytics_event: Vec<Named>,
     #[serde(default)]
     pub(crate) plain_metadata_column: Vec<Named>,
+    #[serde(default)]
+    pub(crate) platform_declaration: Vec<Declaration>,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub(crate) struct Declaration {
+    pub(crate) platform: String,
+    pub(crate) data_type: String,
+    pub(crate) purpose: String,
+}
+
+/// `NSPrivacyCollectedDataType` values in an iOS privacy manifest.
+pub(crate) fn privacy_manifest_types(plist: &str) -> Vec<String> {
+    plist
+        .split("<key>NSPrivacyCollectedDataType</key>")
+        .skip(1)
+        .filter_map(|rest| rest.split("<string>").nth(1)?.split("</string>").next())
+        .map(|s| s.trim().to_owned())
+        .collect()
+}
+
+/// Differences between the inventory's iOS declarations and one privacy manifest.
+pub(crate) fn declaration_diff(inventory: &Inventory, manifest_types: &[String]) -> Vec<String> {
+    let declared: Vec<&str> = inventory
+        .platform_declaration
+        .iter()
+        .filter(|d| d.platform == "ios")
+        .map(|d| d.data_type.as_str())
+        .collect();
+    let mut out: Vec<String> = manifest_types
+        .iter()
+        .filter(|t| !declared.contains(&t.as_str()))
+        .map(|t| format!("privacy manifest collects `{t}`, which the inventory does not declare"))
+        .collect();
+    out.extend(
+        declared
+            .iter()
+            .filter(|d| !manifest_types.iter().any(|t| t == *d))
+            .map(|d| {
+                format!("inventory declares `{d}`, which the privacy manifest does not collect")
+            }),
+    );
+    out
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
@@ -111,10 +155,33 @@ pub(crate) fn check(root: &Path) -> Result<Vec<Violation>, String> {
     let text = read_opt(root, INVENTORY)?.ok_or_else(|| format!("{INVENTORY} is missing"))?;
     let inventory: Inventory = toml::from_str(&text).map_err(|e| format!("{INVENTORY}: {e}"))?;
     let code = read_opt(root, FIELDS)?.unwrap_or_default();
-    Ok(diff(&inventory, &code_fields(&code))
+    let mut out: Vec<Violation> = diff(&inventory, &code_fields(&code))
         .into_iter()
         .map(|m| v("T-37", INVENTORY, m))
-        .collect())
+        .collect();
+    for d in &inventory.platform_declaration {
+        if !matches!(d.platform.as_str(), "ios" | "android") || d.purpose.trim().is_empty() {
+            out.push(v(
+                "T-37",
+                INVENTORY,
+                format!(
+                    "declaration `{}` needs platform ios or android and a purpose",
+                    d.data_type
+                ),
+            ));
+        }
+    }
+    for file in crate::policy::scan::repo_files(root)? {
+        if file.starts_with("apps/") && file.ends_with("PrivacyInfo.xcprivacy") {
+            let types = privacy_manifest_types(&crate::rules::files::read(&root.join(&file))?);
+            out.extend(
+                declaration_diff(&inventory, &types)
+                    .into_iter()
+                    .map(|m| v("T-37", file.clone(), m)),
+            );
+        }
+    }
+    Ok(out)
 }
 
 #[cfg(test)]
@@ -147,8 +214,28 @@ mod tests {
             }],
             analytics_event: Vec::new(),
             plain_metadata_column: Vec::new(),
+            platform_declaration: Vec::new(),
         };
         let found = diff(&inventory, &code_fields(SRC));
         assert_eq!(found.len(), 3);
+    }
+
+    #[test]
+    fn t_37_privacy_manifest_must_match_the_inventory() {
+        let plist = "<dict><key>NSPrivacyCollectedDataType</key><string>NSPrivacyCollectedDataTypeCrashData</string></dict>";
+        let types = privacy_manifest_types(plist);
+        assert_eq!(types, vec!["NSPrivacyCollectedDataTypeCrashData"]);
+        let inventory = Inventory {
+            version: 1,
+            telemetry_field: Vec::new(),
+            analytics_event: Vec::new(),
+            plain_metadata_column: Vec::new(),
+            platform_declaration: vec![Declaration {
+                platform: "ios".into(),
+                data_type: "NSPrivacyCollectedDataTypeDeviceID".into(),
+                purpose: "x".into(),
+            }],
+        };
+        assert_eq!(declaration_diff(&inventory, &types).len(), 2);
     }
 }

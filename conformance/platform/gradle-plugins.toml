@@ -1,0 +1,8 @@
+# T-39 (3)
+allow = [
+    "com.android.application",
+    "com.android.library",
+    "org.jetbrains.kotlin.plugin.compose",
+    "io.gitlab.arturbosch.detekt",
+    "org.jlleitschuh.gradle.ktlint",
+]
