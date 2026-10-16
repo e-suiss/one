@@ -49,6 +49,16 @@ pub(crate) fn problems(message: &str, files: &[String], shared_crate_change: boo
     if !TYPES.contains(&kind) || !scope_ok || summary.trim().is_empty() {
         out.push(format!("subject `{subject}` is not a Conventional Commit"));
     }
+    let concept_line = message.lines().any(|l| {
+        l.trim().starts_with("Concept-Candidate:") && l.trim().len() > "Concept-Candidate:".len()
+    });
+    if files
+        .iter()
+        .any(|f| f == "conformance/catalog/glossary.toml")
+        && !concept_line
+    {
+        out.push("changes the canonical glossary: add a `Concept-Candidate:` line naming the new spec decision (C-3)".to_owned());
+    }
     if files.iter().any(|f| sensitive(f)) || shared_crate_change {
         let lines: Vec<&str> = message.lines().map(str::trim).collect();
         if !lines.contains(&"Security-Sensitive: yes") {
@@ -135,5 +145,16 @@ mod tests {
         let ok = "feat(telemetry): add field\n\nThreat: a new counter carries no content.\nPrivacy: no personal data.\n\nSecurity-Sensitive: yes\n";
         assert_eq!(problems(ok, &files, false).len(), 0);
         assert_eq!(problems("build: bump", &[], true).len(), 3);
+    }
+
+    #[test]
+    fn c_3_glossary_change_needs_a_concept_candidate_line() {
+        let files = vec!["conformance/catalog/glossary.toml".to_owned()];
+        assert_eq!(
+            problems("feat(proto): add a concept", &files, false).len(),
+            1
+        );
+        let ok = "feat(proto): add a concept\n\nConcept-Candidate: C-30 Place\n";
+        assert_eq!(problems(ok, &files, false).len(), 0);
     }
 }

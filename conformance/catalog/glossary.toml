@@ -1,0 +1,76 @@
+# C-29, C-23, C-3
+
+[[concept]]
+name = "Observation"
+rule = "C-10"
+meaning = "The record of a received input"
+
+[[concept]]
+name = "Episode"
+rule = "C-11"
+meaning = "A time-bounded sequence of events that is a unit of evidence"
+
+[[concept]]
+name = "MemoryRecord"
+rule = "C-12"
+meaning = "A durable record bound to its source with an epistemic state"
+
+[[concept]]
+name = "Goal"
+rule = "C-13"
+meaning = "A state the user wants to reach"
+
+[[concept]]
+name = "Routine"
+rule = "C-14"
+meaning = "An explainable behaviour hypothesis"
+
+[[concept]]
+name = "Task"
+rule = "C-15"
+meaning = "The record of single-person work"
+
+[[concept]]
+name = "Interaction"
+rule = "C-16"
+meaning = "A surface-independent unit presented or answered"
+
+[[concept]]
+name = "CapabilityDefinition"
+rule = "C-17"
+meaning = "The semantic definition of an action"
+
+[[concept]]
+name = "SurfaceCapability"
+rule = "C-18"
+meaning = "A surface's presentation and interaction declaration"
+
+[[relation]]
+name = "derived-from"
+rule = "C-23"
+meaning = "Evidence and provenance"
+
+[[relation]]
+name = "about"
+rule = "C-23"
+meaning = "What a record concerns"
+
+[[relation]]
+name = "supersedes"
+rule = "C-23"
+meaning = "A record replaces an earlier one"
+
+[[relation]]
+name = "serves"
+rule = "C-23"
+meaning = "Work serving a goal"
+
+[[relation]]
+name = "concerns"
+rule = "C-23"
+meaning = "A record concerns a referenced entity"
+
+[[relation]]
+name = "references"
+rule = "C-23"
+meaning = "A reference to a record owned elsewhere"

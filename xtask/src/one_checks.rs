@@ -8,6 +8,8 @@ mod claims;
 pub(crate) mod comments;
 #[path = "one_commits.rs"]
 pub(crate) mod commits;
+#[path = "one_glossary.rs"]
+mod glossary;
 #[path = "one_inventory.rs"]
 mod inventory;
 #[path = "one_migrations.rs"]
@@ -70,6 +72,10 @@ pub(crate) fn checks() -> Vec<Check> {
         Check {
             name: "no-sibling-rewrite",
             run: boundaries::check_siblings,
+        },
+        Check {
+            name: "glossary",
+            run: glossary::check,
         },
         Check {
             name: "typed-ids",

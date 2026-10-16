@@ -30,6 +30,12 @@ There is no development mode: security and privacy checks are never disabled loc
 - Tests run against real PostgreSQL, object storage, Access, Relay and Work; flaky tests are quarantined within 24 hours, never retried until green.
 - A test that verifies a specification rule starts its name with the rule ID: `sec_12_planner_rejects_untrusted_value`, `test_t_33_…`, `t_29_…`.
 
+## Specification
+
+- When the specification is ambiguous, contradictory or silent, the code does not decide. Raise it as an open question; implement it after it has a decision ID.
+- Canonical concept and relation code names come only from `conformance/catalog/glossary.toml`; no synonyms. A new concept is a concept candidate: the commit that adds it carries `Concept-Candidate:` with its decision ID.
+- Vendor benchmark numbers are claims, not measurements. Numbers we publish come from our own evaluation sets with code, raw output, dataset version and run command.
+
 ## Commits
 
 - [Conventional Commits](https://www.conventionalcommits.org/) with the crate or area as scope; signed; linear history; no force push.
