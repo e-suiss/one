@@ -1,0 +1,34 @@
+{
+  "name": "@esuiss/one-core",
+  "version": "0.0.0",
+  "private": true,
+  "description": "The TypeScript wrapper of the one-core WASM module: the same facade as the Swift and Kotlin bindings, canonical JSON in and out.",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": "./dist/index.js",
+    "./one_core.wasm": "./dist/one_core.wasm"
+  },
+  "engines": {
+    "node": ">=24.20.0 <25",
+    "npm": ">=11.19.0 <12"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json && node scripts/build-wasm.ts",
+    "build:wasm": "node scripts/build-wasm.ts",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test:differential": "node --test test/*.test.ts"
+  },
+  "devDependencies": {
+    "@esuiss/one-config": "file:../config",
+    "@types/node": "24.19.1",
+    "eslint": "9.39.5",
+    "prettier": "3.9.9",
+    "typescript": "6.0.3"
+  }
+}

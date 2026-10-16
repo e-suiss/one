@@ -1,0 +1,12 @@
+{
+  "extends": "@esuiss/one-config/tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist",
+    "declaration": true,
+    "rewriteRelativeImportExtensions": true,
+    "lib": ["es2024", "dom"],
+    "types": ["node"]
+  },
+  "include": ["src/**/*.ts"]
+}

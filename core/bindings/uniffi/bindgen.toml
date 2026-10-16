@@ -1,0 +1,6 @@
+# T-16 (1), T-42 (6)
+[crates.one_core_uniffi.bindings.kotlin]
+package_name = "app.suiss.one.core"
+
+[crates.one_core_uniffi.bindings.swift]
+module_name = "OneCore"

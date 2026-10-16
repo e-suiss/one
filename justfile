@@ -4,7 +4,7 @@ set shell := ["bash", "-euo", "pipefail", "-c"]
 
 core_targets := "aarch64-apple-ios aarch64-apple-ios-sim aarch64-linux-android x86_64-linux-android wasm32-unknown-unknown"
 no_std_target := "thumbv7em-none-eabihf"
-npm_packages := "packages/config packages/i18n packages/api-client"
+npm_packages := "packages/config packages/i18n packages/api-client packages/core"
 compose := "docker compose -f deploy/compose/compose.yaml"
 dev_db_password := "local-only-not-a-secret"
 uv := "uvx --from uv==0.12.22 uv"
@@ -18,6 +18,7 @@ test:
     cargo nextest run --workspace --locked --no-tests=pass
     cargo test --workspace --locked --doc
     cd ml && {{uv}} run --locked pytest -q
+    just differential-wasm
 
 fmt:
     cargo fmt --all
@@ -120,6 +121,27 @@ serve:
 
 gen:
     ONE_UPDATE_OPENAPI=1 cargo test --locked -q -p one-http --test openapi
+    just bindings
+
+bindings:
+    cargo build --locked -q -p one-core-uniffi
+    for l in swift kotlin; do rm -rf "core/bindings/uniffi/generated/$l"; cargo run --locked -q -p one-uniffi-bindgen -- generate "target/debug/libone_core_uniffi.$([[ "$(uname)" == Darwin ]] && echo dylib || echo so)" --no-format -c core/bindings/uniffi/bindgen.toml -l "$l" -o "core/bindings/uniffi/generated/$l"; done
+
+differential-cases:
+    cargo test --locked -q -p one-core --test differential
+
+differential-wasm: differential-cases
+    cd packages/core && npm run -s build:wasm && npm run -s test:differential
+
+differential-swift: differential-cases
+    cargo build --locked -q -p one-core-uniffi
+    swiftc -O -module-name OneCore -I core/bindings/uniffi/generated/swift -Xcc -fmodule-map-file=core/bindings/uniffi/generated/swift/OneCoreFFI.modulemap core/bindings/uniffi/generated/swift/OneCore.swift core/bindings/uniffi/tests/swift/main.swift target/debug/libone_core_uniffi.a -o target/tmp/one-core-swift
+    target/tmp/one-core-swift target/tmp/one-core-differential.tsv
+
+differential-kotlin jna kotlin_stdlib: differential-cases
+    cargo build --locked -q -p one-core-uniffi
+    kotlinc core/bindings/uniffi/generated/kotlin/app/suiss/one/core/one_core.kt core/bindings/uniffi/tests/kotlin/Differential.kt -cp {{jna}} -d target/tmp/one-core-kotlin.jar
+    java -Djna.library.path=target/debug -cp "target/tmp/one-core-kotlin.jar:{{jna}}:{{kotlin_stdlib}}" app.suiss.one.core.differential.DifferentialKt target/tmp/one-core-differential.tsv
 
 eval set="evals/tr_en/set.toml" model="" out="runs":
     cd ml && {{uv}} run --locked python -m one_ml.evals run --set {{set}} --model "{{model}}" --code-version "$(git rev-parse HEAD)" --out {{out}}

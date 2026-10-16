@@ -8,7 +8,12 @@ use crate::policy::scan::repo_files;
 use crate::rules::files::read;
 use crate::rules::lex::lex;
 
-const SKIP_PREFIXES: &[&str] = &["supply-chain/", "docs/", "conformance/catalog/"];
+const SKIP_PREFIXES: &[&str] = &[
+    "supply-chain/",
+    "docs/",
+    "conformance/catalog/",
+    "core/bindings/uniffi/generated/",
+];
 const SKIP_SUFFIXES: &[&str] = &[".lock", "package-lock.json", ".min.js"];
 const DIRECTIVES: &[&str] = &[
     "syntax=",
@@ -298,6 +303,12 @@ pub(crate) fn check(root: &Path) -> Result<Vec<Violation>, String> {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn t_42_generated_uniffi_bindings_are_not_scanned() {
+        assert!(kind("core/bindings/uniffi/generated/swift/OneCore.swift").is_none());
+        assert!(kind("core/bindings/uniffi/tests/swift/main.swift").is_some());
+    }
 
     #[test]
     fn t_47_bare_spec_ids_are_allowed() {

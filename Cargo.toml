@@ -1,7 +1,7 @@
 [workspace]
 resolver = "3"
 # T-26 (5)
-members = ["crates/*", "bins/*", "core", "load", "xtask"]
+members = ["crates/*", "bins/*", "core", "core/bindings/*", "core/uniffi-bindgen", "load", "xtask"]
 
 [workspace.package]
 version = "0.0.0"
@@ -22,7 +22,9 @@ one-store = { path = "crates/store" }
 one-proto = { path = "crates/proto" }
 one-provenance = { path = "crates/provenance", default-features = false }
 one-interaction = { path = "crates/interaction", default-features = false }
+one-parse = { path = "crates/parse", default-features = false }
 one-testkit = { path = "crates/testkit" }
+one-core = { path = "core" }
 
 thiserror = { version = "2.0.21", default-features = false }
 serde = { version = "1.0.229", default-features = false }
@@ -41,8 +43,12 @@ proptest = { version = "1.11.0", default-features = false }
 regex = { version = "1.13.1", default-features = false }
 getrandom = { version = "0.4.3", default-features = false }
 utoipa = { version = "6.0.0", default-features = false }
+sha2 = { version = "=0.11.0", default-features = false }
+boon = { version = "=0.6.1", default-features = false }
 # T-45, Access OP-72
 gungraun = { version = "=0.20.0", default-features = false }
+# T-16 (1), T-29 (1)
+uniffi = { version = "=0.32.2", default-features = false }
 
 [workspace.lints.rust]
 # T-28 (3, 9)

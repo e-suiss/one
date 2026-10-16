@@ -1,0 +1,47 @@
+[package]
+name = "one-core-uniffi"
+description = "The UniFFI scaffolding of one-core for the Swift and Kotlin surfaces (T-16 (1), T-28 (3))."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish = false
+
+[lib]
+crate-type = ["lib", "cdylib", "staticlib"]
+name = "one_core_uniffi"
+
+[dependencies]
+one-core.workspace = true
+thiserror.workspace = true
+uniffi.workspace = true
+
+# T-28 (3)
+[lints.rust]
+unsafe_code = "allow"
+unsafe_op_in_unsafe_fn = "deny"
+missing_docs = "deny"
+unreachable_pub = "deny"
+unused_must_use = "deny"
+rust_2024_compatibility = { level = "deny", priority = -1 }
+
+[lints.clippy]
+pedantic = { level = "warn", priority = -1 }
+undocumented_unsafe_blocks = "deny"
+unwrap_used = "deny"
+expect_used = "deny"
+indexing_slicing = "deny"
+panic = "deny"
+unimplemented = "deny"
+todo = "deny"
+unreachable = "deny"
+arithmetic_side_effects = "deny"
+cast_possible_truncation = "deny"
+cast_possible_wrap = "deny"
+cast_sign_loss = "deny"
+dbg_macro = "deny"
+print_stdout = "deny"
+print_stderr = "deny"
+mem_forget = "deny"
+disallowed_methods = "deny"

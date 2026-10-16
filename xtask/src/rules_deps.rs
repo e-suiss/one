@@ -26,6 +26,7 @@ pub(crate) enum Class {
     Testkit,
     Bin,
     Core,
+    CoreBinding,
     Tooling,
 }
 
@@ -54,7 +55,10 @@ pub(crate) fn classify(dir: &str) -> Option<Class> {
     if dir == "core" {
         return Some(Class::Core);
     }
-    if dir == "xtask" || dir == "load" {
+    if matches!(dir, "core/bindings/uniffi" | "core/bindings/wasm") {
+        return Some(Class::CoreBinding);
+    }
+    if dir == "xtask" || dir == "load" || dir == "core/uniffi-bindgen" {
         return Some(Class::Tooling);
     }
     let (group, name) = dir.split_once('/')?;
@@ -84,8 +88,8 @@ pub(crate) fn classify(dir: &str) -> Option<Class> {
 /// The T-26 (6) table: the internal classes a crate of class `from` may depend on; `None` means every class.
 fn allowed_targets(from: Class) -> Option<&'static [Class]> {
     use Class::{
-        Bin, Client, Component, Config, Core, Http, KeyLayer, NoStdCore, Parse, Proto, Rpc,
-        Runtime, Storage, Telemetry, Testkit, Tooling,
+        Bin, Client, Component, Config, Core, CoreBinding, Http, KeyLayer, NoStdCore, Parse, Proto,
+        Rpc, Runtime, Storage, Telemetry, Testkit, Tooling,
     };
     let targets: &'static [Class] = match from {
         Bin => return None,
@@ -100,6 +104,7 @@ fn allowed_targets(from: Class) -> Option<&'static [Class]> {
         ],
         Http => &[Component, Proto, Telemetry, Runtime, Config],
         Core => &[Proto, NoStdCore, Parse],
+        CoreBinding => &[Core],
     };
     Some(targets)
 }
@@ -109,7 +114,7 @@ pub(crate) fn allowed(from: Class, to: Class) -> bool {
     if to == Class::Testkit && from != Class::Bin {
         return false;
     }
-    if to == Class::Runtime && !matches!(from, Class::Tooling | Class::Core) {
+    if to == Class::Runtime && !matches!(from, Class::Tooling | Class::Core | Class::CoreBinding) {
         return true;
     }
     allowed_targets(from).is_none_or(|targets| targets.contains(&to))
@@ -201,6 +206,22 @@ mod tests {
             member("core", &[("crates/provenance", None)]),
         ]);
         assert_eq!(ok.len(), 0);
+    }
+
+    #[test]
+    fn t_26_core_bindings_depend_only_on_core() {
+        let ok = run(&[
+            member("core", &[]),
+            member("core/bindings/wasm", &[("core", None)]),
+            member("core/bindings/uniffi", &[("core", None)]),
+        ]);
+        assert_eq!(ok.len(), 0);
+        let v = run(&[
+            member("crates/provenance", &[]),
+            member("core/bindings/wasm", &[("crates/provenance", None)]),
+        ]);
+        assert_eq!(v.len(), 1);
+        assert_eq!(classify("core/bindings/other"), None);
     }
 
     #[test]

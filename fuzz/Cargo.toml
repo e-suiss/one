@@ -11,6 +11,8 @@ cargo-fuzz = true
 [dependencies]
 libfuzzer-sys = "=0.4.13"
 one-telemetry = { path = "../crates/telemetry" }
+one-parse = { path = "../crates/parse" }
+one-provenance = { path = "../crates/provenance" }
 
 [workspace]
 members = ["."]
@@ -18,6 +20,55 @@ members = ["."]
 [[bin]]
 name = "leak_scan"
 path = "fuzz_targets/leak_scan.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "parse_json"
+path = "fuzz_targets/parse_json.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "parse_cbor"
+path = "fuzz_targets/parse_cbor.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "parse_mcp"
+path = "fuzz_targets/parse_mcp.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "parse_a2a"
+path = "fuzz_targets/parse_a2a.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "parse_email"
+path = "fuzz_targets/parse_email.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "parse_calendar"
+path = "fuzz_targets/parse_calendar.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "parse_document"
+path = "fuzz_targets/parse_document.rs"
 test = false
 doc = false
 bench = false

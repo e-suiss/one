@@ -11,9 +11,18 @@ publish = false
 [dependencies]
 one-proto.workspace = true
 serde = { workspace = true, features = ["derive", "alloc"] }
+sha2.workspace = true
 
 [dev-dependencies]
+boon.workspace = true
+gungraun = { workspace = true, features = ["default"] }
+proptest = { workspace = true, features = ["std"] }
 serde_json = { workspace = true, features = ["std"] }
+
+# T-45
+[[bench]]
+name = "provenance"
+harness = false
 
 [lints]
 workspace = true

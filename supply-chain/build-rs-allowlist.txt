@@ -1,15 +1,25 @@
 # T-39 (1)
 ahash
+anyhow
+bincode-next
+camino
 figment
+fs-err
 getrandom
+gungraun
+gungraun-common
+gungraun-macros
 httparse
 icu_normalizer_data
 icu_properties_data
 libc
+num-traits
 proc-macro2
 proc-macro2-diagnostics
 quote
 ref-cast
+rustix
+rustversion
 serde
 serde_core
 serde_json

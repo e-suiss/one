@@ -12,5 +12,5 @@ disallowed-methods = [
     { path = "uuid::Uuid::new_v4", reason = "T-27: randomness comes from the Rng port" },
     { path = "uuid::Uuid::now_v7", reason = "T-27: time and randomness come from the ports" },
     { path = "getrandom::fill", reason = "T-27: randomness comes from the Rng port" },
-    { path = "getrandom::getrandom", reason = "T-27: randomness comes from the Rng port" },
+    { path = "getrandom::getrandom", reason = "T-27: randomness comes from the Rng port", allow-invalid = true },
 ]

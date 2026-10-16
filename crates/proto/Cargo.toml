@@ -12,7 +12,18 @@ publish = false
 serde = { workspace = true, features = ["derive", "alloc"] }
 
 [dev-dependencies]
+gungraun = { workspace = true, features = ["default"] }
+proptest = { workspace = true, features = ["std"] }
 serde_json = { workspace = true, features = ["std"] }
+
+# T-45
+[[bench]]
+name = "task_state"
+harness = false
+
+[[bench]]
+name = "records"
+harness = false
 
 [lints]
 workspace = true

@@ -1,0 +1,22 @@
+[package]
+name = "one-parse"
+description = "Every parser of external input: limits before decoding, output always labelled external.* (T-26, T-36 (4))."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish = false
+
+# T-26 (6)
+[dependencies]
+one-proto.workspace = true
+one-provenance.workspace = true
+serde = { workspace = true, features = ["derive", "alloc"] }
+serde_json = { workspace = true, features = ["alloc"] }
+
+[dev-dependencies]
+serde_json = { workspace = true, features = ["std"] }
+
+[lints]
+workspace = true

@@ -1,0 +1,10 @@
+{
+  "extends": "@esuiss/one-config/tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
+    "lib": ["es2024", "dom"],
+    "types": ["node"]
+  },
+  "include": ["src/**/*.ts", "scripts/**/*.ts", "test/**/*.ts"]
+}

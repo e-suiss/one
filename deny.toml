@@ -33,6 +33,39 @@ unused-allowed-license = "allow"
 ignore = true
 registries = []
 
+# T-16 (1)
+[[licenses.exceptions]]
+allow = ["MPL-2.0"]
+crate = "uniffi"
+
+[[licenses.exceptions]]
+allow = ["MPL-2.0"]
+crate = "uniffi_bindgen"
+
+[[licenses.exceptions]]
+allow = ["MPL-2.0"]
+crate = "uniffi_core"
+
+[[licenses.exceptions]]
+allow = ["MPL-2.0"]
+crate = "uniffi_internal_macros"
+
+[[licenses.exceptions]]
+allow = ["MPL-2.0"]
+crate = "uniffi_macros"
+
+[[licenses.exceptions]]
+allow = ["MPL-2.0"]
+crate = "uniffi_meta"
+
+[[licenses.exceptions]]
+allow = ["MPL-2.0"]
+crate = "uniffi_pipeline"
+
+[[licenses.exceptions]]
+allow = ["MPL-2.0"]
+crate = "uniffi_udl"
+
 [bans]
 multiple-versions = "warn"
 wildcards = "deny"

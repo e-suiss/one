@@ -31,6 +31,7 @@ pub(crate) const PURE_PATHS: &[&str] = &[
     "crates/proto/src/",
     "crates/provenance/src/",
     "crates/interaction/src/",
+    "crates/parse/src/",
     "crates/runtime/src/",
     "crates/*/src/domain/",
     "crates/*/src/domain.rs",
@@ -41,6 +42,7 @@ pub(crate) const NO_STD_CRATES: &[&str] = &[
     "crates/proto",
     "crates/provenance",
     "crates/interaction",
+    "crates/parse",
     "crates/runtime",
 ];
 

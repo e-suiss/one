@@ -6,6 +6,7 @@ extern crate alloc;
 pub mod access;
 pub mod confirm;
 mod content;
+pub mod intent;
 pub mod label;
 pub mod planner;
 pub mod transform;

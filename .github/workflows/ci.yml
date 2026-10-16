@@ -73,6 +73,130 @@ jobs:
       - name: Core and no_std targets
         run: just cross
 
+  # T-45 (3)
+  bench:
+    name: bench
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: ./.github/actions/setup
+        with:
+          cache-key: bench
+      - name: Install Valgrind and gungraun-runner 0.20.0
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends valgrind
+          valgrind --version
+          if [[ "$(gungraun-runner --version 2>/dev/null || true)" != *" 0.20.0" ]]; then
+            cargo install --locked gungraun-runner --version 0.20.0
+          fi
+      - name: Build the benchmarks
+        run: cargo bench --locked --no-run -p one-provenance -p one-proto -p one-interaction
+      - name: Instruction counts of the base commit
+        env:
+          BASE: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}
+          GUNGRAUN_HOME: ${{ runner.temp }}/gungraun
+          CARGO_TARGET_DIR: ${{ github.workspace }}/target
+        run: |
+          : > "$RUNNER_TEMP/compared"
+          if [[ -z "$BASE" || "$BASE" =~ ^0+$ ]] || ! git cat-file -e "$BASE^{commit}" 2>/dev/null; then
+            echo "::notice::no base commit to compare"
+            exit 0
+          fi
+          git worktree add --detach "$RUNNER_TEMP/base" "$BASE"
+          cd "$RUNNER_TEMP/base"
+          for spec in provenance:provenance proto:task_state proto:records interaction:projection; do
+            crate="${spec%%:*}"
+            bench="${spec##*:}"
+            if [[ -f "crates/$crate/benches/$bench.rs" ]] && grep -q "^name = \"$bench\"$" "crates/$crate/Cargo.toml"; then
+              cargo bench --locked -p "one-$crate" --bench "$bench" -- --save-baseline=base
+              echo "$spec" >> "$RUNNER_TEMP/compared"
+            fi
+          done
+      - name: Instruction count gate on provenance and the task state machine
+        env:
+          GUNGRAUN_HOME: ${{ runner.temp }}/gungraun
+        run: |
+          cargo bench --locked -p one-provenance --bench provenance -- --baseline=base
+          cargo bench --locked -p one-proto --bench task_state -- --baseline=base
+      - name: Instruction counts on the other hot paths
+        env:
+          GUNGRAUN_HOME: ${{ runner.temp }}/gungraun
+        run: |
+          for spec in proto:records interaction:projection; do
+            crate="${spec%%:*}"
+            bench="${spec##*:}"
+            cargo bench --locked -p "one-$crate" --bench "$bench" -- --baseline=base --save-baseline=head
+            if grep -qx "$spec" "$RUNNER_TEMP/compared" &&
+              ! cargo bench --locked -p "one-$crate" --bench "$bench" -- \
+                --load-baseline=head --baseline=base --callgrind-limits='ir=5.0%'; then
+              echo "::warning::$bench: instruction count rose more than 5 % over the base commit"
+            fi
+          done
+
+  core-bindings:
+    name: core-bindings
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup
+        with:
+          cache-key: core-bindings
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .node-version
+      - name: Generated UniFFI bindings equal the committed files
+        run: |
+          just bindings
+          git add --intent-to-add core/bindings/uniffi/generated
+          git diff --exit-code -- core/bindings/uniffi/generated
+      - name: WASM differential
+        run: |
+          (cd packages/core && npm ci)
+          just differential-wasm
+      - name: Install Kotlin 2.4.21 and JNA 5.19.1
+        env:
+          KOTLIN_SHA256: 7cc140e76daf416a0424a5557f99afd7ca89ebd463ea1101261e3e01c33e75cd
+          JNA_SHA256: 4fb141dd8ef6b0585ffceea4bc49602fbc6312fa977e2c488794ea3e6aafecae
+        run: |
+          curl -fsSL -o "$RUNNER_TEMP/kotlin.zip" \
+            https://github.com/JetBrains/kotlin/releases/download/v2.4.21/kotlin-compiler-2.4.21.zip
+          echo "$KOTLIN_SHA256  $RUNNER_TEMP/kotlin.zip" | sha256sum --check --strict
+          unzip -q "$RUNNER_TEMP/kotlin.zip" -d "$RUNNER_TEMP"
+          curl -fsSL -o "$RUNNER_TEMP/jna.jar" \
+            https://repo1.maven.org/maven2/net/java/dev/jna/jna/5.19.1/jna-5.19.1.jar
+          echo "$JNA_SHA256  $RUNNER_TEMP/jna.jar" | sha256sum --check --strict
+          echo "$RUNNER_TEMP/kotlinc/bin" >> "$GITHUB_PATH"
+      - name: Kotlin differential
+        run: just differential-kotlin "$RUNNER_TEMP/jna.jar" "$RUNNER_TEMP/kotlinc/lib/kotlin-stdlib.jar"
+
+  core-swift:
+    name: core-swift
+    runs-on: macos-15
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup
+        with:
+          cache-key: core-swift
+      - name: Swift differential
+        run: just differential-swift
+
   supply-chain:
     name: supply-chain
     runs-on: ubuntu-24.04

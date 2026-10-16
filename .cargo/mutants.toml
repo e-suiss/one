@@ -1,0 +1,11 @@
+# T-38 (4), Access SA-59
+examine_globs = [
+    "crates/provenance/src/**/*.rs",
+    "crates/proto/src/task/state.rs",
+    "crates/proto/src/task/batch.rs",
+]
+exclude_re = ["impl .*Debug for "]
+test_tool = "nextest"
+additional_cargo_args = ["--locked"]
+cap_lints = true
+timeout_multiplier = 3.0
