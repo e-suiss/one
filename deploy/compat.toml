@@ -10,16 +10,16 @@ esuiss-ledger = ""
 esuiss-restriction = ""
 
 [siblings.access]
-image = ""
-compose = ""
+image = "ghcr.io/e-suiss/access@sha256:d92918789fcb59d03a5496a9f1b8b5e2953cfa5979a7f6e206e6b067729bd0a9"
+compose = "deploy/compose/siblings.yaml"
 
 [siblings.relay]
-image = ""
-compose = ""
+image = "ghcr.io/e-suiss/relay@sha256:6706e46030ed51e55ee208c8ab8d59f1c58dd17a04c4ba054f74f43210d6c3a1"
+compose = "deploy/compose/siblings.yaml"
 
 [siblings.work]
-image = ""
-compose = ""
+image = "ghcr.io/e-suiss/work@sha256:2422902376c49d086bf8f8246588f7a3f8b85812f6f034e8fc0cc997d7663e9a"
+compose = "deploy/compose/siblings.yaml"
 
 [siblings.executor]
 image = ""

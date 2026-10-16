@@ -95,7 +95,12 @@ pub(crate) fn is_id_list(text: &str) -> bool {
 
 fn is_version_note(text: &str) -> bool {
     let t = text.trim().trim_start_matches('v');
-    t.chars().next().is_some_and(|c| c.is_ascii_digit()) && t.split_whitespace().count() <= 2
+    let numeric =
+        t.chars().next().is_some_and(|c| c.is_ascii_digit()) && t.split_whitespace().count() <= 2;
+    let tag = !t.is_empty()
+        && t.chars()
+            .all(|c| c.is_ascii_alphanumeric() || matches!(c, '.' | '-' | '_'));
+    numeric || tag
 }
 
 fn line_comment_ok(body: &str) -> bool {
@@ -314,11 +319,11 @@ mod tests {
 
     #[test]
     fn t_47_hash_comments_allow_ids_versions_and_shebang() {
-        let src = "#!/usr/bin/env bash\n# T-42\nh = \"\"\"\n# Changelog\n\"\"\"\nimage: x@sha256:abc # 18.6-trixie\nurl = \"a#b\"\n# explains things\n";
+        let src = "#!/usr/bin/env bash\n# T-42\nh = \"\"\"\n# Changelog\n\"\"\"\nimage: x@sha256:abc # 18.6-trixie\nimage: y@sha256:abc # main-e711dde\nurl = \"a#b\"\n# explains things\n";
         assert_eq!(
             hash_findings(src),
             vec![(
-                8,
+                9,
                 "explanatory comment; the reason belongs in the spec".to_owned()
             )]
         );

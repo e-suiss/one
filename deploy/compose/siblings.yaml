@@ -1,0 +1,65 @@
+# T-42 (1), T-41 (1), E-2
+
+x-sibling: &sibling
+  cap_drop: [ALL]
+  security_opt: ["no-new-privileges:true"]
+  restart: unless-stopped
+  read_only: true
+
+services:
+  postgres:
+    environment:
+      RELAY_DB_PASSWORD: local-only-not-a-secret
+
+  access:
+    <<: *sibling
+    image: ghcr.io/e-suiss/access@sha256:d92918789fcb59d03a5496a9f1b8b5e2953cfa5979a7f6e206e6b067729bd0a9 # main-e711dde
+    environment:
+      ACCESS_LISTEN: 0.0.0.0:8080
+    tmpfs:
+      - /tmp:uid=65532,gid=65532
+    ports:
+      - "127.0.0.1:${ONE_DEV_ACCESS_PORT:-8180}:8080"
+
+  relay-migrate:
+    image: ghcr.io/e-suiss/relay@sha256:6706e46030ed51e55ee208c8ab8d59f1c58dd17a04c4ba054f74f43210d6c3a1 # main
+    command: ["eval", "Relay.Release.migrate()"]
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    environment: &relay-env
+      DATABASE_URL: ecto://relay@postgres:5432/relay
+      DATABASE_PASSWORD_FILE: /run/secrets/relay_db_password
+      POOL_SIZE: "5"
+      RELAY_HOST: localhost
+      PORT: "4000"
+      SECRET_KEY_BASE: local-only-not-a-secret-local-only-not-a-secret-local-only-not-a-secret
+      RELAY_ROLES: api,worker
+    secrets: [relay_db_password]
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  relay:
+    <<: *sibling
+    image: ghcr.io/e-suiss/relay@sha256:6706e46030ed51e55ee208c8ab8d59f1c58dd17a04c4ba054f74f43210d6c3a1 # main
+    environment: *relay-env
+    secrets: [relay_db_password]
+    tmpfs:
+      - /tmp
+    ports:
+      - "127.0.0.1:${ONE_DEV_RELAY_PORT:-8200}:4000"
+    depends_on:
+      relay-migrate:
+        condition: service_completed_successfully
+
+  work:
+    <<: *sibling
+    image: ghcr.io/e-suiss/work@sha256:2422902376c49d086bf8f8246588f7a3f8b85812f6f034e8fc0cc997d7663e9a # 0.1.0
+    tmpfs:
+      - /tmp:uid=65532,gid=65532
+    ports:
+      - "127.0.0.1:${ONE_DEV_WORK_PORT:-8190}:8090"
+
+secrets:
+  relay_db_password:
+    file: ./relay/db-password

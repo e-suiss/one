@@ -87,9 +87,16 @@ deps:
     @echo "Jaeger         http://127.0.0.1:${ONE_DEV_JAEGER_UI_PORT:-16687}   Prometheus http://127.0.0.1:${ONE_DEV_PROMETHEUS_PORT:-9091}"
     @echo "OTLP           127.0.0.1:${ONE_DEV_OTLP_GRPC_PORT:-4327} (gRPC), 127.0.0.1:${ONE_DEV_OTLP_HTTP_PORT:-4328} (HTTP)"
 
+siblings:
+    {{compose}} -f deploy/compose/siblings.yaml up --detach --wait
+    @echo "Access         http://127.0.0.1:${ONE_DEV_ACCESS_PORT:-8180}/healthz"
+    @echo "Relay          http://127.0.0.1:${ONE_DEV_RELAY_PORT:-8200}/readyz"
+    @echo "Work           127.0.0.1:${ONE_DEV_WORK_PORT:-8190}"
+
 dev:
     cargo xtask dev-preflight
     just deps
+    just siblings
 
 dev-model:
     {{compose}} --profile model up --detach --wait model embedding
