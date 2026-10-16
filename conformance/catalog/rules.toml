@@ -6104,6 +6104,13 @@ stage = 0
 title = "Images are signed in private GHCR; CI identity is GitHub Actions OIDC"
 
 [[rule]]
+id = "T-58"
+family = "T"
+section = "17"
+status = "frozen-technical"
+title = "Images are built on GitHub; main images are unsigned dev images, releases are signed"
+
+[[rule]]
 id = "OP-1"
 family = "OP"
 section = "18"

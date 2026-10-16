@@ -23,6 +23,7 @@ pub(crate) const SENSITIVE: &[&str] = &[
     "crates/telemetry/src/fields.rs",
     "conformance/platform/",
     ".github/workflows/release.yml",
+    ".github/workflows/image.yml",
     "deploy/compat.toml",
 ];
 

@@ -126,6 +126,9 @@ load addr="127.0.0.1:8091" rate="200" seconds="10":
 profile *args:
     samply record {{args}}
 
+pull ref="main":
+    docker pull "ghcr.io/e-suiss/one:{{ref}}"
+
 image tag="one-server:local":
     docker build -f deploy/docker/Dockerfile -t {{tag}} .
 

@@ -19,5 +19,6 @@
 /apps/**/*.entitlements             @ademceper
 /apps/**/Info.plist                 @ademceper
 /.github/workflows/release.yml      @ademceper
+/.github/workflows/image.yml        @ademceper
 /deploy/compat.toml                 @ademceper
 /Cargo.toml                         @ademceper

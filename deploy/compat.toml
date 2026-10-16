@@ -1,5 +1,6 @@
 # T-41 (1), T-42 (1), T-48
 server = "0.0.0"
+server_image = "ghcr.io/e-suiss/one"
 client_compatibility_window = ""
 work_spec_version = ""
 

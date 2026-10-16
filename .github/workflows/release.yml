@@ -1,4 +1,4 @@
-# T-41 (2, 6, 7), T-39 (6, 7), T-54, T-57
+# T-41 (2, 6, 7), T-39 (6, 7), T-54, T-57, T-58
 name: Release
 
 on:
@@ -15,7 +15,7 @@ concurrency:
 env:
   CARGO_TERM_COLOR: always
   CARGO_INCREMENTAL: "0"
-  IMAGE: ghcr.io/e-suiss/one-server
+  IMAGE: ghcr.io/e-suiss/one
 
 jobs:
   build:
@@ -77,7 +77,6 @@ jobs:
     permissions:
       contents: read
       packages: write
-      id-token: write
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -85,7 +84,7 @@ jobs:
       - uses: ./.github/actions/setup
         with:
           cache: "false"
-          tools: cosign syft
+          tools: cosign
       - name: Signing key reference is configured
         env:
           KEY_REF: ${{ vars.ONE_SIGNING_KEY_REF }}
@@ -99,20 +98,14 @@ jobs:
           TOKEN: ${{ github.token }}
           ACTOR: ${{ github.actor }}
         run: printf '%s' "$TOKEN" | docker login ghcr.io -u "$ACTOR" --password-stdin
-      - name: Build and push amd64 and arm64
+      - name: Tag the image built and tested on main for this commit
         run: |
-          docker buildx create --use
-          docker buildx build --platform linux/amd64,linux/arm64 \
-            -f deploy/docker/Dockerfile \
-            -t "$IMAGE:${GITHUB_REF_NAME}" \
-            --provenance=mode=max --sbom=true --push \
-            --metadata-file "$RUNNER_TEMP/metadata.json" .
+          docker buildx imagetools create -t "$IMAGE:${GITHUB_REF_NAME}" "$IMAGE:sha-${GITHUB_SHA}"
+          docker buildx imagetools inspect "$IMAGE:${GITHUB_REF_NAME}" --format '{{json .Manifest}}' | jq -r .digest > "$RUNNER_TEMP/digest"
       - name: Sign without the public log
         env:
           KEY_REF: ${{ vars.ONE_SIGNING_KEY_REF }}
-        run: |
-          digest="$(jq -r '."containerimage.digest"' "$RUNNER_TEMP/metadata.json")"
-          cosign sign --yes --tlog-upload=false --key "$KEY_REF" "$IMAGE@$digest"
+        run: cosign sign --yes --tlog-upload=false --key "$KEY_REF" "$IMAGE@$(cat "$RUNNER_TEMP/digest")"
 
   changelog:
     name: changelog
