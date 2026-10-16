@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/federation/handle/v1.json",
+  "title": "One Federation suspended-negotiation handle",
+  "description": "A handle the sender of an offer, counter-offer or query issues for the reply it awaits; the replying side echoes it unchanged in `inReplyTo.handle`. The handle is attacker-controlled input to its issuer. Wire form: JWE compact serialisation (RFC 7516) with direct AEAD encryption, `alg` `dir`, `enc` `A256GCM`, under a 256-bit key known only to the issuer. The issuer alone verifies it and enforces single use.",
+  "$ref": "#/$defs/compact",
+  "$defs": {
+    "compact": {
+      "description": "BASE64URL(protected header) '..' BASE64URL(96-bit IV) '.' BASE64URL(ciphertext) '.' BASE64URL(128-bit tag). The encrypted-key part is empty because the content key is the issuer's direct key.",
+      "type": "string",
+      "maxLength": 2048,
+      "pattern": "^[A-Za-z0-9_-]{16,256}\\.\\.[A-Za-z0-9_-]{16}\\.[A-Za-z0-9_-]{16,1600}\\.[A-Za-z0-9_-]{22}$"
+    },
+    "protectedHeader": {
+      "description": "Decoded JWE protected header; it is the AEAD additional authenticated data. No compression, no critical extensions, no other members.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["alg", "enc", "kid", "typ"],
+      "properties": {
+        "alg": { "const": "dir" },
+        "enc": { "const": "A256GCM" },
+        "kid": {
+          "description": "Issuer-local key identifier.",
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_-]{1,64}$"
+        },
+        "typ": { "const": "one-federation-handle+jwe" }
+      }
+    },
+    "claims": {
+      "description": "Decrypted plaintext (UTF-8 JSON). Binds the handle to sender and recipient identities, the chain, the suspended message's digest and a short validity window.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["v", "jti", "iss", "sub", "aud", "rcp", "cid", "ver", "knd", "dig", "iat", "exp"],
+      "properties": {
+        "v": { "description": "Handle claims format version.", "const": 1 },
+        "jti": {
+          "description": "Unique handle identifier; the issuer records it as spent on first successful use and keeps the record until `exp`.",
+          "$ref": "https://suiss.app/schemas/one/federation/common/v1.json#/$defs/uuid7"
+        },
+        "iss": { "description": "Issuing agent (sender of the suspended message).", "$ref": "https://suiss.app/schemas/one/federation/common/v1.json#/$defs/did" },
+        "sub": { "description": "Person the issuing agent acts for.", "$ref": "https://suiss.app/schemas/one/federation/common/v1.json#/$defs/did" },
+        "aud": { "description": "Agent expected to send the reply.", "$ref": "https://suiss.app/schemas/one/federation/common/v1.json#/$defs/did" },
+        "rcp": { "description": "Person the replying agent must act for.", "$ref": "https://suiss.app/schemas/one/federation/common/v1.json#/$defs/did" },
+        "cid": { "$ref": "https://suiss.app/schemas/one/federation/common/v1.json#/$defs/correlationId" },
+        "ver": { "$ref": "https://suiss.app/schemas/one/federation/common/v1.json#/$defs/offerVersion" },
+        "knd": { "description": "Kind of the suspended message.", "enum": ["offer", "counter-offer", "query"] },
+        "dig": { "description": "Digest of the suspended message.", "$ref": "https://suiss.app/schemas/one/federation/common/v1.json#/$defs/digest" },
+        "iat": { "description": "Issue time, seconds since the Unix epoch.", "type": "integer", "minimum": 0 },
+        "exp": {
+          "description": "Expiry, seconds since the Unix epoch: equals the suspended message's `expiresAt` (truncated to seconds) and is at most 604800 seconds after `iat`.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "st": {
+          "description": "Optional issuer-private resumption state. Confidential to the issuer; never interpreted by the replying side.",
+          "type": "object",
+          "maxProperties": 16
+        }
+      }
+    }
+  }
+}

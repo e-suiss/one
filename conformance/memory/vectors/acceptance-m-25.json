@@ -1,0 +1,932 @@
+[
+  {
+    "rule": "M-25",
+    "description": "forgetting one record shreds its key, its derivatives and episodes used only by it",
+    "input": {
+      "verb": "forget_permanently",
+      "scope": {
+        "record": "mem_01k742v0tges7ahv74rwr6c2dw"
+      },
+      "initiator": "user",
+      "confirmation": "in_app",
+      "records": {
+        "mem_01k742v0tges7ahv74rwr6c2dw": {
+          "retention_class": "one_memory"
+        }
+      },
+      "derivatives": [
+        {
+          "id": "summary:1",
+          "kind": "summary",
+          "sources": [
+            "mem_01k742v0tges7ahv74rwr6c2dw"
+          ]
+        },
+        {
+          "id": "mem_01k742v1srfrz815ksqrjd1t3n",
+          "kind": "consolidated_fact",
+          "sources": [
+            "mem_01k742v0tges7ahv74rwr6c2dw",
+            "mem_01k742v2s0esjb0wd3jm0p29fe"
+          ]
+        },
+        {
+          "id": "view:1",
+          "kind": "text_view",
+          "sources": [
+            "mem_01k742v0tges7ahv74rwr6c2dw"
+          ]
+        },
+        {
+          "id": "vec:1",
+          "kind": "embedding",
+          "sources": [
+            "mem_01k742v0tges7ahv74rwr6c2dw"
+          ]
+        },
+        {
+          "id": "vec:2",
+          "kind": "embedding",
+          "sources": [
+            "mem_01k742v2s0esjb0wd3jm0p29fe"
+          ]
+        }
+      ],
+      "episodes": [
+        {
+          "id": "epi_01k742vak0ev8r0jbs64y22z78",
+          "used_by": [
+            "mem_01k742v0tges7ahv74rwr6c2dw"
+          ]
+        },
+        {
+          "id": "epi_01k742vbj8fdx84n3wm0amhzg0",
+          "used_by": [
+            "mem_01k742v0tges7ahv74rwr6c2dw",
+            "mem_01k742v2s0esjb0wd3jm0p29fe"
+          ]
+        }
+      ],
+      "devices": [
+        {
+          "id": "dev_01k742sgz8fx5sr7typceyq7n4",
+          "state": "online"
+        },
+        {
+          "id": "dev_01k742shygemvagjfztxdmsbbj",
+          "state": "offline"
+        },
+        {
+          "id": "dev_01k742sjxref9tw7jvjcyz9hx6",
+          "state": "removed_in_access"
+        }
+      ],
+      "adapter": {
+        "trained_on": [
+          "mem_01k742v0tges7ahv74rwr6c2dw",
+          "mem_01k742v2s0esjb0wd3jm0p29fe"
+        ]
+      },
+      "at": "2026-10-10T12:00:00Z"
+    },
+    "expected": {
+      "outcome": "forgotten",
+      "shredded_record_keys": [
+        "mem_01k742v0tges7ahv74rwr6c2dw",
+        "mem_01k742v1srfrz815ksqrjd1t3n"
+      ],
+      "unreadable_derivatives": [
+        "summary:1",
+        "mem_01k742v1srfrz815ksqrjd1t3n",
+        "view:1",
+        "vec:1"
+      ],
+      "kept_derivatives": [
+        "vec:2"
+      ],
+      "shredded_episodes": [
+        "epi_01k742vak0ev8r0jbs64y22z78"
+      ],
+      "kept_episodes": [
+        "epi_01k742vbj8fdx84n3wm0amhzg0"
+      ],
+      "class_dek_shredded": false,
+      "skeleton": {
+        "id": "mem_01k742v0tges7ahv74rwr6c2dw",
+        "status": "forgotten",
+        "deleted_at": "2026-10-10T12:00:00Z",
+        "retention_class": "one_memory"
+      },
+      "device_caches": {
+        "dev_01k742sgz8fx5sr7typceyq7n4": "shredded",
+        "dev_01k742shygemvagjfztxdmsbbj": "pending_until_connected",
+        "dev_01k742sjxref9tw7jvjcyz9hx6": "key_invalid"
+      },
+      "erasure_log": "open",
+      "user_notice": {
+        "tr": "Bu bilgi kalıcı olarak unutuldu: okunamaz hâle getirildi.",
+        "en": "This was permanently forgotten: it has been made unreadable.",
+        "pending_devices": [
+          "dev_01k742shygemvagjfztxdmsbbj"
+        ]
+      },
+      "adapter": {
+        "retrain_from_remaining_memory": true,
+        "old_version": "shredded_after_retrain",
+        "use_old_until_retrained": false,
+        "fallback": "general_model"
+      }
+    }
+  },
+  {
+    "rule": "M-25",
+    "description": "with no pending device the erasure log closes",
+    "input": {
+      "verb": "forget_permanently",
+      "scope": {
+        "record": "mem_01k742v0tges7ahv74rwr6c2dw"
+      },
+      "initiator": "user",
+      "confirmation": "in_app",
+      "records": {
+        "mem_01k742v0tges7ahv74rwr6c2dw": {
+          "retention_class": "one_memory"
+        }
+      },
+      "derivatives": [
+        {
+          "id": "summary:1",
+          "kind": "summary",
+          "sources": [
+            "mem_01k742v0tges7ahv74rwr6c2dw"
+          ]
+        },
+        {
+          "id": "mem_01k742v1srfrz815ksqrjd1t3n",
+          "kind": "consolidated_fact",
+          "sources": [
+            "mem_01k742v0tges7ahv74rwr6c2dw",
+            "mem_01k742v2s0esjb0wd3jm0p29fe"
+          ]
+        },
+        {
+          "id": "view:1",
+          "kind": "text_view",
+          "sources": [
+            "mem_01k742v0tges7ahv74rwr6c2dw"
+          ]
+        },
+        {
+          "id": "vec:1",
+          "kind": "embedding",
+          "sources": [
+            "mem_01k742v0tges7ahv74rwr6c2dw"
+          ]
+        },
+        {
+          "id": "vec:2",
+          "kind": "embedding",
+          "sources": [
+            "mem_01k742v2s0esjb0wd3jm0p29fe"
+          ]
+        }
+      ],
+      "episodes": [
+        {
+          "id": "epi_01k742vak0ev8r0jbs64y22z78",
+          "used_by": [
+            "mem_01k742v0tges7ahv74rwr6c2dw"
+          ]
+        },
+        {
+          "id": "epi_01k742vbj8fdx84n3wm0amhzg0",
+          "used_by": [
+            "mem_01k742v0tges7ahv74rwr6c2dw",
+            "mem_01k742v2s0esjb0wd3jm0p29fe"
+          ]
+        }
+      ],
+      "devices": [
+        {
+          "id": "dev_01k742sgz8fx5sr7typceyq7n4",
+          "state": "online"
+        },
+        {
+          "id": "dev_01k742sjxref9tw7jvjcyz9hx6",
+          "state": "removed_in_access"
+        }
+      ],
+      "adapter": {
+        "trained_on": [
+          "mem_01k742v0tges7ahv74rwr6c2dw",
+          "mem_01k742v2s0esjb0wd3jm0p29fe"
+        ]
+      },
+      "at": "2026-10-10T12:00:00Z"
+    },
+    "expected": {
+      "outcome": "forgotten",
+      "erasure_log": "closed"
+    }
+  },
+  {
+    "rule": "M-25",
+    "description": "a removed device that reconnects is refused sync and key unwrap",
+    "input": {
+      "event": "device_reconnect",
+      "device": "dev_01k742sjxref9tw7jvjcyz9hx6",
+      "device_state": "removed_in_access"
+    },
+    "expected": {
+      "outcome": "rejected",
+      "sync": "refused",
+      "key_unwrap": "refused"
+    }
+  },
+  {
+    "rule": "M-25",
+    "description": "no confirmation: nothing happens",
+    "input": {
+      "verb": "forget_permanently",
+      "scope": {
+        "record": "mem_01k742v0tges7ahv74rwr6c2dw"
+      },
+      "initiator": "user",
+      "confirmation": null,
+      "records": {
+        "mem_01k742v0tges7ahv74rwr6c2dw": {
+          "retention_class": "one_memory"
+        }
+      },
+      "derivatives": [
+        {
+          "id": "summary:1",
+          "kind": "summary",
+          "sources": [
+            "mem_01k742v0tges7ahv74rwr6c2dw"
+          ]
+        },
+        {
+          "id": "mem_01k742v1srfrz815ksqrjd1t3n",
+          "kind": "consolidated_fact",
+          "sources": [
+            "mem_01k742v0tges7ahv74rwr6c2dw",
+            "mem_01k742v2s0esjb0wd3jm0p29fe"
+          ]
+        },
+        {
+          "id": "view:1",
+          "kind": "text_view",
+          "sources": [
+            "mem_01k742v0tges7ahv74rwr6c2dw"
+          ]
+        },
+        {
+          "id": "vec:1",
+          "kind": "embedding",
+          "sources": [
+            "mem_01k742v0tges7ahv74rwr6c2dw"
+          ]
+        },
+        {
+          "id": "vec:2",
+          "kind": "embedding",
+          "sources": [
+            "mem_01k742v2s0esjb0wd3jm0p29fe"
+          ]
+        }
+      ],
+      "episodes": [
+        {
+          "id": "epi_01k742vak0ev8r0jbs64y22z78",
+          "used_by": [
+            "mem_01k742v0tges7ahv74rwr6c2dw"
+          ]
+        },
+        {
+          "id": "epi_01k742vbj8fdx84n3wm0amhzg0",
+          "used_by": [
+            "mem_01k742v0tges7ahv74rwr6c2dw",
+            "mem_01k742v2s0esjb0wd3jm0p29fe"
+          ]
+        }
+      ],
+      "devices": [
+        {
+          "id": "dev_01k742sgz8fx5sr7typceyq7n4",
+          "state": "online"
+        },
+        {
+          "id": "dev_01k742shygemvagjfztxdmsbbj",
+          "state": "offline"
+        },
+        {
+          "id": "dev_01k742sjxref9tw7jvjcyz9hx6",
+          "state": "removed_in_access"
+        }
+      ],
+      "adapter": {
+        "trained_on": [
+          "mem_01k742v0tges7ahv74rwr6c2dw",
+          "mem_01k742v2s0esjb0wd3jm0p29fe"
+        ]
+      },
+      "at": "2026-10-10T12:00:00Z"
+    },
+    "expected": {
+      "outcome": "rejected",
+      "error": "confirmation_required"
+    }
+  },
+  {
+    "rule": "M-25",
+    "description": "One cannot forget permanently on its own",
+    "input": {
+      "verb": "forget_permanently",
+      "scope": {
+        "record": "mem_01k742v0tges7ahv74rwr6c2dw"
+      },
+      "initiator": "one",
+      "confirmation": "in_app",
+      "records": {
+        "mem_01k742v0tges7ahv74rwr6c2dw": {
+          "retention_class": "one_memory"
+        }
+      },
+      "derivatives": [
+        {
+          "id": "summary:1",
+          "kind": "summary",
+          "sources": [
+            "mem_01k742v0tges7ahv74rwr6c2dw"
+          ]
+        },
+        {
+          "id": "mem_01k742v1srfrz815ksqrjd1t3n",
+          "kind": "consolidated_fact",
+          "sources": [
+            "mem_01k742v0tges7ahv74rwr6c2dw",
+            "mem_01k742v2s0esjb0wd3jm0p29fe"
+          ]
+        },
+        {
+          "id": "view:1",
+          "kind": "text_view",
+          "sources": [
+            "mem_01k742v0tges7ahv74rwr6c2dw"
+          ]
+        },
+        {
+          "id": "vec:1",
+          "kind": "embedding",
+          "sources": [
+            "mem_01k742v0tges7ahv74rwr6c2dw"
+          ]
+        },
+        {
+          "id": "vec:2",
+          "kind": "embedding",
+          "sources": [
+            "mem_01k742v2s0esjb0wd3jm0p29fe"
+          ]
+        }
+      ],
+      "episodes": [
+        {
+          "id": "epi_01k742vak0ev8r0jbs64y22z78",
+          "used_by": [
+            "mem_01k742v0tges7ahv74rwr6c2dw"
+          ]
+        },
+        {
+          "id": "epi_01k742vbj8fdx84n3wm0amhzg0",
+          "used_by": [
+            "mem_01k742v0tges7ahv74rwr6c2dw",
+            "mem_01k742v2s0esjb0wd3jm0p29fe"
+          ]
+        }
+      ],
+      "devices": [
+        {
+          "id": "dev_01k742sgz8fx5sr7typceyq7n4",
+          "state": "online"
+        },
+        {
+          "id": "dev_01k742shygemvagjfztxdmsbbj",
+          "state": "offline"
+        },
+        {
+          "id": "dev_01k742sjxref9tw7jvjcyz9hx6",
+          "state": "removed_in_access"
+        }
+      ],
+      "adapter": {
+        "trained_on": [
+          "mem_01k742v0tges7ahv74rwr6c2dw",
+          "mem_01k742v2s0esjb0wd3jm0p29fe"
+        ]
+      },
+      "at": "2026-10-10T12:00:00Z"
+    },
+    "expected": {
+      "outcome": "rejected",
+      "error": "user_only"
+    }
+  },
+  {
+    "rule": "M-25",
+    "description": "a behaviour rule cannot trigger permanent forgetting",
+    "input": {
+      "verb": "forget_permanently",
+      "scope": {
+        "record": "mem_01k742v0tges7ahv74rwr6c2dw"
+      },
+      "initiator": "behaviour_rule",
+      "confirmation": "in_app",
+      "records": {
+        "mem_01k742v0tges7ahv74rwr6c2dw": {
+          "retention_class": "one_memory"
+        }
+      },
+      "derivatives": [
+        {
+          "id": "summary:1",
+          "kind": "summary",
+          "sources": [
+            "mem_01k742v0tges7ahv74rwr6c2dw"
+          ]
+        },
+        {
+          "id": "mem_01k742v1srfrz815ksqrjd1t3n",
+          "kind": "consolidated_fact",
+          "sources": [
+            "mem_01k742v0tges7ahv74rwr6c2dw",
+            "mem_01k742v2s0esjb0wd3jm0p29fe"
+          ]
+        },
+        {
+          "id": "view:1",
+          "kind": "text_view",
+          "sources": [
+            "mem_01k742v0tges7ahv74rwr6c2dw"
+          ]
+        },
+        {
+          "id": "vec:1",
+          "kind": "embedding",
+          "sources": [
+            "mem_01k742v0tges7ahv74rwr6c2dw"
+          ]
+        },
+        {
+          "id": "vec:2",
+          "kind": "embedding",
+          "sources": [
+            "mem_01k742v2s0esjb0wd3jm0p29fe"
+          ]
+        }
+      ],
+      "episodes": [
+        {
+          "id": "epi_01k742vak0ev8r0jbs64y22z78",
+          "used_by": [
+            "mem_01k742v0tges7ahv74rwr6c2dw"
+          ]
+        },
+        {
+          "id": "epi_01k742vbj8fdx84n3wm0amhzg0",
+          "used_by": [
+            "mem_01k742v0tges7ahv74rwr6c2dw",
+            "mem_01k742v2s0esjb0wd3jm0p29fe"
+          ]
+        }
+      ],
+      "devices": [
+        {
+          "id": "dev_01k742sgz8fx5sr7typceyq7n4",
+          "state": "online"
+        },
+        {
+          "id": "dev_01k742shygemvagjfztxdmsbbj",
+          "state": "offline"
+        },
+        {
+          "id": "dev_01k742sjxref9tw7jvjcyz9hx6",
+          "state": "removed_in_access"
+        }
+      ],
+      "adapter": {
+        "trained_on": [
+          "mem_01k742v0tges7ahv74rwr6c2dw",
+          "mem_01k742v2s0esjb0wd3jm0p29fe"
+        ]
+      },
+      "at": "2026-10-10T12:00:00Z"
+    },
+    "expected": {
+      "outcome": "rejected",
+      "error": "user_only"
+    }
+  },
+  {
+    "rule": "M-25",
+    "description": "a trigger cannot start permanent forgetting",
+    "input": {
+      "verb": "forget_permanently",
+      "scope": {
+        "record": "mem_01k742v0tges7ahv74rwr6c2dw"
+      },
+      "initiator": "trigger",
+      "confirmation": "in_app",
+      "records": {
+        "mem_01k742v0tges7ahv74rwr6c2dw": {
+          "retention_class": "one_memory"
+        }
+      },
+      "derivatives": [
+        {
+          "id": "summary:1",
+          "kind": "summary",
+          "sources": [
+            "mem_01k742v0tges7ahv74rwr6c2dw"
+          ]
+        },
+        {
+          "id": "mem_01k742v1srfrz815ksqrjd1t3n",
+          "kind": "consolidated_fact",
+          "sources": [
+            "mem_01k742v0tges7ahv74rwr6c2dw",
+            "mem_01k742v2s0esjb0wd3jm0p29fe"
+          ]
+        },
+        {
+          "id": "view:1",
+          "kind": "text_view",
+          "sources": [
+            "mem_01k742v0tges7ahv74rwr6c2dw"
+          ]
+        },
+        {
+          "id": "vec:1",
+          "kind": "embedding",
+          "sources": [
+            "mem_01k742v0tges7ahv74rwr6c2dw"
+          ]
+        },
+        {
+          "id": "vec:2",
+          "kind": "embedding",
+          "sources": [
+            "mem_01k742v2s0esjb0wd3jm0p29fe"
+          ]
+        }
+      ],
+      "episodes": [
+        {
+          "id": "epi_01k742vak0ev8r0jbs64y22z78",
+          "used_by": [
+            "mem_01k742v0tges7ahv74rwr6c2dw"
+          ]
+        },
+        {
+          "id": "epi_01k742vbj8fdx84n3wm0amhzg0",
+          "used_by": [
+            "mem_01k742v0tges7ahv74rwr6c2dw",
+            "mem_01k742v2s0esjb0wd3jm0p29fe"
+          ]
+        }
+      ],
+      "devices": [
+        {
+          "id": "dev_01k742sgz8fx5sr7typceyq7n4",
+          "state": "online"
+        },
+        {
+          "id": "dev_01k742shygemvagjfztxdmsbbj",
+          "state": "offline"
+        },
+        {
+          "id": "dev_01k742sjxref9tw7jvjcyz9hx6",
+          "state": "removed_in_access"
+        }
+      ],
+      "adapter": {
+        "trained_on": [
+          "mem_01k742v0tges7ahv74rwr6c2dw",
+          "mem_01k742v2s0esjb0wd3jm0p29fe"
+        ]
+      },
+      "at": "2026-10-10T12:00:00Z"
+    },
+    "expected": {
+      "outcome": "rejected",
+      "error": "user_only"
+    }
+  },
+  {
+    "rule": "M-25",
+    "description": "forgetting a life area with in-app confirmation only is rejected",
+    "input": {
+      "verb": "forget_permanently",
+      "scope": {
+        "area": "health"
+      },
+      "initiator": "user",
+      "confirmation": "in_app",
+      "records": {
+        "mem_01k742v0tges7ahv74rwr6c2dw": {
+          "retention_class": "one_memory"
+        }
+      },
+      "derivatives": [
+        {
+          "id": "summary:1",
+          "kind": "summary",
+          "sources": [
+            "mem_01k742v0tges7ahv74rwr6c2dw"
+          ]
+        },
+        {
+          "id": "mem_01k742v1srfrz815ksqrjd1t3n",
+          "kind": "consolidated_fact",
+          "sources": [
+            "mem_01k742v0tges7ahv74rwr6c2dw",
+            "mem_01k742v2s0esjb0wd3jm0p29fe"
+          ]
+        },
+        {
+          "id": "view:1",
+          "kind": "text_view",
+          "sources": [
+            "mem_01k742v0tges7ahv74rwr6c2dw"
+          ]
+        },
+        {
+          "id": "vec:1",
+          "kind": "embedding",
+          "sources": [
+            "mem_01k742v0tges7ahv74rwr6c2dw"
+          ]
+        },
+        {
+          "id": "vec:2",
+          "kind": "embedding",
+          "sources": [
+            "mem_01k742v2s0esjb0wd3jm0p29fe"
+          ]
+        }
+      ],
+      "episodes": [
+        {
+          "id": "epi_01k742vak0ev8r0jbs64y22z78",
+          "used_by": [
+            "mem_01k742v0tges7ahv74rwr6c2dw"
+          ]
+        },
+        {
+          "id": "epi_01k742vbj8fdx84n3wm0amhzg0",
+          "used_by": [
+            "mem_01k742v0tges7ahv74rwr6c2dw",
+            "mem_01k742v2s0esjb0wd3jm0p29fe"
+          ]
+        }
+      ],
+      "devices": [
+        {
+          "id": "dev_01k742sgz8fx5sr7typceyq7n4",
+          "state": "online"
+        },
+        {
+          "id": "dev_01k742shygemvagjfztxdmsbbj",
+          "state": "offline"
+        },
+        {
+          "id": "dev_01k742sjxref9tw7jvjcyz9hx6",
+          "state": "removed_in_access"
+        }
+      ],
+      "adapter": {
+        "trained_on": [
+          "mem_01k742v0tges7ahv74rwr6c2dw",
+          "mem_01k742v2s0esjb0wd3jm0p29fe"
+        ]
+      },
+      "at": "2026-10-10T12:00:00Z"
+    },
+    "expected": {
+      "outcome": "rejected",
+      "error": "trusted_surface_strong_auth_required"
+    }
+  },
+  {
+    "rule": "M-25",
+    "description": "forgetting a life area on the trusted surface with strong authentication proceeds",
+    "input": {
+      "verb": "forget_permanently",
+      "scope": {
+        "area": "health"
+      },
+      "initiator": "user",
+      "confirmation": "access_trusted_surface_strong_auth",
+      "records": {
+        "mem_01k742v0tges7ahv74rwr6c2dw": {
+          "retention_class": "one_memory"
+        }
+      },
+      "derivatives": [
+        {
+          "id": "summary:1",
+          "kind": "summary",
+          "sources": [
+            "mem_01k742v0tges7ahv74rwr6c2dw"
+          ]
+        },
+        {
+          "id": "mem_01k742v1srfrz815ksqrjd1t3n",
+          "kind": "consolidated_fact",
+          "sources": [
+            "mem_01k742v0tges7ahv74rwr6c2dw",
+            "mem_01k742v2s0esjb0wd3jm0p29fe"
+          ]
+        },
+        {
+          "id": "view:1",
+          "kind": "text_view",
+          "sources": [
+            "mem_01k742v0tges7ahv74rwr6c2dw"
+          ]
+        },
+        {
+          "id": "vec:1",
+          "kind": "embedding",
+          "sources": [
+            "mem_01k742v0tges7ahv74rwr6c2dw"
+          ]
+        },
+        {
+          "id": "vec:2",
+          "kind": "embedding",
+          "sources": [
+            "mem_01k742v2s0esjb0wd3jm0p29fe"
+          ]
+        }
+      ],
+      "episodes": [
+        {
+          "id": "epi_01k742vak0ev8r0jbs64y22z78",
+          "used_by": [
+            "mem_01k742v0tges7ahv74rwr6c2dw"
+          ]
+        },
+        {
+          "id": "epi_01k742vbj8fdx84n3wm0amhzg0",
+          "used_by": [
+            "mem_01k742v0tges7ahv74rwr6c2dw",
+            "mem_01k742v2s0esjb0wd3jm0p29fe"
+          ]
+        }
+      ],
+      "devices": [
+        {
+          "id": "dev_01k742sgz8fx5sr7typceyq7n4",
+          "state": "online"
+        },
+        {
+          "id": "dev_01k742shygemvagjfztxdmsbbj",
+          "state": "offline"
+        },
+        {
+          "id": "dev_01k742sjxref9tw7jvjcyz9hx6",
+          "state": "removed_in_access"
+        }
+      ],
+      "adapter": {
+        "trained_on": [
+          "mem_01k742v0tges7ahv74rwr6c2dw",
+          "mem_01k742v2s0esjb0wd3jm0p29fe"
+        ]
+      },
+      "at": "2026-10-10T12:00:00Z"
+    },
+    "expected": {
+      "outcome": "forgotten",
+      "class_dek_shredded": false
+    }
+  },
+  {
+    "rule": "M-25",
+    "description": "forgetting all memory needs the trusted surface with strong authentication",
+    "input": {
+      "verb": "forget_permanently",
+      "scope": {
+        "all": true
+      },
+      "initiator": "user",
+      "confirmation": "in_app",
+      "records": {
+        "mem_01k742v0tges7ahv74rwr6c2dw": {
+          "retention_class": "one_memory"
+        }
+      },
+      "derivatives": [
+        {
+          "id": "summary:1",
+          "kind": "summary",
+          "sources": [
+            "mem_01k742v0tges7ahv74rwr6c2dw"
+          ]
+        },
+        {
+          "id": "mem_01k742v1srfrz815ksqrjd1t3n",
+          "kind": "consolidated_fact",
+          "sources": [
+            "mem_01k742v0tges7ahv74rwr6c2dw",
+            "mem_01k742v2s0esjb0wd3jm0p29fe"
+          ]
+        },
+        {
+          "id": "view:1",
+          "kind": "text_view",
+          "sources": [
+            "mem_01k742v0tges7ahv74rwr6c2dw"
+          ]
+        },
+        {
+          "id": "vec:1",
+          "kind": "embedding",
+          "sources": [
+            "mem_01k742v0tges7ahv74rwr6c2dw"
+          ]
+        },
+        {
+          "id": "vec:2",
+          "kind": "embedding",
+          "sources": [
+            "mem_01k742v2s0esjb0wd3jm0p29fe"
+          ]
+        }
+      ],
+      "episodes": [
+        {
+          "id": "epi_01k742vak0ev8r0jbs64y22z78",
+          "used_by": [
+            "mem_01k742v0tges7ahv74rwr6c2dw"
+          ]
+        },
+        {
+          "id": "epi_01k742vbj8fdx84n3wm0amhzg0",
+          "used_by": [
+            "mem_01k742v0tges7ahv74rwr6c2dw",
+            "mem_01k742v2s0esjb0wd3jm0p29fe"
+          ]
+        }
+      ],
+      "devices": [
+        {
+          "id": "dev_01k742sgz8fx5sr7typceyq7n4",
+          "state": "online"
+        },
+        {
+          "id": "dev_01k742shygemvagjfztxdmsbbj",
+          "state": "offline"
+        },
+        {
+          "id": "dev_01k742sjxref9tw7jvjcyz9hx6",
+          "state": "removed_in_access"
+        }
+      ],
+      "adapter": {
+        "trained_on": [
+          "mem_01k742v0tges7ahv74rwr6c2dw",
+          "mem_01k742v2s0esjb0wd3jm0p29fe"
+        ]
+      },
+      "at": "2026-10-10T12:00:00Z"
+    },
+    "expected": {
+      "outcome": "rejected",
+      "error": "trusted_surface_strong_auth_required"
+    }
+  },
+  {
+    "rule": "M-25",
+    "description": "the forgotten record's id stays resolvable as a skeleton",
+    "input": {
+      "operation": "read",
+      "record": "mem_01k742v0tges7ahv74rwr6c2dw",
+      "after": "forgotten"
+    },
+    "expected": {
+      "status": "forgotten",
+      "fields": [
+        "id",
+        "owner",
+        "version",
+        "status",
+        "recorded_at",
+        "deleted_at",
+        "retention_class"
+      ]
+    }
+  }
+]

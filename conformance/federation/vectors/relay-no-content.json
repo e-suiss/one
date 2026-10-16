@@ -1,0 +1,182 @@
+[
+  {
+    "rule": "OO-7",
+    "description": "Stored mailbox record with only permitted metadata and opaque ciphertext",
+    "input": {
+      "record": {
+        "senderAccessId": "acc_sender",
+        "recipient": "mbx_recipient",
+        "size": 4096,
+        "enqueuedAt": "2026-11-04T10:00:02Z",
+        "seq": 17,
+        "deliveryClass": "mls-application",
+        "trustLabel": "encrypted-untrusted",
+        "rateBucket": "sender:3/min",
+        "ciphertext": "<opaque MLSMessage bytes>"
+      }
+    },
+    "expected": {
+      "violation": false
+    }
+  },
+  {
+    "rule": "OO-7",
+    "description": "Relay event with only permitted metadata",
+    "input": {
+      "event": {
+        "recipient": "mbx_recipient",
+        "seq": 17,
+        "enqueuedAt": "2026-11-04T10:00:02Z",
+        "deliveryClass": "mls-application"
+      }
+    },
+    "expected": {
+      "violation": false
+    }
+  },
+  {
+    "rule": "OO-7",
+    "description": "Relay record holding the One message kind derived from content",
+    "input": {
+      "record": {
+        "senderAccessId": "acc_sender",
+        "recipient": "mbx_recipient",
+        "size": 4096,
+        "enqueuedAt": "2026-11-04T10:00:02Z",
+        "seq": 17,
+        "deliveryClass": "mls-application",
+        "trustLabel": "encrypted-untrusted",
+        "rateBucket": "sender:3/min",
+        "kind": "offer"
+      }
+    },
+    "expected": {
+      "violation": true,
+      "field": "kind"
+    }
+  },
+  {
+    "rule": "OO-7",
+    "description": "Relay record holding the Work correlation id",
+    "input": {
+      "record": {
+        "senderAccessId": "acc_sender",
+        "recipient": "mbx_recipient",
+        "size": 4096,
+        "enqueuedAt": "2026-11-04T10:00:02Z",
+        "seq": 17,
+        "deliveryClass": "mls-application",
+        "trustLabel": "encrypted-untrusted",
+        "rateBucket": "sender:3/min",
+        "correlationId": "019a5a3c-8e00-7a00-8a00-000000000001"
+      }
+    },
+    "expected": {
+      "violation": true,
+      "field": "correlationId"
+    }
+  },
+  {
+    "rule": "OO-7",
+    "description": "Relay record holding the offer expiry",
+    "input": {
+      "record": {
+        "senderAccessId": "acc_sender",
+        "recipient": "mbx_recipient",
+        "size": 4096,
+        "enqueuedAt": "2026-11-04T10:00:02Z",
+        "seq": 17,
+        "deliveryClass": "mls-application",
+        "trustLabel": "encrypted-untrusted",
+        "rateBucket": "sender:3/min",
+        "expiresAt": "2026-11-05T10:00:00Z"
+      }
+    },
+    "expected": {
+      "violation": true,
+      "field": "expiresAt"
+    }
+  },
+  {
+    "rule": "OO-7",
+    "description": "Relay record holding a note preview",
+    "input": {
+      "record": {
+        "senderAccessId": "acc_sender",
+        "recipient": "mbx_recipient",
+        "size": 4096,
+        "enqueuedAt": "2026-11-04T10:00:02Z",
+        "seq": 17,
+        "deliveryClass": "mls-application",
+        "trustLabel": "encrypted-untrusted",
+        "rateBucket": "sender:3/min",
+        "preview": "Sorry, busy"
+      }
+    },
+    "expected": {
+      "violation": true,
+      "field": "preview"
+    }
+  },
+  {
+    "rule": "OO-7",
+    "description": "Push payload carrying the sender's name",
+    "input": {
+      "push": {
+        "wake": true,
+        "senderName": "Alice"
+      }
+    },
+    "expected": {
+      "violation": true,
+      "field": "senderName"
+    }
+  },
+  {
+    "rule": "OO-7",
+    "description": "Push payload that is only a wake hint",
+    "input": {
+      "push": {
+        "wake": true
+      }
+    },
+    "expected": {
+      "violation": false
+    }
+  },
+  {
+    "rule": "OO-7",
+    "description": "Canary string from a typed field found in Relay logs",
+    "input": {
+      "canary": "CANARY-7f3a",
+      "foundIn": [
+        "relay.log"
+      ]
+    },
+    "expected": {
+      "violation": true,
+      "field": "relay.log"
+    }
+  },
+  {
+    "rule": "OO-7",
+    "description": "Relay record holding an MLS group secret",
+    "input": {
+      "record": {
+        "senderAccessId": "acc_sender",
+        "recipient": "mbx_recipient",
+        "size": 4096,
+        "enqueuedAt": "2026-11-04T10:00:02Z",
+        "seq": 17,
+        "deliveryClass": "mls-application",
+        "trustLabel": "encrypted-untrusted",
+        "rateBucket": "sender:3/min",
+        "epochSecret": "<bytes>"
+      }
+    },
+    "expected": {
+      "violation": true,
+      "field": "epochSecret"
+    }
+  }
+]

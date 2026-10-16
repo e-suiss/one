@@ -1,0 +1,32 @@
+[
+  {
+    "rule": "CP-5",
+    "description": "valid fixture inputs",
+    "input": {
+      "recipient": "ayse@example.com",
+      "body": "Selam"
+    },
+    "valid": true
+  },
+  {
+    "rule": "CP-5",
+    "description": "recipient must be an email",
+    "input": {
+      "recipient": "Ayşe",
+      "body": "Selam"
+    },
+    "valid": false
+  },
+  {
+    "rule": "CP-5",
+    "description": "labelled wrapper is not a capability input value",
+    "input": {
+      "recipient": {
+        "value": "ayse@example.com",
+        "label": "user.direct"
+      },
+      "body": "Selam"
+    },
+    "valid": false
+  }
+]

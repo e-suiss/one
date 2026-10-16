@@ -1,0 +1,93 @@
+# CP-5, CP-12, CP-13, CP-15, CP-16, CP-19, CP-21, CP-23, CP-25, CP-28, C-6, C-17, C-18, C-27, A-1, A-13, A-14, A-18, A-24, A-26, A-28, A-42, A-49, OO-9
+
+[[schema]]
+path = "name.schema.json"
+id = "https://suiss.app/schemas/one/capability/name/v1.json"
+rules = ["CP-15", "C-7", "OO-9"]
+
+[[schema]]
+path = "definition.schema.json"
+id = "https://suiss.app/schemas/one/capability/definition/v1.json"
+rules = ["CP-16", "CP-23", "CP-5", "CP-19", "C-17", "A-24", "A-26", "A-28", "Access E45", "Access E47", "Access E49"]
+
+[[schema]]
+path = "surface-capability.schema.json"
+id = "https://suiss.app/schemas/one/capability/surface-capability/v1.json"
+rules = ["C-18", "X-3", "Access E49"]
+
+[[schema]]
+path = "autonomy-rule.schema.json"
+id = "https://suiss.app/schemas/one/capability/autonomy-rule/v1.json"
+rules = ["A-1", "A-2", "A-13", "A-18", "A-42", "Access E45"]
+
+[[schema]]
+path = "trigger.schema.json"
+id = "https://suiss.app/schemas/one/capability/trigger/v1.json"
+rules = ["A-14", "A-15", "A-16", "Access E43", "Access E46"]
+
+[[schema]]
+path = "commerce-purchase-input.schema.json"
+id = "https://suiss.app/schemas/one/capability/commerce-purchase-input/v1.json"
+rules = ["A-49", "A-31", "A-34", "CP-23"]
+
+[[vectors]]
+path = "vectors/name.json"
+kind = "behaviour"
+rules = ["CP-15", "OO-9"]
+
+[[vectors]]
+path = "vectors/negotiation.json"
+kind = "behaviour"
+rules = ["CP-15"]
+
+[[vectors]]
+path = "vectors/definition.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/capability/definition/v1.json"
+rules = ["CP-16", "CP-23", "CP-5", "CP-15", "CP-19", "A-24", "A-26", "A-28"]
+
+[[vectors]]
+path = "vectors/reversibility.json"
+kind = "behaviour"
+rules = ["A-24", "CP-19"]
+
+[[vectors]]
+path = "vectors/surface-capability.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/capability/surface-capability/v1.json"
+rules = ["C-18", "X-3", "X-13", "X-36"]
+
+[[vectors]]
+path = "vectors/autonomy-rule.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/capability/autonomy-rule/v1.json"
+rules = ["A-1", "A-13", "A-18", "A-42"]
+
+[[vectors]]
+path = "vectors/trigger.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/capability/trigger/v1.json"
+rules = ["A-14"]
+
+[[vectors]]
+path = "vectors/trigger-bounds.json"
+kind = "behaviour"
+rules = ["A-14", "A-15"]
+
+[[vectors]]
+path = "vectors/commerce-purchase-input.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/capability/commerce-purchase-input/v1.json"
+rules = ["A-49", "A-31", "A-34"]
+
+[[table]]
+path = "naming.toml"
+rules = ["CP-15", "C-7", "CP-25", "OO-9"]
+
+[[table]]
+path = "taxonomy.toml"
+rules = ["CP-15", "CP-16", "CP-28", "CP-29", "CP-37", "A-49"]
+
+[[table]]
+path = "projections.toml"
+rules = ["CP-15", "C-6", "C-27", "CP-12", "CP-13", "CP-21", "CP-24", "CP-28", "A-36"]

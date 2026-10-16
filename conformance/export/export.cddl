@@ -1,0 +1,330 @@
+; M-39, M-40, M-41, M-42, MD-8 (2), INV-27, PV-16
+; M-6, M-7, M-8, M-9, M-10, M-13, M-25, C-19
+; E-36, M-43, M-3, M-36, C-11, C-23, SEC-14, PV-20
+
+one-export = {
+  format: "app.suiss.one.export",
+  schema_version: uint .ge 1,
+  exported_at: instant,
+  owner: party-ref,
+  generator: generator-info,
+  retention_class: "one_memory" / "one_sensitive",
+  memory: memory-section,
+  ? sensitive: memory-section,
+  excluded_sections: [* "sensitive"],
+  personality: personality-export,
+  grants: access-projection,
+  connections: access-projection,
+  tasks: [* task],
+  adapter: adapter-export / null,
+  text_view: tstr,
+  * tstr => any
+}
+
+generator-info = {
+  name: tstr,
+  version: tstr,
+  * tstr => any
+}
+
+memory-section = {
+  records: [* memory-record],
+  relationship_edges: [* relationship-edge],
+  episodes: [* episode],
+  * tstr => any
+}
+
+memory-record = (live-record / skeleton)
+
+relationship-edge = (live-relationship-edge / skeleton)
+
+skeleton = {
+  type: "MemoryRecord",
+  id: memory-record-id,
+  owner: party-ref,
+  version: record-version,
+  status: "forgotten",
+  recorded_at: instant,
+  deleted_at: instant,
+  retention_class: "one_memory" / "one_sensitive",
+  * tstr => any
+}
+
+live-record = {
+  record-fields,
+  * tstr => any
+}
+
+live-relationship-edge = {
+  record-fields,
+  subject: entity-ref,
+  predicate: relationship-predicate,
+  object: entity-ref,
+  * tstr => any
+}
+
+record-fields = (
+  type: "MemoryRecord",
+  id: memory-record-id,
+  header,
+  supersedes: memory-record-id / null,
+  status: "candidate" / "active" / "suppressed",
+  content_type: content-type,
+  epistemic_state: "stated" / "observed" / "inferred" / "hypothesis" / "verified" / "invalidated",
+  layer: "event" / "consolidated_fact" / "behaviour_rule",
+  time_kind: "permanent" / "current" / "seasonal" / "one_off" / "past",
+  valid_from: instant,
+  valid_to: instant / null,
+  ? expected_end: instant,
+  ? season: { months: [+ 1..12], * tstr => any },
+  superseded_at: instant / null,
+  source_episodes: [+ episode-id],
+  source_kind: source-kind,
+  evidence: evidence-info,
+  trust: trust-info,
+  ? alternative_explanations: [* alternative-explanation],
+  usage_restriction: usage-restriction / null,
+  ? about: [* entity-ref],
+  statement: text-statement,
+)
+
+header = (
+  owner: party-ref,
+  domain: domain-info,
+  data_class: data-class,
+  retention_class: "one_memory" / "one_sensitive",
+  provenance: provenance-label,
+  recorded_at: instant,
+  version: record-version,
+  deleted_at: null,
+  produced_by: produced-by,
+)
+
+episode = (live-episode / episode-skeleton)
+
+live-episode = {
+  type: "Episode",
+  id: episode-id,
+  header,
+  supersedes: episode-id / null,
+  status: "active",
+  kind: "conversation" / "task_run" / "meeting_transcript" / "observation_window" / "connected_source_event" / "import",
+  modes: [* "text" / "voice" / "card" / "workspace"],
+  started_at: instant,
+  ? ended_at: instant,
+  ? task: task-id,
+  entries: [* episode-entry],
+  ? queued_on_device: device-id,
+  * tstr => any
+}
+
+episode-entry = {
+  seq: uint,
+  at: instant,
+  actor: "user" / "one" / "subagent" / "other_party",
+  ? mode: "text" / "voice" / "card" / "workspace",
+  kind: "conversation_turn" / "explicit_remember" / "source_event_ref" / "imported_item" / "observation" / "interaction",
+  ? source_kind: source-kind,
+  ? provenance: provenance-label,
+  ? content: text-statement,
+  ? source: { ref: external-ref, read_at: instant, * tstr => any },
+  ? import_source: "one_export" / "assistant_dump" / "transfer_protocol",
+  ? observation: observation-id,
+  ? interaction: interaction-id,
+  * tstr => any
+}
+
+episode-skeleton = {
+  type: "Episode",
+  id: episode-id,
+  owner: party-ref,
+  version: record-version,
+  status: "forgotten",
+  recorded_at: instant,
+  deleted_at: instant,
+  retention_class: "one_memory" / "one_sensitive",
+  * tstr => any
+}
+
+core-content-type = ("preference" / "routine" / "goal" / "constraint" / "relationship" / "personal_fact" / "opinion" / "event")
+
+content-type = core-content-type / {
+  name: tstr .regexp "app\\.suiss\\.memory(\\.[a-z][a-z0-9_]*)+",
+  version: uint,
+  maps_to: core-content-type,
+  * tstr => any
+}
+
+core-predicate = ("has_manager" / "has_report" / "has_colleague" / "has_partner" / "has_parent" / "has_child" / "has_sibling" / "has_friend" / "knows" / "works_at" / "studies_at" / "lives_in" / "member_of")
+
+relationship-predicate = core-predicate / {
+  name: tstr .regexp "app\\.suiss\\.memory\\.predicate(\\.[a-z][a-z0-9_]*)+",
+  version: uint,
+  maps_to: core-predicate,
+  * tstr => any
+}
+
+source-kind = ("user_statement" / "user_behaviour" / "connected_source" / "external_content" / "import")
+
+evidence-info = {
+  observation_count: uint .ge 1,
+  supporting_count: uint,
+  first_observed_at: instant,
+  last_observed_at: instant,
+  contradicting_records: [* memory-record-id],
+  user_confirmed_at: instant / null,
+  * tstr => any
+}
+
+trust-info = {
+  value: 0..1 / ((float .le 1.0) .and (float .ge 0.0)),
+  formula: "trust/v1",
+  computed_at: instant,
+  * tstr => any
+}
+
+alternative-explanation = {
+  kind: "different_subject" / "different_purpose" / "one_off_context" / "external_cause",
+  ? about: entity-ref,
+  ? record: memory-record-id,
+  * tstr => any
+}
+
+usage-restriction = {
+  areas: [* life-area],
+  projects: [* project-id],
+  * tstr => any
+}
+
+entity-ref = party-ref / external-person-ref / external-ref / record-ref
+
+party-ref = {
+  ref: "PartyRef",
+  id: opaque-id,
+  * tstr => any
+}
+
+instance-ref = {
+  ref: "InstanceRef",
+  id: opaque-id,
+  * tstr => any
+}
+
+external-person-ref = {
+  ref: "ExternalPersonRef",
+  system: "contacts" / "email" / "messaging",
+  locator: tstr,
+  ? account: { ref: "ConnectedAccountRef", id: opaque-id, * tstr => any },
+  * tstr => any
+}
+
+external-ref = {
+  ref: "ExternalRef",
+  system: "contacts" / "email" / "calendar" / "messaging" / "document" / "files" / "photos" / "web" / "place" / "agent" / "service",
+  locator: tstr,
+  ? account: { ref: "ConnectedAccountRef", id: opaque-id, * tstr => any },
+  * tstr => any
+}
+
+record-ref = {
+  ref: "RecordRef",
+  id: goal-id / routine-id,
+  * tstr => any
+}
+
+text-statement = {
+  text: tstr,
+  lang: tstr .regexp "[a-z]{2,3}(-[A-Za-z0-9]{2,8})*",
+  * tstr => any
+}
+
+domain-info = {
+  areas: [+ life-area],
+  project: project-id / null,
+  * tstr => any
+}
+
+produced-by = {
+  actor: "user" / "one" / "sub_agent",
+  ? instance: instance-ref,
+  ? model_version: model-version-id,
+  ? config_version: tstr,
+  * tstr => any
+}
+
+life-area = ("work" / "health" / "finance" / "relationships" / "home" / "travel" / "shopping" / "learning" / "leisure" / "general")
+
+data-class = {
+  kinds: [+ "general" / "personal" / "contact" / "financial" / "location" / "communication" / "one_time_code"],
+  sensitive: [* sensitive-class],
+  * tstr => any
+}
+
+sensitive-class = ("health" / "religion_belief" / "political_opinion" / "sex_life_orientation" / "biometric" / "precise_location_history" / "relationship_status" / "genetic" / "racial_ethnic_origin" / "philosophical_belief_denomination" / "union_association_foundation_membership" / "criminal_conviction_security_measure" / "attire")
+
+provenance-label = ("user.direct" / "user.memory" / "record.trusted" / "one.inferred" / "external.web" / "external.email" / "external.calendar" / "external.document" / "external.screen" / "external.media" / "external.message" / "external.one" / "external.agent" / "external.tool_description" / "external.tool_output" / "external.import" / "external.app" / "external.unknown" / "external.mixed")
+
+personality-export = {
+  profile: {
+    ? name: tstr,
+    ? form_of_address: tstr,
+    ? style: tstr,
+    values: [* tstr],
+    * tstr => any
+  },
+  rules: [* memory-record-id],
+  * tstr => any
+}
+
+access-projection = {
+  source: "access-e65",
+  read_at: instant,
+  schema: tstr,
+  items: [* { * tstr => any }],
+  * tstr => any
+}
+
+task = {
+  id: task-id,
+  created_at: instant,
+  state: tstr,
+  goal: text-statement,
+  steps: [* task-step],
+  ? outcome: text-statement,
+  * tstr => any
+}
+
+task-step = {
+  capability: tstr .regexp "app\\.suiss(\\.[a-z][a-z0-9_]*)+",
+  state: tstr,
+  ? result: text-statement,
+  * tstr => any
+}
+
+adapter-export = {
+  id: adapter-id,
+  base_model: { name: tstr, version: tstr, * tstr => any },
+  trained_at: instant,
+  format: "safetensors",
+  sha256: tstr .regexp "[0-9a-f]{64}",
+  weights_b64: tstr .regexp "[A-Za-z0-9_-]*",
+  note: text-statement,
+  * tstr => any
+}
+
+record-version = uint .ge 1
+
+instant = tstr .regexp "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]{1,9})?Z"
+
+memory-record-id = tstr .regexp "mem_[0-7][0-9a-hjkmnp-tv-z]{9}[ef][0-9a-hjkmnp-tv-z]{2}[89abrstv][0-9a-hjkmnp-tv-z]{12}"
+episode-id = tstr .regexp "epi_[0-7][0-9a-hjkmnp-tv-z]{9}[ef][0-9a-hjkmnp-tv-z]{2}[89abrstv][0-9a-hjkmnp-tv-z]{12}"
+observation-id = tstr .regexp "obs_[0-7][0-9a-hjkmnp-tv-z]{9}[ef][0-9a-hjkmnp-tv-z]{2}[89abrstv][0-9a-hjkmnp-tv-z]{12}"
+interaction-id = tstr .regexp "int_[0-7][0-9a-hjkmnp-tv-z]{9}[ef][0-9a-hjkmnp-tv-z]{2}[89abrstv][0-9a-hjkmnp-tv-z]{12}"
+goal-id = tstr .regexp "goal_[0-7][0-9a-hjkmnp-tv-z]{9}[ef][0-9a-hjkmnp-tv-z]{2}[89abrstv][0-9a-hjkmnp-tv-z]{12}"
+routine-id = tstr .regexp "rtn_[0-7][0-9a-hjkmnp-tv-z]{9}[ef][0-9a-hjkmnp-tv-z]{2}[89abrstv][0-9a-hjkmnp-tv-z]{12}"
+task-id = tstr .regexp "task_[0-7][0-9a-hjkmnp-tv-z]{9}[ef][0-9a-hjkmnp-tv-z]{2}[89abrstv][0-9a-hjkmnp-tv-z]{12}"
+adapter-id = tstr .regexp "adp_[0-7][0-9a-hjkmnp-tv-z]{9}[ef][0-9a-hjkmnp-tv-z]{2}[89abrstv][0-9a-hjkmnp-tv-z]{12}"
+model-version-id = tstr .regexp "mdl_[0-7][0-9a-hjkmnp-tv-z]{9}[ef][0-9a-hjkmnp-tv-z]{2}[89abrstv][0-9a-hjkmnp-tv-z]{12}"
+device-id = tstr .regexp "dev_[0-7][0-9a-hjkmnp-tv-z]{9}[ef][0-9a-hjkmnp-tv-z]{2}[89abrstv][0-9a-hjkmnp-tv-z]{12}"
+project-id = tstr .regexp "prj_[0-7][0-9a-hjkmnp-tv-z]{9}[ef][0-9a-hjkmnp-tv-z]{2}[89abrstv][0-9a-hjkmnp-tv-z]{12}"
+opaque-id = tstr .regexp "[\\x21-\\x7e]{1,255}"

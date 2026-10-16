@@ -1,0 +1,180 @@
+[
+  {
+    "rule": "CP-3",
+    "description": "pending projects to MCP working and A2A TASK_STATE_SUBMITTED",
+    "input": {
+      "state": "pending"
+    },
+    "expected": {
+      "mcp_tasks": "working",
+      "a2a_task": "TASK_STATE_SUBMITTED",
+      "status_message": "pending"
+    }
+  },
+  {
+    "rule": "CP-3",
+    "description": "running projects to MCP working and A2A TASK_STATE_WORKING",
+    "input": {
+      "state": "running"
+    },
+    "expected": {
+      "mcp_tasks": "working",
+      "a2a_task": "TASK_STATE_WORKING",
+      "status_message": "running"
+    }
+  },
+  {
+    "rule": "CP-3",
+    "description": "waiting_external projects to MCP working and A2A TASK_STATE_WORKING",
+    "input": {
+      "state": "waiting_external"
+    },
+    "expected": {
+      "mcp_tasks": "working",
+      "a2a_task": "TASK_STATE_WORKING",
+      "status_message": "waiting_external"
+    }
+  },
+  {
+    "rule": "CP-3",
+    "description": "paused projects to MCP working and A2A TASK_STATE_WORKING",
+    "input": {
+      "state": "paused"
+    },
+    "expected": {
+      "mcp_tasks": "working",
+      "a2a_task": "TASK_STATE_WORKING",
+      "status_message": "paused"
+    }
+  },
+  {
+    "rule": "CP-3",
+    "description": "completed projects to MCP completed and A2A TASK_STATE_COMPLETED",
+    "input": {
+      "state": "completed"
+    },
+    "expected": {
+      "mcp_tasks": "completed",
+      "a2a_task": "TASK_STATE_COMPLETED",
+      "status_message": "completed"
+    }
+  },
+  {
+    "rule": "CP-3",
+    "description": "failed projects to MCP failed and A2A TASK_STATE_FAILED",
+    "input": {
+      "state": "failed"
+    },
+    "expected": {
+      "mcp_tasks": "failed",
+      "a2a_task": "TASK_STATE_FAILED",
+      "status_message": "failed"
+    }
+  },
+  {
+    "rule": "CP-3",
+    "description": "cancelled projects to MCP cancelled and A2A TASK_STATE_CANCELED",
+    "input": {
+      "state": "cancelled"
+    },
+    "expected": {
+      "mcp_tasks": "cancelled",
+      "a2a_task": "TASK_STATE_CANCELED",
+      "status_message": "cancelled"
+    }
+  },
+  {
+    "rule": "CP-3",
+    "description": "waiting_user for approval projects to input required",
+    "input": {
+      "state": "waiting_user",
+      "wait_reason": "approval"
+    },
+    "expected": {
+      "mcp_tasks": "input_required",
+      "a2a_task": "TASK_STATE_INPUT_REQUIRED",
+      "status_message": "waiting_user",
+      "caller_answer_accepted": false
+    }
+  },
+  {
+    "rule": "CP-3",
+    "description": "waiting_user for input projects to input required",
+    "input": {
+      "state": "waiting_user",
+      "wait_reason": "input"
+    },
+    "expected": {
+      "mcp_tasks": "input_required",
+      "a2a_task": "TASK_STATE_INPUT_REQUIRED",
+      "status_message": "waiting_user",
+      "caller_answer_accepted": false
+    }
+  },
+  {
+    "rule": "CP-3",
+    "description": "waiting_user for takeover projects to input required",
+    "input": {
+      "state": "waiting_user",
+      "wait_reason": "takeover"
+    },
+    "expected": {
+      "mcp_tasks": "input_required",
+      "a2a_task": "TASK_STATE_INPUT_REQUIRED",
+      "status_message": "waiting_user",
+      "caller_answer_accepted": false
+    }
+  },
+  {
+    "rule": "CP-3",
+    "description": "waiting_user for user_absent projects to input required",
+    "input": {
+      "state": "waiting_user",
+      "wait_reason": "user_absent"
+    },
+    "expected": {
+      "mcp_tasks": "input_required",
+      "a2a_task": "TASK_STATE_INPUT_REQUIRED",
+      "status_message": "waiting_user",
+      "caller_answer_accepted": false
+    }
+  },
+  {
+    "rule": "CP-3",
+    "description": "waiting_user for authentication projects to A2A auth required",
+    "input": {
+      "state": "waiting_user",
+      "wait_reason": "authentication"
+    },
+    "expected": {
+      "mcp_tasks": "input_required",
+      "a2a_task": "TASK_STATE_AUTH_REQUIRED",
+      "status_message": "waiting_user",
+      "caller_answer_accepted": false
+    }
+  },
+  {
+    "rule": "C-27",
+    "description": "A2A rejected is never derived from a task state; it only answers a refused submission",
+    "input": {
+      "intake": "submission_refused_before_task_exists"
+    },
+    "expected": {
+      "mcp_tasks": "none",
+      "a2a_task": "TASK_STATE_REJECTED"
+    }
+  },
+  {
+    "rule": "C-27",
+    "description": "An inbound protocol state is never written to the task",
+    "input": {
+      "inbound": {
+        "a2a_task": "TASK_STATE_COMPLETED"
+      },
+      "state": "running"
+    },
+    "expected": {
+      "state": "running"
+    }
+  }
+]

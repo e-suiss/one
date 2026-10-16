@@ -1,0 +1,14 @@
+[
+  {
+    "rule": "M-28",
+    "description": "`general` is a life area",
+    "input": "general",
+    "valid": true
+  },
+  {
+    "rule": "M-28",
+    "description": "users add projects, never areas",
+    "input": "hobbies",
+    "valid": false
+  }
+]

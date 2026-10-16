@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/memory/trust-input/v1.json",
+  "title": "TrustInput",
+  "description": "The complete input of trust/v1. Closed: a model's verbal confidence or any other field is rejected. `as_of` is explicit so the function is pure. M-13.",
+  "type": "object",
+  "required": [
+    "source_kind",
+    "observation_count",
+    "supporting_count",
+    "last_observed_at",
+    "user_confirmed_at",
+    "contradicting_count",
+    "as_of"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "source_kind": { "$ref": "https://suiss.app/schemas/one/memory/fields/v1.json#/$defs/source_kind" },
+    "observation_count": { "type": "integer", "minimum": 1 },
+    "supporting_count": { "type": "integer", "minimum": 0 },
+    "last_observed_at": { "$ref": "https://suiss.app/schemas/one/memory/common/v1.json#/$defs/instant" },
+    "user_confirmed_at": {
+      "oneOf": [
+        { "type": "null" },
+        { "$ref": "https://suiss.app/schemas/one/memory/common/v1.json#/$defs/instant" }
+      ]
+    },
+    "contradicting_count": { "type": "integer", "minimum": 0 },
+    "as_of": { "$ref": "https://suiss.app/schemas/one/memory/common/v1.json#/$defs/instant" }
+  }
+}

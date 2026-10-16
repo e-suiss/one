@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/provenance/access-parameter-provenance/v1.json",
+  "title": "Per-parameter provenance One sends to Access",
+  "type": "object",
+  "propertyNames": {
+    "pattern": "^[a-z][a-z0-9_]{0,63}$"
+  },
+  "additionalProperties": {
+    "$ref": "https://suiss.app/schemas/one/provenance/access-provenance/v1.json"
+  }
+}

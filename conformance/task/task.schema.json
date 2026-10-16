@@ -1,0 +1,667 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/task/task/v1.json",
+  "title": "Task",
+  "description": "One's single-person work record. Owned by One, not by a device, conversation or model. Carries the C-19 record header. The task state is never a field: it is derived from the event history.",
+  "type": "object",
+  "required": [
+    "type",
+    "id",
+    "status",
+    "supersedes",
+    "purpose",
+    "plan",
+    "completion_criterion",
+    "authority",
+    "waits",
+    "checkpoint_ref",
+    "budget",
+    "sub_agents"
+  ],
+  "properties": {
+    "type": {
+      "const": "Task"
+    },
+    "id": {
+      "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/task_id"
+    },
+    "supersedes": {
+      "description": "The record id of the version this one supersedes; null for version 1.",
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/task_id"
+        }
+      ]
+    },
+    "status": {
+      "description": "Record lifecycle only (C-19); not the task state.",
+      "type": "string",
+      "enum": [
+        "active",
+        "deleted"
+      ]
+    },
+    "purpose": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source",
+        "ref"
+      ],
+      "properties": {
+        "source": {
+          "type": "string",
+          "enum": [
+            "user_request",
+            "trigger",
+            "routine_suggestion"
+          ]
+        },
+        "ref": true,
+        "serves_goal_id": {
+          "$ref": "https://suiss.app/schemas/one/ontology/id/v1.json#/$defs/GoalId"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "source": {
+                "const": "user_request"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "ref": {
+                "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/interaction_id"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "source": {
+                "const": "trigger"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "ref": {
+                "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/trigger_ref"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "source": {
+                "const": "routine_suggestion"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "ref": {
+                "$ref": "https://suiss.app/schemas/one/ontology/id/v1.json#/$defs/RoutineId"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "plan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "version",
+        "steps"
+      ],
+      "properties": {
+        "version": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "steps": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/step"
+          }
+        }
+      }
+    },
+    "completion_criterion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "statement",
+        "check"
+      ],
+      "properties": {
+        "statement": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "check": {
+          "type": "string",
+          "enum": [
+            "executor_claim",
+            "record_reference",
+            "external_confirmation",
+            "user_confirmation"
+          ]
+        },
+        "evidence_ref": {
+          "oneOf": [
+            {
+              "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/claim_ref"
+            },
+            {
+              "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/execution_report_ref"
+            }
+          ]
+        }
+      }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mandate_refs"
+      ],
+      "properties": {
+        "mandate_refs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/mandate_ref"
+          }
+        },
+        "trigger_ref": {
+          "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/trigger_ref"
+        }
+      }
+    },
+    "waits": {
+      "description": "Open Relay waitpoint references.",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/waitpoint_ref"
+      }
+    },
+    "checkpoint_ref": {
+      "anyOf": [
+        {
+          "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/checkpoint_ref"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "budget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "steps"
+      ],
+      "properties": {
+        "steps": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "mandate",
+            "requested",
+            "effective"
+          ],
+          "properties": {
+            "mandate": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 1
+            },
+            "requested": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 1
+            },
+            "effective": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        },
+        "amount": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "mandate",
+            "requested",
+            "effective"
+          ],
+          "properties": {
+            "mandate": {
+              "anyOf": [
+                {
+                  "$ref": "https://suiss.app/schemas/one/interaction/common/v1.json#/$defs/money"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "requested": {
+              "anyOf": [
+                {
+                  "$ref": "https://suiss.app/schemas/one/interaction/common/v1.json#/$defs/money"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "effective": {
+              "$ref": "https://suiss.app/schemas/one/interaction/common/v1.json#/$defs/money"
+            }
+          }
+        }
+      }
+    },
+    "sub_agents": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/instance_ref"
+      }
+    },
+    "commitment_ref": {
+      "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/commitment_ref"
+    }
+  },
+  "allOf": [
+    {
+      "$ref": "https://suiss.app/schemas/one/memory/common/v1.json#/$defs/record_header"
+    },
+    {
+      "if": {
+        "properties": {
+          "version": {
+            "const": 1
+          }
+        },
+        "required": [
+          "version"
+        ]
+      },
+      "then": {
+        "properties": {
+          "supersedes": {
+            "type": "null"
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "supersedes": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "purpose": {
+            "properties": {
+              "source": {
+                "const": "trigger"
+              }
+            },
+            "required": [
+              "source"
+            ]
+          }
+        },
+        "required": [
+          "purpose"
+        ]
+      },
+      "then": {
+        "properties": {
+          "authority": {
+            "required": [
+              "trigger_ref"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "plan": {
+            "properties": {
+              "steps": {
+                "contains": {
+                  "properties": {
+                    "effectful": {
+                      "const": true
+                    }
+                  }
+                }
+              }
+            },
+            "required": [
+              "steps"
+            ]
+          }
+        },
+        "required": [
+          "plan"
+        ]
+      },
+      "then": {
+        "properties": {
+          "authority": {
+            "properties": {
+              "mandate_refs": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "step": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "capability",
+        "action",
+        "effectful",
+        "inputs",
+        "state"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9_-]{0,63}$"
+        },
+        "capability": {
+          "$ref": "https://suiss.app/schemas/one/capability/name/v1.json#/$defs/ref"
+        },
+        "action": {
+          "$ref": "https://suiss.app/schemas/one/ontology/reference/v1.json#/$defs/ActionRef"
+        },
+        "effectful": {
+          "type": "boolean"
+        },
+        "inputs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/typed_input"
+          }
+        },
+        "state": {
+          "type": "string",
+          "enum": [
+            "planned",
+            "running",
+            "done",
+            "failed",
+            "not_run",
+            "unknown"
+          ]
+        },
+        "result": {
+          "$ref": "https://suiss.app/schemas/one/task/step-result/v1.json"
+        },
+        "exercise_ref": {
+          "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/exercise_ref"
+        },
+        "idempotency_key": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_-]{16,128}$"
+        },
+        "route": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "path",
+            "location",
+            "reason"
+          ],
+          "properties": {
+            "path": {
+              "type": "string",
+              "enum": [
+                "api",
+                "mcp",
+                "commerce_protocol",
+                "os_intent",
+                "cloud_browser",
+                "handoff"
+              ]
+            },
+            "location": {
+              "type": "string",
+              "enum": [
+                "cloud_executor",
+                "cloud_microvm",
+                "local_executor",
+                "user"
+              ]
+            },
+            "reason": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            }
+          }
+        },
+        "origin_set": {
+          "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/origin_set"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "state": {
+                "enum": [
+                  "done",
+                  "failed",
+                  "not_run",
+                  "unknown"
+                ]
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "result"
+            ]
+          },
+          "else": {
+            "not": {
+              "required": [
+                "result"
+              ]
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "state": {
+                "const": "done"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "result": {
+                "properties": {
+                  "status": {
+                    "const": "done"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "state": {
+                "const": "failed"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "result": {
+                "properties": {
+                  "status": {
+                    "const": "failed"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "state": {
+                "const": "not_run"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "result": {
+                "properties": {
+                  "status": {
+                    "const": "not_run"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "state": {
+                "const": "unknown"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "result": {
+                "properties": {
+                  "status": {
+                    "const": "unknown"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "effectful": {
+                "const": true
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "idempotency_key"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "effectful": {
+                "const": true
+              },
+              "state": {
+                "enum": [
+                  "done",
+                  "failed",
+                  "unknown"
+                ]
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "exercise_ref"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "route": {
+                "properties": {
+                  "path": {
+                    "const": "cloud_browser"
+                  }
+                }
+              }
+            },
+            "required": [
+              "route"
+            ]
+          },
+          "then": {
+            "required": [
+              "origin_set"
+            ]
+          }
+        }
+      ]
+    },
+    "typed_input": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "value",
+        "provenance"
+      ],
+      "properties": {
+        "name": {
+          "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/snake_name"
+        },
+        "value": true,
+        "provenance": {
+          "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/provenance_label"
+        }
+      }
+    }
+  },
+  "unevaluatedProperties": false
+}

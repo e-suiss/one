@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/task/outcome/v1.json",
+  "title": "Outcome",
+  "description": "The result of an execution, stop, effect, undo or approval. Unknown is first class; a value such as stopped, undone or approved exists only with a reference to the record that confirms it, of a kind that can confirm it.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["subject", "certainty"],
+  "properties": {
+    "subject": { "type": "string", "enum": ["execution", "stop", "effect", "undo", "approval"] },
+    "certainty": { "type": "string", "enum": ["confirmed", "unknown"] },
+    "value": { "type": "string" },
+    "confirmation": {
+      "oneOf": [
+        { "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/execution_report_ref" },
+        { "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/claim_ref" },
+        { "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/decision_ref" },
+        { "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/waitpoint_ref" }
+      ]
+    },
+    "reported_at": { "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/timestamp" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "certainty": { "const": "confirmed" } } },
+      "then": { "required": ["value", "confirmation"] },
+      "else": { "not": { "anyOf": [{ "required": ["value"] }, { "required": ["confirmation"] }] } }
+    },
+    {
+      "if": { "properties": { "subject": { "const": "execution" } } },
+      "then": {
+        "properties": {
+          "value": { "enum": ["succeeded", "failed"] },
+          "confirmation": { "properties": { "ref": { "enum": ["ExecutionReportRef", "ClaimRef"] } } }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "subject": { "const": "stop" } } },
+      "then": {
+        "properties": {
+          "value": { "enum": ["stopped", "not_stopped"] },
+          "confirmation": { "properties": { "ref": { "const": "ExecutionReportRef" } } }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "subject": { "const": "effect" } } },
+      "then": {
+        "properties": {
+          "value": { "enum": ["occurred", "not_occurred"] },
+          "confirmation": { "properties": { "ref": { "enum": ["ExecutionReportRef", "ClaimRef"] } } }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "subject": { "const": "undo" } } },
+      "then": {
+        "properties": {
+          "value": { "enum": ["undone", "not_undone"] },
+          "confirmation": { "properties": { "ref": { "enum": ["ExecutionReportRef", "ClaimRef"] } } }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "subject": { "const": "approval" } } },
+      "then": {
+        "properties": {
+          "value": { "enum": ["approved", "declined", "expired"] },
+          "confirmation": { "properties": { "ref": { "enum": ["DecisionRecordRef", "WaitpointRef"] } } }
+        },
+        "if": { "properties": { "value": { "const": "approved" } }, "required": ["value"] },
+        "then": { "properties": { "confirmation": { "properties": { "ref": { "const": "DecisionRecordRef" } } } } }
+      }
+    }
+  ]
+}

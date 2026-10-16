@@ -1,0 +1,68 @@
+[
+  {
+    "rule": "C-19",
+    "description": "Observation identifier: registered prefix and UUIDv7 body",
+    "input": "obs_01m5104a00e48s248h248h248h",
+    "valid": true
+  },
+  {
+    "rule": "C-19",
+    "description": "Every registered canonical prefix is accepted",
+    "input": "task_01m5104fvgeskacsk6csk6csk6",
+    "valid": true
+  },
+  {
+    "rule": "C-19",
+    "description": "A region token before the prefix encodes a place",
+    "input": "eu_obs_01m5104a00e48s248h248h248h",
+    "valid": false
+  },
+  {
+    "rule": "C-19",
+    "description": "A region token in the prefix encodes a place",
+    "input": "obs-tr_01m5104a00e48s248h248h248h",
+    "valid": false
+  },
+  {
+    "rule": "C-19",
+    "description": "A trailing device or region segment is not part of the grammar",
+    "input": "obs_01m5104a00e48s248h248h248h_eu",
+    "valid": false
+  },
+  {
+    "rule": "C-19",
+    "description": "An unregistered prefix is rejected",
+    "input": "region_01m5104a00e48s248h248h248h",
+    "valid": false
+  },
+  {
+    "rule": "C-19",
+    "description": "A UUIDv8 body could carry custom bits such as a region code",
+    "input": "obs_01m5104a00g48s248h248h248h",
+    "valid": false
+  },
+  {
+    "rule": "C-19",
+    "description": "A UUIDv4 body is not the registered encoding",
+    "input": "obs_77ebvv4zzb9g1r8m6wxnczht01",
+    "valid": false
+  },
+  {
+    "rule": "C-19",
+    "description": "Upper-case digits are not the canonical text form",
+    "input": "obs_01M5104A00E48S248H248H248H",
+    "valid": false
+  },
+  {
+    "rule": "C-19",
+    "description": "A bare UUID never travels as an identifier",
+    "input": "0190f3a0-5a00-7111-9111-111111111111",
+    "valid": false
+  },
+  {
+    "rule": "C-19",
+    "description": "A first digit above 7 overflows 128 bits",
+    "input": "obs_81m5104a00e48s248h248h248h",
+    "valid": false
+  }
+]

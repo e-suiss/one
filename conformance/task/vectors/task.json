@@ -1,0 +1,4340 @@
+[
+  {
+    "rule": "CP-4",
+    "description": "Minimal planned coffee order task",
+    "input": {
+      "type": "Task",
+      "id": "task_01k7n51z01e40r200000000000",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "person-ada"
+      },
+      "domain": {
+        "areas": [
+          "shopping"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "financial",
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-16T09:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "one-instance-ada"
+        },
+        "model_version": "mdl_01k7n51z06er38c00000000000",
+        "config_version": "cfg-7"
+      },
+      "purpose": {
+        "source": "user_request",
+        "ref": "int_01k7n51z04eg28800000000000"
+      },
+      "plan": {
+        "version": 1,
+        "steps": [
+          {
+            "id": "s1",
+            "capability": {
+              "name": "app.suiss.food.order.place",
+              "version": "2026-10-01"
+            },
+            "action": {
+              "namespace": "app.suiss.food.order.place",
+              "name": "primary",
+              "version": "2026-10-01",
+              "schema_digest": "sha256:abababababababababababababababababababababababababababababababab"
+            },
+            "effectful": true,
+            "inputs": [
+              {
+                "name": "merchant_ref",
+                "value": "merchant-42",
+                "provenance": "user.memory"
+              },
+              {
+                "name": "item",
+                "value": "flat white",
+                "provenance": "user.direct"
+              }
+            ],
+            "state": "planned",
+            "idempotency_key": "idem-task1-step1-0001"
+          }
+        ]
+      },
+      "completion_criterion": {
+        "statement": "Order confirmation received from the merchant",
+        "check": "executor_claim"
+      },
+      "authority": {
+        "mandate_refs": [
+          {
+            "ref": "MandateRef",
+            "id": "coffee-weekday"
+          }
+        ]
+      },
+      "waits": [],
+      "checkpoint_ref": null,
+      "budget": {
+        "steps": {
+          "mandate": 20,
+          "requested": null,
+          "effective": 20
+        },
+        "amount": {
+          "mandate": {
+            "value": "500.00",
+            "currency": "TRY"
+          },
+          "requested": {
+            "value": "300.00",
+            "currency": "TRY"
+          },
+          "effective": {
+            "value": "300.00",
+            "currency": "TRY"
+          }
+        }
+      },
+      "sub_agents": [],
+      "deleted_at": null
+    },
+    "valid": true
+  },
+  {
+    "rule": "CP-4",
+    "description": "Missing id is rejected",
+    "input": {
+      "type": "Task",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "person-ada"
+      },
+      "domain": {
+        "areas": [
+          "shopping"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "financial",
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-16T09:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "one-instance-ada"
+        },
+        "model_version": "mdl_01k7n51z06er38c00000000000",
+        "config_version": "cfg-7"
+      },
+      "purpose": {
+        "source": "user_request",
+        "ref": "int_01k7n51z04eg28800000000000"
+      },
+      "plan": {
+        "version": 1,
+        "steps": [
+          {
+            "id": "s1",
+            "capability": {
+              "name": "app.suiss.food.order.place",
+              "version": "2026-10-01"
+            },
+            "action": {
+              "namespace": "app.suiss.food.order.place",
+              "name": "primary",
+              "version": "2026-10-01",
+              "schema_digest": "sha256:abababababababababababababababababababababababababababababababab"
+            },
+            "effectful": true,
+            "inputs": [
+              {
+                "name": "merchant_ref",
+                "value": "merchant-42",
+                "provenance": "user.memory"
+              },
+              {
+                "name": "item",
+                "value": "flat white",
+                "provenance": "user.direct"
+              }
+            ],
+            "state": "planned",
+            "idempotency_key": "idem-task1-step1-0001"
+          }
+        ]
+      },
+      "completion_criterion": {
+        "statement": "Order confirmation received from the merchant",
+        "check": "executor_claim"
+      },
+      "authority": {
+        "mandate_refs": [
+          {
+            "ref": "MandateRef",
+            "id": "coffee-weekday"
+          }
+        ]
+      },
+      "waits": [],
+      "checkpoint_ref": null,
+      "budget": {
+        "steps": {
+          "mandate": 20,
+          "requested": null,
+          "effective": 20
+        },
+        "amount": {
+          "mandate": {
+            "value": "500.00",
+            "currency": "TRY"
+          },
+          "requested": {
+            "value": "300.00",
+            "currency": "TRY"
+          },
+          "effective": {
+            "value": "300.00",
+            "currency": "TRY"
+          }
+        }
+      },
+      "sub_agents": [],
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "CP-4",
+    "description": "Missing owner is rejected",
+    "input": {
+      "type": "Task",
+      "id": "task_01k7n51z01e40r200000000000",
+      "domain": {
+        "areas": [
+          "shopping"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "financial",
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-16T09:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "one-instance-ada"
+        },
+        "model_version": "mdl_01k7n51z06er38c00000000000",
+        "config_version": "cfg-7"
+      },
+      "purpose": {
+        "source": "user_request",
+        "ref": "int_01k7n51z04eg28800000000000"
+      },
+      "plan": {
+        "version": 1,
+        "steps": [
+          {
+            "id": "s1",
+            "capability": {
+              "name": "app.suiss.food.order.place",
+              "version": "2026-10-01"
+            },
+            "action": {
+              "namespace": "app.suiss.food.order.place",
+              "name": "primary",
+              "version": "2026-10-01",
+              "schema_digest": "sha256:abababababababababababababababababababababababababababababababab"
+            },
+            "effectful": true,
+            "inputs": [
+              {
+                "name": "merchant_ref",
+                "value": "merchant-42",
+                "provenance": "user.memory"
+              },
+              {
+                "name": "item",
+                "value": "flat white",
+                "provenance": "user.direct"
+              }
+            ],
+            "state": "planned",
+            "idempotency_key": "idem-task1-step1-0001"
+          }
+        ]
+      },
+      "completion_criterion": {
+        "statement": "Order confirmation received from the merchant",
+        "check": "executor_claim"
+      },
+      "authority": {
+        "mandate_refs": [
+          {
+            "ref": "MandateRef",
+            "id": "coffee-weekday"
+          }
+        ]
+      },
+      "waits": [],
+      "checkpoint_ref": null,
+      "budget": {
+        "steps": {
+          "mandate": 20,
+          "requested": null,
+          "effective": 20
+        },
+        "amount": {
+          "mandate": {
+            "value": "500.00",
+            "currency": "TRY"
+          },
+          "requested": {
+            "value": "300.00",
+            "currency": "TRY"
+          },
+          "effective": {
+            "value": "300.00",
+            "currency": "TRY"
+          }
+        }
+      },
+      "sub_agents": [],
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "CP-4",
+    "description": "Missing purpose is rejected",
+    "input": {
+      "type": "Task",
+      "id": "task_01k7n51z01e40r200000000000",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "person-ada"
+      },
+      "domain": {
+        "areas": [
+          "shopping"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "financial",
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-16T09:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "one-instance-ada"
+        },
+        "model_version": "mdl_01k7n51z06er38c00000000000",
+        "config_version": "cfg-7"
+      },
+      "plan": {
+        "version": 1,
+        "steps": [
+          {
+            "id": "s1",
+            "capability": {
+              "name": "app.suiss.food.order.place",
+              "version": "2026-10-01"
+            },
+            "action": {
+              "namespace": "app.suiss.food.order.place",
+              "name": "primary",
+              "version": "2026-10-01",
+              "schema_digest": "sha256:abababababababababababababababababababababababababababababababab"
+            },
+            "effectful": true,
+            "inputs": [
+              {
+                "name": "merchant_ref",
+                "value": "merchant-42",
+                "provenance": "user.memory"
+              },
+              {
+                "name": "item",
+                "value": "flat white",
+                "provenance": "user.direct"
+              }
+            ],
+            "state": "planned",
+            "idempotency_key": "idem-task1-step1-0001"
+          }
+        ]
+      },
+      "completion_criterion": {
+        "statement": "Order confirmation received from the merchant",
+        "check": "executor_claim"
+      },
+      "authority": {
+        "mandate_refs": [
+          {
+            "ref": "MandateRef",
+            "id": "coffee-weekday"
+          }
+        ]
+      },
+      "waits": [],
+      "checkpoint_ref": null,
+      "budget": {
+        "steps": {
+          "mandate": 20,
+          "requested": null,
+          "effective": 20
+        },
+        "amount": {
+          "mandate": {
+            "value": "500.00",
+            "currency": "TRY"
+          },
+          "requested": {
+            "value": "300.00",
+            "currency": "TRY"
+          },
+          "effective": {
+            "value": "300.00",
+            "currency": "TRY"
+          }
+        }
+      },
+      "sub_agents": [],
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "CP-4",
+    "description": "Missing plan is rejected",
+    "input": {
+      "type": "Task",
+      "id": "task_01k7n51z01e40r200000000000",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "person-ada"
+      },
+      "domain": {
+        "areas": [
+          "shopping"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "financial",
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-16T09:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "one-instance-ada"
+        },
+        "model_version": "mdl_01k7n51z06er38c00000000000",
+        "config_version": "cfg-7"
+      },
+      "purpose": {
+        "source": "user_request",
+        "ref": "int_01k7n51z04eg28800000000000"
+      },
+      "completion_criterion": {
+        "statement": "Order confirmation received from the merchant",
+        "check": "executor_claim"
+      },
+      "authority": {
+        "mandate_refs": [
+          {
+            "ref": "MandateRef",
+            "id": "coffee-weekday"
+          }
+        ]
+      },
+      "waits": [],
+      "checkpoint_ref": null,
+      "budget": {
+        "steps": {
+          "mandate": 20,
+          "requested": null,
+          "effective": 20
+        },
+        "amount": {
+          "mandate": {
+            "value": "500.00",
+            "currency": "TRY"
+          },
+          "requested": {
+            "value": "300.00",
+            "currency": "TRY"
+          },
+          "effective": {
+            "value": "300.00",
+            "currency": "TRY"
+          }
+        }
+      },
+      "sub_agents": [],
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "CP-4",
+    "description": "Missing completion_criterion is rejected",
+    "input": {
+      "type": "Task",
+      "id": "task_01k7n51z01e40r200000000000",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "person-ada"
+      },
+      "domain": {
+        "areas": [
+          "shopping"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "financial",
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-16T09:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "one-instance-ada"
+        },
+        "model_version": "mdl_01k7n51z06er38c00000000000",
+        "config_version": "cfg-7"
+      },
+      "purpose": {
+        "source": "user_request",
+        "ref": "int_01k7n51z04eg28800000000000"
+      },
+      "plan": {
+        "version": 1,
+        "steps": [
+          {
+            "id": "s1",
+            "capability": {
+              "name": "app.suiss.food.order.place",
+              "version": "2026-10-01"
+            },
+            "action": {
+              "namespace": "app.suiss.food.order.place",
+              "name": "primary",
+              "version": "2026-10-01",
+              "schema_digest": "sha256:abababababababababababababababababababababababababababababababab"
+            },
+            "effectful": true,
+            "inputs": [
+              {
+                "name": "merchant_ref",
+                "value": "merchant-42",
+                "provenance": "user.memory"
+              },
+              {
+                "name": "item",
+                "value": "flat white",
+                "provenance": "user.direct"
+              }
+            ],
+            "state": "planned",
+            "idempotency_key": "idem-task1-step1-0001"
+          }
+        ]
+      },
+      "authority": {
+        "mandate_refs": [
+          {
+            "ref": "MandateRef",
+            "id": "coffee-weekday"
+          }
+        ]
+      },
+      "waits": [],
+      "checkpoint_ref": null,
+      "budget": {
+        "steps": {
+          "mandate": 20,
+          "requested": null,
+          "effective": 20
+        },
+        "amount": {
+          "mandate": {
+            "value": "500.00",
+            "currency": "TRY"
+          },
+          "requested": {
+            "value": "300.00",
+            "currency": "TRY"
+          },
+          "effective": {
+            "value": "300.00",
+            "currency": "TRY"
+          }
+        }
+      },
+      "sub_agents": [],
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "CP-4",
+    "description": "Missing authority is rejected",
+    "input": {
+      "type": "Task",
+      "id": "task_01k7n51z01e40r200000000000",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "person-ada"
+      },
+      "domain": {
+        "areas": [
+          "shopping"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "financial",
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-16T09:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "one-instance-ada"
+        },
+        "model_version": "mdl_01k7n51z06er38c00000000000",
+        "config_version": "cfg-7"
+      },
+      "purpose": {
+        "source": "user_request",
+        "ref": "int_01k7n51z04eg28800000000000"
+      },
+      "plan": {
+        "version": 1,
+        "steps": [
+          {
+            "id": "s1",
+            "capability": {
+              "name": "app.suiss.food.order.place",
+              "version": "2026-10-01"
+            },
+            "action": {
+              "namespace": "app.suiss.food.order.place",
+              "name": "primary",
+              "version": "2026-10-01",
+              "schema_digest": "sha256:abababababababababababababababababababababababababababababababab"
+            },
+            "effectful": true,
+            "inputs": [
+              {
+                "name": "merchant_ref",
+                "value": "merchant-42",
+                "provenance": "user.memory"
+              },
+              {
+                "name": "item",
+                "value": "flat white",
+                "provenance": "user.direct"
+              }
+            ],
+            "state": "planned",
+            "idempotency_key": "idem-task1-step1-0001"
+          }
+        ]
+      },
+      "completion_criterion": {
+        "statement": "Order confirmation received from the merchant",
+        "check": "executor_claim"
+      },
+      "waits": [],
+      "checkpoint_ref": null,
+      "budget": {
+        "steps": {
+          "mandate": 20,
+          "requested": null,
+          "effective": 20
+        },
+        "amount": {
+          "mandate": {
+            "value": "500.00",
+            "currency": "TRY"
+          },
+          "requested": {
+            "value": "300.00",
+            "currency": "TRY"
+          },
+          "effective": {
+            "value": "300.00",
+            "currency": "TRY"
+          }
+        }
+      },
+      "sub_agents": [],
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "CP-4",
+    "description": "Missing waits is rejected",
+    "input": {
+      "type": "Task",
+      "id": "task_01k7n51z01e40r200000000000",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "person-ada"
+      },
+      "domain": {
+        "areas": [
+          "shopping"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "financial",
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-16T09:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "one-instance-ada"
+        },
+        "model_version": "mdl_01k7n51z06er38c00000000000",
+        "config_version": "cfg-7"
+      },
+      "purpose": {
+        "source": "user_request",
+        "ref": "int_01k7n51z04eg28800000000000"
+      },
+      "plan": {
+        "version": 1,
+        "steps": [
+          {
+            "id": "s1",
+            "capability": {
+              "name": "app.suiss.food.order.place",
+              "version": "2026-10-01"
+            },
+            "action": {
+              "namespace": "app.suiss.food.order.place",
+              "name": "primary",
+              "version": "2026-10-01",
+              "schema_digest": "sha256:abababababababababababababababababababababababababababababababab"
+            },
+            "effectful": true,
+            "inputs": [
+              {
+                "name": "merchant_ref",
+                "value": "merchant-42",
+                "provenance": "user.memory"
+              },
+              {
+                "name": "item",
+                "value": "flat white",
+                "provenance": "user.direct"
+              }
+            ],
+            "state": "planned",
+            "idempotency_key": "idem-task1-step1-0001"
+          }
+        ]
+      },
+      "completion_criterion": {
+        "statement": "Order confirmation received from the merchant",
+        "check": "executor_claim"
+      },
+      "authority": {
+        "mandate_refs": [
+          {
+            "ref": "MandateRef",
+            "id": "coffee-weekday"
+          }
+        ]
+      },
+      "checkpoint_ref": null,
+      "budget": {
+        "steps": {
+          "mandate": 20,
+          "requested": null,
+          "effective": 20
+        },
+        "amount": {
+          "mandate": {
+            "value": "500.00",
+            "currency": "TRY"
+          },
+          "requested": {
+            "value": "300.00",
+            "currency": "TRY"
+          },
+          "effective": {
+            "value": "300.00",
+            "currency": "TRY"
+          }
+        }
+      },
+      "sub_agents": [],
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "CP-4",
+    "description": "Missing checkpoint_ref is rejected",
+    "input": {
+      "type": "Task",
+      "id": "task_01k7n51z01e40r200000000000",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "person-ada"
+      },
+      "domain": {
+        "areas": [
+          "shopping"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "financial",
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-16T09:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "one-instance-ada"
+        },
+        "model_version": "mdl_01k7n51z06er38c00000000000",
+        "config_version": "cfg-7"
+      },
+      "purpose": {
+        "source": "user_request",
+        "ref": "int_01k7n51z04eg28800000000000"
+      },
+      "plan": {
+        "version": 1,
+        "steps": [
+          {
+            "id": "s1",
+            "capability": {
+              "name": "app.suiss.food.order.place",
+              "version": "2026-10-01"
+            },
+            "action": {
+              "namespace": "app.suiss.food.order.place",
+              "name": "primary",
+              "version": "2026-10-01",
+              "schema_digest": "sha256:abababababababababababababababababababababababababababababababab"
+            },
+            "effectful": true,
+            "inputs": [
+              {
+                "name": "merchant_ref",
+                "value": "merchant-42",
+                "provenance": "user.memory"
+              },
+              {
+                "name": "item",
+                "value": "flat white",
+                "provenance": "user.direct"
+              }
+            ],
+            "state": "planned",
+            "idempotency_key": "idem-task1-step1-0001"
+          }
+        ]
+      },
+      "completion_criterion": {
+        "statement": "Order confirmation received from the merchant",
+        "check": "executor_claim"
+      },
+      "authority": {
+        "mandate_refs": [
+          {
+            "ref": "MandateRef",
+            "id": "coffee-weekday"
+          }
+        ]
+      },
+      "waits": [],
+      "budget": {
+        "steps": {
+          "mandate": 20,
+          "requested": null,
+          "effective": 20
+        },
+        "amount": {
+          "mandate": {
+            "value": "500.00",
+            "currency": "TRY"
+          },
+          "requested": {
+            "value": "300.00",
+            "currency": "TRY"
+          },
+          "effective": {
+            "value": "300.00",
+            "currency": "TRY"
+          }
+        }
+      },
+      "sub_agents": [],
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "CP-4",
+    "description": "Missing domain is rejected",
+    "input": {
+      "type": "Task",
+      "id": "task_01k7n51z01e40r200000000000",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "person-ada"
+      },
+      "data_class": {
+        "kinds": [
+          "financial",
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-16T09:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "one-instance-ada"
+        },
+        "model_version": "mdl_01k7n51z06er38c00000000000",
+        "config_version": "cfg-7"
+      },
+      "purpose": {
+        "source": "user_request",
+        "ref": "int_01k7n51z04eg28800000000000"
+      },
+      "plan": {
+        "version": 1,
+        "steps": [
+          {
+            "id": "s1",
+            "capability": {
+              "name": "app.suiss.food.order.place",
+              "version": "2026-10-01"
+            },
+            "action": {
+              "namespace": "app.suiss.food.order.place",
+              "name": "primary",
+              "version": "2026-10-01",
+              "schema_digest": "sha256:abababababababababababababababababababababababababababababababab"
+            },
+            "effectful": true,
+            "inputs": [
+              {
+                "name": "merchant_ref",
+                "value": "merchant-42",
+                "provenance": "user.memory"
+              },
+              {
+                "name": "item",
+                "value": "flat white",
+                "provenance": "user.direct"
+              }
+            ],
+            "state": "planned",
+            "idempotency_key": "idem-task1-step1-0001"
+          }
+        ]
+      },
+      "completion_criterion": {
+        "statement": "Order confirmation received from the merchant",
+        "check": "executor_claim"
+      },
+      "authority": {
+        "mandate_refs": [
+          {
+            "ref": "MandateRef",
+            "id": "coffee-weekday"
+          }
+        ]
+      },
+      "waits": [],
+      "checkpoint_ref": null,
+      "budget": {
+        "steps": {
+          "mandate": 20,
+          "requested": null,
+          "effective": 20
+        },
+        "amount": {
+          "mandate": {
+            "value": "500.00",
+            "currency": "TRY"
+          },
+          "requested": {
+            "value": "300.00",
+            "currency": "TRY"
+          },
+          "effective": {
+            "value": "300.00",
+            "currency": "TRY"
+          }
+        }
+      },
+      "sub_agents": [],
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "CP-4",
+    "description": "Missing budget is rejected",
+    "input": {
+      "type": "Task",
+      "id": "task_01k7n51z01e40r200000000000",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "person-ada"
+      },
+      "domain": {
+        "areas": [
+          "shopping"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "financial",
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-16T09:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "one-instance-ada"
+        },
+        "model_version": "mdl_01k7n51z06er38c00000000000",
+        "config_version": "cfg-7"
+      },
+      "purpose": {
+        "source": "user_request",
+        "ref": "int_01k7n51z04eg28800000000000"
+      },
+      "plan": {
+        "version": 1,
+        "steps": [
+          {
+            "id": "s1",
+            "capability": {
+              "name": "app.suiss.food.order.place",
+              "version": "2026-10-01"
+            },
+            "action": {
+              "namespace": "app.suiss.food.order.place",
+              "name": "primary",
+              "version": "2026-10-01",
+              "schema_digest": "sha256:abababababababababababababababababababababababababababababababab"
+            },
+            "effectful": true,
+            "inputs": [
+              {
+                "name": "merchant_ref",
+                "value": "merchant-42",
+                "provenance": "user.memory"
+              },
+              {
+                "name": "item",
+                "value": "flat white",
+                "provenance": "user.direct"
+              }
+            ],
+            "state": "planned",
+            "idempotency_key": "idem-task1-step1-0001"
+          }
+        ]
+      },
+      "completion_criterion": {
+        "statement": "Order confirmation received from the merchant",
+        "check": "executor_claim"
+      },
+      "authority": {
+        "mandate_refs": [
+          {
+            "ref": "MandateRef",
+            "id": "coffee-weekday"
+          }
+        ]
+      },
+      "waits": [],
+      "checkpoint_ref": null,
+      "sub_agents": [],
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "CP-4",
+    "description": "Missing sub_agents is rejected",
+    "input": {
+      "type": "Task",
+      "id": "task_01k7n51z01e40r200000000000",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "person-ada"
+      },
+      "domain": {
+        "areas": [
+          "shopping"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "financial",
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-16T09:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "one-instance-ada"
+        },
+        "model_version": "mdl_01k7n51z06er38c00000000000",
+        "config_version": "cfg-7"
+      },
+      "purpose": {
+        "source": "user_request",
+        "ref": "int_01k7n51z04eg28800000000000"
+      },
+      "plan": {
+        "version": 1,
+        "steps": [
+          {
+            "id": "s1",
+            "capability": {
+              "name": "app.suiss.food.order.place",
+              "version": "2026-10-01"
+            },
+            "action": {
+              "namespace": "app.suiss.food.order.place",
+              "name": "primary",
+              "version": "2026-10-01",
+              "schema_digest": "sha256:abababababababababababababababababababababababababababababababab"
+            },
+            "effectful": true,
+            "inputs": [
+              {
+                "name": "merchant_ref",
+                "value": "merchant-42",
+                "provenance": "user.memory"
+              },
+              {
+                "name": "item",
+                "value": "flat white",
+                "provenance": "user.direct"
+              }
+            ],
+            "state": "planned",
+            "idempotency_key": "idem-task1-step1-0001"
+          }
+        ]
+      },
+      "completion_criterion": {
+        "statement": "Order confirmation received from the merchant",
+        "check": "executor_claim"
+      },
+      "authority": {
+        "mandate_refs": [
+          {
+            "ref": "MandateRef",
+            "id": "coffee-weekday"
+          }
+        ]
+      },
+      "waits": [],
+      "checkpoint_ref": null,
+      "budget": {
+        "steps": {
+          "mandate": 20,
+          "requested": null,
+          "effective": 20
+        },
+        "amount": {
+          "mandate": {
+            "value": "500.00",
+            "currency": "TRY"
+          },
+          "requested": {
+            "value": "300.00",
+            "currency": "TRY"
+          },
+          "effective": {
+            "value": "300.00",
+            "currency": "TRY"
+          }
+        }
+      },
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "CP-3",
+    "description": "A stored state field is rejected; state is derived from events",
+    "input": {
+      "type": "Task",
+      "id": "task_01k7n51z01e40r200000000000",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "person-ada"
+      },
+      "domain": {
+        "areas": [
+          "shopping"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "financial",
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-16T09:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "one-instance-ada"
+        },
+        "model_version": "mdl_01k7n51z06er38c00000000000",
+        "config_version": "cfg-7"
+      },
+      "purpose": {
+        "source": "user_request",
+        "ref": "int_01k7n51z04eg28800000000000"
+      },
+      "plan": {
+        "version": 1,
+        "steps": [
+          {
+            "id": "s1",
+            "capability": {
+              "name": "app.suiss.food.order.place",
+              "version": "2026-10-01"
+            },
+            "action": {
+              "namespace": "app.suiss.food.order.place",
+              "name": "primary",
+              "version": "2026-10-01",
+              "schema_digest": "sha256:abababababababababababababababababababababababababababababababab"
+            },
+            "effectful": true,
+            "inputs": [
+              {
+                "name": "merchant_ref",
+                "value": "merchant-42",
+                "provenance": "user.memory"
+              },
+              {
+                "name": "item",
+                "value": "flat white",
+                "provenance": "user.direct"
+              }
+            ],
+            "state": "planned",
+            "idempotency_key": "idem-task1-step1-0001"
+          }
+        ]
+      },
+      "completion_criterion": {
+        "statement": "Order confirmation received from the merchant",
+        "check": "executor_claim"
+      },
+      "authority": {
+        "mandate_refs": [
+          {
+            "ref": "MandateRef",
+            "id": "coffee-weekday"
+          }
+        ]
+      },
+      "waits": [],
+      "checkpoint_ref": null,
+      "budget": {
+        "steps": {
+          "mandate": 20,
+          "requested": null,
+          "effective": 20
+        },
+        "amount": {
+          "mandate": {
+            "value": "500.00",
+            "currency": "TRY"
+          },
+          "requested": {
+            "value": "300.00",
+            "currency": "TRY"
+          },
+          "effective": {
+            "value": "300.00",
+            "currency": "TRY"
+          }
+        }
+      },
+      "sub_agents": [],
+      "state": "running",
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "CP-2",
+    "description": "A model session or transcript field is rejected",
+    "input": {
+      "type": "Task",
+      "id": "task_01k7n51z01e40r200000000000",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "person-ada"
+      },
+      "domain": {
+        "areas": [
+          "shopping"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "financial",
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-16T09:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "one-instance-ada"
+        },
+        "model_version": "mdl_01k7n51z06er38c00000000000",
+        "config_version": "cfg-7"
+      },
+      "purpose": {
+        "source": "user_request",
+        "ref": "int_01k7n51z04eg28800000000000"
+      },
+      "plan": {
+        "version": 1,
+        "steps": [
+          {
+            "id": "s1",
+            "capability": {
+              "name": "app.suiss.food.order.place",
+              "version": "2026-10-01"
+            },
+            "action": {
+              "namespace": "app.suiss.food.order.place",
+              "name": "primary",
+              "version": "2026-10-01",
+              "schema_digest": "sha256:abababababababababababababababababababababababababababababababab"
+            },
+            "effectful": true,
+            "inputs": [
+              {
+                "name": "merchant_ref",
+                "value": "merchant-42",
+                "provenance": "user.memory"
+              },
+              {
+                "name": "item",
+                "value": "flat white",
+                "provenance": "user.direct"
+              }
+            ],
+            "state": "planned",
+            "idempotency_key": "idem-task1-step1-0001"
+          }
+        ]
+      },
+      "completion_criterion": {
+        "statement": "Order confirmation received from the merchant",
+        "check": "executor_claim"
+      },
+      "authority": {
+        "mandate_refs": [
+          {
+            "ref": "MandateRef",
+            "id": "coffee-weekday"
+          }
+        ]
+      },
+      "waits": [],
+      "checkpoint_ref": null,
+      "budget": {
+        "steps": {
+          "mandate": 20,
+          "requested": null,
+          "effective": 20
+        },
+        "amount": {
+          "mandate": {
+            "value": "500.00",
+            "currency": "TRY"
+          },
+          "requested": {
+            "value": "300.00",
+            "currency": "TRY"
+          },
+          "effective": {
+            "value": "300.00",
+            "currency": "TRY"
+          }
+        }
+      },
+      "sub_agents": [],
+      "model_session_ref": "sess-1",
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "CP-2",
+    "description": "Task id with a device or region encoding is rejected",
+    "input": {
+      "type": "Task",
+      "id": "task-eu-west-iphone-1",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "person-ada"
+      },
+      "domain": {
+        "areas": [
+          "shopping"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "financial",
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-16T09:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "one-instance-ada"
+        },
+        "model_version": "mdl_01k7n51z06er38c00000000000",
+        "config_version": "cfg-7"
+      },
+      "purpose": {
+        "source": "user_request",
+        "ref": "int_01k7n51z04eg28800000000000"
+      },
+      "plan": {
+        "version": 1,
+        "steps": [
+          {
+            "id": "s1",
+            "capability": {
+              "name": "app.suiss.food.order.place",
+              "version": "2026-10-01"
+            },
+            "action": {
+              "namespace": "app.suiss.food.order.place",
+              "name": "primary",
+              "version": "2026-10-01",
+              "schema_digest": "sha256:abababababababababababababababababababababababababababababababab"
+            },
+            "effectful": true,
+            "inputs": [
+              {
+                "name": "merchant_ref",
+                "value": "merchant-42",
+                "provenance": "user.memory"
+              },
+              {
+                "name": "item",
+                "value": "flat white",
+                "provenance": "user.direct"
+              }
+            ],
+            "state": "planned",
+            "idempotency_key": "idem-task1-step1-0001"
+          }
+        ]
+      },
+      "completion_criterion": {
+        "statement": "Order confirmation received from the merchant",
+        "check": "executor_claim"
+      },
+      "authority": {
+        "mandate_refs": [
+          {
+            "ref": "MandateRef",
+            "id": "coffee-weekday"
+          }
+        ]
+      },
+      "waits": [],
+      "checkpoint_ref": null,
+      "budget": {
+        "steps": {
+          "mandate": 20,
+          "requested": null,
+          "effective": 20
+        },
+        "amount": {
+          "mandate": {
+            "value": "500.00",
+            "currency": "TRY"
+          },
+          "requested": {
+            "value": "300.00",
+            "currency": "TRY"
+          },
+          "effective": {
+            "value": "300.00",
+            "currency": "TRY"
+          }
+        }
+      },
+      "sub_agents": [],
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-19",
+    "description": "Retention class other than one_memory is rejected",
+    "input": {
+      "type": "Task",
+      "id": "task_01k7n51z01e40r200000000000",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "person-ada"
+      },
+      "domain": {
+        "areas": [
+          "shopping"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "financial",
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_observation",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-16T09:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "one-instance-ada"
+        },
+        "model_version": "mdl_01k7n51z06er38c00000000000",
+        "config_version": "cfg-7"
+      },
+      "purpose": {
+        "source": "user_request",
+        "ref": "int_01k7n51z04eg28800000000000"
+      },
+      "plan": {
+        "version": 1,
+        "steps": [
+          {
+            "id": "s1",
+            "capability": {
+              "name": "app.suiss.food.order.place",
+              "version": "2026-10-01"
+            },
+            "action": {
+              "namespace": "app.suiss.food.order.place",
+              "name": "primary",
+              "version": "2026-10-01",
+              "schema_digest": "sha256:abababababababababababababababababababababababababababababababab"
+            },
+            "effectful": true,
+            "inputs": [
+              {
+                "name": "merchant_ref",
+                "value": "merchant-42",
+                "provenance": "user.memory"
+              },
+              {
+                "name": "item",
+                "value": "flat white",
+                "provenance": "user.direct"
+              }
+            ],
+            "state": "planned",
+            "idempotency_key": "idem-task1-step1-0001"
+          }
+        ]
+      },
+      "completion_criterion": {
+        "statement": "Order confirmation received from the merchant",
+        "check": "executor_claim"
+      },
+      "authority": {
+        "mandate_refs": [
+          {
+            "ref": "MandateRef",
+            "id": "coffee-weekday"
+          }
+        ]
+      },
+      "waits": [],
+      "checkpoint_ref": null,
+      "budget": {
+        "steps": {
+          "mandate": 20,
+          "requested": null,
+          "effective": 20
+        },
+        "amount": {
+          "mandate": {
+            "value": "500.00",
+            "currency": "TRY"
+          },
+          "requested": {
+            "value": "300.00",
+            "currency": "TRY"
+          },
+          "effective": {
+            "value": "300.00",
+            "currency": "TRY"
+          }
+        }
+      },
+      "sub_agents": [],
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "CP-1",
+    "description": "Optional commitment_ref for preparation work",
+    "input": {
+      "type": "Task",
+      "id": "task_01k7n51z01e40r200000000000",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "person-ada"
+      },
+      "domain": {
+        "areas": [
+          "shopping"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "financial",
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-16T09:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "one-instance-ada"
+        },
+        "model_version": "mdl_01k7n51z06er38c00000000000",
+        "config_version": "cfg-7"
+      },
+      "purpose": {
+        "source": "user_request",
+        "ref": "int_01k7n51z04eg28800000000000"
+      },
+      "plan": {
+        "version": 1,
+        "steps": [
+          {
+            "id": "s1",
+            "capability": {
+              "name": "app.suiss.food.order.place",
+              "version": "2026-10-01"
+            },
+            "action": {
+              "namespace": "app.suiss.food.order.place",
+              "name": "primary",
+              "version": "2026-10-01",
+              "schema_digest": "sha256:abababababababababababababababababababababababababababababababab"
+            },
+            "effectful": true,
+            "inputs": [
+              {
+                "name": "merchant_ref",
+                "value": "merchant-42",
+                "provenance": "user.memory"
+              },
+              {
+                "name": "item",
+                "value": "flat white",
+                "provenance": "user.direct"
+              }
+            ],
+            "state": "planned",
+            "idempotency_key": "idem-task1-step1-0001"
+          }
+        ]
+      },
+      "completion_criterion": {
+        "statement": "Order confirmation received from the merchant",
+        "check": "executor_claim"
+      },
+      "authority": {
+        "mandate_refs": [
+          {
+            "ref": "MandateRef",
+            "id": "coffee-weekday"
+          }
+        ]
+      },
+      "waits": [],
+      "checkpoint_ref": null,
+      "budget": {
+        "steps": {
+          "mandate": 20,
+          "requested": null,
+          "effective": 20
+        },
+        "amount": {
+          "mandate": {
+            "value": "500.00",
+            "currency": "TRY"
+          },
+          "requested": {
+            "value": "300.00",
+            "currency": "TRY"
+          },
+          "effective": {
+            "value": "300.00",
+            "currency": "TRY"
+          }
+        }
+      },
+      "sub_agents": [],
+      "commitment_ref": {
+        "ref": "CommitmentRef",
+        "id": "77"
+      },
+      "deleted_at": null
+    },
+    "valid": true
+  },
+  {
+    "rule": "CP-4",
+    "description": "Trigger-sourced task without trigger_ref is rejected",
+    "input": {
+      "type": "Task",
+      "id": "task_01k7n51z01e40r200000000000",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "person-ada"
+      },
+      "domain": {
+        "areas": [
+          "shopping"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "financial",
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-16T09:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "one-instance-ada"
+        },
+        "model_version": "mdl_01k7n51z06er38c00000000000",
+        "config_version": "cfg-7"
+      },
+      "purpose": {
+        "source": "trigger",
+        "ref": {
+          "ref": "TriggerRef",
+          "id": "trg-1"
+        }
+      },
+      "plan": {
+        "version": 1,
+        "steps": [
+          {
+            "id": "s1",
+            "capability": {
+              "name": "app.suiss.food.order.place",
+              "version": "2026-10-01"
+            },
+            "action": {
+              "namespace": "app.suiss.food.order.place",
+              "name": "primary",
+              "version": "2026-10-01",
+              "schema_digest": "sha256:abababababababababababababababababababababababababababababababab"
+            },
+            "effectful": true,
+            "inputs": [
+              {
+                "name": "merchant_ref",
+                "value": "merchant-42",
+                "provenance": "user.memory"
+              },
+              {
+                "name": "item",
+                "value": "flat white",
+                "provenance": "user.direct"
+              }
+            ],
+            "state": "planned",
+            "idempotency_key": "idem-task1-step1-0001"
+          }
+        ]
+      },
+      "completion_criterion": {
+        "statement": "Order confirmation received from the merchant",
+        "check": "executor_claim"
+      },
+      "authority": {
+        "mandate_refs": [
+          {
+            "ref": "MandateRef",
+            "id": "coffee-weekday"
+          }
+        ]
+      },
+      "waits": [],
+      "checkpoint_ref": null,
+      "budget": {
+        "steps": {
+          "mandate": 20,
+          "requested": null,
+          "effective": 20
+        },
+        "amount": {
+          "mandate": {
+            "value": "500.00",
+            "currency": "TRY"
+          },
+          "requested": {
+            "value": "300.00",
+            "currency": "TRY"
+          },
+          "effective": {
+            "value": "300.00",
+            "currency": "TRY"
+          }
+        }
+      },
+      "sub_agents": [],
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "CP-4",
+    "description": "Trigger-sourced task with trigger_ref",
+    "input": {
+      "type": "Task",
+      "id": "task_01k7n51z01e40r200000000000",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "person-ada"
+      },
+      "domain": {
+        "areas": [
+          "shopping"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "financial",
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-16T09:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "one-instance-ada"
+        },
+        "model_version": "mdl_01k7n51z06er38c00000000000",
+        "config_version": "cfg-7"
+      },
+      "purpose": {
+        "source": "trigger",
+        "ref": {
+          "ref": "TriggerRef",
+          "id": "trg-1"
+        }
+      },
+      "plan": {
+        "version": 1,
+        "steps": [
+          {
+            "id": "s1",
+            "capability": {
+              "name": "app.suiss.food.order.place",
+              "version": "2026-10-01"
+            },
+            "action": {
+              "namespace": "app.suiss.food.order.place",
+              "name": "primary",
+              "version": "2026-10-01",
+              "schema_digest": "sha256:abababababababababababababababababababababababababababababababab"
+            },
+            "effectful": true,
+            "inputs": [
+              {
+                "name": "merchant_ref",
+                "value": "merchant-42",
+                "provenance": "user.memory"
+              },
+              {
+                "name": "item",
+                "value": "flat white",
+                "provenance": "user.direct"
+              }
+            ],
+            "state": "planned",
+            "idempotency_key": "idem-task1-step1-0001"
+          }
+        ]
+      },
+      "completion_criterion": {
+        "statement": "Order confirmation received from the merchant",
+        "check": "executor_claim"
+      },
+      "authority": {
+        "mandate_refs": [
+          {
+            "ref": "MandateRef",
+            "id": "coffee-weekday"
+          }
+        ],
+        "trigger_ref": {
+          "ref": "TriggerRef",
+          "id": "trg-1"
+        }
+      },
+      "waits": [],
+      "checkpoint_ref": null,
+      "budget": {
+        "steps": {
+          "mandate": 20,
+          "requested": null,
+          "effective": 20
+        },
+        "amount": {
+          "mandate": {
+            "value": "500.00",
+            "currency": "TRY"
+          },
+          "requested": {
+            "value": "300.00",
+            "currency": "TRY"
+          },
+          "effective": {
+            "value": "300.00",
+            "currency": "TRY"
+          }
+        }
+      },
+      "sub_agents": [],
+      "deleted_at": null
+    },
+    "valid": true
+  },
+  {
+    "rule": "CP-4",
+    "description": "Effectful step without a bound Mandate is rejected",
+    "input": {
+      "type": "Task",
+      "id": "task_01k7n51z01e40r200000000000",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "person-ada"
+      },
+      "domain": {
+        "areas": [
+          "shopping"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "financial",
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-16T09:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "one-instance-ada"
+        },
+        "model_version": "mdl_01k7n51z06er38c00000000000",
+        "config_version": "cfg-7"
+      },
+      "purpose": {
+        "source": "user_request",
+        "ref": "int_01k7n51z04eg28800000000000"
+      },
+      "plan": {
+        "version": 1,
+        "steps": [
+          {
+            "id": "s1",
+            "capability": {
+              "name": "app.suiss.food.order.place",
+              "version": "2026-10-01"
+            },
+            "action": {
+              "namespace": "app.suiss.food.order.place",
+              "name": "primary",
+              "version": "2026-10-01",
+              "schema_digest": "sha256:abababababababababababababababababababababababababababababababab"
+            },
+            "effectful": true,
+            "inputs": [
+              {
+                "name": "merchant_ref",
+                "value": "merchant-42",
+                "provenance": "user.memory"
+              },
+              {
+                "name": "item",
+                "value": "flat white",
+                "provenance": "user.direct"
+              }
+            ],
+            "state": "planned",
+            "idempotency_key": "idem-task1-step1-0001"
+          }
+        ]
+      },
+      "completion_criterion": {
+        "statement": "Order confirmation received from the merchant",
+        "check": "executor_claim"
+      },
+      "authority": {
+        "mandate_refs": []
+      },
+      "waits": [],
+      "checkpoint_ref": null,
+      "budget": {
+        "steps": {
+          "mandate": 20,
+          "requested": null,
+          "effective": 20
+        },
+        "amount": {
+          "mandate": {
+            "value": "500.00",
+            "currency": "TRY"
+          },
+          "requested": {
+            "value": "300.00",
+            "currency": "TRY"
+          },
+          "effective": {
+            "value": "300.00",
+            "currency": "TRY"
+          }
+        }
+      },
+      "sub_agents": [],
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "CP-4",
+    "description": "Read-only task needs no Mandate",
+    "input": {
+      "type": "Task",
+      "id": "task_01k7n51z01e40r200000000000",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "person-ada"
+      },
+      "domain": {
+        "areas": [
+          "shopping"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "financial",
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-16T09:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "one-instance-ada"
+        },
+        "model_version": "mdl_01k7n51z06er38c00000000000",
+        "config_version": "cfg-7"
+      },
+      "purpose": {
+        "source": "user_request",
+        "ref": "int_01k7n51z04eg28800000000000"
+      },
+      "plan": {
+        "version": 1,
+        "steps": [
+          {
+            "id": "s1",
+            "capability": {
+              "name": "app.suiss.food.order.place",
+              "version": "2026-10-01"
+            },
+            "action": {
+              "namespace": "app.suiss.food.order.place",
+              "name": "primary",
+              "version": "2026-10-01",
+              "schema_digest": "sha256:abababababababababababababababababababababababababababababababab"
+            },
+            "effectful": false,
+            "inputs": [
+              {
+                "name": "merchant_ref",
+                "value": "merchant-42",
+                "provenance": "user.memory"
+              },
+              {
+                "name": "item",
+                "value": "flat white",
+                "provenance": "user.direct"
+              }
+            ],
+            "state": "planned"
+          }
+        ]
+      },
+      "completion_criterion": {
+        "statement": "Order confirmation received from the merchant",
+        "check": "executor_claim"
+      },
+      "authority": {
+        "mandate_refs": []
+      },
+      "waits": [],
+      "checkpoint_ref": null,
+      "budget": {
+        "steps": {
+          "mandate": 20,
+          "requested": null,
+          "effective": 20
+        },
+        "amount": {
+          "mandate": {
+            "value": "500.00",
+            "currency": "TRY"
+          },
+          "requested": {
+            "value": "300.00",
+            "currency": "TRY"
+          },
+          "effective": {
+            "value": "300.00",
+            "currency": "TRY"
+          }
+        }
+      },
+      "sub_agents": [],
+      "deleted_at": null
+    },
+    "valid": true
+  },
+  {
+    "rule": "CP-43",
+    "description": "Effectful step without idempotency key is rejected",
+    "input": {
+      "type": "Task",
+      "id": "task_01k7n51z01e40r200000000000",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "person-ada"
+      },
+      "domain": {
+        "areas": [
+          "shopping"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "financial",
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-16T09:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "one-instance-ada"
+        },
+        "model_version": "mdl_01k7n51z06er38c00000000000",
+        "config_version": "cfg-7"
+      },
+      "purpose": {
+        "source": "user_request",
+        "ref": "int_01k7n51z04eg28800000000000"
+      },
+      "plan": {
+        "version": 1,
+        "steps": [
+          {
+            "id": "s1",
+            "capability": {
+              "name": "app.suiss.food.order.place",
+              "version": "2026-10-01"
+            },
+            "action": {
+              "namespace": "app.suiss.food.order.place",
+              "name": "primary",
+              "version": "2026-10-01",
+              "schema_digest": "sha256:abababababababababababababababababababababababababababababababab"
+            },
+            "effectful": true,
+            "inputs": [
+              {
+                "name": "merchant_ref",
+                "value": "merchant-42",
+                "provenance": "user.memory"
+              },
+              {
+                "name": "item",
+                "value": "flat white",
+                "provenance": "user.direct"
+              }
+            ],
+            "state": "planned"
+          }
+        ]
+      },
+      "completion_criterion": {
+        "statement": "Order confirmation received from the merchant",
+        "check": "executor_claim"
+      },
+      "authority": {
+        "mandate_refs": [
+          {
+            "ref": "MandateRef",
+            "id": "coffee-weekday"
+          }
+        ]
+      },
+      "waits": [],
+      "checkpoint_ref": null,
+      "budget": {
+        "steps": {
+          "mandate": 20,
+          "requested": null,
+          "effective": 20
+        },
+        "amount": {
+          "mandate": {
+            "value": "500.00",
+            "currency": "TRY"
+          },
+          "requested": {
+            "value": "300.00",
+            "currency": "TRY"
+          },
+          "effective": {
+            "value": "300.00",
+            "currency": "TRY"
+          }
+        }
+      },
+      "sub_agents": [],
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "CP-4",
+    "description": "Done effectful step without ExerciseRef is rejected",
+    "input": {
+      "type": "Task",
+      "id": "task_01k7n51z01e40r200000000000",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "person-ada"
+      },
+      "domain": {
+        "areas": [
+          "shopping"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "financial",
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-16T09:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "one-instance-ada"
+        },
+        "model_version": "mdl_01k7n51z06er38c00000000000",
+        "config_version": "cfg-7"
+      },
+      "purpose": {
+        "source": "user_request",
+        "ref": "int_01k7n51z04eg28800000000000"
+      },
+      "plan": {
+        "version": 1,
+        "steps": [
+          {
+            "id": "s1",
+            "capability": {
+              "name": "app.suiss.food.order.place",
+              "version": "2026-10-01"
+            },
+            "action": {
+              "namespace": "app.suiss.food.order.place",
+              "name": "primary",
+              "version": "2026-10-01",
+              "schema_digest": "sha256:abababababababababababababababababababababababababababababababab"
+            },
+            "effectful": true,
+            "inputs": [
+              {
+                "name": "merchant_ref",
+                "value": "merchant-42",
+                "provenance": "user.memory"
+              },
+              {
+                "name": "item",
+                "value": "flat white",
+                "provenance": "user.direct"
+              }
+            ],
+            "state": "done",
+            "idempotency_key": "idem-task1-step1-0001",
+            "result": {
+              "status": "done",
+              "outcome": {
+                "subject": "effect",
+                "certainty": "confirmed",
+                "value": "occurred",
+                "confirmation": {
+                  "ref": "ClaimRef",
+                  "id": "claim-1"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "completion_criterion": {
+        "statement": "Order confirmation received from the merchant",
+        "check": "executor_claim"
+      },
+      "authority": {
+        "mandate_refs": [
+          {
+            "ref": "MandateRef",
+            "id": "coffee-weekday"
+          }
+        ]
+      },
+      "waits": [],
+      "checkpoint_ref": null,
+      "budget": {
+        "steps": {
+          "mandate": 20,
+          "requested": null,
+          "effective": 20
+        },
+        "amount": {
+          "mandate": {
+            "value": "500.00",
+            "currency": "TRY"
+          },
+          "requested": {
+            "value": "300.00",
+            "currency": "TRY"
+          },
+          "effective": {
+            "value": "300.00",
+            "currency": "TRY"
+          }
+        }
+      },
+      "sub_agents": [],
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "CP-4",
+    "description": "Done effectful step with ExerciseRef",
+    "input": {
+      "type": "Task",
+      "id": "task_01k7n51z01e40r200000000000",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "person-ada"
+      },
+      "domain": {
+        "areas": [
+          "shopping"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "financial",
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-16T09:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "one-instance-ada"
+        },
+        "model_version": "mdl_01k7n51z06er38c00000000000",
+        "config_version": "cfg-7"
+      },
+      "purpose": {
+        "source": "user_request",
+        "ref": "int_01k7n51z04eg28800000000000"
+      },
+      "plan": {
+        "version": 1,
+        "steps": [
+          {
+            "id": "s1",
+            "capability": {
+              "name": "app.suiss.food.order.place",
+              "version": "2026-10-01"
+            },
+            "action": {
+              "namespace": "app.suiss.food.order.place",
+              "name": "primary",
+              "version": "2026-10-01",
+              "schema_digest": "sha256:abababababababababababababababababababababababababababababababab"
+            },
+            "effectful": true,
+            "inputs": [
+              {
+                "name": "merchant_ref",
+                "value": "merchant-42",
+                "provenance": "user.memory"
+              },
+              {
+                "name": "item",
+                "value": "flat white",
+                "provenance": "user.direct"
+              }
+            ],
+            "state": "done",
+            "idempotency_key": "idem-task1-step1-0001",
+            "result": {
+              "status": "done",
+              "outcome": {
+                "subject": "effect",
+                "certainty": "confirmed",
+                "value": "occurred",
+                "confirmation": {
+                  "ref": "ClaimRef",
+                  "id": "claim-1"
+                }
+              }
+            },
+            "exercise_ref": {
+              "ref": "ExerciseRef",
+              "id": "ex-1"
+            }
+          }
+        ]
+      },
+      "completion_criterion": {
+        "statement": "Order confirmation received from the merchant",
+        "check": "executor_claim"
+      },
+      "authority": {
+        "mandate_refs": [
+          {
+            "ref": "MandateRef",
+            "id": "coffee-weekday"
+          }
+        ]
+      },
+      "waits": [],
+      "checkpoint_ref": null,
+      "budget": {
+        "steps": {
+          "mandate": 20,
+          "requested": null,
+          "effective": 20
+        },
+        "amount": {
+          "mandate": {
+            "value": "500.00",
+            "currency": "TRY"
+          },
+          "requested": {
+            "value": "300.00",
+            "currency": "TRY"
+          },
+          "effective": {
+            "value": "300.00",
+            "currency": "TRY"
+          }
+        }
+      },
+      "sub_agents": [],
+      "deleted_at": null
+    },
+    "valid": true
+  },
+  {
+    "rule": "CP-6",
+    "description": "Step state and result status disagree",
+    "input": {
+      "type": "Task",
+      "id": "task_01k7n51z01e40r200000000000",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "person-ada"
+      },
+      "domain": {
+        "areas": [
+          "shopping"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "financial",
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-16T09:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "one-instance-ada"
+        },
+        "model_version": "mdl_01k7n51z06er38c00000000000",
+        "config_version": "cfg-7"
+      },
+      "purpose": {
+        "source": "user_request",
+        "ref": "int_01k7n51z04eg28800000000000"
+      },
+      "plan": {
+        "version": 1,
+        "steps": [
+          {
+            "id": "s1",
+            "capability": {
+              "name": "app.suiss.food.order.place",
+              "version": "2026-10-01"
+            },
+            "action": {
+              "namespace": "app.suiss.food.order.place",
+              "name": "primary",
+              "version": "2026-10-01",
+              "schema_digest": "sha256:abababababababababababababababababababababababababababababababab"
+            },
+            "effectful": true,
+            "inputs": [
+              {
+                "name": "merchant_ref",
+                "value": "merchant-42",
+                "provenance": "user.memory"
+              },
+              {
+                "name": "item",
+                "value": "flat white",
+                "provenance": "user.direct"
+              }
+            ],
+            "state": "done",
+            "idempotency_key": "idem-task1-step1-0001",
+            "result": {
+              "status": "failed",
+              "reason": "provider_error",
+              "outcome": {
+                "subject": "execution",
+                "certainty": "confirmed",
+                "value": "failed",
+                "confirmation": {
+                  "ref": "ExecutionReportRef",
+                  "id": "report-1"
+                }
+              }
+            },
+            "exercise_ref": {
+              "ref": "ExerciseRef",
+              "id": "ex-1"
+            }
+          }
+        ]
+      },
+      "completion_criterion": {
+        "statement": "Order confirmation received from the merchant",
+        "check": "executor_claim"
+      },
+      "authority": {
+        "mandate_refs": [
+          {
+            "ref": "MandateRef",
+            "id": "coffee-weekday"
+          }
+        ]
+      },
+      "waits": [],
+      "checkpoint_ref": null,
+      "budget": {
+        "steps": {
+          "mandate": 20,
+          "requested": null,
+          "effective": 20
+        },
+        "amount": {
+          "mandate": {
+            "value": "500.00",
+            "currency": "TRY"
+          },
+          "requested": {
+            "value": "300.00",
+            "currency": "TRY"
+          },
+          "effective": {
+            "value": "300.00",
+            "currency": "TRY"
+          }
+        }
+      },
+      "sub_agents": [],
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "CP-6",
+    "description": "Planned step carrying a result is rejected",
+    "input": {
+      "type": "Task",
+      "id": "task_01k7n51z01e40r200000000000",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "person-ada"
+      },
+      "domain": {
+        "areas": [
+          "shopping"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "financial",
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-16T09:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "one-instance-ada"
+        },
+        "model_version": "mdl_01k7n51z06er38c00000000000",
+        "config_version": "cfg-7"
+      },
+      "purpose": {
+        "source": "user_request",
+        "ref": "int_01k7n51z04eg28800000000000"
+      },
+      "plan": {
+        "version": 1,
+        "steps": [
+          {
+            "id": "s1",
+            "capability": {
+              "name": "app.suiss.food.order.place",
+              "version": "2026-10-01"
+            },
+            "action": {
+              "namespace": "app.suiss.food.order.place",
+              "name": "primary",
+              "version": "2026-10-01",
+              "schema_digest": "sha256:abababababababababababababababababababababababababababababababab"
+            },
+            "effectful": true,
+            "inputs": [
+              {
+                "name": "merchant_ref",
+                "value": "merchant-42",
+                "provenance": "user.memory"
+              },
+              {
+                "name": "item",
+                "value": "flat white",
+                "provenance": "user.direct"
+              }
+            ],
+            "state": "planned",
+            "idempotency_key": "idem-task1-step1-0001",
+            "result": {
+              "status": "done",
+              "outcome": {
+                "subject": "effect",
+                "certainty": "confirmed",
+                "value": "occurred",
+                "confirmation": {
+                  "ref": "ClaimRef",
+                  "id": "claim-1"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "completion_criterion": {
+        "statement": "Order confirmation received from the merchant",
+        "check": "executor_claim"
+      },
+      "authority": {
+        "mandate_refs": [
+          {
+            "ref": "MandateRef",
+            "id": "coffee-weekday"
+          }
+        ]
+      },
+      "waits": [],
+      "checkpoint_ref": null,
+      "budget": {
+        "steps": {
+          "mandate": 20,
+          "requested": null,
+          "effective": 20
+        },
+        "amount": {
+          "mandate": {
+            "value": "500.00",
+            "currency": "TRY"
+          },
+          "requested": {
+            "value": "300.00",
+            "currency": "TRY"
+          },
+          "effective": {
+            "value": "300.00",
+            "currency": "TRY"
+          }
+        }
+      },
+      "sub_agents": [],
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "SEC-14",
+    "description": "Input without a provenance label is rejected",
+    "input": {
+      "type": "Task",
+      "id": "task_01k7n51z01e40r200000000000",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "person-ada"
+      },
+      "domain": {
+        "areas": [
+          "shopping"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "financial",
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-16T09:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "one-instance-ada"
+        },
+        "model_version": "mdl_01k7n51z06er38c00000000000",
+        "config_version": "cfg-7"
+      },
+      "purpose": {
+        "source": "user_request",
+        "ref": "int_01k7n51z04eg28800000000000"
+      },
+      "plan": {
+        "version": 1,
+        "steps": [
+          {
+            "id": "s1",
+            "capability": {
+              "name": "app.suiss.food.order.place",
+              "version": "2026-10-01"
+            },
+            "action": {
+              "namespace": "app.suiss.food.order.place",
+              "name": "primary",
+              "version": "2026-10-01",
+              "schema_digest": "sha256:abababababababababababababababababababababababababababababababab"
+            },
+            "effectful": true,
+            "inputs": [
+              {
+                "name": "merchant_ref",
+                "value": "merchant-42"
+              },
+              {
+                "name": "item",
+                "value": "flat white",
+                "provenance": "user.direct"
+              }
+            ],
+            "state": "planned",
+            "idempotency_key": "idem-task1-step1-0001"
+          }
+        ]
+      },
+      "completion_criterion": {
+        "statement": "Order confirmation received from the merchant",
+        "check": "executor_claim"
+      },
+      "authority": {
+        "mandate_refs": [
+          {
+            "ref": "MandateRef",
+            "id": "coffee-weekday"
+          }
+        ]
+      },
+      "waits": [],
+      "checkpoint_ref": null,
+      "budget": {
+        "steps": {
+          "mandate": 20,
+          "requested": null,
+          "effective": 20
+        },
+        "amount": {
+          "mandate": {
+            "value": "500.00",
+            "currency": "TRY"
+          },
+          "requested": {
+            "value": "300.00",
+            "currency": "TRY"
+          },
+          "effective": {
+            "value": "300.00",
+            "currency": "TRY"
+          }
+        }
+      },
+      "sub_agents": [],
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "SEC-14",
+    "description": "Unknown provenance label is rejected",
+    "input": {
+      "type": "Task",
+      "id": "task_01k7n51z01e40r200000000000",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "person-ada"
+      },
+      "domain": {
+        "areas": [
+          "shopping"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "financial",
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-16T09:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "one-instance-ada"
+        },
+        "model_version": "mdl_01k7n51z06er38c00000000000",
+        "config_version": "cfg-7"
+      },
+      "purpose": {
+        "source": "user_request",
+        "ref": "int_01k7n51z04eg28800000000000"
+      },
+      "plan": {
+        "version": 1,
+        "steps": [
+          {
+            "id": "s1",
+            "capability": {
+              "name": "app.suiss.food.order.place",
+              "version": "2026-10-01"
+            },
+            "action": {
+              "namespace": "app.suiss.food.order.place",
+              "name": "primary",
+              "version": "2026-10-01",
+              "schema_digest": "sha256:abababababababababababababababababababababababababababababababab"
+            },
+            "effectful": true,
+            "inputs": [
+              {
+                "name": "merchant_ref",
+                "value": "merchant-42",
+                "provenance": "trusted"
+              },
+              {
+                "name": "item",
+                "value": "flat white",
+                "provenance": "user.direct"
+              }
+            ],
+            "state": "planned",
+            "idempotency_key": "idem-task1-step1-0001"
+          }
+        ]
+      },
+      "completion_criterion": {
+        "statement": "Order confirmation received from the merchant",
+        "check": "executor_claim"
+      },
+      "authority": {
+        "mandate_refs": [
+          {
+            "ref": "MandateRef",
+            "id": "coffee-weekday"
+          }
+        ]
+      },
+      "waits": [],
+      "checkpoint_ref": null,
+      "budget": {
+        "steps": {
+          "mandate": 20,
+          "requested": null,
+          "effective": 20
+        },
+        "amount": {
+          "mandate": {
+            "value": "500.00",
+            "currency": "TRY"
+          },
+          "requested": {
+            "value": "300.00",
+            "currency": "TRY"
+          },
+          "effective": {
+            "value": "300.00",
+            "currency": "TRY"
+          }
+        }
+      },
+      "sub_agents": [],
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "CP-4",
+    "description": "Empty plan is rejected",
+    "input": {
+      "type": "Task",
+      "id": "task_01k7n51z01e40r200000000000",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "person-ada"
+      },
+      "domain": {
+        "areas": [
+          "shopping"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "financial",
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-16T09:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "one-instance-ada"
+        },
+        "model_version": "mdl_01k7n51z06er38c00000000000",
+        "config_version": "cfg-7"
+      },
+      "purpose": {
+        "source": "user_request",
+        "ref": "int_01k7n51z04eg28800000000000"
+      },
+      "plan": {
+        "version": 1,
+        "steps": []
+      },
+      "completion_criterion": {
+        "statement": "Order confirmation received from the merchant",
+        "check": "executor_claim"
+      },
+      "authority": {
+        "mandate_refs": [
+          {
+            "ref": "MandateRef",
+            "id": "coffee-weekday"
+          }
+        ]
+      },
+      "waits": [],
+      "checkpoint_ref": null,
+      "budget": {
+        "steps": {
+          "mandate": 20,
+          "requested": null,
+          "effective": 20
+        },
+        "amount": {
+          "mandate": {
+            "value": "500.00",
+            "currency": "TRY"
+          },
+          "requested": {
+            "value": "300.00",
+            "currency": "TRY"
+          },
+          "effective": {
+            "value": "300.00",
+            "currency": "TRY"
+          }
+        }
+      },
+      "sub_agents": [],
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "SEC-19",
+    "description": "Cloud browser route without an origin set is rejected",
+    "input": {
+      "type": "Task",
+      "id": "task_01k7n51z01e40r200000000000",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "person-ada"
+      },
+      "domain": {
+        "areas": [
+          "shopping"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "financial",
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-16T09:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "one-instance-ada"
+        },
+        "model_version": "mdl_01k7n51z06er38c00000000000",
+        "config_version": "cfg-7"
+      },
+      "purpose": {
+        "source": "user_request",
+        "ref": "int_01k7n51z04eg28800000000000"
+      },
+      "plan": {
+        "version": 1,
+        "steps": [
+          {
+            "id": "s1",
+            "capability": {
+              "name": "app.suiss.food.order.place",
+              "version": "2026-10-01"
+            },
+            "action": {
+              "namespace": "app.suiss.food.order.place",
+              "name": "primary",
+              "version": "2026-10-01",
+              "schema_digest": "sha256:abababababababababababababababababababababababababababababababab"
+            },
+            "effectful": true,
+            "inputs": [
+              {
+                "name": "merchant_ref",
+                "value": "merchant-42",
+                "provenance": "user.memory"
+              },
+              {
+                "name": "item",
+                "value": "flat white",
+                "provenance": "user.direct"
+              }
+            ],
+            "state": "planned",
+            "idempotency_key": "idem-task1-step1-0001",
+            "route": {
+              "path": "cloud_browser",
+              "location": "cloud_microvm",
+              "reason": "no API"
+            }
+          }
+        ]
+      },
+      "completion_criterion": {
+        "statement": "Order confirmation received from the merchant",
+        "check": "executor_claim"
+      },
+      "authority": {
+        "mandate_refs": [
+          {
+            "ref": "MandateRef",
+            "id": "coffee-weekday"
+          }
+        ]
+      },
+      "waits": [],
+      "checkpoint_ref": null,
+      "budget": {
+        "steps": {
+          "mandate": 20,
+          "requested": null,
+          "effective": 20
+        },
+        "amount": {
+          "mandate": {
+            "value": "500.00",
+            "currency": "TRY"
+          },
+          "requested": {
+            "value": "300.00",
+            "currency": "TRY"
+          },
+          "effective": {
+            "value": "300.00",
+            "currency": "TRY"
+          }
+        }
+      },
+      "sub_agents": [],
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "CP-9",
+    "description": "Cloud browser route with an origin set",
+    "input": {
+      "type": "Task",
+      "id": "task_01k7n51z01e40r200000000000",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "person-ada"
+      },
+      "domain": {
+        "areas": [
+          "shopping"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "financial",
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-16T09:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "one-instance-ada"
+        },
+        "model_version": "mdl_01k7n51z06er38c00000000000",
+        "config_version": "cfg-7"
+      },
+      "purpose": {
+        "source": "user_request",
+        "ref": "int_01k7n51z04eg28800000000000"
+      },
+      "plan": {
+        "version": 1,
+        "steps": [
+          {
+            "id": "s1",
+            "capability": {
+              "name": "app.suiss.food.order.place",
+              "version": "2026-10-01"
+            },
+            "action": {
+              "namespace": "app.suiss.food.order.place",
+              "name": "primary",
+              "version": "2026-10-01",
+              "schema_digest": "sha256:abababababababababababababababababababababababababababababababab"
+            },
+            "effectful": true,
+            "inputs": [
+              {
+                "name": "merchant_ref",
+                "value": "merchant-42",
+                "provenance": "user.memory"
+              },
+              {
+                "name": "item",
+                "value": "flat white",
+                "provenance": "user.direct"
+              }
+            ],
+            "state": "planned",
+            "idempotency_key": "idem-task1-step1-0001",
+            "route": {
+              "path": "cloud_browser",
+              "location": "cloud_microvm",
+              "reason": "no API"
+            },
+            "origin_set": {
+              "read": [
+                "https://cafe.example"
+              ],
+              "write": [
+                "https://cafe.example"
+              ]
+            }
+          }
+        ]
+      },
+      "completion_criterion": {
+        "statement": "Order confirmation received from the merchant",
+        "check": "executor_claim"
+      },
+      "authority": {
+        "mandate_refs": [
+          {
+            "ref": "MandateRef",
+            "id": "coffee-weekday"
+          }
+        ]
+      },
+      "waits": [],
+      "checkpoint_ref": null,
+      "budget": {
+        "steps": {
+          "mandate": 20,
+          "requested": null,
+          "effective": 20
+        },
+        "amount": {
+          "mandate": {
+            "value": "500.00",
+            "currency": "TRY"
+          },
+          "requested": {
+            "value": "300.00",
+            "currency": "TRY"
+          },
+          "effective": {
+            "value": "300.00",
+            "currency": "TRY"
+          }
+        }
+      },
+      "sub_agents": [],
+      "deleted_at": null
+    },
+    "valid": true
+  },
+  {
+    "rule": "M-28",
+    "description": "Unknown life area is rejected",
+    "input": {
+      "type": "Task",
+      "id": "task_01k7n51z01e40r200000000000",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "person-ada"
+      },
+      "domain": {
+        "areas": [
+          "crypto"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "financial",
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-16T09:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "one-instance-ada"
+        },
+        "model_version": "mdl_01k7n51z06er38c00000000000",
+        "config_version": "cfg-7"
+      },
+      "purpose": {
+        "source": "user_request",
+        "ref": "int_01k7n51z04eg28800000000000"
+      },
+      "plan": {
+        "version": 1,
+        "steps": [
+          {
+            "id": "s1",
+            "capability": {
+              "name": "app.suiss.food.order.place",
+              "version": "2026-10-01"
+            },
+            "action": {
+              "namespace": "app.suiss.food.order.place",
+              "name": "primary",
+              "version": "2026-10-01",
+              "schema_digest": "sha256:abababababababababababababababababababababababababababababababab"
+            },
+            "effectful": true,
+            "inputs": [
+              {
+                "name": "merchant_ref",
+                "value": "merchant-42",
+                "provenance": "user.memory"
+              },
+              {
+                "name": "item",
+                "value": "flat white",
+                "provenance": "user.direct"
+              }
+            ],
+            "state": "planned",
+            "idempotency_key": "idem-task1-step1-0001"
+          }
+        ]
+      },
+      "completion_criterion": {
+        "statement": "Order confirmation received from the merchant",
+        "check": "executor_claim"
+      },
+      "authority": {
+        "mandate_refs": [
+          {
+            "ref": "MandateRef",
+            "id": "coffee-weekday"
+          }
+        ]
+      },
+      "waits": [],
+      "checkpoint_ref": null,
+      "budget": {
+        "steps": {
+          "mandate": 20,
+          "requested": null,
+          "effective": 20
+        },
+        "amount": {
+          "mandate": {
+            "value": "500.00",
+            "currency": "TRY"
+          },
+          "requested": {
+            "value": "300.00",
+            "currency": "TRY"
+          },
+          "effective": {
+            "value": "300.00",
+            "currency": "TRY"
+          }
+        }
+      },
+      "sub_agents": [],
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-20",
+    "description": "Version 2 must name the version it supersedes",
+    "input": {
+      "type": "Task",
+      "id": "task_01k7n51z01e40r200000000000",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "person-ada"
+      },
+      "domain": {
+        "areas": [
+          "shopping"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "financial",
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-16T09:00:00Z",
+      "version": 2,
+      "supersedes": null,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "one-instance-ada"
+        },
+        "model_version": "mdl_01k7n51z06er38c00000000000",
+        "config_version": "cfg-7"
+      },
+      "purpose": {
+        "source": "user_request",
+        "ref": "int_01k7n51z04eg28800000000000"
+      },
+      "plan": {
+        "version": 1,
+        "steps": [
+          {
+            "id": "s1",
+            "capability": {
+              "name": "app.suiss.food.order.place",
+              "version": "2026-10-01"
+            },
+            "action": {
+              "namespace": "app.suiss.food.order.place",
+              "name": "primary",
+              "version": "2026-10-01",
+              "schema_digest": "sha256:abababababababababababababababababababababababababababababababab"
+            },
+            "effectful": true,
+            "inputs": [
+              {
+                "name": "merchant_ref",
+                "value": "merchant-42",
+                "provenance": "user.memory"
+              },
+              {
+                "name": "item",
+                "value": "flat white",
+                "provenance": "user.direct"
+              }
+            ],
+            "state": "planned",
+            "idempotency_key": "idem-task1-step1-0001"
+          }
+        ]
+      },
+      "completion_criterion": {
+        "statement": "Order confirmation received from the merchant",
+        "check": "executor_claim"
+      },
+      "authority": {
+        "mandate_refs": [
+          {
+            "ref": "MandateRef",
+            "id": "coffee-weekday"
+          }
+        ]
+      },
+      "waits": [],
+      "checkpoint_ref": null,
+      "budget": {
+        "steps": {
+          "mandate": 20,
+          "requested": null,
+          "effective": 20
+        },
+        "amount": {
+          "mandate": {
+            "value": "500.00",
+            "currency": "TRY"
+          },
+          "requested": {
+            "value": "300.00",
+            "currency": "TRY"
+          },
+          "effective": {
+            "value": "300.00",
+            "currency": "TRY"
+          }
+        }
+      },
+      "sub_agents": [],
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-20",
+    "description": "Version 2 superseding version 1",
+    "input": {
+      "type": "Task",
+      "id": "task_01k7n51z01e40r200000000000",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "person-ada"
+      },
+      "domain": {
+        "areas": [
+          "shopping"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "financial",
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-16T09:00:00Z",
+      "version": 2,
+      "supersedes": "task_01k7n51z01e40r200000000001",
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "one-instance-ada"
+        },
+        "model_version": "mdl_01k7n51z06er38c00000000000",
+        "config_version": "cfg-7"
+      },
+      "purpose": {
+        "source": "user_request",
+        "ref": "int_01k7n51z04eg28800000000000"
+      },
+      "plan": {
+        "version": 1,
+        "steps": [
+          {
+            "id": "s1",
+            "capability": {
+              "name": "app.suiss.food.order.place",
+              "version": "2026-10-01"
+            },
+            "action": {
+              "namespace": "app.suiss.food.order.place",
+              "name": "primary",
+              "version": "2026-10-01",
+              "schema_digest": "sha256:abababababababababababababababababababababababababababababababab"
+            },
+            "effectful": true,
+            "inputs": [
+              {
+                "name": "merchant_ref",
+                "value": "merchant-42",
+                "provenance": "user.memory"
+              },
+              {
+                "name": "item",
+                "value": "flat white",
+                "provenance": "user.direct"
+              }
+            ],
+            "state": "planned",
+            "idempotency_key": "idem-task1-step1-0001"
+          }
+        ]
+      },
+      "completion_criterion": {
+        "statement": "Order confirmation received from the merchant",
+        "check": "executor_claim"
+      },
+      "authority": {
+        "mandate_refs": [
+          {
+            "ref": "MandateRef",
+            "id": "coffee-weekday"
+          }
+        ]
+      },
+      "waits": [],
+      "checkpoint_ref": null,
+      "budget": {
+        "steps": {
+          "mandate": 20,
+          "requested": null,
+          "effective": 20
+        },
+        "amount": {
+          "mandate": {
+            "value": "500.00",
+            "currency": "TRY"
+          },
+          "requested": {
+            "value": "300.00",
+            "currency": "TRY"
+          },
+          "effective": {
+            "value": "300.00",
+            "currency": "TRY"
+          }
+        }
+      },
+      "sub_agents": [],
+      "deleted_at": null
+    },
+    "valid": true
+  },
+  {
+    "rule": "C-19",
+    "description": "Deleted record without deleted_at is rejected",
+    "input": {
+      "type": "Task",
+      "id": "task_01k7n51z01e40r200000000000",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "person-ada"
+      },
+      "domain": {
+        "areas": [
+          "shopping"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "financial",
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-16T09:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "deleted",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "one-instance-ada"
+        },
+        "model_version": "mdl_01k7n51z06er38c00000000000",
+        "config_version": "cfg-7"
+      },
+      "purpose": {
+        "source": "user_request",
+        "ref": "int_01k7n51z04eg28800000000000"
+      },
+      "plan": {
+        "version": 1,
+        "steps": [
+          {
+            "id": "s1",
+            "capability": {
+              "name": "app.suiss.food.order.place",
+              "version": "2026-10-01"
+            },
+            "action": {
+              "namespace": "app.suiss.food.order.place",
+              "name": "primary",
+              "version": "2026-10-01",
+              "schema_digest": "sha256:abababababababababababababababababababababababababababababababab"
+            },
+            "effectful": true,
+            "inputs": [
+              {
+                "name": "merchant_ref",
+                "value": "merchant-42",
+                "provenance": "user.memory"
+              },
+              {
+                "name": "item",
+                "value": "flat white",
+                "provenance": "user.direct"
+              }
+            ],
+            "state": "planned",
+            "idempotency_key": "idem-task1-step1-0001"
+          }
+        ]
+      },
+      "completion_criterion": {
+        "statement": "Order confirmation received from the merchant",
+        "check": "executor_claim"
+      },
+      "authority": {
+        "mandate_refs": [
+          {
+            "ref": "MandateRef",
+            "id": "coffee-weekday"
+          }
+        ]
+      },
+      "waits": [],
+      "checkpoint_ref": null,
+      "budget": {
+        "steps": {
+          "mandate": 20,
+          "requested": null,
+          "effective": 20
+        },
+        "amount": {
+          "mandate": {
+            "value": "500.00",
+            "currency": "TRY"
+          },
+          "requested": {
+            "value": "300.00",
+            "currency": "TRY"
+          },
+          "effective": {
+            "value": "300.00",
+            "currency": "TRY"
+          }
+        }
+      },
+      "sub_agents": []
+    },
+    "valid": false
+  },
+  {
+    "rule": "CP-46",
+    "description": "Sub-agent producer without instance is rejected",
+    "input": {
+      "type": "Task",
+      "id": "task_01k7n51z01e40r200000000000",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "person-ada"
+      },
+      "domain": {
+        "areas": [
+          "shopping"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "financial",
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-16T09:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "produced_by": {
+        "actor": "sub_agent"
+      },
+      "purpose": {
+        "source": "user_request",
+        "ref": "int_01k7n51z04eg28800000000000"
+      },
+      "plan": {
+        "version": 1,
+        "steps": [
+          {
+            "id": "s1",
+            "capability": {
+              "name": "app.suiss.food.order.place",
+              "version": "2026-10-01"
+            },
+            "action": {
+              "namespace": "app.suiss.food.order.place",
+              "name": "primary",
+              "version": "2026-10-01",
+              "schema_digest": "sha256:abababababababababababababababababababababababababababababababab"
+            },
+            "effectful": true,
+            "inputs": [
+              {
+                "name": "merchant_ref",
+                "value": "merchant-42",
+                "provenance": "user.memory"
+              },
+              {
+                "name": "item",
+                "value": "flat white",
+                "provenance": "user.direct"
+              }
+            ],
+            "state": "planned",
+            "idempotency_key": "idem-task1-step1-0001"
+          }
+        ]
+      },
+      "completion_criterion": {
+        "statement": "Order confirmation received from the merchant",
+        "check": "executor_claim"
+      },
+      "authority": {
+        "mandate_refs": [
+          {
+            "ref": "MandateRef",
+            "id": "coffee-weekday"
+          }
+        ]
+      },
+      "waits": [],
+      "checkpoint_ref": null,
+      "budget": {
+        "steps": {
+          "mandate": 20,
+          "requested": null,
+          "effective": 20
+        },
+        "amount": {
+          "mandate": {
+            "value": "500.00",
+            "currency": "TRY"
+          },
+          "requested": {
+            "value": "300.00",
+            "currency": "TRY"
+          },
+          "effective": {
+            "value": "300.00",
+            "currency": "TRY"
+          }
+        }
+      },
+      "sub_agents": [],
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "CP-4",
+    "description": "Sub-agent Instance references",
+    "input": {
+      "type": "Task",
+      "id": "task_01k7n51z01e40r200000000000",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "person-ada"
+      },
+      "domain": {
+        "areas": [
+          "shopping"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "financial",
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-16T09:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "one-instance-ada"
+        },
+        "model_version": "mdl_01k7n51z06er38c00000000000",
+        "config_version": "cfg-7"
+      },
+      "purpose": {
+        "source": "user_request",
+        "ref": "int_01k7n51z04eg28800000000000"
+      },
+      "plan": {
+        "version": 1,
+        "steps": [
+          {
+            "id": "s1",
+            "capability": {
+              "name": "app.suiss.food.order.place",
+              "version": "2026-10-01"
+            },
+            "action": {
+              "namespace": "app.suiss.food.order.place",
+              "name": "primary",
+              "version": "2026-10-01",
+              "schema_digest": "sha256:abababababababababababababababababababababababababababababababab"
+            },
+            "effectful": true,
+            "inputs": [
+              {
+                "name": "merchant_ref",
+                "value": "merchant-42",
+                "provenance": "user.memory"
+              },
+              {
+                "name": "item",
+                "value": "flat white",
+                "provenance": "user.direct"
+              }
+            ],
+            "state": "planned",
+            "idempotency_key": "idem-task1-step1-0001"
+          }
+        ]
+      },
+      "completion_criterion": {
+        "statement": "Order confirmation received from the merchant",
+        "check": "executor_claim"
+      },
+      "authority": {
+        "mandate_refs": [
+          {
+            "ref": "MandateRef",
+            "id": "coffee-weekday"
+          }
+        ]
+      },
+      "waits": [],
+      "checkpoint_ref": null,
+      "budget": {
+        "steps": {
+          "mandate": 20,
+          "requested": null,
+          "effective": 20
+        },
+        "amount": {
+          "mandate": {
+            "value": "500.00",
+            "currency": "TRY"
+          },
+          "requested": {
+            "value": "300.00",
+            "currency": "TRY"
+          },
+          "effective": {
+            "value": "300.00",
+            "currency": "TRY"
+          }
+        }
+      },
+      "sub_agents": [
+        {
+          "ref": "InstanceRef",
+          "id": "travel-1"
+        }
+      ],
+      "deleted_at": null
+    },
+    "valid": true
+  },
+  {
+    "rule": "CP-44",
+    "description": "Open Relay waitpoint reference",
+    "input": {
+      "type": "Task",
+      "id": "task_01k7n51z01e40r200000000000",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "person-ada"
+      },
+      "domain": {
+        "areas": [
+          "shopping"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "financial",
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-16T09:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "one-instance-ada"
+        },
+        "model_version": "mdl_01k7n51z06er38c00000000000",
+        "config_version": "cfg-7"
+      },
+      "purpose": {
+        "source": "user_request",
+        "ref": "int_01k7n51z04eg28800000000000"
+      },
+      "plan": {
+        "version": 1,
+        "steps": [
+          {
+            "id": "s1",
+            "capability": {
+              "name": "app.suiss.food.order.place",
+              "version": "2026-10-01"
+            },
+            "action": {
+              "namespace": "app.suiss.food.order.place",
+              "name": "primary",
+              "version": "2026-10-01",
+              "schema_digest": "sha256:abababababababababababababababababababababababababababababababab"
+            },
+            "effectful": true,
+            "inputs": [
+              {
+                "name": "merchant_ref",
+                "value": "merchant-42",
+                "provenance": "user.memory"
+              },
+              {
+                "name": "item",
+                "value": "flat white",
+                "provenance": "user.direct"
+              }
+            ],
+            "state": "planned",
+            "idempotency_key": "idem-task1-step1-0001"
+          }
+        ]
+      },
+      "completion_criterion": {
+        "statement": "Order confirmation received from the merchant",
+        "check": "executor_claim"
+      },
+      "authority": {
+        "mandate_refs": [
+          {
+            "ref": "MandateRef",
+            "id": "coffee-weekday"
+          }
+        ]
+      },
+      "waits": [
+        {
+          "ref": "WaitpointRef",
+          "id": "wp-9"
+        }
+      ],
+      "checkpoint_ref": null,
+      "budget": {
+        "steps": {
+          "mandate": 20,
+          "requested": null,
+          "effective": 20
+        },
+        "amount": {
+          "mandate": {
+            "value": "500.00",
+            "currency": "TRY"
+          },
+          "requested": {
+            "value": "300.00",
+            "currency": "TRY"
+          },
+          "effective": {
+            "value": "300.00",
+            "currency": "TRY"
+          }
+        }
+      },
+      "sub_agents": [],
+      "deleted_at": null
+    },
+    "valid": true
+  }
+]

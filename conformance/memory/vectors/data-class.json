@@ -1,0 +1,192 @@
+[
+  {
+    "rule": "PV-20",
+    "description": "personal data touching no PV-20 code",
+    "input": {
+      "kinds": [
+        "personal"
+      ],
+      "sensitive": []
+    },
+    "valid": true
+  },
+  {
+    "rule": "PV-20",
+    "description": "non-personal data",
+    "input": {
+      "kinds": [
+        "general"
+      ],
+      "sensitive": []
+    },
+    "valid": true
+  },
+  {
+    "rule": "PV-20",
+    "description": "`health` is a PV-20 code",
+    "input": {
+      "kinds": [
+        "personal"
+      ],
+      "sensitive": [
+        "health"
+      ]
+    },
+    "valid": true
+  },
+  {
+    "rule": "PV-20",
+    "description": "`precise_location_history` is a PV-20 code",
+    "input": {
+      "kinds": [
+        "location"
+      ],
+      "sensitive": [
+        "precise_location_history"
+      ]
+    },
+    "valid": true
+  },
+  {
+    "rule": "PV-20",
+    "description": "`relationship_status` is a PV-20 code",
+    "input": {
+      "kinds": [
+        "personal"
+      ],
+      "sensitive": [
+        "relationship_status"
+      ]
+    },
+    "valid": true
+  },
+  {
+    "rule": "PV-20",
+    "description": "`criminal_conviction_security_measure` is a PV-20 code",
+    "input": {
+      "kinds": [
+        "personal"
+      ],
+      "sensitive": [
+        "criminal_conviction_security_measure"
+      ]
+    },
+    "valid": true
+  },
+  {
+    "rule": "PV-20",
+    "description": "combined data takes the union of kinds and codes",
+    "input": {
+      "kinds": [
+        "personal",
+        "communication",
+        "one_time_code"
+      ],
+      "sensitive": [
+        "health",
+        "biometric"
+      ]
+    },
+    "valid": true
+  },
+  {
+    "rule": "PV-20",
+    "description": "`sensitive` is not a PV-20 code",
+    "input": {
+      "kinds": [
+        "personal"
+      ],
+      "sensitive": [
+        "sensitive"
+      ]
+    },
+    "valid": false
+  },
+  {
+    "rule": "PV-20",
+    "description": "`location` is a kind, not a PV-20 code",
+    "input": {
+      "kinds": [
+        "personal"
+      ],
+      "sensitive": [
+        "location"
+      ]
+    },
+    "valid": false
+  },
+  {
+    "rule": "PV-20",
+    "description": "`religion` is not a PV-20 code",
+    "input": {
+      "kinds": [
+        "personal"
+      ],
+      "sensitive": [
+        "religion"
+      ]
+    },
+    "valid": false
+  },
+  {
+    "rule": "PV-20",
+    "description": "`health` is not a kind",
+    "input": {
+      "kinds": [
+        "health"
+      ],
+      "sensitive": []
+    },
+    "valid": false
+  },
+  {
+    "rule": "PV-20",
+    "description": "the bare string form is not a data class",
+    "input": "normal",
+    "valid": false
+  },
+  {
+    "rule": "PV-20",
+    "description": "at least one kind is required",
+    "input": {
+      "kinds": [],
+      "sensitive": []
+    },
+    "valid": false
+  },
+  {
+    "rule": "PV-20",
+    "description": "the sensitive list is required",
+    "input": {
+      "kinds": [
+        "personal"
+      ]
+    },
+    "valid": false
+  },
+  {
+    "rule": "PV-20",
+    "description": "general data touches no PV-20 code",
+    "input": {
+      "kinds": [
+        "general"
+      ],
+      "sensitive": [
+        "health"
+      ]
+    },
+    "valid": false
+  },
+  {
+    "rule": "PV-20",
+    "description": "general data is not also personal",
+    "input": {
+      "kinds": [
+        "general",
+        "personal"
+      ],
+      "sensitive": []
+    },
+    "valid": false
+  }
+]

@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/interaction/component-catalog/v1.json",
+  "title": "Approved component catalog",
+  "description": "The versioned closed set of components One composes; the model fills typed fields and never generates free UI or markup (X-14, X-61).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["catalog_version", "free_ui", "generated_markup", "component"],
+  "properties": {
+    "catalog_version": { "type": "integer", "minimum": 1 },
+    "free_ui": { "const": false },
+    "generated_markup": { "const": false },
+    "component": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["card", "list", "comparison", "approval", "form", "timeline", "map", "progress", "receipt"],
+      "properties": {
+        "card": { "$ref": "#/$defs/component" },
+        "list": { "$ref": "#/$defs/component" },
+        "comparison": { "$ref": "#/$defs/component" },
+        "approval": {
+          "allOf": [{ "$ref": "#/$defs/component" }],
+          "required": ["opens_access_surface", "collects_secrets"],
+          "properties": { "opens_access_surface": { "const": true }, "collects_secrets": { "const": false } }
+        },
+        "form": {
+          "allOf": [{ "$ref": "#/$defs/component" }],
+          "required": ["forbidden_field_types"]
+        },
+        "timeline": { "$ref": "#/$defs/component" },
+        "map": {
+          "allOf": [{ "$ref": "#/$defs/component" }],
+          "required": ["load"]
+        },
+        "progress": { "$ref": "#/$defs/component" },
+        "receipt": {
+          "allOf": [{ "$ref": "#/$defs/component" }],
+          "required": ["done_requires_executor_confirmation"],
+          "properties": { "done_requires_executor_confirmation": { "const": true } }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "component": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["version", "purpose", "binds", "kinds", "surfaces"],
+      "properties": {
+        "version": { "type": "integer", "minimum": 1 },
+        "purpose": { "type": "string", "minLength": 1, "maxLength": 120 },
+        "binds": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "enum": ["amount", "counterparty", "time", "time_range", "place", "options", "fields", "progress", "steps", "outcome", "note"] }
+        },
+        "kinds": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "../common/v1.json#/$defs/core_kind" } },
+        "surfaces": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "../common/v1.json#/$defs/surface_class" } },
+        "max_facts": { "type": "integer", "minimum": 1 },
+        "min_items": { "type": "integer", "minimum": 1 },
+        "max_items": { "type": "integer", "minimum": 1 },
+        "max_attributes": { "type": "integer", "minimum": 1 },
+        "max_fields": { "type": "integer", "minimum": 1 },
+        "opens_access_surface": { "type": "boolean" },
+        "collects_secrets": { "type": "boolean" },
+        "forbidden_field_types": { "type": "array", "items": { "type": "string" } },
+        "load": { "const": "on_user_open" },
+        "done_requires_executor_confirmation": { "type": "boolean" }
+      }
+    }
+  }
+}

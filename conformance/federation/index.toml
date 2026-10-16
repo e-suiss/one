@@ -1,0 +1,176 @@
+# OO-1, OO-3, OO-4, OO-5, OO-7, OO-15, OO-16, OO-17, OO-29
+
+[[schema]]
+path = "schemas/common.v1.json"
+id = "https://suiss.app/schemas/one/federation/common/v1.json"
+rules = ["OO-3", "OO-15", "OO-16"]
+
+[[schema]]
+path = "schemas/envelope.v1.json"
+id = "https://suiss.app/schemas/one/federation/envelope/v1.json"
+rules = ["OO-3", "OO-4", "OO-5", "OO-16"]
+
+[[schema]]
+path = "schemas/body.v1.json"
+id = "https://suiss.app/schemas/one/federation/body/v1.json"
+rules = ["OO-15", "OO-17", "OO-21", "OO-22"]
+
+[[schema]]
+path = "schemas/note.v1.json"
+id = "https://suiss.app/schemas/one/federation/note/v1.json"
+rules = ["OO-8", "OO-17"]
+
+[[schema]]
+path = "schemas/contact.v1.json"
+id = "https://suiss.app/schemas/one/federation/contact/v1.json"
+rules = ["OO-4", "OO-11", "OO-13", "OO-31"]
+
+[[schema]]
+path = "schemas/disclosure.v1.json"
+id = "https://suiss.app/schemas/one/federation/disclosure/v1.json"
+rules = ["OO-4", "OO-21", "OO-22"]
+
+[[schema]]
+path = "schemas/handle.v1.json"
+id = "https://suiss.app/schemas/one/federation/handle/v1.json"
+rules = ["OO-5"]
+
+[[schema]]
+path = "schemas/handle-claims.v1.json"
+id = "https://suiss.app/schemas/one/federation/handle-claims/v1.json"
+rules = ["OO-5"]
+
+[[schema]]
+path = "schemas/handle-protected-header.v1.json"
+id = "https://suiss.app/schemas/one/federation/handle-protected-header/v1.json"
+rules = ["OO-5"]
+
+[[schema]]
+path = "schemas/message.v1.json"
+id = "https://suiss.app/schemas/one/federation/message/v1.json"
+rules = ["OO-4", "OO-15", "OO-16", "OO-17"]
+
+[[schema]]
+path = "schemas/task.v1.json"
+id = "https://suiss.app/schemas/one/federation/task/v1.json"
+rules = ["OO-1", "OO-4", "OO-20"]
+
+[[schema]]
+path = "schemas/agent-extension.v1.json"
+id = "https://suiss.app/schemas/one/federation/agent-extension/v1.json"
+rules = ["OO-4"]
+
+[[vectors]]
+path = "vectors/schema/message.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/federation/message/v1.json"
+rules = ["OO-4", "OO-17"]
+
+[[vectors]]
+path = "vectors/schema/envelope.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/federation/envelope/v1.json"
+rules = ["OO-3", "OO-5", "OO-16", "OO-17"]
+
+[[vectors]]
+path = "vectors/schema/body.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/federation/body/v1.json"
+rules = ["OO-15", "OO-17", "OO-22"]
+
+[[vectors]]
+path = "vectors/schema/note.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/federation/note/v1.json"
+rules = ["OO-17"]
+
+[[vectors]]
+path = "vectors/schema/contact.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/federation/contact/v1.json"
+rules = ["OO-11", "OO-13", "OO-31"]
+
+[[vectors]]
+path = "vectors/schema/handle.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/federation/handle/v1.json"
+rules = ["OO-5"]
+
+[[vectors]]
+path = "vectors/schema/handle-claims.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/federation/handle-claims/v1.json"
+rules = ["OO-5"]
+
+[[vectors]]
+path = "vectors/schema/handle-protected-header.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/federation/handle-protected-header/v1.json"
+rules = ["OO-5"]
+
+[[vectors]]
+path = "vectors/schema/task.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/federation/task/v1.json"
+rules = ["OO-1", "OO-4", "OO-15", "OO-20"]
+
+[[vectors]]
+path = "vectors/schema/agent-extension.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/federation/agent-extension/v1.json"
+rules = ["OO-4"]
+
+[[vectors]]
+path = "vectors/kind-mapping.json"
+kind = "behaviour"
+rules = ["OO-15", "OO-16"]
+
+[[vectors]]
+path = "vectors/offer-version.json"
+kind = "behaviour"
+rules = ["OO-15", "OO-16"]
+
+[[vectors]]
+path = "vectors/expiry.json"
+kind = "behaviour"
+rules = ["OO-16", "OO-20"]
+
+[[vectors]]
+path = "vectors/note.json"
+kind = "behaviour"
+rules = ["OO-17"]
+
+[[vectors]]
+path = "vectors/handle.json"
+kind = "behaviour"
+rules = ["OO-5"]
+
+[[vectors]]
+path = "vectors/relay-no-content.json"
+kind = "behaviour"
+rules = ["OO-7"]
+
+[[vectors]]
+path = "vectors/key-rotation.json"
+kind = "behaviour"
+rules = ["OO-7", "OO-29"]
+
+[[table]]
+path = "a2a-mapping.toml"
+rules = ["OO-1", "OO-4", "OO-15", "OO-16", "OO-19", "OO-20", "OO-25"]
+
+[[table]]
+path = "handle.toml"
+rules = ["OO-5"]
+
+[[table]]
+path = "a2a-conformance.toml"
+rules = ["OO-3", "OO-4", "OO-29"]
+
+[[table]]
+path = "relay-no-content.toml"
+rules = ["OO-6", "OO-7"]
+
+[[table]]
+path = "mls-vectors.toml"
+rules = ["OO-7", "OO-29"]

@@ -1,0 +1,485 @@
+[
+  {
+    "rule": "M-6",
+    "description": "relationship edge closed in the world (past) with valid_to",
+    "input": {
+      "type": "MemoryRecord",
+      "id": "mem_01k742t4g8e3aabnz66ztz9qaq",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "work"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.memory",
+      "recorded_at": "2026-10-02T03:00:00Z",
+      "version": 2,
+      "supersedes": "mem_01k742t5fgeybsz3mvp3jb1787",
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "user"
+      },
+      "content_type": "relationship",
+      "epistemic_state": "stated",
+      "layer": "consolidated_fact",
+      "time_kind": "past",
+      "valid_from": "2025-03-01T00:00:00Z",
+      "valid_to": "2026-05-01T00:00:00Z",
+      "superseded_at": null,
+      "source_episodes": [
+        "epi_01k742sgz8fpbvee16bvnbpem8"
+      ],
+      "source_kind": "user_statement",
+      "evidence": {
+        "observation_count": 1,
+        "supporting_count": 1,
+        "first_observed_at": "2026-09-01T08:05:00Z",
+        "last_observed_at": "2026-10-01T08:10:00Z",
+        "contradicting_records": [],
+        "user_confirmed_at": null
+      },
+      "trust": {
+        "value": 0.95442,
+        "formula": "trust/v1",
+        "computed_at": "2026-10-02T03:00:00Z"
+      },
+      "alternative_explanations": [],
+      "usage_restriction": null,
+      "about": [
+        {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        }
+      ],
+      "statement": {
+        "text": "Ayşe Yılmaz was my manager.",
+        "lang": "tr"
+      },
+      "subject": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "predicate": "has_manager",
+      "object": {
+        "ref": "ExternalPersonRef",
+        "system": "contacts",
+        "locator": "synthetic-ayse-yilmaz"
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "M-6",
+    "description": "open relationship edge",
+    "input": {
+      "type": "MemoryRecord",
+      "id": "mem_01k742t6eredarfgq9fhnk8b3t",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "work"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.memory",
+      "recorded_at": "2026-10-02T03:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "user"
+      },
+      "content_type": "relationship",
+      "epistemic_state": "stated",
+      "layer": "consolidated_fact",
+      "time_kind": "permanent",
+      "valid_from": "2026-05-01T00:00:00Z",
+      "valid_to": null,
+      "superseded_at": null,
+      "source_episodes": [
+        "epi_01k742sgz8fpbvee16bvnbpem8"
+      ],
+      "source_kind": "user_statement",
+      "evidence": {
+        "observation_count": 1,
+        "supporting_count": 1,
+        "first_observed_at": "2026-09-01T08:05:00Z",
+        "last_observed_at": "2026-10-01T08:10:00Z",
+        "contradicting_records": [],
+        "user_confirmed_at": null
+      },
+      "trust": {
+        "value": 0.95442,
+        "formula": "trust/v1",
+        "computed_at": "2026-10-02T03:00:00Z"
+      },
+      "alternative_explanations": [],
+      "usage_restriction": null,
+      "about": [
+        {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        }
+      ],
+      "statement": {
+        "text": "Can Kaya is my manager.",
+        "lang": "tr"
+      },
+      "subject": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "predicate": "has_manager",
+      "object": {
+        "ref": "ExternalPersonRef",
+        "system": "contacts",
+        "locator": "synthetic-can-kaya"
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "M-6",
+    "description": "a relationship edge needs subject, predicate and object",
+    "input": {
+      "type": "MemoryRecord",
+      "id": "mem_01k742t6eredarfgq9fhnk8b3t",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "work"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.memory",
+      "recorded_at": "2026-10-02T03:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "user"
+      },
+      "content_type": "relationship",
+      "epistemic_state": "stated",
+      "layer": "consolidated_fact",
+      "time_kind": "permanent",
+      "valid_from": "2026-05-01T00:00:00Z",
+      "valid_to": null,
+      "superseded_at": null,
+      "source_episodes": [
+        "epi_01k742sgz8fpbvee16bvnbpem8"
+      ],
+      "source_kind": "user_statement",
+      "evidence": {
+        "observation_count": 1,
+        "supporting_count": 1,
+        "first_observed_at": "2026-09-01T08:05:00Z",
+        "last_observed_at": "2026-10-01T08:10:00Z",
+        "contradicting_records": [],
+        "user_confirmed_at": null
+      },
+      "trust": {
+        "value": 0.95442,
+        "formula": "trust/v1",
+        "computed_at": "2026-10-02T03:00:00Z"
+      },
+      "alternative_explanations": [],
+      "usage_restriction": null,
+      "about": [
+        {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        }
+      ],
+      "statement": {
+        "text": "Can Kaya is my manager.",
+        "lang": "tr"
+      },
+      "subject": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "predicate": "has_manager"
+    },
+    "valid": false
+  },
+  {
+    "rule": "M-6",
+    "description": "a relationship edge's source_episodes must not be empty",
+    "input": {
+      "type": "MemoryRecord",
+      "id": "mem_01k742t6eredarfgq9fhnk8b3t",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "work"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.memory",
+      "recorded_at": "2026-10-02T03:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "user"
+      },
+      "content_type": "relationship",
+      "epistemic_state": "stated",
+      "layer": "consolidated_fact",
+      "time_kind": "permanent",
+      "valid_from": "2026-05-01T00:00:00Z",
+      "valid_to": null,
+      "superseded_at": null,
+      "source_episodes": [],
+      "source_kind": "user_statement",
+      "evidence": {
+        "observation_count": 1,
+        "supporting_count": 1,
+        "first_observed_at": "2026-09-01T08:05:00Z",
+        "last_observed_at": "2026-10-01T08:10:00Z",
+        "contradicting_records": [],
+        "user_confirmed_at": null
+      },
+      "trust": {
+        "value": 0.95442,
+        "formula": "trust/v1",
+        "computed_at": "2026-10-02T03:00:00Z"
+      },
+      "alternative_explanations": [],
+      "usage_restriction": null,
+      "about": [
+        {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        }
+      ],
+      "statement": {
+        "text": "Can Kaya is my manager.",
+        "lang": "tr"
+      },
+      "subject": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "predicate": "has_manager",
+      "object": {
+        "ref": "ExternalPersonRef",
+        "system": "contacts",
+        "locator": "synthetic-can-kaya"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-7",
+    "description": "an extension predicate maps to a core predicate",
+    "input": {
+      "type": "MemoryRecord",
+      "id": "mem_01k742t6eredarfgq9fhnk8b3t",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "work"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.memory",
+      "recorded_at": "2026-10-02T03:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "user"
+      },
+      "content_type": "relationship",
+      "epistemic_state": "stated",
+      "layer": "consolidated_fact",
+      "time_kind": "permanent",
+      "valid_from": "2026-05-01T00:00:00Z",
+      "valid_to": null,
+      "superseded_at": null,
+      "source_episodes": [
+        "epi_01k742sgz8fpbvee16bvnbpem8"
+      ],
+      "source_kind": "user_statement",
+      "evidence": {
+        "observation_count": 1,
+        "supporting_count": 1,
+        "first_observed_at": "2026-09-01T08:05:00Z",
+        "last_observed_at": "2026-10-01T08:10:00Z",
+        "contradicting_records": [],
+        "user_confirmed_at": null
+      },
+      "trust": {
+        "value": 0.95442,
+        "formula": "trust/v1",
+        "computed_at": "2026-10-02T03:00:00Z"
+      },
+      "alternative_explanations": [],
+      "usage_restriction": null,
+      "about": [
+        {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        }
+      ],
+      "statement": {
+        "text": "Can Kaya is my manager.",
+        "lang": "tr"
+      },
+      "subject": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "predicate": {
+        "name": "app.suiss.memory.predicate.mentor",
+        "version": 1,
+        "maps_to": "knows"
+      },
+      "object": {
+        "ref": "ExternalPersonRef",
+        "system": "contacts",
+        "locator": "synthetic-can-kaya"
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "M-6",
+    "description": "unknown predicate is rejected",
+    "input": {
+      "type": "MemoryRecord",
+      "id": "mem_01k742t6eredarfgq9fhnk8b3t",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "work"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.memory",
+      "recorded_at": "2026-10-02T03:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "user"
+      },
+      "content_type": "relationship",
+      "epistemic_state": "stated",
+      "layer": "consolidated_fact",
+      "time_kind": "permanent",
+      "valid_from": "2026-05-01T00:00:00Z",
+      "valid_to": null,
+      "superseded_at": null,
+      "source_episodes": [
+        "epi_01k742sgz8fpbvee16bvnbpem8"
+      ],
+      "source_kind": "user_statement",
+      "evidence": {
+        "observation_count": 1,
+        "supporting_count": 1,
+        "first_observed_at": "2026-09-01T08:05:00Z",
+        "last_observed_at": "2026-10-01T08:10:00Z",
+        "contradicting_records": [],
+        "user_confirmed_at": null
+      },
+      "trust": {
+        "value": 0.95442,
+        "formula": "trust/v1",
+        "computed_at": "2026-10-02T03:00:00Z"
+      },
+      "alternative_explanations": [],
+      "usage_restriction": null,
+      "about": [
+        {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        }
+      ],
+      "statement": {
+        "text": "Can Kaya is my manager.",
+        "lang": "tr"
+      },
+      "subject": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "predicate": "boss",
+      "object": {
+        "ref": "ExternalPersonRef",
+        "system": "contacts",
+        "locator": "synthetic-can-kaya"
+      }
+    },
+    "valid": false
+  }
+]

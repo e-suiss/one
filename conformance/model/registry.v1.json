@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/model/registry/v1.json",
+  "title": "Model registry document",
+  "$comment": "MF-55, MF-16, T-39 (5)",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "model": {
+      "type": "array",
+      "items": { "$ref": "https://suiss.app/schemas/one/model/registry-entry/v1.json" }
+    }
+  }
+}

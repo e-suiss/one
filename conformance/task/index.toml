@@ -1,0 +1,72 @@
+# CP-1, CP-2, CP-3, CP-4, CP-5, CP-6, CP-7, CP-9, CP-11, CP-36, CP-42, CP-43, CP-44, CP-45, C-6, C-15, C-19, C-20, C-27, INV-30, INV-32, SEC-14, SEC-19
+
+[[schema]]
+path = "common.schema.json"
+id = "https://suiss.app/schemas/one/task/common/v1.json"
+rules = ["C-19", "C-24", "SEC-14", "M-28", "A-1", "A-24", "Access E45", "Access E47"]
+
+[[schema]]
+path = "task.schema.json"
+id = "https://suiss.app/schemas/one/task/task/v1.json"
+rules = ["CP-1", "CP-2", "CP-3", "CP-4", "CP-9", "CP-12", "CP-43", "C-15", "C-19", "C-20", "SEC-19"]
+
+[[schema]]
+path = "event.schema.json"
+id = "https://suiss.app/schemas/one/task/event/v1.json"
+rules = ["CP-3", "CP-42", "CP-44", "CP-11", "INV-30"]
+
+[[schema]]
+path = "step-result.schema.json"
+id = "https://suiss.app/schemas/one/task/step-result/v1.json"
+rules = ["CP-6", "CP-43", "CP-7"]
+
+[[schema]]
+path = "outcome.schema.json"
+id = "https://suiss.app/schemas/one/task/outcome/v1.json"
+rules = ["INV-30", "CP-7", "CP-11", "Access EI-11"]
+
+[[vectors]]
+path = "vectors/task.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/task/task/v1.json"
+rules = ["CP-1", "CP-2", "CP-3", "CP-4", "CP-43", "C-19", "C-20", "SEC-14", "SEC-19"]
+
+[[vectors]]
+path = "vectors/step-result.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/task/step-result/v1.json"
+rules = ["CP-6", "CP-43"]
+
+[[vectors]]
+path = "vectors/outcome.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/task/outcome/v1.json"
+rules = ["INV-30", "CP-7"]
+
+[[vectors]]
+path = "vectors/state-derivation.json"
+kind = "behaviour"
+rules = ["CP-3", "CP-42", "CP-44", "CP-11", "INV-30"]
+
+[[vectors]]
+path = "vectors/projection.json"
+kind = "behaviour"
+rules = ["CP-3", "C-27"]
+
+[[vectors]]
+path = "vectors/batch.json"
+kind = "behaviour"
+rules = ["CP-6"]
+
+[[vectors]]
+path = "vectors/budget.json"
+kind = "behaviour"
+rules = ["CP-4", "CP-36"]
+
+[[table]]
+path = "state-machine.toml"
+rules = ["CP-3", "CP-42", "CP-44", "CP-11", "INV-30", "INV-32"]
+
+[[table]]
+path = "projections.toml"
+rules = ["CP-3", "C-6", "C-27", "CP-24", "CP-28", "CP-29"]

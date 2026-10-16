@@ -1,0 +1,194 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/interaction/interaction-response/v1.json",
+  "title": "InteractionResponse",
+  "description": "The single answer shape from every surface; signed with the device key, idempotent, mapped by Access to an Approval Act Statement for approvals (X-22, C-26, A-29, Access E49 (3)).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "interaction_id",
+    "interaction_version",
+    "action",
+    "responder",
+    "nonce",
+    "device_id",
+    "surface_class",
+    "evidence",
+    "responded_at",
+    "signature"
+  ],
+  "properties": {
+    "interaction_id": {
+      "$ref": "../common/v1.json#/$defs/interaction_id"
+    },
+    "interaction_version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "action": {
+      "$ref": "../common/v1.json#/$defs/action_id"
+    },
+    "responder": {
+      "description": "The answering Access identity: the user's own Instance and Party.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "party",
+        "instance"
+      ],
+      "properties": {
+        "party": {
+          "$ref": "https://suiss.app/schemas/one/ontology/reference/v1.json#/$defs/PartyRef"
+        },
+        "instance": {
+          "$ref": "https://suiss.app/schemas/one/ontology/reference/v1.json#/$defs/InstanceRef"
+        }
+      }
+    },
+    "nonce": {
+      "$ref": "../common/v1.json#/$defs/nonce"
+    },
+    "device_id": {
+      "$ref": "../common/v1.json#/$defs/device_id"
+    },
+    "surface_class": {
+      "$ref": "../common/v1.json#/$defs/surface_class"
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "authentication",
+        "user_verification",
+        "presence_gesture"
+      ],
+      "properties": {
+        "authentication": {
+          "$ref": "../common/v1.json#/$defs/authentication"
+        },
+        "user_verification": {
+          "enum": [
+            "none",
+            "biometric",
+            "pin",
+            "wrist_detect"
+          ]
+        },
+        "presence_gesture": {
+          "enum": [
+            "none",
+            "tap",
+            "hold",
+            "two_step",
+            "voice"
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "authentication": {
+                "const": "passkey"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "user_verification": {
+                "enum": [
+                  "biometric",
+                  "pin"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "responded_at": {
+      "$ref": "../common/v1.json#/$defs/timestamp"
+    },
+    "signature": {
+      "description": "COSE_Sign1 (RFC 9052) with a detached payload: the deterministic CBOR encoding of this object without `signature`, signed by the device key bound in Access.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "alg",
+        "kid",
+        "cose_sign1"
+      ],
+      "properties": {
+        "alg": {
+          "const": "ES256"
+        },
+        "kid": {
+          "description": "COSE key identifier: the Access KeyBinding identifier of the device key, carried as the opaque string Access issued",
+          "$ref": "https://suiss.app/schemas/one/ontology/reference/v1.json#/$defs/opaque_id"
+        },
+        "cose_sign1": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_-]{86,1400}$"
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "surface_class": {
+            "enum": [
+              "voice:car",
+              "voice:glasses"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "evidence": {
+            "properties": {
+              "authentication": {
+                "enum": [
+                  "none",
+                  "device_unlock"
+                ]
+              },
+              "presence_gesture": {
+                "enum": [
+                  "voice",
+                  "tap",
+                  "none"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "surface_class": {
+            "const": "watch"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "evidence": {
+            "properties": {
+              "authentication": {
+                "enum": [
+                  "none",
+                  "device_unlock"
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

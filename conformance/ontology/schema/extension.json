@@ -1,0 +1,212 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/ontology/extension/v1.json",
+  "title": "Extension declaration",
+  "description": "C-7 envelope over the four extension points. Every new value maps to a core category (memory content type, Interaction kind, parent capability via extends, canonical concept); an unmapped value is rejected. Point-specific grammars come from the memory, interaction and capability schemas. The handle subdomain app.suiss.one is never an extension namespace.",
+  "$defs": {
+    "suiss_name": {
+      "type": "string",
+      "maxLength": 128,
+      "pattern": "^app\\.suiss(\\.[a-z][a-z0-9]*(_[a-z0-9]+)*)+$",
+      "not": {
+        "pattern": "^app\\.suiss\\.(one|access|relay|work|pay)(\\.|$)"
+      }
+    },
+    "concept": {
+      "enum": [
+        "Observation",
+        "Episode",
+        "MemoryRecord",
+        "Goal",
+        "Routine",
+        "Task",
+        "Interaction",
+        "CapabilityDefinition",
+        "SurfaceCapability"
+      ]
+    }
+  },
+  "type": "object",
+  "properties": {
+    "point": {
+      "enum": [
+        "memory_content_type",
+        "interaction_kind",
+        "capability_name",
+        "typed_field"
+      ]
+    },
+    "name": {
+      "type": "string"
+    },
+    "version": true,
+    "maps_to": {
+      "type": "string"
+    },
+    "extends": true,
+    "value_schema": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^https://"
+    }
+  },
+  "required": [
+    "point",
+    "name",
+    "version"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "point": {
+            "const": "memory_content_type"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "name": {
+            "$ref": "https://suiss.app/schemas/one/memory/fields/v1.json#/$defs/content_type_extension/properties/name"
+          },
+          "version": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "maps_to": {
+            "$ref": "https://suiss.app/schemas/one/memory/fields/v1.json#/$defs/core_content_type"
+          }
+        },
+        "required": [
+          "maps_to"
+        ],
+        "not": {
+          "anyOf": [
+            {
+              "required": [
+                "extends"
+              ]
+            },
+            {
+              "required": [
+                "value_schema"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "point": {
+            "const": "interaction_kind"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "name": {
+            "$ref": "https://suiss.app/schemas/one/interaction/common/v1.json#/$defs/extension_name"
+          },
+          "version": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "maps_to": {
+            "$ref": "https://suiss.app/schemas/one/interaction/common/v1.json#/$defs/core_kind"
+          }
+        },
+        "required": [
+          "maps_to"
+        ],
+        "not": {
+          "anyOf": [
+            {
+              "required": [
+                "extends"
+              ]
+            },
+            {
+              "required": [
+                "value_schema"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "point": {
+            "const": "typed_field"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "name": {
+            "$ref": "#/$defs/suiss_name"
+          },
+          "version": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "maps_to": {
+            "$ref": "#/$defs/concept"
+          }
+        },
+        "required": [
+          "maps_to",
+          "value_schema"
+        ],
+        "not": {
+          "required": [
+            "extends"
+          ]
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "point": {
+            "const": "capability_name"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "name": {
+            "$ref": "https://suiss.app/schemas/one/capability/name/v1.json#/$defs/name"
+          },
+          "version": {
+            "$ref": "https://suiss.app/schemas/one/capability/name/v1.json#/$defs/version"
+          },
+          "extends": {
+            "$ref": "https://suiss.app/schemas/one/capability/name/v1.json#/$defs/extends"
+          }
+        },
+        "required": [
+          "extends"
+        ],
+        "not": {
+          "anyOf": [
+            {
+              "required": [
+                "maps_to"
+              ]
+            },
+            {
+              "required": [
+                "value_schema"
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,250 @@
+[
+  {
+    "rule": "CP-15",
+    "description": "The spec example",
+    "input": "app.suiss.transport.ride.request",
+    "expected": {
+      "valid": true,
+      "kind": "suiss",
+      "category": "transport",
+      "segments": [
+        "transport",
+        "ride",
+        "request"
+      ]
+    }
+  },
+  {
+    "rule": "CP-15",
+    "description": "Category-level verb",
+    "input": "app.suiss.commerce.purchase",
+    "expected": {
+      "valid": true,
+      "kind": "suiss",
+      "category": "commerce",
+      "segments": [
+        "commerce",
+        "purchase"
+      ]
+    }
+  },
+  {
+    "rule": "CP-15",
+    "description": "Three semantic segments",
+    "input": "app.suiss.travel.flight.book",
+    "expected": {
+      "valid": true,
+      "kind": "suiss",
+      "category": "travel",
+      "segments": [
+        "travel",
+        "flight",
+        "book"
+      ]
+    }
+  },
+  {
+    "rule": "CP-15",
+    "description": "Missing root",
+    "input": "transport.ride.request",
+    "expected": {
+      "valid": true,
+      "kind": "third_party",
+      "segments": [
+        "transport",
+        "ride",
+        "request"
+      ]
+    }
+  },
+  {
+    "rule": "CP-15",
+    "description": "Provider-style name",
+    "input": "uber.createRide",
+    "expected": {
+      "valid": false,
+      "error": "not_lowercase"
+    }
+  },
+  {
+    "rule": "CP-15",
+    "description": "Upper case",
+    "input": "app.suiss.Transport.ride.request",
+    "expected": {
+      "valid": false,
+      "error": "not_lowercase"
+    }
+  },
+  {
+    "rule": "CP-15",
+    "description": "Only a category",
+    "input": "app.suiss.transport",
+    "expected": {
+      "valid": false,
+      "error": "too_few_segments"
+    }
+  },
+  {
+    "rule": "CP-15",
+    "description": "Reverse form of the handle ada.one.suiss.app",
+    "input": "app.suiss.one.ada",
+    "expected": {
+      "valid": false,
+      "error": "handle_namespace"
+    }
+  },
+  {
+    "rule": "CP-15",
+    "description": "Under the handle subdomain",
+    "input": "app.suiss.one.transport.ride",
+    "expected": {
+      "valid": false,
+      "error": "handle_namespace"
+    }
+  },
+  {
+    "rule": "CP-15",
+    "description": "Product name as category",
+    "input": "app.suiss.pay.transfer",
+    "expected": {
+      "valid": false,
+      "error": "reserved_segment"
+    }
+  },
+  {
+    "rule": "CP-15",
+    "description": "Hyphen in a Suiss segment",
+    "input": "app.suiss.transport.ride-share.request",
+    "expected": {
+      "valid": false,
+      "error": "bad_segment"
+    }
+  },
+  {
+    "rule": "CP-15",
+    "description": "Underscore in a Suiss segment",
+    "input": "app.suiss.transport.ride_share.request",
+    "expected": {
+      "valid": false,
+      "error": "bad_segment"
+    }
+  },
+  {
+    "rule": "CP-15",
+    "description": "Six semantic segments",
+    "input": "app.suiss.a.b.c.d.e.f",
+    "expected": {
+      "valid": false,
+      "error": "too_many_segments"
+    }
+  },
+  {
+    "rule": "CP-15",
+    "description": "Segment starting with a digit",
+    "input": "app.suiss.transport.1ride.request",
+    "expected": {
+      "valid": false,
+      "error": "bad_segment"
+    }
+  },
+  {
+    "rule": "CP-15",
+    "description": "Third-party extension name",
+    "input": "com.example-air.flight.book.seat_upgrade",
+    "expected": {
+      "valid": true,
+      "kind": "third_party",
+      "segments": [
+        "com",
+        "example-air",
+        "flight",
+        "book",
+        "seat_upgrade"
+      ]
+    }
+  },
+  {
+    "rule": "CP-15",
+    "description": "UCP name parses as third party",
+    "input": "dev.ucp.shopping.checkout",
+    "expected": {
+      "valid": true,
+      "kind": "third_party",
+      "segments": [
+        "dev",
+        "ucp",
+        "shopping",
+        "checkout"
+      ]
+    }
+  },
+  {
+    "rule": "CP-15",
+    "description": "Third party with no semantic segment",
+    "input": "com.example",
+    "expected": {
+      "valid": false,
+      "error": "bad_root"
+    }
+  },
+  {
+    "rule": "CP-15",
+    "description": "Segment longer than 32",
+    "input": "app.suiss.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b",
+    "expected": {
+      "valid": false,
+      "error": "bad_segment"
+    }
+  },
+  {
+    "rule": "CP-15",
+    "description": "A handle is not a capability name",
+    "input": "ada.one.suiss.app",
+    "expected": {
+      "valid": true,
+      "kind": "third_party",
+      "segments": [
+        "ada",
+        "one",
+        "suiss",
+        "app"
+      ]
+    }
+  },
+  {
+    "rule": "CP-15",
+    "description": "Dated version",
+    "input": "2026-10-16",
+    "expected": {
+      "valid": true,
+      "kind": "version"
+    }
+  },
+  {
+    "rule": "CP-15",
+    "description": "Integer-style version",
+    "input": "v1",
+    "expected": {
+      "valid": false,
+      "kind": "version"
+    }
+  },
+  {
+    "rule": "CP-15",
+    "description": "Month out of range",
+    "input": "2026-13-01",
+    "expected": {
+      "valid": false,
+      "kind": "version"
+    }
+  },
+  {
+    "rule": "CP-15",
+    "description": "Unpadded date",
+    "input": "2026-1-1",
+    "expected": {
+      "valid": false,
+      "kind": "version"
+    }
+  }
+]

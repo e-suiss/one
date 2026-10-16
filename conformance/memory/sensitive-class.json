@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/memory/sensitive-class/v1.json",
+  "title": "SensitiveClass",
+  "description": "Specially protected classes: every special category of KVKK art. 6 and GDPR Art. 9 and 10, plus precise location history and relationship status. One code per PV-20 grouping; all codes follow the same rules (PV-21, PV-22). PV-20.",
+  "type": "string",
+  "enum": [
+    "health",
+    "religion_belief",
+    "political_opinion",
+    "sex_life_orientation",
+    "biometric",
+    "precise_location_history",
+    "relationship_status",
+    "genetic",
+    "racial_ethnic_origin",
+    "philosophical_belief_denomination",
+    "union_association_foundation_membership",
+    "criminal_conviction_security_measure",
+    "attire"
+  ]
+}

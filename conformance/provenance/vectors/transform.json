@@ -1,0 +1,225 @@
+[
+  {
+    "rule": "SEC-14 (1)",
+    "description": "summarising an email keeps external.email",
+    "input": {
+      "op": "summarise",
+      "inputs": [
+        {
+          "label": "external.email"
+        }
+      ]
+    },
+    "expected": {
+      "label": "external.email"
+    }
+  },
+  {
+    "rule": "SEC-14 (1)",
+    "description": "summarising email and web content keeps both sources",
+    "input": {
+      "op": "summarise",
+      "inputs": [
+        {
+          "label": "external.email"
+        },
+        {
+          "label": "external.web"
+        }
+      ]
+    },
+    "expected": {
+      "label": "external.mixed",
+      "sources": [
+        "external.email",
+        "external.web"
+      ]
+    }
+  },
+  {
+    "rule": "SEC-14 (1)",
+    "description": "summary of user notes and a PDF takes the worst label",
+    "input": {
+      "op": "summarise",
+      "inputs": [
+        {
+          "label": "user.direct"
+        },
+        {
+          "label": "external.document"
+        }
+      ]
+    },
+    "expected": {
+      "label": "external.document"
+    }
+  },
+  {
+    "rule": "SEC-14 (1)",
+    "description": "translating a message into Turkish keeps external.message",
+    "input": {
+      "op": "translate",
+      "inputs": [
+        {
+          "label": "external.message"
+        }
+      ]
+    },
+    "expected": {
+      "label": "external.message"
+    }
+  },
+  {
+    "rule": "SEC-14 (1)",
+    "description": "translating the user's own text keeps user.direct",
+    "input": {
+      "op": "translate",
+      "inputs": [
+        {
+          "label": "user.direct"
+        }
+      ]
+    },
+    "expected": {
+      "label": "user.direct"
+    }
+  },
+  {
+    "rule": "SEC-13 (3)",
+    "description": "quarantine extraction keeps the input label",
+    "input": {
+      "op": "quarantine_extract",
+      "inputs": [
+        {
+          "label": "external.calendar"
+        }
+      ]
+    },
+    "expected": {
+      "label": "external.calendar"
+    }
+  },
+  {
+    "rule": "SEC-13 (3)",
+    "description": "extraction from another One's message keeps external.one",
+    "input": {
+      "op": "quarantine_extract",
+      "inputs": [
+        {
+          "label": "external.one"
+        }
+      ]
+    },
+    "expected": {
+      "label": "external.one"
+    }
+  },
+  {
+    "rule": "SEC-14 (1)",
+    "description": "stripping hidden HTML and invisible characters keeps the label",
+    "input": {
+      "op": "normalise_text",
+      "inputs": [
+        {
+          "label": "external.web"
+        }
+      ]
+    },
+    "expected": {
+      "label": "external.web"
+    }
+  },
+  {
+    "rule": "SEC-21 (2)",
+    "description": "writing web content to memory as a candidate keeps external.web",
+    "input": {
+      "op": "memory_write",
+      "inputs": [
+        {
+          "label": "external.web"
+        }
+      ]
+    },
+    "expected": {
+      "label": "external.web"
+    }
+  },
+  {
+    "rule": "SEC-14 (1)",
+    "description": "writing an inference to memory keeps one.inferred",
+    "input": {
+      "op": "memory_write",
+      "inputs": [
+        {
+          "label": "one.inferred"
+        }
+      ]
+    },
+    "expected": {
+      "label": "one.inferred"
+    }
+  },
+  {
+    "rule": "SEC-14 (1)",
+    "description": "the user's own statement written to memory becomes user.memory",
+    "input": {
+      "op": "memory_write",
+      "inputs": [
+        {
+          "label": "user.direct"
+        }
+      ]
+    },
+    "expected": {
+      "label": "user.memory"
+    }
+  },
+  {
+    "rule": "SEC-14 (1)",
+    "description": "a statement mixing user text and email content stays external",
+    "input": {
+      "op": "memory_write",
+      "inputs": [
+        {
+          "label": "user.direct"
+        },
+        {
+          "label": "external.email"
+        }
+      ]
+    },
+    "expected": {
+      "label": "external.email"
+    }
+  },
+  {
+    "rule": "T-36 (4)",
+    "description": "serialisation preserves the label",
+    "input": {
+      "op": "serialise_roundtrip",
+      "inputs": [
+        {
+          "label": "record.trusted"
+        }
+      ]
+    },
+    "expected": {
+      "label": "record.trusted"
+    }
+  },
+  {
+    "rule": "T-36 (4)",
+    "description": "serialisation preserves the external label",
+    "input": {
+      "op": "serialise_roundtrip",
+      "inputs": [
+        {
+          "label": "external.tool_output"
+        }
+      ]
+    },
+    "expected": {
+      "label": "external.tool_output"
+    }
+  }
+]

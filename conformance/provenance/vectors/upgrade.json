@@ -1,0 +1,212 @@
+[
+  {
+    "rule": "SEC-14 (3)",
+    "description": "user confirms the shown value on the trusted surface: the shown value becomes user.memory",
+    "input": {
+      "op": "upgrade",
+      "label": "external.email",
+      "via": "user_confirmation",
+      "surface": "trusted_surface",
+      "shown": true,
+      "target": "memory"
+    },
+    "expected": {
+      "label": "user.memory"
+    }
+  },
+  {
+    "rule": "SEC-14 (3)",
+    "description": "user confirms a shown inference on the trusted surface",
+    "input": {
+      "op": "upgrade",
+      "label": "one.inferred",
+      "via": "user_confirmation",
+      "surface": "trusted_surface",
+      "shown": true,
+      "target": "memory"
+    },
+    "expected": {
+      "label": "user.memory"
+    }
+  },
+  {
+    "rule": "SEC-14 (3)",
+    "description": "a derivative that was not shown is not upgraded by the confirmation",
+    "input": {
+      "op": "upgrade",
+      "label": "external.email",
+      "via": "user_confirmation",
+      "surface": "trusted_surface",
+      "shown": false,
+      "target": "memory"
+    },
+    "expected": {
+      "label": "external.email"
+    }
+  },
+  {
+    "rule": "SEC-14 (5)",
+    "description": "user selects the shown value as their own input on the trusted surface",
+    "input": {
+      "op": "upgrade",
+      "label": "external.email",
+      "via": "user_confirmation",
+      "surface": "trusted_surface",
+      "shown": true,
+      "target": "task_input"
+    },
+    "expected": {
+      "label": "user.direct"
+    }
+  },
+  {
+    "rule": "SEC-7",
+    "description": "a yes in chat is not a trusted-surface action and does not upgrade",
+    "input": {
+      "op": "upgrade",
+      "label": "external.email",
+      "via": "user_confirmation",
+      "surface": "chat",
+      "shown": true,
+      "target": "task_input"
+    },
+    "expected": {
+      "label": "external.email"
+    }
+  },
+  {
+    "rule": "SEC-14 (5)",
+    "description": "a channel reply does not upgrade",
+    "input": {
+      "op": "upgrade",
+      "label": "external.message",
+      "via": "user_confirmation",
+      "surface": "channel_reply",
+      "shown": true,
+      "target": "task_input"
+    },
+    "expected": {
+      "label": "external.message"
+    }
+  },
+  {
+    "rule": "SEC-14 (5)",
+    "description": "a notification button does not upgrade",
+    "input": {
+      "op": "upgrade",
+      "label": "external.web",
+      "via": "user_confirmation",
+      "surface": "notification_action",
+      "shown": true,
+      "target": "memory"
+    },
+    "expected": {
+      "label": "external.web"
+    }
+  },
+  {
+    "rule": "SEC-14 (5)",
+    "description": "an Access approval of the intent authorises the action but does not relabel its inputs",
+    "input": {
+      "op": "upgrade",
+      "label": "external.web",
+      "via": "access_approval",
+      "surface": "trusted_surface",
+      "shown": true,
+      "target": "task_input"
+    },
+    "expected": {
+      "label": "external.web"
+    }
+  },
+  {
+    "rule": "T-36 (3)",
+    "description": "a model claiming the value is trusted does not upgrade",
+    "input": {
+      "op": "upgrade",
+      "label": "external.web",
+      "via": "model_output",
+      "surface": "none",
+      "shown": false,
+      "target": "task_input"
+    },
+    "expected": {
+      "label": "external.web"
+    }
+  },
+  {
+    "rule": "T-36 (3)",
+    "description": "summarisation never upgrades",
+    "input": {
+      "op": "upgrade",
+      "label": "external.document",
+      "via": "summarise",
+      "surface": "none",
+      "shown": false,
+      "target": "task_input"
+    },
+    "expected": {
+      "label": "external.document"
+    }
+  },
+  {
+    "rule": "SEC-16",
+    "description": "the critic model saying continue does not upgrade",
+    "input": {
+      "op": "upgrade",
+      "label": "external.web",
+      "via": "critic_continue",
+      "surface": "none",
+      "shown": false,
+      "target": "task_input"
+    },
+    "expected": {
+      "label": "external.web"
+    }
+  },
+  {
+    "rule": "SEC-21 (2)",
+    "description": "persistence by independent second evidence without user confirmation yields one.inferred and stays untrusted",
+    "input": {
+      "op": "upgrade",
+      "label": "external.web",
+      "via": "second_independent_evidence",
+      "surface": "none",
+      "shown": false,
+      "target": "memory"
+    },
+    "expected": {
+      "label": "one.inferred"
+    }
+  },
+  {
+    "rule": "SEC-21 (2)",
+    "description": "a second copy from the same source is not independent evidence",
+    "input": {
+      "op": "upgrade",
+      "label": "external.web",
+      "via": "same_source_second_copy",
+      "surface": "none",
+      "shown": false,
+      "target": "memory"
+    },
+    "expected": {
+      "label": "external.web"
+    }
+  },
+  {
+    "rule": "SEC-14 (3)",
+    "description": "further evidence never lifts one.inferred to a user label",
+    "input": {
+      "op": "upgrade",
+      "label": "one.inferred",
+      "via": "second_independent_evidence",
+      "surface": "none",
+      "shown": false,
+      "target": "memory"
+    },
+    "expected": {
+      "label": "one.inferred"
+    }
+  }
+]

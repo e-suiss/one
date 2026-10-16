@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/capability/commerce-purchase-input/v1.json",
+  "title": "commerce.purchase input",
+  "description": "Typed purchase intent of a Task. Not a canonical concept: the offer is a capability output, the order and receipt stay with the merchant and Pay and are referenced. Payment always goes through Pay; no card or bank field exists.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["merchant", "offer_ref", "items", "total_limit", "payment"],
+  "properties": {
+    "merchant": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["merchant_ref"],
+      "properties": {
+        "merchant_ref": { "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/opaque_ref" },
+        "origin": { "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/origin" }
+      }
+    },
+    "offer_ref": { "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/opaque_ref" },
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["product_ref", "title", "quantity", "unit_price"],
+        "properties": {
+          "product_ref": { "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/opaque_ref" },
+          "title": { "type": "string", "minLength": 1, "maxLength": 256 },
+          "quantity": { "type": "integer", "minimum": 1 },
+          "unit_price": { "$ref": "https://suiss.app/schemas/one/interaction/common/v1.json#/$defs/money" }
+        }
+      }
+    },
+    "total_limit": { "$ref": "https://suiss.app/schemas/one/interaction/common/v1.json#/$defs/money" },
+    "delivery": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["address_ref"],
+      "properties": {
+        "address_ref": { "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/opaque_ref" },
+        "window_start": { "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/timestamp" },
+        "window_end": { "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/timestamp" }
+      }
+    },
+    "payment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["via"],
+      "properties": {
+        "via": { "const": "pay" },
+        "mandate_ref": { "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/mandate_ref" }
+      }
+    },
+    "return_terms_ref": { "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/opaque_ref" }
+  }
+}

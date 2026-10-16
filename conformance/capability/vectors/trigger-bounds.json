@@ -1,0 +1,322 @@
+[
+  {
+    "rule": "A-14",
+    "description": "Within the Mandate",
+    "input": {
+      "event_source": {
+        "kind": "price_watch",
+        "ref": "watch:flight-ist-hnd"
+      },
+      "condition": {
+        "language": "suiss-restriction",
+        "language_version": "1",
+        "expression": "price.value < 40000 && price.currency == \"TRY\""
+      },
+      "action": {
+        "action_ref": {
+          "namespace": "app.suiss.travel.flight.book",
+          "name": "book",
+          "version": "2026-10-01",
+          "schema_digest": "sha256:abababababababababababababababababababababababababababababababab"
+        },
+        "target": {
+          "kind": "merchant",
+          "ref": "airline-7"
+        }
+      },
+      "budget": {
+        "amount": {
+          "value": "40000.00",
+          "currency": "TRY"
+        },
+        "count": 1
+      },
+      "ends_at": "2026-11-30T00:00:00Z",
+      "mandate": {
+        "mandate_ref": {
+          "ref": "MandateRef",
+          "id": "tokyo-flight"
+        },
+        "behaviour": "act",
+        "ends_at": "2026-12-01T00:00:00Z",
+        "budget": {
+          "amount": {
+            "value": "40000.00",
+            "currency": "TRY"
+          },
+          "count": 1
+        }
+      }
+    },
+    "expected": {
+      "accepted": true,
+      "runs": "decides_on_fire"
+    }
+  },
+  {
+    "rule": "A-14",
+    "description": "Ends after the Mandate",
+    "input": {
+      "event_source": {
+        "kind": "price_watch",
+        "ref": "watch:flight-ist-hnd"
+      },
+      "condition": {
+        "language": "suiss-restriction",
+        "language_version": "1",
+        "expression": "price.value < 40000 && price.currency == \"TRY\""
+      },
+      "action": {
+        "action_ref": {
+          "namespace": "app.suiss.travel.flight.book",
+          "name": "book",
+          "version": "2026-10-01",
+          "schema_digest": "sha256:abababababababababababababababababababababababababababababababab"
+        },
+        "target": {
+          "kind": "merchant",
+          "ref": "airline-7"
+        }
+      },
+      "budget": {
+        "amount": {
+          "value": "40000.00",
+          "currency": "TRY"
+        },
+        "count": 1
+      },
+      "ends_at": "2026-12-15T00:00:00Z",
+      "mandate": {
+        "mandate_ref": {
+          "ref": "MandateRef",
+          "id": "tokyo-flight"
+        },
+        "behaviour": "act",
+        "ends_at": "2026-12-01T00:00:00Z",
+        "budget": {
+          "amount": {
+            "value": "40000.00",
+            "currency": "TRY"
+          },
+          "count": 1
+        }
+      }
+    },
+    "expected": {
+      "rejected": "ends_after_mandate"
+    }
+  },
+  {
+    "rule": "A-14",
+    "description": "Amount above the Mandate",
+    "input": {
+      "event_source": {
+        "kind": "price_watch",
+        "ref": "watch:flight-ist-hnd"
+      },
+      "condition": {
+        "language": "suiss-restriction",
+        "language_version": "1",
+        "expression": "price.value < 40000 && price.currency == \"TRY\""
+      },
+      "action": {
+        "action_ref": {
+          "namespace": "app.suiss.travel.flight.book",
+          "name": "book",
+          "version": "2026-10-01",
+          "schema_digest": "sha256:abababababababababababababababababababababababababababababababab"
+        },
+        "target": {
+          "kind": "merchant",
+          "ref": "airline-7"
+        }
+      },
+      "budget": {
+        "amount": {
+          "value": "50000.00",
+          "currency": "TRY"
+        },
+        "count": 1
+      },
+      "ends_at": "2026-11-30T00:00:00Z",
+      "mandate": {
+        "mandate_ref": {
+          "ref": "MandateRef",
+          "id": "tokyo-flight"
+        },
+        "behaviour": "act",
+        "ends_at": "2026-12-01T00:00:00Z",
+        "budget": {
+          "amount": {
+            "value": "40000.00",
+            "currency": "TRY"
+          },
+          "count": 1
+        }
+      }
+    },
+    "expected": {
+      "rejected": "budget_exceeds_mandate"
+    }
+  },
+  {
+    "rule": "A-14",
+    "description": "Count above the Mandate",
+    "input": {
+      "event_source": {
+        "kind": "price_watch",
+        "ref": "watch:flight-ist-hnd"
+      },
+      "condition": {
+        "language": "suiss-restriction",
+        "language_version": "1",
+        "expression": "price.value < 40000 && price.currency == \"TRY\""
+      },
+      "action": {
+        "action_ref": {
+          "namespace": "app.suiss.travel.flight.book",
+          "name": "book",
+          "version": "2026-10-01",
+          "schema_digest": "sha256:abababababababababababababababababababababababababababababababab"
+        },
+        "target": {
+          "kind": "merchant",
+          "ref": "airline-7"
+        }
+      },
+      "budget": {
+        "amount": {
+          "value": "40000.00",
+          "currency": "TRY"
+        },
+        "count": 3
+      },
+      "ends_at": "2026-11-30T00:00:00Z",
+      "mandate": {
+        "mandate_ref": {
+          "ref": "MandateRef",
+          "id": "tokyo-flight"
+        },
+        "behaviour": "act",
+        "ends_at": "2026-12-01T00:00:00Z",
+        "budget": {
+          "amount": {
+            "value": "40000.00",
+            "currency": "TRY"
+          },
+          "count": 1
+        }
+      }
+    },
+    "expected": {
+      "rejected": "budget_exceeds_mandate"
+    }
+  },
+  {
+    "rule": "A-14",
+    "description": "Different currency",
+    "input": {
+      "event_source": {
+        "kind": "price_watch",
+        "ref": "watch:flight-ist-hnd"
+      },
+      "condition": {
+        "language": "suiss-restriction",
+        "language_version": "1",
+        "expression": "price.value < 40000 && price.currency == \"TRY\""
+      },
+      "action": {
+        "action_ref": {
+          "namespace": "app.suiss.travel.flight.book",
+          "name": "book",
+          "version": "2026-10-01",
+          "schema_digest": "sha256:abababababababababababababababababababababababababababababababab"
+        },
+        "target": {
+          "kind": "merchant",
+          "ref": "airline-7"
+        }
+      },
+      "budget": {
+        "amount": {
+          "value": "40000.00",
+          "currency": "EUR"
+        },
+        "count": 1
+      },
+      "ends_at": "2026-11-30T00:00:00Z",
+      "mandate": {
+        "mandate_ref": {
+          "ref": "MandateRef",
+          "id": "tokyo-flight"
+        },
+        "behaviour": "act",
+        "ends_at": "2026-12-01T00:00:00Z",
+        "budget": {
+          "amount": {
+            "value": "40000.00",
+            "currency": "TRY"
+          },
+          "count": 1
+        }
+      }
+    },
+    "expected": {
+      "rejected": "currency_mismatch"
+    }
+  },
+  {
+    "rule": "A-14",
+    "description": "Ask Mandate: the trigger prepares and asks when it fires",
+    "input": {
+      "event_source": {
+        "kind": "price_watch",
+        "ref": "watch:flight-ist-hnd"
+      },
+      "condition": {
+        "language": "suiss-restriction",
+        "language_version": "1",
+        "expression": "price.value < 40000 && price.currency == \"TRY\""
+      },
+      "action": {
+        "action_ref": {
+          "namespace": "app.suiss.travel.flight.book",
+          "name": "book",
+          "version": "2026-10-01",
+          "schema_digest": "sha256:abababababababababababababababababababababababababababababababab"
+        },
+        "target": {
+          "kind": "merchant",
+          "ref": "airline-7"
+        }
+      },
+      "budget": {
+        "amount": {
+          "value": "40000.00",
+          "currency": "TRY"
+        },
+        "count": 1
+      },
+      "ends_at": "2026-11-30T00:00:00Z",
+      "mandate": {
+        "mandate_ref": {
+          "ref": "MandateRef",
+          "id": "tokyo-flight"
+        },
+        "behaviour": "ask",
+        "ends_at": "2026-12-01T00:00:00Z",
+        "budget": {
+          "amount": {
+            "value": "40000.00",
+            "currency": "TRY"
+          },
+          "count": 1
+        }
+      }
+    },
+    "expected": {
+      "accepted": true,
+      "runs": "asks_on_fire"
+    }
+  }
+]

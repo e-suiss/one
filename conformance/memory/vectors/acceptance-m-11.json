@@ -1,0 +1,357 @@
+[
+  {
+    "rule": "M-11",
+    "description": "who was my manager in March 2026: valid time query over bitemporal edges",
+    "input": {
+      "edges": [
+        {
+          "id": "mem_01k742v1srfrz815ksqrjd1t3n",
+          "version": 1,
+          "subject": "self",
+          "predicate": "has_manager",
+          "object": "ayse",
+          "valid_from": "2025-03-01T00:00:00Z",
+          "valid_to": null,
+          "recorded_at": "2025-03-05T00:00:00Z",
+          "superseded_at": "2026-05-03T10:00:00Z"
+        },
+        {
+          "id": "mem_01k742v1srfrz815ksqrjd1t3n",
+          "version": 2,
+          "subject": "self",
+          "predicate": "has_manager",
+          "object": "ayse",
+          "valid_from": "2025-03-01T00:00:00Z",
+          "valid_to": "2026-05-01T00:00:00Z",
+          "recorded_at": "2026-05-03T10:00:00Z",
+          "superseded_at": null
+        },
+        {
+          "id": "mem_01k742v2s0esjb0wd3jm0p29fe",
+          "version": 1,
+          "subject": "self",
+          "predicate": "has_manager",
+          "object": "can",
+          "valid_from": "2026-05-01T00:00:00Z",
+          "valid_to": null,
+          "recorded_at": "2026-05-03T10:00:00Z",
+          "superseded_at": null
+        }
+      ],
+      "query": {
+        "subject": "self",
+        "predicate": "has_manager",
+        "valid_at": "2026-03-15T00:00:00Z",
+        "known_at": "2026-10-16T00:00:00Z"
+      }
+    },
+    "expected": {
+      "objects": [
+        "ayse"
+      ],
+      "edge_versions": [
+        [
+          "mem_01k742v1srfrz815ksqrjd1t3n",
+          2
+        ]
+      ]
+    }
+  },
+  {
+    "rule": "M-11",
+    "description": "who is my manager now",
+    "input": {
+      "edges": [
+        {
+          "id": "mem_01k742v1srfrz815ksqrjd1t3n",
+          "version": 1,
+          "subject": "self",
+          "predicate": "has_manager",
+          "object": "ayse",
+          "valid_from": "2025-03-01T00:00:00Z",
+          "valid_to": null,
+          "recorded_at": "2025-03-05T00:00:00Z",
+          "superseded_at": "2026-05-03T10:00:00Z"
+        },
+        {
+          "id": "mem_01k742v1srfrz815ksqrjd1t3n",
+          "version": 2,
+          "subject": "self",
+          "predicate": "has_manager",
+          "object": "ayse",
+          "valid_from": "2025-03-01T00:00:00Z",
+          "valid_to": "2026-05-01T00:00:00Z",
+          "recorded_at": "2026-05-03T10:00:00Z",
+          "superseded_at": null
+        },
+        {
+          "id": "mem_01k742v2s0esjb0wd3jm0p29fe",
+          "version": 1,
+          "subject": "self",
+          "predicate": "has_manager",
+          "object": "can",
+          "valid_from": "2026-05-01T00:00:00Z",
+          "valid_to": null,
+          "recorded_at": "2026-05-03T10:00:00Z",
+          "superseded_at": null
+        }
+      ],
+      "query": {
+        "subject": "self",
+        "predicate": "has_manager",
+        "valid_at": "2026-10-16T00:00:00Z",
+        "known_at": "2026-10-16T00:00:00Z"
+      }
+    },
+    "expected": {
+      "objects": [
+        "can"
+      ],
+      "edge_versions": [
+        [
+          "mem_01k742v2s0esjb0wd3jm0p29fe",
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "rule": "M-11",
+    "description": "what One believed on 2026-05-02 about the manager now: transaction time query",
+    "input": {
+      "edges": [
+        {
+          "id": "mem_01k742v1srfrz815ksqrjd1t3n",
+          "version": 1,
+          "subject": "self",
+          "predicate": "has_manager",
+          "object": "ayse",
+          "valid_from": "2025-03-01T00:00:00Z",
+          "valid_to": null,
+          "recorded_at": "2025-03-05T00:00:00Z",
+          "superseded_at": "2026-05-03T10:00:00Z"
+        },
+        {
+          "id": "mem_01k742v1srfrz815ksqrjd1t3n",
+          "version": 2,
+          "subject": "self",
+          "predicate": "has_manager",
+          "object": "ayse",
+          "valid_from": "2025-03-01T00:00:00Z",
+          "valid_to": "2026-05-01T00:00:00Z",
+          "recorded_at": "2026-05-03T10:00:00Z",
+          "superseded_at": null
+        },
+        {
+          "id": "mem_01k742v2s0esjb0wd3jm0p29fe",
+          "version": 1,
+          "subject": "self",
+          "predicate": "has_manager",
+          "object": "can",
+          "valid_from": "2026-05-01T00:00:00Z",
+          "valid_to": null,
+          "recorded_at": "2026-05-03T10:00:00Z",
+          "superseded_at": null
+        }
+      ],
+      "query": {
+        "subject": "self",
+        "predicate": "has_manager",
+        "valid_at": "2026-05-02T00:00:00Z",
+        "known_at": "2026-05-02T00:00:00Z"
+      }
+    },
+    "expected": {
+      "objects": [
+        "ayse"
+      ],
+      "edge_versions": [
+        [
+          "mem_01k742v1srfrz815ksqrjd1t3n",
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "rule": "M-11",
+    "description": "before anything was recorded nothing is known",
+    "input": {
+      "edges": [
+        {
+          "id": "mem_01k742v1srfrz815ksqrjd1t3n",
+          "version": 1,
+          "subject": "self",
+          "predicate": "has_manager",
+          "object": "ayse",
+          "valid_from": "2025-03-01T00:00:00Z",
+          "valid_to": null,
+          "recorded_at": "2025-03-05T00:00:00Z",
+          "superseded_at": "2026-05-03T10:00:00Z"
+        },
+        {
+          "id": "mem_01k742v1srfrz815ksqrjd1t3n",
+          "version": 2,
+          "subject": "self",
+          "predicate": "has_manager",
+          "object": "ayse",
+          "valid_from": "2025-03-01T00:00:00Z",
+          "valid_to": "2026-05-01T00:00:00Z",
+          "recorded_at": "2026-05-03T10:00:00Z",
+          "superseded_at": null
+        },
+        {
+          "id": "mem_01k742v2s0esjb0wd3jm0p29fe",
+          "version": 1,
+          "subject": "self",
+          "predicate": "has_manager",
+          "object": "can",
+          "valid_from": "2026-05-01T00:00:00Z",
+          "valid_to": null,
+          "recorded_at": "2026-05-03T10:00:00Z",
+          "superseded_at": null
+        }
+      ],
+      "query": {
+        "subject": "self",
+        "predicate": "has_manager",
+        "valid_at": "2025-03-02T00:00:00Z",
+        "known_at": "2025-03-01T00:00:00Z"
+      }
+    },
+    "expected": {
+      "objects": [],
+      "edge_versions": []
+    }
+  },
+  {
+    "rule": "M-11",
+    "description": "status and validity filters run before search: most similar is not most valid",
+    "input": {
+      "candidates": [
+        {
+          "id": "mem_01k742v0tges7ahv74rwr6c2dw",
+          "status": "active",
+          "epistemic_state": "invalidated",
+          "similarity": 0.97,
+          "lexical": 0.9
+        },
+        {
+          "id": "mem_01k742v3r8fahby5zb0naqk3s2",
+          "status": "active",
+          "epistemic_state": "stated",
+          "similarity": 0.91,
+          "lexical": 0.8
+        },
+        {
+          "id": "mem_01k742v4qgfdcvvq178ma7cahv",
+          "status": "suppressed",
+          "epistemic_state": "stated",
+          "similarity": 0.95,
+          "lexical": 0.9
+        },
+        {
+          "id": "mem_01k742v5prffk9byypmza5as59",
+          "status": "candidate",
+          "epistemic_state": "hypothesis",
+          "similarity": 0.93,
+          "lexical": 0.7
+        }
+      ],
+      "search": "hybrid"
+    },
+    "expected": {
+      "eligible": [
+        "mem_01k742v3r8fahby5zb0naqk3s2"
+      ],
+      "excluded": {
+        "mem_01k742v0tges7ahv74rwr6c2dw": "invalidated",
+        "mem_01k742v4qgfdcvvq178ma7cahv": "suppressed",
+        "mem_01k742v5prffk9byypmza5as59": "candidate"
+      }
+    }
+  },
+  {
+    "rule": "M-12",
+    "description": "vectors of two embedding model versions are never mixed",
+    "input": {
+      "query_model": "embedding@2",
+      "index": [
+        {
+          "id": "mem_01k742v0tges7ahv74rwr6c2dw",
+          "model": "embedding@1"
+        },
+        {
+          "id": "mem_01k742v3r8fahby5zb0naqk3s2",
+          "model": "embedding@2"
+        }
+      ],
+      "reindex_complete": false
+    },
+    "expected": {
+      "outcome": "rejected",
+      "error": "reindex_incomplete"
+    }
+  },
+  {
+    "rule": "M-12",
+    "description": "after reindexing only the current model's vectors are searched",
+    "input": {
+      "query_model": "embedding@2",
+      "index": [
+        {
+          "id": "mem_01k742v3r8fahby5zb0naqk3s2",
+          "model": "embedding@2"
+        }
+      ],
+      "reindex_complete": true
+    },
+    "expected": {
+      "outcome": "search",
+      "searched": [
+        "mem_01k742v3r8fahby5zb0naqk3s2"
+      ]
+    }
+  },
+  {
+    "rule": "M-11",
+    "description": "retrieval is hybrid: dense-only search is rejected",
+    "input": {
+      "candidates": [
+        {
+          "id": "mem_01k742v0tges7ahv74rwr6c2dw",
+          "status": "active",
+          "epistemic_state": "invalidated",
+          "similarity": 0.97,
+          "lexical": 0.9
+        },
+        {
+          "id": "mem_01k742v3r8fahby5zb0naqk3s2",
+          "status": "active",
+          "epistemic_state": "stated",
+          "similarity": 0.91,
+          "lexical": 0.8
+        },
+        {
+          "id": "mem_01k742v4qgfdcvvq178ma7cahv",
+          "status": "suppressed",
+          "epistemic_state": "stated",
+          "similarity": 0.95,
+          "lexical": 0.9
+        },
+        {
+          "id": "mem_01k742v5prffk9byypmza5as59",
+          "status": "candidate",
+          "epistemic_state": "hypothesis",
+          "similarity": 0.93,
+          "lexical": 0.7
+        }
+      ],
+      "search": "dense_only"
+    },
+    "expected": {
+      "outcome": "rejected",
+      "error": "hybrid_required"
+    }
+  }
+]

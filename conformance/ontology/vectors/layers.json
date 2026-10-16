@@ -1,0 +1,111 @@
+[
+  {
+    "rule": "C-8",
+    "description": "Explicit remember turns an utterance into a stated memory record",
+    "input": {
+      "from": "observation",
+      "to": "memory"
+    },
+    "expected": {
+      "function": "remember_explicit"
+    }
+  },
+  {
+    "rule": "C-8",
+    "description": "Background inference yields an inferred or hypothesis record",
+    "input": {
+      "from": "observation",
+      "to": "inference"
+    },
+    "expected": {
+      "function": "infer"
+    }
+  },
+  {
+    "rule": "M-1",
+    "description": "Inference becomes durable memory only by confirmation",
+    "input": {
+      "from": "inference",
+      "to": "memory"
+    },
+    "expected": {
+      "function": "confirm"
+    }
+  },
+  {
+    "rule": "C-20",
+    "description": "Correction is a new version that supersedes",
+    "input": {
+      "from": "memory",
+      "to": "memory"
+    },
+    "expected": {
+      "function": "correct"
+    }
+  },
+  {
+    "rule": "C-14",
+    "description": "Routine to action passes through a suggestion Interaction",
+    "input": {
+      "from": "memory",
+      "to": "interaction"
+    },
+    "expected": {
+      "function": "suggest"
+    }
+  },
+  {
+    "rule": "C-8",
+    "description": "No path from memory to authority",
+    "input": {
+      "from": "memory",
+      "to": "authority"
+    },
+    "expected": "rejected"
+  },
+  {
+    "rule": "C-8",
+    "description": "No path from inference to authority",
+    "input": {
+      "from": "inference",
+      "to": "authority"
+    },
+    "expected": "rejected"
+  },
+  {
+    "rule": "C-8",
+    "description": "No path from observation to authority",
+    "input": {
+      "from": "observation",
+      "to": "authority"
+    },
+    "expected": "rejected"
+  },
+  {
+    "rule": "C-8",
+    "description": "An approval Interaction is not authority; Access decides",
+    "input": {
+      "from": "interaction",
+      "to": "authority"
+    },
+    "expected": "rejected"
+  },
+  {
+    "rule": "M-1",
+    "description": "Observation never jumps to authority through memory in one step",
+    "input": {
+      "from": "observation",
+      "to": "memory+authority"
+    },
+    "expected": "rejected"
+  },
+  {
+    "rule": "M-1",
+    "description": "Unlisted conversions are rejected",
+    "input": {
+      "from": "inference",
+      "to": "observation"
+    },
+    "expected": "rejected"
+  }
+]

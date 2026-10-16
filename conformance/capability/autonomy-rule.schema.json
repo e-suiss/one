@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/capability/autonomy-rule/v1.json",
+  "title": "Autonomy rule",
+  "description": "One's projection of an Access Mandate behaviour field for one capability, source, context, budget and risk. There is no global autonomy setting: every rule names one capability and one action.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["mandate_ref", "capability", "action", "source", "risk", "behaviour"],
+  "properties": {
+    "mandate_ref": { "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/mandate_ref" },
+    "capability": { "$ref": "https://suiss.app/schemas/one/capability/name/v1.json#/$defs/ref" },
+    "action": { "$ref": "https://suiss.app/schemas/one/ontology/reference/v1.json#/$defs/ActionRef" },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "refs"],
+      "properties": {
+        "kind": { "type": "string", "enum": ["account", "recipient", "merchant", "site"] },
+        "refs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/opaque_ref" }
+        }
+      }
+    },
+    "context": {
+      "type": "object",
+      "additionalProperties": false,
+      "minProperties": 1,
+      "properties": {
+        "time_windows": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["days", "from", "to", "time_zone"],
+            "properties": {
+              "days": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": { "type": "string", "enum": ["mon", "tue", "wed", "thu", "fri", "sat", "sun"] }
+              },
+              "from": { "type": "string", "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9]$" },
+              "to": { "type": "string", "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9]$" },
+              "time_zone": { "type": "string", "minLength": 1, "maxLength": 64 },
+              "public_holidays": { "type": "string", "enum": ["included", "excluded"] }
+            }
+          }
+        },
+        "place_refs": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/opaque_ref" }
+        },
+        "human_present": { "type": "boolean" }
+      }
+    },
+    "budget": {
+      "type": "object",
+      "additionalProperties": false,
+      "minProperties": 1,
+      "properties": {
+        "amount_per_exercise": { "$ref": "https://suiss.app/schemas/one/interaction/common/v1.json#/$defs/money" },
+        "amount_total": { "$ref": "https://suiss.app/schemas/one/interaction/common/v1.json#/$defs/money" },
+        "count": { "type": "integer", "minimum": 1 },
+        "period": { "type": "string", "enum": ["day", "week", "month", "rule"] }
+      }
+    },
+    "risk": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["max_consequence_tier", "reversibility"],
+      "properties": {
+        "max_consequence_tier": { "$ref": "https://suiss.app/schemas/one/interaction/common/v1.json#/$defs/risk" },
+        "reversibility": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "https://suiss.app/schemas/one/interaction/common/v1.json#/$defs/reversibility" }
+        }
+      }
+    },
+    "behaviour": { "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/autonomy_behaviour" },
+    "preapproval_origin": {
+      "description": "Which request, which statement and when the user pre-approved; bound to the Mandate.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["request_ref", "statement_digest", "approved_at", "approval_act_ref"],
+      "properties": {
+        "request_ref": { "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/interaction_id" },
+        "statement_digest": { "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/sha256_digest" },
+        "approved_at": { "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/timestamp" },
+        "approval_act_ref": { "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/decision_ref" }
+      }
+    },
+    "ends_at": { "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/timestamp" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "behaviour": { "const": "act-if-preapproved" } } },
+      "then": { "required": ["preapproval_origin"] },
+      "else": { "not": { "required": ["preapproval_origin"] } }
+    },
+    {
+      "if": { "properties": { "behaviour": { "enum": ["act", "act-if-preapproved"] } } },
+      "then": {
+        "required": ["budget", "ends_at"],
+        "properties": { "source": { "properties": { "refs": { "minItems": 1 } } } }
+      }
+    }
+  ]
+}

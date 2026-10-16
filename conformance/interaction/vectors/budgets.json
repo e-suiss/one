@@ -1,0 +1,4361 @@
+[
+  {
+    "rule": "X-13, X-6",
+    "description": "A progress item whose Live Activity attributes and content state exceed 4 KB is sent as its minimal projection",
+    "input": {
+      "interaction": {
+        "type": "Interaction",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_SSSSSSSS000000000001"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "retention_class": "one_memory",
+        "recorded_at": "2026-10-16T09:00:00Z",
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "one",
+          "instance": {
+            "ref": "InstanceRef",
+            "id": "ins_SSSSSSSS000000000001"
+          },
+          "model_version": "mdl_01m4a5btkneayawh9ym9pwjqpt",
+          "config_version": "interaction-1"
+        },
+        "id": "int_01m4xsfjxbfx9v4f6nz4r491n6",
+        "version": 1,
+        "kind": "progress",
+        "subject": {
+          "title": {
+            "tr": "Kahve siparişi",
+            "en": "Coffee order"
+          },
+          "ref": {
+            "ref": "RecordRef",
+            "id": "task_01m5r8g42bekmsnz4xp5vstwka"
+          }
+        },
+        "details": {
+          "progress": {
+            "phase": "in_progress",
+            "fraction": 0.4,
+            "step_label": "Hazırlanıyor"
+          },
+          "steps": [
+            {
+              "label": "Adım 00: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 01: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 02: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 03: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 04: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 05: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 06: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 07: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 08: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 09: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 10: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 11: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 12: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 13: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 14: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 15: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 16: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 17: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 18: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 19: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 20: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 21: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 22: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 23: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 24: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 25: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 26: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 27: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 28: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 29: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 30: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 31: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 32: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 33: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 34: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 35: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 36: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 37: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 38: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 39: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 40: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 41: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 42: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 43: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 44: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 45: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 46: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 47: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 48: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 49: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 50: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 51: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 52: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 53: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 54: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 55: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 56: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 57: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 58: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            },
+            {
+              "label": "Adım 59: paket aktarma merkezinden çıkış taraması tamamlandı",
+              "status": "done"
+            }
+          ]
+        },
+        "risk": "CT0",
+        "reversibility": "reversible",
+        "data_class": {
+          "kinds": [
+            "general"
+          ],
+          "sensitive": []
+        },
+        "sensitive": false,
+        "provenance": "record.trusted",
+        "why_now": {
+          "reason": {
+            "tr": "Sabah kahveni sen istedin.",
+            "en": "You asked for your morning coffee."
+          },
+          "evidence": []
+        },
+        "interruption": "passive",
+        "timing": {
+          "delivery": "immediate"
+        },
+        "minimal_projection": {
+          "sentence": {
+            "tr": "Kahve siparişin hazırlanıyor.",
+            "en": "Your coffee order is being prepared."
+          },
+          "yes": {
+            "action": "open",
+            "label": {
+              "tr": "Aç",
+              "en": "Open"
+            }
+          },
+          "no": {
+            "action": "stop",
+            "label": {
+              "tr": "Dur",
+              "en": "Stop"
+            }
+          }
+        },
+        "surface_budgets": {
+          "table": "https://suiss.app/schemas/one/interaction/surface-budgets/v1.json"
+        },
+        "actions": [
+          {
+            "id": "open",
+            "effect": "open",
+            "label": {
+              "tr": "Aç",
+              "en": "Open"
+            }
+          },
+          {
+            "id": "stop",
+            "effect": "stop",
+            "label": {
+              "tr": "Dur",
+              "en": "Stop"
+            }
+          }
+        ],
+        "answer_nonce": "n1-AbCdEfGhIjKlMnOpQrStUv",
+        "min_assurance": {
+          "surface_classes": [
+            "phone",
+            "desktop",
+            "watch",
+            "voice:car",
+            "voice:glasses"
+          ],
+          "authentication": "device_unlock"
+        },
+        "deep_link": "https://suiss.app/one/i/int_01m4xsfjxbfx9v4f6nz4r491n6",
+        "expires_at": "2026-10-16T09:30:00Z"
+      },
+      "surface_class": "phone",
+      "target": "live_activity",
+      "declared_targets": [
+        "workspace",
+        "notification",
+        "live_activity",
+        "widget"
+      ]
+    },
+    "expected": {
+      "valid": true,
+      "projection": "minimal",
+      "reason": "over_budget",
+      "projected_bytes": 6126
+    }
+  },
+  {
+    "rule": "X-13, X-6",
+    "description": "A progress item within 4 KB is sent to the Live Activity in full",
+    "input": {
+      "interaction": {
+        "type": "Interaction",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_SSSSSSSS000000000001"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "retention_class": "one_memory",
+        "recorded_at": "2026-10-16T09:00:00Z",
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "one",
+          "instance": {
+            "ref": "InstanceRef",
+            "id": "ins_SSSSSSSS000000000001"
+          },
+          "model_version": "mdl_01m4a5btkneayawh9ym9pwjqpt",
+          "config_version": "interaction-1"
+        },
+        "id": "int_01m4xsfjxbfx9v4f6nz4r491n6",
+        "version": 1,
+        "kind": "progress",
+        "subject": {
+          "title": {
+            "tr": "Kahve siparişi",
+            "en": "Coffee order"
+          },
+          "ref": {
+            "ref": "RecordRef",
+            "id": "task_01m5r8g42bekmsnz4xp5vstwka"
+          }
+        },
+        "details": {
+          "progress": {
+            "phase": "in_progress",
+            "fraction": 0.4,
+            "step_label": "Hazırlanıyor"
+          },
+          "steps": [
+            {
+              "label": "Sipariş verildi",
+              "status": "done"
+            },
+            {
+              "label": "Hazırlanıyor",
+              "status": "active"
+            },
+            {
+              "label": "Teslim",
+              "status": "pending"
+            }
+          ]
+        },
+        "risk": "CT0",
+        "reversibility": "reversible",
+        "data_class": {
+          "kinds": [
+            "general"
+          ],
+          "sensitive": []
+        },
+        "sensitive": false,
+        "provenance": "record.trusted",
+        "why_now": {
+          "reason": {
+            "tr": "Sabah kahveni sen istedin.",
+            "en": "You asked for your morning coffee."
+          },
+          "evidence": []
+        },
+        "interruption": "passive",
+        "timing": {
+          "delivery": "immediate"
+        },
+        "minimal_projection": {
+          "sentence": {
+            "tr": "Kahve siparişin hazırlanıyor.",
+            "en": "Your coffee order is being prepared."
+          },
+          "yes": {
+            "action": "open",
+            "label": {
+              "tr": "Aç",
+              "en": "Open"
+            }
+          },
+          "no": {
+            "action": "stop",
+            "label": {
+              "tr": "Dur",
+              "en": "Stop"
+            }
+          }
+        },
+        "surface_budgets": {
+          "table": "https://suiss.app/schemas/one/interaction/surface-budgets/v1.json"
+        },
+        "actions": [
+          {
+            "id": "open",
+            "effect": "open",
+            "label": {
+              "tr": "Aç",
+              "en": "Open"
+            }
+          },
+          {
+            "id": "stop",
+            "effect": "stop",
+            "label": {
+              "tr": "Dur",
+              "en": "Stop"
+            }
+          }
+        ],
+        "answer_nonce": "n1-AbCdEfGhIjKlMnOpQrStUv",
+        "min_assurance": {
+          "surface_classes": [
+            "phone",
+            "desktop",
+            "watch",
+            "voice:car",
+            "voice:glasses"
+          ],
+          "authentication": "device_unlock"
+        },
+        "deep_link": "https://suiss.app/one/i/int_01m4xsfjxbfx9v4f6nz4r491n6",
+        "expires_at": "2026-10-16T09:30:00Z"
+      },
+      "surface_class": "phone",
+      "target": "live_activity",
+      "declared_targets": [
+        "workspace",
+        "notification",
+        "live_activity",
+        "widget"
+      ]
+    },
+    "expected": {
+      "valid": true,
+      "projection": "full",
+      "reason": "fits",
+      "projected_bytes": 494
+    }
+  },
+  {
+    "rule": "X-6, X-4",
+    "description": "An approval is never a Live Activity",
+    "input": {
+      "interaction": {
+        "type": "Interaction",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_SSSSSSSS000000000001"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "retention_class": "one_memory",
+        "recorded_at": "2026-10-16T09:00:00Z",
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "one",
+          "instance": {
+            "ref": "InstanceRef",
+            "id": "ins_SSSSSSSS000000000001"
+          },
+          "model_version": "mdl_01m4a5btkneayawh9ym9pwjqpt",
+          "config_version": "interaction-1"
+        },
+        "id": "int_01m613f347ez599hafz0435mnd",
+        "version": 1,
+        "kind": "approval",
+        "subject": {
+          "title": {
+            "tr": "Kahve siparişi",
+            "en": "Coffee order"
+          },
+          "ref": {
+            "ref": "DecisionRecordRef",
+            "id": "req_SSSSSSSS000000000001"
+          },
+          "concerns": [
+            {
+              "ref": "RecordRef",
+              "id": "task_01m5r8g42bekmsnz4xp5vstwka"
+            }
+          ]
+        },
+        "details": {
+          "amount": {
+            "value": "180.00",
+            "currency": "TRY"
+          },
+          "counterparty": {
+            "display": "Kahve Durağı Moda"
+          }
+        },
+        "risk": "CT1",
+        "reversibility": "compensable",
+        "data_class": {
+          "kinds": [
+            "financial"
+          ],
+          "sensitive": []
+        },
+        "sensitive": false,
+        "provenance": "record.trusted",
+        "field_provenance": {
+          "amount": "record.trusted",
+          "counterparty": "record.trusted"
+        },
+        "why_now": {
+          "reason": {
+            "tr": "Sabah kahveni sen istedin.",
+            "en": "You asked for your morning coffee."
+          },
+          "evidence": []
+        },
+        "interruption": "active",
+        "timing": {
+          "delivery": "next_break",
+          "max_defer": "PT30M",
+          "surface_policy": {
+            "steps": [
+              {
+                "surfaces": [
+                  {
+                    "device_id": "dev_01m51cchyafy58sy4av9ycqtvw"
+                  }
+                ],
+                "escalate_after": "PT5M"
+              },
+              {
+                "surfaces": [
+                  {
+                    "device_id": "dev_01m41v363cfhpb4vze2qv57qr5"
+                  },
+                  {
+                    "channel": "push"
+                  }
+                ],
+                "escalate_after": "PT10M"
+              }
+            ]
+          }
+        },
+        "minimal_projection": {
+          "sentence": {
+            "tr": "180 TL kahve siparişini onaylıyor musun?",
+            "en": "Do you approve the 180 TL coffee order?"
+          },
+          "yes": {
+            "action": "approve",
+            "label": {
+              "tr": "Evet",
+              "en": "Yes"
+            }
+          },
+          "no": {
+            "action": "decline",
+            "label": {
+              "tr": "Hayır",
+              "en": "No"
+            }
+          }
+        },
+        "surface_budgets": {
+          "table": "https://suiss.app/schemas/one/interaction/surface-budgets/v1.json"
+        },
+        "actions": [
+          {
+            "id": "approve",
+            "effect": "approve",
+            "label": {
+              "tr": "Onayla",
+              "en": "Approve"
+            }
+          },
+          {
+            "id": "decline",
+            "effect": "decline",
+            "label": {
+              "tr": "Reddet",
+              "en": "Decline"
+            }
+          }
+        ],
+        "answer_nonce": "n1-AbCdEfGhIjKlMnOpQrStUv",
+        "min_assurance": {
+          "surface_classes": [
+            "phone",
+            "desktop",
+            "watch",
+            "voice:car",
+            "voice:glasses"
+          ],
+          "authentication": "device_unlock"
+        },
+        "deep_link": "https://suiss.app/one/i/int_01m613f347ez599hafz0435mnd",
+        "expires_at": "2026-10-16T09:30:00Z",
+        "mandate_fit": "within",
+        "presentation": {
+          "catalog_version": 1,
+          "components": [
+            {
+              "component": "approval",
+              "version": 1,
+              "binds": [
+                "amount",
+                "counterparty"
+              ]
+            }
+          ]
+        }
+      },
+      "surface_class": "phone",
+      "target": "live_activity",
+      "declared_targets": [
+        "workspace",
+        "notification",
+        "live_activity",
+        "widget"
+      ]
+    },
+    "expected": {
+      "valid": true,
+      "projection": "minimal",
+      "reason": "kind_not_on_target"
+    }
+  },
+  {
+    "rule": "X-13, X-6",
+    "description": "A progress item on an Android Live Update is sent in full with a chip of at most 7 characters and no custom view",
+    "input": {
+      "interaction": {
+        "type": "Interaction",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_SSSSSSSS000000000001"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "retention_class": "one_memory",
+        "recorded_at": "2026-10-16T09:00:00Z",
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "one",
+          "instance": {
+            "ref": "InstanceRef",
+            "id": "ins_SSSSSSSS000000000001"
+          },
+          "model_version": "mdl_01m4a5btkneayawh9ym9pwjqpt",
+          "config_version": "interaction-1"
+        },
+        "id": "int_01m4xsfjxbfx9v4f6nz4r491n6",
+        "version": 1,
+        "kind": "progress",
+        "subject": {
+          "title": {
+            "tr": "Kahve siparişi",
+            "en": "Coffee order"
+          },
+          "ref": {
+            "ref": "RecordRef",
+            "id": "task_01m5r8g42bekmsnz4xp5vstwka"
+          }
+        },
+        "details": {
+          "progress": {
+            "phase": "in_progress",
+            "fraction": 0.4,
+            "step_label": "Hazırlanıyor"
+          },
+          "steps": [
+            {
+              "label": "Sipariş verildi",
+              "status": "done"
+            },
+            {
+              "label": "Hazırlanıyor",
+              "status": "active"
+            },
+            {
+              "label": "Teslim",
+              "status": "pending"
+            }
+          ]
+        },
+        "risk": "CT0",
+        "reversibility": "reversible",
+        "data_class": {
+          "kinds": [
+            "general"
+          ],
+          "sensitive": []
+        },
+        "sensitive": false,
+        "provenance": "record.trusted",
+        "why_now": {
+          "reason": {
+            "tr": "Sabah kahveni sen istedin.",
+            "en": "You asked for your morning coffee."
+          },
+          "evidence": []
+        },
+        "interruption": "passive",
+        "timing": {
+          "delivery": "immediate"
+        },
+        "minimal_projection": {
+          "sentence": {
+            "tr": "Kahve siparişin hazırlanıyor.",
+            "en": "Your coffee order is being prepared."
+          },
+          "yes": {
+            "action": "open",
+            "label": {
+              "tr": "Aç",
+              "en": "Open"
+            }
+          },
+          "no": {
+            "action": "stop",
+            "label": {
+              "tr": "Dur",
+              "en": "Stop"
+            }
+          }
+        },
+        "surface_budgets": {
+          "table": "https://suiss.app/schemas/one/interaction/surface-budgets/v1.json"
+        },
+        "actions": [
+          {
+            "id": "open",
+            "effect": "open",
+            "label": {
+              "tr": "Aç",
+              "en": "Open"
+            }
+          },
+          {
+            "id": "stop",
+            "effect": "stop",
+            "label": {
+              "tr": "Dur",
+              "en": "Stop"
+            }
+          }
+        ],
+        "answer_nonce": "n1-AbCdEfGhIjKlMnOpQrStUv",
+        "min_assurance": {
+          "surface_classes": [
+            "phone",
+            "desktop",
+            "watch",
+            "voice:car",
+            "voice:glasses"
+          ],
+          "authentication": "device_unlock"
+        },
+        "deep_link": "https://suiss.app/one/i/int_01m4xsfjxbfx9v4f6nz4r491n6",
+        "expires_at": "2026-10-16T09:30:00Z"
+      },
+      "surface_class": "phone",
+      "target": "live_update",
+      "declared_targets": [
+        "workspace",
+        "notification",
+        "live_update",
+        "widget"
+      ]
+    },
+    "expected": {
+      "valid": true,
+      "projection": "full",
+      "reason": "fits"
+    }
+  },
+  {
+    "rule": "X-6",
+    "description": "An approval on an Android Live Update gets no rich approval card",
+    "input": {
+      "interaction": {
+        "type": "Interaction",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_SSSSSSSS000000000001"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "retention_class": "one_memory",
+        "recorded_at": "2026-10-16T09:00:00Z",
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "one",
+          "instance": {
+            "ref": "InstanceRef",
+            "id": "ins_SSSSSSSS000000000001"
+          },
+          "model_version": "mdl_01m4a5btkneayawh9ym9pwjqpt",
+          "config_version": "interaction-1"
+        },
+        "id": "int_01m613f347ez599hafz0435mnd",
+        "version": 1,
+        "kind": "approval",
+        "subject": {
+          "title": {
+            "tr": "Kahve siparişi",
+            "en": "Coffee order"
+          },
+          "ref": {
+            "ref": "DecisionRecordRef",
+            "id": "req_SSSSSSSS000000000001"
+          },
+          "concerns": [
+            {
+              "ref": "RecordRef",
+              "id": "task_01m5r8g42bekmsnz4xp5vstwka"
+            }
+          ]
+        },
+        "details": {
+          "amount": {
+            "value": "180.00",
+            "currency": "TRY"
+          },
+          "counterparty": {
+            "display": "Kahve Durağı Moda"
+          }
+        },
+        "risk": "CT1",
+        "reversibility": "compensable",
+        "data_class": {
+          "kinds": [
+            "financial"
+          ],
+          "sensitive": []
+        },
+        "sensitive": false,
+        "provenance": "record.trusted",
+        "field_provenance": {
+          "amount": "record.trusted",
+          "counterparty": "record.trusted"
+        },
+        "why_now": {
+          "reason": {
+            "tr": "Sabah kahveni sen istedin.",
+            "en": "You asked for your morning coffee."
+          },
+          "evidence": []
+        },
+        "interruption": "active",
+        "timing": {
+          "delivery": "next_break",
+          "max_defer": "PT30M",
+          "surface_policy": {
+            "steps": [
+              {
+                "surfaces": [
+                  {
+                    "device_id": "dev_01m51cchyafy58sy4av9ycqtvw"
+                  }
+                ],
+                "escalate_after": "PT5M"
+              },
+              {
+                "surfaces": [
+                  {
+                    "device_id": "dev_01m41v363cfhpb4vze2qv57qr5"
+                  },
+                  {
+                    "channel": "push"
+                  }
+                ],
+                "escalate_after": "PT10M"
+              }
+            ]
+          }
+        },
+        "minimal_projection": {
+          "sentence": {
+            "tr": "180 TL kahve siparişini onaylıyor musun?",
+            "en": "Do you approve the 180 TL coffee order?"
+          },
+          "yes": {
+            "action": "approve",
+            "label": {
+              "tr": "Evet",
+              "en": "Yes"
+            }
+          },
+          "no": {
+            "action": "decline",
+            "label": {
+              "tr": "Hayır",
+              "en": "No"
+            }
+          }
+        },
+        "surface_budgets": {
+          "table": "https://suiss.app/schemas/one/interaction/surface-budgets/v1.json"
+        },
+        "actions": [
+          {
+            "id": "approve",
+            "effect": "approve",
+            "label": {
+              "tr": "Onayla",
+              "en": "Approve"
+            }
+          },
+          {
+            "id": "decline",
+            "effect": "decline",
+            "label": {
+              "tr": "Reddet",
+              "en": "Decline"
+            }
+          }
+        ],
+        "answer_nonce": "n1-AbCdEfGhIjKlMnOpQrStUv",
+        "min_assurance": {
+          "surface_classes": [
+            "phone",
+            "desktop",
+            "watch",
+            "voice:car",
+            "voice:glasses"
+          ],
+          "authentication": "device_unlock"
+        },
+        "deep_link": "https://suiss.app/one/i/int_01m613f347ez599hafz0435mnd",
+        "expires_at": "2026-10-16T09:30:00Z",
+        "mandate_fit": "within",
+        "presentation": {
+          "catalog_version": 1,
+          "components": [
+            {
+              "component": "approval",
+              "version": 1,
+              "binds": [
+                "amount",
+                "counterparty"
+              ]
+            }
+          ]
+        }
+      },
+      "surface_class": "phone",
+      "target": "live_update",
+      "declared_targets": [
+        "workspace",
+        "notification",
+        "live_update",
+        "widget"
+      ]
+    },
+    "expected": {
+      "valid": true,
+      "projection": "minimal",
+      "reason": "kind_not_on_target"
+    }
+  },
+  {
+    "rule": "X-10",
+    "description": "A Live Activity is not sent to a phone that did not declare it",
+    "input": {
+      "interaction": {
+        "type": "Interaction",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_SSSSSSSS000000000001"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "retention_class": "one_memory",
+        "recorded_at": "2026-10-16T09:00:00Z",
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "one",
+          "instance": {
+            "ref": "InstanceRef",
+            "id": "ins_SSSSSSSS000000000001"
+          },
+          "model_version": "mdl_01m4a5btkneayawh9ym9pwjqpt",
+          "config_version": "interaction-1"
+        },
+        "id": "int_01m4xsfjxbfx9v4f6nz4r491n6",
+        "version": 1,
+        "kind": "progress",
+        "subject": {
+          "title": {
+            "tr": "Kahve siparişi",
+            "en": "Coffee order"
+          },
+          "ref": {
+            "ref": "RecordRef",
+            "id": "task_01m5r8g42bekmsnz4xp5vstwka"
+          }
+        },
+        "details": {
+          "progress": {
+            "phase": "in_progress",
+            "fraction": 0.4,
+            "step_label": "Hazırlanıyor"
+          },
+          "steps": [
+            {
+              "label": "Sipariş verildi",
+              "status": "done"
+            },
+            {
+              "label": "Hazırlanıyor",
+              "status": "active"
+            },
+            {
+              "label": "Teslim",
+              "status": "pending"
+            }
+          ]
+        },
+        "risk": "CT0",
+        "reversibility": "reversible",
+        "data_class": {
+          "kinds": [
+            "general"
+          ],
+          "sensitive": []
+        },
+        "sensitive": false,
+        "provenance": "record.trusted",
+        "why_now": {
+          "reason": {
+            "tr": "Sabah kahveni sen istedin.",
+            "en": "You asked for your morning coffee."
+          },
+          "evidence": []
+        },
+        "interruption": "passive",
+        "timing": {
+          "delivery": "immediate"
+        },
+        "minimal_projection": {
+          "sentence": {
+            "tr": "Kahve siparişin hazırlanıyor.",
+            "en": "Your coffee order is being prepared."
+          },
+          "yes": {
+            "action": "open",
+            "label": {
+              "tr": "Aç",
+              "en": "Open"
+            }
+          },
+          "no": {
+            "action": "stop",
+            "label": {
+              "tr": "Dur",
+              "en": "Stop"
+            }
+          }
+        },
+        "surface_budgets": {
+          "table": "https://suiss.app/schemas/one/interaction/surface-budgets/v1.json"
+        },
+        "actions": [
+          {
+            "id": "open",
+            "effect": "open",
+            "label": {
+              "tr": "Aç",
+              "en": "Open"
+            }
+          },
+          {
+            "id": "stop",
+            "effect": "stop",
+            "label": {
+              "tr": "Dur",
+              "en": "Stop"
+            }
+          }
+        ],
+        "answer_nonce": "n1-AbCdEfGhIjKlMnOpQrStUv",
+        "min_assurance": {
+          "surface_classes": [
+            "phone",
+            "desktop",
+            "watch",
+            "voice:car",
+            "voice:glasses"
+          ],
+          "authentication": "device_unlock"
+        },
+        "deep_link": "https://suiss.app/one/i/int_01m4xsfjxbfx9v4f6nz4r491n6",
+        "expires_at": "2026-10-16T09:30:00Z"
+      },
+      "surface_class": "phone",
+      "target": "live_activity",
+      "declared_targets": [
+        "workspace",
+        "notification",
+        "live_update",
+        "widget"
+      ]
+    },
+    "expected": {
+      "valid": true,
+      "projection": "none",
+      "reason": "undeclared_target"
+    }
+  },
+  {
+    "rule": "X-13, X-45",
+    "description": "A low-risk approval on the watch is its minimal projection",
+    "input": {
+      "interaction": {
+        "type": "Interaction",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_SSSSSSSS000000000001"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "retention_class": "one_memory",
+        "recorded_at": "2026-10-16T09:00:00Z",
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "one",
+          "instance": {
+            "ref": "InstanceRef",
+            "id": "ins_SSSSSSSS000000000001"
+          },
+          "model_version": "mdl_01m4a5btkneayawh9ym9pwjqpt",
+          "config_version": "interaction-1"
+        },
+        "id": "int_01m613f347ez599hafz0435mnd",
+        "version": 1,
+        "kind": "approval",
+        "subject": {
+          "title": {
+            "tr": "Kahve siparişi",
+            "en": "Coffee order"
+          },
+          "ref": {
+            "ref": "DecisionRecordRef",
+            "id": "req_SSSSSSSS000000000001"
+          },
+          "concerns": [
+            {
+              "ref": "RecordRef",
+              "id": "task_01m5r8g42bekmsnz4xp5vstwka"
+            }
+          ]
+        },
+        "details": {
+          "amount": {
+            "value": "180.00",
+            "currency": "TRY"
+          },
+          "counterparty": {
+            "display": "Kahve Durağı Moda"
+          }
+        },
+        "risk": "CT1",
+        "reversibility": "compensable",
+        "data_class": {
+          "kinds": [
+            "financial"
+          ],
+          "sensitive": []
+        },
+        "sensitive": false,
+        "provenance": "record.trusted",
+        "field_provenance": {
+          "amount": "record.trusted",
+          "counterparty": "record.trusted"
+        },
+        "why_now": {
+          "reason": {
+            "tr": "Sabah kahveni sen istedin.",
+            "en": "You asked for your morning coffee."
+          },
+          "evidence": []
+        },
+        "interruption": "active",
+        "timing": {
+          "delivery": "next_break",
+          "max_defer": "PT30M",
+          "surface_policy": {
+            "steps": [
+              {
+                "surfaces": [
+                  {
+                    "device_id": "dev_01m51cchyafy58sy4av9ycqtvw"
+                  }
+                ],
+                "escalate_after": "PT5M"
+              },
+              {
+                "surfaces": [
+                  {
+                    "device_id": "dev_01m41v363cfhpb4vze2qv57qr5"
+                  },
+                  {
+                    "channel": "push"
+                  }
+                ],
+                "escalate_after": "PT10M"
+              }
+            ]
+          }
+        },
+        "minimal_projection": {
+          "sentence": {
+            "tr": "180 TL kahve siparişini onaylıyor musun?",
+            "en": "Do you approve the 180 TL coffee order?"
+          },
+          "yes": {
+            "action": "approve",
+            "label": {
+              "tr": "Evet",
+              "en": "Yes"
+            }
+          },
+          "no": {
+            "action": "decline",
+            "label": {
+              "tr": "Hayır",
+              "en": "No"
+            }
+          }
+        },
+        "surface_budgets": {
+          "table": "https://suiss.app/schemas/one/interaction/surface-budgets/v1.json"
+        },
+        "actions": [
+          {
+            "id": "approve",
+            "effect": "approve",
+            "label": {
+              "tr": "Onayla",
+              "en": "Approve"
+            }
+          },
+          {
+            "id": "decline",
+            "effect": "decline",
+            "label": {
+              "tr": "Reddet",
+              "en": "Decline"
+            }
+          }
+        ],
+        "answer_nonce": "n1-AbCdEfGhIjKlMnOpQrStUv",
+        "min_assurance": {
+          "surface_classes": [
+            "phone",
+            "desktop",
+            "watch",
+            "voice:car",
+            "voice:glasses"
+          ],
+          "authentication": "device_unlock"
+        },
+        "deep_link": "https://suiss.app/one/i/int_01m613f347ez599hafz0435mnd",
+        "expires_at": "2026-10-16T09:30:00Z",
+        "mandate_fit": "within",
+        "presentation": {
+          "catalog_version": 1,
+          "components": [
+            {
+              "component": "approval",
+              "version": 1,
+              "binds": [
+                "amount",
+                "counterparty"
+              ]
+            }
+          ]
+        }
+      },
+      "surface_class": "watch",
+      "target": "watch_app",
+      "declared_targets": [
+        "watch_app",
+        "complication",
+        "notification"
+      ]
+    },
+    "expected": {
+      "valid": true,
+      "projection": "minimal",
+      "reason": "always_minimal"
+    }
+  },
+  {
+    "rule": "X-19, A-28",
+    "description": "An irreversible CT2 approval on the watch is redirected to the phone",
+    "input": {
+      "interaction": {
+        "type": "Interaction",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_SSSSSSSS000000000001"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "retention_class": "one_memory",
+        "recorded_at": "2026-10-16T09:00:00Z",
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "one",
+          "instance": {
+            "ref": "InstanceRef",
+            "id": "ins_SSSSSSSS000000000001"
+          },
+          "model_version": "mdl_01m4a5btkneayawh9ym9pwjqpt",
+          "config_version": "interaction-1"
+        },
+        "id": "int_01m61rjc37ej3ver53fv5vbbsk",
+        "version": 1,
+        "kind": "approval",
+        "subject": {
+          "title": {
+            "tr": "Kira ödemesi",
+            "en": "Rent payment"
+          },
+          "ref": {
+            "ref": "DecisionRecordRef",
+            "id": "req_SSSSSSSS000000000002"
+          }
+        },
+        "details": {
+          "amount": {
+            "value": "24500.00",
+            "currency": "TRY"
+          },
+          "counterparty": {
+            "display": "Ayşe Yılmaz"
+          }
+        },
+        "risk": "CT2",
+        "reversibility": "irreversible",
+        "data_class": {
+          "kinds": [
+            "financial"
+          ],
+          "sensitive": []
+        },
+        "sensitive": false,
+        "provenance": "record.trusted",
+        "why_now": {
+          "reason": {
+            "tr": "Sabah kahveni sen istedin.",
+            "en": "You asked for your morning coffee."
+          },
+          "evidence": []
+        },
+        "interruption": "time-sensitive",
+        "timing": {
+          "delivery": "immediate",
+          "surface_policy": {
+            "steps": [
+              {
+                "surfaces": [
+                  {
+                    "device_id": "dev_01m41v363cfhpb4vze2qv57qr5"
+                  }
+                ],
+                "escalate_after": "PT5M"
+              }
+            ]
+          }
+        },
+        "minimal_projection": {
+          "sentence": {
+            "tr": "24.500 TL kira ödemesini onaylıyor musun?",
+            "en": "Do you approve the 24,500 TL rent payment?"
+          },
+          "yes": {
+            "action": "approve",
+            "label": {
+              "tr": "Evet",
+              "en": "Yes"
+            }
+          },
+          "no": {
+            "action": "decline",
+            "label": {
+              "tr": "Hayır",
+              "en": "No"
+            }
+          }
+        },
+        "surface_budgets": {
+          "table": "https://suiss.app/schemas/one/interaction/surface-budgets/v1.json"
+        },
+        "actions": [
+          {
+            "id": "approve",
+            "effect": "approve",
+            "label": {
+              "tr": "Onayla",
+              "en": "Approve"
+            }
+          },
+          {
+            "id": "decline",
+            "effect": "decline",
+            "label": {
+              "tr": "Reddet",
+              "en": "Decline"
+            }
+          }
+        ],
+        "answer_nonce": "n1-AbCdEfGhIjKlMnOpQrStUv",
+        "min_assurance": {
+          "surface_classes": [
+            "phone",
+            "desktop"
+          ],
+          "authentication": "passkey"
+        },
+        "deep_link": "https://suiss.app/one/i/int_01m61rjc37ej3ver53fv5vbbsk",
+        "expires_at": "2026-10-16T09:30:00Z",
+        "mandate_fit": "within"
+      },
+      "surface_class": "watch",
+      "target": "watch_app",
+      "declared_targets": [
+        "watch_app",
+        "complication",
+        "notification"
+      ]
+    },
+    "expected": {
+      "valid": true,
+      "projection": "redirect",
+      "reason": "approval_above_ceiling"
+    }
+  },
+  {
+    "rule": "X-19, X-36",
+    "description": "An irreversible CT2 approval in the car is redirected to the phone",
+    "input": {
+      "interaction": {
+        "type": "Interaction",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_SSSSSSSS000000000001"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "retention_class": "one_memory",
+        "recorded_at": "2026-10-16T09:00:00Z",
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "one",
+          "instance": {
+            "ref": "InstanceRef",
+            "id": "ins_SSSSSSSS000000000001"
+          },
+          "model_version": "mdl_01m4a5btkneayawh9ym9pwjqpt",
+          "config_version": "interaction-1"
+        },
+        "id": "int_01m61rjc37ej3ver53fv5vbbsk",
+        "version": 1,
+        "kind": "approval",
+        "subject": {
+          "title": {
+            "tr": "Kira ödemesi",
+            "en": "Rent payment"
+          },
+          "ref": {
+            "ref": "DecisionRecordRef",
+            "id": "req_SSSSSSSS000000000002"
+          }
+        },
+        "details": {
+          "amount": {
+            "value": "24500.00",
+            "currency": "TRY"
+          },
+          "counterparty": {
+            "display": "Ayşe Yılmaz"
+          }
+        },
+        "risk": "CT2",
+        "reversibility": "irreversible",
+        "data_class": {
+          "kinds": [
+            "financial"
+          ],
+          "sensitive": []
+        },
+        "sensitive": false,
+        "provenance": "record.trusted",
+        "why_now": {
+          "reason": {
+            "tr": "Sabah kahveni sen istedin.",
+            "en": "You asked for your morning coffee."
+          },
+          "evidence": []
+        },
+        "interruption": "time-sensitive",
+        "timing": {
+          "delivery": "immediate",
+          "surface_policy": {
+            "steps": [
+              {
+                "surfaces": [
+                  {
+                    "device_id": "dev_01m41v363cfhpb4vze2qv57qr5"
+                  }
+                ],
+                "escalate_after": "PT5M"
+              }
+            ]
+          }
+        },
+        "minimal_projection": {
+          "sentence": {
+            "tr": "24.500 TL kira ödemesini onaylıyor musun?",
+            "en": "Do you approve the 24,500 TL rent payment?"
+          },
+          "yes": {
+            "action": "approve",
+            "label": {
+              "tr": "Evet",
+              "en": "Yes"
+            }
+          },
+          "no": {
+            "action": "decline",
+            "label": {
+              "tr": "Hayır",
+              "en": "No"
+            }
+          }
+        },
+        "surface_budgets": {
+          "table": "https://suiss.app/schemas/one/interaction/surface-budgets/v1.json"
+        },
+        "actions": [
+          {
+            "id": "approve",
+            "effect": "approve",
+            "label": {
+              "tr": "Onayla",
+              "en": "Approve"
+            }
+          },
+          {
+            "id": "decline",
+            "effect": "decline",
+            "label": {
+              "tr": "Reddet",
+              "en": "Decline"
+            }
+          }
+        ],
+        "answer_nonce": "n1-AbCdEfGhIjKlMnOpQrStUv",
+        "min_assurance": {
+          "surface_classes": [
+            "phone",
+            "desktop"
+          ],
+          "authentication": "passkey"
+        },
+        "deep_link": "https://suiss.app/one/i/int_01m61rjc37ej3ver53fv5vbbsk",
+        "expires_at": "2026-10-16T09:30:00Z",
+        "mandate_fit": "within"
+      },
+      "surface_class": "voice:car",
+      "target": "car_voice",
+      "declared_targets": [
+        "car_voice"
+      ]
+    },
+    "expected": {
+      "valid": true,
+      "projection": "redirect",
+      "reason": "approval_above_ceiling"
+    }
+  },
+  {
+    "rule": "X-19, X-46",
+    "description": "An irreversible CT2 approval on glasses is redirected to the phone",
+    "input": {
+      "interaction": {
+        "type": "Interaction",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_SSSSSSSS000000000001"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "retention_class": "one_memory",
+        "recorded_at": "2026-10-16T09:00:00Z",
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "one",
+          "instance": {
+            "ref": "InstanceRef",
+            "id": "ins_SSSSSSSS000000000001"
+          },
+          "model_version": "mdl_01m4a5btkneayawh9ym9pwjqpt",
+          "config_version": "interaction-1"
+        },
+        "id": "int_01m61rjc37ej3ver53fv5vbbsk",
+        "version": 1,
+        "kind": "approval",
+        "subject": {
+          "title": {
+            "tr": "Kira ödemesi",
+            "en": "Rent payment"
+          },
+          "ref": {
+            "ref": "DecisionRecordRef",
+            "id": "req_SSSSSSSS000000000002"
+          }
+        },
+        "details": {
+          "amount": {
+            "value": "24500.00",
+            "currency": "TRY"
+          },
+          "counterparty": {
+            "display": "Ayşe Yılmaz"
+          }
+        },
+        "risk": "CT2",
+        "reversibility": "irreversible",
+        "data_class": {
+          "kinds": [
+            "financial"
+          ],
+          "sensitive": []
+        },
+        "sensitive": false,
+        "provenance": "record.trusted",
+        "why_now": {
+          "reason": {
+            "tr": "Sabah kahveni sen istedin.",
+            "en": "You asked for your morning coffee."
+          },
+          "evidence": []
+        },
+        "interruption": "time-sensitive",
+        "timing": {
+          "delivery": "immediate",
+          "surface_policy": {
+            "steps": [
+              {
+                "surfaces": [
+                  {
+                    "device_id": "dev_01m41v363cfhpb4vze2qv57qr5"
+                  }
+                ],
+                "escalate_after": "PT5M"
+              }
+            ]
+          }
+        },
+        "minimal_projection": {
+          "sentence": {
+            "tr": "24.500 TL kira ödemesini onaylıyor musun?",
+            "en": "Do you approve the 24,500 TL rent payment?"
+          },
+          "yes": {
+            "action": "approve",
+            "label": {
+              "tr": "Evet",
+              "en": "Yes"
+            }
+          },
+          "no": {
+            "action": "decline",
+            "label": {
+              "tr": "Hayır",
+              "en": "No"
+            }
+          }
+        },
+        "surface_budgets": {
+          "table": "https://suiss.app/schemas/one/interaction/surface-budgets/v1.json"
+        },
+        "actions": [
+          {
+            "id": "approve",
+            "effect": "approve",
+            "label": {
+              "tr": "Onayla",
+              "en": "Approve"
+            }
+          },
+          {
+            "id": "decline",
+            "effect": "decline",
+            "label": {
+              "tr": "Reddet",
+              "en": "Decline"
+            }
+          }
+        ],
+        "answer_nonce": "n1-AbCdEfGhIjKlMnOpQrStUv",
+        "min_assurance": {
+          "surface_classes": [
+            "phone",
+            "desktop"
+          ],
+          "authentication": "passkey"
+        },
+        "deep_link": "https://suiss.app/one/i/int_01m61rjc37ej3ver53fv5vbbsk",
+        "expires_at": "2026-10-16T09:30:00Z",
+        "mandate_fit": "within"
+      },
+      "surface_class": "voice:glasses",
+      "target": "glasses_display",
+      "declared_targets": [
+        "glasses_display",
+        "glasses_voice"
+      ]
+    },
+    "expected": {
+      "valid": true,
+      "projection": "redirect",
+      "reason": "approval_above_ceiling"
+    }
+  },
+  {
+    "rule": "X-19",
+    "description": "An irreversible CT2 approval in the phone workspace is shown in full",
+    "input": {
+      "interaction": {
+        "type": "Interaction",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_SSSSSSSS000000000001"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "retention_class": "one_memory",
+        "recorded_at": "2026-10-16T09:00:00Z",
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "one",
+          "instance": {
+            "ref": "InstanceRef",
+            "id": "ins_SSSSSSSS000000000001"
+          },
+          "model_version": "mdl_01m4a5btkneayawh9ym9pwjqpt",
+          "config_version": "interaction-1"
+        },
+        "id": "int_01m61rjc37ej3ver53fv5vbbsk",
+        "version": 1,
+        "kind": "approval",
+        "subject": {
+          "title": {
+            "tr": "Kira ödemesi",
+            "en": "Rent payment"
+          },
+          "ref": {
+            "ref": "DecisionRecordRef",
+            "id": "req_SSSSSSSS000000000002"
+          }
+        },
+        "details": {
+          "amount": {
+            "value": "24500.00",
+            "currency": "TRY"
+          },
+          "counterparty": {
+            "display": "Ayşe Yılmaz"
+          }
+        },
+        "risk": "CT2",
+        "reversibility": "irreversible",
+        "data_class": {
+          "kinds": [
+            "financial"
+          ],
+          "sensitive": []
+        },
+        "sensitive": false,
+        "provenance": "record.trusted",
+        "why_now": {
+          "reason": {
+            "tr": "Sabah kahveni sen istedin.",
+            "en": "You asked for your morning coffee."
+          },
+          "evidence": []
+        },
+        "interruption": "time-sensitive",
+        "timing": {
+          "delivery": "immediate",
+          "surface_policy": {
+            "steps": [
+              {
+                "surfaces": [
+                  {
+                    "device_id": "dev_01m41v363cfhpb4vze2qv57qr5"
+                  }
+                ],
+                "escalate_after": "PT5M"
+              }
+            ]
+          }
+        },
+        "minimal_projection": {
+          "sentence": {
+            "tr": "24.500 TL kira ödemesini onaylıyor musun?",
+            "en": "Do you approve the 24,500 TL rent payment?"
+          },
+          "yes": {
+            "action": "approve",
+            "label": {
+              "tr": "Evet",
+              "en": "Yes"
+            }
+          },
+          "no": {
+            "action": "decline",
+            "label": {
+              "tr": "Hayır",
+              "en": "No"
+            }
+          }
+        },
+        "surface_budgets": {
+          "table": "https://suiss.app/schemas/one/interaction/surface-budgets/v1.json"
+        },
+        "actions": [
+          {
+            "id": "approve",
+            "effect": "approve",
+            "label": {
+              "tr": "Onayla",
+              "en": "Approve"
+            }
+          },
+          {
+            "id": "decline",
+            "effect": "decline",
+            "label": {
+              "tr": "Reddet",
+              "en": "Decline"
+            }
+          }
+        ],
+        "answer_nonce": "n1-AbCdEfGhIjKlMnOpQrStUv",
+        "min_assurance": {
+          "surface_classes": [
+            "phone",
+            "desktop"
+          ],
+          "authentication": "passkey"
+        },
+        "deep_link": "https://suiss.app/one/i/int_01m61rjc37ej3ver53fv5vbbsk",
+        "expires_at": "2026-10-16T09:30:00Z",
+        "mandate_fit": "within"
+      },
+      "surface_class": "phone",
+      "target": "workspace",
+      "declared_targets": [
+        "workspace",
+        "notification",
+        "live_activity",
+        "widget"
+      ]
+    },
+    "expected": {
+      "valid": true,
+      "projection": "full",
+      "reason": "fits"
+    }
+  },
+  {
+    "rule": "X-20, AT-13",
+    "description": "A sensitive item in the car is spoken only as the neutral sentence",
+    "input": {
+      "interaction": {
+        "type": "Interaction",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_SSSSSSSS000000000001"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "retention_class": "one_sensitive",
+        "recorded_at": "2026-10-16T09:00:00Z",
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "one",
+          "instance": {
+            "ref": "InstanceRef",
+            "id": "ins_SSSSSSSS000000000001"
+          },
+          "model_version": "mdl_01m4a5btkneayawh9ym9pwjqpt",
+          "config_version": "interaction-1"
+        },
+        "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
+        "version": 1,
+        "kind": "info",
+        "subject": {
+          "title": {
+            "tr": "Uçuş iptali",
+            "en": "Flight cancelled"
+          },
+          "ref": {
+            "ref": "RecordRef",
+            "id": "task_01m5r8g42bekmsnz4xp5vstwka"
+          }
+        },
+        "details": {
+          "time": "2026-10-16T11:10:00Z",
+          "place": {
+            "name": "İstanbul Havalimanı"
+          }
+        },
+        "risk": "CT0",
+        "reversibility": "reversible",
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": [
+            "health"
+          ]
+        },
+        "sensitive": true,
+        "provenance": "record.trusted",
+        "why_now": {
+          "reason": {
+            "tr": "Sabah kahveni sen istedin.",
+            "en": "You asked for your morning coffee."
+          },
+          "evidence": []
+        },
+        "interruption": "time-sensitive",
+        "timing": {
+          "delivery": "immediate"
+        },
+        "minimal_projection": {
+          "sentence": {
+            "tr": "Kan tahlili sonucun hazır.",
+            "en": "Your blood test result is ready."
+          },
+          "yes": {
+            "action": "ok",
+            "label": {
+              "tr": "Tamam",
+              "en": "OK"
+            }
+          },
+          "no": {
+            "action": "open",
+            "label": {
+              "tr": "Aç",
+              "en": "Open"
+            }
+          }
+        },
+        "surface_budgets": {
+          "table": "https://suiss.app/schemas/one/interaction/surface-budgets/v1.json"
+        },
+        "actions": [
+          {
+            "id": "ok",
+            "effect": "acknowledge",
+            "label": {
+              "tr": "Tamam",
+              "en": "OK"
+            }
+          },
+          {
+            "id": "open",
+            "effect": "open",
+            "label": {
+              "tr": "Aç",
+              "en": "Open"
+            }
+          }
+        ],
+        "answer_nonce": "n1-AbCdEfGhIjKlMnOpQrStUv",
+        "min_assurance": {
+          "surface_classes": [
+            "phone",
+            "desktop",
+            "watch",
+            "voice:car",
+            "voice:glasses"
+          ],
+          "authentication": "device_unlock"
+        },
+        "deep_link": "https://suiss.app/one/i/int_01m52aa7n1etf8ane4bq5r9h1v",
+        "expires_at": "2026-10-16T09:30:00Z"
+      },
+      "surface_class": "voice:car",
+      "target": "car_voice",
+      "declared_targets": [
+        "car_voice"
+      ]
+    },
+    "expected": {
+      "valid": true,
+      "projection": "neutral",
+      "reason": "sensitive_on_voice"
+    }
+  },
+  {
+    "rule": "X-20, AT-13",
+    "description": "A sensitive item on glasses voice is spoken only as the neutral sentence",
+    "input": {
+      "interaction": {
+        "type": "Interaction",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_SSSSSSSS000000000001"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "retention_class": "one_sensitive",
+        "recorded_at": "2026-10-16T09:00:00Z",
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "one",
+          "instance": {
+            "ref": "InstanceRef",
+            "id": "ins_SSSSSSSS000000000001"
+          },
+          "model_version": "mdl_01m4a5btkneayawh9ym9pwjqpt",
+          "config_version": "interaction-1"
+        },
+        "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
+        "version": 1,
+        "kind": "info",
+        "subject": {
+          "title": {
+            "tr": "Uçuş iptali",
+            "en": "Flight cancelled"
+          },
+          "ref": {
+            "ref": "RecordRef",
+            "id": "task_01m5r8g42bekmsnz4xp5vstwka"
+          }
+        },
+        "details": {
+          "time": "2026-10-16T11:10:00Z",
+          "place": {
+            "name": "İstanbul Havalimanı"
+          }
+        },
+        "risk": "CT0",
+        "reversibility": "reversible",
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": [
+            "health"
+          ]
+        },
+        "sensitive": true,
+        "provenance": "record.trusted",
+        "why_now": {
+          "reason": {
+            "tr": "Sabah kahveni sen istedin.",
+            "en": "You asked for your morning coffee."
+          },
+          "evidence": []
+        },
+        "interruption": "time-sensitive",
+        "timing": {
+          "delivery": "immediate"
+        },
+        "minimal_projection": {
+          "sentence": {
+            "tr": "Kan tahlili sonucun hazır.",
+            "en": "Your blood test result is ready."
+          },
+          "yes": {
+            "action": "ok",
+            "label": {
+              "tr": "Tamam",
+              "en": "OK"
+            }
+          },
+          "no": {
+            "action": "open",
+            "label": {
+              "tr": "Aç",
+              "en": "Open"
+            }
+          }
+        },
+        "surface_budgets": {
+          "table": "https://suiss.app/schemas/one/interaction/surface-budgets/v1.json"
+        },
+        "actions": [
+          {
+            "id": "ok",
+            "effect": "acknowledge",
+            "label": {
+              "tr": "Tamam",
+              "en": "OK"
+            }
+          },
+          {
+            "id": "open",
+            "effect": "open",
+            "label": {
+              "tr": "Aç",
+              "en": "Open"
+            }
+          }
+        ],
+        "answer_nonce": "n1-AbCdEfGhIjKlMnOpQrStUv",
+        "min_assurance": {
+          "surface_classes": [
+            "phone",
+            "desktop",
+            "watch",
+            "voice:car",
+            "voice:glasses"
+          ],
+          "authentication": "device_unlock"
+        },
+        "deep_link": "https://suiss.app/one/i/int_01m52aa7n1etf8ane4bq5r9h1v",
+        "expires_at": "2026-10-16T09:30:00Z"
+      },
+      "surface_class": "voice:glasses",
+      "target": "glasses_voice",
+      "declared_targets": [
+        "glasses_display",
+        "glasses_voice"
+      ]
+    },
+    "expected": {
+      "valid": true,
+      "projection": "neutral",
+      "reason": "sensitive_on_voice"
+    }
+  },
+  {
+    "rule": "X-36",
+    "description": "A comparison in the car becomes the minimal projection with a deep link to the phone",
+    "input": {
+      "interaction": {
+        "type": "Interaction",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_SSSSSSSS000000000001"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "retention_class": "one_memory",
+        "recorded_at": "2026-10-16T09:00:00Z",
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "one",
+          "instance": {
+            "ref": "InstanceRef",
+            "id": "ins_SSSSSSSS000000000001"
+          },
+          "model_version": "mdl_01m4a5btkneayawh9ym9pwjqpt",
+          "config_version": "interaction-1"
+        },
+        "id": "int_01m62r7cjjez6v7pdy7z5e33fx",
+        "version": 1,
+        "kind": "comparison",
+        "subject": {
+          "title": {
+            "tr": "Ankara uçuşları",
+            "en": "Flights to Ankara"
+          },
+          "ref": {
+            "ref": "RecordRef",
+            "id": "task_01m5r8g42bekmsnz4xp5vstwka"
+          }
+        },
+        "details": {
+          "options": [
+            {
+              "id": "f0710",
+              "title": "07:10 Pegasus",
+              "amount": {
+                "value": "2450.00",
+                "currency": "TRY"
+              },
+              "recommended": true,
+              "attributes": [
+                {
+                  "label": "Süre",
+                  "value": "1 sa 10 dk"
+                }
+              ]
+            },
+            {
+              "id": "f0930",
+              "title": "09:30 THY",
+              "amount": {
+                "value": "3120.00",
+                "currency": "TRY"
+              },
+              "attributes": [
+                {
+                  "label": "Süre",
+                  "value": "1 sa 15 dk"
+                }
+              ]
+            }
+          ]
+        },
+        "risk": "CT0",
+        "reversibility": "reversible",
+        "data_class": {
+          "kinds": [
+            "general"
+          ],
+          "sensitive": []
+        },
+        "sensitive": false,
+        "provenance": "external.web",
+        "field_provenance": {
+          "options": "external.web"
+        },
+        "why_now": {
+          "reason": {
+            "tr": "Sabah kahveni sen istedin.",
+            "en": "You asked for your morning coffee."
+          },
+          "evidence": []
+        },
+        "interruption": "active",
+        "timing": {
+          "delivery": "immediate"
+        },
+        "minimal_projection": {
+          "sentence": {
+            "tr": "En ucuz uçuş 07:10'da, 2.450 TL; onu seçeyim mi?",
+            "en": "The cheapest flight is at 07:10, 2,450 TL; shall I pick it?"
+          },
+          "yes": {
+            "action": "pick_0710",
+            "label": {
+              "tr": "Seç",
+              "en": "Pick"
+            }
+          },
+          "no": {
+            "action": "open",
+            "label": {
+              "tr": "Karşılaştır",
+              "en": "Compare"
+            }
+          }
+        },
+        "surface_budgets": {
+          "table": "https://suiss.app/schemas/one/interaction/surface-budgets/v1.json"
+        },
+        "actions": [
+          {
+            "id": "pick_0710",
+            "effect": "choose",
+            "label": {
+              "tr": "07:10",
+              "en": "07:10"
+            },
+            "option_id": "f0710"
+          },
+          {
+            "id": "pick_0930",
+            "effect": "choose",
+            "label": {
+              "tr": "09:30",
+              "en": "09:30"
+            },
+            "option_id": "f0930"
+          },
+          {
+            "id": "open",
+            "effect": "open",
+            "label": {
+              "tr": "Karşılaştır",
+              "en": "Compare"
+            }
+          }
+        ],
+        "answer_nonce": "n1-AbCdEfGhIjKlMnOpQrStUv",
+        "min_assurance": {
+          "surface_classes": [
+            "phone",
+            "desktop",
+            "watch",
+            "voice:car",
+            "voice:glasses"
+          ],
+          "authentication": "device_unlock"
+        },
+        "deep_link": "https://suiss.app/one/i/int_01m62r7cjjez6v7pdy7z5e33fx",
+        "expires_at": "2026-10-16T09:30:00Z",
+        "presentation": {
+          "catalog_version": 1,
+          "components": [
+            {
+              "component": "comparison",
+              "version": 1,
+              "binds": [
+                "options"
+              ]
+            }
+          ]
+        }
+      },
+      "surface_class": "voice:car",
+      "target": "car_voice",
+      "declared_targets": [
+        "car_voice"
+      ]
+    },
+    "expected": {
+      "valid": true,
+      "projection": "minimal",
+      "reason": "kind_not_on_target"
+    }
+  },
+  {
+    "rule": "X-36, X-13",
+    "description": "A choice of three short options in the car is spoken in full",
+    "input": {
+      "interaction": {
+        "type": "Interaction",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_SSSSSSSS000000000001"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "retention_class": "one_memory",
+        "recorded_at": "2026-10-16T09:00:00Z",
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "one",
+          "instance": {
+            "ref": "InstanceRef",
+            "id": "ins_SSSSSSSS000000000001"
+          },
+          "model_version": "mdl_01m4a5btkneayawh9ym9pwjqpt",
+          "config_version": "interaction-1"
+        },
+        "id": "int_01m4yhptxafc0a9x76pt9z33md",
+        "version": 1,
+        "kind": "choice",
+        "subject": {
+          "title": {
+            "tr": "Akşam yemeği",
+            "en": "Dinner"
+          },
+          "ref": {
+            "ref": "RecordRef",
+            "id": "task_01m5r8g42bekmsnz4xp5vstwka"
+          }
+        },
+        "details": {
+          "options": [
+            {
+              "id": "nar",
+              "title": "Lokanta Nar",
+              "time": "2026-10-16T16:30:00Z",
+              "recommended": true
+            },
+            {
+              "id": "kiva",
+              "title": "Kiva Han",
+              "time": "2026-10-16T17:00:00Z"
+            },
+            {
+              "id": "dolma",
+              "title": "Dolma Han",
+              "time": "2026-10-16T17:30:00Z"
+            }
+          ]
+        },
+        "risk": "CT0",
+        "reversibility": "reversible",
+        "data_class": {
+          "kinds": [
+            "general"
+          ],
+          "sensitive": []
+        },
+        "sensitive": false,
+        "provenance": "external.web",
+        "field_provenance": {
+          "options": "external.web"
+        },
+        "why_now": {
+          "reason": {
+            "tr": "Sabah kahveni sen istedin.",
+            "en": "You asked for your morning coffee."
+          },
+          "evidence": []
+        },
+        "interruption": "active",
+        "timing": {
+          "delivery": "immediate"
+        },
+        "minimal_projection": {
+          "sentence": {
+            "tr": "Saat 19:30 için Lokanta Nar'ı seçeyim mi?",
+            "en": "Shall I pick Lokanta Nar for 19:30?"
+          },
+          "yes": {
+            "action": "pick_nar",
+            "label": {
+              "tr": "Seç",
+              "en": "Pick"
+            }
+          },
+          "no": {
+            "action": "open",
+            "label": {
+              "tr": "Diğerleri",
+              "en": "Others"
+            }
+          }
+        },
+        "surface_budgets": {
+          "table": "https://suiss.app/schemas/one/interaction/surface-budgets/v1.json"
+        },
+        "actions": [
+          {
+            "id": "pick_nar",
+            "effect": "choose",
+            "label": {
+              "tr": "Nar",
+              "en": "Nar"
+            },
+            "option_id": "nar"
+          },
+          {
+            "id": "pick_kiva",
+            "effect": "choose",
+            "label": {
+              "tr": "Kiva",
+              "en": "Kiva"
+            },
+            "option_id": "kiva"
+          },
+          {
+            "id": "pick_dolma",
+            "effect": "choose",
+            "label": {
+              "tr": "Dolma Han",
+              "en": "Dolma Han"
+            },
+            "option_id": "dolma"
+          },
+          {
+            "id": "open",
+            "effect": "open",
+            "label": {
+              "tr": "Diğerleri",
+              "en": "Others"
+            }
+          }
+        ],
+        "answer_nonce": "n1-AbCdEfGhIjKlMnOpQrStUv",
+        "min_assurance": {
+          "surface_classes": [
+            "phone",
+            "desktop",
+            "watch",
+            "voice:car",
+            "voice:glasses"
+          ],
+          "authentication": "device_unlock"
+        },
+        "deep_link": "https://suiss.app/one/i/int_01m4yhptxafc0a9x76pt9z33md",
+        "expires_at": "2026-10-16T09:30:00Z"
+      },
+      "surface_class": "voice:car",
+      "target": "car_voice",
+      "declared_targets": [
+        "car_voice"
+      ]
+    },
+    "expected": {
+      "valid": true,
+      "projection": "full",
+      "reason": "fits"
+    }
+  },
+  {
+    "rule": "X-36, X-13",
+    "description": "A choice of five options in the car exceeds the three spoken options",
+    "input": {
+      "interaction": {
+        "type": "Interaction",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_SSSSSSSS000000000001"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "retention_class": "one_memory",
+        "recorded_at": "2026-10-16T09:00:00Z",
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "one",
+          "instance": {
+            "ref": "InstanceRef",
+            "id": "ins_SSSSSSSS000000000001"
+          },
+          "model_version": "mdl_01m4a5btkneayawh9ym9pwjqpt",
+          "config_version": "interaction-1"
+        },
+        "id": "int_01m4yhptxafc0a9x76pt9z33md",
+        "version": 1,
+        "kind": "choice",
+        "subject": {
+          "title": {
+            "tr": "Akşam yemeği",
+            "en": "Dinner"
+          },
+          "ref": {
+            "ref": "RecordRef",
+            "id": "task_01m5r8g42bekmsnz4xp5vstwka"
+          }
+        },
+        "details": {
+          "options": [
+            {
+              "id": "nar",
+              "title": "Lokanta Nar",
+              "time": "2026-10-16T16:30:00Z",
+              "recommended": true
+            },
+            {
+              "id": "kiva",
+              "title": "Kiva Han",
+              "time": "2026-10-16T17:00:00Z"
+            },
+            {
+              "id": "dolma",
+              "title": "Dolma Han",
+              "time": "2026-10-16T17:30:00Z"
+            },
+            {
+              "id": "mavi",
+              "title": "Mavi Ev"
+            },
+            {
+              "id": "ada",
+              "title": "Ada Meyhane"
+            }
+          ]
+        },
+        "risk": "CT0",
+        "reversibility": "reversible",
+        "data_class": {
+          "kinds": [
+            "general"
+          ],
+          "sensitive": []
+        },
+        "sensitive": false,
+        "provenance": "external.web",
+        "field_provenance": {
+          "options": "external.web"
+        },
+        "why_now": {
+          "reason": {
+            "tr": "Sabah kahveni sen istedin.",
+            "en": "You asked for your morning coffee."
+          },
+          "evidence": []
+        },
+        "interruption": "active",
+        "timing": {
+          "delivery": "immediate"
+        },
+        "minimal_projection": {
+          "sentence": {
+            "tr": "Saat 19:30 için Lokanta Nar'ı seçeyim mi?",
+            "en": "Shall I pick Lokanta Nar for 19:30?"
+          },
+          "yes": {
+            "action": "pick_nar",
+            "label": {
+              "tr": "Seç",
+              "en": "Pick"
+            }
+          },
+          "no": {
+            "action": "open",
+            "label": {
+              "tr": "Diğerleri",
+              "en": "Others"
+            }
+          }
+        },
+        "surface_budgets": {
+          "table": "https://suiss.app/schemas/one/interaction/surface-budgets/v1.json"
+        },
+        "actions": [
+          {
+            "id": "pick_nar",
+            "effect": "choose",
+            "label": {
+              "tr": "Nar",
+              "en": "Nar"
+            },
+            "option_id": "nar"
+          },
+          {
+            "id": "pick_kiva",
+            "effect": "choose",
+            "label": {
+              "tr": "Kiva",
+              "en": "Kiva"
+            },
+            "option_id": "kiva"
+          },
+          {
+            "id": "pick_dolma",
+            "effect": "choose",
+            "label": {
+              "tr": "Dolma Han",
+              "en": "Dolma Han"
+            },
+            "option_id": "dolma"
+          },
+          {
+            "id": "open",
+            "effect": "open",
+            "label": {
+              "tr": "Diğerleri",
+              "en": "Others"
+            }
+          }
+        ],
+        "answer_nonce": "n1-AbCdEfGhIjKlMnOpQrStUv",
+        "min_assurance": {
+          "surface_classes": [
+            "phone",
+            "desktop",
+            "watch",
+            "voice:car",
+            "voice:glasses"
+          ],
+          "authentication": "device_unlock"
+        },
+        "deep_link": "https://suiss.app/one/i/int_01m4yhptxafc0a9x76pt9z33md",
+        "expires_at": "2026-10-16T09:30:00Z"
+      },
+      "surface_class": "voice:car",
+      "target": "car_voice",
+      "declared_targets": [
+        "car_voice"
+      ]
+    },
+    "expected": {
+      "valid": true,
+      "projection": "minimal",
+      "reason": "over_budget"
+    }
+  },
+  {
+    "rule": "X-46, X-13",
+    "description": "A choice of three options fits the glasses list",
+    "input": {
+      "interaction": {
+        "type": "Interaction",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_SSSSSSSS000000000001"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "retention_class": "one_memory",
+        "recorded_at": "2026-10-16T09:00:00Z",
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "one",
+          "instance": {
+            "ref": "InstanceRef",
+            "id": "ins_SSSSSSSS000000000001"
+          },
+          "model_version": "mdl_01m4a5btkneayawh9ym9pwjqpt",
+          "config_version": "interaction-1"
+        },
+        "id": "int_01m4yhptxafc0a9x76pt9z33md",
+        "version": 1,
+        "kind": "choice",
+        "subject": {
+          "title": {
+            "tr": "Akşam yemeği",
+            "en": "Dinner"
+          },
+          "ref": {
+            "ref": "RecordRef",
+            "id": "task_01m5r8g42bekmsnz4xp5vstwka"
+          }
+        },
+        "details": {
+          "options": [
+            {
+              "id": "nar",
+              "title": "Lokanta Nar",
+              "time": "2026-10-16T16:30:00Z",
+              "recommended": true
+            },
+            {
+              "id": "kiva",
+              "title": "Kiva Han",
+              "time": "2026-10-16T17:00:00Z"
+            },
+            {
+              "id": "dolma",
+              "title": "Dolma Han",
+              "time": "2026-10-16T17:30:00Z"
+            }
+          ]
+        },
+        "risk": "CT0",
+        "reversibility": "reversible",
+        "data_class": {
+          "kinds": [
+            "general"
+          ],
+          "sensitive": []
+        },
+        "sensitive": false,
+        "provenance": "external.web",
+        "field_provenance": {
+          "options": "external.web"
+        },
+        "why_now": {
+          "reason": {
+            "tr": "Sabah kahveni sen istedin.",
+            "en": "You asked for your morning coffee."
+          },
+          "evidence": []
+        },
+        "interruption": "active",
+        "timing": {
+          "delivery": "immediate"
+        },
+        "minimal_projection": {
+          "sentence": {
+            "tr": "Saat 19:30 için Lokanta Nar'ı seçeyim mi?",
+            "en": "Shall I pick Lokanta Nar for 19:30?"
+          },
+          "yes": {
+            "action": "pick_nar",
+            "label": {
+              "tr": "Seç",
+              "en": "Pick"
+            }
+          },
+          "no": {
+            "action": "open",
+            "label": {
+              "tr": "Diğerleri",
+              "en": "Others"
+            }
+          }
+        },
+        "surface_budgets": {
+          "table": "https://suiss.app/schemas/one/interaction/surface-budgets/v1.json"
+        },
+        "actions": [
+          {
+            "id": "pick_nar",
+            "effect": "choose",
+            "label": {
+              "tr": "Nar",
+              "en": "Nar"
+            },
+            "option_id": "nar"
+          },
+          {
+            "id": "pick_kiva",
+            "effect": "choose",
+            "label": {
+              "tr": "Kiva",
+              "en": "Kiva"
+            },
+            "option_id": "kiva"
+          },
+          {
+            "id": "pick_dolma",
+            "effect": "choose",
+            "label": {
+              "tr": "Dolma Han",
+              "en": "Dolma Han"
+            },
+            "option_id": "dolma"
+          },
+          {
+            "id": "open",
+            "effect": "open",
+            "label": {
+              "tr": "Diğerleri",
+              "en": "Others"
+            }
+          }
+        ],
+        "answer_nonce": "n1-AbCdEfGhIjKlMnOpQrStUv",
+        "min_assurance": {
+          "surface_classes": [
+            "phone",
+            "desktop",
+            "watch",
+            "voice:car",
+            "voice:glasses"
+          ],
+          "authentication": "device_unlock"
+        },
+        "deep_link": "https://suiss.app/one/i/int_01m4yhptxafc0a9x76pt9z33md",
+        "expires_at": "2026-10-16T09:30:00Z"
+      },
+      "surface_class": "voice:glasses",
+      "target": "glasses_display",
+      "declared_targets": [
+        "glasses_display",
+        "glasses_voice"
+      ]
+    },
+    "expected": {
+      "valid": true,
+      "projection": "full",
+      "reason": "fits"
+    }
+  },
+  {
+    "rule": "X-46, X-13",
+    "description": "A choice of five options exceeds the three-item glasses list",
+    "input": {
+      "interaction": {
+        "type": "Interaction",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_SSSSSSSS000000000001"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "retention_class": "one_memory",
+        "recorded_at": "2026-10-16T09:00:00Z",
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "one",
+          "instance": {
+            "ref": "InstanceRef",
+            "id": "ins_SSSSSSSS000000000001"
+          },
+          "model_version": "mdl_01m4a5btkneayawh9ym9pwjqpt",
+          "config_version": "interaction-1"
+        },
+        "id": "int_01m4yhptxafc0a9x76pt9z33md",
+        "version": 1,
+        "kind": "choice",
+        "subject": {
+          "title": {
+            "tr": "Akşam yemeği",
+            "en": "Dinner"
+          },
+          "ref": {
+            "ref": "RecordRef",
+            "id": "task_01m5r8g42bekmsnz4xp5vstwka"
+          }
+        },
+        "details": {
+          "options": [
+            {
+              "id": "nar",
+              "title": "Lokanta Nar",
+              "time": "2026-10-16T16:30:00Z",
+              "recommended": true
+            },
+            {
+              "id": "kiva",
+              "title": "Kiva Han",
+              "time": "2026-10-16T17:00:00Z"
+            },
+            {
+              "id": "dolma",
+              "title": "Dolma Han",
+              "time": "2026-10-16T17:30:00Z"
+            },
+            {
+              "id": "mavi",
+              "title": "Mavi Ev"
+            },
+            {
+              "id": "ada",
+              "title": "Ada Meyhane"
+            }
+          ]
+        },
+        "risk": "CT0",
+        "reversibility": "reversible",
+        "data_class": {
+          "kinds": [
+            "general"
+          ],
+          "sensitive": []
+        },
+        "sensitive": false,
+        "provenance": "external.web",
+        "field_provenance": {
+          "options": "external.web"
+        },
+        "why_now": {
+          "reason": {
+            "tr": "Sabah kahveni sen istedin.",
+            "en": "You asked for your morning coffee."
+          },
+          "evidence": []
+        },
+        "interruption": "active",
+        "timing": {
+          "delivery": "immediate"
+        },
+        "minimal_projection": {
+          "sentence": {
+            "tr": "Saat 19:30 için Lokanta Nar'ı seçeyim mi?",
+            "en": "Shall I pick Lokanta Nar for 19:30?"
+          },
+          "yes": {
+            "action": "pick_nar",
+            "label": {
+              "tr": "Seç",
+              "en": "Pick"
+            }
+          },
+          "no": {
+            "action": "open",
+            "label": {
+              "tr": "Diğerleri",
+              "en": "Others"
+            }
+          }
+        },
+        "surface_budgets": {
+          "table": "https://suiss.app/schemas/one/interaction/surface-budgets/v1.json"
+        },
+        "actions": [
+          {
+            "id": "pick_nar",
+            "effect": "choose",
+            "label": {
+              "tr": "Nar",
+              "en": "Nar"
+            },
+            "option_id": "nar"
+          },
+          {
+            "id": "pick_kiva",
+            "effect": "choose",
+            "label": {
+              "tr": "Kiva",
+              "en": "Kiva"
+            },
+            "option_id": "kiva"
+          },
+          {
+            "id": "pick_dolma",
+            "effect": "choose",
+            "label": {
+              "tr": "Dolma Han",
+              "en": "Dolma Han"
+            },
+            "option_id": "dolma"
+          },
+          {
+            "id": "open",
+            "effect": "open",
+            "label": {
+              "tr": "Diğerleri",
+              "en": "Others"
+            }
+          }
+        ],
+        "answer_nonce": "n1-AbCdEfGhIjKlMnOpQrStUv",
+        "min_assurance": {
+          "surface_classes": [
+            "phone",
+            "desktop",
+            "watch",
+            "voice:car",
+            "voice:glasses"
+          ],
+          "authentication": "device_unlock"
+        },
+        "deep_link": "https://suiss.app/one/i/int_01m4yhptxafc0a9x76pt9z33md",
+        "expires_at": "2026-10-16T09:30:00Z"
+      },
+      "surface_class": "voice:glasses",
+      "target": "glasses_display",
+      "declared_targets": [
+        "glasses_display",
+        "glasses_voice"
+      ]
+    },
+    "expected": {
+      "valid": true,
+      "projection": "minimal",
+      "reason": "over_budget"
+    }
+  },
+  {
+    "rule": "X-46",
+    "description": "A comparison is not shown on glasses",
+    "input": {
+      "interaction": {
+        "type": "Interaction",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_SSSSSSSS000000000001"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "retention_class": "one_memory",
+        "recorded_at": "2026-10-16T09:00:00Z",
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "one",
+          "instance": {
+            "ref": "InstanceRef",
+            "id": "ins_SSSSSSSS000000000001"
+          },
+          "model_version": "mdl_01m4a5btkneayawh9ym9pwjqpt",
+          "config_version": "interaction-1"
+        },
+        "id": "int_01m62r7cjjez6v7pdy7z5e33fx",
+        "version": 1,
+        "kind": "comparison",
+        "subject": {
+          "title": {
+            "tr": "Ankara uçuşları",
+            "en": "Flights to Ankara"
+          },
+          "ref": {
+            "ref": "RecordRef",
+            "id": "task_01m5r8g42bekmsnz4xp5vstwka"
+          }
+        },
+        "details": {
+          "options": [
+            {
+              "id": "f0710",
+              "title": "07:10 Pegasus",
+              "amount": {
+                "value": "2450.00",
+                "currency": "TRY"
+              },
+              "recommended": true,
+              "attributes": [
+                {
+                  "label": "Süre",
+                  "value": "1 sa 10 dk"
+                }
+              ]
+            },
+            {
+              "id": "f0930",
+              "title": "09:30 THY",
+              "amount": {
+                "value": "3120.00",
+                "currency": "TRY"
+              },
+              "attributes": [
+                {
+                  "label": "Süre",
+                  "value": "1 sa 15 dk"
+                }
+              ]
+            }
+          ]
+        },
+        "risk": "CT0",
+        "reversibility": "reversible",
+        "data_class": {
+          "kinds": [
+            "general"
+          ],
+          "sensitive": []
+        },
+        "sensitive": false,
+        "provenance": "external.web",
+        "field_provenance": {
+          "options": "external.web"
+        },
+        "why_now": {
+          "reason": {
+            "tr": "Sabah kahveni sen istedin.",
+            "en": "You asked for your morning coffee."
+          },
+          "evidence": []
+        },
+        "interruption": "active",
+        "timing": {
+          "delivery": "immediate"
+        },
+        "minimal_projection": {
+          "sentence": {
+            "tr": "En ucuz uçuş 07:10'da, 2.450 TL; onu seçeyim mi?",
+            "en": "The cheapest flight is at 07:10, 2,450 TL; shall I pick it?"
+          },
+          "yes": {
+            "action": "pick_0710",
+            "label": {
+              "tr": "Seç",
+              "en": "Pick"
+            }
+          },
+          "no": {
+            "action": "open",
+            "label": {
+              "tr": "Karşılaştır",
+              "en": "Compare"
+            }
+          }
+        },
+        "surface_budgets": {
+          "table": "https://suiss.app/schemas/one/interaction/surface-budgets/v1.json"
+        },
+        "actions": [
+          {
+            "id": "pick_0710",
+            "effect": "choose",
+            "label": {
+              "tr": "07:10",
+              "en": "07:10"
+            },
+            "option_id": "f0710"
+          },
+          {
+            "id": "pick_0930",
+            "effect": "choose",
+            "label": {
+              "tr": "09:30",
+              "en": "09:30"
+            },
+            "option_id": "f0930"
+          },
+          {
+            "id": "open",
+            "effect": "open",
+            "label": {
+              "tr": "Karşılaştır",
+              "en": "Compare"
+            }
+          }
+        ],
+        "answer_nonce": "n1-AbCdEfGhIjKlMnOpQrStUv",
+        "min_assurance": {
+          "surface_classes": [
+            "phone",
+            "desktop",
+            "watch",
+            "voice:car",
+            "voice:glasses"
+          ],
+          "authentication": "device_unlock"
+        },
+        "deep_link": "https://suiss.app/one/i/int_01m62r7cjjez6v7pdy7z5e33fx",
+        "expires_at": "2026-10-16T09:30:00Z",
+        "presentation": {
+          "catalog_version": 1,
+          "components": [
+            {
+              "component": "comparison",
+              "version": 1,
+              "binds": [
+                "options"
+              ]
+            }
+          ]
+        }
+      },
+      "surface_class": "voice:glasses",
+      "target": "glasses_display",
+      "declared_targets": [
+        "glasses_display",
+        "glasses_voice"
+      ]
+    },
+    "expected": {
+      "valid": true,
+      "projection": "minimal",
+      "reason": "kind_not_on_target"
+    }
+  },
+  {
+    "rule": "X-45",
+    "description": "A form on the watch is its minimal projection with a deep link to the phone",
+    "input": {
+      "interaction": {
+        "type": "Interaction",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_SSSSSSSS000000000001"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "retention_class": "one_memory",
+        "recorded_at": "2026-10-16T09:00:00Z",
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "one",
+          "instance": {
+            "ref": "InstanceRef",
+            "id": "ins_SSSSSSSS000000000001"
+          },
+          "model_version": "mdl_01m4a5btkneayawh9ym9pwjqpt",
+          "config_version": "interaction-1"
+        },
+        "id": "int_01m62m2hkve50s3x5g4pegzee7",
+        "version": 1,
+        "kind": "form",
+        "subject": {
+          "title": {
+            "tr": "Otel rezervasyonu",
+            "en": "Hotel booking"
+          },
+          "ref": {
+            "ref": "RecordRef",
+            "id": "task_01m5r8g42bekmsnz4xp5vstwka"
+          }
+        },
+        "details": {
+          "fields": [
+            {
+              "id": "arrival",
+              "label": {
+                "tr": "Varış saati",
+                "en": "Arrival time"
+              },
+              "type": "time",
+              "required": true
+            },
+            {
+              "id": "guests",
+              "label": {
+                "tr": "Kişi sayısı",
+                "en": "Guests"
+              },
+              "type": "number",
+              "required": true
+            }
+          ]
+        },
+        "risk": "CT0",
+        "reversibility": "reversible",
+        "data_class": {
+          "kinds": [
+            "general"
+          ],
+          "sensitive": []
+        },
+        "sensitive": false,
+        "provenance": "record.trusted",
+        "why_now": {
+          "reason": {
+            "tr": "Sabah kahveni sen istedin.",
+            "en": "You asked for your morning coffee."
+          },
+          "evidence": []
+        },
+        "interruption": "active",
+        "timing": {
+          "delivery": "immediate"
+        },
+        "minimal_projection": {
+          "sentence": {
+            "tr": "Otel rezervasyonu için iki bilgi eksik.",
+            "en": "Two details are missing for the hotel booking."
+          },
+          "yes": {
+            "action": "fill",
+            "label": {
+              "tr": "Doldur",
+              "en": "Fill in"
+            }
+          },
+          "no": {
+            "action": "later",
+            "label": {
+              "tr": "Sonra",
+              "en": "Later"
+            }
+          }
+        },
+        "surface_budgets": {
+          "table": "https://suiss.app/schemas/one/interaction/surface-budgets/v1.json"
+        },
+        "actions": [
+          {
+            "id": "fill",
+            "effect": "open",
+            "label": {
+              "tr": "Doldur",
+              "en": "Fill in"
+            }
+          },
+          {
+            "id": "later",
+            "effect": "defer",
+            "label": {
+              "tr": "Sonra",
+              "en": "Later"
+            }
+          },
+          {
+            "id": "send",
+            "effect": "submit",
+            "label": {
+              "tr": "Gönder",
+              "en": "Send"
+            }
+          }
+        ],
+        "answer_nonce": "n1-AbCdEfGhIjKlMnOpQrStUv",
+        "min_assurance": {
+          "surface_classes": [
+            "phone",
+            "desktop",
+            "watch",
+            "voice:car",
+            "voice:glasses"
+          ],
+          "authentication": "device_unlock"
+        },
+        "deep_link": "https://suiss.app/one/i/int_01m62m2hkve50s3x5g4pegzee7",
+        "expires_at": "2026-10-16T09:30:00Z"
+      },
+      "surface_class": "watch",
+      "target": "watch_app",
+      "declared_targets": [
+        "watch_app",
+        "complication",
+        "notification"
+      ]
+    },
+    "expected": {
+      "valid": true,
+      "projection": "minimal",
+      "reason": "always_minimal"
+    }
+  },
+  {
+    "rule": "X-13",
+    "description": "A notification always carries the minimal projection",
+    "input": {
+      "interaction": {
+        "type": "Interaction",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_SSSSSSSS000000000001"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "retention_class": "one_memory",
+        "recorded_at": "2026-10-16T09:00:00Z",
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "one",
+          "instance": {
+            "ref": "InstanceRef",
+            "id": "ins_SSSSSSSS000000000001"
+          },
+          "model_version": "mdl_01m4a5btkneayawh9ym9pwjqpt",
+          "config_version": "interaction-1"
+        },
+        "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
+        "version": 1,
+        "kind": "info",
+        "subject": {
+          "title": {
+            "tr": "Uçuş iptali",
+            "en": "Flight cancelled"
+          },
+          "ref": {
+            "ref": "RecordRef",
+            "id": "task_01m5r8g42bekmsnz4xp5vstwka"
+          }
+        },
+        "details": {
+          "time": "2026-10-16T11:10:00Z",
+          "place": {
+            "name": "İstanbul Havalimanı"
+          }
+        },
+        "risk": "CT0",
+        "reversibility": "reversible",
+        "data_class": {
+          "kinds": [
+            "general"
+          ],
+          "sensitive": []
+        },
+        "sensitive": false,
+        "provenance": "record.trusted",
+        "why_now": {
+          "reason": {
+            "tr": "Sabah kahveni sen istedin.",
+            "en": "You asked for your morning coffee."
+          },
+          "evidence": []
+        },
+        "interruption": "time-sensitive",
+        "timing": {
+          "delivery": "immediate"
+        },
+        "minimal_projection": {
+          "sentence": {
+            "tr": "Uçuşun iptal edildi; yeni seçenekler telefonunda.",
+            "en": "Your flight was cancelled; new options are on your phone."
+          },
+          "yes": {
+            "action": "ok",
+            "label": {
+              "tr": "Tamam",
+              "en": "OK"
+            }
+          },
+          "no": {
+            "action": "open",
+            "label": {
+              "tr": "Aç",
+              "en": "Open"
+            }
+          }
+        },
+        "surface_budgets": {
+          "table": "https://suiss.app/schemas/one/interaction/surface-budgets/v1.json"
+        },
+        "actions": [
+          {
+            "id": "ok",
+            "effect": "acknowledge",
+            "label": {
+              "tr": "Tamam",
+              "en": "OK"
+            }
+          },
+          {
+            "id": "open",
+            "effect": "open",
+            "label": {
+              "tr": "Aç",
+              "en": "Open"
+            }
+          }
+        ],
+        "answer_nonce": "n1-AbCdEfGhIjKlMnOpQrStUv",
+        "min_assurance": {
+          "surface_classes": [
+            "phone",
+            "desktop",
+            "watch",
+            "voice:car",
+            "voice:glasses"
+          ],
+          "authentication": "device_unlock"
+        },
+        "deep_link": "https://suiss.app/one/i/int_01m52aa7n1etf8ane4bq5r9h1v",
+        "expires_at": "2026-10-16T09:30:00Z"
+      },
+      "surface_class": "phone",
+      "target": "notification",
+      "declared_targets": [
+        "workspace",
+        "notification",
+        "live_activity",
+        "widget"
+      ]
+    },
+    "expected": {
+      "valid": true,
+      "projection": "minimal",
+      "reason": "always_minimal"
+    }
+  },
+  {
+    "rule": "X-7",
+    "description": "A progress item is never a new notification",
+    "input": {
+      "interaction": {
+        "type": "Interaction",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_SSSSSSSS000000000001"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "retention_class": "one_memory",
+        "recorded_at": "2026-10-16T09:00:00Z",
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "one",
+          "instance": {
+            "ref": "InstanceRef",
+            "id": "ins_SSSSSSSS000000000001"
+          },
+          "model_version": "mdl_01m4a5btkneayawh9ym9pwjqpt",
+          "config_version": "interaction-1"
+        },
+        "id": "int_01m4xsfjxbfx9v4f6nz4r491n6",
+        "version": 1,
+        "kind": "progress",
+        "subject": {
+          "title": {
+            "tr": "Kahve siparişi",
+            "en": "Coffee order"
+          },
+          "ref": {
+            "ref": "RecordRef",
+            "id": "task_01m5r8g42bekmsnz4xp5vstwka"
+          }
+        },
+        "details": {
+          "progress": {
+            "phase": "in_progress",
+            "fraction": 0.4,
+            "step_label": "Hazırlanıyor"
+          },
+          "steps": [
+            {
+              "label": "Sipariş verildi",
+              "status": "done"
+            },
+            {
+              "label": "Hazırlanıyor",
+              "status": "active"
+            },
+            {
+              "label": "Teslim",
+              "status": "pending"
+            }
+          ]
+        },
+        "risk": "CT0",
+        "reversibility": "reversible",
+        "data_class": {
+          "kinds": [
+            "general"
+          ],
+          "sensitive": []
+        },
+        "sensitive": false,
+        "provenance": "record.trusted",
+        "why_now": {
+          "reason": {
+            "tr": "Sabah kahveni sen istedin.",
+            "en": "You asked for your morning coffee."
+          },
+          "evidence": []
+        },
+        "interruption": "passive",
+        "timing": {
+          "delivery": "immediate"
+        },
+        "minimal_projection": {
+          "sentence": {
+            "tr": "Kahve siparişin hazırlanıyor.",
+            "en": "Your coffee order is being prepared."
+          },
+          "yes": {
+            "action": "open",
+            "label": {
+              "tr": "Aç",
+              "en": "Open"
+            }
+          },
+          "no": {
+            "action": "stop",
+            "label": {
+              "tr": "Dur",
+              "en": "Stop"
+            }
+          }
+        },
+        "surface_budgets": {
+          "table": "https://suiss.app/schemas/one/interaction/surface-budgets/v1.json"
+        },
+        "actions": [
+          {
+            "id": "open",
+            "effect": "open",
+            "label": {
+              "tr": "Aç",
+              "en": "Open"
+            }
+          },
+          {
+            "id": "stop",
+            "effect": "stop",
+            "label": {
+              "tr": "Dur",
+              "en": "Stop"
+            }
+          }
+        ],
+        "answer_nonce": "n1-AbCdEfGhIjKlMnOpQrStUv",
+        "min_assurance": {
+          "surface_classes": [
+            "phone",
+            "desktop",
+            "watch",
+            "voice:car",
+            "voice:glasses"
+          ],
+          "authentication": "device_unlock"
+        },
+        "deep_link": "https://suiss.app/one/i/int_01m4xsfjxbfx9v4f6nz4r491n6",
+        "expires_at": "2026-10-16T09:30:00Z"
+      },
+      "surface_class": "phone",
+      "target": "notification",
+      "declared_targets": [
+        "workspace",
+        "notification",
+        "live_activity",
+        "widget"
+      ]
+    },
+    "expected": {
+      "valid": true,
+      "projection": "minimal",
+      "reason": "kind_not_on_target"
+    }
+  },
+  {
+    "rule": "X-13",
+    "description": "A comparison in the phone workspace is shown in full",
+    "input": {
+      "interaction": {
+        "type": "Interaction",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_SSSSSSSS000000000001"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "retention_class": "one_memory",
+        "recorded_at": "2026-10-16T09:00:00Z",
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "one",
+          "instance": {
+            "ref": "InstanceRef",
+            "id": "ins_SSSSSSSS000000000001"
+          },
+          "model_version": "mdl_01m4a5btkneayawh9ym9pwjqpt",
+          "config_version": "interaction-1"
+        },
+        "id": "int_01m62r7cjjez6v7pdy7z5e33fx",
+        "version": 1,
+        "kind": "comparison",
+        "subject": {
+          "title": {
+            "tr": "Ankara uçuşları",
+            "en": "Flights to Ankara"
+          },
+          "ref": {
+            "ref": "RecordRef",
+            "id": "task_01m5r8g42bekmsnz4xp5vstwka"
+          }
+        },
+        "details": {
+          "options": [
+            {
+              "id": "f0710",
+              "title": "07:10 Pegasus",
+              "amount": {
+                "value": "2450.00",
+                "currency": "TRY"
+              },
+              "recommended": true,
+              "attributes": [
+                {
+                  "label": "Süre",
+                  "value": "1 sa 10 dk"
+                }
+              ]
+            },
+            {
+              "id": "f0930",
+              "title": "09:30 THY",
+              "amount": {
+                "value": "3120.00",
+                "currency": "TRY"
+              },
+              "attributes": [
+                {
+                  "label": "Süre",
+                  "value": "1 sa 15 dk"
+                }
+              ]
+            }
+          ]
+        },
+        "risk": "CT0",
+        "reversibility": "reversible",
+        "data_class": {
+          "kinds": [
+            "general"
+          ],
+          "sensitive": []
+        },
+        "sensitive": false,
+        "provenance": "external.web",
+        "field_provenance": {
+          "options": "external.web"
+        },
+        "why_now": {
+          "reason": {
+            "tr": "Sabah kahveni sen istedin.",
+            "en": "You asked for your morning coffee."
+          },
+          "evidence": []
+        },
+        "interruption": "active",
+        "timing": {
+          "delivery": "immediate"
+        },
+        "minimal_projection": {
+          "sentence": {
+            "tr": "En ucuz uçuş 07:10'da, 2.450 TL; onu seçeyim mi?",
+            "en": "The cheapest flight is at 07:10, 2,450 TL; shall I pick it?"
+          },
+          "yes": {
+            "action": "pick_0710",
+            "label": {
+              "tr": "Seç",
+              "en": "Pick"
+            }
+          },
+          "no": {
+            "action": "open",
+            "label": {
+              "tr": "Karşılaştır",
+              "en": "Compare"
+            }
+          }
+        },
+        "surface_budgets": {
+          "table": "https://suiss.app/schemas/one/interaction/surface-budgets/v1.json"
+        },
+        "actions": [
+          {
+            "id": "pick_0710",
+            "effect": "choose",
+            "label": {
+              "tr": "07:10",
+              "en": "07:10"
+            },
+            "option_id": "f0710"
+          },
+          {
+            "id": "pick_0930",
+            "effect": "choose",
+            "label": {
+              "tr": "09:30",
+              "en": "09:30"
+            },
+            "option_id": "f0930"
+          },
+          {
+            "id": "open",
+            "effect": "open",
+            "label": {
+              "tr": "Karşılaştır",
+              "en": "Compare"
+            }
+          }
+        ],
+        "answer_nonce": "n1-AbCdEfGhIjKlMnOpQrStUv",
+        "min_assurance": {
+          "surface_classes": [
+            "phone",
+            "desktop",
+            "watch",
+            "voice:car",
+            "voice:glasses"
+          ],
+          "authentication": "device_unlock"
+        },
+        "deep_link": "https://suiss.app/one/i/int_01m62r7cjjez6v7pdy7z5e33fx",
+        "expires_at": "2026-10-16T09:30:00Z",
+        "presentation": {
+          "catalog_version": 1,
+          "components": [
+            {
+              "component": "comparison",
+              "version": 1,
+              "binds": [
+                "options"
+              ]
+            }
+          ]
+        }
+      },
+      "surface_class": "phone",
+      "target": "workspace",
+      "declared_targets": [
+        "workspace",
+        "notification",
+        "live_activity",
+        "widget"
+      ]
+    },
+    "expected": {
+      "valid": true,
+      "projection": "full",
+      "reason": "fits"
+    }
+  },
+  {
+    "rule": "X-13",
+    "description": "A progress item on the watch complication is minimal",
+    "input": {
+      "interaction": {
+        "type": "Interaction",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_SSSSSSSS000000000001"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "retention_class": "one_memory",
+        "recorded_at": "2026-10-16T09:00:00Z",
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "one",
+          "instance": {
+            "ref": "InstanceRef",
+            "id": "ins_SSSSSSSS000000000001"
+          },
+          "model_version": "mdl_01m4a5btkneayawh9ym9pwjqpt",
+          "config_version": "interaction-1"
+        },
+        "id": "int_01m4xsfjxbfx9v4f6nz4r491n6",
+        "version": 1,
+        "kind": "progress",
+        "subject": {
+          "title": {
+            "tr": "Kahve siparişi",
+            "en": "Coffee order"
+          },
+          "ref": {
+            "ref": "RecordRef",
+            "id": "task_01m5r8g42bekmsnz4xp5vstwka"
+          }
+        },
+        "details": {
+          "progress": {
+            "phase": "in_progress",
+            "fraction": 0.4,
+            "step_label": "Hazırlanıyor"
+          },
+          "steps": [
+            {
+              "label": "Sipariş verildi",
+              "status": "done"
+            },
+            {
+              "label": "Hazırlanıyor",
+              "status": "active"
+            },
+            {
+              "label": "Teslim",
+              "status": "pending"
+            }
+          ]
+        },
+        "risk": "CT0",
+        "reversibility": "reversible",
+        "data_class": {
+          "kinds": [
+            "general"
+          ],
+          "sensitive": []
+        },
+        "sensitive": false,
+        "provenance": "record.trusted",
+        "why_now": {
+          "reason": {
+            "tr": "Sabah kahveni sen istedin.",
+            "en": "You asked for your morning coffee."
+          },
+          "evidence": []
+        },
+        "interruption": "passive",
+        "timing": {
+          "delivery": "immediate"
+        },
+        "minimal_projection": {
+          "sentence": {
+            "tr": "Kahve siparişin hazırlanıyor.",
+            "en": "Your coffee order is being prepared."
+          },
+          "yes": {
+            "action": "open",
+            "label": {
+              "tr": "Aç",
+              "en": "Open"
+            }
+          },
+          "no": {
+            "action": "stop",
+            "label": {
+              "tr": "Dur",
+              "en": "Stop"
+            }
+          }
+        },
+        "surface_budgets": {
+          "table": "https://suiss.app/schemas/one/interaction/surface-budgets/v1.json"
+        },
+        "actions": [
+          {
+            "id": "open",
+            "effect": "open",
+            "label": {
+              "tr": "Aç",
+              "en": "Open"
+            }
+          },
+          {
+            "id": "stop",
+            "effect": "stop",
+            "label": {
+              "tr": "Dur",
+              "en": "Stop"
+            }
+          }
+        ],
+        "answer_nonce": "n1-AbCdEfGhIjKlMnOpQrStUv",
+        "min_assurance": {
+          "surface_classes": [
+            "phone",
+            "desktop",
+            "watch",
+            "voice:car",
+            "voice:glasses"
+          ],
+          "authentication": "device_unlock"
+        },
+        "deep_link": "https://suiss.app/one/i/int_01m4xsfjxbfx9v4f6nz4r491n6",
+        "expires_at": "2026-10-16T09:30:00Z"
+      },
+      "surface_class": "watch",
+      "target": "complication",
+      "declared_targets": [
+        "watch_app",
+        "complication",
+        "notification"
+      ]
+    },
+    "expected": {
+      "valid": true,
+      "projection": "minimal",
+      "reason": "always_minimal"
+    }
+  },
+  {
+    "rule": "C-7, X-13",
+    "description": "A mapped extension follows the budget of its core kind",
+    "input": {
+      "interaction": {
+        "type": "Interaction",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_SSSSSSSS000000000001"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "retention_class": "one_memory",
+        "recorded_at": "2026-10-16T09:00:00Z",
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "one",
+          "instance": {
+            "ref": "InstanceRef",
+            "id": "ins_SSSSSSSS000000000001"
+          },
+          "model_version": "mdl_01m4a5btkneayawh9ym9pwjqpt",
+          "config_version": "interaction-1"
+        },
+        "id": "int_01m4xsfjxbfx9v4f6nz4r491n6",
+        "version": 1,
+        "kind": {
+          "extension": "app.suiss.commerce.order_tracking",
+          "version": 1,
+          "maps_to": "progress"
+        },
+        "subject": {
+          "title": {
+            "tr": "Kahve siparişi",
+            "en": "Coffee order"
+          },
+          "ref": {
+            "ref": "RecordRef",
+            "id": "task_01m5r8g42bekmsnz4xp5vstwka"
+          }
+        },
+        "details": {
+          "progress": {
+            "phase": "in_progress",
+            "fraction": 0.4,
+            "step_label": "Hazırlanıyor"
+          },
+          "steps": [
+            {
+              "label": "Sipariş verildi",
+              "status": "done"
+            },
+            {
+              "label": "Hazırlanıyor",
+              "status": "active"
+            },
+            {
+              "label": "Teslim",
+              "status": "pending"
+            }
+          ]
+        },
+        "risk": "CT0",
+        "reversibility": "reversible",
+        "data_class": {
+          "kinds": [
+            "general"
+          ],
+          "sensitive": []
+        },
+        "sensitive": false,
+        "provenance": "record.trusted",
+        "why_now": {
+          "reason": {
+            "tr": "Sabah kahveni sen istedin.",
+            "en": "You asked for your morning coffee."
+          },
+          "evidence": []
+        },
+        "interruption": "passive",
+        "timing": {
+          "delivery": "immediate"
+        },
+        "minimal_projection": {
+          "sentence": {
+            "tr": "Kahve siparişin hazırlanıyor.",
+            "en": "Your coffee order is being prepared."
+          },
+          "yes": {
+            "action": "open",
+            "label": {
+              "tr": "Aç",
+              "en": "Open"
+            }
+          },
+          "no": {
+            "action": "stop",
+            "label": {
+              "tr": "Dur",
+              "en": "Stop"
+            }
+          }
+        },
+        "surface_budgets": {
+          "table": "https://suiss.app/schemas/one/interaction/surface-budgets/v1.json"
+        },
+        "actions": [
+          {
+            "id": "open",
+            "effect": "open",
+            "label": {
+              "tr": "Aç",
+              "en": "Open"
+            }
+          },
+          {
+            "id": "stop",
+            "effect": "stop",
+            "label": {
+              "tr": "Dur",
+              "en": "Stop"
+            }
+          }
+        ],
+        "answer_nonce": "n1-AbCdEfGhIjKlMnOpQrStUv",
+        "min_assurance": {
+          "surface_classes": [
+            "phone",
+            "desktop",
+            "watch",
+            "voice:car",
+            "voice:glasses"
+          ],
+          "authentication": "device_unlock"
+        },
+        "deep_link": "https://suiss.app/one/i/int_01m4xsfjxbfx9v4f6nz4r491n6",
+        "expires_at": "2026-10-16T09:30:00Z"
+      },
+      "surface_class": "phone",
+      "target": "live_activity",
+      "declared_targets": [
+        "workspace",
+        "notification",
+        "live_activity",
+        "widget"
+      ]
+    },
+    "expected": {
+      "valid": true,
+      "projection": "full",
+      "reason": "fits"
+    }
+  }
+]

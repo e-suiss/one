@@ -1,0 +1,3701 @@
+[
+  {
+    "rule": "M-7",
+    "description": "inferred behaviour preference with 14/17 evidence is valid",
+    "input": {
+      "type": "MemoryRecord",
+      "id": "mem_01k742ssrgf71s3svnq2g7yqse",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "leisure"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "one.inferred",
+      "recorded_at": "2026-10-02T03:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01k742sgz8ezrvb1ad5hsd1p0p"
+        },
+        "model_version": "mdl_01k742sgz8fpttyr5nkb810tbn",
+        "config_version": "consolidation-1"
+      },
+      "content_type": "preference",
+      "epistemic_state": "inferred",
+      "layer": "consolidated_fact",
+      "time_kind": "permanent",
+      "valid_from": "2026-09-01T00:00:00Z",
+      "valid_to": null,
+      "superseded_at": null,
+      "source_episodes": [
+        "epi_01k742sgz8fpbvee16bvnbpem8"
+      ],
+      "source_kind": "user_behaviour",
+      "evidence": {
+        "observation_count": 17,
+        "supporting_count": 14,
+        "first_observed_at": "2026-09-01T08:05:00Z",
+        "last_observed_at": "2026-10-01T08:10:00Z",
+        "contradicting_records": [],
+        "user_confirmed_at": null
+      },
+      "trust": {
+        "value": 0.789381,
+        "formula": "trust/v1",
+        "computed_at": "2026-10-02T03:00:00Z"
+      },
+      "alternative_explanations": [],
+      "usage_restriction": null,
+      "about": [
+        {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        }
+      ],
+      "statement": {
+        "text": "Prefers an Americano in the morning.",
+        "lang": "en"
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "M-24",
+    "description": "a correction is version 2 superseding version 1",
+    "input": {
+      "type": "MemoryRecord",
+      "id": "mem_01k742stqrewbvvjfvs15tzmqm",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "leisure"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.memory",
+      "recorded_at": "2026-10-02T03:00:00Z",
+      "version": 2,
+      "supersedes": "mem_01k742svq0e158376n6xh1nsgd",
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "user"
+      },
+      "content_type": "preference",
+      "epistemic_state": "stated",
+      "layer": "consolidated_fact",
+      "time_kind": "permanent",
+      "valid_from": "2026-09-01T00:00:00Z",
+      "valid_to": null,
+      "superseded_at": null,
+      "source_episodes": [
+        "epi_01k742sgz8fpbvee16bvnbpem8"
+      ],
+      "source_kind": "user_statement",
+      "evidence": {
+        "observation_count": 1,
+        "supporting_count": 1,
+        "first_observed_at": "2026-10-01T08:10:00Z",
+        "last_observed_at": "2026-10-01T08:10:00Z",
+        "contradicting_records": [],
+        "user_confirmed_at": null
+      },
+      "trust": {
+        "value": 0.95442,
+        "formula": "trust/v1",
+        "computed_at": "2026-10-02T03:00:00Z"
+      },
+      "alternative_explanations": [],
+      "usage_restriction": null,
+      "about": [
+        {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        }
+      ],
+      "statement": {
+        "text": "I drink my coffee hot now.",
+        "lang": "en"
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "M-8",
+    "description": "an invalidated record carries superseded_at",
+    "input": {
+      "type": "MemoryRecord",
+      "id": "mem_01k742svq0e158376n6xh1nsgd",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "leisure"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.memory",
+      "recorded_at": "2026-10-02T03:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "user"
+      },
+      "content_type": "preference",
+      "epistemic_state": "invalidated",
+      "layer": "consolidated_fact",
+      "time_kind": "permanent",
+      "valid_from": "2026-09-01T00:00:00Z",
+      "valid_to": null,
+      "superseded_at": "2026-10-03T09:00:00Z",
+      "source_episodes": [
+        "epi_01k742sgz8fpbvee16bvnbpem8"
+      ],
+      "source_kind": "user_statement",
+      "evidence": {
+        "observation_count": 1,
+        "supporting_count": 1,
+        "first_observed_at": "2026-10-01T08:10:00Z",
+        "last_observed_at": "2026-10-01T08:10:00Z",
+        "contradicting_records": [],
+        "user_confirmed_at": null
+      },
+      "trust": {
+        "value": 0.95442,
+        "formula": "trust/v1",
+        "computed_at": "2026-10-02T03:00:00Z"
+      },
+      "alternative_explanations": [],
+      "usage_restriction": null,
+      "about": [
+        {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        }
+      ],
+      "statement": {
+        "text": "I drink my coffee iced.",
+        "lang": "en"
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "M-10",
+    "description": "a `current` record carries an expected end; sensitive class uses one_sensitive",
+    "input": {
+      "type": "MemoryRecord",
+      "id": "mem_01k742swp8eamvjns655xpvber",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "health"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": [
+          "health"
+        ]
+      },
+      "retention_class": "one_sensitive",
+      "provenance": "user.memory",
+      "recorded_at": "2026-10-02T03:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "user"
+      },
+      "content_type": "preference",
+      "epistemic_state": "stated",
+      "layer": "consolidated_fact",
+      "time_kind": "current",
+      "valid_from": "2026-09-01T00:00:00Z",
+      "valid_to": null,
+      "superseded_at": null,
+      "source_episodes": [
+        "epi_01k742sgz8fpbvee16bvnbpem8"
+      ],
+      "source_kind": "user_statement",
+      "evidence": {
+        "observation_count": 1,
+        "supporting_count": 1,
+        "first_observed_at": "2026-10-01T08:10:00Z",
+        "last_observed_at": "2026-10-01T08:10:00Z",
+        "contradicting_records": [],
+        "user_confirmed_at": null
+      },
+      "trust": {
+        "value": 0.95442,
+        "formula": "trust/v1",
+        "computed_at": "2026-10-02T03:00:00Z"
+      },
+      "alternative_explanations": [],
+      "usage_restriction": null,
+      "about": [
+        {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        }
+      ],
+      "statement": {
+        "text": "Şu sıralar keto yapıyorum.",
+        "lang": "tr"
+      },
+      "expected_end": "2026-11-30T00:00:00Z"
+    },
+    "valid": true
+  },
+  {
+    "rule": "M-10",
+    "description": "a seasonal record carries its months",
+    "input": {
+      "type": "MemoryRecord",
+      "id": "mem_01k742sxngf4vsbgq77yt66hmt",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "leisure"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.memory",
+      "recorded_at": "2026-10-02T03:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "user"
+      },
+      "content_type": "preference",
+      "epistemic_state": "stated",
+      "layer": "consolidated_fact",
+      "time_kind": "seasonal",
+      "valid_from": "2026-09-01T00:00:00Z",
+      "valid_to": null,
+      "superseded_at": null,
+      "source_episodes": [
+        "epi_01k742sgz8fpbvee16bvnbpem8"
+      ],
+      "source_kind": "user_statement",
+      "evidence": {
+        "observation_count": 1,
+        "supporting_count": 1,
+        "first_observed_at": "2026-10-01T08:10:00Z",
+        "last_observed_at": "2026-10-01T08:10:00Z",
+        "contradicting_records": [],
+        "user_confirmed_at": null
+      },
+      "trust": {
+        "value": 0.95442,
+        "formula": "trust/v1",
+        "computed_at": "2026-10-02T03:00:00Z"
+      },
+      "alternative_explanations": [],
+      "usage_restriction": null,
+      "about": [
+        {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        }
+      ],
+      "statement": {
+        "text": "Kışın çay içerim.",
+        "lang": "tr"
+      },
+      "season": {
+        "months": [
+          12,
+          1,
+          2
+        ]
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "M-20",
+    "description": "a one-off exception is an event with a closed validity window",
+    "input": {
+      "type": "MemoryRecord",
+      "id": "mem_01k742symrehm88txrhp1vghg8",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "leisure"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.memory",
+      "recorded_at": "2026-10-02T03:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "user"
+      },
+      "content_type": "preference",
+      "epistemic_state": "stated",
+      "layer": "event",
+      "time_kind": "one_off",
+      "valid_from": "2026-10-03T00:00:00Z",
+      "valid_to": "2026-10-04T00:00:00Z",
+      "superseded_at": null,
+      "source_episodes": [
+        "epi_01k742sgz8fpbvee16bvnbpem8"
+      ],
+      "source_kind": "user_statement",
+      "evidence": {
+        "observation_count": 1,
+        "supporting_count": 1,
+        "first_observed_at": "2026-10-01T08:10:00Z",
+        "last_observed_at": "2026-10-01T08:10:00Z",
+        "contradicting_records": [],
+        "user_confirmed_at": null
+      },
+      "trust": {
+        "value": 0.95442,
+        "formula": "trust/v1",
+        "computed_at": "2026-10-02T03:00:00Z"
+      },
+      "alternative_explanations": [],
+      "usage_restriction": null,
+      "about": [
+        {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        }
+      ],
+      "statement": {
+        "text": "Bugün sıcak olsun.",
+        "lang": "tr"
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "M-19",
+    "description": "a behaviour rule from a user statement is valid",
+    "input": {
+      "type": "MemoryRecord",
+      "id": "mem_01k742szm0fcqs2ar1rjs1vtzx",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.memory",
+      "recorded_at": "2026-10-02T03:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "user"
+      },
+      "content_type": "constraint",
+      "epistemic_state": "stated",
+      "layer": "behaviour_rule",
+      "time_kind": "permanent",
+      "valid_from": "2026-09-01T00:00:00Z",
+      "valid_to": null,
+      "superseded_at": null,
+      "source_episodes": [
+        "epi_01k742sgz8fpbvee16bvnbpem8"
+      ],
+      "source_kind": "user_statement",
+      "evidence": {
+        "observation_count": 1,
+        "supporting_count": 1,
+        "first_observed_at": "2026-10-01T08:10:00Z",
+        "last_observed_at": "2026-10-01T08:10:00Z",
+        "contradicting_records": [],
+        "user_confirmed_at": null
+      },
+      "trust": {
+        "value": 0.95442,
+        "formula": "trust/v1",
+        "computed_at": "2026-10-02T03:00:00Z"
+      },
+      "alternative_explanations": [],
+      "usage_restriction": null,
+      "about": [
+        {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        }
+      ],
+      "statement": {
+        "text": "Keep replies short in the morning.",
+        "lang": "en"
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "M-7",
+    "description": "typed alternative explanations on a hypothesis",
+    "input": {
+      "type": "MemoryRecord",
+      "id": "mem_01k742t0k8e3r9v3j3pstff29h",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "leisure"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "one.inferred",
+      "recorded_at": "2026-10-02T03:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01k742sgz8ezrvb1ad5hsd1p0p"
+        },
+        "model_version": "mdl_01k742sgz8fpttyr5nkb810tbn",
+        "config_version": "consolidation-1"
+      },
+      "content_type": "personal_fact",
+      "epistemic_state": "hypothesis",
+      "layer": "consolidated_fact",
+      "time_kind": "permanent",
+      "valid_from": "2026-09-01T00:00:00Z",
+      "valid_to": null,
+      "superseded_at": null,
+      "source_episodes": [
+        "epi_01k742sgz8fpbvee16bvnbpem8"
+      ],
+      "source_kind": "user_behaviour",
+      "evidence": {
+        "observation_count": 9,
+        "supporting_count": 9,
+        "first_observed_at": "2026-09-01T08:05:00Z",
+        "last_observed_at": "2026-10-01T08:10:00Z",
+        "contradicting_records": [],
+        "user_confirmed_at": null
+      },
+      "trust": {
+        "value": 0.908866,
+        "formula": "trust/v1",
+        "computed_at": "2026-10-02T03:00:00Z"
+      },
+      "alternative_explanations": [
+        {
+          "kind": "different_subject",
+          "about": {
+            "ref": "ExternalPersonRef",
+            "system": "contacts",
+            "locator": "synthetic-child"
+          }
+        },
+        {
+          "kind": "different_purpose"
+        }
+      ],
+      "usage_restriction": null,
+      "about": [
+        {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        }
+      ],
+      "statement": {
+        "text": "Is interested in golf.",
+        "lang": "en"
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "M-18",
+    "description": "external content arrives as a candidate hypothesis with an external label",
+    "input": {
+      "type": "MemoryRecord",
+      "id": "mem_01k742t1jgfabr10761a928g4t",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "leisure"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "external.web",
+      "recorded_at": "2026-10-02T03:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "candidate",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01k742sgz8ezrvb1ad5hsd1p0p"
+        },
+        "model_version": "mdl_01k742sgz8fpttyr5nkb810tbn",
+        "config_version": "consolidation-1"
+      },
+      "content_type": "preference",
+      "epistemic_state": "hypothesis",
+      "layer": "consolidated_fact",
+      "time_kind": "permanent",
+      "valid_from": "2026-09-01T00:00:00Z",
+      "valid_to": null,
+      "superseded_at": null,
+      "source_episodes": [
+        "epi_01k742sgz8fpbvee16bvnbpem8"
+      ],
+      "source_kind": "external_content",
+      "evidence": {
+        "observation_count": 1,
+        "supporting_count": 1,
+        "first_observed_at": "2026-09-01T08:05:00Z",
+        "last_observed_at": "2026-10-01T08:10:00Z",
+        "contradicting_records": [],
+        "user_confirmed_at": null
+      },
+      "trust": {
+        "value": 0.599758,
+        "formula": "trust/v1",
+        "computed_at": "2026-10-02T03:00:00Z"
+      },
+      "alternative_explanations": [],
+      "usage_restriction": null,
+      "about": [
+        {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        }
+      ],
+      "statement": {
+        "text": "Pays bills to account TR00 0000.",
+        "lang": "en"
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "C-7",
+    "description": "an extension content type maps to a core type",
+    "input": {
+      "type": "MemoryRecord",
+      "id": "mem_01k742t2hrexdahh23hythaa9f",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "leisure"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "one.inferred",
+      "recorded_at": "2026-10-02T03:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01k742sgz8ezrvb1ad5hsd1p0p"
+        },
+        "model_version": "mdl_01k742sgz8fpttyr5nkb810tbn",
+        "config_version": "consolidation-1"
+      },
+      "content_type": {
+        "name": "app.suiss.memory.wine",
+        "version": 1,
+        "maps_to": "preference"
+      },
+      "epistemic_state": "inferred",
+      "layer": "consolidated_fact",
+      "time_kind": "permanent",
+      "valid_from": "2026-09-01T00:00:00Z",
+      "valid_to": null,
+      "superseded_at": null,
+      "source_episodes": [
+        "epi_01k742sgz8fpbvee16bvnbpem8"
+      ],
+      "source_kind": "user_behaviour",
+      "evidence": {
+        "observation_count": 17,
+        "supporting_count": 14,
+        "first_observed_at": "2026-09-01T08:05:00Z",
+        "last_observed_at": "2026-10-01T08:10:00Z",
+        "contradicting_records": [],
+        "user_confirmed_at": null
+      },
+      "trust": {
+        "value": 0.789381,
+        "formula": "trust/v1",
+        "computed_at": "2026-10-02T03:00:00Z"
+      },
+      "alternative_explanations": [],
+      "usage_restriction": null,
+      "about": [
+        {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        }
+      ],
+      "statement": {
+        "text": "Prefers dry red wine.",
+        "lang": "en"
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "M-30",
+    "description": "usage restriction to the health area",
+    "input": {
+      "type": "MemoryRecord",
+      "id": "mem_01k742t3h0e0vvreyemhqcfhpz",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "health"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": [
+          "health"
+        ]
+      },
+      "retention_class": "one_sensitive",
+      "provenance": "user.memory",
+      "recorded_at": "2026-10-02T03:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "user"
+      },
+      "content_type": "personal_fact",
+      "epistemic_state": "stated",
+      "layer": "consolidated_fact",
+      "time_kind": "permanent",
+      "valid_from": "2026-09-01T00:00:00Z",
+      "valid_to": null,
+      "superseded_at": null,
+      "source_episodes": [
+        "epi_01k742sgz8fpbvee16bvnbpem8"
+      ],
+      "source_kind": "user_statement",
+      "evidence": {
+        "observation_count": 1,
+        "supporting_count": 1,
+        "first_observed_at": "2026-10-01T08:10:00Z",
+        "last_observed_at": "2026-10-01T08:10:00Z",
+        "contradicting_records": [],
+        "user_confirmed_at": null
+      },
+      "trust": {
+        "value": 0.95442,
+        "formula": "trust/v1",
+        "computed_at": "2026-10-02T03:00:00Z"
+      },
+      "alternative_explanations": [],
+      "usage_restriction": {
+        "areas": [
+          "health"
+        ],
+        "projects": []
+      },
+      "about": [
+        {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        }
+      ],
+      "statement": {
+        "text": "My blood type is A+.",
+        "lang": "en"
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "M-25",
+    "description": "a forgotten record is only its skeleton",
+    "input": {
+      "type": "MemoryRecord",
+      "id": "mem_01k742td9gfr2rm55hjp7ww1a3",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "version": 1,
+      "status": "forgotten",
+      "recorded_at": "2026-10-02T03:00:00Z",
+      "deleted_at": "2026-10-10T12:00:00Z",
+      "retention_class": "one_memory"
+    },
+    "valid": true
+  },
+  {
+    "rule": "M-6",
+    "description": "source_episodes must not be empty",
+    "input": {
+      "type": "MemoryRecord",
+      "id": "mem_01k742ssrgf71s3svnq2g7yqse",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "leisure"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "one.inferred",
+      "recorded_at": "2026-10-02T03:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01k742sgz8ezrvb1ad5hsd1p0p"
+        },
+        "model_version": "mdl_01k742sgz8fpttyr5nkb810tbn",
+        "config_version": "consolidation-1"
+      },
+      "content_type": "preference",
+      "epistemic_state": "inferred",
+      "layer": "consolidated_fact",
+      "time_kind": "permanent",
+      "valid_from": "2026-09-01T00:00:00Z",
+      "valid_to": null,
+      "superseded_at": null,
+      "source_episodes": [],
+      "source_kind": "user_behaviour",
+      "evidence": {
+        "observation_count": 17,
+        "supporting_count": 14,
+        "first_observed_at": "2026-09-01T08:05:00Z",
+        "last_observed_at": "2026-10-01T08:10:00Z",
+        "contradicting_records": [],
+        "user_confirmed_at": null
+      },
+      "trust": {
+        "value": 0.789381,
+        "formula": "trust/v1",
+        "computed_at": "2026-10-02T03:00:00Z"
+      },
+      "alternative_explanations": [],
+      "usage_restriction": null,
+      "about": [
+        {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        }
+      ],
+      "statement": {
+        "text": "Prefers an Americano in the morning.",
+        "lang": "en"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "M-6",
+    "description": "source_episodes is required",
+    "input": {
+      "type": "MemoryRecord",
+      "id": "mem_01k742ssrgf71s3svnq2g7yqse",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "leisure"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "one.inferred",
+      "recorded_at": "2026-10-02T03:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01k742sgz8ezrvb1ad5hsd1p0p"
+        },
+        "model_version": "mdl_01k742sgz8fpttyr5nkb810tbn",
+        "config_version": "consolidation-1"
+      },
+      "content_type": "preference",
+      "epistemic_state": "inferred",
+      "layer": "consolidated_fact",
+      "time_kind": "permanent",
+      "valid_from": "2026-09-01T00:00:00Z",
+      "valid_to": null,
+      "superseded_at": null,
+      "source_kind": "user_behaviour",
+      "evidence": {
+        "observation_count": 17,
+        "supporting_count": 14,
+        "first_observed_at": "2026-09-01T08:05:00Z",
+        "last_observed_at": "2026-10-01T08:10:00Z",
+        "contradicting_records": [],
+        "user_confirmed_at": null
+      },
+      "trust": {
+        "value": 0.789381,
+        "formula": "trust/v1",
+        "computed_at": "2026-10-02T03:00:00Z"
+      },
+      "alternative_explanations": [],
+      "usage_restriction": null,
+      "about": [
+        {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        }
+      ],
+      "statement": {
+        "text": "Prefers an Americano in the morning.",
+        "lang": "en"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "M-25",
+    "description": "a forgotten record keeps no content",
+    "input": {
+      "type": "MemoryRecord",
+      "id": "mem_01k742te8rfzf9j3zj6xz4ph60",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "version": 1,
+      "status": "forgotten",
+      "recorded_at": "2026-10-02T03:00:00Z",
+      "deleted_at": "2026-10-10T12:00:00Z",
+      "retention_class": "one_memory",
+      "statement": {
+        "text": "x",
+        "lang": "en"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "M-25",
+    "description": "a forgotten record keeps no content type or source",
+    "input": {
+      "type": "MemoryRecord",
+      "id": "mem_01k742te8rfzf9j3zj6xz4ph60",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "version": 1,
+      "status": "forgotten",
+      "recorded_at": "2026-10-02T03:00:00Z",
+      "deleted_at": "2026-10-10T12:00:00Z",
+      "retention_class": "one_memory",
+      "content_type": "preference"
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-20",
+    "description": "a live record has no deleted_at",
+    "input": {
+      "type": "MemoryRecord",
+      "id": "mem_01k742ssrgf71s3svnq2g7yqse",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "leisure"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "one.inferred",
+      "recorded_at": "2026-10-02T03:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": "2026-10-05T00:00:00Z",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01k742sgz8ezrvb1ad5hsd1p0p"
+        },
+        "model_version": "mdl_01k742sgz8fpttyr5nkb810tbn",
+        "config_version": "consolidation-1"
+      },
+      "content_type": "preference",
+      "epistemic_state": "inferred",
+      "layer": "consolidated_fact",
+      "time_kind": "permanent",
+      "valid_from": "2026-09-01T00:00:00Z",
+      "valid_to": null,
+      "superseded_at": null,
+      "source_episodes": [
+        "epi_01k742sgz8fpbvee16bvnbpem8"
+      ],
+      "source_kind": "user_behaviour",
+      "evidence": {
+        "observation_count": 17,
+        "supporting_count": 14,
+        "first_observed_at": "2026-09-01T08:05:00Z",
+        "last_observed_at": "2026-10-01T08:10:00Z",
+        "contradicting_records": [],
+        "user_confirmed_at": null
+      },
+      "trust": {
+        "value": 0.789381,
+        "formula": "trust/v1",
+        "computed_at": "2026-10-02T03:00:00Z"
+      },
+      "alternative_explanations": [],
+      "usage_restriction": null,
+      "about": [
+        {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        }
+      ],
+      "statement": {
+        "text": "Prefers an Americano in the morning.",
+        "lang": "en"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "M-8",
+    "description": "invalidated without superseded_at is rejected",
+    "input": {
+      "type": "MemoryRecord",
+      "id": "mem_01k742svq0e158376n6xh1nsgd",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "leisure"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.memory",
+      "recorded_at": "2026-10-02T03:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "user"
+      },
+      "content_type": "preference",
+      "epistemic_state": "invalidated",
+      "layer": "consolidated_fact",
+      "time_kind": "permanent",
+      "valid_from": "2026-09-01T00:00:00Z",
+      "valid_to": null,
+      "superseded_at": null,
+      "source_episodes": [
+        "epi_01k742sgz8fpbvee16bvnbpem8"
+      ],
+      "source_kind": "user_statement",
+      "evidence": {
+        "observation_count": 1,
+        "supporting_count": 1,
+        "first_observed_at": "2026-10-01T08:10:00Z",
+        "last_observed_at": "2026-10-01T08:10:00Z",
+        "contradicting_records": [],
+        "user_confirmed_at": null
+      },
+      "trust": {
+        "value": 0.95442,
+        "formula": "trust/v1",
+        "computed_at": "2026-10-02T03:00:00Z"
+      },
+      "alternative_explanations": [],
+      "usage_restriction": null,
+      "about": [
+        {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        }
+      ],
+      "statement": {
+        "text": "I drink my coffee iced.",
+        "lang": "en"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "M-8",
+    "description": "superseded_at on a non-invalidated record is rejected",
+    "input": {
+      "type": "MemoryRecord",
+      "id": "mem_01k742ssrgf71s3svnq2g7yqse",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "leisure"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "one.inferred",
+      "recorded_at": "2026-10-02T03:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01k742sgz8ezrvb1ad5hsd1p0p"
+        },
+        "model_version": "mdl_01k742sgz8fpttyr5nkb810tbn",
+        "config_version": "consolidation-1"
+      },
+      "content_type": "preference",
+      "epistemic_state": "inferred",
+      "layer": "consolidated_fact",
+      "time_kind": "permanent",
+      "valid_from": "2026-09-01T00:00:00Z",
+      "valid_to": null,
+      "superseded_at": "2026-10-03T00:00:00Z",
+      "source_episodes": [
+        "epi_01k742sgz8fpbvee16bvnbpem8"
+      ],
+      "source_kind": "user_behaviour",
+      "evidence": {
+        "observation_count": 17,
+        "supporting_count": 14,
+        "first_observed_at": "2026-09-01T08:05:00Z",
+        "last_observed_at": "2026-10-01T08:10:00Z",
+        "contradicting_records": [],
+        "user_confirmed_at": null
+      },
+      "trust": {
+        "value": 0.789381,
+        "formula": "trust/v1",
+        "computed_at": "2026-10-02T03:00:00Z"
+      },
+      "alternative_explanations": [],
+      "usage_restriction": null,
+      "about": [
+        {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        }
+      ],
+      "statement": {
+        "text": "Prefers an Americano in the morning.",
+        "lang": "en"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "M-22",
+    "description": "a `current` record without expected_end is rejected",
+    "input": {
+      "type": "MemoryRecord",
+      "id": "mem_01k742swp8eamvjns655xpvber",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "health"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": [
+          "health"
+        ]
+      },
+      "retention_class": "one_sensitive",
+      "provenance": "user.memory",
+      "recorded_at": "2026-10-02T03:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "user"
+      },
+      "content_type": "preference",
+      "epistemic_state": "stated",
+      "layer": "consolidated_fact",
+      "time_kind": "current",
+      "valid_from": "2026-09-01T00:00:00Z",
+      "valid_to": null,
+      "superseded_at": null,
+      "source_episodes": [
+        "epi_01k742sgz8fpbvee16bvnbpem8"
+      ],
+      "source_kind": "user_statement",
+      "evidence": {
+        "observation_count": 1,
+        "supporting_count": 1,
+        "first_observed_at": "2026-10-01T08:10:00Z",
+        "last_observed_at": "2026-10-01T08:10:00Z",
+        "contradicting_records": [],
+        "user_confirmed_at": null
+      },
+      "trust": {
+        "value": 0.95442,
+        "formula": "trust/v1",
+        "computed_at": "2026-10-02T03:00:00Z"
+      },
+      "alternative_explanations": [],
+      "usage_restriction": null,
+      "about": [
+        {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        }
+      ],
+      "statement": {
+        "text": "Şu sıralar keto yapıyorum.",
+        "lang": "tr"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "M-10",
+    "description": "a seasonal record without season is rejected",
+    "input": {
+      "type": "MemoryRecord",
+      "id": "mem_01k742sxngf4vsbgq77yt66hmt",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "leisure"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.memory",
+      "recorded_at": "2026-10-02T03:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "user"
+      },
+      "content_type": "preference",
+      "epistemic_state": "stated",
+      "layer": "consolidated_fact",
+      "time_kind": "seasonal",
+      "valid_from": "2026-09-01T00:00:00Z",
+      "valid_to": null,
+      "superseded_at": null,
+      "source_episodes": [
+        "epi_01k742sgz8fpbvee16bvnbpem8"
+      ],
+      "source_kind": "user_statement",
+      "evidence": {
+        "observation_count": 1,
+        "supporting_count": 1,
+        "first_observed_at": "2026-10-01T08:10:00Z",
+        "last_observed_at": "2026-10-01T08:10:00Z",
+        "contradicting_records": [],
+        "user_confirmed_at": null
+      },
+      "trust": {
+        "value": 0.95442,
+        "formula": "trust/v1",
+        "computed_at": "2026-10-02T03:00:00Z"
+      },
+      "alternative_explanations": [],
+      "usage_restriction": null,
+      "about": [
+        {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        }
+      ],
+      "statement": {
+        "text": "Kışın çay içerim.",
+        "lang": "tr"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "M-20",
+    "description": "a one-off record without valid_to is rejected",
+    "input": {
+      "type": "MemoryRecord",
+      "id": "mem_01k742symrehm88txrhp1vghg8",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "leisure"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.memory",
+      "recorded_at": "2026-10-02T03:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "user"
+      },
+      "content_type": "preference",
+      "epistemic_state": "stated",
+      "layer": "event",
+      "time_kind": "one_off",
+      "valid_from": "2026-10-03T00:00:00Z",
+      "valid_to": null,
+      "superseded_at": null,
+      "source_episodes": [
+        "epi_01k742sgz8fpbvee16bvnbpem8"
+      ],
+      "source_kind": "user_statement",
+      "evidence": {
+        "observation_count": 1,
+        "supporting_count": 1,
+        "first_observed_at": "2026-10-01T08:10:00Z",
+        "last_observed_at": "2026-10-01T08:10:00Z",
+        "contradicting_records": [],
+        "user_confirmed_at": null
+      },
+      "trust": {
+        "value": 0.95442,
+        "formula": "trust/v1",
+        "computed_at": "2026-10-02T03:00:00Z"
+      },
+      "alternative_explanations": [],
+      "usage_restriction": null,
+      "about": [
+        {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        }
+      ],
+      "statement": {
+        "text": "Bugün sıcak olsun.",
+        "lang": "tr"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "M-18",
+    "description": "external content can never be a behaviour rule",
+    "input": {
+      "type": "MemoryRecord",
+      "id": "mem_01k742t1jgfabr10761a928g4t",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "leisure"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "external.web",
+      "recorded_at": "2026-10-02T03:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "candidate",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01k742sgz8ezrvb1ad5hsd1p0p"
+        },
+        "model_version": "mdl_01k742sgz8fpttyr5nkb810tbn",
+        "config_version": "consolidation-1"
+      },
+      "content_type": "preference",
+      "epistemic_state": "hypothesis",
+      "layer": "behaviour_rule",
+      "time_kind": "permanent",
+      "valid_from": "2026-09-01T00:00:00Z",
+      "valid_to": null,
+      "superseded_at": null,
+      "source_episodes": [
+        "epi_01k742sgz8fpbvee16bvnbpem8"
+      ],
+      "source_kind": "external_content",
+      "evidence": {
+        "observation_count": 1,
+        "supporting_count": 1,
+        "first_observed_at": "2026-09-01T08:05:00Z",
+        "last_observed_at": "2026-10-01T08:10:00Z",
+        "contradicting_records": [],
+        "user_confirmed_at": null
+      },
+      "trust": {
+        "value": 0.599758,
+        "formula": "trust/v1",
+        "computed_at": "2026-10-02T03:00:00Z"
+      },
+      "alternative_explanations": [],
+      "usage_restriction": null,
+      "about": [
+        {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        }
+      ],
+      "statement": {
+        "text": "Pays bills to account TR00 0000.",
+        "lang": "en"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "M-43",
+    "description": "an imported record can never be a behaviour rule",
+    "input": {
+      "type": "MemoryRecord",
+      "id": "mem_01k742szm0fcqs2ar1rjs1vtzx",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "external.import",
+      "recorded_at": "2026-10-02T03:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "user"
+      },
+      "content_type": "constraint",
+      "epistemic_state": "hypothesis",
+      "layer": "behaviour_rule",
+      "time_kind": "permanent",
+      "valid_from": "2026-09-01T00:00:00Z",
+      "valid_to": null,
+      "superseded_at": null,
+      "source_episodes": [
+        "epi_01k742sgz8fpbvee16bvnbpem8"
+      ],
+      "source_kind": "import",
+      "evidence": {
+        "observation_count": 1,
+        "supporting_count": 1,
+        "first_observed_at": "2026-10-01T08:10:00Z",
+        "last_observed_at": "2026-10-01T08:10:00Z",
+        "contradicting_records": [],
+        "user_confirmed_at": null
+      },
+      "trust": {
+        "value": 0.95442,
+        "formula": "trust/v1",
+        "computed_at": "2026-10-02T03:00:00Z"
+      },
+      "alternative_explanations": [],
+      "usage_restriction": null,
+      "about": [
+        {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        }
+      ],
+      "statement": {
+        "text": "Keep replies short in the morning.",
+        "lang": "en"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "SEC-14",
+    "description": "an inferred record cannot carry a user label",
+    "input": {
+      "type": "MemoryRecord",
+      "id": "mem_01k742ssrgf71s3svnq2g7yqse",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "leisure"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.memory",
+      "recorded_at": "2026-10-02T03:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01k742sgz8ezrvb1ad5hsd1p0p"
+        },
+        "model_version": "mdl_01k742sgz8fpttyr5nkb810tbn",
+        "config_version": "consolidation-1"
+      },
+      "content_type": "preference",
+      "epistemic_state": "inferred",
+      "layer": "consolidated_fact",
+      "time_kind": "permanent",
+      "valid_from": "2026-09-01T00:00:00Z",
+      "valid_to": null,
+      "superseded_at": null,
+      "source_episodes": [
+        "epi_01k742sgz8fpbvee16bvnbpem8"
+      ],
+      "source_kind": "user_behaviour",
+      "evidence": {
+        "observation_count": 17,
+        "supporting_count": 14,
+        "first_observed_at": "2026-09-01T08:05:00Z",
+        "last_observed_at": "2026-10-01T08:10:00Z",
+        "contradicting_records": [],
+        "user_confirmed_at": null
+      },
+      "trust": {
+        "value": 0.789381,
+        "formula": "trust/v1",
+        "computed_at": "2026-10-02T03:00:00Z"
+      },
+      "alternative_explanations": [],
+      "usage_restriction": null,
+      "about": [
+        {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        }
+      ],
+      "statement": {
+        "text": "Prefers an Americano in the morning.",
+        "lang": "en"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "SEC-14",
+    "description": "external content is user.memory only after user verification",
+    "input": {
+      "type": "MemoryRecord",
+      "id": "mem_01k742t1jgfabr10761a928g4t",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "leisure"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.memory",
+      "recorded_at": "2026-10-02T03:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "candidate",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01k742sgz8ezrvb1ad5hsd1p0p"
+        },
+        "model_version": "mdl_01k742sgz8fpttyr5nkb810tbn",
+        "config_version": "consolidation-1"
+      },
+      "content_type": "preference",
+      "epistemic_state": "hypothesis",
+      "layer": "consolidated_fact",
+      "time_kind": "permanent",
+      "valid_from": "2026-09-01T00:00:00Z",
+      "valid_to": null,
+      "superseded_at": null,
+      "source_episodes": [
+        "epi_01k742sgz8fpbvee16bvnbpem8"
+      ],
+      "source_kind": "external_content",
+      "evidence": {
+        "observation_count": 1,
+        "supporting_count": 1,
+        "first_observed_at": "2026-09-01T08:05:00Z",
+        "last_observed_at": "2026-10-01T08:10:00Z",
+        "contradicting_records": [],
+        "user_confirmed_at": null
+      },
+      "trust": {
+        "value": 0.599758,
+        "formula": "trust/v1",
+        "computed_at": "2026-10-02T03:00:00Z"
+      },
+      "alternative_explanations": [],
+      "usage_restriction": null,
+      "about": [
+        {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        }
+      ],
+      "statement": {
+        "text": "Pays bills to account TR00 0000.",
+        "lang": "en"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "SEC-14",
+    "description": "verified external content may carry user.memory",
+    "input": {
+      "type": "MemoryRecord",
+      "id": "mem_01k742t1jgfabr10761a928g4t",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "leisure"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.memory",
+      "recorded_at": "2026-10-02T03:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01k742sgz8ezrvb1ad5hsd1p0p"
+        },
+        "model_version": "mdl_01k742sgz8fpttyr5nkb810tbn",
+        "config_version": "consolidation-1"
+      },
+      "content_type": "preference",
+      "epistemic_state": "verified",
+      "layer": "consolidated_fact",
+      "time_kind": "permanent",
+      "valid_from": "2026-09-01T00:00:00Z",
+      "valid_to": null,
+      "superseded_at": null,
+      "source_episodes": [
+        "epi_01k742sgz8fpbvee16bvnbpem8"
+      ],
+      "source_kind": "external_content",
+      "evidence": {
+        "observation_count": 1,
+        "supporting_count": 1,
+        "first_observed_at": "2026-09-01T08:05:00Z",
+        "last_observed_at": "2026-10-01T08:10:00Z",
+        "contradicting_records": [],
+        "user_confirmed_at": "2026-10-02T10:00:00Z"
+      },
+      "trust": {
+        "value": 0.599758,
+        "formula": "trust/v1",
+        "computed_at": "2026-10-02T03:00:00Z"
+      },
+      "alternative_explanations": [],
+      "usage_restriction": null,
+      "about": [
+        {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        }
+      ],
+      "statement": {
+        "text": "Pays bills to account TR00 0000.",
+        "lang": "en"
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "M-8",
+    "description": "unknown epistemic state is rejected",
+    "input": {
+      "type": "MemoryRecord",
+      "id": "mem_01k742ssrgf71s3svnq2g7yqse",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "leisure"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "one.inferred",
+      "recorded_at": "2026-10-02T03:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01k742sgz8ezrvb1ad5hsd1p0p"
+        },
+        "model_version": "mdl_01k742sgz8fpttyr5nkb810tbn",
+        "config_version": "consolidation-1"
+      },
+      "content_type": "preference",
+      "epistemic_state": "believed",
+      "layer": "consolidated_fact",
+      "time_kind": "permanent",
+      "valid_from": "2026-09-01T00:00:00Z",
+      "valid_to": null,
+      "superseded_at": null,
+      "source_episodes": [
+        "epi_01k742sgz8fpbvee16bvnbpem8"
+      ],
+      "source_kind": "user_behaviour",
+      "evidence": {
+        "observation_count": 17,
+        "supporting_count": 14,
+        "first_observed_at": "2026-09-01T08:05:00Z",
+        "last_observed_at": "2026-10-01T08:10:00Z",
+        "contradicting_records": [],
+        "user_confirmed_at": null
+      },
+      "trust": {
+        "value": 0.789381,
+        "formula": "trust/v1",
+        "computed_at": "2026-10-02T03:00:00Z"
+      },
+      "alternative_explanations": [],
+      "usage_restriction": null,
+      "about": [
+        {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        }
+      ],
+      "statement": {
+        "text": "Prefers an Americano in the morning.",
+        "lang": "en"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "M-9",
+    "description": "unknown layer is rejected",
+    "input": {
+      "type": "MemoryRecord",
+      "id": "mem_01k742ssrgf71s3svnq2g7yqse",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "leisure"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "one.inferred",
+      "recorded_at": "2026-10-02T03:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01k742sgz8ezrvb1ad5hsd1p0p"
+        },
+        "model_version": "mdl_01k742sgz8fpttyr5nkb810tbn",
+        "config_version": "consolidation-1"
+      },
+      "content_type": "preference",
+      "epistemic_state": "inferred",
+      "layer": "semantic",
+      "time_kind": "permanent",
+      "valid_from": "2026-09-01T00:00:00Z",
+      "valid_to": null,
+      "superseded_at": null,
+      "source_episodes": [
+        "epi_01k742sgz8fpbvee16bvnbpem8"
+      ],
+      "source_kind": "user_behaviour",
+      "evidence": {
+        "observation_count": 17,
+        "supporting_count": 14,
+        "first_observed_at": "2026-09-01T08:05:00Z",
+        "last_observed_at": "2026-10-01T08:10:00Z",
+        "contradicting_records": [],
+        "user_confirmed_at": null
+      },
+      "trust": {
+        "value": 0.789381,
+        "formula": "trust/v1",
+        "computed_at": "2026-10-02T03:00:00Z"
+      },
+      "alternative_explanations": [],
+      "usage_restriction": null,
+      "about": [
+        {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        }
+      ],
+      "statement": {
+        "text": "Prefers an Americano in the morning.",
+        "lang": "en"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "M-7",
+    "description": "lifecycle state has four values; `forgotten` is the skeleton",
+    "input": {
+      "type": "MemoryRecord",
+      "id": "mem_01k742ssrgf71s3svnq2g7yqse",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "leisure"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "one.inferred",
+      "recorded_at": "2026-10-02T03:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "archived",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01k742sgz8ezrvb1ad5hsd1p0p"
+        },
+        "model_version": "mdl_01k742sgz8fpttyr5nkb810tbn",
+        "config_version": "consolidation-1"
+      },
+      "content_type": "preference",
+      "epistemic_state": "inferred",
+      "layer": "consolidated_fact",
+      "time_kind": "permanent",
+      "valid_from": "2026-09-01T00:00:00Z",
+      "valid_to": null,
+      "superseded_at": null,
+      "source_episodes": [
+        "epi_01k742sgz8fpbvee16bvnbpem8"
+      ],
+      "source_kind": "user_behaviour",
+      "evidence": {
+        "observation_count": 17,
+        "supporting_count": 14,
+        "first_observed_at": "2026-09-01T08:05:00Z",
+        "last_observed_at": "2026-10-01T08:10:00Z",
+        "contradicting_records": [],
+        "user_confirmed_at": null
+      },
+      "trust": {
+        "value": 0.789381,
+        "formula": "trust/v1",
+        "computed_at": "2026-10-02T03:00:00Z"
+      },
+      "alternative_explanations": [],
+      "usage_restriction": null,
+      "about": [
+        {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        }
+      ],
+      "statement": {
+        "text": "Prefers an Americano in the morning.",
+        "lang": "en"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-7",
+    "description": "an extension outside app.suiss.memory is rejected",
+    "input": {
+      "type": "MemoryRecord",
+      "id": "mem_01k742ssrgf71s3svnq2g7yqse",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "leisure"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "one.inferred",
+      "recorded_at": "2026-10-02T03:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01k742sgz8ezrvb1ad5hsd1p0p"
+        },
+        "model_version": "mdl_01k742sgz8fpttyr5nkb810tbn",
+        "config_version": "consolidation-1"
+      },
+      "content_type": {
+        "name": "com.example.wine",
+        "version": 1,
+        "maps_to": "preference"
+      },
+      "epistemic_state": "inferred",
+      "layer": "consolidated_fact",
+      "time_kind": "permanent",
+      "valid_from": "2026-09-01T00:00:00Z",
+      "valid_to": null,
+      "superseded_at": null,
+      "source_episodes": [
+        "epi_01k742sgz8fpbvee16bvnbpem8"
+      ],
+      "source_kind": "user_behaviour",
+      "evidence": {
+        "observation_count": 17,
+        "supporting_count": 14,
+        "first_observed_at": "2026-09-01T08:05:00Z",
+        "last_observed_at": "2026-10-01T08:10:00Z",
+        "contradicting_records": [],
+        "user_confirmed_at": null
+      },
+      "trust": {
+        "value": 0.789381,
+        "formula": "trust/v1",
+        "computed_at": "2026-10-02T03:00:00Z"
+      },
+      "alternative_explanations": [],
+      "usage_restriction": null,
+      "about": [
+        {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        }
+      ],
+      "statement": {
+        "text": "Prefers an Americano in the morning.",
+        "lang": "en"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-7",
+    "description": "an extension that maps to no core type is rejected",
+    "input": {
+      "type": "MemoryRecord",
+      "id": "mem_01k742ssrgf71s3svnq2g7yqse",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "leisure"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "one.inferred",
+      "recorded_at": "2026-10-02T03:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01k742sgz8ezrvb1ad5hsd1p0p"
+        },
+        "model_version": "mdl_01k742sgz8fpttyr5nkb810tbn",
+        "config_version": "consolidation-1"
+      },
+      "content_type": {
+        "name": "app.suiss.memory.wine",
+        "version": 1
+      },
+      "epistemic_state": "inferred",
+      "layer": "consolidated_fact",
+      "time_kind": "permanent",
+      "valid_from": "2026-09-01T00:00:00Z",
+      "valid_to": null,
+      "superseded_at": null,
+      "source_episodes": [
+        "epi_01k742sgz8fpbvee16bvnbpem8"
+      ],
+      "source_kind": "user_behaviour",
+      "evidence": {
+        "observation_count": 17,
+        "supporting_count": 14,
+        "first_observed_at": "2026-09-01T08:05:00Z",
+        "last_observed_at": "2026-10-01T08:10:00Z",
+        "contradicting_records": [],
+        "user_confirmed_at": null
+      },
+      "trust": {
+        "value": 0.789381,
+        "formula": "trust/v1",
+        "computed_at": "2026-10-02T03:00:00Z"
+      },
+      "alternative_explanations": [],
+      "usage_restriction": null,
+      "about": [
+        {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        }
+      ],
+      "statement": {
+        "text": "Prefers an Americano in the morning.",
+        "lang": "en"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "M-7",
+    "description": "alternative explanations are typed, never free text",
+    "input": {
+      "type": "MemoryRecord",
+      "id": "mem_01k742t0k8e3r9v3j3pstff29h",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "leisure"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "one.inferred",
+      "recorded_at": "2026-10-02T03:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01k742sgz8ezrvb1ad5hsd1p0p"
+        },
+        "model_version": "mdl_01k742sgz8fpttyr5nkb810tbn",
+        "config_version": "consolidation-1"
+      },
+      "content_type": "personal_fact",
+      "epistemic_state": "hypothesis",
+      "layer": "consolidated_fact",
+      "time_kind": "permanent",
+      "valid_from": "2026-09-01T00:00:00Z",
+      "valid_to": null,
+      "superseded_at": null,
+      "source_episodes": [
+        "epi_01k742sgz8fpbvee16bvnbpem8"
+      ],
+      "source_kind": "user_behaviour",
+      "evidence": {
+        "observation_count": 9,
+        "supporting_count": 9,
+        "first_observed_at": "2026-09-01T08:05:00Z",
+        "last_observed_at": "2026-10-01T08:10:00Z",
+        "contradicting_records": [],
+        "user_confirmed_at": null
+      },
+      "trust": {
+        "value": 0.908866,
+        "formula": "trust/v1",
+        "computed_at": "2026-10-02T03:00:00Z"
+      },
+      "alternative_explanations": [
+        "maybe for the child"
+      ],
+      "usage_restriction": null,
+      "about": [
+        {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        }
+      ],
+      "statement": {
+        "text": "Is interested in golf.",
+        "lang": "en"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-24",
+    "description": "version 1 has no supersedes",
+    "input": {
+      "type": "MemoryRecord",
+      "id": "mem_01k742ssrgf71s3svnq2g7yqse",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "leisure"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "one.inferred",
+      "recorded_at": "2026-10-02T03:00:00Z",
+      "version": 1,
+      "supersedes": "mem_01k742svq0e158376n6xh1nsgd",
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01k742sgz8ezrvb1ad5hsd1p0p"
+        },
+        "model_version": "mdl_01k742sgz8fpttyr5nkb810tbn",
+        "config_version": "consolidation-1"
+      },
+      "content_type": "preference",
+      "epistemic_state": "inferred",
+      "layer": "consolidated_fact",
+      "time_kind": "permanent",
+      "valid_from": "2026-09-01T00:00:00Z",
+      "valid_to": null,
+      "superseded_at": null,
+      "source_episodes": [
+        "epi_01k742sgz8fpbvee16bvnbpem8"
+      ],
+      "source_kind": "user_behaviour",
+      "evidence": {
+        "observation_count": 17,
+        "supporting_count": 14,
+        "first_observed_at": "2026-09-01T08:05:00Z",
+        "last_observed_at": "2026-10-01T08:10:00Z",
+        "contradicting_records": [],
+        "user_confirmed_at": null
+      },
+      "trust": {
+        "value": 0.789381,
+        "formula": "trust/v1",
+        "computed_at": "2026-10-02T03:00:00Z"
+      },
+      "alternative_explanations": [],
+      "usage_restriction": null,
+      "about": [
+        {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        }
+      ],
+      "statement": {
+        "text": "Prefers an Americano in the morning.",
+        "lang": "en"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-20",
+    "description": "version 2 must name the version it supersedes",
+    "input": {
+      "type": "MemoryRecord",
+      "id": "mem_01k742stqrewbvvjfvs15tzmqm",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "leisure"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.memory",
+      "recorded_at": "2026-10-02T03:00:00Z",
+      "version": 2,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "user"
+      },
+      "content_type": "preference",
+      "epistemic_state": "stated",
+      "layer": "consolidated_fact",
+      "time_kind": "permanent",
+      "valid_from": "2026-09-01T00:00:00Z",
+      "valid_to": null,
+      "superseded_at": null,
+      "source_episodes": [
+        "epi_01k742sgz8fpbvee16bvnbpem8"
+      ],
+      "source_kind": "user_statement",
+      "evidence": {
+        "observation_count": 1,
+        "supporting_count": 1,
+        "first_observed_at": "2026-10-01T08:10:00Z",
+        "last_observed_at": "2026-10-01T08:10:00Z",
+        "contradicting_records": [],
+        "user_confirmed_at": null
+      },
+      "trust": {
+        "value": 0.95442,
+        "formula": "trust/v1",
+        "computed_at": "2026-10-02T03:00:00Z"
+      },
+      "alternative_explanations": [],
+      "usage_restriction": null,
+      "about": [
+        {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        }
+      ],
+      "statement": {
+        "text": "I drink my coffee hot now.",
+        "lang": "en"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "M-38",
+    "description": "a normal record lives in one_memory",
+    "input": {
+      "type": "MemoryRecord",
+      "id": "mem_01k742ssrgf71s3svnq2g7yqse",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "leisure"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_sensitive",
+      "provenance": "one.inferred",
+      "recorded_at": "2026-10-02T03:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01k742sgz8ezrvb1ad5hsd1p0p"
+        },
+        "model_version": "mdl_01k742sgz8fpttyr5nkb810tbn",
+        "config_version": "consolidation-1"
+      },
+      "content_type": "preference",
+      "epistemic_state": "inferred",
+      "layer": "consolidated_fact",
+      "time_kind": "permanent",
+      "valid_from": "2026-09-01T00:00:00Z",
+      "valid_to": null,
+      "superseded_at": null,
+      "source_episodes": [
+        "epi_01k742sgz8fpbvee16bvnbpem8"
+      ],
+      "source_kind": "user_behaviour",
+      "evidence": {
+        "observation_count": 17,
+        "supporting_count": 14,
+        "first_observed_at": "2026-09-01T08:05:00Z",
+        "last_observed_at": "2026-10-01T08:10:00Z",
+        "contradicting_records": [],
+        "user_confirmed_at": null
+      },
+      "trust": {
+        "value": 0.789381,
+        "formula": "trust/v1",
+        "computed_at": "2026-10-02T03:00:00Z"
+      },
+      "alternative_explanations": [],
+      "usage_restriction": null,
+      "about": [
+        {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        }
+      ],
+      "statement": {
+        "text": "Prefers an Americano in the morning.",
+        "lang": "en"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "M-38",
+    "description": "a sensitive record lives in one_sensitive",
+    "input": {
+      "type": "MemoryRecord",
+      "id": "mem_01k742swp8eamvjns655xpvber",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "health"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": [
+          "health"
+        ]
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.memory",
+      "recorded_at": "2026-10-02T03:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "user"
+      },
+      "content_type": "preference",
+      "epistemic_state": "stated",
+      "layer": "consolidated_fact",
+      "time_kind": "current",
+      "valid_from": "2026-09-01T00:00:00Z",
+      "valid_to": null,
+      "superseded_at": null,
+      "source_episodes": [
+        "epi_01k742sgz8fpbvee16bvnbpem8"
+      ],
+      "source_kind": "user_statement",
+      "evidence": {
+        "observation_count": 1,
+        "supporting_count": 1,
+        "first_observed_at": "2026-10-01T08:10:00Z",
+        "last_observed_at": "2026-10-01T08:10:00Z",
+        "contradicting_records": [],
+        "user_confirmed_at": null
+      },
+      "trust": {
+        "value": 0.95442,
+        "formula": "trust/v1",
+        "computed_at": "2026-10-02T03:00:00Z"
+      },
+      "alternative_explanations": [],
+      "usage_restriction": null,
+      "about": [
+        {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        }
+      ],
+      "statement": {
+        "text": "Şu sıralar keto yapıyorum.",
+        "lang": "tr"
+      },
+      "expected_end": "2026-11-30T00:00:00Z"
+    },
+    "valid": false
+  },
+  {
+    "rule": "M-28",
+    "description": "at least one life area",
+    "input": {
+      "type": "MemoryRecord",
+      "id": "mem_01k742ssrgf71s3svnq2g7yqse",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "one.inferred",
+      "recorded_at": "2026-10-02T03:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01k742sgz8ezrvb1ad5hsd1p0p"
+        },
+        "model_version": "mdl_01k742sgz8fpttyr5nkb810tbn",
+        "config_version": "consolidation-1"
+      },
+      "content_type": "preference",
+      "epistemic_state": "inferred",
+      "layer": "consolidated_fact",
+      "time_kind": "permanent",
+      "valid_from": "2026-09-01T00:00:00Z",
+      "valid_to": null,
+      "superseded_at": null,
+      "source_episodes": [
+        "epi_01k742sgz8fpbvee16bvnbpem8"
+      ],
+      "source_kind": "user_behaviour",
+      "evidence": {
+        "observation_count": 17,
+        "supporting_count": 14,
+        "first_observed_at": "2026-09-01T08:05:00Z",
+        "last_observed_at": "2026-10-01T08:10:00Z",
+        "contradicting_records": [],
+        "user_confirmed_at": null
+      },
+      "trust": {
+        "value": 0.789381,
+        "formula": "trust/v1",
+        "computed_at": "2026-10-02T03:00:00Z"
+      },
+      "alternative_explanations": [],
+      "usage_restriction": null,
+      "about": [
+        {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        }
+      ],
+      "statement": {
+        "text": "Prefers an Americano in the morning.",
+        "lang": "en"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "M-28",
+    "description": "users add projects, not areas",
+    "input": {
+      "type": "MemoryRecord",
+      "id": "mem_01k742ssrgf71s3svnq2g7yqse",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "hobbies"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "one.inferred",
+      "recorded_at": "2026-10-02T03:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01k742sgz8ezrvb1ad5hsd1p0p"
+        },
+        "model_version": "mdl_01k742sgz8fpttyr5nkb810tbn",
+        "config_version": "consolidation-1"
+      },
+      "content_type": "preference",
+      "epistemic_state": "inferred",
+      "layer": "consolidated_fact",
+      "time_kind": "permanent",
+      "valid_from": "2026-09-01T00:00:00Z",
+      "valid_to": null,
+      "superseded_at": null,
+      "source_episodes": [
+        "epi_01k742sgz8fpbvee16bvnbpem8"
+      ],
+      "source_kind": "user_behaviour",
+      "evidence": {
+        "observation_count": 17,
+        "supporting_count": 14,
+        "first_observed_at": "2026-09-01T08:05:00Z",
+        "last_observed_at": "2026-10-01T08:10:00Z",
+        "contradicting_records": [],
+        "user_confirmed_at": null
+      },
+      "trust": {
+        "value": 0.789381,
+        "formula": "trust/v1",
+        "computed_at": "2026-10-02T03:00:00Z"
+      },
+      "alternative_explanations": [],
+      "usage_restriction": null,
+      "about": [
+        {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        }
+      ],
+      "statement": {
+        "text": "Prefers an Americano in the morning.",
+        "lang": "en"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "M-29",
+    "description": "a project sits under the areas",
+    "input": {
+      "type": "MemoryRecord",
+      "id": "mem_01k742ssrgf71s3svnq2g7yqse",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "home"
+        ],
+        "project": "prj_01k742sgz8fyn90pgkmp7p24ym"
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "one.inferred",
+      "recorded_at": "2026-10-02T03:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01k742sgz8ezrvb1ad5hsd1p0p"
+        },
+        "model_version": "mdl_01k742sgz8fpttyr5nkb810tbn",
+        "config_version": "consolidation-1"
+      },
+      "content_type": "preference",
+      "epistemic_state": "inferred",
+      "layer": "consolidated_fact",
+      "time_kind": "permanent",
+      "valid_from": "2026-09-01T00:00:00Z",
+      "valid_to": null,
+      "superseded_at": null,
+      "source_episodes": [
+        "epi_01k742sgz8fpbvee16bvnbpem8"
+      ],
+      "source_kind": "user_behaviour",
+      "evidence": {
+        "observation_count": 17,
+        "supporting_count": 14,
+        "first_observed_at": "2026-09-01T08:05:00Z",
+        "last_observed_at": "2026-10-01T08:10:00Z",
+        "contradicting_records": [],
+        "user_confirmed_at": null
+      },
+      "trust": {
+        "value": 0.789381,
+        "formula": "trust/v1",
+        "computed_at": "2026-10-02T03:00:00Z"
+      },
+      "alternative_explanations": [],
+      "usage_restriction": null,
+      "about": [
+        {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        }
+      ],
+      "statement": {
+        "text": "Prefers an Americano in the morning.",
+        "lang": "en"
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "C-19",
+    "description": "the id is a typed opaque identifier",
+    "input": {
+      "type": "MemoryRecord",
+      "id": "mem_eu-west-1_device7",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "leisure"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "one.inferred",
+      "recorded_at": "2026-10-02T03:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01k742sgz8ezrvb1ad5hsd1p0p"
+        },
+        "model_version": "mdl_01k742sgz8fpttyr5nkb810tbn",
+        "config_version": "consolidation-1"
+      },
+      "content_type": "preference",
+      "epistemic_state": "inferred",
+      "layer": "consolidated_fact",
+      "time_kind": "permanent",
+      "valid_from": "2026-09-01T00:00:00Z",
+      "valid_to": null,
+      "superseded_at": null,
+      "source_episodes": [
+        "epi_01k742sgz8fpbvee16bvnbpem8"
+      ],
+      "source_kind": "user_behaviour",
+      "evidence": {
+        "observation_count": 17,
+        "supporting_count": 14,
+        "first_observed_at": "2026-09-01T08:05:00Z",
+        "last_observed_at": "2026-10-01T08:10:00Z",
+        "contradicting_records": [],
+        "user_confirmed_at": null
+      },
+      "trust": {
+        "value": 0.789381,
+        "formula": "trust/v1",
+        "computed_at": "2026-10-02T03:00:00Z"
+      },
+      "alternative_explanations": [],
+      "usage_restriction": null,
+      "about": [
+        {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        }
+      ],
+      "statement": {
+        "text": "Prefers an Americano in the morning.",
+        "lang": "en"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-19",
+    "description": "an episode id is not a memory record id",
+    "input": {
+      "type": "MemoryRecord",
+      "id": "epi_01k742srs8f3g909y5q7bqbgps",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "leisure"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "one.inferred",
+      "recorded_at": "2026-10-02T03:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01k742sgz8ezrvb1ad5hsd1p0p"
+        },
+        "model_version": "mdl_01k742sgz8fpttyr5nkb810tbn",
+        "config_version": "consolidation-1"
+      },
+      "content_type": "preference",
+      "epistemic_state": "inferred",
+      "layer": "consolidated_fact",
+      "time_kind": "permanent",
+      "valid_from": "2026-09-01T00:00:00Z",
+      "valid_to": null,
+      "superseded_at": null,
+      "source_episodes": [
+        "epi_01k742sgz8fpbvee16bvnbpem8"
+      ],
+      "source_kind": "user_behaviour",
+      "evidence": {
+        "observation_count": 17,
+        "supporting_count": 14,
+        "first_observed_at": "2026-09-01T08:05:00Z",
+        "last_observed_at": "2026-10-01T08:10:00Z",
+        "contradicting_records": [],
+        "user_confirmed_at": null
+      },
+      "trust": {
+        "value": 0.789381,
+        "formula": "trust/v1",
+        "computed_at": "2026-10-02T03:00:00Z"
+      },
+      "alternative_explanations": [],
+      "usage_restriction": null,
+      "about": [
+        {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        }
+      ],
+      "statement": {
+        "text": "Prefers an Americano in the morning.",
+        "lang": "en"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-19",
+    "description": "recorded_at is RFC 3339 UTC",
+    "input": {
+      "type": "MemoryRecord",
+      "id": "mem_01k742ssrgf71s3svnq2g7yqse",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "leisure"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "one.inferred",
+      "recorded_at": "2026-10-02T06:00:00+03:00",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01k742sgz8ezrvb1ad5hsd1p0p"
+        },
+        "model_version": "mdl_01k742sgz8fpttyr5nkb810tbn",
+        "config_version": "consolidation-1"
+      },
+      "content_type": "preference",
+      "epistemic_state": "inferred",
+      "layer": "consolidated_fact",
+      "time_kind": "permanent",
+      "valid_from": "2026-09-01T00:00:00Z",
+      "valid_to": null,
+      "superseded_at": null,
+      "source_episodes": [
+        "epi_01k742sgz8fpbvee16bvnbpem8"
+      ],
+      "source_kind": "user_behaviour",
+      "evidence": {
+        "observation_count": 17,
+        "supporting_count": 14,
+        "first_observed_at": "2026-09-01T08:05:00Z",
+        "last_observed_at": "2026-10-01T08:10:00Z",
+        "contradicting_records": [],
+        "user_confirmed_at": null
+      },
+      "trust": {
+        "value": 0.789381,
+        "formula": "trust/v1",
+        "computed_at": "2026-10-02T03:00:00Z"
+      },
+      "alternative_explanations": [],
+      "usage_restriction": null,
+      "about": [
+        {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        }
+      ],
+      "statement": {
+        "text": "Prefers an Americano in the morning.",
+        "lang": "en"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-19",
+    "description": "produced_by of One names instance, model and configuration",
+    "input": {
+      "type": "MemoryRecord",
+      "id": "mem_01k742ssrgf71s3svnq2g7yqse",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "leisure"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "one.inferred",
+      "recorded_at": "2026-10-02T03:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "one"
+      },
+      "content_type": "preference",
+      "epistemic_state": "inferred",
+      "layer": "consolidated_fact",
+      "time_kind": "permanent",
+      "valid_from": "2026-09-01T00:00:00Z",
+      "valid_to": null,
+      "superseded_at": null,
+      "source_episodes": [
+        "epi_01k742sgz8fpbvee16bvnbpem8"
+      ],
+      "source_kind": "user_behaviour",
+      "evidence": {
+        "observation_count": 17,
+        "supporting_count": 14,
+        "first_observed_at": "2026-09-01T08:05:00Z",
+        "last_observed_at": "2026-10-01T08:10:00Z",
+        "contradicting_records": [],
+        "user_confirmed_at": null
+      },
+      "trust": {
+        "value": 0.789381,
+        "formula": "trust/v1",
+        "computed_at": "2026-10-02T03:00:00Z"
+      },
+      "alternative_explanations": [],
+      "usage_restriction": null,
+      "about": [
+        {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        }
+      ],
+      "statement": {
+        "text": "Prefers an Americano in the morning.",
+        "lang": "en"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "M-13",
+    "description": "trust names its formula version",
+    "input": {
+      "type": "MemoryRecord",
+      "id": "mem_01k742ssrgf71s3svnq2g7yqse",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "leisure"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "one.inferred",
+      "recorded_at": "2026-10-02T03:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01k742sgz8ezrvb1ad5hsd1p0p"
+        },
+        "model_version": "mdl_01k742sgz8fpttyr5nkb810tbn",
+        "config_version": "consolidation-1"
+      },
+      "content_type": "preference",
+      "epistemic_state": "inferred",
+      "layer": "consolidated_fact",
+      "time_kind": "permanent",
+      "valid_from": "2026-09-01T00:00:00Z",
+      "valid_to": null,
+      "superseded_at": null,
+      "source_episodes": [
+        "epi_01k742sgz8fpbvee16bvnbpem8"
+      ],
+      "source_kind": "user_behaviour",
+      "evidence": {
+        "observation_count": 17,
+        "supporting_count": 14,
+        "first_observed_at": "2026-09-01T08:05:00Z",
+        "last_observed_at": "2026-10-01T08:10:00Z",
+        "contradicting_records": [],
+        "user_confirmed_at": null
+      },
+      "trust": {
+        "value": 0.789381,
+        "formula": "llm",
+        "computed_at": "2026-10-02T03:00:00Z"
+      },
+      "alternative_explanations": [],
+      "usage_restriction": null,
+      "about": [
+        {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        }
+      ],
+      "statement": {
+        "text": "Prefers an Americano in the morning.",
+        "lang": "en"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "M-13",
+    "description": "trust has no verbal confidence field",
+    "input": {
+      "type": "MemoryRecord",
+      "id": "mem_01k742ssrgf71s3svnq2g7yqse",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "leisure"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "one.inferred",
+      "recorded_at": "2026-10-02T03:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01k742sgz8ezrvb1ad5hsd1p0p"
+        },
+        "model_version": "mdl_01k742sgz8fpttyr5nkb810tbn",
+        "config_version": "consolidation-1"
+      },
+      "content_type": "preference",
+      "epistemic_state": "inferred",
+      "layer": "consolidated_fact",
+      "time_kind": "permanent",
+      "valid_from": "2026-09-01T00:00:00Z",
+      "valid_to": null,
+      "superseded_at": null,
+      "source_episodes": [
+        "epi_01k742sgz8fpbvee16bvnbpem8"
+      ],
+      "source_kind": "user_behaviour",
+      "evidence": {
+        "observation_count": 17,
+        "supporting_count": 14,
+        "first_observed_at": "2026-09-01T08:05:00Z",
+        "last_observed_at": "2026-10-01T08:10:00Z",
+        "contradicting_records": [],
+        "user_confirmed_at": null
+      },
+      "trust": {
+        "value": 0.789381,
+        "formula": "trust/v1",
+        "computed_at": "2026-10-02T03:00:00Z",
+        "model_confidence": 0.9
+      },
+      "alternative_explanations": [],
+      "usage_restriction": null,
+      "about": [
+        {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        }
+      ],
+      "statement": {
+        "text": "Prefers an Americano in the morning.",
+        "lang": "en"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "M-7",
+    "description": "unknown fields are rejected in the canonical record",
+    "input": {
+      "type": "MemoryRecord",
+      "id": "mem_01k742ssrgf71s3svnq2g7yqse",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "leisure"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "one.inferred",
+      "recorded_at": "2026-10-02T03:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01k742sgz8ezrvb1ad5hsd1p0p"
+        },
+        "model_version": "mdl_01k742sgz8fpttyr5nkb810tbn",
+        "config_version": "consolidation-1"
+      },
+      "content_type": "preference",
+      "epistemic_state": "inferred",
+      "layer": "consolidated_fact",
+      "time_kind": "permanent",
+      "valid_from": "2026-09-01T00:00:00Z",
+      "valid_to": null,
+      "superseded_at": null,
+      "source_episodes": [
+        "epi_01k742sgz8fpbvee16bvnbpem8"
+      ],
+      "source_kind": "user_behaviour",
+      "evidence": {
+        "observation_count": 17,
+        "supporting_count": 14,
+        "first_observed_at": "2026-09-01T08:05:00Z",
+        "last_observed_at": "2026-10-01T08:10:00Z",
+        "contradicting_records": [],
+        "user_confirmed_at": null
+      },
+      "trust": {
+        "value": 0.789381,
+        "formula": "trust/v1",
+        "computed_at": "2026-10-02T03:00:00Z"
+      },
+      "alternative_explanations": [],
+      "usage_restriction": null,
+      "about": [
+        {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        }
+      ],
+      "statement": {
+        "text": "Prefers an Americano in the morning.",
+        "lang": "en"
+      },
+      "mood": "happy"
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-19",
+    "description": "owner is an Access PartyRef, never a bare string",
+    "input": {
+      "type": "MemoryRecord",
+      "id": "mem_01k742ssrgf71s3svnq2g7yqse",
+      "owner": "pty_01k742sgz8ea9tc04vraj0cqss",
+      "domain": {
+        "areas": [
+          "leisure"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "one.inferred",
+      "recorded_at": "2026-10-02T03:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01k742sgz8ezrvb1ad5hsd1p0p"
+        },
+        "model_version": "mdl_01k742sgz8fpttyr5nkb810tbn",
+        "config_version": "consolidation-1"
+      },
+      "content_type": "preference",
+      "epistemic_state": "inferred",
+      "layer": "consolidated_fact",
+      "time_kind": "permanent",
+      "valid_from": "2026-09-01T00:00:00Z",
+      "valid_to": null,
+      "superseded_at": null,
+      "source_episodes": [
+        "epi_01k742sgz8fpbvee16bvnbpem8"
+      ],
+      "source_kind": "user_behaviour",
+      "evidence": {
+        "observation_count": 17,
+        "supporting_count": 14,
+        "first_observed_at": "2026-09-01T08:05:00Z",
+        "last_observed_at": "2026-10-01T08:10:00Z",
+        "contradicting_records": [],
+        "user_confirmed_at": null
+      },
+      "trust": {
+        "value": 0.789381,
+        "formula": "trust/v1",
+        "computed_at": "2026-10-02T03:00:00Z"
+      },
+      "alternative_explanations": [],
+      "usage_restriction": null,
+      "about": [
+        {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        }
+      ],
+      "statement": {
+        "text": "Prefers an Americano in the morning.",
+        "lang": "en"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-19",
+    "description": "a memory record has type MemoryRecord",
+    "input": {
+      "type": "Goal",
+      "id": "mem_01k742ssrgf71s3svnq2g7yqse",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "leisure"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "one.inferred",
+      "recorded_at": "2026-10-02T03:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01k742sgz8ezrvb1ad5hsd1p0p"
+        },
+        "model_version": "mdl_01k742sgz8fpttyr5nkb810tbn",
+        "config_version": "consolidation-1"
+      },
+      "content_type": "preference",
+      "epistemic_state": "inferred",
+      "layer": "consolidated_fact",
+      "time_kind": "permanent",
+      "valid_from": "2026-09-01T00:00:00Z",
+      "valid_to": null,
+      "superseded_at": null,
+      "source_episodes": [
+        "epi_01k742sgz8fpbvee16bvnbpem8"
+      ],
+      "source_kind": "user_behaviour",
+      "evidence": {
+        "observation_count": 17,
+        "supporting_count": 14,
+        "first_observed_at": "2026-09-01T08:05:00Z",
+        "last_observed_at": "2026-10-01T08:10:00Z",
+        "contradicting_records": [],
+        "user_confirmed_at": null
+      },
+      "trust": {
+        "value": 0.789381,
+        "formula": "trust/v1",
+        "computed_at": "2026-10-02T03:00:00Z"
+      },
+      "alternative_explanations": [],
+      "usage_restriction": null,
+      "about": [
+        {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        }
+      ],
+      "statement": {
+        "text": "Prefers an Americano in the morning.",
+        "lang": "en"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-19",
+    "description": "data_class is the structured data class",
+    "input": {
+      "type": "MemoryRecord",
+      "id": "mem_01k742ssrgf71s3svnq2g7yqse",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "leisure"
+        ],
+        "project": null
+      },
+      "data_class": "normal",
+      "retention_class": "one_memory",
+      "provenance": "one.inferred",
+      "recorded_at": "2026-10-02T03:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01k742sgz8ezrvb1ad5hsd1p0p"
+        },
+        "model_version": "mdl_01k742sgz8fpttyr5nkb810tbn",
+        "config_version": "consolidation-1"
+      },
+      "content_type": "preference",
+      "epistemic_state": "inferred",
+      "layer": "consolidated_fact",
+      "time_kind": "permanent",
+      "valid_from": "2026-09-01T00:00:00Z",
+      "valid_to": null,
+      "superseded_at": null,
+      "source_episodes": [
+        "epi_01k742sgz8fpbvee16bvnbpem8"
+      ],
+      "source_kind": "user_behaviour",
+      "evidence": {
+        "observation_count": 17,
+        "supporting_count": 14,
+        "first_observed_at": "2026-09-01T08:05:00Z",
+        "last_observed_at": "2026-10-01T08:10:00Z",
+        "contradicting_records": [],
+        "user_confirmed_at": null
+      },
+      "trust": {
+        "value": 0.789381,
+        "formula": "trust/v1",
+        "computed_at": "2026-10-02T03:00:00Z"
+      },
+      "alternative_explanations": [],
+      "usage_restriction": null,
+      "about": [
+        {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        }
+      ],
+      "statement": {
+        "text": "Prefers an Americano in the morning.",
+        "lang": "en"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "SEC-14",
+    "description": "labels come from the one provenance label set",
+    "input": {
+      "type": "MemoryRecord",
+      "id": "mem_01k742ssrgf71s3svnq2g7yqse",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "leisure"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "external.other_person",
+      "recorded_at": "2026-10-02T03:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01k742sgz8ezrvb1ad5hsd1p0p"
+        },
+        "model_version": "mdl_01k742sgz8fpttyr5nkb810tbn",
+        "config_version": "consolidation-1"
+      },
+      "content_type": "preference",
+      "epistemic_state": "inferred",
+      "layer": "consolidated_fact",
+      "time_kind": "permanent",
+      "valid_from": "2026-09-01T00:00:00Z",
+      "valid_to": null,
+      "superseded_at": null,
+      "source_episodes": [
+        "epi_01k742sgz8fpbvee16bvnbpem8"
+      ],
+      "source_kind": "user_behaviour",
+      "evidence": {
+        "observation_count": 17,
+        "supporting_count": 14,
+        "first_observed_at": "2026-09-01T08:05:00Z",
+        "last_observed_at": "2026-10-01T08:10:00Z",
+        "contradicting_records": [],
+        "user_confirmed_at": null
+      },
+      "trust": {
+        "value": 0.789381,
+        "formula": "trust/v1",
+        "computed_at": "2026-10-02T03:00:00Z"
+      },
+      "alternative_explanations": [],
+      "usage_restriction": null,
+      "about": [
+        {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        }
+      ],
+      "statement": {
+        "text": "Prefers an Americano in the morning.",
+        "lang": "en"
+      }
+    },
+    "valid": false
+  }
+]

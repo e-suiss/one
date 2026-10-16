@@ -1,0 +1,58 @@
+# X-14, X-15, X-17, C-6, C-27, INV-38
+
+version = 1
+protocol = "A2UI"
+protocol_version = "0.9"
+status = "adapter"
+messages = ["createSurface", "updateComponents", "updateDataModel", "deleteSurface"]
+surface_id = "interaction id"
+data_model_path = "/one"
+semantics_path = "/one/semantics"
+semantics = ["kind", "risk", "reversibility", "sensitive", "provenance", "min_assurance", "expires_at"]
+risk_label = "visible Text component, never colour only"
+generated_markup = false
+
+[[component]]
+one = "card"
+a2ui = ["Card", "Column", "Text", "Image", "Button"]
+
+[[component]]
+one = "list"
+a2ui = ["List", "Text", "Button"]
+
+[[component]]
+one = "comparison"
+a2ui = ["Row", "Column", "Card", "Text", "Button"]
+
+[[component]]
+one = "approval"
+a2ui = ["Card", "Text", "Button"]
+button_action = "open the Access trusted approval surface"
+approval_collected_in_a2ui = false
+
+[[component]]
+one = "form"
+a2ui = ["Column", "TextField", "DateTimeInput", "ChoicePicker", "CheckBox", "Button"]
+secret_fields = false
+
+[[component]]
+one = "timeline"
+a2ui = ["List", "Row", "Text", "Icon"]
+
+[[component]]
+one = "map"
+a2ui = ["Card", "Image", "Text", "Button"]
+tiles_load = "on_user_open"
+
+[[component]]
+one = "progress"
+a2ui = ["Column", "Text", "Slider"]
+slider_read_only = true
+
+[[component]]
+one = "receipt"
+a2ui = ["Card", "Column", "Text", "Divider", "Button"]
+
+[inbound]
+user_action = "InteractionResponse with action id from actions"
+action_ids_outside_actions = "rejected"

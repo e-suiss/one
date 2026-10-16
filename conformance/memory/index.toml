@@ -1,0 +1,137 @@
+# M-6, M-7, M-8, M-9, M-10, M-13, M-20, MD-7 (1, 2), INV-14, C-19, PV-16, PV-20
+
+[[schema]]
+path = "common.json"
+id = "https://suiss.app/schemas/one/memory/common/v1.json"
+rules = ["C-19", "C-12", "C-24", "M-28", "M-29", "T-28"]
+
+[[schema]]
+path = "retention-class.json"
+id = "https://suiss.app/schemas/one/memory/retention-class/v1.json"
+rules = ["PV-16", "C-19", "M-38"]
+
+[[schema]]
+path = "sensitive-class.json"
+id = "https://suiss.app/schemas/one/memory/sensitive-class/v1.json"
+rules = ["PV-20"]
+
+[[schema]]
+path = "data-class.json"
+id = "https://suiss.app/schemas/one/memory/data-class/v1.json"
+rules = ["C-19", "M-7", "PV-20"]
+
+[[schema]]
+path = "life-area.json"
+id = "https://suiss.app/schemas/one/memory/life-area/v1.json"
+rules = ["M-28"]
+
+[[schema]]
+path = "fields.json"
+id = "https://suiss.app/schemas/one/memory/fields/v1.json"
+rules = ["M-7", "M-8", "M-9", "M-10", "M-13", "M-22", "M-24", "M-30", "C-7"]
+
+[[schema]]
+path = "memory-record.json"
+id = "https://suiss.app/schemas/one/memory/memory-record/v1.json"
+rules = ["M-6", "M-7", "M-8", "M-9", "M-10", "M-18", "M-24", "M-25", "M-38", "M-43", "MD-7 (1, 2)", "INV-14", "C-12", "C-19", "C-20", "SEC-14"]
+
+[[schema]]
+path = "relationship-edge.json"
+id = "https://suiss.app/schemas/one/memory/relationship-edge/v1.json"
+rules = ["M-6", "M-10", "M-11", "C-12"]
+
+[[schema]]
+path = "text-view.json"
+id = "https://suiss.app/schemas/one/memory/text-view/v1.json"
+rules = ["M-6", "M-2", "M-14", "M-30", "INV-14", "MD-7 (2)", "C-22"]
+
+[[schema]]
+path = "trust-input.json"
+id = "https://suiss.app/schemas/one/memory/trust-input/v1.json"
+rules = ["M-13"]
+
+[[table]]
+path = "trust-v1.toml"
+rules = ["M-13", "M-14", "M-8"]
+
+[[vectors]]
+path = "vectors/memory-record.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/memory/memory-record/v1.json"
+rules = ["M-6", "M-7", "M-8", "M-9", "M-10", "M-18", "M-19", "M-20", "M-22", "M-24", "M-25", "M-29", "M-30", "M-38", "M-43", "C-7", "C-19", "C-20", "SEC-14"]
+
+[[vectors]]
+path = "vectors/relationship-edge.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/memory/relationship-edge/v1.json"
+rules = ["M-6", "M-10", "M-11"]
+
+[[vectors]]
+path = "vectors/data-class.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/memory/data-class/v1.json"
+rules = ["PV-20", "C-19"]
+
+[[vectors]]
+path = "vectors/sensitive-class.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/memory/sensitive-class/v1.json"
+rules = ["PV-20"]
+
+[[vectors]]
+path = "vectors/retention-class.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/memory/retention-class/v1.json"
+rules = ["PV-16"]
+
+[[vectors]]
+path = "vectors/life-area.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/memory/life-area/v1.json"
+rules = ["M-28"]
+
+[[vectors]]
+path = "vectors/provenance-label.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/provenance/label/v1.json"
+rules = ["SEC-14"]
+
+[[vectors]]
+path = "vectors/trust-v1.json"
+kind = "behaviour"
+rules = ["M-13"]
+
+[[vectors]]
+path = "vectors/text-view.json"
+kind = "behaviour"
+rules = ["M-6", "INV-14", "M-18", "M-20", "M-24", "M-30"]
+
+[[vectors]]
+path = "vectors/change-exception-contradiction.json"
+kind = "behaviour"
+rules = ["M-20", "M-4"]
+
+[[vectors]]
+path = "vectors/acceptance-m-6.json"
+kind = "behaviour"
+rules = ["M-6", "M-10", "C-22"]
+
+[[vectors]]
+path = "vectors/acceptance-m-11.json"
+kind = "behaviour"
+rules = ["M-11", "M-12"]
+
+[[vectors]]
+path = "vectors/acceptance-m-17.json"
+kind = "behaviour"
+rules = ["M-17", "M-37", "PV-65"]
+
+[[vectors]]
+path = "vectors/acceptance-m-25.json"
+kind = "behaviour"
+rules = ["M-25"]
+
+[[vectors]]
+path = "vectors/acceptance-m-36.json"
+kind = "behaviour"
+rules = ["M-36", "M-37"]

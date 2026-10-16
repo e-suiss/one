@@ -1,0 +1,281 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/attention/decision-record/v1.json",
+  "title": "Attention decision record",
+  "$comment": "AT-1, AT-2, AT-4, AT-24, AT-6, AT-8, AT-9, AT-10, AT-12, AT-13, AT-21, AT-23, AT-26, AT-42",
+  "type": "object",
+  "required": [
+    "decision_id",
+    "decided_at",
+    "retention_class",
+    "candidate",
+    "input_summary",
+    "policy",
+    "value_probability",
+    "cloud_estimate",
+    "chosen_arm",
+    "propensity",
+    "exploration",
+    "constraints",
+    "outcome"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "decision_id": { "$ref": "https://suiss.app/schemas/one/attention/common/v1.json#/$defs/AttentionDecisionId" },
+    "decided_at": { "$ref": "https://suiss.app/schemas/one/model/common/v1.json#/$defs/Timestamp" },
+    "retention_class": { "const": "one_memory" },
+    "candidate": {
+      "type": "object",
+      "required": ["output_type", "source", "urgent", "critical_grant", "sensitive"],
+      "additionalProperties": false,
+      "properties": {
+        "output_type": { "$ref": "https://suiss.app/schemas/one/attention/common/v1.json#/$defs/OutputTypeId" },
+        "capability": { "$ref": "https://suiss.app/schemas/one/capability/name/v1.json#/$defs/name" },
+        "task_id": { "$ref": "https://suiss.app/schemas/one/ontology/id/v1.json#/$defs/TaskId" },
+        "source": {
+          "enum": ["external_event", "suggestion", "prepared_work", "approval_request", "other_app_notification", "process_update"]
+        },
+        "urgent": { "type": "boolean" },
+        "critical_grant": { "type": "boolean" },
+        "sensitive": { "type": "boolean" }
+      }
+    },
+    "input_summary": {
+      "type": "object",
+      "required": [
+        "local_hour",
+        "weekday",
+        "device",
+        "calendar_busy",
+        "activity",
+        "sender_relation",
+        "quiet_hours",
+        "type_muted",
+        "in_rest_period",
+        "interruptions_today",
+        "budget_remaining",
+        "seconds_since_last_interruption",
+        "seconds_since_last_same_type"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "local_hour": { "type": "integer", "minimum": 0, "maximum": 23 },
+        "weekday": { "type": "integer", "minimum": 1, "maximum": 7 },
+        "device": {
+          "type": "object",
+          "required": ["lock", "focus", "headphones", "wearable", "at_break"],
+          "additionalProperties": false,
+          "properties": {
+            "lock": { "enum": ["locked", "unlocked", "unknown"] },
+            "focus": { "enum": ["on", "off", "unknown"] },
+            "headphones": { "enum": ["connected", "disconnected", "unknown"] },
+            "wearable": { "enum": ["worn", "not_worn", "unknown"] },
+            "at_break": { "type": "boolean" }
+          }
+        },
+        "calendar_busy": { "type": "boolean" },
+        "activity": { "enum": ["still", "walking", "running", "cycling", "in_vehicle", "unknown"] },
+        "sender_relation": {
+          "enum": ["self", "one", "unrecognised", "recognised", "verified", "trusted", "organisation", "unknown"]
+        },
+        "quiet_hours": { "type": "boolean" },
+        "type_muted": { "type": "boolean" },
+        "in_rest_period": { "type": "boolean" },
+        "interruptions_today": { "type": "integer", "minimum": 0 },
+        "budget_remaining": { "type": "integer", "minimum": 0, "maximum": 10 },
+        "seconds_since_last_interruption": { "type": ["integer", "null"], "minimum": 0 },
+        "seconds_since_last_same_type": { "type": ["integer", "null"], "minimum": 0 }
+      }
+    },
+    "policy": {
+      "type": "object",
+      "required": ["policy_version", "thresholds"],
+      "additionalProperties": false,
+      "properties": {
+        "policy_version": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$" },
+        "model_version_id": { "$ref": "https://suiss.app/schemas/one/ontology/id/v1.json#/$defs/ModelVersionId" },
+        "thresholds": {
+          "type": "object",
+          "required": ["lower", "upper"],
+          "additionalProperties": false,
+          "properties": {
+            "lower": { "type": "number", "minimum": 0, "maximum": 1 },
+            "upper": { "type": "number", "minimum": 0, "maximum": 1 }
+          }
+        }
+      }
+    },
+    "value_probability": { "type": "number", "minimum": 0, "maximum": 1 },
+    "cloud_estimate": {
+      "type": "object",
+      "required": ["requested"],
+      "additionalProperties": false,
+      "properties": {
+        "requested": { "type": "boolean" },
+        "available": { "type": "boolean" },
+        "value": { "type": "number", "minimum": 0, "maximum": 1 }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "requested": { "const": true } } },
+          "then": { "required": ["available"] },
+          "else": { "not": { "anyOf": [{ "required": ["available"] }, { "required": ["value"] }] } }
+        },
+        {
+          "if": { "properties": { "available": { "const": false } }, "required": ["available"] },
+          "then": { "not": { "required": ["value"] } }
+        },
+        {
+          "if": { "properties": { "available": { "const": true } }, "required": ["available"] },
+          "then": { "required": ["value"] }
+        }
+      ]
+    },
+    "chosen_arm": { "$ref": "https://suiss.app/schemas/one/attention/common/v1.json#/$defs/Arm" },
+    "propensity": { "type": "number", "exclusiveMinimum": 0, "maximum": 1 },
+    "arm_probabilities": {
+      "type": "object",
+      "additionalProperties": false,
+      "minProperties": 1,
+      "properties": {
+        "interrupt_now": { "type": "number", "minimum": 0, "maximum": 1 },
+        "next_break": { "type": "number", "minimum": 0, "maximum": 1 },
+        "digest": { "type": "number", "minimum": 0, "maximum": 1 },
+        "save_quietly": { "type": "number", "minimum": 0, "maximum": 1 },
+        "discard": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    },
+    "exploration": {
+      "type": "object",
+      "required": ["allowed", "explored"],
+      "additionalProperties": false,
+      "properties": {
+        "allowed": { "type": "boolean" },
+        "explored": { "type": "boolean" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "explored": { "const": true } } },
+          "then": { "properties": { "allowed": { "const": true } } }
+        }
+      ]
+    },
+    "constraints": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "enum": ["quiet_hours", "focus", "type_muted", "daily_budget", "rest_period", "expired", "offline_cloud"] }
+    },
+    "relay": {
+      "type": "object",
+      "required": ["relay_class", "interruption", "timing", "sensitive"],
+      "additionalProperties": false,
+      "properties": {
+        "relay_class": { "$ref": "https://suiss.app/schemas/one/attention/common/v1.json#/$defs/OneRelayClass" },
+        "interruption": { "$ref": "https://suiss.app/schemas/one/attention/common/v1.json#/$defs/Interruption" },
+        "timing": { "$ref": "https://suiss.app/schemas/one/attention/common/v1.json#/$defs/Timing" },
+        "max_defer_s": { "type": "integer", "minimum": 1 },
+        "expires_at": { "$ref": "https://suiss.app/schemas/one/model/common/v1.json#/$defs/Timestamp" },
+        "sensitive": { "type": "boolean" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "timing": { "const": "next_break" } } },
+          "then": { "required": ["max_defer_s"] },
+          "else": { "not": { "required": ["max_defer_s"] } }
+        },
+        {
+          "if": { "properties": { "interruption": { "const": "critical" } } },
+          "then": { "properties": { "timing": { "const": "immediate" } } }
+        }
+      ]
+    },
+    "outcome": {
+      "type": "object",
+      "required": ["signal"],
+      "additionalProperties": false,
+      "properties": {
+        "signal": {
+          "enum": ["pending", "completed", "useful", "not_now", "muted", "wrong_action_or_undo", "told_late", "none"]
+        },
+        "at": { "$ref": "https://suiss.app/schemas/one/model/common/v1.json#/$defs/Timestamp" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "signal": { "const": "pending" } } },
+          "then": { "not": { "required": ["at"] } },
+          "else": { "required": ["at"] }
+        }
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "chosen_arm": { "$ref": "https://suiss.app/schemas/one/attention/common/v1.json#/$defs/NotifyArm" } } },
+      "then": { "required": ["relay"] },
+      "else": { "not": { "required": ["relay"] } }
+    },
+    {
+      "if": { "properties": { "chosen_arm": { "const": "interrupt_now" } } },
+      "then": { "properties": { "relay": { "properties": { "timing": { "const": "immediate" } } } } }
+    },
+    {
+      "if": { "properties": { "chosen_arm": { "const": "next_break" } } },
+      "then": { "properties": { "relay": { "properties": { "timing": { "const": "next_break" } } } } }
+    },
+    {
+      "if": { "properties": { "exploration": { "properties": { "explored": { "const": true } } } } },
+      "then": {
+        "properties": {
+          "chosen_arm": { "enum": ["digest", "next_break"] },
+          "candidate": { "properties": { "critical_grant": { "const": false }, "urgent": { "const": false } } }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "relay": { "properties": { "interruption": { "const": "critical" } } } }, "required": ["relay"] },
+      "then": { "properties": { "candidate": { "properties": { "critical_grant": { "const": true } } } } }
+    },
+    {
+      "if": {
+        "anyOf": [
+          { "properties": { "input_summary": { "properties": { "type_muted": { "const": true } } } } },
+          { "properties": { "input_summary": { "properties": { "quiet_hours": { "const": true } } }, "chosen_arm": { "const": "interrupt_now" } } },
+          {
+            "properties": {
+              "input_summary": { "properties": { "in_rest_period": { "const": true } } },
+              "candidate": { "properties": { "source": { "const": "suggestion" } } }
+            }
+          }
+        ]
+      },
+      "then": {
+        "anyOf": [
+          { "properties": { "chosen_arm": { "not": { "$ref": "https://suiss.app/schemas/one/attention/common/v1.json#/$defs/NotifyArm" } } } },
+          { "properties": { "relay": { "properties": { "interruption": { "const": "critical" } } } }, "required": ["relay"] }
+        ]
+      }
+    },
+    {
+      "if": { "properties": { "input_summary": { "properties": { "budget_remaining": { "const": 0 } } } } },
+      "then": {
+        "properties": { "relay": { "properties": { "interruption": { "enum": ["passive", "critical"] } } } }
+      }
+    },
+    {
+      "if": { "properties": { "candidate": { "properties": { "sensitive": { "const": true } } } } },
+      "then": { "properties": { "relay": { "properties": { "sensitive": { "const": true } } } } }
+    },
+    {
+      "if": { "properties": { "candidate": { "properties": { "urgent": { "const": false } } } } },
+      "then": {
+        "not": {
+          "properties": {
+            "chosen_arm": { "const": "interrupt_now" },
+            "relay": { "properties": { "interruption": { "not": { "const": "critical" } } } }
+          },
+          "required": ["relay"]
+        }
+      }
+    }
+  ]
+}

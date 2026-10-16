@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/interaction/kinds/v1.json",
+  "title": "Core Interaction kinds",
+  "description": "The closed core kind list, each with its TR+EN minimal projection and binary answer (X-12, X-13, AT-42).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "kind"],
+  "properties": {
+    "version": { "const": 1 },
+    "kind": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["approval", "choice", "question", "info", "progress", "receipt", "comparison", "form", "digest_item"],
+      "properties": {
+        "approval": { "$ref": "#/$defs/kind" },
+        "choice": { "$ref": "#/$defs/kind" },
+        "question": { "$ref": "#/$defs/kind" },
+        "info": { "$ref": "#/$defs/kind" },
+        "progress": { "$ref": "#/$defs/kind" },
+        "receipt": { "$ref": "#/$defs/kind" },
+        "comparison": { "$ref": "#/$defs/kind" },
+        "form": { "$ref": "#/$defs/kind" },
+        "digest_item": { "$ref": "#/$defs/kind" }
+      }
+    }
+  },
+  "$defs": {
+    "answer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["effect", "tr", "en"],
+      "properties": {
+        "effect": { "enum": ["approve", "decline", "choose", "answer", "acknowledge", "open", "dismiss", "defer", "stop"] },
+        "value": { "type": "boolean" },
+        "tr": { "type": "string", "minLength": 1, "maxLength": 12 },
+        "en": { "type": "string", "minLength": 1, "maxLength": 12 }
+      }
+    },
+    "kind": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["meaning", "components", "relay_class", "yes", "no", "example"],
+      "properties": {
+        "meaning": { "type": "string", "minLength": 1 },
+        "components": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "enum": ["card", "list", "comparison", "approval", "form", "timeline", "map", "progress", "receipt"] }
+        },
+        "relay_class": { "enum": ["action_required", "transactional", "none"] },
+        "yes": { "$ref": "#/$defs/answer" },
+        "no": { "$ref": "#/$defs/answer" },
+        "example": {
+          "allOf": [{ "$ref": "../common/v1.json#/$defs/localized" }],
+          "properties": { "tr": { "maxLength": 120 }, "en": { "maxLength": 120 } }
+        }
+      }
+    }
+  }
+}

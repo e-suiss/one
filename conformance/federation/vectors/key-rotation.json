@@ -1,0 +1,178 @@
+[
+  {
+    "rule": "OO-29",
+    "description": "Member present in the epoch decrypts",
+    "input": {
+      "members": [
+        "alice-phone",
+        "alice-laptop",
+        "alice-cloud"
+      ],
+      "message": {
+        "epoch": 3,
+        "from": "bob-phone"
+      },
+      "reader": "alice-laptop",
+      "readerEpochs": [
+        1,
+        2,
+        3
+      ]
+    },
+    "expected": {
+      "decrypts": true
+    }
+  },
+  {
+    "rule": "OO-29",
+    "description": "Added device does not decrypt messages from epochs before it joined",
+    "input": {
+      "event": {
+        "type": "add",
+        "member": "alice-tablet",
+        "epoch": 4,
+        "by": "user-action"
+      },
+      "message": {
+        "epoch": 3
+      },
+      "reader": "alice-tablet"
+    },
+    "expected": {
+      "decrypts": false
+    }
+  },
+  {
+    "rule": "OO-29",
+    "description": "Added device decrypts messages from its join epoch on",
+    "input": {
+      "event": {
+        "type": "add",
+        "member": "alice-tablet",
+        "epoch": 4,
+        "by": "user-action"
+      },
+      "message": {
+        "epoch": 4
+      },
+      "reader": "alice-tablet"
+    },
+    "expected": {
+      "decrypts": true
+    }
+  },
+  {
+    "rule": "OO-29",
+    "description": "Adding a device without the person's own action is refused",
+    "input": {
+      "event": {
+        "type": "add",
+        "member": "unknown-device",
+        "epoch": 4,
+        "by": "cloud-one"
+      }
+    },
+    "expected": {
+      "accept": false
+    }
+  },
+  {
+    "rule": "OO-29",
+    "description": "Removed device cannot decrypt new messages",
+    "input": {
+      "event": {
+        "type": "remove",
+        "member": "alice-laptop",
+        "epoch": 5
+      },
+      "message": {
+        "epoch": 5
+      },
+      "reader": "alice-laptop"
+    },
+    "expected": {
+      "decrypts": false
+    }
+  },
+  {
+    "rule": "OO-29",
+    "description": "Key update moves to a new epoch; the replaced leaf key cannot decrypt it",
+    "input": {
+      "event": {
+        "type": "update",
+        "member": "alice-phone",
+        "epoch": 6
+      },
+      "message": {
+        "epoch": 6
+      },
+      "reader": "alice-phone-previous-leaf-key"
+    },
+    "expected": {
+      "decrypts": false
+    }
+  },
+  {
+    "rule": "OO-29",
+    "description": "Cloud One with a valid time-bound key permit decrypts",
+    "input": {
+      "reader": "alice-cloud",
+      "permit": {
+        "validUntil": "2026-11-05T10:00:00Z"
+      },
+      "now": "2026-11-04T12:00:00Z",
+      "message": {
+        "epoch": 6
+      }
+    },
+    "expected": {
+      "decrypts": true
+    }
+  },
+  {
+    "rule": "OO-29",
+    "description": "Cloud One with an expired key permit cannot open the group key; the message waits",
+    "input": {
+      "reader": "alice-cloud",
+      "permit": {
+        "validUntil": "2026-11-04T10:00:00Z"
+      },
+      "now": "2026-11-04T12:00:00Z",
+      "message": {
+        "epoch": 6
+      }
+    },
+    "expected": {
+      "decrypts": false,
+      "messageState": "waiting"
+    }
+  },
+  {
+    "rule": "OO-7",
+    "description": "The delivery service holds no group secret and cannot decrypt",
+    "input": {
+      "reader": "relay-mailbox",
+      "message": {
+        "epoch": 6
+      }
+    },
+    "expected": {
+      "decrypts": false
+    }
+  },
+  {
+    "rule": "OO-29",
+    "description": "Message from an epoch after the reader's removal, replayed by the delivery service",
+    "input": {
+      "reader": "alice-laptop",
+      "removedAtEpoch": 5,
+      "message": {
+        "epoch": 7,
+        "replayedBy": "relay-mailbox"
+      }
+    },
+    "expected": {
+      "decrypts": false
+    }
+  }
+]

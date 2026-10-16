@@ -1,0 +1,88 @@
+# C-6, C-27, MD-6 (4), INV-38, X-15, X-16, X-10, X-12
+
+version = 1
+source_of_truth = "interaction"
+projection_writes_back = "only_through_one_rules"
+undeclared_capability = "not_sent"
+buttons_from = "actions"
+free_text_actions = false
+remote_media_autoload = false
+untrusted_values_marked = ["counterparty", "amount", "place", "options", "note"]
+
+[[preserve]]
+field = "risk"
+on_loss = "reject_projection"
+
+[[preserve]]
+field = "reversibility"
+on_loss = "reject_projection"
+
+[[preserve]]
+field = "min_assurance"
+on_loss = "reject_projection"
+
+[[preserve]]
+field = "sensitive"
+on_loss = "reject_projection"
+
+[[preserve]]
+field = "expires_at"
+on_loss = "reject_projection"
+
+[[preserve]]
+field = "provenance"
+on_loss = "reject_projection"
+
+[[preserve]]
+field = "field_provenance"
+on_loss = "reject_projection"
+
+[[target]]
+name = "relay_notification"
+table = "notification.toml"
+direction = "out"
+
+[[target]]
+name = "live_activity_content_state"
+table = "live-activity.toml"
+direction = "out"
+
+[[target]]
+name = "android_live_update"
+table = "live-update.toml"
+direction = "out"
+
+[[target]]
+name = "watch"
+table = "watch.toml"
+direction = "out"
+
+[[target]]
+name = "voice"
+table = "voice.toml"
+direction = "out"
+
+[[target]]
+name = "glasses_display"
+table = "glasses.toml"
+direction = "out"
+
+[[target]]
+name = "a2ui"
+table = "a2ui.toml"
+direction = "out"
+
+[[target]]
+name = "ag_ui"
+table = "ag-ui.toml"
+direction = "out"
+
+[[target]]
+name = "mcp_apps"
+table = "mcp-apps.toml"
+direction = "in"
+
+[[target]]
+name = "approval_act_statement"
+table = "approval-act-statement.toml"
+direction = "response"

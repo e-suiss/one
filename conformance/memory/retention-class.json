@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/memory/retention-class/v1.json",
+  "title": "RetentionClass",
+  "description": "The seven One retention classes of Access Appendix C C.3.7 (Access OP-77). Durations live only in Access Appendix C. C-19, PV-16, M-38.",
+  "type": "string",
+  "enum": [
+    "one_memory",
+    "one_model",
+    "one_observation",
+    "one_sensitive",
+    "one_provider_trace",
+    "one_browser_profile",
+    "one_training_lineage"
+  ]
+}

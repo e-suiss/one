@@ -1,0 +1,26 @@
+# X-17, X-15, X-16, X-55, C-6, C-27
+
+version = 1
+protocol = "MCP Apps"
+protocol_version = "2026-07-28 extension"
+status = "adapter"
+direction = "third-party view in, typed data out"
+resource_scheme = "ui://"
+mime_type = "text/html;profile=mcp-app"
+sandbox = "iframe, no One session, cookies, memory or other connections"
+network = "declared domains only"
+source = "curated catalog or user-added advanced capability"
+
+[allowed]
+kinds = ["info", "choice", "comparison"]
+surfaces = ["phone", "desktop"]
+targets = ["workspace"]
+
+[forbidden]
+kinds = ["approval", "form", "receipt", "progress", "question", "digest_item"]
+content = ["approval", "payment", "authority grant", "credential entry", "consent"]
+
+[inbound]
+selection = "typed choice value with provenance external.app"
+starts_action = false
+then = "Access decision"

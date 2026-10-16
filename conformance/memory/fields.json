@@ -1,0 +1,182 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/memory/fields/v1.json",
+  "title": "MemoryRecordFields",
+  "description": "Field types of a memory record; every field is independent of the others. M-7, M-8, M-9, M-10, M-13, M-20, M-22, M-24, M-29, C-7.",
+  "$defs": {
+    "core_content_type": {
+      "type": "string",
+      "enum": [
+        "preference",
+        "routine",
+        "goal",
+        "constraint",
+        "relationship",
+        "personal_fact",
+        "opinion",
+        "event"
+      ]
+    },
+    "content_type_extension": {
+      "description": "A reverse-DNS content type under `app.suiss.memory.` that maps to one core type (C-7).",
+      "type": "object",
+      "required": ["name", "version", "maps_to"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string", "pattern": "^app\\.suiss\\.memory(\\.[a-z][a-z0-9_]*)+$" },
+        "version": { "type": "integer", "minimum": 1 },
+        "maps_to": { "$ref": "#/$defs/core_content_type" }
+      }
+    },
+    "content_type": {
+      "oneOf": [{ "$ref": "#/$defs/core_content_type" }, { "$ref": "#/$defs/content_type_extension" }]
+    },
+    "epistemic_state": {
+      "type": "string",
+      "enum": ["stated", "observed", "inferred", "hypothesis", "verified", "invalidated"]
+    },
+    "layer": {
+      "type": "string",
+      "enum": ["event", "consolidated_fact", "behaviour_rule"]
+    },
+    "time_kind": {
+      "type": "string",
+      "enum": ["permanent", "current", "seasonal", "one_off", "past"]
+    },
+    "source_kind": {
+      "type": "string",
+      "enum": ["user_statement", "user_behaviour", "connected_source", "external_content", "import"]
+    },
+    "lifecycle_state": {
+      "type": "string",
+      "enum": ["candidate", "active", "suppressed", "forgotten"]
+    },
+    "season": {
+      "description": "Months (1-12) in which a seasonal record applies.",
+      "type": "object",
+      "required": ["months"],
+      "additionalProperties": false,
+      "properties": {
+        "months": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 11,
+          "uniqueItems": true,
+          "items": { "type": "integer", "minimum": 1, "maximum": 12 }
+        }
+      }
+    },
+    "evidence": {
+      "description": "Evidence summary; trust is computed only from this and the source kind (M-13). supporting_count <= observation_count and first_observed_at <= last_observed_at are checked by the writer.",
+      "type": "object",
+      "required": [
+        "observation_count",
+        "supporting_count",
+        "first_observed_at",
+        "last_observed_at",
+        "contradicting_records",
+        "user_confirmed_at"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "observation_count": { "type": "integer", "minimum": 1 },
+        "supporting_count": { "type": "integer", "minimum": 0 },
+        "first_observed_at": { "$ref": "https://suiss.app/schemas/one/memory/common/v1.json#/$defs/instant" },
+        "last_observed_at": { "$ref": "https://suiss.app/schemas/one/memory/common/v1.json#/$defs/instant" },
+        "contradicting_records": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "https://suiss.app/schemas/one/memory/common/v1.json#/$defs/memory_record_id" }
+        },
+        "user_confirmed_at": {
+          "oneOf": [
+            { "type": "null" },
+            { "$ref": "https://suiss.app/schemas/one/memory/common/v1.json#/$defs/instant" }
+          ]
+        }
+      }
+    },
+    "trust": {
+      "type": "object",
+      "required": ["value", "formula", "computed_at"],
+      "additionalProperties": false,
+      "properties": {
+        "value": { "type": "number", "minimum": 0, "maximum": 1 },
+        "formula": { "type": "string", "enum": ["trust/v1"] },
+        "computed_at": { "$ref": "https://suiss.app/schemas/one/memory/common/v1.json#/$defs/instant" }
+      }
+    },
+    "alternative_explanation": {
+      "description": "A typed candidate explanation; never free text.",
+      "type": "object",
+      "required": ["kind"],
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": ["different_subject", "different_purpose", "one_off_context", "external_cause"]
+        },
+        "about": { "$ref": "https://suiss.app/schemas/one/memory/common/v1.json#/$defs/entity_ref" },
+        "record": { "$ref": "https://suiss.app/schemas/one/memory/common/v1.json#/$defs/memory_record_id" }
+      }
+    },
+    "usage_restriction": {
+      "description": "Null, or `use only for` these areas or projects (M-30 step 2).",
+      "oneOf": [
+        { "type": "null" },
+        {
+          "type": "object",
+          "required": ["areas", "projects"],
+          "additionalProperties": false,
+          "properties": {
+            "areas": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": { "$ref": "https://suiss.app/schemas/one/memory/life-area/v1.json" }
+            },
+            "projects": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": { "$ref": "https://suiss.app/schemas/one/memory/common/v1.json#/$defs/project_id" }
+            }
+          },
+          "anyOf": [
+            { "properties": { "areas": { "minItems": 1 } } },
+            { "properties": { "projects": { "minItems": 1 } } }
+          ]
+        }
+      ]
+    },
+    "core_predicate": {
+      "type": "string",
+      "enum": [
+        "has_manager",
+        "has_report",
+        "has_colleague",
+        "has_partner",
+        "has_parent",
+        "has_child",
+        "has_sibling",
+        "has_friend",
+        "knows",
+        "works_at",
+        "studies_at",
+        "lives_in",
+        "member_of"
+      ]
+    },
+    "predicate_extension": {
+      "type": "object",
+      "required": ["name", "version", "maps_to"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string", "pattern": "^app\\.suiss\\.memory\\.predicate(\\.[a-z][a-z0-9_]*)+$" },
+        "version": { "type": "integer", "minimum": 1 },
+        "maps_to": { "$ref": "#/$defs/core_predicate" }
+      }
+    },
+    "predicate": {
+      "oneOf": [{ "$ref": "#/$defs/core_predicate" }, { "$ref": "#/$defs/predicate_extension" }]
+    }
+  }
+}

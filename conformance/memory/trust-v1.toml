@@ -1,0 +1,47 @@
+# M-13, M-14, M-8
+version = "trust/v1"
+input_schema = "https://suiss.app/schemas/one/memory/trust-input/v1.json"
+vectors = "vectors/trust-v1.json"
+arithmetic = "ieee754-binary64"
+rounding = "nearest-ties-to-even on the exact binary64 value"
+decimals = 6
+seconds_per_day = 86400
+
+steps = [
+  "reject unless 1 <= observation_count, 0 <= supporting_count <= observation_count, last_observed_at <= as_of, user_confirmed_at <= as_of when set",
+  "w = source_weight[source_kind]",
+  "r = 2 ^ (-(as_of - last_observed_at) / (half_life_days * seconds_per_day))",
+  "alpha = prior_alpha + w * r * supporting_count",
+  "beta = prior_beta + w * r * (observation_count - supporting_count)",
+  "if user_confirmed_at is set: alpha = alpha + confirmation_weight * 2 ^ (-(as_of - user_confirmed_at) / (half_life_days * seconds_per_day))",
+  "p = alpha / (alpha + beta)",
+  "ceiling = 1.0 if user_confirmed_at is set else source_ceiling[source_kind]",
+  "p = min(p, ceiling)",
+  "if contradicting_count >= 1: p = min(p, contradiction_cap_base ^ contradicting_count)",
+  "trust = round(p, decimals)",
+]
+
+prior_alpha = 1.0
+prior_beta = 1.0
+half_life_days = 180.0
+confirmation_weight = 20.0
+contradiction_cap_base = 0.5
+
+[source_weight]
+user_statement = 20.0
+user_behaviour = 1.0
+connected_source = 1.0
+external_content = 0.5
+import = 0.5
+
+[source_ceiling]
+user_statement = 1.0
+user_behaviour = 0.95
+connected_source = 0.95
+external_content = 0.6
+import = 0.6
+
+[errors]
+invalid_evidence = "supporting_count > observation_count or observation_count < 1"
+future_evidence = "last_observed_at or user_confirmed_at after as_of"
+unknown_input = "any field outside the input schema, including a model's verbal confidence"

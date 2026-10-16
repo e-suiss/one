@@ -1,0 +1,296 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/memory/common/v1.json",
+  "title": "Common",
+  "description": "Shared definitions and the C-19 common record header of every canonical record. Identifiers and references are defined only in the ontology contract and referred to here. C-19, T-28, M-6.",
+  "$defs": {
+    "memory_record_id": {
+      "$ref": "https://suiss.app/schemas/one/ontology/id/v1.json#/$defs/MemoryRecordId"
+    },
+    "episode_id": {
+      "$ref": "https://suiss.app/schemas/one/ontology/id/v1.json#/$defs/EpisodeId"
+    },
+    "model_version_id": {
+      "$ref": "https://suiss.app/schemas/one/ontology/id/v1.json#/$defs/ModelVersionId"
+    },
+    "adapter_id": {
+      "$ref": "https://suiss.app/schemas/one/ontology/id/v1.json#/$defs/AdapterId"
+    },
+    "device_id": {
+      "$ref": "https://suiss.app/schemas/one/ontology/id/v1.json#/$defs/DeviceId"
+    },
+    "project_id": {
+      "$ref": "https://suiss.app/schemas/one/ontology/id/v1.json#/$defs/ProjectId"
+    },
+    "party_ref": {
+      "$ref": "https://suiss.app/schemas/one/ontology/reference/v1.json#/$defs/PartyRef"
+    },
+    "instant": {
+      "description": "RFC 3339 UTC instant with the `Z` suffix.",
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]{1,9})?Z$"
+    },
+    "lang": {
+      "description": "BCP 47 language tag of the statement text.",
+      "type": "string",
+      "pattern": "^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "statement": {
+      "type": "object",
+      "required": [
+        "text",
+        "lang"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        },
+        "lang": {
+          "$ref": "#/$defs/lang"
+        }
+      }
+    },
+    "entity_ref": {
+      "$ref": "https://suiss.app/schemas/one/ontology/reference/v1.json#/$defs/EntityRef"
+    },
+    "domain": {
+      "description": "C-19 domain and the M-7 life area and project field: one or more life areas and an optional user project.",
+      "type": "object",
+      "required": [
+        "areas",
+        "project"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "areas": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "https://suiss.app/schemas/one/memory/life-area/v1.json"
+          }
+        },
+        "project": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/project_id"
+            }
+          ]
+        }
+      }
+    },
+    "produced_by": {
+      "description": "Who produced the record and with which model and configuration version (C-19; Work C-23).",
+      "type": "object",
+      "required": [
+        "actor"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "actor": {
+          "type": "string",
+          "enum": [
+            "user",
+            "one",
+            "sub_agent"
+          ]
+        },
+        "instance": {
+          "$ref": "#/$defs/instance_ref"
+        },
+        "model_version": {
+          "$ref": "#/$defs/model_version_id"
+        },
+        "config_version": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9._-]{0,63}$"
+        }
+      },
+      "if": {
+        "properties": {
+          "actor": {
+            "const": "user"
+          }
+        }
+      },
+      "then": {
+        "not": {
+          "anyOf": [
+            {
+              "required": [
+                "model_version"
+              ]
+            },
+            {
+              "required": [
+                "instance"
+              ]
+            }
+          ]
+        }
+      },
+      "else": {
+        "required": [
+          "instance",
+          "model_version",
+          "config_version"
+        ]
+      }
+    },
+    "record_header": {
+      "description": "C-19 common fields of every canonical record, plus `type` (the concept name). `id` and `status` are typed by each record schema. Retention follows the data class (one_sensitive when it touches a PV-20 code, else one_memory); an Observation with a stored raw capture uses one_observation.",
+      "type": "object",
+      "required": [
+        "type",
+        "owner",
+        "domain",
+        "data_class",
+        "retention_class",
+        "provenance",
+        "recorded_at",
+        "version",
+        "supersedes",
+        "deleted_at",
+        "produced_by"
+      ],
+      "properties": {
+        "type": {
+          "$ref": "#/$defs/concept"
+        },
+        "owner": {
+          "$ref": "#/$defs/party_ref"
+        },
+        "domain": {
+          "$ref": "#/$defs/domain"
+        },
+        "data_class": {
+          "$ref": "https://suiss.app/schemas/one/memory/data-class/v1.json"
+        },
+        "retention_class": {
+          "$ref": "https://suiss.app/schemas/one/memory/retention-class/v1.json"
+        },
+        "provenance": {
+          "$ref": "https://suiss.app/schemas/one/provenance/label/v1.json"
+        },
+        "recorded_at": {
+          "$ref": "#/$defs/instant"
+        },
+        "version": {
+          "$ref": "#/$defs/version"
+        },
+        "deleted_at": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/instant"
+            }
+          ]
+        },
+        "produced_by": {
+          "$ref": "#/$defs/produced_by"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "Observation"
+              },
+              "retention_class": {
+                "const": "one_observation"
+              }
+            },
+            "required": [
+              "type",
+              "retention_class"
+            ]
+          },
+          "then": true,
+          "else": {
+            "if": {
+              "properties": {
+                "data_class": {
+                  "$ref": "https://suiss.app/schemas/one/memory/data-class/v1.json#/$defs/is_sensitive"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "retention_class": {
+                  "const": "one_sensitive"
+                }
+              }
+            },
+            "else": {
+              "properties": {
+                "retention_class": {
+                  "const": "one_memory"
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "forgotten",
+                  "deleted"
+                ]
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "deleted_at": {
+                "$ref": "#/$defs/instant"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "deleted_at": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "instance_ref": {
+      "$ref": "https://suiss.app/schemas/one/ontology/reference/v1.json#/$defs/InstanceRef"
+    },
+    "concept": {
+      "description": "The nine canonical concepts (C-1); the `type` of every canonical record",
+      "enum": [
+        "Observation",
+        "Episode",
+        "MemoryRecord",
+        "Goal",
+        "Routine",
+        "Task",
+        "Interaction",
+        "CapabilityDefinition",
+        "SurfaceCapability"
+      ]
+    }
+  }
+}

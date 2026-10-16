@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/capability/trigger/v1.json",
+  "title": "Trigger",
+  "description": "One's typed form of an Access Trigger: when this happens, do that. Bound to one Mandate and never wider than it. There is no trigger without an end date.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["event_source", "condition", "action", "budget", "ends_at", "mandate"],
+  "properties": {
+    "trigger_ref": { "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/trigger_ref" },
+    "event_source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind"],
+      "properties": {
+        "kind": { "type": "string", "enum": ["schedule", "calendar", "email", "price_watch", "relay_event", "one_peer_reply"] },
+        "ref": { "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/opaque_ref" }
+      },
+      "if": { "properties": { "kind": { "not": { "const": "schedule" } } } },
+      "then": { "required": ["ref"] }
+    },
+    "condition": {
+      "description": "A condition in the shared Suiss restriction language; One treats the expression as opaque and Access evaluates it.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["language", "language_version", "expression"],
+      "properties": {
+        "language": { "const": "suiss-restriction" },
+        "language_version": { "type": "string", "minLength": 1, "maxLength": 32 },
+        "expression": { "type": "string", "minLength": 1, "maxLength": 4096 }
+      }
+    },
+    "action": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["action_ref", "target"],
+      "properties": {
+        "action_ref": { "$ref": "https://suiss.app/schemas/one/ontology/reference/v1.json#/$defs/ActionRef" },
+        "target": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "ref"],
+          "properties": {
+            "kind": { "type": "string", "enum": ["site", "recipient", "merchant", "account", "resource"] },
+            "ref": { "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/opaque_ref" }
+          }
+        }
+      }
+    },
+    "budget": {
+      "type": "object",
+      "additionalProperties": false,
+      "minProperties": 1,
+      "properties": {
+        "amount": { "$ref": "https://suiss.app/schemas/one/interaction/common/v1.json#/$defs/money" },
+        "count": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "ends_at": { "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/timestamp" },
+    "mandate": {
+      "description": "The bound Mandate as One read it from Access; the trigger cannot exceed it.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mandate_ref", "behaviour", "ends_at", "budget"],
+      "properties": {
+        "mandate_ref": { "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/mandate_ref" },
+        "behaviour": { "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/autonomy_behaviour" },
+        "ends_at": { "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/timestamp" },
+        "budget": {
+          "type": "object",
+          "additionalProperties": false,
+          "minProperties": 1,
+          "properties": {
+            "amount": { "$ref": "https://suiss.app/schemas/one/interaction/common/v1.json#/$defs/money" },
+            "count": { "type": "integer", "minimum": 1 }
+          }
+        }
+      }
+    }
+  }
+}

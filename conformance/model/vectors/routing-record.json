@@ -1,0 +1,1224 @@
+[
+  {
+    "rule": "MF-22",
+    "description": "A routing record with data classes, gate result, eliminated options, chosen role and version, estimate and outcome",
+    "input": {
+      "request_id": "mrq_01m4ezb900emrbphjhbhkq4zc8",
+      "recorded_at": "2026-10-20T08:15:00Z",
+      "memory_part": {
+        "retention_class": "one_memory",
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_classes": [
+          "one_memory"
+        ],
+        "gate": {
+          "result": "passed",
+          "eliminated": [
+            {
+              "option": {
+                "model_role": "small_lm",
+                "with_adapter": true
+              },
+              "rule": "consent"
+            }
+          ]
+        },
+        "chosen": {
+          "model_role": "large_lm",
+          "model_version_id": "mdl_01m4ezb900fxx8b44vmtrvshyj"
+        },
+        "estimate": {
+          "small_sufficient": 0.31,
+          "estimator_version": "router-2026.10.1"
+        },
+        "fallback": "none",
+        "outcome": {
+          "signal": "task_succeeded",
+          "at": "2026-10-20T09:00:00Z"
+        }
+      },
+      "provider_trace_part": {
+        "retention_class": "one_provider_trace",
+        "hops": [
+          {
+            "processor": "suiss_model_serving",
+            "region": "eu-central",
+            "attested_tee": true,
+            "data_class": {
+              "kinds": [
+                "personal"
+              ],
+              "sensitive": []
+            }
+          }
+        ]
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "MF-22",
+    "description": "A routing record carries no content field",
+    "input": {
+      "request_id": "mrq_01m4ezb900emrbphjhbhkq4zc8",
+      "recorded_at": "2026-10-20T08:15:00Z",
+      "memory_part": {
+        "retention_class": "one_memory",
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_classes": [
+          "one_memory"
+        ],
+        "gate": {
+          "result": "passed",
+          "eliminated": [
+            {
+              "option": {
+                "model_role": "small_lm",
+                "with_adapter": true
+              },
+              "rule": "consent"
+            }
+          ]
+        },
+        "chosen": {
+          "model_role": "large_lm",
+          "model_version_id": "mdl_01m4ezb900fxx8b44vmtrvshyj"
+        },
+        "estimate": {
+          "small_sufficient": 0.31,
+          "estimator_version": "router-2026.10.1"
+        },
+        "fallback": "none",
+        "outcome": {
+          "signal": "task_succeeded",
+          "at": "2026-10-20T09:00:00Z"
+        },
+        "prompt": "Yarin 9'a al"
+      },
+      "provider_trace_part": {
+        "retention_class": "one_provider_trace",
+        "hops": [
+          {
+            "processor": "suiss_model_serving",
+            "region": "eu-central",
+            "attested_tee": true,
+            "data_class": {
+              "kinds": [
+                "personal"
+              ],
+              "sensitive": []
+            }
+          }
+        ]
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-22",
+    "description": "No content field at the top level",
+    "input": {
+      "request_id": "mrq_01m4ezb900emrbphjhbhkq4zc8",
+      "recorded_at": "2026-10-20T08:15:00Z",
+      "memory_part": {
+        "retention_class": "one_memory",
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_classes": [
+          "one_memory"
+        ],
+        "gate": {
+          "result": "passed",
+          "eliminated": [
+            {
+              "option": {
+                "model_role": "small_lm",
+                "with_adapter": true
+              },
+              "rule": "consent"
+            }
+          ]
+        },
+        "chosen": {
+          "model_role": "large_lm",
+          "model_version_id": "mdl_01m4ezb900fxx8b44vmtrvshyj"
+        },
+        "estimate": {
+          "small_sufficient": 0.31,
+          "estimator_version": "router-2026.10.1"
+        },
+        "fallback": "none",
+        "outcome": {
+          "signal": "task_succeeded",
+          "at": "2026-10-20T09:00:00Z"
+        }
+      },
+      "provider_trace_part": {
+        "retention_class": "one_provider_trace",
+        "hops": [
+          {
+            "processor": "suiss_model_serving",
+            "region": "eu-central",
+            "attested_tee": true,
+            "data_class": {
+              "kinds": [
+                "personal"
+              ],
+              "sensitive": []
+            }
+          }
+        ]
+      },
+      "content": "x"
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-22",
+    "description": "The provider trace carries no content",
+    "input": {
+      "request_id": "mrq_01m4ezb900emrbphjhbhkq4zc8",
+      "recorded_at": "2026-10-20T08:15:00Z",
+      "memory_part": {
+        "retention_class": "one_memory",
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_classes": [
+          "one_memory"
+        ],
+        "gate": {
+          "result": "passed",
+          "eliminated": [
+            {
+              "option": {
+                "model_role": "small_lm",
+                "with_adapter": true
+              },
+              "rule": "consent"
+            }
+          ]
+        },
+        "chosen": {
+          "model_role": "large_lm",
+          "model_version_id": "mdl_01m4ezb900fxx8b44vmtrvshyj"
+        },
+        "estimate": {
+          "small_sufficient": 0.31,
+          "estimator_version": "router-2026.10.1"
+        },
+        "fallback": "none",
+        "outcome": {
+          "signal": "task_succeeded",
+          "at": "2026-10-20T09:00:00Z"
+        }
+      },
+      "provider_trace_part": {
+        "retention_class": "one_provider_trace",
+        "hops": [
+          {
+            "processor": "suiss_model_serving",
+            "region": "eu-central",
+            "attested_tee": true,
+            "data_class": {
+              "kinds": [
+                "personal"
+              ],
+              "sensitive": []
+            },
+            "text": "x"
+          }
+        ]
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-22",
+    "description": "A record without the eliminated options is rejected",
+    "input": {
+      "request_id": "mrq_01m4ezb900emrbphjhbhkq4zc8",
+      "recorded_at": "2026-10-20T08:15:00Z",
+      "memory_part": {
+        "retention_class": "one_memory",
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_classes": [
+          "one_memory"
+        ],
+        "gate": {
+          "result": "passed"
+        },
+        "chosen": {
+          "model_role": "large_lm",
+          "model_version_id": "mdl_01m4ezb900fxx8b44vmtrvshyj"
+        },
+        "estimate": {
+          "small_sufficient": 0.31,
+          "estimator_version": "router-2026.10.1"
+        },
+        "fallback": "none",
+        "outcome": {
+          "signal": "task_succeeded",
+          "at": "2026-10-20T09:00:00Z"
+        }
+      },
+      "provider_trace_part": {
+        "retention_class": "one_provider_trace",
+        "hops": [
+          {
+            "processor": "suiss_model_serving",
+            "region": "eu-central",
+            "attested_tee": true,
+            "data_class": {
+              "kinds": [
+                "personal"
+              ],
+              "sensitive": []
+            }
+          }
+        ]
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-22",
+    "description": "A record without the outcome signal is rejected",
+    "input": {
+      "request_id": "mrq_01m4ezb900emrbphjhbhkq4zc8",
+      "recorded_at": "2026-10-20T08:15:00Z",
+      "memory_part": {
+        "retention_class": "one_memory",
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_classes": [
+          "one_memory"
+        ],
+        "gate": {
+          "result": "passed",
+          "eliminated": [
+            {
+              "option": {
+                "model_role": "small_lm",
+                "with_adapter": true
+              },
+              "rule": "consent"
+            }
+          ]
+        },
+        "chosen": {
+          "model_role": "large_lm",
+          "model_version_id": "mdl_01m4ezb900fxx8b44vmtrvshyj"
+        },
+        "estimate": {
+          "small_sufficient": 0.31,
+          "estimator_version": "router-2026.10.1"
+        },
+        "fallback": "none"
+      },
+      "provider_trace_part": {
+        "retention_class": "one_provider_trace",
+        "hops": [
+          {
+            "processor": "suiss_model_serving",
+            "region": "eu-central",
+            "attested_tee": true,
+            "data_class": {
+              "kinds": [
+                "personal"
+              ],
+              "sensitive": []
+            }
+          }
+        ]
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-22",
+    "description": "A record without the estimate is rejected",
+    "input": {
+      "request_id": "mrq_01m4ezb900emrbphjhbhkq4zc8",
+      "recorded_at": "2026-10-20T08:15:00Z",
+      "memory_part": {
+        "retention_class": "one_memory",
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_classes": [
+          "one_memory"
+        ],
+        "gate": {
+          "result": "passed",
+          "eliminated": [
+            {
+              "option": {
+                "model_role": "small_lm",
+                "with_adapter": true
+              },
+              "rule": "consent"
+            }
+          ]
+        },
+        "chosen": {
+          "model_role": "large_lm",
+          "model_version_id": "mdl_01m4ezb900fxx8b44vmtrvshyj"
+        },
+        "fallback": "none",
+        "outcome": {
+          "signal": "task_succeeded",
+          "at": "2026-10-20T09:00:00Z"
+        }
+      },
+      "provider_trace_part": {
+        "retention_class": "one_provider_trace",
+        "hops": [
+          {
+            "processor": "suiss_model_serving",
+            "region": "eu-central",
+            "attested_tee": true,
+            "data_class": {
+              "kinds": [
+                "personal"
+              ],
+              "sensitive": []
+            }
+          }
+        ]
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-22",
+    "description": "The estimate is null when the gate leaves one role",
+    "input": {
+      "request_id": "mrq_01m4ezb900emrbphjhbhkq4zc8",
+      "recorded_at": "2026-10-20T08:15:00Z",
+      "memory_part": {
+        "retention_class": "one_memory",
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_classes": [
+          "one_memory"
+        ],
+        "gate": {
+          "result": "passed",
+          "eliminated": [
+            {
+              "option": {
+                "model_role": "small_lm",
+                "with_adapter": true
+              },
+              "rule": "consent"
+            }
+          ]
+        },
+        "chosen": {
+          "model_role": "large_lm",
+          "model_version_id": "mdl_01m4ezb900fxx8b44vmtrvshyj"
+        },
+        "estimate": null,
+        "fallback": "none",
+        "outcome": {
+          "signal": "task_succeeded",
+          "at": "2026-10-20T09:00:00Z"
+        }
+      },
+      "provider_trace_part": {
+        "retention_class": "one_provider_trace",
+        "hops": [
+          {
+            "processor": "suiss_model_serving",
+            "region": "eu-central",
+            "attested_tee": true,
+            "data_class": {
+              "kinds": [
+                "personal"
+              ],
+              "sensitive": []
+            }
+          }
+        ]
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "MF-22",
+    "description": "A passed gate names the chosen role and version",
+    "input": {
+      "request_id": "mrq_01m4ezb900emrbphjhbhkq4zc8",
+      "recorded_at": "2026-10-20T08:15:00Z",
+      "memory_part": {
+        "retention_class": "one_memory",
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_classes": [
+          "one_memory"
+        ],
+        "gate": {
+          "result": "passed",
+          "eliminated": [
+            {
+              "option": {
+                "model_role": "small_lm",
+                "with_adapter": true
+              },
+              "rule": "consent"
+            }
+          ]
+        },
+        "estimate": {
+          "small_sufficient": 0.31,
+          "estimator_version": "router-2026.10.1"
+        },
+        "fallback": "none",
+        "outcome": {
+          "signal": "task_succeeded",
+          "at": "2026-10-20T09:00:00Z"
+        }
+      },
+      "provider_trace_part": {
+        "retention_class": "one_provider_trace",
+        "hops": [
+          {
+            "processor": "suiss_model_serving",
+            "region": "eu-central",
+            "attested_tee": true,
+            "data_class": {
+              "kinds": [
+                "personal"
+              ],
+              "sensitive": []
+            }
+          }
+        ]
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-22",
+    "description": "The chosen model names its version",
+    "input": {
+      "request_id": "mrq_01m4ezb900emrbphjhbhkq4zc8",
+      "recorded_at": "2026-10-20T08:15:00Z",
+      "memory_part": {
+        "retention_class": "one_memory",
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_classes": [
+          "one_memory"
+        ],
+        "gate": {
+          "result": "passed",
+          "eliminated": [
+            {
+              "option": {
+                "model_role": "small_lm",
+                "with_adapter": true
+              },
+              "rule": "consent"
+            }
+          ]
+        },
+        "chosen": {
+          "model_role": "large_lm"
+        },
+        "estimate": {
+          "small_sufficient": 0.31,
+          "estimator_version": "router-2026.10.1"
+        },
+        "fallback": "none",
+        "outcome": {
+          "signal": "task_succeeded",
+          "at": "2026-10-20T09:00:00Z"
+        }
+      },
+      "provider_trace_part": {
+        "retention_class": "one_provider_trace",
+        "hops": [
+          {
+            "processor": "suiss_model_serving",
+            "region": "eu-central",
+            "attested_tee": true,
+            "data_class": {
+              "kinds": [
+                "personal"
+              ],
+              "sensitive": []
+            }
+          }
+        ]
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-22",
+    "description": "The processor part is one_provider_trace",
+    "input": {
+      "request_id": "mrq_01m4ezb900emrbphjhbhkq4zc8",
+      "recorded_at": "2026-10-20T08:15:00Z",
+      "memory_part": {
+        "retention_class": "one_memory",
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_classes": [
+          "one_memory"
+        ],
+        "gate": {
+          "result": "passed",
+          "eliminated": [
+            {
+              "option": {
+                "model_role": "small_lm",
+                "with_adapter": true
+              },
+              "rule": "consent"
+            }
+          ]
+        },
+        "chosen": {
+          "model_role": "large_lm",
+          "model_version_id": "mdl_01m4ezb900fxx8b44vmtrvshyj"
+        },
+        "estimate": {
+          "small_sufficient": 0.31,
+          "estimator_version": "router-2026.10.1"
+        },
+        "fallback": "none",
+        "outcome": {
+          "signal": "task_succeeded",
+          "at": "2026-10-20T09:00:00Z"
+        }
+      },
+      "provider_trace_part": {
+        "retention_class": "one_memory",
+        "hops": [
+          {
+            "processor": "suiss_model_serving",
+            "region": "eu-central",
+            "attested_tee": true,
+            "data_class": {
+              "kinds": [
+                "personal"
+              ],
+              "sensitive": []
+            }
+          }
+        ]
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-22",
+    "description": "The rest of the record is one_memory",
+    "input": {
+      "request_id": "mrq_01m4ezb900emrbphjhbhkq4zc8",
+      "recorded_at": "2026-10-20T08:15:00Z",
+      "memory_part": {
+        "retention_class": "one_provider_trace",
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_classes": [
+          "one_memory"
+        ],
+        "gate": {
+          "result": "passed",
+          "eliminated": [
+            {
+              "option": {
+                "model_role": "small_lm",
+                "with_adapter": true
+              },
+              "rule": "consent"
+            }
+          ]
+        },
+        "chosen": {
+          "model_role": "large_lm",
+          "model_version_id": "mdl_01m4ezb900fxx8b44vmtrvshyj"
+        },
+        "estimate": {
+          "small_sufficient": 0.31,
+          "estimator_version": "router-2026.10.1"
+        },
+        "fallback": "none",
+        "outcome": {
+          "signal": "task_succeeded",
+          "at": "2026-10-20T09:00:00Z"
+        }
+      },
+      "provider_trace_part": {
+        "retention_class": "one_provider_trace",
+        "hops": [
+          {
+            "processor": "suiss_model_serving",
+            "region": "eu-central",
+            "attested_tee": true,
+            "data_class": {
+              "kinds": [
+                "personal"
+              ],
+              "sensitive": []
+            }
+          }
+        ]
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-26",
+    "description": "No external model provider is a processor",
+    "input": {
+      "request_id": "mrq_01m4ezb900emrbphjhbhkq4zc8",
+      "recorded_at": "2026-10-20T08:15:00Z",
+      "memory_part": {
+        "retention_class": "one_memory",
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_classes": [
+          "one_memory"
+        ],
+        "gate": {
+          "result": "passed",
+          "eliminated": [
+            {
+              "option": {
+                "model_role": "small_lm",
+                "with_adapter": true
+              },
+              "rule": "consent"
+            }
+          ]
+        },
+        "chosen": {
+          "model_role": "large_lm",
+          "model_version_id": "mdl_01m4ezb900fxx8b44vmtrvshyj"
+        },
+        "estimate": {
+          "small_sufficient": 0.31,
+          "estimator_version": "router-2026.10.1"
+        },
+        "fallback": "none",
+        "outcome": {
+          "signal": "task_succeeded",
+          "at": "2026-10-20T09:00:00Z"
+        }
+      },
+      "provider_trace_part": {
+        "retention_class": "one_provider_trace",
+        "hops": [
+          {
+            "processor": "openai",
+            "region": "eu-central",
+            "attested_tee": true,
+            "data_class": {
+              "kinds": [
+                "personal"
+              ],
+              "sensitive": []
+            }
+          }
+        ]
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-24",
+    "description": "Special-category data reaches only an attested TEE",
+    "input": {
+      "request_id": "mrq_01m4ezb900emrbphjhbhkq4zc8",
+      "recorded_at": "2026-10-20T08:15:00Z",
+      "memory_part": {
+        "retention_class": "one_memory",
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": [
+            "health"
+          ]
+        },
+        "retention_classes": [
+          "one_sensitive"
+        ],
+        "gate": {
+          "result": "passed",
+          "eliminated": [
+            {
+              "option": {
+                "model_role": "small_lm",
+                "with_adapter": true
+              },
+              "rule": "consent"
+            }
+          ]
+        },
+        "chosen": {
+          "model_role": "large_lm",
+          "model_version_id": "mdl_01m4ezb900fxx8b44vmtrvshyj"
+        },
+        "estimate": {
+          "small_sufficient": 0.31,
+          "estimator_version": "router-2026.10.1"
+        },
+        "fallback": "none",
+        "outcome": {
+          "signal": "task_succeeded",
+          "at": "2026-10-20T09:00:00Z"
+        }
+      },
+      "provider_trace_part": {
+        "retention_class": "one_provider_trace",
+        "hops": [
+          {
+            "processor": "suiss_model_serving",
+            "region": "eu-central",
+            "attested_tee": false,
+            "data_class": {
+              "kinds": [
+                "personal"
+              ],
+              "sensitive": [
+                "health"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-20",
+    "description": "Device-only data never leaves for a processor",
+    "input": {
+      "request_id": "mrq_01m4ezb900emrbphjhbhkq4zc8",
+      "recorded_at": "2026-10-20T08:15:00Z",
+      "memory_part": {
+        "retention_class": "one_memory",
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": [
+            "health"
+          ]
+        },
+        "retention_classes": [
+          "one_sensitive"
+        ],
+        "gate": {
+          "result": "passed",
+          "eliminated": [
+            {
+              "option": {
+                "model_role": "small_lm",
+                "with_adapter": true
+              },
+              "rule": "consent"
+            }
+          ]
+        },
+        "chosen": {
+          "model_role": "large_lm",
+          "model_version_id": "mdl_01m4ezb900fxx8b44vmtrvshyj"
+        },
+        "estimate": {
+          "small_sufficient": 0.31,
+          "estimator_version": "router-2026.10.1"
+        },
+        "fallback": "none",
+        "outcome": {
+          "signal": "task_succeeded",
+          "at": "2026-10-20T09:00:00Z"
+        },
+        "device_only": true
+      },
+      "provider_trace_part": {
+        "retention_class": "one_provider_trace",
+        "hops": [
+          {
+            "processor": "suiss_model_serving",
+            "region": "eu-central",
+            "attested_tee": true,
+            "data_class": {
+              "kinds": [
+                "personal"
+              ],
+              "sensitive": [
+                "health"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-20",
+    "description": "A refused request names no chosen model and reaches no processor",
+    "input": {
+      "request_id": "mrq_01m4ezb900emrbphjhbhkq4zc8",
+      "recorded_at": "2026-10-20T08:15:00Z",
+      "memory_part": {
+        "retention_class": "one_memory",
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_classes": [
+          "one_memory"
+        ],
+        "gate": {
+          "result": "refused",
+          "eliminated": [
+            {
+              "option": {
+                "model_role": "small_lm",
+                "with_adapter": true
+              },
+              "rule": "consent"
+            }
+          ]
+        },
+        "estimate": null,
+        "fallback": "none",
+        "outcome": {
+          "signal": "pending"
+        }
+      },
+      "provider_trace_part": {
+        "retention_class": "one_provider_trace",
+        "hops": []
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "MF-20",
+    "description": "A refused request reaching a processor is rejected",
+    "input": {
+      "request_id": "mrq_01m4ezb900emrbphjhbhkq4zc8",
+      "recorded_at": "2026-10-20T08:15:00Z",
+      "memory_part": {
+        "retention_class": "one_memory",
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_classes": [
+          "one_memory"
+        ],
+        "gate": {
+          "result": "refused",
+          "eliminated": [
+            {
+              "option": {
+                "model_role": "small_lm",
+                "with_adapter": true
+              },
+              "rule": "consent"
+            }
+          ]
+        },
+        "estimate": null,
+        "fallback": "none",
+        "outcome": {
+          "signal": "task_succeeded",
+          "at": "2026-10-20T09:00:00Z"
+        }
+      },
+      "provider_trace_part": {
+        "retention_class": "one_provider_trace",
+        "hops": [
+          {
+            "processor": "suiss_model_serving",
+            "region": "eu-central",
+            "attested_tee": true,
+            "data_class": {
+              "kinds": [
+                "personal"
+              ],
+              "sensitive": []
+            }
+          }
+        ]
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-3",
+    "description": "No suitable model means waiting",
+    "input": {
+      "request_id": "mrq_01m4ezb900emrbphjhbhkq4zc8",
+      "recorded_at": "2026-10-20T08:15:00Z",
+      "memory_part": {
+        "retention_class": "one_memory",
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_classes": [
+          "one_memory"
+        ],
+        "gate": {
+          "result": "waiting_no_model",
+          "eliminated": [
+            {
+              "option": {
+                "model_role": "small_lm",
+                "with_adapter": true
+              },
+              "rule": "consent"
+            }
+          ]
+        },
+        "estimate": null,
+        "fallback": "wait",
+        "outcome": {
+          "signal": "pending"
+        }
+      },
+      "provider_trace_part": {
+        "retention_class": "one_provider_trace",
+        "hops": []
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "MF-3",
+    "description": "Waiting for a model is recorded as the wait fallback",
+    "input": {
+      "request_id": "mrq_01m4ezb900emrbphjhbhkq4zc8",
+      "recorded_at": "2026-10-20T08:15:00Z",
+      "memory_part": {
+        "retention_class": "one_memory",
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_classes": [
+          "one_memory"
+        ],
+        "gate": {
+          "result": "waiting_no_model",
+          "eliminated": [
+            {
+              "option": {
+                "model_role": "small_lm",
+                "with_adapter": true
+              },
+              "rule": "consent"
+            }
+          ]
+        },
+        "estimate": null,
+        "fallback": "none",
+        "outcome": {
+          "signal": "pending"
+        }
+      },
+      "provider_trace_part": {
+        "retention_class": "one_provider_trace",
+        "hops": []
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-23",
+    "description": "A short-answer fallback is served by the small model",
+    "input": {
+      "request_id": "mrq_01m4ezb900emrbphjhbhkq4zc8",
+      "recorded_at": "2026-10-20T08:15:00Z",
+      "memory_part": {
+        "retention_class": "one_memory",
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_classes": [
+          "one_memory"
+        ],
+        "gate": {
+          "result": "passed",
+          "eliminated": [
+            {
+              "option": {
+                "model_role": "small_lm",
+                "with_adapter": true
+              },
+              "rule": "consent"
+            }
+          ]
+        },
+        "chosen": {
+          "model_role": "large_lm",
+          "model_version_id": "mdl_01m4ezb900fxx8b44vmtrvshyj"
+        },
+        "estimate": {
+          "small_sufficient": 0.31,
+          "estimator_version": "router-2026.10.1"
+        },
+        "fallback": "small_short_answer",
+        "outcome": {
+          "signal": "task_succeeded",
+          "at": "2026-10-20T09:00:00Z"
+        }
+      },
+      "provider_trace_part": {
+        "retention_class": "one_provider_trace",
+        "hops": [
+          {
+            "processor": "suiss_model_serving",
+            "region": "eu-central",
+            "attested_tee": true,
+            "data_class": {
+              "kinds": [
+                "personal"
+              ],
+              "sensitive": []
+            }
+          }
+        ]
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-21",
+    "description": "Outcome signals are the learned ones",
+    "input": {
+      "request_id": "mrq_01m4ezb900emrbphjhbhkq4zc8",
+      "recorded_at": "2026-10-20T08:15:00Z",
+      "memory_part": {
+        "retention_class": "one_memory",
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_classes": [
+          "one_memory"
+        ],
+        "gate": {
+          "result": "passed",
+          "eliminated": [
+            {
+              "option": {
+                "model_role": "small_lm",
+                "with_adapter": true
+              },
+              "rule": "consent"
+            }
+          ]
+        },
+        "chosen": {
+          "model_role": "large_lm",
+          "model_version_id": "mdl_01m4ezb900fxx8b44vmtrvshyj"
+        },
+        "estimate": {
+          "small_sufficient": 0.31,
+          "estimator_version": "router-2026.10.1"
+        },
+        "fallback": "none",
+        "outcome": {
+          "signal": "clicked",
+          "at": "2026-10-20T09:00:00Z"
+        }
+      },
+      "provider_trace_part": {
+        "retention_class": "one_provider_trace",
+        "hops": [
+          {
+            "processor": "suiss_model_serving",
+            "region": "eu-central",
+            "attested_tee": true,
+            "data_class": {
+              "kinds": [
+                "personal"
+              ],
+              "sensitive": []
+            }
+          }
+        ]
+      }
+    },
+    "valid": false
+  }
+]

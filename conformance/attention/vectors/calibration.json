@@ -1,0 +1,216 @@
+[
+  {
+    "rule": "AT-1",
+    "description": "A calibrated head has zero expected calibration error on its reliability curve",
+    "input": {
+      "bins": 10,
+      "binning": "equal_width_upper_bin_closed",
+      "predictions": [
+        {
+          "probability": 0.1,
+          "outcome": 0
+        },
+        {
+          "probability": 0.1,
+          "outcome": 0
+        },
+        {
+          "probability": 0.1,
+          "outcome": 0
+        },
+        {
+          "probability": 0.1,
+          "outcome": 0
+        },
+        {
+          "probability": 0.1,
+          "outcome": 0
+        },
+        {
+          "probability": 0.1,
+          "outcome": 0
+        },
+        {
+          "probability": 0.1,
+          "outcome": 0
+        },
+        {
+          "probability": 0.1,
+          "outcome": 0
+        },
+        {
+          "probability": 0.1,
+          "outcome": 0
+        },
+        {
+          "probability": 0.1,
+          "outcome": 1
+        },
+        {
+          "probability": 0.9,
+          "outcome": 1
+        },
+        {
+          "probability": 0.9,
+          "outcome": 1
+        },
+        {
+          "probability": 0.9,
+          "outcome": 1
+        },
+        {
+          "probability": 0.9,
+          "outcome": 1
+        },
+        {
+          "probability": 0.9,
+          "outcome": 1
+        },
+        {
+          "probability": 0.9,
+          "outcome": 1
+        },
+        {
+          "probability": 0.9,
+          "outcome": 1
+        },
+        {
+          "probability": 0.9,
+          "outcome": 1
+        },
+        {
+          "probability": 0.9,
+          "outcome": 1
+        },
+        {
+          "probability": 0.9,
+          "outcome": 0
+        }
+      ]
+    },
+    "expected": {
+      "expected_calibration_error": 0.0,
+      "reliability_curve": [
+        {
+          "bin": 1,
+          "count": 10,
+          "mean_probability": 0.1,
+          "observed_rate": 0.1
+        },
+        {
+          "bin": 9,
+          "count": 10,
+          "mean_probability": 0.9,
+          "observed_rate": 0.9
+        }
+      ]
+    }
+  },
+  {
+    "rule": "AT-1",
+    "description": "An overconfident head shows the gap between mean probability and observed rate",
+    "input": {
+      "bins": 10,
+      "binning": "equal_width_upper_bin_closed",
+      "predictions": [
+        {
+          "probability": 0.9,
+          "outcome": 1
+        },
+        {
+          "probability": 0.9,
+          "outcome": 1
+        },
+        {
+          "probability": 0.9,
+          "outcome": 1
+        },
+        {
+          "probability": 0.9,
+          "outcome": 1
+        },
+        {
+          "probability": 0.9,
+          "outcome": 1
+        },
+        {
+          "probability": 0.9,
+          "outcome": 1
+        },
+        {
+          "probability": 0.9,
+          "outcome": 0
+        },
+        {
+          "probability": 0.9,
+          "outcome": 0
+        },
+        {
+          "probability": 0.9,
+          "outcome": 0
+        },
+        {
+          "probability": 0.9,
+          "outcome": 0
+        },
+        {
+          "probability": 0.55,
+          "outcome": 1
+        },
+        {
+          "probability": 0.55,
+          "outcome": 1
+        },
+        {
+          "probability": 0.55,
+          "outcome": 1
+        },
+        {
+          "probability": 0.55,
+          "outcome": 0
+        },
+        {
+          "probability": 0.55,
+          "outcome": 0
+        },
+        {
+          "probability": 1.0,
+          "outcome": 1
+        },
+        {
+          "probability": 1.0,
+          "outcome": 1
+        },
+        {
+          "probability": 1.0,
+          "outcome": 1
+        },
+        {
+          "probability": 1.0,
+          "outcome": 1
+        },
+        {
+          "probability": 1.0,
+          "outcome": 1
+        }
+      ]
+    },
+    "expected": {
+      "expected_calibration_error": 0.1625,
+      "reliability_curve": [
+        {
+          "bin": 5,
+          "count": 5,
+          "mean_probability": 0.55,
+          "observed_rate": 0.6
+        },
+        {
+          "bin": 9,
+          "count": 15,
+          "mean_probability": 0.933333,
+          "observed_rate": 0.733333
+        }
+      ]
+    }
+  }
+]

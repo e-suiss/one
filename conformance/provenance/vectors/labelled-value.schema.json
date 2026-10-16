@@ -1,0 +1,129 @@
+[
+  {
+    "rule": "SEC-14",
+    "description": "value with a user.direct label",
+    "input": {
+      "value": "Ayşe'ye yarın ara",
+      "label": "user.direct"
+    },
+    "valid": true
+  },
+  {
+    "rule": "SEC-14",
+    "description": "object value with an Access record label",
+    "input": {
+      "value": {
+        "value": "48500.00",
+        "currency": "TRY"
+      },
+      "label": "record.trusted"
+    },
+    "valid": true
+  },
+  {
+    "rule": "SEC-14",
+    "description": "external.mixed with two external sources",
+    "input": {
+      "value": "x",
+      "label": "external.mixed",
+      "sources": [
+        "external.email",
+        "external.web"
+      ]
+    },
+    "valid": true
+  },
+  {
+    "rule": "SEC-14",
+    "description": "external value with its own source listed",
+    "input": {
+      "value": "x",
+      "label": "external.email",
+      "sources": [
+        "external.email"
+      ]
+    },
+    "valid": true
+  },
+  {
+    "rule": "SEC-14 (2)",
+    "description": "missing label is rejected",
+    "input": {
+      "value": "x"
+    },
+    "valid": false
+  },
+  {
+    "rule": "SEC-14",
+    "description": "Access wire value is not an internal label",
+    "input": {
+      "value": "x",
+      "label": "untrusted-external"
+    },
+    "valid": false
+  },
+  {
+    "rule": "SEC-14",
+    "description": "unknown external sub-label is rejected",
+    "input": {
+      "value": "x",
+      "label": "external.fax"
+    },
+    "valid": false
+  },
+  {
+    "rule": "SEC-14",
+    "description": "null value is rejected",
+    "input": {
+      "value": null,
+      "label": "user.direct"
+    },
+    "valid": false
+  },
+  {
+    "rule": "SEC-14",
+    "description": "external.mixed without sources is rejected",
+    "input": {
+      "value": "x",
+      "label": "external.mixed"
+    },
+    "valid": false
+  },
+  {
+    "rule": "SEC-14",
+    "description": "external.mixed with a single external source is rejected",
+    "input": {
+      "value": "x",
+      "label": "external.mixed",
+      "sources": [
+        "external.email",
+        "user.direct"
+      ]
+    },
+    "valid": false
+  },
+  {
+    "rule": "SEC-14",
+    "description": "external.mixed is never itself a source",
+    "input": {
+      "value": "x",
+      "label": "external.mixed",
+      "sources": [
+        "external.mixed",
+        "external.web",
+        "external.email"
+      ]
+    },
+    "valid": false
+  },
+  {
+    "rule": "SEC-14",
+    "description": "extra fields are rejected",
+    "input": {
+      "value": "x",
+      "label": "user.direct",
+      "trusted": true
+    },
+    "valid": false
+  }
+]

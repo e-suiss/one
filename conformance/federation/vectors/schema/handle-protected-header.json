@@ -1,0 +1,47 @@
+[
+  {
+    "rule": "OO-5",
+    "description": "Protected header",
+    "input": {
+      "alg": "dir",
+      "enc": "A256GCM",
+      "kid": "test-k1",
+      "typ": "one-federation-handle+jwe"
+    },
+    "valid": true
+  },
+  {
+    "rule": "OO-5",
+    "description": "Header with alg none",
+    "input": {
+      "alg": "none",
+      "enc": "A256GCM",
+      "kid": "test-k1",
+      "typ": "one-federation-handle+jwe"
+    },
+    "valid": false
+  },
+  {
+    "rule": "OO-5",
+    "description": "Header with compression",
+    "input": {
+      "alg": "dir",
+      "enc": "A256GCM",
+      "kid": "test-k1",
+      "typ": "one-federation-handle+jwe",
+      "zip": "DEF"
+    },
+    "valid": false
+  },
+  {
+    "rule": "OO-5",
+    "description": "Header with a different content cipher",
+    "input": {
+      "alg": "dir",
+      "enc": "A128CBC-HS256",
+      "kid": "test-k1",
+      "typ": "one-federation-handle+jwe"
+    },
+    "valid": false
+  }
+]

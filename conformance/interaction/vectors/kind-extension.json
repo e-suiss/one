@@ -1,0 +1,94 @@
+[
+  {
+    "rule": "C-7",
+    "description": "An empty registry is accepted",
+    "input": {
+      "version": 1,
+      "extension": []
+    },
+    "valid": true
+  },
+  {
+    "rule": "C-7",
+    "description": "A registered extension with a core mapping is accepted",
+    "input": {
+      "version": 1,
+      "extension": [
+        {
+          "name": "app.suiss.commerce.order_tracking",
+          "version": 1,
+          "maps_to": "progress",
+          "meaning": "Order delivery tracking",
+          "rule": "X-12"
+        }
+      ]
+    },
+    "valid": true
+  },
+  {
+    "rule": "C-7",
+    "description": "A registry entry without maps_to is rejected",
+    "input": {
+      "version": 1,
+      "extension": [
+        {
+          "name": "app.suiss.commerce.order_tracking",
+          "version": 1,
+          "meaning": "Order delivery tracking",
+          "rule": "X-12"
+        }
+      ]
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-7",
+    "description": "A registry entry mapped to another extension is rejected",
+    "input": {
+      "version": 1,
+      "extension": [
+        {
+          "name": "app.suiss.commerce.order_tracking",
+          "version": 1,
+          "maps_to": "app.suiss.commerce.tracking",
+          "meaning": "Order delivery tracking",
+          "rule": "X-12"
+        }
+      ]
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-7, CP-15",
+    "description": "A registry entry outside app.suiss is rejected",
+    "input": {
+      "version": 1,
+      "extension": [
+        {
+          "name": "com.example.tracking.order",
+          "version": 1,
+          "maps_to": "progress",
+          "meaning": "Order delivery tracking",
+          "rule": "X-12"
+        }
+      ]
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-7",
+    "description": "A registry entry without a version is rejected",
+    "input": {
+      "version": 1,
+      "extension": [
+        {
+          "name": "app.suiss.commerce.order_tracking",
+          "maps_to": "progress",
+          "meaning": "Order delivery tracking",
+          "rule": "X-12"
+        }
+      ]
+    },
+    "valid": false
+  }
+]

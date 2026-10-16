@@ -1,0 +1,86 @@
+# C-8, M-1, C-14, C-20, F-7 (1)
+
+unlisted = "rejected"
+authority_source = "user act in Access"
+
+[[layer]]
+name = "observation"
+types = ["Observation"]
+rule = "C-10"
+
+[[layer]]
+name = "inference"
+types = ["MemoryRecord"]
+epistemic_state = ["inferred", "hypothesis"]
+rule = "C-8"
+
+[[layer]]
+name = "memory"
+types = ["MemoryRecord", "Goal", "Routine"]
+epistemic_state = ["stated", "observed", "verified", "invalidated"]
+rule = "C-12"
+
+[[layer]]
+name = "interaction"
+types = ["Interaction"]
+rule = "C-16"
+
+[[layer]]
+name = "authority"
+types = ["GrantRef", "MandateRef"]
+owner = "access"
+one_may_create = false
+rule = "C-8"
+
+[[conversion]]
+name = "remember_explicit"
+from = "observation"
+to = "memory"
+yields = { epistemic_state = "stated", lifecycle = "active" }
+rule = "M-15"
+
+[[conversion]]
+name = "infer"
+from = "observation"
+to = "inference"
+yields = { epistemic_state = ["inferred", "hypothesis"], lifecycle = ["active", "candidate"] }
+rule = "M-15"
+
+[[conversion]]
+name = "record_observed"
+from = "observation"
+to = "memory"
+yields = { epistemic_state = "observed", lifecycle = ["active", "candidate"] }
+rule = "M-15"
+
+[[conversion]]
+name = "confirm"
+from = "inference"
+to = "memory"
+yields = { epistemic_state = "verified" }
+requires = ["user confirmation", "independent second evidence"]
+rule = "M-18"
+
+[[conversion]]
+name = "correct"
+from = "memory"
+to = "memory"
+yields = { relation = "supersedes", previous = "invalidated" }
+rule = "C-20"
+
+[[conversion]]
+name = "suggest"
+from = "memory"
+to = "interaction"
+yields = { interaction_kind = "approval", relation = "concerns" }
+rule = "C-14"
+
+[[forbidden]]
+from = ["observation", "inference", "memory", "interaction"]
+to = "authority"
+rule = "C-8"
+
+[[forbidden]]
+from = ["Routine", "Goal", "trust", "relationship level", "relation", "chat confirmation"]
+to = "authority"
+rule = "F-7 (1)"

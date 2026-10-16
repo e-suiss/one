@@ -1,0 +1,2951 @@
+[
+  {
+    "rule": "AT-24",
+    "description": "A decision record with input summary, chosen arm, selection probability, policy version and outcome",
+    "input": {
+      "decision_id": "atd_01m4ezb900e9yrh4wyn6tbzjpn",
+      "decided_at": "2026-10-20T08:15:00Z",
+      "retention_class": "one_memory",
+      "candidate": {
+        "output_type": "app.suiss.one.output.delivery.update",
+        "source": "external_event",
+        "urgent": false,
+        "critical_grant": false,
+        "sensitive": false
+      },
+      "input_summary": {
+        "local_hour": 11,
+        "weekday": 2,
+        "device": {
+          "lock": "locked",
+          "focus": "off",
+          "headphones": "unknown",
+          "wearable": "worn",
+          "at_break": false
+        },
+        "calendar_busy": true,
+        "activity": "still",
+        "sender_relation": "organisation",
+        "quiet_hours": false,
+        "type_muted": false,
+        "in_rest_period": false,
+        "interruptions_today": 1,
+        "budget_remaining": 2,
+        "seconds_since_last_interruption": 5400,
+        "seconds_since_last_same_type": null
+      },
+      "policy": {
+        "policy_version": "attention-start-1",
+        "model_version_id": "mdl_01m4ezb900fvmv9zra2mg2pdj1",
+        "thresholds": {
+          "lower": 0.3,
+          "upper": 0.7
+        }
+      },
+      "value_probability": 0.82,
+      "cloud_estimate": {
+        "requested": false
+      },
+      "chosen_arm": "next_break",
+      "propensity": 0.91,
+      "arm_probabilities": {
+        "interrupt_now": 0.03,
+        "next_break": 0.91,
+        "digest": 0.06
+      },
+      "exploration": {
+        "allowed": false,
+        "explored": false
+      },
+      "constraints": [],
+      "relay": {
+        "relay_class": "transactional",
+        "interruption": "active",
+        "timing": "next_break",
+        "max_defer_s": 3600,
+        "sensitive": false
+      },
+      "outcome": {
+        "signal": "useful",
+        "at": "2026-10-20T09:00:00Z"
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "AT-24",
+    "description": "A decision record without selection probability is rejected",
+    "input": {
+      "decision_id": "atd_01m4ezb900e9yrh4wyn6tbzjpn",
+      "decided_at": "2026-10-20T08:15:00Z",
+      "retention_class": "one_memory",
+      "candidate": {
+        "output_type": "app.suiss.one.output.delivery.update",
+        "source": "external_event",
+        "urgent": false,
+        "critical_grant": false,
+        "sensitive": false
+      },
+      "input_summary": {
+        "local_hour": 11,
+        "weekday": 2,
+        "device": {
+          "lock": "locked",
+          "focus": "off",
+          "headphones": "unknown",
+          "wearable": "worn",
+          "at_break": false
+        },
+        "calendar_busy": true,
+        "activity": "still",
+        "sender_relation": "organisation",
+        "quiet_hours": false,
+        "type_muted": false,
+        "in_rest_period": false,
+        "interruptions_today": 1,
+        "budget_remaining": 2,
+        "seconds_since_last_interruption": 5400,
+        "seconds_since_last_same_type": null
+      },
+      "policy": {
+        "policy_version": "attention-start-1",
+        "model_version_id": "mdl_01m4ezb900fvmv9zra2mg2pdj1",
+        "thresholds": {
+          "lower": 0.3,
+          "upper": 0.7
+        }
+      },
+      "value_probability": 0.82,
+      "cloud_estimate": {
+        "requested": false
+      },
+      "chosen_arm": "next_break",
+      "arm_probabilities": {
+        "interrupt_now": 0.03,
+        "next_break": 0.91,
+        "digest": 0.06
+      },
+      "exploration": {
+        "allowed": false,
+        "explored": false
+      },
+      "constraints": [],
+      "relay": {
+        "relay_class": "transactional",
+        "interruption": "active",
+        "timing": "next_break",
+        "max_defer_s": 3600,
+        "sensitive": false
+      },
+      "outcome": {
+        "signal": "useful",
+        "at": "2026-10-20T09:00:00Z"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "AT-24",
+    "description": "A null selection probability is rejected",
+    "input": {
+      "decision_id": "atd_01m4ezb900e9yrh4wyn6tbzjpn",
+      "decided_at": "2026-10-20T08:15:00Z",
+      "retention_class": "one_memory",
+      "candidate": {
+        "output_type": "app.suiss.one.output.delivery.update",
+        "source": "external_event",
+        "urgent": false,
+        "critical_grant": false,
+        "sensitive": false
+      },
+      "input_summary": {
+        "local_hour": 11,
+        "weekday": 2,
+        "device": {
+          "lock": "locked",
+          "focus": "off",
+          "headphones": "unknown",
+          "wearable": "worn",
+          "at_break": false
+        },
+        "calendar_busy": true,
+        "activity": "still",
+        "sender_relation": "organisation",
+        "quiet_hours": false,
+        "type_muted": false,
+        "in_rest_period": false,
+        "interruptions_today": 1,
+        "budget_remaining": 2,
+        "seconds_since_last_interruption": 5400,
+        "seconds_since_last_same_type": null
+      },
+      "policy": {
+        "policy_version": "attention-start-1",
+        "model_version_id": "mdl_01m4ezb900fvmv9zra2mg2pdj1",
+        "thresholds": {
+          "lower": 0.3,
+          "upper": 0.7
+        }
+      },
+      "value_probability": 0.82,
+      "cloud_estimate": {
+        "requested": false
+      },
+      "chosen_arm": "next_break",
+      "propensity": null,
+      "arm_probabilities": {
+        "interrupt_now": 0.03,
+        "next_break": 0.91,
+        "digest": 0.06
+      },
+      "exploration": {
+        "allowed": false,
+        "explored": false
+      },
+      "constraints": [],
+      "relay": {
+        "relay_class": "transactional",
+        "interruption": "active",
+        "timing": "next_break",
+        "max_defer_s": 3600,
+        "sensitive": false
+      },
+      "outcome": {
+        "signal": "useful",
+        "at": "2026-10-20T09:00:00Z"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "AT-24",
+    "description": "A zero selection probability is rejected",
+    "input": {
+      "decision_id": "atd_01m4ezb900e9yrh4wyn6tbzjpn",
+      "decided_at": "2026-10-20T08:15:00Z",
+      "retention_class": "one_memory",
+      "candidate": {
+        "output_type": "app.suiss.one.output.delivery.update",
+        "source": "external_event",
+        "urgent": false,
+        "critical_grant": false,
+        "sensitive": false
+      },
+      "input_summary": {
+        "local_hour": 11,
+        "weekday": 2,
+        "device": {
+          "lock": "locked",
+          "focus": "off",
+          "headphones": "unknown",
+          "wearable": "worn",
+          "at_break": false
+        },
+        "calendar_busy": true,
+        "activity": "still",
+        "sender_relation": "organisation",
+        "quiet_hours": false,
+        "type_muted": false,
+        "in_rest_period": false,
+        "interruptions_today": 1,
+        "budget_remaining": 2,
+        "seconds_since_last_interruption": 5400,
+        "seconds_since_last_same_type": null
+      },
+      "policy": {
+        "policy_version": "attention-start-1",
+        "model_version_id": "mdl_01m4ezb900fvmv9zra2mg2pdj1",
+        "thresholds": {
+          "lower": 0.3,
+          "upper": 0.7
+        }
+      },
+      "value_probability": 0.82,
+      "cloud_estimate": {
+        "requested": false
+      },
+      "chosen_arm": "next_break",
+      "propensity": 0,
+      "arm_probabilities": {
+        "interrupt_now": 0.03,
+        "next_break": 0.91,
+        "digest": 0.06
+      },
+      "exploration": {
+        "allowed": false,
+        "explored": false
+      },
+      "constraints": [],
+      "relay": {
+        "relay_class": "transactional",
+        "interruption": "active",
+        "timing": "next_break",
+        "max_defer_s": 3600,
+        "sensitive": false
+      },
+      "outcome": {
+        "signal": "useful",
+        "at": "2026-10-20T09:00:00Z"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "AT-24",
+    "description": "A selection probability above one is rejected",
+    "input": {
+      "decision_id": "atd_01m4ezb900e9yrh4wyn6tbzjpn",
+      "decided_at": "2026-10-20T08:15:00Z",
+      "retention_class": "one_memory",
+      "candidate": {
+        "output_type": "app.suiss.one.output.delivery.update",
+        "source": "external_event",
+        "urgent": false,
+        "critical_grant": false,
+        "sensitive": false
+      },
+      "input_summary": {
+        "local_hour": 11,
+        "weekday": 2,
+        "device": {
+          "lock": "locked",
+          "focus": "off",
+          "headphones": "unknown",
+          "wearable": "worn",
+          "at_break": false
+        },
+        "calendar_busy": true,
+        "activity": "still",
+        "sender_relation": "organisation",
+        "quiet_hours": false,
+        "type_muted": false,
+        "in_rest_period": false,
+        "interruptions_today": 1,
+        "budget_remaining": 2,
+        "seconds_since_last_interruption": 5400,
+        "seconds_since_last_same_type": null
+      },
+      "policy": {
+        "policy_version": "attention-start-1",
+        "model_version_id": "mdl_01m4ezb900fvmv9zra2mg2pdj1",
+        "thresholds": {
+          "lower": 0.3,
+          "upper": 0.7
+        }
+      },
+      "value_probability": 0.82,
+      "cloud_estimate": {
+        "requested": false
+      },
+      "chosen_arm": "next_break",
+      "propensity": 1.2,
+      "arm_probabilities": {
+        "interrupt_now": 0.03,
+        "next_break": 0.91,
+        "digest": 0.06
+      },
+      "exploration": {
+        "allowed": false,
+        "explored": false
+      },
+      "constraints": [],
+      "relay": {
+        "relay_class": "transactional",
+        "interruption": "active",
+        "timing": "next_break",
+        "max_defer_s": 3600,
+        "sensitive": false
+      },
+      "outcome": {
+        "signal": "useful",
+        "at": "2026-10-20T09:00:00Z"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "AT-24",
+    "description": "A deterministic decision records probability one",
+    "input": {
+      "decision_id": "atd_01m4ezb900e9yrh4wyn6tbzjpn",
+      "decided_at": "2026-10-20T08:15:00Z",
+      "retention_class": "one_memory",
+      "candidate": {
+        "output_type": "app.suiss.one.output.delivery.update",
+        "source": "external_event",
+        "urgent": false,
+        "critical_grant": false,
+        "sensitive": false
+      },
+      "input_summary": {
+        "local_hour": 11,
+        "weekday": 2,
+        "device": {
+          "lock": "locked",
+          "focus": "off",
+          "headphones": "unknown",
+          "wearable": "worn",
+          "at_break": false
+        },
+        "calendar_busy": true,
+        "activity": "still",
+        "sender_relation": "organisation",
+        "quiet_hours": false,
+        "type_muted": false,
+        "in_rest_period": false,
+        "interruptions_today": 1,
+        "budget_remaining": 2,
+        "seconds_since_last_interruption": 5400,
+        "seconds_since_last_same_type": null
+      },
+      "policy": {
+        "policy_version": "attention-start-1",
+        "model_version_id": "mdl_01m4ezb900fvmv9zra2mg2pdj1",
+        "thresholds": {
+          "lower": 0.3,
+          "upper": 0.7
+        }
+      },
+      "value_probability": 0.82,
+      "cloud_estimate": {
+        "requested": false
+      },
+      "chosen_arm": "next_break",
+      "propensity": 1.0,
+      "arm_probabilities": {
+        "interrupt_now": 0.03,
+        "next_break": 0.91,
+        "digest": 0.06
+      },
+      "exploration": {
+        "allowed": false,
+        "explored": false
+      },
+      "constraints": [],
+      "relay": {
+        "relay_class": "transactional",
+        "interruption": "active",
+        "timing": "next_break",
+        "max_defer_s": 3600,
+        "sensitive": false
+      },
+      "outcome": {
+        "signal": "useful",
+        "at": "2026-10-20T09:00:00Z"
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "AT-24",
+    "description": "A decision record without policy version is rejected",
+    "input": {
+      "decision_id": "atd_01m4ezb900e9yrh4wyn6tbzjpn",
+      "decided_at": "2026-10-20T08:15:00Z",
+      "retention_class": "one_memory",
+      "candidate": {
+        "output_type": "app.suiss.one.output.delivery.update",
+        "source": "external_event",
+        "urgent": false,
+        "critical_grant": false,
+        "sensitive": false
+      },
+      "input_summary": {
+        "local_hour": 11,
+        "weekday": 2,
+        "device": {
+          "lock": "locked",
+          "focus": "off",
+          "headphones": "unknown",
+          "wearable": "worn",
+          "at_break": false
+        },
+        "calendar_busy": true,
+        "activity": "still",
+        "sender_relation": "organisation",
+        "quiet_hours": false,
+        "type_muted": false,
+        "in_rest_period": false,
+        "interruptions_today": 1,
+        "budget_remaining": 2,
+        "seconds_since_last_interruption": 5400,
+        "seconds_since_last_same_type": null
+      },
+      "policy": {
+        "model_version_id": "mdl_01m4ezb900fvmv9zra2mg2pdj1",
+        "thresholds": {
+          "lower": 0.3,
+          "upper": 0.7
+        }
+      },
+      "value_probability": 0.82,
+      "cloud_estimate": {
+        "requested": false
+      },
+      "chosen_arm": "next_break",
+      "propensity": 0.91,
+      "arm_probabilities": {
+        "interrupt_now": 0.03,
+        "next_break": 0.91,
+        "digest": 0.06
+      },
+      "exploration": {
+        "allowed": false,
+        "explored": false
+      },
+      "constraints": [],
+      "relay": {
+        "relay_class": "transactional",
+        "interruption": "active",
+        "timing": "next_break",
+        "max_defer_s": 3600,
+        "sensitive": false
+      },
+      "outcome": {
+        "signal": "useful",
+        "at": "2026-10-20T09:00:00Z"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "AT-1",
+    "description": "Each of the five arms is a valid decision",
+    "input": {
+      "decision_id": "atd_01m4ezb900e9yrh4wyn6tbzjpn",
+      "decided_at": "2026-10-20T08:15:00Z",
+      "retention_class": "one_memory",
+      "candidate": {
+        "output_type": "app.suiss.one.output.delivery.update",
+        "source": "external_event",
+        "urgent": false,
+        "critical_grant": false,
+        "sensitive": false
+      },
+      "input_summary": {
+        "local_hour": 11,
+        "weekday": 2,
+        "device": {
+          "lock": "locked",
+          "focus": "off",
+          "headphones": "unknown",
+          "wearable": "worn",
+          "at_break": false
+        },
+        "calendar_busy": true,
+        "activity": "still",
+        "sender_relation": "organisation",
+        "quiet_hours": false,
+        "type_muted": false,
+        "in_rest_period": false,
+        "interruptions_today": 1,
+        "budget_remaining": 2,
+        "seconds_since_last_interruption": 5400,
+        "seconds_since_last_same_type": null
+      },
+      "policy": {
+        "policy_version": "attention-start-1",
+        "model_version_id": "mdl_01m4ezb900fvmv9zra2mg2pdj1",
+        "thresholds": {
+          "lower": 0.3,
+          "upper": 0.7
+        }
+      },
+      "value_probability": 0.12,
+      "cloud_estimate": {
+        "requested": false
+      },
+      "chosen_arm": "digest",
+      "propensity": 0.77,
+      "arm_probabilities": {
+        "interrupt_now": 0.03,
+        "next_break": 0.91,
+        "digest": 0.06
+      },
+      "exploration": {
+        "allowed": false,
+        "explored": false
+      },
+      "constraints": [],
+      "outcome": {
+        "signal": "useful",
+        "at": "2026-10-20T09:00:00Z"
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "AT-1",
+    "description": "Save quietly is a valid decision",
+    "input": {
+      "decision_id": "atd_01m4ezb900e9yrh4wyn6tbzjpn",
+      "decided_at": "2026-10-20T08:15:00Z",
+      "retention_class": "one_memory",
+      "candidate": {
+        "output_type": "app.suiss.one.output.delivery.update",
+        "source": "external_event",
+        "urgent": false,
+        "critical_grant": false,
+        "sensitive": false
+      },
+      "input_summary": {
+        "local_hour": 11,
+        "weekday": 2,
+        "device": {
+          "lock": "locked",
+          "focus": "off",
+          "headphones": "unknown",
+          "wearable": "worn",
+          "at_break": false
+        },
+        "calendar_busy": true,
+        "activity": "still",
+        "sender_relation": "organisation",
+        "quiet_hours": false,
+        "type_muted": false,
+        "in_rest_period": false,
+        "interruptions_today": 1,
+        "budget_remaining": 2,
+        "seconds_since_last_interruption": 5400,
+        "seconds_since_last_same_type": null
+      },
+      "policy": {
+        "policy_version": "attention-start-1",
+        "model_version_id": "mdl_01m4ezb900fvmv9zra2mg2pdj1",
+        "thresholds": {
+          "lower": 0.3,
+          "upper": 0.7
+        }
+      },
+      "value_probability": 0.12,
+      "cloud_estimate": {
+        "requested": false
+      },
+      "chosen_arm": "save_quietly",
+      "propensity": 0.77,
+      "arm_probabilities": {
+        "interrupt_now": 0.03,
+        "next_break": 0.91,
+        "digest": 0.06
+      },
+      "exploration": {
+        "allowed": false,
+        "explored": false
+      },
+      "constraints": [],
+      "outcome": {
+        "signal": "useful",
+        "at": "2026-10-20T09:00:00Z"
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "AT-1",
+    "description": "Discard is a valid decision and is itself recorded",
+    "input": {
+      "decision_id": "atd_01m4ezb900e9yrh4wyn6tbzjpn",
+      "decided_at": "2026-10-20T08:15:00Z",
+      "retention_class": "one_memory",
+      "candidate": {
+        "output_type": "app.suiss.one.output.delivery.update",
+        "source": "external_event",
+        "urgent": false,
+        "critical_grant": false,
+        "sensitive": false
+      },
+      "input_summary": {
+        "local_hour": 11,
+        "weekday": 2,
+        "device": {
+          "lock": "locked",
+          "focus": "off",
+          "headphones": "unknown",
+          "wearable": "worn",
+          "at_break": false
+        },
+        "calendar_busy": true,
+        "activity": "still",
+        "sender_relation": "organisation",
+        "quiet_hours": false,
+        "type_muted": false,
+        "in_rest_period": false,
+        "interruptions_today": 1,
+        "budget_remaining": 2,
+        "seconds_since_last_interruption": 5400,
+        "seconds_since_last_same_type": null
+      },
+      "policy": {
+        "policy_version": "attention-start-1",
+        "model_version_id": "mdl_01m4ezb900fvmv9zra2mg2pdj1",
+        "thresholds": {
+          "lower": 0.3,
+          "upper": 0.7
+        }
+      },
+      "value_probability": 0.12,
+      "cloud_estimate": {
+        "requested": false
+      },
+      "chosen_arm": "discard",
+      "propensity": 0.77,
+      "arm_probabilities": {
+        "interrupt_now": 0.03,
+        "next_break": 0.91,
+        "digest": 0.06
+      },
+      "exploration": {
+        "allowed": false,
+        "explored": false
+      },
+      "constraints": [],
+      "outcome": {
+        "signal": "useful",
+        "at": "2026-10-20T09:00:00Z"
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "AT-1",
+    "description": "An arm outside the five is rejected",
+    "input": {
+      "decision_id": "atd_01m4ezb900e9yrh4wyn6tbzjpn",
+      "decided_at": "2026-10-20T08:15:00Z",
+      "retention_class": "one_memory",
+      "candidate": {
+        "output_type": "app.suiss.one.output.delivery.update",
+        "source": "external_event",
+        "urgent": false,
+        "critical_grant": false,
+        "sensitive": false
+      },
+      "input_summary": {
+        "local_hour": 11,
+        "weekday": 2,
+        "device": {
+          "lock": "locked",
+          "focus": "off",
+          "headphones": "unknown",
+          "wearable": "worn",
+          "at_break": false
+        },
+        "calendar_busy": true,
+        "activity": "still",
+        "sender_relation": "organisation",
+        "quiet_hours": false,
+        "type_muted": false,
+        "in_rest_period": false,
+        "interruptions_today": 1,
+        "budget_remaining": 2,
+        "seconds_since_last_interruption": 5400,
+        "seconds_since_last_same_type": null
+      },
+      "policy": {
+        "policy_version": "attention-start-1",
+        "model_version_id": "mdl_01m4ezb900fvmv9zra2mg2pdj1",
+        "thresholds": {
+          "lower": 0.3,
+          "upper": 0.7
+        }
+      },
+      "value_probability": 0.12,
+      "cloud_estimate": {
+        "requested": false
+      },
+      "chosen_arm": "snooze",
+      "propensity": 0.77,
+      "arm_probabilities": {
+        "interrupt_now": 0.03,
+        "next_break": 0.91,
+        "digest": 0.06
+      },
+      "exploration": {
+        "allowed": false,
+        "explored": false
+      },
+      "constraints": [],
+      "outcome": {
+        "signal": "useful",
+        "at": "2026-10-20T09:00:00Z"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "AT-1",
+    "description": "A non-notifying arm sends nothing to Relay",
+    "input": {
+      "decision_id": "atd_01m4ezb900e9yrh4wyn6tbzjpn",
+      "decided_at": "2026-10-20T08:15:00Z",
+      "retention_class": "one_memory",
+      "candidate": {
+        "output_type": "app.suiss.one.output.delivery.update",
+        "source": "external_event",
+        "urgent": false,
+        "critical_grant": false,
+        "sensitive": false
+      },
+      "input_summary": {
+        "local_hour": 11,
+        "weekday": 2,
+        "device": {
+          "lock": "locked",
+          "focus": "off",
+          "headphones": "unknown",
+          "wearable": "worn",
+          "at_break": false
+        },
+        "calendar_busy": true,
+        "activity": "still",
+        "sender_relation": "organisation",
+        "quiet_hours": false,
+        "type_muted": false,
+        "in_rest_period": false,
+        "interruptions_today": 1,
+        "budget_remaining": 2,
+        "seconds_since_last_interruption": 5400,
+        "seconds_since_last_same_type": null
+      },
+      "policy": {
+        "policy_version": "attention-start-1",
+        "model_version_id": "mdl_01m4ezb900fvmv9zra2mg2pdj1",
+        "thresholds": {
+          "lower": 0.3,
+          "upper": 0.7
+        }
+      },
+      "value_probability": 0.12,
+      "cloud_estimate": {
+        "requested": false
+      },
+      "chosen_arm": "digest",
+      "propensity": 0.77,
+      "arm_probabilities": {
+        "interrupt_now": 0.03,
+        "next_break": 0.91,
+        "digest": 0.06
+      },
+      "exploration": {
+        "allowed": false,
+        "explored": false
+      },
+      "constraints": [],
+      "outcome": {
+        "signal": "useful",
+        "at": "2026-10-20T09:00:00Z"
+      },
+      "relay": {
+        "relay_class": "transactional",
+        "interruption": "active",
+        "timing": "next_break",
+        "max_defer_s": 3600,
+        "sensitive": false
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "AT-1",
+    "description": "A notifying arm names the Relay request",
+    "input": {
+      "decision_id": "atd_01m4ezb900e9yrh4wyn6tbzjpn",
+      "decided_at": "2026-10-20T08:15:00Z",
+      "retention_class": "one_memory",
+      "candidate": {
+        "output_type": "app.suiss.one.output.delivery.update",
+        "source": "external_event",
+        "urgent": false,
+        "critical_grant": false,
+        "sensitive": false
+      },
+      "input_summary": {
+        "local_hour": 11,
+        "weekday": 2,
+        "device": {
+          "lock": "locked",
+          "focus": "off",
+          "headphones": "unknown",
+          "wearable": "worn",
+          "at_break": false
+        },
+        "calendar_busy": true,
+        "activity": "still",
+        "sender_relation": "organisation",
+        "quiet_hours": false,
+        "type_muted": false,
+        "in_rest_period": false,
+        "interruptions_today": 1,
+        "budget_remaining": 2,
+        "seconds_since_last_interruption": 5400,
+        "seconds_since_last_same_type": null
+      },
+      "policy": {
+        "policy_version": "attention-start-1",
+        "model_version_id": "mdl_01m4ezb900fvmv9zra2mg2pdj1",
+        "thresholds": {
+          "lower": 0.3,
+          "upper": 0.7
+        }
+      },
+      "value_probability": 0.82,
+      "cloud_estimate": {
+        "requested": false
+      },
+      "chosen_arm": "next_break",
+      "propensity": 0.91,
+      "arm_probabilities": {
+        "interrupt_now": 0.03,
+        "next_break": 0.91,
+        "digest": 0.06
+      },
+      "exploration": {
+        "allowed": false,
+        "explored": false
+      },
+      "constraints": [],
+      "outcome": {
+        "signal": "useful",
+        "at": "2026-10-20T09:00:00Z"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "AT-1",
+    "description": "The calibrated value probability is recorded",
+    "input": {
+      "decision_id": "atd_01m4ezb900e9yrh4wyn6tbzjpn",
+      "decided_at": "2026-10-20T08:15:00Z",
+      "retention_class": "one_memory",
+      "candidate": {
+        "output_type": "app.suiss.one.output.delivery.update",
+        "source": "external_event",
+        "urgent": false,
+        "critical_grant": false,
+        "sensitive": false
+      },
+      "input_summary": {
+        "local_hour": 11,
+        "weekday": 2,
+        "device": {
+          "lock": "locked",
+          "focus": "off",
+          "headphones": "unknown",
+          "wearable": "worn",
+          "at_break": false
+        },
+        "calendar_busy": true,
+        "activity": "still",
+        "sender_relation": "organisation",
+        "quiet_hours": false,
+        "type_muted": false,
+        "in_rest_period": false,
+        "interruptions_today": 1,
+        "budget_remaining": 2,
+        "seconds_since_last_interruption": 5400,
+        "seconds_since_last_same_type": null
+      },
+      "policy": {
+        "policy_version": "attention-start-1",
+        "model_version_id": "mdl_01m4ezb900fvmv9zra2mg2pdj1",
+        "thresholds": {
+          "lower": 0.3,
+          "upper": 0.7
+        }
+      },
+      "cloud_estimate": {
+        "requested": false
+      },
+      "chosen_arm": "next_break",
+      "propensity": 0.91,
+      "arm_probabilities": {
+        "interrupt_now": 0.03,
+        "next_break": 0.91,
+        "digest": 0.06
+      },
+      "exploration": {
+        "allowed": false,
+        "explored": false
+      },
+      "constraints": [],
+      "relay": {
+        "relay_class": "transactional",
+        "interruption": "active",
+        "timing": "next_break",
+        "max_defer_s": 3600,
+        "sensitive": false
+      },
+      "outcome": {
+        "signal": "useful",
+        "at": "2026-10-20T09:00:00Z"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "AT-4",
+    "description": "A decision record carries no content field",
+    "input": {
+      "decision_id": "atd_01m4ezb900e9yrh4wyn6tbzjpn",
+      "decided_at": "2026-10-20T08:15:00Z",
+      "retention_class": "one_memory",
+      "candidate": {
+        "output_type": "app.suiss.one.output.delivery.update",
+        "source": "external_event",
+        "urgent": false,
+        "critical_grant": false,
+        "sensitive": false,
+        "text": "Paketiniz yarin geliyor"
+      },
+      "input_summary": {
+        "local_hour": 11,
+        "weekday": 2,
+        "device": {
+          "lock": "locked",
+          "focus": "off",
+          "headphones": "unknown",
+          "wearable": "worn",
+          "at_break": false
+        },
+        "calendar_busy": true,
+        "activity": "still",
+        "sender_relation": "organisation",
+        "quiet_hours": false,
+        "type_muted": false,
+        "in_rest_period": false,
+        "interruptions_today": 1,
+        "budget_remaining": 2,
+        "seconds_since_last_interruption": 5400,
+        "seconds_since_last_same_type": null
+      },
+      "policy": {
+        "policy_version": "attention-start-1",
+        "model_version_id": "mdl_01m4ezb900fvmv9zra2mg2pdj1",
+        "thresholds": {
+          "lower": 0.3,
+          "upper": 0.7
+        }
+      },
+      "value_probability": 0.82,
+      "cloud_estimate": {
+        "requested": false
+      },
+      "chosen_arm": "next_break",
+      "propensity": 0.91,
+      "arm_probabilities": {
+        "interrupt_now": 0.03,
+        "next_break": 0.91,
+        "digest": 0.06
+      },
+      "exploration": {
+        "allowed": false,
+        "explored": false
+      },
+      "constraints": [],
+      "relay": {
+        "relay_class": "transactional",
+        "interruption": "active",
+        "timing": "next_break",
+        "max_defer_s": 3600,
+        "sensitive": false
+      },
+      "outcome": {
+        "signal": "useful",
+        "at": "2026-10-20T09:00:00Z"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "AT-4",
+    "description": "The input summary carries no content",
+    "input": {
+      "decision_id": "atd_01m4ezb900e9yrh4wyn6tbzjpn",
+      "decided_at": "2026-10-20T08:15:00Z",
+      "retention_class": "one_memory",
+      "candidate": {
+        "output_type": "app.suiss.one.output.delivery.update",
+        "source": "external_event",
+        "urgent": false,
+        "critical_grant": false,
+        "sensitive": false
+      },
+      "input_summary": {
+        "local_hour": 11,
+        "weekday": 2,
+        "device": {
+          "lock": "locked",
+          "focus": "off",
+          "headphones": "unknown",
+          "wearable": "worn",
+          "at_break": false
+        },
+        "calendar_busy": true,
+        "activity": "still",
+        "sender_relation": "organisation",
+        "quiet_hours": false,
+        "type_muted": false,
+        "in_rest_period": false,
+        "interruptions_today": 1,
+        "budget_remaining": 2,
+        "seconds_since_last_interruption": 5400,
+        "seconds_since_last_same_type": null,
+        "sender": "kargo@example.com"
+      },
+      "policy": {
+        "policy_version": "attention-start-1",
+        "model_version_id": "mdl_01m4ezb900fvmv9zra2mg2pdj1",
+        "thresholds": {
+          "lower": 0.3,
+          "upper": 0.7
+        }
+      },
+      "value_probability": 0.82,
+      "cloud_estimate": {
+        "requested": false
+      },
+      "chosen_arm": "next_break",
+      "propensity": 0.91,
+      "arm_probabilities": {
+        "interrupt_now": 0.03,
+        "next_break": 0.91,
+        "digest": 0.06
+      },
+      "exploration": {
+        "allowed": false,
+        "explored": false
+      },
+      "constraints": [],
+      "relay": {
+        "relay_class": "transactional",
+        "interruption": "active",
+        "timing": "next_break",
+        "max_defer_s": 3600,
+        "sensitive": false
+      },
+      "outcome": {
+        "signal": "useful",
+        "at": "2026-10-20T09:00:00Z"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "AT-4",
+    "description": "Decision records are one_memory",
+    "input": {
+      "decision_id": "atd_01m4ezb900e9yrh4wyn6tbzjpn",
+      "decided_at": "2026-10-20T08:15:00Z",
+      "retention_class": "one_observation",
+      "candidate": {
+        "output_type": "app.suiss.one.output.delivery.update",
+        "source": "external_event",
+        "urgent": false,
+        "critical_grant": false,
+        "sensitive": false
+      },
+      "input_summary": {
+        "local_hour": 11,
+        "weekday": 2,
+        "device": {
+          "lock": "locked",
+          "focus": "off",
+          "headphones": "unknown",
+          "wearable": "worn",
+          "at_break": false
+        },
+        "calendar_busy": true,
+        "activity": "still",
+        "sender_relation": "organisation",
+        "quiet_hours": false,
+        "type_muted": false,
+        "in_rest_period": false,
+        "interruptions_today": 1,
+        "budget_remaining": 2,
+        "seconds_since_last_interruption": 5400,
+        "seconds_since_last_same_type": null
+      },
+      "policy": {
+        "policy_version": "attention-start-1",
+        "model_version_id": "mdl_01m4ezb900fvmv9zra2mg2pdj1",
+        "thresholds": {
+          "lower": 0.3,
+          "upper": 0.7
+        }
+      },
+      "value_probability": 0.82,
+      "cloud_estimate": {
+        "requested": false
+      },
+      "chosen_arm": "next_break",
+      "propensity": 0.91,
+      "arm_probabilities": {
+        "interrupt_now": 0.03,
+        "next_break": 0.91,
+        "digest": 0.06
+      },
+      "exploration": {
+        "allowed": false,
+        "explored": false
+      },
+      "constraints": [],
+      "relay": {
+        "relay_class": "transactional",
+        "interruption": "active",
+        "timing": "next_break",
+        "max_defer_s": 3600,
+        "sensitive": false
+      },
+      "outcome": {
+        "signal": "useful",
+        "at": "2026-10-20T09:00:00Z"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "AT-12",
+    "description": "Deferral to the next break carries max_defer",
+    "input": {
+      "decision_id": "atd_01m4ezb900e9yrh4wyn6tbzjpn",
+      "decided_at": "2026-10-20T08:15:00Z",
+      "retention_class": "one_memory",
+      "candidate": {
+        "output_type": "app.suiss.one.output.delivery.update",
+        "source": "external_event",
+        "urgent": false,
+        "critical_grant": false,
+        "sensitive": false
+      },
+      "input_summary": {
+        "local_hour": 11,
+        "weekday": 2,
+        "device": {
+          "lock": "locked",
+          "focus": "off",
+          "headphones": "unknown",
+          "wearable": "worn",
+          "at_break": false
+        },
+        "calendar_busy": true,
+        "activity": "still",
+        "sender_relation": "organisation",
+        "quiet_hours": false,
+        "type_muted": false,
+        "in_rest_period": false,
+        "interruptions_today": 1,
+        "budget_remaining": 2,
+        "seconds_since_last_interruption": 5400,
+        "seconds_since_last_same_type": null
+      },
+      "policy": {
+        "policy_version": "attention-start-1",
+        "model_version_id": "mdl_01m4ezb900fvmv9zra2mg2pdj1",
+        "thresholds": {
+          "lower": 0.3,
+          "upper": 0.7
+        }
+      },
+      "value_probability": 0.82,
+      "cloud_estimate": {
+        "requested": false
+      },
+      "chosen_arm": "next_break",
+      "propensity": 0.91,
+      "arm_probabilities": {
+        "interrupt_now": 0.03,
+        "next_break": 0.91,
+        "digest": 0.06
+      },
+      "exploration": {
+        "allowed": false,
+        "explored": false
+      },
+      "constraints": [],
+      "relay": {
+        "relay_class": "transactional",
+        "interruption": "active",
+        "timing": "next_break",
+        "sensitive": false
+      },
+      "outcome": {
+        "signal": "useful",
+        "at": "2026-10-20T09:00:00Z"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "AT-12",
+    "description": "A non-urgent output is not interrupted now",
+    "input": {
+      "decision_id": "atd_01m4ezb900e9yrh4wyn6tbzjpn",
+      "decided_at": "2026-10-20T08:15:00Z",
+      "retention_class": "one_memory",
+      "candidate": {
+        "output_type": "app.suiss.one.output.delivery.update",
+        "source": "external_event",
+        "urgent": false,
+        "critical_grant": false,
+        "sensitive": false
+      },
+      "input_summary": {
+        "local_hour": 11,
+        "weekday": 2,
+        "device": {
+          "lock": "locked",
+          "focus": "off",
+          "headphones": "unknown",
+          "wearable": "worn",
+          "at_break": false
+        },
+        "calendar_busy": true,
+        "activity": "still",
+        "sender_relation": "organisation",
+        "quiet_hours": false,
+        "type_muted": false,
+        "in_rest_period": false,
+        "interruptions_today": 1,
+        "budget_remaining": 2,
+        "seconds_since_last_interruption": 5400,
+        "seconds_since_last_same_type": null
+      },
+      "policy": {
+        "policy_version": "attention-start-1",
+        "model_version_id": "mdl_01m4ezb900fvmv9zra2mg2pdj1",
+        "thresholds": {
+          "lower": 0.3,
+          "upper": 0.7
+        }
+      },
+      "value_probability": 0.82,
+      "cloud_estimate": {
+        "requested": false
+      },
+      "chosen_arm": "interrupt_now",
+      "propensity": 0.91,
+      "arm_probabilities": {
+        "interrupt_now": 0.03,
+        "next_break": 0.91,
+        "digest": 0.06
+      },
+      "exploration": {
+        "allowed": false,
+        "explored": false
+      },
+      "constraints": [],
+      "relay": {
+        "relay_class": "transactional",
+        "interruption": "active",
+        "timing": "immediate",
+        "sensitive": false
+      },
+      "outcome": {
+        "signal": "useful",
+        "at": "2026-10-20T09:00:00Z"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "AT-12",
+    "description": "An urgent output interrupts now",
+    "input": {
+      "decision_id": "atd_01m4ezb900e9yrh4wyn6tbzjpn",
+      "decided_at": "2026-10-20T08:15:00Z",
+      "retention_class": "one_memory",
+      "candidate": {
+        "output_type": "app.suiss.one.output.delivery.update",
+        "source": "external_event",
+        "urgent": true,
+        "critical_grant": false,
+        "sensitive": false
+      },
+      "input_summary": {
+        "local_hour": 11,
+        "weekday": 2,
+        "device": {
+          "lock": "locked",
+          "focus": "off",
+          "headphones": "unknown",
+          "wearable": "worn",
+          "at_break": false
+        },
+        "calendar_busy": true,
+        "activity": "still",
+        "sender_relation": "organisation",
+        "quiet_hours": false,
+        "type_muted": false,
+        "in_rest_period": false,
+        "interruptions_today": 1,
+        "budget_remaining": 2,
+        "seconds_since_last_interruption": 5400,
+        "seconds_since_last_same_type": null
+      },
+      "policy": {
+        "policy_version": "attention-start-1",
+        "model_version_id": "mdl_01m4ezb900fvmv9zra2mg2pdj1",
+        "thresholds": {
+          "lower": 0.3,
+          "upper": 0.7
+        }
+      },
+      "value_probability": 0.82,
+      "cloud_estimate": {
+        "requested": false
+      },
+      "chosen_arm": "interrupt_now",
+      "propensity": 0.91,
+      "arm_probabilities": {
+        "interrupt_now": 0.03,
+        "next_break": 0.91,
+        "digest": 0.06
+      },
+      "exploration": {
+        "allowed": false,
+        "explored": false
+      },
+      "constraints": [],
+      "relay": {
+        "relay_class": "transactional",
+        "interruption": "time-sensitive",
+        "timing": "immediate",
+        "sensitive": false
+      },
+      "outcome": {
+        "signal": "useful",
+        "at": "2026-10-20T09:00:00Z"
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "AT-8",
+    "description": "Quiet hours block an immediate non-critical interruption",
+    "input": {
+      "decision_id": "atd_01m4ezb900e9yrh4wyn6tbzjpn",
+      "decided_at": "2026-10-20T08:15:00Z",
+      "retention_class": "one_memory",
+      "candidate": {
+        "output_type": "app.suiss.one.output.delivery.update",
+        "source": "external_event",
+        "urgent": true,
+        "critical_grant": false,
+        "sensitive": false
+      },
+      "input_summary": {
+        "local_hour": 11,
+        "weekday": 2,
+        "device": {
+          "lock": "locked",
+          "focus": "off",
+          "headphones": "unknown",
+          "wearable": "worn",
+          "at_break": false
+        },
+        "calendar_busy": true,
+        "activity": "still",
+        "sender_relation": "organisation",
+        "quiet_hours": true,
+        "type_muted": false,
+        "in_rest_period": false,
+        "interruptions_today": 1,
+        "budget_remaining": 2,
+        "seconds_since_last_interruption": 5400,
+        "seconds_since_last_same_type": null
+      },
+      "policy": {
+        "policy_version": "attention-start-1",
+        "model_version_id": "mdl_01m4ezb900fvmv9zra2mg2pdj1",
+        "thresholds": {
+          "lower": 0.3,
+          "upper": 0.7
+        }
+      },
+      "value_probability": 0.82,
+      "cloud_estimate": {
+        "requested": false
+      },
+      "chosen_arm": "interrupt_now",
+      "propensity": 0.91,
+      "arm_probabilities": {
+        "interrupt_now": 0.03,
+        "next_break": 0.91,
+        "digest": 0.06
+      },
+      "exploration": {
+        "allowed": false,
+        "explored": false
+      },
+      "constraints": [],
+      "relay": {
+        "relay_class": "transactional",
+        "interruption": "time-sensitive",
+        "timing": "immediate",
+        "sensitive": false
+      },
+      "outcome": {
+        "signal": "useful",
+        "at": "2026-10-20T09:00:00Z"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "AT-6",
+    "description": "A critical Grant pierces quiet hours and the budget",
+    "input": {
+      "decision_id": "atd_01m4ezb900e9yrh4wyn6tbzjpn",
+      "decided_at": "2026-10-20T08:15:00Z",
+      "retention_class": "one_memory",
+      "candidate": {
+        "output_type": "app.suiss.one.output.travel.change",
+        "source": "external_event",
+        "urgent": true,
+        "critical_grant": true,
+        "sensitive": false
+      },
+      "input_summary": {
+        "local_hour": 11,
+        "weekday": 2,
+        "device": {
+          "lock": "locked",
+          "focus": "off",
+          "headphones": "unknown",
+          "wearable": "worn",
+          "at_break": false
+        },
+        "calendar_busy": true,
+        "activity": "still",
+        "sender_relation": "organisation",
+        "quiet_hours": true,
+        "type_muted": false,
+        "in_rest_period": false,
+        "interruptions_today": 1,
+        "budget_remaining": 0,
+        "seconds_since_last_interruption": 5400,
+        "seconds_since_last_same_type": null
+      },
+      "policy": {
+        "policy_version": "attention-start-1",
+        "model_version_id": "mdl_01m4ezb900fvmv9zra2mg2pdj1",
+        "thresholds": {
+          "lower": 0.3,
+          "upper": 0.7
+        }
+      },
+      "value_probability": 0.82,
+      "cloud_estimate": {
+        "requested": false
+      },
+      "chosen_arm": "interrupt_now",
+      "propensity": 1.0,
+      "arm_probabilities": {
+        "interrupt_now": 0.03,
+        "next_break": 0.91,
+        "digest": 0.06
+      },
+      "exploration": {
+        "allowed": false,
+        "explored": false
+      },
+      "constraints": [],
+      "relay": {
+        "relay_class": "transactional",
+        "interruption": "critical",
+        "timing": "immediate",
+        "sensitive": false
+      },
+      "outcome": {
+        "signal": "useful",
+        "at": "2026-10-20T09:00:00Z"
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "AT-6",
+    "description": "Critical without the user's Grant is rejected",
+    "input": {
+      "decision_id": "atd_01m4ezb900e9yrh4wyn6tbzjpn",
+      "decided_at": "2026-10-20T08:15:00Z",
+      "retention_class": "one_memory",
+      "candidate": {
+        "output_type": "app.suiss.one.output.travel.change",
+        "source": "external_event",
+        "urgent": true,
+        "critical_grant": false,
+        "sensitive": false
+      },
+      "input_summary": {
+        "local_hour": 11,
+        "weekday": 2,
+        "device": {
+          "lock": "locked",
+          "focus": "off",
+          "headphones": "unknown",
+          "wearable": "worn",
+          "at_break": false
+        },
+        "calendar_busy": true,
+        "activity": "still",
+        "sender_relation": "organisation",
+        "quiet_hours": true,
+        "type_muted": false,
+        "in_rest_period": false,
+        "interruptions_today": 1,
+        "budget_remaining": 0,
+        "seconds_since_last_interruption": 5400,
+        "seconds_since_last_same_type": null
+      },
+      "policy": {
+        "policy_version": "attention-start-1",
+        "model_version_id": "mdl_01m4ezb900fvmv9zra2mg2pdj1",
+        "thresholds": {
+          "lower": 0.3,
+          "upper": 0.7
+        }
+      },
+      "value_probability": 0.82,
+      "cloud_estimate": {
+        "requested": false
+      },
+      "chosen_arm": "interrupt_now",
+      "propensity": 1.0,
+      "arm_probabilities": {
+        "interrupt_now": 0.03,
+        "next_break": 0.91,
+        "digest": 0.06
+      },
+      "exploration": {
+        "allowed": false,
+        "explored": false
+      },
+      "constraints": [],
+      "relay": {
+        "relay_class": "transactional",
+        "interruption": "critical",
+        "timing": "immediate",
+        "sensitive": false
+      },
+      "outcome": {
+        "signal": "useful",
+        "at": "2026-10-20T09:00:00Z"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "AT-6",
+    "description": "Critical is always immediate",
+    "input": {
+      "decision_id": "atd_01m4ezb900e9yrh4wyn6tbzjpn",
+      "decided_at": "2026-10-20T08:15:00Z",
+      "retention_class": "one_memory",
+      "candidate": {
+        "output_type": "app.suiss.one.output.travel.change",
+        "source": "external_event",
+        "urgent": true,
+        "critical_grant": true,
+        "sensitive": false
+      },
+      "input_summary": {
+        "local_hour": 11,
+        "weekday": 2,
+        "device": {
+          "lock": "locked",
+          "focus": "off",
+          "headphones": "unknown",
+          "wearable": "worn",
+          "at_break": false
+        },
+        "calendar_busy": true,
+        "activity": "still",
+        "sender_relation": "organisation",
+        "quiet_hours": true,
+        "type_muted": false,
+        "in_rest_period": false,
+        "interruptions_today": 1,
+        "budget_remaining": 0,
+        "seconds_since_last_interruption": 5400,
+        "seconds_since_last_same_type": null
+      },
+      "policy": {
+        "policy_version": "attention-start-1",
+        "model_version_id": "mdl_01m4ezb900fvmv9zra2mg2pdj1",
+        "thresholds": {
+          "lower": 0.3,
+          "upper": 0.7
+        }
+      },
+      "value_probability": 0.82,
+      "cloud_estimate": {
+        "requested": false
+      },
+      "chosen_arm": "next_break",
+      "propensity": 1.0,
+      "arm_probabilities": {
+        "interrupt_now": 0.03,
+        "next_break": 0.91,
+        "digest": 0.06
+      },
+      "exploration": {
+        "allowed": false,
+        "explored": false
+      },
+      "constraints": [],
+      "relay": {
+        "relay_class": "transactional",
+        "interruption": "critical",
+        "timing": "next_break",
+        "sensitive": false,
+        "max_defer_s": 60
+      },
+      "outcome": {
+        "signal": "useful",
+        "at": "2026-10-20T09:00:00Z"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "AT-9",
+    "description": "A muted type is never sent as a notification",
+    "input": {
+      "decision_id": "atd_01m4ezb900e9yrh4wyn6tbzjpn",
+      "decided_at": "2026-10-20T08:15:00Z",
+      "retention_class": "one_memory",
+      "candidate": {
+        "output_type": "app.suiss.one.output.delivery.update",
+        "source": "external_event",
+        "urgent": false,
+        "critical_grant": false,
+        "sensitive": false
+      },
+      "input_summary": {
+        "local_hour": 11,
+        "weekday": 2,
+        "device": {
+          "lock": "locked",
+          "focus": "off",
+          "headphones": "unknown",
+          "wearable": "worn",
+          "at_break": false
+        },
+        "calendar_busy": true,
+        "activity": "still",
+        "sender_relation": "organisation",
+        "quiet_hours": false,
+        "type_muted": true,
+        "in_rest_period": false,
+        "interruptions_today": 1,
+        "budget_remaining": 2,
+        "seconds_since_last_interruption": 5400,
+        "seconds_since_last_same_type": null
+      },
+      "policy": {
+        "policy_version": "attention-start-1",
+        "model_version_id": "mdl_01m4ezb900fvmv9zra2mg2pdj1",
+        "thresholds": {
+          "lower": 0.3,
+          "upper": 0.7
+        }
+      },
+      "value_probability": 0.82,
+      "cloud_estimate": {
+        "requested": false
+      },
+      "chosen_arm": "next_break",
+      "propensity": 0.91,
+      "arm_probabilities": {
+        "interrupt_now": 0.03,
+        "next_break": 0.91,
+        "digest": 0.06
+      },
+      "exploration": {
+        "allowed": false,
+        "explored": false
+      },
+      "constraints": [],
+      "relay": {
+        "relay_class": "transactional",
+        "interruption": "active",
+        "timing": "next_break",
+        "max_defer_s": 3600,
+        "sensitive": false
+      },
+      "outcome": {
+        "signal": "useful",
+        "at": "2026-10-20T09:00:00Z"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "AT-9",
+    "description": "A muted type goes to the digest",
+    "input": {
+      "decision_id": "atd_01m4ezb900e9yrh4wyn6tbzjpn",
+      "decided_at": "2026-10-20T08:15:00Z",
+      "retention_class": "one_memory",
+      "candidate": {
+        "output_type": "app.suiss.one.output.delivery.update",
+        "source": "external_event",
+        "urgent": false,
+        "critical_grant": false,
+        "sensitive": false
+      },
+      "input_summary": {
+        "local_hour": 11,
+        "weekday": 2,
+        "device": {
+          "lock": "locked",
+          "focus": "off",
+          "headphones": "unknown",
+          "wearable": "worn",
+          "at_break": false
+        },
+        "calendar_busy": true,
+        "activity": "still",
+        "sender_relation": "organisation",
+        "quiet_hours": false,
+        "type_muted": true,
+        "in_rest_period": false,
+        "interruptions_today": 1,
+        "budget_remaining": 2,
+        "seconds_since_last_interruption": 5400,
+        "seconds_since_last_same_type": null
+      },
+      "policy": {
+        "policy_version": "attention-start-1",
+        "model_version_id": "mdl_01m4ezb900fvmv9zra2mg2pdj1",
+        "thresholds": {
+          "lower": 0.3,
+          "upper": 0.7
+        }
+      },
+      "value_probability": 0.12,
+      "cloud_estimate": {
+        "requested": false
+      },
+      "chosen_arm": "digest",
+      "propensity": 0.77,
+      "arm_probabilities": {
+        "interrupt_now": 0.03,
+        "next_break": 0.91,
+        "digest": 0.06
+      },
+      "exploration": {
+        "allowed": false,
+        "explored": false
+      },
+      "constraints": [
+        "type_muted"
+      ],
+      "outcome": {
+        "signal": "useful",
+        "at": "2026-10-20T09:00:00Z"
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "AT-10",
+    "description": "An exhausted budget allows no active interruption",
+    "input": {
+      "decision_id": "atd_01m4ezb900e9yrh4wyn6tbzjpn",
+      "decided_at": "2026-10-20T08:15:00Z",
+      "retention_class": "one_memory",
+      "candidate": {
+        "output_type": "app.suiss.one.output.delivery.update",
+        "source": "external_event",
+        "urgent": false,
+        "critical_grant": false,
+        "sensitive": false
+      },
+      "input_summary": {
+        "local_hour": 11,
+        "weekday": 2,
+        "device": {
+          "lock": "locked",
+          "focus": "off",
+          "headphones": "unknown",
+          "wearable": "worn",
+          "at_break": false
+        },
+        "calendar_busy": true,
+        "activity": "still",
+        "sender_relation": "organisation",
+        "quiet_hours": false,
+        "type_muted": false,
+        "in_rest_period": false,
+        "interruptions_today": 1,
+        "budget_remaining": 0,
+        "seconds_since_last_interruption": 5400,
+        "seconds_since_last_same_type": null
+      },
+      "policy": {
+        "policy_version": "attention-start-1",
+        "model_version_id": "mdl_01m4ezb900fvmv9zra2mg2pdj1",
+        "thresholds": {
+          "lower": 0.3,
+          "upper": 0.7
+        }
+      },
+      "value_probability": 0.82,
+      "cloud_estimate": {
+        "requested": false
+      },
+      "chosen_arm": "next_break",
+      "propensity": 0.91,
+      "arm_probabilities": {
+        "interrupt_now": 0.03,
+        "next_break": 0.91,
+        "digest": 0.06
+      },
+      "exploration": {
+        "allowed": false,
+        "explored": false
+      },
+      "constraints": [],
+      "relay": {
+        "relay_class": "transactional",
+        "interruption": "active",
+        "timing": "next_break",
+        "max_defer_s": 3600,
+        "sensitive": false
+      },
+      "outcome": {
+        "signal": "useful",
+        "at": "2026-10-20T09:00:00Z"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "AT-10",
+    "description": "An exhausted budget still allows passive delivery",
+    "input": {
+      "decision_id": "atd_01m4ezb900e9yrh4wyn6tbzjpn",
+      "decided_at": "2026-10-20T08:15:00Z",
+      "retention_class": "one_memory",
+      "candidate": {
+        "output_type": "app.suiss.one.output.delivery.update",
+        "source": "external_event",
+        "urgent": false,
+        "critical_grant": false,
+        "sensitive": false
+      },
+      "input_summary": {
+        "local_hour": 11,
+        "weekday": 2,
+        "device": {
+          "lock": "locked",
+          "focus": "off",
+          "headphones": "unknown",
+          "wearable": "worn",
+          "at_break": false
+        },
+        "calendar_busy": true,
+        "activity": "still",
+        "sender_relation": "organisation",
+        "quiet_hours": false,
+        "type_muted": false,
+        "in_rest_period": false,
+        "interruptions_today": 1,
+        "budget_remaining": 0,
+        "seconds_since_last_interruption": 5400,
+        "seconds_since_last_same_type": null
+      },
+      "policy": {
+        "policy_version": "attention-start-1",
+        "model_version_id": "mdl_01m4ezb900fvmv9zra2mg2pdj1",
+        "thresholds": {
+          "lower": 0.3,
+          "upper": 0.7
+        }
+      },
+      "value_probability": 0.82,
+      "cloud_estimate": {
+        "requested": false
+      },
+      "chosen_arm": "next_break",
+      "propensity": 0.91,
+      "arm_probabilities": {
+        "interrupt_now": 0.03,
+        "next_break": 0.91,
+        "digest": 0.06
+      },
+      "exploration": {
+        "allowed": false,
+        "explored": false
+      },
+      "constraints": [],
+      "relay": {
+        "relay_class": "transactional",
+        "interruption": "passive",
+        "timing": "next_break",
+        "max_defer_s": 3600,
+        "sensitive": false
+      },
+      "outcome": {
+        "signal": "useful",
+        "at": "2026-10-20T09:00:00Z"
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "AT-23",
+    "description": "A suggestion in its rest period is not notified",
+    "input": {
+      "decision_id": "atd_01m4ezb900e9yrh4wyn6tbzjpn",
+      "decided_at": "2026-10-20T08:15:00Z",
+      "retention_class": "one_memory",
+      "candidate": {
+        "output_type": "app.suiss.one.output.routine.suggestion",
+        "source": "suggestion",
+        "urgent": false,
+        "critical_grant": false,
+        "sensitive": false
+      },
+      "input_summary": {
+        "local_hour": 11,
+        "weekday": 2,
+        "device": {
+          "lock": "locked",
+          "focus": "off",
+          "headphones": "unknown",
+          "wearable": "worn",
+          "at_break": false
+        },
+        "calendar_busy": true,
+        "activity": "still",
+        "sender_relation": "organisation",
+        "quiet_hours": false,
+        "type_muted": false,
+        "in_rest_period": true,
+        "interruptions_today": 1,
+        "budget_remaining": 2,
+        "seconds_since_last_interruption": 5400,
+        "seconds_since_last_same_type": null
+      },
+      "policy": {
+        "policy_version": "attention-start-1",
+        "model_version_id": "mdl_01m4ezb900fvmv9zra2mg2pdj1",
+        "thresholds": {
+          "lower": 0.3,
+          "upper": 0.7
+        }
+      },
+      "value_probability": 0.82,
+      "cloud_estimate": {
+        "requested": false
+      },
+      "chosen_arm": "next_break",
+      "propensity": 0.91,
+      "arm_probabilities": {
+        "interrupt_now": 0.03,
+        "next_break": 0.91,
+        "digest": 0.06
+      },
+      "exploration": {
+        "allowed": false,
+        "explored": false
+      },
+      "constraints": [],
+      "relay": {
+        "relay_class": "transactional",
+        "interruption": "active",
+        "timing": "next_break",
+        "max_defer_s": 3600,
+        "sensitive": false
+      },
+      "outcome": {
+        "signal": "useful",
+        "at": "2026-10-20T09:00:00Z"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "AT-13",
+    "description": "Sensitive content goes to Relay with sensitive true",
+    "input": {
+      "decision_id": "atd_01m4ezb900e9yrh4wyn6tbzjpn",
+      "decided_at": "2026-10-20T08:15:00Z",
+      "retention_class": "one_memory",
+      "candidate": {
+        "output_type": "app.suiss.one.output.delivery.update",
+        "source": "external_event",
+        "urgent": false,
+        "critical_grant": false,
+        "sensitive": true
+      },
+      "input_summary": {
+        "local_hour": 11,
+        "weekday": 2,
+        "device": {
+          "lock": "locked",
+          "focus": "off",
+          "headphones": "unknown",
+          "wearable": "worn",
+          "at_break": false
+        },
+        "calendar_busy": true,
+        "activity": "still",
+        "sender_relation": "organisation",
+        "quiet_hours": false,
+        "type_muted": false,
+        "in_rest_period": false,
+        "interruptions_today": 1,
+        "budget_remaining": 2,
+        "seconds_since_last_interruption": 5400,
+        "seconds_since_last_same_type": null
+      },
+      "policy": {
+        "policy_version": "attention-start-1",
+        "model_version_id": "mdl_01m4ezb900fvmv9zra2mg2pdj1",
+        "thresholds": {
+          "lower": 0.3,
+          "upper": 0.7
+        }
+      },
+      "value_probability": 0.82,
+      "cloud_estimate": {
+        "requested": false
+      },
+      "chosen_arm": "next_break",
+      "propensity": 0.91,
+      "arm_probabilities": {
+        "interrupt_now": 0.03,
+        "next_break": 0.91,
+        "digest": 0.06
+      },
+      "exploration": {
+        "allowed": false,
+        "explored": false
+      },
+      "constraints": [],
+      "relay": {
+        "relay_class": "transactional",
+        "interruption": "active",
+        "timing": "next_break",
+        "max_defer_s": 3600,
+        "sensitive": false
+      },
+      "outcome": {
+        "signal": "useful",
+        "at": "2026-10-20T09:00:00Z"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "AT-26",
+    "description": "Exploration needs the user's consent",
+    "input": {
+      "decision_id": "atd_01m4ezb900e9yrh4wyn6tbzjpn",
+      "decided_at": "2026-10-20T08:15:00Z",
+      "retention_class": "one_memory",
+      "candidate": {
+        "output_type": "app.suiss.one.output.delivery.update",
+        "source": "external_event",
+        "urgent": false,
+        "critical_grant": false,
+        "sensitive": false
+      },
+      "input_summary": {
+        "local_hour": 11,
+        "weekday": 2,
+        "device": {
+          "lock": "locked",
+          "focus": "off",
+          "headphones": "unknown",
+          "wearable": "worn",
+          "at_break": false
+        },
+        "calendar_busy": true,
+        "activity": "still",
+        "sender_relation": "organisation",
+        "quiet_hours": false,
+        "type_muted": false,
+        "in_rest_period": false,
+        "interruptions_today": 1,
+        "budget_remaining": 2,
+        "seconds_since_last_interruption": 5400,
+        "seconds_since_last_same_type": null
+      },
+      "policy": {
+        "policy_version": "attention-start-1",
+        "model_version_id": "mdl_01m4ezb900fvmv9zra2mg2pdj1",
+        "thresholds": {
+          "lower": 0.3,
+          "upper": 0.7
+        }
+      },
+      "value_probability": 0.82,
+      "cloud_estimate": {
+        "requested": false
+      },
+      "chosen_arm": "next_break",
+      "propensity": 0.91,
+      "arm_probabilities": {
+        "interrupt_now": 0.03,
+        "next_break": 0.91,
+        "digest": 0.06
+      },
+      "exploration": {
+        "allowed": false,
+        "explored": true
+      },
+      "constraints": [],
+      "relay": {
+        "relay_class": "transactional",
+        "interruption": "active",
+        "timing": "next_break",
+        "max_defer_s": 3600,
+        "sensitive": false
+      },
+      "outcome": {
+        "signal": "useful",
+        "at": "2026-10-20T09:00:00Z"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "AT-26",
+    "description": "Exploration between digest and next break with consent",
+    "input": {
+      "decision_id": "atd_01m4ezb900e9yrh4wyn6tbzjpn",
+      "decided_at": "2026-10-20T08:15:00Z",
+      "retention_class": "one_memory",
+      "candidate": {
+        "output_type": "app.suiss.one.output.delivery.update",
+        "source": "external_event",
+        "urgent": false,
+        "critical_grant": false,
+        "sensitive": false
+      },
+      "input_summary": {
+        "local_hour": 11,
+        "weekday": 2,
+        "device": {
+          "lock": "locked",
+          "focus": "off",
+          "headphones": "unknown",
+          "wearable": "worn",
+          "at_break": false
+        },
+        "calendar_busy": true,
+        "activity": "still",
+        "sender_relation": "organisation",
+        "quiet_hours": false,
+        "type_muted": false,
+        "in_rest_period": false,
+        "interruptions_today": 1,
+        "budget_remaining": 2,
+        "seconds_since_last_interruption": 5400,
+        "seconds_since_last_same_type": null
+      },
+      "policy": {
+        "policy_version": "attention-start-1",
+        "model_version_id": "mdl_01m4ezb900fvmv9zra2mg2pdj1",
+        "thresholds": {
+          "lower": 0.3,
+          "upper": 0.7
+        }
+      },
+      "value_probability": 0.82,
+      "cloud_estimate": {
+        "requested": false
+      },
+      "chosen_arm": "next_break",
+      "propensity": 0.91,
+      "arm_probabilities": {
+        "interrupt_now": 0.03,
+        "next_break": 0.91,
+        "digest": 0.06
+      },
+      "exploration": {
+        "allowed": true,
+        "explored": true
+      },
+      "constraints": [],
+      "relay": {
+        "relay_class": "transactional",
+        "interruption": "active",
+        "timing": "next_break",
+        "max_defer_s": 3600,
+        "sensitive": false
+      },
+      "outcome": {
+        "signal": "useful",
+        "at": "2026-10-20T09:00:00Z"
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "AT-26",
+    "description": "No exploration on interrupt now",
+    "input": {
+      "decision_id": "atd_01m4ezb900e9yrh4wyn6tbzjpn",
+      "decided_at": "2026-10-20T08:15:00Z",
+      "retention_class": "one_memory",
+      "candidate": {
+        "output_type": "app.suiss.one.output.delivery.update",
+        "source": "external_event",
+        "urgent": true,
+        "critical_grant": false,
+        "sensitive": false
+      },
+      "input_summary": {
+        "local_hour": 11,
+        "weekday": 2,
+        "device": {
+          "lock": "locked",
+          "focus": "off",
+          "headphones": "unknown",
+          "wearable": "worn",
+          "at_break": false
+        },
+        "calendar_busy": true,
+        "activity": "still",
+        "sender_relation": "organisation",
+        "quiet_hours": false,
+        "type_muted": false,
+        "in_rest_period": false,
+        "interruptions_today": 1,
+        "budget_remaining": 2,
+        "seconds_since_last_interruption": 5400,
+        "seconds_since_last_same_type": null
+      },
+      "policy": {
+        "policy_version": "attention-start-1",
+        "model_version_id": "mdl_01m4ezb900fvmv9zra2mg2pdj1",
+        "thresholds": {
+          "lower": 0.3,
+          "upper": 0.7
+        }
+      },
+      "value_probability": 0.82,
+      "cloud_estimate": {
+        "requested": false
+      },
+      "chosen_arm": "interrupt_now",
+      "propensity": 0.91,
+      "arm_probabilities": {
+        "interrupt_now": 0.03,
+        "next_break": 0.91,
+        "digest": 0.06
+      },
+      "exploration": {
+        "allowed": true,
+        "explored": true
+      },
+      "constraints": [],
+      "relay": {
+        "relay_class": "transactional",
+        "interruption": "active",
+        "timing": "immediate",
+        "sensitive": false
+      },
+      "outcome": {
+        "signal": "useful",
+        "at": "2026-10-20T09:00:00Z"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "AT-26",
+    "description": "No exploration on critical outputs",
+    "input": {
+      "decision_id": "atd_01m4ezb900e9yrh4wyn6tbzjpn",
+      "decided_at": "2026-10-20T08:15:00Z",
+      "retention_class": "one_memory",
+      "candidate": {
+        "output_type": "app.suiss.one.output.delivery.update",
+        "source": "external_event",
+        "urgent": false,
+        "critical_grant": true,
+        "sensitive": false
+      },
+      "input_summary": {
+        "local_hour": 11,
+        "weekday": 2,
+        "device": {
+          "lock": "locked",
+          "focus": "off",
+          "headphones": "unknown",
+          "wearable": "worn",
+          "at_break": false
+        },
+        "calendar_busy": true,
+        "activity": "still",
+        "sender_relation": "organisation",
+        "quiet_hours": false,
+        "type_muted": false,
+        "in_rest_period": false,
+        "interruptions_today": 1,
+        "budget_remaining": 2,
+        "seconds_since_last_interruption": 5400,
+        "seconds_since_last_same_type": null
+      },
+      "policy": {
+        "policy_version": "attention-start-1",
+        "model_version_id": "mdl_01m4ezb900fvmv9zra2mg2pdj1",
+        "thresholds": {
+          "lower": 0.3,
+          "upper": 0.7
+        }
+      },
+      "value_probability": 0.82,
+      "cloud_estimate": {
+        "requested": false
+      },
+      "chosen_arm": "next_break",
+      "propensity": 0.91,
+      "arm_probabilities": {
+        "interrupt_now": 0.03,
+        "next_break": 0.91,
+        "digest": 0.06
+      },
+      "exploration": {
+        "allowed": true,
+        "explored": true
+      },
+      "constraints": [],
+      "relay": {
+        "relay_class": "transactional",
+        "interruption": "active",
+        "timing": "next_break",
+        "max_defer_s": 3600,
+        "sensitive": false
+      },
+      "outcome": {
+        "signal": "useful",
+        "at": "2026-10-20T09:00:00Z"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "AT-2",
+    "description": "A requested cloud estimate records availability",
+    "input": {
+      "decision_id": "atd_01m4ezb900e9yrh4wyn6tbzjpn",
+      "decided_at": "2026-10-20T08:15:00Z",
+      "retention_class": "one_memory",
+      "candidate": {
+        "output_type": "app.suiss.one.output.delivery.update",
+        "source": "external_event",
+        "urgent": false,
+        "critical_grant": false,
+        "sensitive": false
+      },
+      "input_summary": {
+        "local_hour": 11,
+        "weekday": 2,
+        "device": {
+          "lock": "locked",
+          "focus": "off",
+          "headphones": "unknown",
+          "wearable": "worn",
+          "at_break": false
+        },
+        "calendar_busy": true,
+        "activity": "still",
+        "sender_relation": "organisation",
+        "quiet_hours": false,
+        "type_muted": false,
+        "in_rest_period": false,
+        "interruptions_today": 1,
+        "budget_remaining": 2,
+        "seconds_since_last_interruption": 5400,
+        "seconds_since_last_same_type": null
+      },
+      "policy": {
+        "policy_version": "attention-start-1",
+        "model_version_id": "mdl_01m4ezb900fvmv9zra2mg2pdj1",
+        "thresholds": {
+          "lower": 0.3,
+          "upper": 0.7
+        }
+      },
+      "value_probability": 0.82,
+      "cloud_estimate": {
+        "requested": true
+      },
+      "chosen_arm": "next_break",
+      "propensity": 0.91,
+      "arm_probabilities": {
+        "interrupt_now": 0.03,
+        "next_break": 0.91,
+        "digest": 0.06
+      },
+      "exploration": {
+        "allowed": false,
+        "explored": false
+      },
+      "constraints": [],
+      "relay": {
+        "relay_class": "transactional",
+        "interruption": "active",
+        "timing": "next_break",
+        "max_defer_s": 3600,
+        "sensitive": false
+      },
+      "outcome": {
+        "signal": "useful",
+        "at": "2026-10-20T09:00:00Z"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "AT-2",
+    "description": "An unavailable cloud estimate has no value",
+    "input": {
+      "decision_id": "atd_01m4ezb900e9yrh4wyn6tbzjpn",
+      "decided_at": "2026-10-20T08:15:00Z",
+      "retention_class": "one_memory",
+      "candidate": {
+        "output_type": "app.suiss.one.output.delivery.update",
+        "source": "external_event",
+        "urgent": false,
+        "critical_grant": false,
+        "sensitive": false
+      },
+      "input_summary": {
+        "local_hour": 11,
+        "weekday": 2,
+        "device": {
+          "lock": "locked",
+          "focus": "off",
+          "headphones": "unknown",
+          "wearable": "worn",
+          "at_break": false
+        },
+        "calendar_busy": true,
+        "activity": "still",
+        "sender_relation": "organisation",
+        "quiet_hours": false,
+        "type_muted": false,
+        "in_rest_period": false,
+        "interruptions_today": 1,
+        "budget_remaining": 2,
+        "seconds_since_last_interruption": 5400,
+        "seconds_since_last_same_type": null
+      },
+      "policy": {
+        "policy_version": "attention-start-1",
+        "model_version_id": "mdl_01m4ezb900fvmv9zra2mg2pdj1",
+        "thresholds": {
+          "lower": 0.3,
+          "upper": 0.7
+        }
+      },
+      "value_probability": 0.82,
+      "cloud_estimate": {
+        "requested": true,
+        "available": false,
+        "value": 0.5
+      },
+      "chosen_arm": "next_break",
+      "propensity": 0.91,
+      "arm_probabilities": {
+        "interrupt_now": 0.03,
+        "next_break": 0.91,
+        "digest": 0.06
+      },
+      "exploration": {
+        "allowed": false,
+        "explored": false
+      },
+      "constraints": [],
+      "relay": {
+        "relay_class": "transactional",
+        "interruption": "active",
+        "timing": "next_break",
+        "max_defer_s": 3600,
+        "sensitive": false
+      },
+      "outcome": {
+        "signal": "useful",
+        "at": "2026-10-20T09:00:00Z"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "AT-2",
+    "description": "An available cloud estimate records its value",
+    "input": {
+      "decision_id": "atd_01m4ezb900e9yrh4wyn6tbzjpn",
+      "decided_at": "2026-10-20T08:15:00Z",
+      "retention_class": "one_memory",
+      "candidate": {
+        "output_type": "app.suiss.one.output.delivery.update",
+        "source": "external_event",
+        "urgent": false,
+        "critical_grant": false,
+        "sensitive": false
+      },
+      "input_summary": {
+        "local_hour": 11,
+        "weekday": 2,
+        "device": {
+          "lock": "locked",
+          "focus": "off",
+          "headphones": "unknown",
+          "wearable": "worn",
+          "at_break": false
+        },
+        "calendar_busy": true,
+        "activity": "still",
+        "sender_relation": "organisation",
+        "quiet_hours": false,
+        "type_muted": false,
+        "in_rest_period": false,
+        "interruptions_today": 1,
+        "budget_remaining": 2,
+        "seconds_since_last_interruption": 5400,
+        "seconds_since_last_same_type": null
+      },
+      "policy": {
+        "policy_version": "attention-start-1",
+        "model_version_id": "mdl_01m4ezb900fvmv9zra2mg2pdj1",
+        "thresholds": {
+          "lower": 0.3,
+          "upper": 0.7
+        }
+      },
+      "value_probability": 0.82,
+      "cloud_estimate": {
+        "requested": true,
+        "available": true,
+        "value": 0.74
+      },
+      "chosen_arm": "next_break",
+      "propensity": 0.91,
+      "arm_probabilities": {
+        "interrupt_now": 0.03,
+        "next_break": 0.91,
+        "digest": 0.06
+      },
+      "exploration": {
+        "allowed": false,
+        "explored": false
+      },
+      "constraints": [],
+      "relay": {
+        "relay_class": "transactional",
+        "interruption": "active",
+        "timing": "next_break",
+        "max_defer_s": 3600,
+        "sensitive": false
+      },
+      "outcome": {
+        "signal": "useful",
+        "at": "2026-10-20T09:00:00Z"
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "AT-21",
+    "description": "Outcome signals are the written reward signals",
+    "input": {
+      "decision_id": "atd_01m4ezb900e9yrh4wyn6tbzjpn",
+      "decided_at": "2026-10-20T08:15:00Z",
+      "retention_class": "one_memory",
+      "candidate": {
+        "output_type": "app.suiss.one.output.delivery.update",
+        "source": "external_event",
+        "urgent": false,
+        "critical_grant": false,
+        "sensitive": false
+      },
+      "input_summary": {
+        "local_hour": 11,
+        "weekday": 2,
+        "device": {
+          "lock": "locked",
+          "focus": "off",
+          "headphones": "unknown",
+          "wearable": "worn",
+          "at_break": false
+        },
+        "calendar_busy": true,
+        "activity": "still",
+        "sender_relation": "organisation",
+        "quiet_hours": false,
+        "type_muted": false,
+        "in_rest_period": false,
+        "interruptions_today": 1,
+        "budget_remaining": 2,
+        "seconds_since_last_interruption": 5400,
+        "seconds_since_last_same_type": null
+      },
+      "policy": {
+        "policy_version": "attention-start-1",
+        "model_version_id": "mdl_01m4ezb900fvmv9zra2mg2pdj1",
+        "thresholds": {
+          "lower": 0.3,
+          "upper": 0.7
+        }
+      },
+      "value_probability": 0.82,
+      "cloud_estimate": {
+        "requested": false
+      },
+      "chosen_arm": "next_break",
+      "propensity": 0.91,
+      "arm_probabilities": {
+        "interrupt_now": 0.03,
+        "next_break": 0.91,
+        "digest": 0.06
+      },
+      "exploration": {
+        "allowed": false,
+        "explored": false
+      },
+      "constraints": [],
+      "relay": {
+        "relay_class": "transactional",
+        "interruption": "active",
+        "timing": "next_break",
+        "max_defer_s": 3600,
+        "sensitive": false
+      },
+      "outcome": {
+        "signal": "opened",
+        "at": "2026-10-20T09:00:00Z"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "AT-22",
+    "description": "Open, click and session time are not outcome signals",
+    "input": {
+      "decision_id": "atd_01m4ezb900e9yrh4wyn6tbzjpn",
+      "decided_at": "2026-10-20T08:15:00Z",
+      "retention_class": "one_memory",
+      "candidate": {
+        "output_type": "app.suiss.one.output.delivery.update",
+        "source": "external_event",
+        "urgent": false,
+        "critical_grant": false,
+        "sensitive": false
+      },
+      "input_summary": {
+        "local_hour": 11,
+        "weekday": 2,
+        "device": {
+          "lock": "locked",
+          "focus": "off",
+          "headphones": "unknown",
+          "wearable": "worn",
+          "at_break": false
+        },
+        "calendar_busy": true,
+        "activity": "still",
+        "sender_relation": "organisation",
+        "quiet_hours": false,
+        "type_muted": false,
+        "in_rest_period": false,
+        "interruptions_today": 1,
+        "budget_remaining": 2,
+        "seconds_since_last_interruption": 5400,
+        "seconds_since_last_same_type": null
+      },
+      "policy": {
+        "policy_version": "attention-start-1",
+        "model_version_id": "mdl_01m4ezb900fvmv9zra2mg2pdj1",
+        "thresholds": {
+          "lower": 0.3,
+          "upper": 0.7
+        }
+      },
+      "value_probability": 0.82,
+      "cloud_estimate": {
+        "requested": false
+      },
+      "chosen_arm": "next_break",
+      "propensity": 0.91,
+      "arm_probabilities": {
+        "interrupt_now": 0.03,
+        "next_break": 0.91,
+        "digest": 0.06
+      },
+      "exploration": {
+        "allowed": false,
+        "explored": false
+      },
+      "constraints": [],
+      "relay": {
+        "relay_class": "transactional",
+        "interruption": "active",
+        "timing": "next_break",
+        "max_defer_s": 3600,
+        "sensitive": false
+      },
+      "outcome": {
+        "signal": "session_time",
+        "at": "2026-10-20T09:00:00Z"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "AT-42",
+    "description": "One never sends the security class",
+    "input": {
+      "decision_id": "atd_01m4ezb900e9yrh4wyn6tbzjpn",
+      "decided_at": "2026-10-20T08:15:00Z",
+      "retention_class": "one_memory",
+      "candidate": {
+        "output_type": "app.suiss.one.output.delivery.update",
+        "source": "external_event",
+        "urgent": false,
+        "critical_grant": false,
+        "sensitive": false
+      },
+      "input_summary": {
+        "local_hour": 11,
+        "weekday": 2,
+        "device": {
+          "lock": "locked",
+          "focus": "off",
+          "headphones": "unknown",
+          "wearable": "worn",
+          "at_break": false
+        },
+        "calendar_busy": true,
+        "activity": "still",
+        "sender_relation": "organisation",
+        "quiet_hours": false,
+        "type_muted": false,
+        "in_rest_period": false,
+        "interruptions_today": 1,
+        "budget_remaining": 2,
+        "seconds_since_last_interruption": 5400,
+        "seconds_since_last_same_type": null
+      },
+      "policy": {
+        "policy_version": "attention-start-1",
+        "model_version_id": "mdl_01m4ezb900fvmv9zra2mg2pdj1",
+        "thresholds": {
+          "lower": 0.3,
+          "upper": 0.7
+        }
+      },
+      "value_probability": 0.82,
+      "cloud_estimate": {
+        "requested": false
+      },
+      "chosen_arm": "next_break",
+      "propensity": 0.91,
+      "arm_probabilities": {
+        "interrupt_now": 0.03,
+        "next_break": 0.91,
+        "digest": 0.06
+      },
+      "exploration": {
+        "allowed": false,
+        "explored": false
+      },
+      "constraints": [],
+      "relay": {
+        "relay_class": "security",
+        "interruption": "active",
+        "timing": "next_break",
+        "max_defer_s": 3600,
+        "sensitive": false
+      },
+      "outcome": {
+        "signal": "useful",
+        "at": "2026-10-20T09:00:00Z"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "AT-42",
+    "description": "Output types are named under app.suiss.one.output",
+    "input": {
+      "decision_id": "atd_01m4ezb900e9yrh4wyn6tbzjpn",
+      "decided_at": "2026-10-20T08:15:00Z",
+      "retention_class": "one_memory",
+      "candidate": {
+        "output_type": "delivery_update",
+        "source": "external_event",
+        "urgent": false,
+        "critical_grant": false,
+        "sensitive": false
+      },
+      "input_summary": {
+        "local_hour": 11,
+        "weekday": 2,
+        "device": {
+          "lock": "locked",
+          "focus": "off",
+          "headphones": "unknown",
+          "wearable": "worn",
+          "at_break": false
+        },
+        "calendar_busy": true,
+        "activity": "still",
+        "sender_relation": "organisation",
+        "quiet_hours": false,
+        "type_muted": false,
+        "in_rest_period": false,
+        "interruptions_today": 1,
+        "budget_remaining": 2,
+        "seconds_since_last_interruption": 5400,
+        "seconds_since_last_same_type": null
+      },
+      "policy": {
+        "policy_version": "attention-start-1",
+        "model_version_id": "mdl_01m4ezb900fvmv9zra2mg2pdj1",
+        "thresholds": {
+          "lower": 0.3,
+          "upper": 0.7
+        }
+      },
+      "value_probability": 0.82,
+      "cloud_estimate": {
+        "requested": false
+      },
+      "chosen_arm": "next_break",
+      "propensity": 0.91,
+      "arm_probabilities": {
+        "interrupt_now": 0.03,
+        "next_break": 0.91,
+        "digest": 0.06
+      },
+      "exploration": {
+        "allowed": false,
+        "explored": false
+      },
+      "constraints": [],
+      "relay": {
+        "relay_class": "transactional",
+        "interruption": "active",
+        "timing": "next_break",
+        "max_defer_s": 3600,
+        "sensitive": false
+      },
+      "outcome": {
+        "signal": "useful",
+        "at": "2026-10-20T09:00:00Z"
+      }
+    },
+    "valid": false
+  }
+]

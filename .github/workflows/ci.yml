@@ -161,6 +161,23 @@ jobs:
             https://github.com/oasdiff/oasdiff/releases/download/v1.33.0/oasdiff_1.33.0_linux_amd64.tar.gz
           echo "$OASDIFF_SHA256  $RUNNER_TEMP/oasdiff.tar.gz" | sha256sum --check --strict
           tar -xzf "$RUNNER_TEMP/oasdiff.tar.gz" -C "$RUNNER_TEMP" oasdiff
+      - name: Install buf 1.73.0
+        env:
+          BUF_SHA256: 8f2986298ad08f0cc1bf999b9797b7c383adf32d7edf0f73d6f1e1a701baeac1
+        run: |
+          curl -fsSL -o "$RUNNER_TEMP/buf" https://github.com/bufbuild/buf/releases/download/v1.73.0/buf-Linux-x86_64
+          echo "$BUF_SHA256  $RUNNER_TEMP/buf" | sha256sum --check --strict
+          chmod +x "$RUNNER_TEMP/buf"
+      - name: Protobuf lint and breaking-change gate
+        env:
+          BASE: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}
+        run: |
+          "$RUNNER_TEMP/buf" lint conformance/rpc
+          if [[ -z "$BASE" || "$BASE" =~ ^0+$ ]] || ! git cat-file -e "$BASE:conformance/rpc/buf.yaml" 2>/dev/null; then
+            echo "::notice::no earlier Protobuf contract to compare"
+          else
+            "$RUNNER_TEMP/buf" breaking conformance/rpc --against ".git#ref=$BASE,subdir=conformance/rpc"
+          fi
       - name: No breaking change without a new major version
         env:
           BASE: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}

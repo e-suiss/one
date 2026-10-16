@@ -1,0 +1,151 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/ontology/personality-profile/v1.json",
+  "title": "Personality profile",
+  "description": "Versioned view of behaviour-rule memory records; not a canonical concept and has no identity of its own. Enters the model prompt as these structured fields. Carries no field aimed at emotional bond or engagement.",
+  "type": "object",
+  "properties": {
+    "view": {
+      "const": "personality_profile"
+    },
+    "owner": {
+      "$ref": "https://suiss.app/schemas/one/memory/common/v1.json#/$defs/party_ref"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "retention_class": {
+      "const": "one_memory"
+    },
+    "recorded_at": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]{1,9})?Z$"
+    },
+    "assistant_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 40,
+      "default": "One"
+    },
+    "address": {
+      "type": "object",
+      "properties": {
+        "form": {
+          "enum": [
+            "informal",
+            "formal"
+          ]
+        },
+        "use_user_name": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "form",
+        "use_user_name"
+      ],
+      "additionalProperties": false
+    },
+    "style": {
+      "type": "object",
+      "properties": {
+        "length": {
+          "enum": [
+            "short",
+            "medium",
+            "detailed"
+          ],
+          "default": "medium"
+        },
+        "formality": {
+          "enum": [
+            "formal",
+            "neutral",
+            "casual"
+          ]
+        },
+        "humour": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "length",
+        "formality",
+        "humour"
+      ],
+      "additionalProperties": false
+    },
+    "values": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/item"
+      }
+    },
+    "rules": {
+      "description": "Approved behaviour rules",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/item"
+      }
+    },
+    "source_records": {
+      "type": "array",
+      "items": {
+        "$ref": "https://suiss.app/schemas/one/ontology/id/v1.json#/$defs/MemoryRecordId"
+      },
+      "uniqueItems": true
+    }
+  },
+  "$defs": {
+    "item": {
+      "type": "object",
+      "properties": {
+        "statement": {
+          "type": "object",
+          "properties": {
+            "text": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 280
+            },
+            "lang": {
+              "enum": [
+                "tr",
+                "en"
+              ]
+            }
+          },
+          "required": [
+            "text",
+            "lang"
+          ],
+          "additionalProperties": false
+        },
+        "record": {
+          "$ref": "https://suiss.app/schemas/one/ontology/id/v1.json#/$defs/MemoryRecordId"
+        }
+      },
+      "required": [
+        "statement",
+        "record"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "view",
+    "owner",
+    "version",
+    "retention_class",
+    "recorded_at",
+    "assistant_name",
+    "address",
+    "style",
+    "values",
+    "rules",
+    "source_records"
+  ],
+  "additionalProperties": false
+}

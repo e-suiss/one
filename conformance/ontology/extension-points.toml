@@ -1,0 +1,35 @@
+# C-7, C-3, CP-15, OO-9
+
+schema = "https://suiss.app/schemas/one/ontology/extension/v1.json"
+root = "app.suiss"
+reserved = ["app.suiss.one"]
+unmapped = "rejected"
+registry = "extensions.toml"
+
+[[point]]
+name = "memory_content_type"
+namespace = "app.suiss"
+maps_to = "memory_content_type"
+core = ["preference", "routine", "goal", "constraint", "relationship", "personal_fact", "opinion", "event"]
+rule = "C-3"
+
+[[point]]
+name = "interaction_kind"
+namespace = "app.suiss"
+maps_to = "interaction_kind"
+core = ["approval", "choice", "question", "info", "progress", "receipt", "comparison", "form", "digest_item"]
+rule = "C-3"
+
+[[point]]
+name = "capability_name"
+namespace = "app.suiss or third-party reverse DNS"
+maps_to = "extends"
+core = []
+rule = "CP-15"
+
+[[point]]
+name = "typed_field"
+namespace = "app.suiss"
+maps_to = "concept"
+core = ["Observation", "Episode", "MemoryRecord", "Goal", "Routine", "Task", "Interaction", "CapabilityDefinition", "SurfaceCapability"]
+rule = "C-3"

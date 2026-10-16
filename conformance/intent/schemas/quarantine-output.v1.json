@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/intent/quarantine-output/v1.json",
+  "title": "Labelled quarantine output",
+  "type": "object",
+  "required": ["label", "fields"],
+  "additionalProperties": false,
+  "properties": {
+    "label": { "$ref": "#/$defs/external_label" },
+    "fields": {
+      "type": "object",
+      "maxProperties": 64,
+      "propertyNames": {
+        "$ref": "https://suiss.app/schemas/one/intent/quarantine-model-output/v1.json#/$defs/field_name"
+      },
+      "additionalProperties": {
+        "$ref": "https://suiss.app/schemas/one/intent/quarantine-model-output/v1.json#/$defs/typed_field",
+        "required": ["label"],
+        "properties": {
+          "label": { "$ref": "#/$defs/external_label" }
+        },
+        "unevaluatedProperties": false
+      }
+    },
+    "display_summary": {
+      "type": "object",
+      "required": ["text", "lang", "label", "display_only"],
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "$ref": "https://suiss.app/schemas/one/intent/quarantine-model-output/v1.json#/$defs/summary_text"
+        },
+        "lang": {
+          "$ref": "https://suiss.app/schemas/one/intent/quarantine-model-output/v1.json#/$defs/lang"
+        },
+        "label": { "$ref": "#/$defs/external_label" },
+        "display_only": { "const": true }
+      }
+    }
+  },
+  "$defs": {
+    "external_label": {
+      "$ref": "https://suiss.app/schemas/one/provenance/label/v1.json#/$defs/external"
+    }
+  }
+}

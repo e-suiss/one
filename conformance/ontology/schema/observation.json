@@ -1,0 +1,254 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/ontology/observation/v1.json",
+  "title": "Observation",
+  "description": "The record of an input One received, as it was at receipt. Data, never instruction. External content stays at its source. Carries the C-19 record header; a stored raw capture is in one_observation, otherwise retention follows the data class. C-8, C-10, C-19.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "https://suiss.app/schemas/one/memory/common/v1.json#/$defs/record_header"
+    },
+    {
+      "if": {
+        "properties": {
+          "source_kind": {
+            "enum": [
+              "connected_account_item",
+              "external_content",
+              "agent_message",
+              "capability_output"
+            ]
+          }
+        },
+        "required": [
+          "source_kind"
+        ]
+      },
+      "then": {
+        "required": [
+          "source",
+          "summary"
+        ],
+        "not": {
+          "required": [
+            "content"
+          ]
+        }
+      },
+      "else": {
+        "not": {
+          "required": [
+            "source"
+          ]
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "raw": {
+            "properties": {
+              "store": {
+                "const": true
+              }
+            },
+            "required": [
+              "store"
+            ]
+          }
+        },
+        "required": [
+          "raw"
+        ]
+      },
+      "then": {
+        "properties": {
+          "retention_class": {
+            "const": "one_observation"
+          },
+          "raw": {
+            "required": [
+              "blob_key"
+            ]
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "retention_class": {
+            "not": {
+              "const": "one_observation"
+            }
+          },
+          "raw": {
+            "not": {
+              "required": [
+                "blob_key"
+              ]
+            }
+          }
+        }
+      }
+    }
+  ],
+  "properties": {
+    "type": {
+      "const": "Observation"
+    },
+    "id": {
+      "$ref": "https://suiss.app/schemas/one/ontology/id/v1.json#/$defs/ObservationId"
+    },
+    "episode": {
+      "$ref": "https://suiss.app/schemas/one/ontology/id/v1.json#/$defs/EpisodeId"
+    },
+    "source_kind": {
+      "enum": [
+        "user_utterance",
+        "device_signal",
+        "connected_account_item",
+        "external_content",
+        "agent_message",
+        "capability_output"
+      ]
+    },
+    "content_role": {
+      "description": "An Observation is data, never instruction",
+      "const": "data"
+    },
+    "observed_at": {
+      "$ref": "https://suiss.app/schemas/one/memory/common/v1.json#/$defs/instant"
+    },
+    "source": {
+      "type": "object",
+      "properties": {
+        "ref": {
+          "$ref": "https://suiss.app/schemas/one/ontology/reference/v1.json#/$defs/AnyRef"
+        },
+        "read_at": {
+          "$ref": "https://suiss.app/schemas/one/memory/common/v1.json#/$defs/instant"
+        }
+      },
+      "required": [
+        "ref",
+        "read_at"
+      ],
+      "additionalProperties": false
+    },
+    "summary": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "lang": {
+          "enum": [
+            "tr",
+            "en"
+          ]
+        }
+      },
+      "required": [
+        "text",
+        "lang"
+      ],
+      "additionalProperties": false,
+      "description": "The smallest summary the task needs"
+    },
+    "content": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4096
+        },
+        "lang": {
+          "enum": [
+            "tr",
+            "en"
+          ]
+        }
+      },
+      "required": [
+        "text",
+        "lang"
+      ],
+      "additionalProperties": false,
+      "description": "Content of an input One itself received (user utterance, device signal)"
+    },
+    "raw": {
+      "description": "Raw voice, screen, camera or location capture; not stored by default",
+      "type": "object",
+      "properties": {
+        "modality": {
+          "enum": [
+            "voice",
+            "screen",
+            "camera",
+            "location"
+          ]
+        },
+        "store": {
+          "type": "boolean",
+          "default": false
+        },
+        "blob_key": {
+          "type": "string",
+          "pattern": "^[\\x21-\\x7e]{1,512}$"
+        }
+      },
+      "required": [
+        "modality",
+        "store"
+      ],
+      "additionalProperties": false
+    },
+    "extensions": {
+      "description": "Typed extension fields (C-7): reverse-DNS name under app.suiss mapped to this concept in the extension registry",
+      "type": "object",
+      "propertyNames": {
+        "$ref": "https://suiss.app/schemas/one/ontology/extension/v1.json#/$defs/suiss_name"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "version": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "value": true
+        },
+        "required": [
+          "version",
+          "value"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "supersedes": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "https://suiss.app/schemas/one/ontology/id/v1.json#/$defs/ObservationId"
+        }
+      ]
+    },
+    "status": {
+      "const": "active"
+    }
+  },
+  "required": [
+    "type",
+    "id",
+    "status",
+    "episode",
+    "source_kind",
+    "content_role",
+    "observed_at"
+  ],
+  "unevaluatedProperties": false
+}

@@ -1,0 +1,338 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/model/request/v1.json",
+  "title": "Provider-independent model request",
+  "$comment": "MF-6, MF-4, MF-5, MF-20, MF-21, MF-24, MF-27",
+  "type": "object",
+  "required": [
+    "request_id",
+    "capabilities",
+    "context",
+    "latency_budget_ms",
+    "data_class",
+    "mode",
+    "retention_classes"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "request_id": {
+      "$ref": "https://suiss.app/schemas/one/model/common/v1.json#/$defs/ModelRequestId"
+    },
+    "task_id": {
+      "$ref": "https://suiss.app/schemas/one/model/common/v1.json#/$defs/TaskId"
+    },
+    "capabilities": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "text_generation",
+          "tool_calling",
+          "structured_output",
+          "long_context",
+          "multi_step_planning",
+          "image_input",
+          "audio_input",
+          "embedding",
+          "speech_recognition",
+          "speech_synthesis"
+        ]
+      }
+    },
+    "context": {
+      "type": "object",
+      "required": [
+        "language",
+        "messages"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "language": {
+          "enum": [
+            "tr",
+            "en"
+          ]
+        },
+        "messages": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/Message"
+          }
+        },
+        "memory_refs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "https://suiss.app/schemas/one/model/common/v1.json#/$defs/MemoryRecordId"
+          }
+        }
+      }
+    },
+    "tools": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/Tool"
+      }
+    },
+    "response_schema": {
+      "description": "JSON Schema 2020-12 the structured output must satisfy",
+      "type": "object"
+    },
+    "latency_budget_ms": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "max_output_tokens": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "mode": {
+      "type": "object",
+      "required": [
+        "ephemeral",
+        "personalise"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "ephemeral": {
+          "type": "boolean"
+        },
+        "personalise": {
+          "type": "boolean"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "ephemeral": {
+                "const": true
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "personalise": {
+                "const": false
+              }
+            }
+          }
+        }
+      ]
+    },
+    "hints": {
+      "description": "Difficulty heuristics for the second routing stage",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "task_kind": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "expected_output_tokens": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "tool_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "plan_depth": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "data_class": {
+      "$ref": "https://suiss.app/schemas/one/memory/data-class/v1.json"
+    },
+    "retention_classes": {
+      "$ref": "https://suiss.app/schemas/one/model/common/v1.json#/$defs/ContentRetentionClasses"
+    },
+    "device_only": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "allOf": [
+    {
+      "$ref": "https://suiss.app/schemas/one/model/common/v1.json#/$defs/ContentClasses"
+    },
+    {
+      "if": {
+        "properties": {
+          "capabilities": {
+            "contains": {
+              "const": "structured_output"
+            }
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "response_schema"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "capabilities": {
+            "contains": {
+              "const": "tool_calling"
+            }
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "tools"
+        ],
+        "properties": {
+          "tools": {
+            "minItems": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "required": [
+          "tools"
+        ]
+      },
+      "then": {
+        "properties": {
+          "capabilities": {
+            "contains": {
+              "const": "tool_calling"
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "mode": {
+            "properties": {
+              "ephemeral": {
+                "const": true
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "context": {
+            "not": {
+              "required": [
+                "memory_refs"
+              ]
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "Message": {
+      "type": "object",
+      "required": [
+        "role",
+        "provenance",
+        "content"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "role": {
+          "enum": [
+            "system",
+            "user",
+            "assistant",
+            "tool"
+          ]
+        },
+        "provenance": {
+          "$ref": "https://suiss.app/schemas/one/provenance/label/v1.json"
+        },
+        "content": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/Part"
+          }
+        }
+      }
+    },
+    "Part": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "type",
+            "text"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "type": {
+              "const": "text"
+            },
+            "text": {
+              "type": "string"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "type",
+            "blob_ref",
+            "media_type"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "type": {
+              "enum": [
+                "image",
+                "audio"
+              ]
+            },
+            "blob_ref": {
+              "type": "string",
+              "minLength": 1
+            },
+            "media_type": {
+              "type": "string",
+              "pattern": "^(image|audio)/[a-z0-9.+-]+$"
+            }
+          }
+        }
+      ]
+    },
+    "Tool": {
+      "type": "object",
+      "required": [
+        "name",
+        "version",
+        "input_schema"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "$ref": "https://suiss.app/schemas/one/model/common/v1.json#/$defs/CapabilityName"
+        },
+        "version": {
+          "$ref": "https://suiss.app/schemas/one/model/common/v1.json#/$defs/CapabilityVersion"
+        },
+        "input_schema": {
+          "type": "object"
+        }
+      }
+    }
+  }
+}

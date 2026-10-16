@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/intent/intent-model-output/v1.json",
+  "title": "Planner model output proposing one typed intent",
+  "type": "object",
+  "required": ["capability", "inputs"],
+  "additionalProperties": false,
+  "properties": {
+    "capability": {
+      "$ref": "https://suiss.app/schemas/one/intent/capability-ref/v1.json#/$defs/proposed"
+    },
+    "inputs": {
+      "type": "object",
+      "maxProperties": 128,
+      "propertyNames": {
+        "$ref": "https://suiss.app/schemas/one/intent/typed-intent/v1.json#/$defs/input_name"
+      },
+      "additionalProperties": { "$ref": "#/$defs/input" }
+    }
+  },
+  "$defs": {
+    "variable_ref": {
+      "type": "string",
+      "pattern": "^var_[0-9]{1,6}$"
+    },
+    "input": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": ["literal"],
+          "additionalProperties": false,
+          "properties": {
+            "literal": {
+              "type": ["string", "number", "integer", "boolean", "object", "array"]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": ["ref"],
+          "additionalProperties": false,
+          "properties": {
+            "ref": { "$ref": "#/$defs/variable_ref" }
+          }
+        }
+      ]
+    }
+  }
+}

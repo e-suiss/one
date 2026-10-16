@@ -1,0 +1,77 @@
+# CP-15, C-7, C-17, CP-25, OO-9
+version = 1
+schema = "https://suiss.app/schemas/one/capability/name/v1.json"
+root_domain = "suiss.app"
+root = "app.suiss"
+handle_domain = "one.suiss.app"
+handle_form = "<handle>.one.suiss.app"
+
+[grammar]
+abnf = """
+suiss-name       = "app.suiss" 2*5("." segment)
+segment          = lc-alpha *31(lc-alpha / digit)
+third-party-name = tld 2*9("." label)
+tld              = 2*63lc-alpha
+label            = (lc-alpha / digit) [*61(lc-alpha / digit / "_" / "-") (lc-alpha / digit)]
+version          = date-fullyear "-" date-month "-" date-mday
+lc-alpha         = %x61-7A
+digit            = %x30-39
+"""
+max_length = 128
+first_segment_is_category = true
+suiss_semantic_segments = { min = 2, max = 5 }
+case = "lower"
+provider_names_forbidden = true
+
+[[reserved_segment]]
+segment = "one"
+reason = "app.suiss.one.* is the reverse form of the handle subdomain one.suiss.app; a capability name never collides with a handle"
+
+[[reserved_segment]]
+segment = "access"
+reason = "Product names are providers; capability names carry meaning, not providers"
+
+[[reserved_segment]]
+segment = "relay"
+reason = "Product names are providers; capability names carry meaning, not providers"
+
+[[reserved_segment]]
+segment = "work"
+reason = "Product names are providers; capability names carry meaning, not providers"
+
+[[reserved_segment]]
+segment = "pay"
+reason = "Product names are providers; capability names carry meaning, not providers"
+
+[[reserved_segment]]
+segment = "suiss"
+reason = "No nested root"
+
+[[reserved_segment]]
+segment = "www"
+reason = "Host label of suiss.app"
+
+[[reserved_segment]]
+segment = "api"
+reason = "Host label of suiss.app"
+
+[third_party]
+root_rule = "A third-party name lives under the reverse DNS of a domain its publisher controls and never under app.suiss"
+extends_required = true
+extends_target = "At least one parent is a Suiss name, directly or through a chain of extensions"
+
+[version_rule]
+form = "YYYY-MM-DD"
+order = "Lexicographic order equals chronological order; the highest version is the latest date"
+compatibility = "A breaking change of the input or output schema publishes a new version; the ActionRef schema digest pins the exact schema"
+
+[negotiation]
+steps = [
+  "Intersect: keep a name only when both sides declare it",
+  "Conflict: drop the name when the two sides declare different extends sets",
+  "Version: keep the highest version present in both sides' versions; drop the name when there is none",
+  "Prune: drop an extension with a single parent when that parent is not kept; drop an extension with several parents when none of them is kept",
+  "Repeat pruning until nothing more is dropped",
+  "Result: the kept names with their chosen version, sorted by name",
+]
+invalid_declaration = "A declaration that fails the name schema is ignored on that side and never reaches the planner"

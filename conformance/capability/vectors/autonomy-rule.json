@@ -1,0 +1,810 @@
+[
+  {
+    "rule": "A-1",
+    "description": "Weekday coffee under 500 TRY from one cafe: act",
+    "input": {
+      "mandate_ref": {
+        "ref": "MandateRef",
+        "id": "coffee-weekday"
+      },
+      "capability": {
+        "name": "app.suiss.food.order.place",
+        "version": "2026-10-01"
+      },
+      "action": {
+        "namespace": "app.suiss.food.order.place",
+        "name": "place",
+        "version": "2026-10-01",
+        "schema_digest": "sha256:abababababababababababababababababababababababababababababababab"
+      },
+      "source": {
+        "kind": "merchant",
+        "refs": [
+          "merchant-42"
+        ]
+      },
+      "context": {
+        "time_windows": [
+          {
+            "days": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri"
+            ],
+            "from": "07:00",
+            "to": "11:00",
+            "time_zone": "Europe/Istanbul",
+            "public_holidays": "excluded"
+          }
+        ]
+      },
+      "budget": {
+        "amount_per_exercise": {
+          "value": "500.00",
+          "currency": "TRY"
+        },
+        "period": "rule"
+      },
+      "risk": {
+        "max_consequence_tier": "CT1",
+        "reversibility": [
+          "compensable"
+        ]
+      },
+      "behaviour": "act",
+      "ends_at": "2027-01-16T00:00:00Z"
+    },
+    "valid": true
+  },
+  {
+    "rule": "A-1",
+    "description": "Email send: ask, no budget needed",
+    "input": {
+      "mandate_ref": {
+        "ref": "MandateRef",
+        "id": "coffee-weekday"
+      },
+      "capability": {
+        "name": "app.suiss.communication.email.send",
+        "version": "2026-10-01"
+      },
+      "action": {
+        "namespace": "app.suiss.food.order.place",
+        "name": "place",
+        "version": "2026-10-01",
+        "schema_digest": "sha256:abababababababababababababababababababababababababababababababab"
+      },
+      "source": {
+        "kind": "account",
+        "refs": []
+      },
+      "context": {
+        "time_windows": [
+          {
+            "days": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri"
+            ],
+            "from": "07:00",
+            "to": "11:00",
+            "time_zone": "Europe/Istanbul",
+            "public_holidays": "excluded"
+          }
+        ]
+      },
+      "risk": {
+        "max_consequence_tier": "CT1",
+        "reversibility": [
+          "compensable"
+        ]
+      },
+      "behaviour": "ask"
+    },
+    "valid": true
+  },
+  {
+    "rule": "A-1",
+    "description": "Bank transfer: handoff",
+    "input": {
+      "mandate_ref": {
+        "ref": "MandateRef",
+        "id": "coffee-weekday"
+      },
+      "capability": {
+        "name": "app.suiss.food.order.place",
+        "version": "2026-10-01"
+      },
+      "action": {
+        "namespace": "app.suiss.food.order.place",
+        "name": "place",
+        "version": "2026-10-01",
+        "schema_digest": "sha256:abababababababababababababababababababababababababababababababab"
+      },
+      "source": {
+        "kind": "merchant",
+        "refs": [
+          "merchant-42"
+        ]
+      },
+      "context": {
+        "time_windows": [
+          {
+            "days": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri"
+            ],
+            "from": "07:00",
+            "to": "11:00",
+            "time_zone": "Europe/Istanbul",
+            "public_holidays": "excluded"
+          }
+        ]
+      },
+      "risk": {
+        "max_consequence_tier": "CT1",
+        "reversibility": [
+          "compensable"
+        ]
+      },
+      "behaviour": "handoff",
+      "ends_at": "2027-01-16T00:00:00Z"
+    },
+    "valid": true
+  },
+  {
+    "rule": "A-18",
+    "description": "Act without a named source is rejected; no general exception",
+    "input": {
+      "mandate_ref": {
+        "ref": "MandateRef",
+        "id": "coffee-weekday"
+      },
+      "capability": {
+        "name": "app.suiss.food.order.place",
+        "version": "2026-10-01"
+      },
+      "action": {
+        "namespace": "app.suiss.food.order.place",
+        "name": "place",
+        "version": "2026-10-01",
+        "schema_digest": "sha256:abababababababababababababababababababababababababababababababab"
+      },
+      "source": {
+        "kind": "merchant",
+        "refs": []
+      },
+      "context": {
+        "time_windows": [
+          {
+            "days": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri"
+            ],
+            "from": "07:00",
+            "to": "11:00",
+            "time_zone": "Europe/Istanbul",
+            "public_holidays": "excluded"
+          }
+        ]
+      },
+      "budget": {
+        "amount_per_exercise": {
+          "value": "500.00",
+          "currency": "TRY"
+        },
+        "period": "rule"
+      },
+      "risk": {
+        "max_consequence_tier": "CT1",
+        "reversibility": [
+          "compensable"
+        ]
+      },
+      "behaviour": "act",
+      "ends_at": "2027-01-16T00:00:00Z"
+    },
+    "valid": false
+  },
+  {
+    "rule": "A-13",
+    "description": "Act without a budget is rejected",
+    "input": {
+      "mandate_ref": {
+        "ref": "MandateRef",
+        "id": "coffee-weekday"
+      },
+      "capability": {
+        "name": "app.suiss.food.order.place",
+        "version": "2026-10-01"
+      },
+      "action": {
+        "namespace": "app.suiss.food.order.place",
+        "name": "place",
+        "version": "2026-10-01",
+        "schema_digest": "sha256:abababababababababababababababababababababababababababababababab"
+      },
+      "source": {
+        "kind": "merchant",
+        "refs": [
+          "merchant-42"
+        ]
+      },
+      "context": {
+        "time_windows": [
+          {
+            "days": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri"
+            ],
+            "from": "07:00",
+            "to": "11:00",
+            "time_zone": "Europe/Istanbul",
+            "public_holidays": "excluded"
+          }
+        ]
+      },
+      "risk": {
+        "max_consequence_tier": "CT1",
+        "reversibility": [
+          "compensable"
+        ]
+      },
+      "behaviour": "act",
+      "ends_at": "2027-01-16T00:00:00Z"
+    },
+    "valid": false
+  },
+  {
+    "rule": "A-13",
+    "description": "Act without an end date is rejected",
+    "input": {
+      "mandate_ref": {
+        "ref": "MandateRef",
+        "id": "coffee-weekday"
+      },
+      "capability": {
+        "name": "app.suiss.food.order.place",
+        "version": "2026-10-01"
+      },
+      "action": {
+        "namespace": "app.suiss.food.order.place",
+        "name": "place",
+        "version": "2026-10-01",
+        "schema_digest": "sha256:abababababababababababababababababababababababababababababababab"
+      },
+      "source": {
+        "kind": "merchant",
+        "refs": [
+          "merchant-42"
+        ]
+      },
+      "context": {
+        "time_windows": [
+          {
+            "days": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri"
+            ],
+            "from": "07:00",
+            "to": "11:00",
+            "time_zone": "Europe/Istanbul",
+            "public_holidays": "excluded"
+          }
+        ]
+      },
+      "budget": {
+        "amount_per_exercise": {
+          "value": "500.00",
+          "currency": "TRY"
+        },
+        "period": "rule"
+      },
+      "risk": {
+        "max_consequence_tier": "CT1",
+        "reversibility": [
+          "compensable"
+        ]
+      },
+      "behaviour": "act"
+    },
+    "valid": false
+  },
+  {
+    "rule": "A-1",
+    "description": "Act-if-preapproved with its origin",
+    "input": {
+      "mandate_ref": {
+        "ref": "MandateRef",
+        "id": "coffee-weekday"
+      },
+      "capability": {
+        "name": "app.suiss.food.order.place",
+        "version": "2026-10-01"
+      },
+      "action": {
+        "namespace": "app.suiss.food.order.place",
+        "name": "place",
+        "version": "2026-10-01",
+        "schema_digest": "sha256:abababababababababababababababababababababababababababababababab"
+      },
+      "source": {
+        "kind": "merchant",
+        "refs": [
+          "merchant-42"
+        ]
+      },
+      "context": {
+        "time_windows": [
+          {
+            "days": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri"
+            ],
+            "from": "07:00",
+            "to": "11:00",
+            "time_zone": "Europe/Istanbul",
+            "public_holidays": "excluded"
+          }
+        ]
+      },
+      "budget": {
+        "amount_per_exercise": {
+          "value": "500.00",
+          "currency": "TRY"
+        },
+        "period": "rule"
+      },
+      "risk": {
+        "max_consequence_tier": "CT1",
+        "reversibility": [
+          "compensable"
+        ]
+      },
+      "behaviour": "act-if-preapproved",
+      "ends_at": "2027-01-16T00:00:00Z",
+      "preapproval_origin": {
+        "request_ref": "int_01k7n51z04eg28800000000000",
+        "statement_digest": "sha256:abababababababababababababababababababababababababababababababab",
+        "approved_at": "2026-10-16T09:00:00Z",
+        "approval_act_ref": {
+          "ref": "DecisionRecordRef",
+          "id": "aas-7"
+        }
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "A-1",
+    "description": "Act-if-preapproved without origin is rejected",
+    "input": {
+      "mandate_ref": {
+        "ref": "MandateRef",
+        "id": "coffee-weekday"
+      },
+      "capability": {
+        "name": "app.suiss.food.order.place",
+        "version": "2026-10-01"
+      },
+      "action": {
+        "namespace": "app.suiss.food.order.place",
+        "name": "place",
+        "version": "2026-10-01",
+        "schema_digest": "sha256:abababababababababababababababababababababababababababababababab"
+      },
+      "source": {
+        "kind": "merchant",
+        "refs": [
+          "merchant-42"
+        ]
+      },
+      "context": {
+        "time_windows": [
+          {
+            "days": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri"
+            ],
+            "from": "07:00",
+            "to": "11:00",
+            "time_zone": "Europe/Istanbul",
+            "public_holidays": "excluded"
+          }
+        ]
+      },
+      "budget": {
+        "amount_per_exercise": {
+          "value": "500.00",
+          "currency": "TRY"
+        },
+        "period": "rule"
+      },
+      "risk": {
+        "max_consequence_tier": "CT1",
+        "reversibility": [
+          "compensable"
+        ]
+      },
+      "behaviour": "act-if-preapproved",
+      "ends_at": "2027-01-16T00:00:00Z"
+    },
+    "valid": false
+  },
+  {
+    "rule": "A-1",
+    "description": "Pre-approval origin on an ask rule is rejected",
+    "input": {
+      "mandate_ref": {
+        "ref": "MandateRef",
+        "id": "coffee-weekday"
+      },
+      "capability": {
+        "name": "app.suiss.food.order.place",
+        "version": "2026-10-01"
+      },
+      "action": {
+        "namespace": "app.suiss.food.order.place",
+        "name": "place",
+        "version": "2026-10-01",
+        "schema_digest": "sha256:abababababababababababababababababababababababababababababababab"
+      },
+      "source": {
+        "kind": "merchant",
+        "refs": [
+          "merchant-42"
+        ]
+      },
+      "context": {
+        "time_windows": [
+          {
+            "days": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri"
+            ],
+            "from": "07:00",
+            "to": "11:00",
+            "time_zone": "Europe/Istanbul",
+            "public_holidays": "excluded"
+          }
+        ]
+      },
+      "budget": {
+        "amount_per_exercise": {
+          "value": "500.00",
+          "currency": "TRY"
+        },
+        "period": "rule"
+      },
+      "risk": {
+        "max_consequence_tier": "CT1",
+        "reversibility": [
+          "compensable"
+        ]
+      },
+      "behaviour": "ask",
+      "ends_at": "2027-01-16T00:00:00Z",
+      "preapproval_origin": {
+        "request_ref": "int_01k7n51z04eg28800000000000",
+        "statement_digest": "sha256:abababababababababababababababababababababababababababababababab",
+        "approved_at": "2026-10-16T09:00:00Z",
+        "approval_act_ref": {
+          "ref": "DecisionRecordRef",
+          "id": "aas-7"
+        }
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "A-42",
+    "description": "Rule without a capability is a global slider and is rejected",
+    "input": {
+      "mandate_ref": {
+        "ref": "MandateRef",
+        "id": "coffee-weekday"
+      },
+      "action": {
+        "namespace": "app.suiss.food.order.place",
+        "name": "place",
+        "version": "2026-10-01",
+        "schema_digest": "sha256:abababababababababababababababababababababababababababababababab"
+      },
+      "source": {
+        "kind": "merchant",
+        "refs": [
+          "merchant-42"
+        ]
+      },
+      "context": {
+        "time_windows": [
+          {
+            "days": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri"
+            ],
+            "from": "07:00",
+            "to": "11:00",
+            "time_zone": "Europe/Istanbul",
+            "public_holidays": "excluded"
+          }
+        ]
+      },
+      "budget": {
+        "amount_per_exercise": {
+          "value": "500.00",
+          "currency": "TRY"
+        },
+        "period": "rule"
+      },
+      "risk": {
+        "max_consequence_tier": "CT1",
+        "reversibility": [
+          "compensable"
+        ]
+      },
+      "behaviour": "act",
+      "ends_at": "2027-01-16T00:00:00Z"
+    },
+    "valid": false
+  },
+  {
+    "rule": "A-42",
+    "description": "Wildcard capability is rejected",
+    "input": {
+      "mandate_ref": {
+        "ref": "MandateRef",
+        "id": "coffee-weekday"
+      },
+      "capability": {
+        "name": "*",
+        "version": "2026-10-01"
+      },
+      "action": {
+        "namespace": "app.suiss.food.order.place",
+        "name": "place",
+        "version": "2026-10-01",
+        "schema_digest": "sha256:abababababababababababababababababababababababababababababababab"
+      },
+      "source": {
+        "kind": "merchant",
+        "refs": [
+          "merchant-42"
+        ]
+      },
+      "context": {
+        "time_windows": [
+          {
+            "days": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri"
+            ],
+            "from": "07:00",
+            "to": "11:00",
+            "time_zone": "Europe/Istanbul",
+            "public_holidays": "excluded"
+          }
+        ]
+      },
+      "budget": {
+        "amount_per_exercise": {
+          "value": "500.00",
+          "currency": "TRY"
+        },
+        "period": "rule"
+      },
+      "risk": {
+        "max_consequence_tier": "CT1",
+        "reversibility": [
+          "compensable"
+        ]
+      },
+      "behaviour": "act",
+      "ends_at": "2027-01-16T00:00:00Z"
+    },
+    "valid": false
+  },
+  {
+    "rule": "A-42",
+    "description": "Category-wide capability name is rejected",
+    "input": {
+      "mandate_ref": {
+        "ref": "MandateRef",
+        "id": "coffee-weekday"
+      },
+      "capability": {
+        "name": "app.suiss.commerce",
+        "version": "2026-10-01"
+      },
+      "action": {
+        "namespace": "app.suiss.food.order.place",
+        "name": "place",
+        "version": "2026-10-01",
+        "schema_digest": "sha256:abababababababababababababababababababababababababababababababab"
+      },
+      "source": {
+        "kind": "merchant",
+        "refs": [
+          "merchant-42"
+        ]
+      },
+      "context": {
+        "time_windows": [
+          {
+            "days": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri"
+            ],
+            "from": "07:00",
+            "to": "11:00",
+            "time_zone": "Europe/Istanbul",
+            "public_holidays": "excluded"
+          }
+        ]
+      },
+      "budget": {
+        "amount_per_exercise": {
+          "value": "500.00",
+          "currency": "TRY"
+        },
+        "period": "rule"
+      },
+      "risk": {
+        "max_consequence_tier": "CT1",
+        "reversibility": [
+          "compensable"
+        ]
+      },
+      "behaviour": "act",
+      "ends_at": "2027-01-16T00:00:00Z"
+    },
+    "valid": false
+  },
+  {
+    "rule": "A-42",
+    "description": "Global level field is rejected",
+    "input": {
+      "mandate_ref": {
+        "ref": "MandateRef",
+        "id": "coffee-weekday"
+      },
+      "capability": {
+        "name": "app.suiss.food.order.place",
+        "version": "2026-10-01"
+      },
+      "action": {
+        "namespace": "app.suiss.food.order.place",
+        "name": "place",
+        "version": "2026-10-01",
+        "schema_digest": "sha256:abababababababababababababababababababababababababababababababab"
+      },
+      "source": {
+        "kind": "merchant",
+        "refs": [
+          "merchant-42"
+        ]
+      },
+      "context": {
+        "time_windows": [
+          {
+            "days": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri"
+            ],
+            "from": "07:00",
+            "to": "11:00",
+            "time_zone": "Europe/Istanbul",
+            "public_holidays": "excluded"
+          }
+        ]
+      },
+      "budget": {
+        "amount_per_exercise": {
+          "value": "500.00",
+          "currency": "TRY"
+        },
+        "period": "rule"
+      },
+      "risk": {
+        "max_consequence_tier": "CT1",
+        "reversibility": [
+          "compensable"
+        ]
+      },
+      "behaviour": "act",
+      "ends_at": "2027-01-16T00:00:00Z",
+      "global_level": "high"
+    },
+    "valid": false
+  },
+  {
+    "rule": "A-1",
+    "description": "Rule without risk is rejected",
+    "input": {
+      "mandate_ref": {
+        "ref": "MandateRef",
+        "id": "coffee-weekday"
+      },
+      "capability": {
+        "name": "app.suiss.food.order.place",
+        "version": "2026-10-01"
+      },
+      "action": {
+        "namespace": "app.suiss.food.order.place",
+        "name": "place",
+        "version": "2026-10-01",
+        "schema_digest": "sha256:abababababababababababababababababababababababababababababababab"
+      },
+      "source": {
+        "kind": "merchant",
+        "refs": [
+          "merchant-42"
+        ]
+      },
+      "context": {
+        "time_windows": [
+          {
+            "days": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri"
+            ],
+            "from": "07:00",
+            "to": "11:00",
+            "time_zone": "Europe/Istanbul",
+            "public_holidays": "excluded"
+          }
+        ]
+      },
+      "budget": {
+        "amount_per_exercise": {
+          "value": "500.00",
+          "currency": "TRY"
+        },
+        "period": "rule"
+      },
+      "behaviour": "act",
+      "ends_at": "2027-01-16T00:00:00Z"
+    },
+    "valid": false
+  }
+]

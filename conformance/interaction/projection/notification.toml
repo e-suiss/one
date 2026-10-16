@@ -1,0 +1,130 @@
+# X-8, X-7, X-20, X-21, AT-5, AT-12, AT-13, AT-42, C-27
+
+version = 1
+owner = "relay"
+item_identity = "interaction_id"
+update_in_place = true
+budget_target = "notification"
+
+[[field]]
+from = "id"
+to = "topic"
+rule = "one updating item per Interaction"
+
+[[field]]
+from = "version"
+to = "collapse_version"
+
+[[field]]
+from = "kind"
+to = "message_class"
+via = "kind_to_class"
+
+[[field]]
+from = "interruption"
+to = "interruption"
+rule = "Relay only lowers"
+
+[[field]]
+from = "critical_grant"
+to = "critical_grant"
+when = "interruption == critical"
+
+[[field]]
+from = "timing.delivery"
+to = "timing"
+
+[[field]]
+from = "timing.max_defer"
+to = "max_defer"
+when = "timing.delivery == next_break"
+
+[[field]]
+from = "timing.surface_policy"
+to = "surface_policy"
+when = "kind == approval"
+
+[[field]]
+from = "expires_at"
+to = "expires_at"
+
+[[field]]
+from = "sensitive"
+to = "sensitive"
+rule = "only raises; lock screen shows neutral text"
+
+[[field]]
+from = "data_class"
+to = "data_class"
+
+[[field]]
+from = "subject.title"
+to = "title"
+locale = "user"
+
+[[field]]
+from = "minimal_projection.sentence"
+to = "body"
+locale = "user"
+
+[[field]]
+from = "minimal_projection.yes"
+to = "actions[0]"
+when = "surface ceiling allows the action"
+
+[[field]]
+from = "minimal_projection.no"
+to = "actions[1]"
+when = "surface ceiling allows the action"
+
+[[field]]
+from = "deep_link"
+to = "open_url"
+
+[[kind_to_class]]
+kind = "approval"
+class = "action_required"
+timing = "next_break unless time-sensitive or critical"
+
+[[kind_to_class]]
+kind = "info"
+class = "transactional"
+max_interruption = "time-sensitive"
+
+[[kind_to_class]]
+kind = "receipt"
+class = "transactional"
+max_interruption = "time-sensitive"
+
+[[kind_to_class]]
+kind = "question"
+class = "transactional"
+max_interruption = "time-sensitive"
+
+[[kind_to_class]]
+kind = "choice"
+class = "transactional"
+max_interruption = "time-sensitive"
+
+[[kind_to_class]]
+kind = "comparison"
+class = "transactional"
+max_interruption = "time-sensitive"
+
+[[kind_to_class]]
+kind = "form"
+class = "transactional"
+max_interruption = "time-sensitive"
+
+[[kind_to_class]]
+kind = "progress"
+class = "transactional"
+max_interruption = "passive"
+
+[[kind_to_class]]
+kind = "digest_item"
+class = "none"
+delivery = "digest"
+
+[never]
+classes = ["security"]

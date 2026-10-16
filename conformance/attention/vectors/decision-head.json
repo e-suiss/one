@@ -1,0 +1,259 @@
+[
+  {
+    "rule": "AT-1",
+    "description": "Probability at or above the upper threshold notifies; non-urgent goes to the next break",
+    "input": {
+      "value_probability": 0.82,
+      "thresholds": {
+        "lower": 0.3,
+        "upper": 0.7
+      },
+      "urgent": false,
+      "cloud_available": true,
+      "type_muted": false,
+      "budget_remaining": 3,
+      "critical_grant": false
+    },
+    "expected": {
+      "route": "notify",
+      "chosen_arm": "next_break"
+    }
+  },
+  {
+    "rule": "AT-12",
+    "description": "An urgent notification interrupts now",
+    "input": {
+      "value_probability": 0.82,
+      "thresholds": {
+        "lower": 0.3,
+        "upper": 0.7
+      },
+      "urgent": true,
+      "cloud_available": true,
+      "type_muted": false,
+      "budget_remaining": 3,
+      "critical_grant": false
+    },
+    "expected": {
+      "route": "notify",
+      "chosen_arm": "interrupt_now"
+    }
+  },
+  {
+    "rule": "AT-1",
+    "description": "Probability equal to the upper threshold notifies",
+    "input": {
+      "value_probability": 0.7,
+      "thresholds": {
+        "lower": 0.3,
+        "upper": 0.7
+      },
+      "urgent": false,
+      "cloud_available": true,
+      "type_muted": false,
+      "budget_remaining": 3,
+      "critical_grant": false
+    },
+    "expected": {
+      "route": "notify",
+      "chosen_arm": "next_break"
+    }
+  },
+  {
+    "rule": "AT-1",
+    "description": "Probability below the lower threshold does not notify",
+    "input": {
+      "value_probability": 0.12,
+      "thresholds": {
+        "lower": 0.3,
+        "upper": 0.7
+      },
+      "urgent": false,
+      "cloud_available": true,
+      "type_muted": false,
+      "budget_remaining": 3,
+      "critical_grant": false
+    },
+    "expected": {
+      "route": "no_notification"
+    }
+  },
+  {
+    "rule": "AT-2",
+    "description": "Probability between the thresholds asks the cloud for a value estimate",
+    "input": {
+      "value_probability": 0.62,
+      "thresholds": {
+        "lower": 0.3,
+        "upper": 0.7
+      },
+      "urgent": false,
+      "cloud_available": true,
+      "type_muted": false,
+      "budget_remaining": 3,
+      "critical_grant": false
+    },
+    "expected": {
+      "route": "cloud_estimate"
+    }
+  },
+  {
+    "rule": "AT-2",
+    "description": "Probability equal to the lower threshold is uncertain",
+    "input": {
+      "value_probability": 0.3,
+      "thresholds": {
+        "lower": 0.3,
+        "upper": 0.7
+      },
+      "urgent": false,
+      "cloud_available": true,
+      "type_muted": false,
+      "budget_remaining": 3,
+      "critical_grant": false
+    },
+    "expected": {
+      "route": "cloud_estimate"
+    }
+  },
+  {
+    "rule": "AT-2",
+    "description": "An uncertain candidate goes to the digest when the cloud is unreachable",
+    "input": {
+      "value_probability": 0.62,
+      "thresholds": {
+        "lower": 0.3,
+        "upper": 0.7
+      },
+      "urgent": false,
+      "cloud_available": false,
+      "type_muted": false,
+      "budget_remaining": 3,
+      "critical_grant": false
+    },
+    "expected": {
+      "route": "no_notification",
+      "chosen_arm": "digest"
+    }
+  },
+  {
+    "rule": "AT-1",
+    "description": "Lowering the upper threshold notifies the same model output without retraining",
+    "input": {
+      "value_probability": 0.62,
+      "thresholds": {
+        "lower": 0.3,
+        "upper": 0.6
+      },
+      "urgent": false,
+      "cloud_available": true,
+      "type_muted": false,
+      "budget_remaining": 3,
+      "critical_grant": false
+    },
+    "expected": {
+      "route": "notify",
+      "chosen_arm": "next_break"
+    }
+  },
+  {
+    "rule": "AT-1",
+    "description": "Raising the lower threshold drops the same model output without retraining",
+    "input": {
+      "value_probability": 0.62,
+      "thresholds": {
+        "lower": 0.65,
+        "upper": 0.9
+      },
+      "urgent": false,
+      "cloud_available": true,
+      "type_muted": false,
+      "budget_remaining": 3,
+      "critical_grant": false
+    },
+    "expected": {
+      "route": "no_notification"
+    }
+  },
+  {
+    "rule": "AT-2",
+    "description": "Thresholds are per person and channel; another channel's thresholds change the route",
+    "input": {
+      "value_probability": 0.62,
+      "thresholds": {
+        "lower": 0.2,
+        "upper": 0.5
+      },
+      "urgent": false,
+      "cloud_available": true,
+      "type_muted": false,
+      "budget_remaining": 3,
+      "critical_grant": false
+    },
+    "expected": {
+      "route": "notify",
+      "chosen_arm": "next_break"
+    }
+  },
+  {
+    "rule": "AT-9",
+    "description": "A muted type is not notified even above the upper threshold",
+    "input": {
+      "value_probability": 0.95,
+      "thresholds": {
+        "lower": 0.3,
+        "upper": 0.7
+      },
+      "urgent": false,
+      "cloud_available": true,
+      "type_muted": true,
+      "budget_remaining": 3,
+      "critical_grant": false
+    },
+    "expected": {
+      "route": "no_notification",
+      "chosen_arm": "digest"
+    }
+  },
+  {
+    "rule": "AT-10",
+    "description": "An exhausted budget sends the candidate to the digest",
+    "input": {
+      "value_probability": 0.95,
+      "thresholds": {
+        "lower": 0.3,
+        "upper": 0.7
+      },
+      "urgent": false,
+      "cloud_available": true,
+      "type_muted": false,
+      "budget_remaining": 0,
+      "critical_grant": false
+    },
+    "expected": {
+      "route": "no_notification",
+      "chosen_arm": "digest"
+    }
+  },
+  {
+    "rule": "AT-8",
+    "description": "Only the user's critical Grant pierces a hard constraint",
+    "input": {
+      "value_probability": 0.95,
+      "thresholds": {
+        "lower": 0.3,
+        "upper": 0.7
+      },
+      "urgent": true,
+      "cloud_available": true,
+      "type_muted": true,
+      "budget_remaining": 0,
+      "critical_grant": true
+    },
+    "expected": {
+      "route": "notify",
+      "chosen_arm": "interrupt_now",
+      "interruption": "critical"
+    }
+  }
+]

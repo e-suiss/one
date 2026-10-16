@@ -1,0 +1,688 @@
+[
+  {
+    "rule": "X-22, C-26",
+    "description": "A watch approval answer with every field and a device signature is accepted",
+    "input": {
+      "interaction_id": "int_01m613f347ez599hafz0435mnd",
+      "interaction_version": 1,
+      "action": "approve",
+      "responder": {
+        "party": {
+          "ref": "PartyRef",
+          "id": "pty_SSSSSSSS000000000001"
+        },
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_SSSSSSSS000000000001"
+        }
+      },
+      "nonce": "n1-AbCdEfGhIjKlMnOpQrStUv",
+      "device_id": "dev_01m51cchyafy58sy4av9ycqtvw",
+      "surface_class": "watch",
+      "evidence": {
+        "authentication": "device_unlock",
+        "user_verification": "wrist_detect",
+        "presence_gesture": "hold"
+      },
+      "responded_at": "2026-10-16T09:05:00Z",
+      "signature": {
+        "alg": "ES256",
+        "kid": "kbd_SSSSSSSS000000000001",
+        "cose_sign1": "0oRDoQEmoFhAQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ"
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "X-22, X-18",
+    "description": "A phone answer with a passkey and biometric verification is accepted",
+    "input": {
+      "interaction_id": "int_01m61rjc37ej3ver53fv5vbbsk",
+      "interaction_version": 1,
+      "action": "approve",
+      "responder": {
+        "party": {
+          "ref": "PartyRef",
+          "id": "pty_SSSSSSSS000000000001"
+        },
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_SSSSSSSS000000000001"
+        }
+      },
+      "nonce": "n1-AbCdEfGhIjKlMnOpQrStUv",
+      "device_id": "dev_01m41v363cfhpb4vze2qv57qr5",
+      "surface_class": "phone",
+      "evidence": {
+        "authentication": "passkey",
+        "user_verification": "biometric",
+        "presence_gesture": "tap"
+      },
+      "responded_at": "2026-10-16T09:05:00Z",
+      "signature": {
+        "alg": "ES256",
+        "kid": "kbd_SSSSSSSS000000000001",
+        "cose_sign1": "0oRDoQEmoFhAQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ"
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "X-22, C-26",
+    "description": "A response without a nonce is rejected",
+    "input": {
+      "interaction_id": "int_01m613f347ez599hafz0435mnd",
+      "interaction_version": 1,
+      "action": "approve",
+      "responder": {
+        "party": {
+          "ref": "PartyRef",
+          "id": "pty_SSSSSSSS000000000001"
+        },
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_SSSSSSSS000000000001"
+        }
+      },
+      "device_id": "dev_01m51cchyafy58sy4av9ycqtvw",
+      "surface_class": "watch",
+      "evidence": {
+        "authentication": "device_unlock",
+        "user_verification": "wrist_detect",
+        "presence_gesture": "hold"
+      },
+      "responded_at": "2026-10-16T09:05:00Z",
+      "signature": {
+        "alg": "ES256",
+        "kid": "kbd_SSSSSSSS000000000001",
+        "cose_sign1": "0oRDoQEmoFhAQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "X-22",
+    "description": "A response without a device signature is rejected",
+    "input": {
+      "interaction_id": "int_01m613f347ez599hafz0435mnd",
+      "interaction_version": 1,
+      "action": "approve",
+      "responder": {
+        "party": {
+          "ref": "PartyRef",
+          "id": "pty_SSSSSSSS000000000001"
+        },
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_SSSSSSSS000000000001"
+        }
+      },
+      "nonce": "n1-AbCdEfGhIjKlMnOpQrStUv",
+      "device_id": "dev_01m51cchyafy58sy4av9ycqtvw",
+      "surface_class": "watch",
+      "evidence": {
+        "authentication": "device_unlock",
+        "user_verification": "wrist_detect",
+        "presence_gesture": "hold"
+      },
+      "responded_at": "2026-10-16T09:05:00Z"
+    },
+    "valid": false
+  },
+  {
+    "rule": "X-22",
+    "description": "A signature without its COSE_Sign1 value is rejected",
+    "input": {
+      "interaction_id": "int_01m613f347ez599hafz0435mnd",
+      "interaction_version": 1,
+      "action": "approve",
+      "responder": {
+        "party": {
+          "ref": "PartyRef",
+          "id": "pty_SSSSSSSS000000000001"
+        },
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_SSSSSSSS000000000001"
+        }
+      },
+      "nonce": "n1-AbCdEfGhIjKlMnOpQrStUv",
+      "device_id": "dev_01m51cchyafy58sy4av9ycqtvw",
+      "surface_class": "watch",
+      "evidence": {
+        "authentication": "device_unlock",
+        "user_verification": "wrist_detect",
+        "presence_gesture": "hold"
+      },
+      "responded_at": "2026-10-16T09:05:00Z",
+      "signature": {
+        "alg": "ES256",
+        "kid": "kbd_SSSSSSSS000000000001"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "X-22",
+    "description": "A signature algorithm other than ES256 is rejected",
+    "input": {
+      "interaction_id": "int_01m613f347ez599hafz0435mnd",
+      "interaction_version": 1,
+      "action": "approve",
+      "responder": {
+        "party": {
+          "ref": "PartyRef",
+          "id": "pty_SSSSSSSS000000000001"
+        },
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_SSSSSSSS000000000001"
+        }
+      },
+      "nonce": "n1-AbCdEfGhIjKlMnOpQrStUv",
+      "device_id": "dev_01m51cchyafy58sy4av9ycqtvw",
+      "surface_class": "watch",
+      "evidence": {
+        "authentication": "device_unlock",
+        "user_verification": "wrist_detect",
+        "presence_gesture": "hold"
+      },
+      "responded_at": "2026-10-16T09:05:00Z",
+      "signature": {
+        "alg": "RS256",
+        "kid": "kbd_SSSSSSSS000000000001",
+        "cose_sign1": "0oRDoQEmoFhAQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "X-22",
+    "description": "A response without a device id is rejected",
+    "input": {
+      "interaction_id": "int_01m613f347ez599hafz0435mnd",
+      "interaction_version": 1,
+      "action": "approve",
+      "responder": {
+        "party": {
+          "ref": "PartyRef",
+          "id": "pty_SSSSSSSS000000000001"
+        },
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_SSSSSSSS000000000001"
+        }
+      },
+      "nonce": "n1-AbCdEfGhIjKlMnOpQrStUv",
+      "surface_class": "watch",
+      "evidence": {
+        "authentication": "device_unlock",
+        "user_verification": "wrist_detect",
+        "presence_gesture": "hold"
+      },
+      "responded_at": "2026-10-16T09:05:00Z",
+      "signature": {
+        "alg": "ES256",
+        "kid": "kbd_SSSSSSSS000000000001",
+        "cose_sign1": "0oRDoQEmoFhAQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "X-22",
+    "description": "A response without the Access identity is rejected",
+    "input": {
+      "interaction_id": "int_01m613f347ez599hafz0435mnd",
+      "interaction_version": 1,
+      "action": "approve",
+      "nonce": "n1-AbCdEfGhIjKlMnOpQrStUv",
+      "device_id": "dev_01m51cchyafy58sy4av9ycqtvw",
+      "surface_class": "watch",
+      "evidence": {
+        "authentication": "device_unlock",
+        "user_verification": "wrist_detect",
+        "presence_gesture": "hold"
+      },
+      "responded_at": "2026-10-16T09:05:00Z",
+      "signature": {
+        "alg": "ES256",
+        "kid": "kbd_SSSSSSSS000000000001",
+        "cose_sign1": "0oRDoQEmoFhAQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "X-22",
+    "description": "A response with only the Party and no Instance is rejected",
+    "input": {
+      "interaction_id": "int_01m613f347ez599hafz0435mnd",
+      "interaction_version": 1,
+      "action": "approve",
+      "responder": {
+        "party": {
+          "ref": "PartyRef",
+          "id": "pty_SSSSSSSS000000000001"
+        }
+      },
+      "nonce": "n1-AbCdEfGhIjKlMnOpQrStUv",
+      "device_id": "dev_01m51cchyafy58sy4av9ycqtvw",
+      "surface_class": "watch",
+      "evidence": {
+        "authentication": "device_unlock",
+        "user_verification": "wrist_detect",
+        "presence_gesture": "hold"
+      },
+      "responded_at": "2026-10-16T09:05:00Z",
+      "signature": {
+        "alg": "ES256",
+        "kid": "kbd_SSSSSSSS000000000001",
+        "cose_sign1": "0oRDoQEmoFhAQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "X-22",
+    "description": "A response without evidence is rejected",
+    "input": {
+      "interaction_id": "int_01m613f347ez599hafz0435mnd",
+      "interaction_version": 1,
+      "action": "approve",
+      "responder": {
+        "party": {
+          "ref": "PartyRef",
+          "id": "pty_SSSSSSSS000000000001"
+        },
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_SSSSSSSS000000000001"
+        }
+      },
+      "nonce": "n1-AbCdEfGhIjKlMnOpQrStUv",
+      "device_id": "dev_01m51cchyafy58sy4av9ycqtvw",
+      "surface_class": "watch",
+      "responded_at": "2026-10-16T09:05:00Z",
+      "signature": {
+        "alg": "ES256",
+        "kid": "kbd_SSSSSSSS000000000001",
+        "cose_sign1": "0oRDoQEmoFhAQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "X-22",
+    "description": "A response without a time is rejected",
+    "input": {
+      "interaction_id": "int_01m613f347ez599hafz0435mnd",
+      "interaction_version": 1,
+      "action": "approve",
+      "responder": {
+        "party": {
+          "ref": "PartyRef",
+          "id": "pty_SSSSSSSS000000000001"
+        },
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_SSSSSSSS000000000001"
+        }
+      },
+      "nonce": "n1-AbCdEfGhIjKlMnOpQrStUv",
+      "device_id": "dev_01m51cchyafy58sy4av9ycqtvw",
+      "surface_class": "watch",
+      "evidence": {
+        "authentication": "device_unlock",
+        "user_verification": "wrist_detect",
+        "presence_gesture": "hold"
+      },
+      "signature": {
+        "alg": "ES256",
+        "kid": "kbd_SSSSSSSS000000000001",
+        "cose_sign1": "0oRDoQEmoFhAQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "X-22",
+    "description": "A response without the answered version is rejected",
+    "input": {
+      "interaction_id": "int_01m613f347ez599hafz0435mnd",
+      "action": "approve",
+      "responder": {
+        "party": {
+          "ref": "PartyRef",
+          "id": "pty_SSSSSSSS000000000001"
+        },
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_SSSSSSSS000000000001"
+        }
+      },
+      "nonce": "n1-AbCdEfGhIjKlMnOpQrStUv",
+      "device_id": "dev_01m51cchyafy58sy4av9ycqtvw",
+      "surface_class": "watch",
+      "evidence": {
+        "authentication": "device_unlock",
+        "user_verification": "wrist_detect",
+        "presence_gesture": "hold"
+      },
+      "responded_at": "2026-10-16T09:05:00Z",
+      "signature": {
+        "alg": "ES256",
+        "kid": "kbd_SSSSSSSS000000000001",
+        "cose_sign1": "0oRDoQEmoFhAQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "X-22",
+    "description": "A response without the chosen action is rejected",
+    "input": {
+      "interaction_id": "int_01m613f347ez599hafz0435mnd",
+      "interaction_version": 1,
+      "responder": {
+        "party": {
+          "ref": "PartyRef",
+          "id": "pty_SSSSSSSS000000000001"
+        },
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_SSSSSSSS000000000001"
+        }
+      },
+      "nonce": "n1-AbCdEfGhIjKlMnOpQrStUv",
+      "device_id": "dev_01m51cchyafy58sy4av9ycqtvw",
+      "surface_class": "watch",
+      "evidence": {
+        "authentication": "device_unlock",
+        "user_verification": "wrist_detect",
+        "presence_gesture": "hold"
+      },
+      "responded_at": "2026-10-16T09:05:00Z",
+      "signature": {
+        "alg": "ES256",
+        "kid": "kbd_SSSSSSSS000000000001",
+        "cose_sign1": "0oRDoQEmoFhAQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "X-3, X-22",
+    "description": "An unknown surface class is rejected",
+    "input": {
+      "interaction_id": "int_01m613f347ez599hafz0435mnd",
+      "interaction_version": 1,
+      "action": "approve",
+      "responder": {
+        "party": {
+          "ref": "PartyRef",
+          "id": "pty_SSSSSSSS000000000001"
+        },
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_SSSSSSSS000000000001"
+        }
+      },
+      "nonce": "n1-AbCdEfGhIjKlMnOpQrStUv",
+      "device_id": "dev_01m51cchyafy58sy4av9ycqtvw",
+      "surface_class": "tablet",
+      "evidence": {
+        "authentication": "device_unlock",
+        "user_verification": "wrist_detect",
+        "presence_gesture": "hold"
+      },
+      "responded_at": "2026-10-16T09:05:00Z",
+      "signature": {
+        "alg": "ES256",
+        "kid": "kbd_SSSSSSSS000000000001",
+        "cose_sign1": "0oRDoQEmoFhAQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "X-18",
+    "description": "A passkey without user verification is rejected",
+    "input": {
+      "interaction_id": "int_01m61rjc37ej3ver53fv5vbbsk",
+      "interaction_version": 1,
+      "action": "approve",
+      "responder": {
+        "party": {
+          "ref": "PartyRef",
+          "id": "pty_SSSSSSSS000000000001"
+        },
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_SSSSSSSS000000000001"
+        }
+      },
+      "nonce": "n1-AbCdEfGhIjKlMnOpQrStUv",
+      "device_id": "dev_01m41v363cfhpb4vze2qv57qr5",
+      "surface_class": "phone",
+      "evidence": {
+        "authentication": "passkey",
+        "user_verification": "none",
+        "presence_gesture": "tap"
+      },
+      "responded_at": "2026-10-16T09:05:00Z",
+      "signature": {
+        "alg": "ES256",
+        "kid": "kbd_SSSSSSSS000000000001",
+        "cose_sign1": "0oRDoQEmoFhAQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "X-19, A-28",
+    "description": "A voice surface claiming a passkey is rejected",
+    "input": {
+      "interaction_id": "int_01m613f347ez599hafz0435mnd",
+      "interaction_version": 1,
+      "action": "approve",
+      "responder": {
+        "party": {
+          "ref": "PartyRef",
+          "id": "pty_SSSSSSSS000000000001"
+        },
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_SSSSSSSS000000000001"
+        }
+      },
+      "nonce": "n1-AbCdEfGhIjKlMnOpQrStUv",
+      "device_id": "dev_01m45fsge1f35v7nxbjnhyygna",
+      "surface_class": "voice:car",
+      "evidence": {
+        "authentication": "passkey",
+        "user_verification": "wrist_detect",
+        "presence_gesture": "voice"
+      },
+      "responded_at": "2026-10-16T09:05:00Z",
+      "signature": {
+        "alg": "ES256",
+        "kid": "kbd_SSSSSSSS000000000001",
+        "cose_sign1": "0oRDoQEmoFhAQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "X-19",
+    "description": "A watch surface claiming a passkey is rejected",
+    "input": {
+      "interaction_id": "int_01m613f347ez599hafz0435mnd",
+      "interaction_version": 1,
+      "action": "approve",
+      "responder": {
+        "party": {
+          "ref": "PartyRef",
+          "id": "pty_SSSSSSSS000000000001"
+        },
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_SSSSSSSS000000000001"
+        }
+      },
+      "nonce": "n1-AbCdEfGhIjKlMnOpQrStUv",
+      "device_id": "dev_01m51cchyafy58sy4av9ycqtvw",
+      "surface_class": "watch",
+      "evidence": {
+        "authentication": "passkey",
+        "user_verification": "pin",
+        "presence_gesture": "hold"
+      },
+      "responded_at": "2026-10-16T09:05:00Z",
+      "signature": {
+        "alg": "ES256",
+        "kid": "kbd_SSSSSSSS000000000001",
+        "cose_sign1": "0oRDoQEmoFhAQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "X-18",
+    "description": "A response carrying a secret value is rejected",
+    "input": {
+      "interaction_id": "int_01m613f347ez599hafz0435mnd",
+      "interaction_version": 1,
+      "action": "approve",
+      "responder": {
+        "party": {
+          "ref": "PartyRef",
+          "id": "pty_SSSSSSSS000000000001"
+        },
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_SSSSSSSS000000000001"
+        }
+      },
+      "nonce": "n1-AbCdEfGhIjKlMnOpQrStUv",
+      "device_id": "dev_01m51cchyafy58sy4av9ycqtvw",
+      "surface_class": "watch",
+      "evidence": {
+        "authentication": "device_unlock",
+        "user_verification": "wrist_detect",
+        "presence_gesture": "hold"
+      },
+      "responded_at": "2026-10-16T09:05:00Z",
+      "signature": {
+        "alg": "ES256",
+        "kid": "kbd_SSSSSSSS000000000001",
+        "cose_sign1": "0oRDoQEmoFhAQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ"
+      },
+      "pin": "1234"
+    },
+    "valid": false
+  },
+  {
+    "rule": "X-22",
+    "description": "A response asserting its own approval outcome is rejected",
+    "input": {
+      "interaction_id": "int_01m613f347ez599hafz0435mnd",
+      "interaction_version": 1,
+      "action": "approve",
+      "responder": {
+        "party": {
+          "ref": "PartyRef",
+          "id": "pty_SSSSSSSS000000000001"
+        },
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_SSSSSSSS000000000001"
+        }
+      },
+      "nonce": "n1-AbCdEfGhIjKlMnOpQrStUv",
+      "device_id": "dev_01m51cchyafy58sy4av9ycqtvw",
+      "surface_class": "watch",
+      "evidence": {
+        "authentication": "device_unlock",
+        "user_verification": "wrist_detect",
+        "presence_gesture": "hold"
+      },
+      "responded_at": "2026-10-16T09:05:00Z",
+      "signature": {
+        "alg": "ES256",
+        "kid": "kbd_SSSSSSSS000000000001",
+        "cose_sign1": "0oRDoQEmoFhAQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ"
+      },
+      "approved": true
+    },
+    "valid": false
+  },
+  {
+    "rule": "X-22",
+    "description": "A non-UTC response time is rejected",
+    "input": {
+      "interaction_id": "int_01m613f347ez599hafz0435mnd",
+      "interaction_version": 1,
+      "action": "approve",
+      "responder": {
+        "party": {
+          "ref": "PartyRef",
+          "id": "pty_SSSSSSSS000000000001"
+        },
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_SSSSSSSS000000000001"
+        }
+      },
+      "nonce": "n1-AbCdEfGhIjKlMnOpQrStUv",
+      "device_id": "dev_01m51cchyafy58sy4av9ycqtvw",
+      "surface_class": "watch",
+      "evidence": {
+        "authentication": "device_unlock",
+        "user_verification": "wrist_detect",
+        "presence_gesture": "hold"
+      },
+      "responded_at": "2026-10-16T12:05:00+03:00",
+      "signature": {
+        "alg": "ES256",
+        "kid": "kbd_SSSSSSSS000000000001",
+        "cose_sign1": "0oRDoQEmoFhAQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "X-22",
+    "description": "A nonce shorter than 128 bits of base64url is rejected",
+    "input": {
+      "interaction_id": "int_01m613f347ez599hafz0435mnd",
+      "interaction_version": 1,
+      "action": "approve",
+      "responder": {
+        "party": {
+          "ref": "PartyRef",
+          "id": "pty_SSSSSSSS000000000001"
+        },
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_SSSSSSSS000000000001"
+        }
+      },
+      "nonce": "short",
+      "device_id": "dev_01m51cchyafy58sy4av9ycqtvw",
+      "surface_class": "watch",
+      "evidence": {
+        "authentication": "device_unlock",
+        "user_verification": "wrist_detect",
+        "presence_gesture": "hold"
+      },
+      "responded_at": "2026-10-16T09:05:00Z",
+      "signature": {
+        "alg": "ES256",
+        "kid": "kbd_SSSSSSSS000000000001",
+        "cose_sign1": "0oRDoQEmoFhAQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ"
+      }
+    },
+    "valid": false
+  }
+]

@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/attention/output-types/v1.json",
+  "title": "One output type taxonomy",
+  "$comment": "AT-9, AT-23, AT-34, AT-42, AT-41",
+  "type": "object",
+  "required": ["version", "namespace", "output_type"],
+  "additionalProperties": false,
+  "properties": {
+    "version": { "const": 1 },
+    "namespace": { "const": "app.suiss.one.output" },
+    "output_type": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/OutputType" }
+    }
+  },
+  "$defs": {
+    "OutputType": {
+      "type": "object",
+      "required": ["id", "title", "delivery", "mute_scope", "mutable", "budget_exempt", "rules"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "https://suiss.app/schemas/one/attention/common/v1.json#/$defs/OutputTypeId" },
+        "title": { "type": "string", "minLength": 1 },
+        "delivery": { "enum": ["relay", "in_app"] },
+        "row": { "enum": ["approval_request", "own_work_info", "progress_update"] },
+        "interruption_ceiling": { "enum": ["passive", "active", "time-sensitive"] },
+        "mute_scope": { "enum": ["type", "type_and_capability", "task", "none"] },
+        "mutable": { "type": "boolean" },
+        "budget_exempt": { "type": "boolean" },
+        "rules": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "pattern": "^((Access|Relay|Work) )?[A-Z]+(-[A-Z]+)*-[0-9]+$" }
+        }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "delivery": { "const": "relay" } } },
+          "then": {
+            "required": ["row", "interruption_ceiling"],
+            "properties": { "mutable": { "const": true }, "mute_scope": { "not": { "const": "none" } } }
+          },
+          "else": {
+            "not": { "anyOf": [{ "required": ["row"] }, { "required": ["interruption_ceiling"] }] },
+            "properties": { "mutable": { "const": false }, "mute_scope": { "const": "none" }, "budget_exempt": { "const": true } }
+          }
+        },
+        {
+          "if": { "properties": { "row": { "const": "progress_update" } }, "required": ["row"] },
+          "then": { "properties": { "interruption_ceiling": { "const": "passive" }, "mute_scope": { "const": "task" } } }
+        }
+      ]
+    }
+  }
+}

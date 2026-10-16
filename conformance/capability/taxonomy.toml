@@ -1,0 +1,264 @@
+# CP-15, CP-16, CP-28, CP-29, CP-37, A-36, A-49, OO-15
+version = 1
+root = "app.suiss"
+naming = "category.object.verb; a category-level verb is allowed when the category itself is the object"
+
+[[category]]
+name = "communication"
+meaning_en = "Messages, email and calls on the user's own accounts"
+meaning_tr = "Kullanıcının kendi hesaplarıyla mesaj, e-posta ve arama"
+
+[[category]]
+name = "calendar"
+meaning_en = "Events and availability"
+meaning_tr = "Etkinlikler ve uygunluk"
+
+[[category]]
+name = "productivity"
+meaning_en = "Reminders, notes and lists"
+meaning_tr = "Hatırlatmalar, notlar ve listeler"
+
+[[category]]
+name = "transport"
+meaning_en = "Rides and routes"
+meaning_tr = "Yolculuk çağırma ve rota"
+
+[[category]]
+name = "travel"
+meaning_en = "Flights and lodging"
+meaning_tr = "Uçuş ve konaklama"
+
+[[category]]
+name = "food"
+meaning_en = "Food orders and restaurant reservations"
+meaning_tr = "Yemek siparişi ve restoran rezervasyonu"
+
+[[category]]
+name = "commerce"
+meaning_en = "Product search, purchase, orders and returns; payment always through Pay"
+meaning_tr = "Ürün arama, satın alma, sipariş ve iade; ödeme her zaman Pay'den"
+
+[[category]]
+name = "information"
+meaning_en = "Reading public information"
+meaning_tr = "Herkese açık bilgiyi okuma"
+
+[[category]]
+name = "files"
+meaning_en = "The user's documents"
+meaning_tr = "Kullanıcının belgeleri"
+
+[[category]]
+name = "home"
+meaning_en = "Home devices and scenes"
+meaning_tr = "Ev cihazları ve sahneler"
+
+[[category]]
+name = "media"
+meaning_en = "Playback control"
+meaning_tr = "Oynatma denetimi"
+
+[[category]]
+name = "coding"
+meaning_en = "The user's own Claude Code and Codex sessions on the local executor"
+meaning_tr = "Kullanıcının yerel yürütücüdeki kendi Claude Code ve Codex oturumları"
+
+[[category]]
+name = "assistant"
+meaning_en = "One exposed to other assistants"
+meaning_tr = "One'ın başka asistanlara açılması"
+
+[[capability]]
+name = "app.suiss.communication.message.send"
+meaning_en = "Send a message"
+meaning_tr = "Mesaj gönder"
+
+[[capability]]
+name = "app.suiss.communication.email.draft"
+meaning_en = "Prepare an email draft"
+meaning_tr = "E-posta taslağı hazırla"
+
+[[capability]]
+name = "app.suiss.communication.email.send"
+meaning_en = "Send an email"
+meaning_tr = "E-posta gönder"
+
+[[capability]]
+name = "app.suiss.communication.call.place"
+meaning_en = "Place a call"
+meaning_tr = "Arama başlat"
+
+[[capability]]
+name = "app.suiss.calendar.event.create"
+meaning_en = "Create an event"
+meaning_tr = "Etkinlik oluştur"
+
+[[capability]]
+name = "app.suiss.calendar.event.update"
+meaning_en = "Change an event"
+meaning_tr = "Etkinliği değiştir"
+
+[[capability]]
+name = "app.suiss.calendar.event.delete"
+meaning_en = "Remove an event"
+meaning_tr = "Etkinliği kaldır"
+
+[[capability]]
+name = "app.suiss.calendar.event.propose"
+meaning_en = "Propose an event time to another person"
+meaning_tr = "Başka bir kişiye etkinlik zamanı öner"
+
+[[capability]]
+name = "app.suiss.calendar.availability.query"
+meaning_en = "Find free time"
+meaning_tr = "Boş zaman bul"
+
+[[capability]]
+name = "app.suiss.productivity.reminder.create"
+meaning_en = "Create a reminder"
+meaning_tr = "Hatırlatma oluştur"
+
+[[capability]]
+name = "app.suiss.productivity.note.create"
+meaning_en = "Create a note"
+meaning_tr = "Not oluştur"
+
+[[capability]]
+name = "app.suiss.productivity.list.add"
+meaning_en = "Add an item to a list"
+meaning_tr = "Listeye öğe ekle"
+
+[[capability]]
+name = "app.suiss.transport.ride.request"
+meaning_en = "Request a ride"
+meaning_tr = "Araç çağır"
+
+[[capability]]
+name = "app.suiss.transport.ride.cancel"
+meaning_en = "Cancel a ride"
+meaning_tr = "Yolculuğu iptal et"
+
+[[capability]]
+name = "app.suiss.transport.route.plan"
+meaning_en = "Plan a route"
+meaning_tr = "Rota planla"
+
+[[capability]]
+name = "app.suiss.travel.flight.search"
+meaning_en = "Search flights"
+meaning_tr = "Uçuş ara"
+
+[[capability]]
+name = "app.suiss.travel.flight.book"
+meaning_en = "Book a flight"
+meaning_tr = "Uçuş rezervasyonu yap"
+
+[[capability]]
+name = "app.suiss.travel.lodging.search"
+meaning_en = "Search lodging"
+meaning_tr = "Konaklama ara"
+
+[[capability]]
+name = "app.suiss.travel.lodging.book"
+meaning_en = "Book lodging"
+meaning_tr = "Konaklama rezervasyonu yap"
+
+[[capability]]
+name = "app.suiss.food.order.place"
+meaning_en = "Place a food order"
+meaning_tr = "Yemek siparişi ver"
+
+[[capability]]
+name = "app.suiss.food.reservation.book"
+meaning_en = "Book a table"
+meaning_tr = "Masa ayırt"
+
+[[capability]]
+name = "app.suiss.commerce.product.search"
+meaning_en = "Search products and offers"
+meaning_tr = "Ürün ve teklif ara"
+
+[[capability]]
+name = "app.suiss.commerce.purchase"
+meaning_en = "Buy from a merchant through Pay"
+meaning_tr = "Satıcıdan Pay ile satın al"
+
+[[capability]]
+name = "app.suiss.commerce.order.status"
+meaning_en = "Check an order"
+meaning_tr = "Siparişin durumuna bak"
+
+[[capability]]
+name = "app.suiss.commerce.order.cancel"
+meaning_en = "Cancel an order"
+meaning_tr = "Siparişi iptal et"
+
+[[capability]]
+name = "app.suiss.commerce.return.request"
+meaning_en = "Request a return or refund"
+meaning_tr = "İade iste"
+
+[[capability]]
+name = "app.suiss.information.web.search"
+meaning_en = "Search the web"
+meaning_tr = "Web'de ara"
+
+[[capability]]
+name = "app.suiss.information.page.read"
+meaning_en = "Read a web page"
+meaning_tr = "Web sayfasını oku"
+
+[[capability]]
+name = "app.suiss.information.weather.query"
+meaning_en = "Get the weather"
+meaning_tr = "Hava durumunu öğren"
+
+[[capability]]
+name = "app.suiss.files.document.read"
+meaning_en = "Read a document"
+meaning_tr = "Belgeyi oku"
+
+[[capability]]
+name = "app.suiss.files.document.share"
+meaning_en = "Share a document"
+meaning_tr = "Belgeyi paylaş"
+
+[[capability]]
+name = "app.suiss.home.device.control"
+meaning_en = "Control a home device"
+meaning_tr = "Ev cihazını yönet"
+
+[[capability]]
+name = "app.suiss.home.scene.run"
+meaning_en = "Run a home scene"
+meaning_tr = "Ev sahnesini çalıştır"
+
+[[capability]]
+name = "app.suiss.media.playback.control"
+meaning_en = "Control playback"
+meaning_tr = "Oynatmayı yönet"
+
+[[capability]]
+name = "app.suiss.coding.session.start"
+meaning_en = "Start a coding session"
+meaning_tr = "Kodlama oturumu başlat"
+
+[[capability]]
+name = "app.suiss.coding.session.steer"
+meaning_en = "Steer a coding session"
+meaning_tr = "Kodlama oturumunu yönlendir"
+
+[[capability]]
+name = "app.suiss.coding.session.stop"
+meaning_en = "Stop a coding session"
+meaning_tr = "Kodlama oturumunu durdurma isteği gönder"
+
+[[capability]]
+name = "app.suiss.assistant.task.submit"
+meaning_en = "Give One a task"
+meaning_tr = "One'a görev ver"
+
+[[capability]]
+name = "app.suiss.assistant.task.status"
+meaning_en = "Ask a task's state"
+meaning_tr = "Görevin durumunu sor"

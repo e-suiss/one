@@ -1,15 +1,21 @@
 # T-39 (1)
+ahash
 figment
 getrandom
 httparse
+icu_normalizer_data
+icu_properties_data
 libc
 proc-macro2
 proc-macro2-diagnostics
 quote
+ref-cast
 serde
 serde_core
 serde_json
 thiserror
 uncased
 valuable
+wit-bindgen
+zerocopy
 zmij

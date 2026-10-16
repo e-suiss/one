@@ -1,0 +1,664 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/ontology/episode/v1.json",
+  "title": "Episode",
+  "description": "A time-bounded sequence of events and the unit of evidence (C-11), and the episode table row of M-6: the raw input a memory record derives from. Conversation history is an Episode; its messages are entries; there is no separate chat type. Content held at its source is referenced, never copied. A permanently forgotten Episode keeps only its skeleton. C-5, C-11, C-19, M-3, M-6, M-25, M-36, M-43.",
+  "$defs": {
+    "mode": {
+      "enum": [
+        "text",
+        "voice",
+        "card",
+        "workspace"
+      ]
+    },
+    "entry": {
+      "description": "One entry of the Episode: a conversation turn, an explicit remember, a reference to an event read from a connected source, an imported item, an Observation or an Interaction. Messages are Episode content, not a separate type (C-5, C-11, M-6).",
+      "type": "object",
+      "properties": {
+        "seq": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "at": {
+          "$ref": "https://suiss.app/schemas/one/memory/common/v1.json#/$defs/instant"
+        },
+        "actor": {
+          "enum": [
+            "user",
+            "one",
+            "subagent",
+            "other_party"
+          ]
+        },
+        "mode": {
+          "$ref": "#/$defs/mode"
+        },
+        "kind": {
+          "enum": [
+            "conversation_turn",
+            "explicit_remember",
+            "source_event_ref",
+            "imported_item",
+            "observation",
+            "interaction"
+          ]
+        },
+        "source_kind": {
+          "$ref": "https://suiss.app/schemas/one/memory/fields/v1.json#/$defs/source_kind"
+        },
+        "provenance": {
+          "$ref": "https://suiss.app/schemas/one/provenance/label/v1.json"
+        },
+        "content": {
+          "type": "object",
+          "properties": {
+            "text": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 8192
+            },
+            "lang": {
+              "enum": [
+                "tr",
+                "en"
+              ]
+            }
+          },
+          "required": [
+            "text",
+            "lang"
+          ],
+          "additionalProperties": false
+        },
+        "source": {
+          "type": "object",
+          "properties": {
+            "ref": {
+              "$ref": "https://suiss.app/schemas/one/ontology/reference/v1.json#/$defs/ExternalRef"
+            },
+            "read_at": {
+              "$ref": "https://suiss.app/schemas/one/memory/common/v1.json#/$defs/instant"
+            }
+          },
+          "required": [
+            "ref",
+            "read_at"
+          ],
+          "additionalProperties": false
+        },
+        "import_source": {
+          "enum": [
+            "one_export",
+            "assistant_dump",
+            "transfer_protocol"
+          ]
+        },
+        "observation": {
+          "$ref": "https://suiss.app/schemas/one/ontology/id/v1.json#/$defs/ObservationId"
+        },
+        "interaction": {
+          "$ref": "https://suiss.app/schemas/one/ontology/id/v1.json#/$defs/InteractionId"
+        }
+      },
+      "required": [
+        "seq",
+        "at",
+        "actor",
+        "kind"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "conversation_turn"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "allOf": [
+              {
+                "required": [
+                  "content"
+                ]
+              },
+              {
+                "not": {
+                  "anyOf": [
+                    {
+                      "required": [
+                        "source"
+                      ]
+                    },
+                    {
+                      "required": [
+                        "import_source"
+                      ]
+                    },
+                    {
+                      "required": [
+                        "observation"
+                      ]
+                    },
+                    {
+                      "required": [
+                        "interaction"
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "if": {
+                  "properties": {
+                    "actor": {
+                      "const": "user"
+                    }
+                  }
+                },
+                "then": {
+                  "required": [
+                    "source_kind",
+                    "provenance"
+                  ],
+                  "properties": {
+                    "source_kind": {
+                      "const": "user_statement"
+                    },
+                    "provenance": {
+                      "const": "user.direct"
+                    }
+                  }
+                },
+                "else": {
+                  "not": {
+                    "anyOf": [
+                      {
+                        "required": [
+                          "source_kind"
+                        ]
+                      }
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "explicit_remember"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "allOf": [
+              {
+                "required": [
+                  "content",
+                  "source_kind",
+                  "provenance"
+                ],
+                "properties": {
+                  "actor": {
+                    "const": "user"
+                  },
+                  "source_kind": {
+                    "const": "user_statement"
+                  },
+                  "provenance": {
+                    "const": "user.direct"
+                  }
+                }
+              },
+              {
+                "not": {
+                  "anyOf": [
+                    {
+                      "required": [
+                        "source"
+                      ]
+                    },
+                    {
+                      "required": [
+                        "import_source"
+                      ]
+                    },
+                    {
+                      "required": [
+                        "observation"
+                      ]
+                    },
+                    {
+                      "required": [
+                        "interaction"
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "source_event_ref"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "allOf": [
+              {
+                "required": [
+                  "source",
+                  "source_kind",
+                  "provenance"
+                ],
+                "properties": {
+                  "source_kind": {
+                    "enum": [
+                      "connected_source",
+                      "external_content"
+                    ]
+                  },
+                  "provenance": {
+                    "$ref": "https://suiss.app/schemas/one/provenance/label/v1.json#/$defs/external"
+                  }
+                }
+              },
+              {
+                "not": {
+                  "anyOf": [
+                    {
+                      "required": [
+                        "content"
+                      ]
+                    },
+                    {
+                      "required": [
+                        "import_source"
+                      ]
+                    },
+                    {
+                      "required": [
+                        "observation"
+                      ]
+                    },
+                    {
+                      "required": [
+                        "interaction"
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "imported_item"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "allOf": [
+              {
+                "required": [
+                  "import_source",
+                  "content",
+                  "source_kind",
+                  "provenance"
+                ],
+                "properties": {
+                  "source_kind": {
+                    "const": "import"
+                  },
+                  "provenance": {
+                    "const": "external.import"
+                  }
+                }
+              },
+              {
+                "not": {
+                  "anyOf": [
+                    {
+                      "required": [
+                        "source"
+                      ]
+                    },
+                    {
+                      "required": [
+                        "observation"
+                      ]
+                    },
+                    {
+                      "required": [
+                        "interaction"
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "observation"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "allOf": [
+              {
+                "required": [
+                  "observation"
+                ]
+              },
+              {
+                "not": {
+                  "anyOf": [
+                    {
+                      "required": [
+                        "content"
+                      ]
+                    },
+                    {
+                      "required": [
+                        "source"
+                      ]
+                    },
+                    {
+                      "required": [
+                        "import_source"
+                      ]
+                    },
+                    {
+                      "required": [
+                        "interaction"
+                      ]
+                    },
+                    {
+                      "required": [
+                        "source_kind"
+                      ]
+                    },
+                    {
+                      "required": [
+                        "provenance"
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "interaction"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "allOf": [
+              {
+                "required": [
+                  "interaction"
+                ]
+              },
+              {
+                "not": {
+                  "anyOf": [
+                    {
+                      "required": [
+                        "content"
+                      ]
+                    },
+                    {
+                      "required": [
+                        "source"
+                      ]
+                    },
+                    {
+                      "required": [
+                        "import_source"
+                      ]
+                    },
+                    {
+                      "required": [
+                        "observation"
+                      ]
+                    },
+                    {
+                      "required": [
+                        "source_kind"
+                      ]
+                    },
+                    {
+                      "required": [
+                        "provenance"
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "skeleton": {
+      "description": "What survives permanent forgetting: identity, status and destruction time; no content or source (M-25; Access OP-73)",
+      "type": "object",
+      "required": [
+        "type",
+        "id",
+        "owner",
+        "version",
+        "status",
+        "recorded_at",
+        "deleted_at",
+        "retention_class"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "Episode"
+        },
+        "id": {
+          "$ref": "https://suiss.app/schemas/one/ontology/id/v1.json#/$defs/EpisodeId"
+        },
+        "owner": {
+          "$ref": "https://suiss.app/schemas/one/memory/common/v1.json#/$defs/party_ref"
+        },
+        "version": {
+          "$ref": "https://suiss.app/schemas/one/memory/common/v1.json#/$defs/version"
+        },
+        "status": {
+          "const": "forgotten"
+        },
+        "recorded_at": {
+          "$ref": "https://suiss.app/schemas/one/memory/common/v1.json#/$defs/instant"
+        },
+        "deleted_at": {
+          "$ref": "https://suiss.app/schemas/one/memory/common/v1.json#/$defs/instant"
+        },
+        "retention_class": {
+          "enum": [
+            "one_memory",
+            "one_sensitive"
+          ]
+        }
+      }
+    },
+    "live": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "https://suiss.app/schemas/one/memory/common/v1.json#/$defs/record_header"
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "task_run"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "required": [
+              "task"
+            ]
+          },
+          "else": {
+            "not": {
+              "required": [
+                "task"
+              ]
+            }
+          }
+        }
+      ],
+      "properties": {
+        "type": {
+          "const": "Episode"
+        },
+        "id": {
+          "$ref": "https://suiss.app/schemas/one/ontology/id/v1.json#/$defs/EpisodeId"
+        },
+        "kind": {
+          "enum": [
+            "conversation",
+            "task_run",
+            "meeting_transcript",
+            "observation_window",
+            "connected_source_event",
+            "import"
+          ]
+        },
+        "modes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/mode"
+          },
+          "uniqueItems": true
+        },
+        "started_at": {
+          "$ref": "https://suiss.app/schemas/one/memory/common/v1.json#/$defs/instant"
+        },
+        "ended_at": {
+          "$ref": "https://suiss.app/schemas/one/memory/common/v1.json#/$defs/instant"
+        },
+        "task": {
+          "$ref": "https://suiss.app/schemas/one/ontology/id/v1.json#/$defs/TaskId"
+        },
+        "entries": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/entry"
+          }
+        },
+        "queued_on_device": {
+          "description": "Device that queued the input while offline; the server records it on reconnect (M-36)",
+          "$ref": "https://suiss.app/schemas/one/memory/common/v1.json#/$defs/device_id"
+        },
+        "extensions": {
+          "description": "Typed extension fields (C-7): reverse-DNS name under app.suiss mapped to this concept in the extension registry",
+          "type": "object",
+          "propertyNames": {
+            "$ref": "https://suiss.app/schemas/one/ontology/extension/v1.json#/$defs/suiss_name"
+          },
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "version": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "value": true
+            },
+            "required": [
+              "version",
+              "value"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "status": {
+          "const": "active"
+        },
+        "supersedes": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "https://suiss.app/schemas/one/ontology/id/v1.json#/$defs/EpisodeId"
+            }
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "id",
+        "status",
+        "kind",
+        "modes",
+        "started_at",
+        "entries"
+      ],
+      "unevaluatedProperties": false
+    }
+  },
+  "if": {
+    "properties": {
+      "status": {
+        "const": "forgotten"
+      }
+    },
+    "required": [
+      "status"
+    ]
+  },
+  "then": {
+    "$ref": "#/$defs/skeleton"
+  },
+  "else": {
+    "$ref": "#/$defs/live"
+  }
+}

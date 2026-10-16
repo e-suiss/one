@@ -1,0 +1,194 @@
+[
+  {
+    "rule": "OO-16",
+    "description": "Commitment enqueued before expiry is accepted",
+    "input": {
+      "offerExpiresAt": "2026-11-05T10:00:00Z",
+      "reply": {
+        "kind": "commitment",
+        "sentAt": "2026-11-05T09:00:00Z"
+      },
+      "relayEnqueuedAt": "2026-11-05T09:00:02Z"
+    },
+    "expected": {
+      "accept": true,
+      "workOperation": "promise"
+    }
+  },
+  {
+    "rule": "OO-16",
+    "description": "Commitment enqueued exactly at expiry is accepted",
+    "input": {
+      "offerExpiresAt": "2026-11-05T10:00:00Z",
+      "reply": {
+        "kind": "commitment",
+        "sentAt": "2026-11-05T09:59:59Z"
+      },
+      "relayEnqueuedAt": "2026-11-05T10:00:00Z"
+    },
+    "expected": {
+      "accept": true,
+      "workOperation": "promise"
+    }
+  },
+  {
+    "rule": "OO-16",
+    "description": "Accepting an expired offer is refused",
+    "input": {
+      "offerExpiresAt": "2026-11-05T10:00:00Z",
+      "reply": {
+        "kind": "commitment",
+        "sentAt": "2026-11-05T10:30:00Z"
+      },
+      "relayEnqueuedAt": "2026-11-05T10:30:01Z"
+    },
+    "expected": {
+      "accept": false,
+      "refusal": "offer-expired",
+      "workOperation": null
+    }
+  },
+  {
+    "rule": "OO-16",
+    "description": "Sender-claimed sentAt before expiry does not rescue a late enqueue",
+    "input": {
+      "offerExpiresAt": "2026-11-05T10:00:00Z",
+      "reply": {
+        "kind": "commitment",
+        "sentAt": "2026-11-05T09:00:00Z"
+      },
+      "relayEnqueuedAt": "2026-11-05T10:00:01Z"
+    },
+    "expected": {
+      "accept": false,
+      "refusal": "offer-expired",
+      "workOperation": null
+    }
+  },
+  {
+    "rule": "OO-16",
+    "description": "Direct A2A with an organisation agent uses the receiver's receipt time",
+    "input": {
+      "offerExpiresAt": "2026-11-05T10:00:00Z",
+      "reply": {
+        "kind": "commitment",
+        "sentAt": "2026-11-05T09:59:00Z"
+      },
+      "receivedAt": "2026-11-05T10:00:05Z"
+    },
+    "expected": {
+      "accept": false,
+      "refusal": "offer-expired",
+      "workOperation": null
+    }
+  },
+  {
+    "rule": "OO-16",
+    "description": "Counter-offer to an expired offer is refused",
+    "input": {
+      "offerExpiresAt": "2026-11-05T10:00:00Z",
+      "reply": {
+        "kind": "counter-offer"
+      },
+      "relayEnqueuedAt": "2026-11-05T11:00:00Z"
+    },
+    "expected": {
+      "accept": false,
+      "refusal": "offer-expired",
+      "workOperation": null
+    }
+  },
+  {
+    "rule": "OO-16",
+    "description": "Rejection after expiry does not overwrite the expired outcome",
+    "input": {
+      "offerExpiresAt": "2026-11-05T10:00:00Z",
+      "reply": {
+        "kind": "rejection"
+      },
+      "relayEnqueuedAt": "2026-11-05T11:00:00Z"
+    },
+    "expected": {
+      "accept": false,
+      "refusal": "offer-expired",
+      "workOperation": null
+    }
+  },
+  {
+    "rule": "OO-20",
+    "description": "Silence until expiry is recorded as expired, neither accepted nor rejected",
+    "input": {
+      "offerExpiresAt": "2026-11-05T10:00:00Z",
+      "reply": null,
+      "now": "2026-11-05T10:00:01Z"
+    },
+    "expected": {
+      "workOperation": "expire",
+      "workAuthor": "work-service",
+      "workResult": "expired",
+      "countsAsAcceptance": false,
+      "countsAsRejection": false,
+      "taskState": "TASK_STATE_CANCELED"
+    }
+  },
+  {
+    "rule": "OO-16",
+    "description": "Expiry at or before sentAt is invalid",
+    "input": {
+      "message": {
+        "kind": "offer",
+        "sentAt": "2026-11-04T10:00:00Z",
+        "expiresAt": "2026-11-04T10:00:00Z"
+      }
+    },
+    "expected": {
+      "accept": false,
+      "refusal": "expiry-invalid"
+    }
+  },
+  {
+    "rule": "OO-16",
+    "description": "Expiry more than 7 days after sentAt is invalid",
+    "input": {
+      "message": {
+        "kind": "offer",
+        "sentAt": "2026-11-04T10:00:00Z",
+        "expiresAt": "2026-11-11T10:00:01Z"
+      }
+    },
+    "expected": {
+      "accept": false,
+      "refusal": "expiry-invalid"
+    }
+  },
+  {
+    "rule": "OO-16",
+    "description": "Expiry exactly 7 days after sentAt is valid",
+    "input": {
+      "message": {
+        "kind": "offer",
+        "sentAt": "2026-11-04T10:00:00Z",
+        "expiresAt": "2026-11-11T10:00:00Z"
+      }
+    },
+    "expected": {
+      "accept": true
+    }
+  },
+  {
+    "rule": "OO-16",
+    "description": "Answer to an expired query is refused",
+    "input": {
+      "queryExpiresAt": "2026-11-04T21:00:00Z",
+      "reply": {
+        "kind": "answer"
+      },
+      "relayEnqueuedAt": "2026-11-04T21:00:01Z"
+    },
+    "expected": {
+      "accept": false,
+      "refusal": "offer-expired",
+      "workOperation": null
+    }
+  }
+]

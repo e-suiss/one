@@ -1,0 +1,187 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/ontology/id/v1.json",
+  "title": "One typed identifiers",
+  "description": "Opaque prefixed UUIDv7 identifiers as built by crates/proto/src/id.rs: a lower-case type prefix, `_` and 26 Crockford base32 digits. This file is the only place an identifier pattern is defined; every other schema refers to it. The prefix names the record type only; an identifier never encodes a place, region, device or model.",
+  "$defs": {
+    "body": {
+      "description": "26 Crockford base32 digits of a UUIDv7 (RFC 9562): 48-bit Unix millisecond time, version 7, variant 10 and 74 random bits; no other bit carries meaning",
+      "type": "string",
+      "pattern": "^[0-7][0-9a-hjkmnp-tv-z]{9}[ef][0-9a-hjkmnp-tv-z]{2}[89abrstv][0-9a-hjkmnp-tv-z]{12}$"
+    },
+    "ObservationId": {
+      "description": "Identifier of an Observation; prefix obs",
+      "type": "string",
+      "pattern": "^obs_[0-7][0-9a-hjkmnp-tv-z]{9}[ef][0-9a-hjkmnp-tv-z]{2}[89abrstv][0-9a-hjkmnp-tv-z]{12}$"
+    },
+    "EpisodeId": {
+      "description": "Identifier of an Episode; prefix epi",
+      "type": "string",
+      "pattern": "^epi_[0-7][0-9a-hjkmnp-tv-z]{9}[ef][0-9a-hjkmnp-tv-z]{2}[89abrstv][0-9a-hjkmnp-tv-z]{12}$"
+    },
+    "MemoryRecordId": {
+      "description": "Identifier of a MemoryRecord; prefix mem",
+      "type": "string",
+      "pattern": "^mem_[0-7][0-9a-hjkmnp-tv-z]{9}[ef][0-9a-hjkmnp-tv-z]{2}[89abrstv][0-9a-hjkmnp-tv-z]{12}$"
+    },
+    "GoalId": {
+      "description": "Identifier of a Goal; prefix goal",
+      "type": "string",
+      "pattern": "^goal_[0-7][0-9a-hjkmnp-tv-z]{9}[ef][0-9a-hjkmnp-tv-z]{2}[89abrstv][0-9a-hjkmnp-tv-z]{12}$"
+    },
+    "RoutineId": {
+      "description": "Identifier of a Routine; prefix rtn",
+      "type": "string",
+      "pattern": "^rtn_[0-7][0-9a-hjkmnp-tv-z]{9}[ef][0-9a-hjkmnp-tv-z]{2}[89abrstv][0-9a-hjkmnp-tv-z]{12}$"
+    },
+    "TaskId": {
+      "description": "Identifier of a Task; prefix task",
+      "type": "string",
+      "pattern": "^task_[0-7][0-9a-hjkmnp-tv-z]{9}[ef][0-9a-hjkmnp-tv-z]{2}[89abrstv][0-9a-hjkmnp-tv-z]{12}$"
+    },
+    "InteractionId": {
+      "description": "Identifier of an Interaction; prefix int",
+      "type": "string",
+      "pattern": "^int_[0-7][0-9a-hjkmnp-tv-z]{9}[ef][0-9a-hjkmnp-tv-z]{2}[89abrstv][0-9a-hjkmnp-tv-z]{12}$"
+    },
+    "CapabilityId": {
+      "description": "Identifier of a CapabilityDefinition; prefix cap",
+      "type": "string",
+      "pattern": "^cap_[0-7][0-9a-hjkmnp-tv-z]{9}[ef][0-9a-hjkmnp-tv-z]{2}[89abrstv][0-9a-hjkmnp-tv-z]{12}$"
+    },
+    "SurfaceCapabilityId": {
+      "description": "Identifier of a SurfaceCapability; prefix srf",
+      "type": "string",
+      "pattern": "^srf_[0-7][0-9a-hjkmnp-tv-z]{9}[ef][0-9a-hjkmnp-tv-z]{2}[89abrstv][0-9a-hjkmnp-tv-z]{12}$"
+    },
+    "DeviceId": {
+      "description": "Identifier of a device; prefix dev",
+      "type": "string",
+      "pattern": "^dev_[0-7][0-9a-hjkmnp-tv-z]{9}[ef][0-9a-hjkmnp-tv-z]{2}[89abrstv][0-9a-hjkmnp-tv-z]{12}$"
+    },
+    "ModelVersionId": {
+      "description": "Identifier of a model version; prefix mdl",
+      "type": "string",
+      "pattern": "^mdl_[0-7][0-9a-hjkmnp-tv-z]{9}[ef][0-9a-hjkmnp-tv-z]{2}[89abrstv][0-9a-hjkmnp-tv-z]{12}$"
+    },
+    "AdapterId": {
+      "description": "Identifier of a personal adapter; prefix adp",
+      "type": "string",
+      "pattern": "^adp_[0-7][0-9a-hjkmnp-tv-z]{9}[ef][0-9a-hjkmnp-tv-z]{2}[89abrstv][0-9a-hjkmnp-tv-z]{12}$"
+    },
+    "RequestId": {
+      "description": "Identifier of an API request, returned in the Request-Id header; prefix req",
+      "type": "string",
+      "pattern": "^req_[0-7][0-9a-hjkmnp-tv-z]{9}[ef][0-9a-hjkmnp-tv-z]{2}[89abrstv][0-9a-hjkmnp-tv-z]{12}$"
+    },
+    "EventId": {
+      "description": "Identifier of a task event; prefix evt",
+      "type": "string",
+      "pattern": "^evt_[0-7][0-9a-hjkmnp-tv-z]{9}[ef][0-9a-hjkmnp-tv-z]{2}[89abrstv][0-9a-hjkmnp-tv-z]{12}$"
+    },
+    "ProjectId": {
+      "description": "Identifier of a user memory project (M-28); prefix prj",
+      "type": "string",
+      "pattern": "^prj_[0-7][0-9a-hjkmnp-tv-z]{9}[ef][0-9a-hjkmnp-tv-z]{2}[89abrstv][0-9a-hjkmnp-tv-z]{12}$"
+    },
+    "ModelRequestId": {
+      "description": "Identifier of a model request; prefix mrq",
+      "type": "string",
+      "pattern": "^mrq_[0-7][0-9a-hjkmnp-tv-z]{9}[ef][0-9a-hjkmnp-tv-z]{2}[89abrstv][0-9a-hjkmnp-tv-z]{12}$"
+    },
+    "AttentionDecisionId": {
+      "description": "Identifier of an attention decision; prefix atd",
+      "type": "string",
+      "pattern": "^atd_[0-7][0-9a-hjkmnp-tv-z]{9}[ef][0-9a-hjkmnp-tv-z]{2}[89abrstv][0-9a-hjkmnp-tv-z]{12}$"
+    },
+    "CanonicalId": {
+      "description": "Identifier of any of the nine canonical concepts",
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ObservationId"
+        },
+        {
+          "$ref": "#/$defs/EpisodeId"
+        },
+        {
+          "$ref": "#/$defs/MemoryRecordId"
+        },
+        {
+          "$ref": "#/$defs/GoalId"
+        },
+        {
+          "$ref": "#/$defs/RoutineId"
+        },
+        {
+          "$ref": "#/$defs/TaskId"
+        },
+        {
+          "$ref": "#/$defs/InteractionId"
+        },
+        {
+          "$ref": "#/$defs/CapabilityId"
+        },
+        {
+          "$ref": "#/$defs/SurfaceCapabilityId"
+        }
+      ]
+    },
+    "AnyId": {
+      "description": "Any identifier One mints. Tenant and other sibling identifiers are opaque and never minted by One",
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ObservationId"
+        },
+        {
+          "$ref": "#/$defs/EpisodeId"
+        },
+        {
+          "$ref": "#/$defs/MemoryRecordId"
+        },
+        {
+          "$ref": "#/$defs/GoalId"
+        },
+        {
+          "$ref": "#/$defs/RoutineId"
+        },
+        {
+          "$ref": "#/$defs/TaskId"
+        },
+        {
+          "$ref": "#/$defs/InteractionId"
+        },
+        {
+          "$ref": "#/$defs/CapabilityId"
+        },
+        {
+          "$ref": "#/$defs/SurfaceCapabilityId"
+        },
+        {
+          "$ref": "#/$defs/DeviceId"
+        },
+        {
+          "$ref": "#/$defs/ModelVersionId"
+        },
+        {
+          "$ref": "#/$defs/AdapterId"
+        },
+        {
+          "$ref": "#/$defs/RequestId"
+        },
+        {
+          "$ref": "#/$defs/EventId"
+        },
+        {
+          "$ref": "#/$defs/ProjectId"
+        },
+        {
+          "$ref": "#/$defs/ModelRequestId"
+        },
+        {
+          "$ref": "#/$defs/AttentionDecisionId"
+        }
+      ]
+    }
+  },
+  "$ref": "#/$defs/AnyId"
+}

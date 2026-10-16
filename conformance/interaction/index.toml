@@ -1,0 +1,139 @@
+# X-12, X-22, C-25, C-26, T-31
+
+[[schema]]
+path = "schemas/common/v1.json"
+id = "https://suiss.app/schemas/one/interaction/common/v1.json"
+rules = ["X-3", "X-12", "X-20", "C-7", "C-23", "C-25", "AT-5", "AT-13", "T-31"]
+
+[[schema]]
+path = "schemas/interaction/v1.json"
+id = "https://suiss.app/schemas/one/interaction/interaction/v1.json"
+rules = ["X-12", "X-7", "X-13", "X-14", "X-16", "X-18", "X-19", "X-20", "X-21", "X-28", "X-61", "C-7", "C-16", "C-25", "MD-21 (3)", "T-31", "AT-5", "AT-6", "AT-12", "AT-13", "AT-42", "A-28"]
+
+[[schema]]
+path = "schemas/interaction-response/v1.json"
+id = "https://suiss.app/schemas/one/interaction/interaction-response/v1.json"
+rules = ["X-22", "X-18", "X-19", "C-26", "A-29", "T-31"]
+
+[[schema]]
+path = "schemas/kinds/v1.json"
+id = "https://suiss.app/schemas/one/interaction/kinds/v1.json"
+rules = ["X-12", "X-13", "AT-42"]
+
+[[schema]]
+path = "schemas/kind-extension/v1.json"
+id = "https://suiss.app/schemas/one/interaction/kind-extension/v1.json"
+rules = ["C-7", "C-3", "CP-15", "X-12"]
+
+[[schema]]
+path = "schemas/component-catalog/v1.json"
+id = "https://suiss.app/schemas/one/interaction/component-catalog/v1.json"
+rules = ["X-14", "X-61"]
+
+[[schema]]
+path = "schemas/surface-budgets/v1.json"
+id = "https://suiss.app/schemas/one/interaction/surface-budgets/v1.json"
+rules = ["X-13", "X-3"]
+
+[[vectors]]
+path = "vectors/fixtures.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/interaction/interaction/v1.json"
+rules = ["X-12", "X-13", "C-25"]
+
+[[vectors]]
+path = "vectors/interaction.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/interaction/interaction/v1.json"
+rules = ["X-12", "X-7", "X-13", "X-14", "X-16", "X-18", "X-19", "X-20", "X-21", "X-28", "X-30", "X-61", "C-7", "C-25", "AT-5", "AT-6", "AT-12", "AT-13", "AT-42", "A-28"]
+
+[[vectors]]
+path = "vectors/kind-extension.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/interaction/kind-extension/v1.json"
+rules = ["C-7", "CP-15"]
+
+[[vectors]]
+path = "vectors/kind-resolution.json"
+kind = "behaviour"
+rules = ["C-7", "X-12"]
+
+[[vectors]]
+path = "vectors/interaction-response.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/interaction/interaction-response/v1.json"
+rules = ["X-22", "X-18", "X-19", "C-26", "A-28"]
+
+[[vectors]]
+path = "vectors/response-processing.json"
+kind = "behaviour"
+rules = ["X-21", "X-22", "X-19", "X-30", "X-16", "X-7", "C-26", "A-29", "A-30"]
+
+[[vectors]]
+path = "vectors/budgets.json"
+kind = "behaviour"
+rules = ["X-13", "X-6", "X-4", "X-7", "X-10", "X-19", "X-20", "X-36", "X-45", "X-46", "AT-13", "A-28", "C-7"]
+
+[[table]]
+path = "kinds.toml"
+rules = ["X-12", "X-13", "AT-42", "C-25"]
+
+[[table]]
+path = "kind-extensions.toml"
+rules = ["C-7", "C-3"]
+
+[[table]]
+path = "catalog/components.toml"
+rules = ["X-14", "X-61", "X-16", "X-17", "X-18"]
+
+[[table]]
+path = "surfaces/surface-classes.toml"
+rules = ["X-2", "X-3", "X-5", "X-19", "X-45", "X-46", "C-5", "C-18", "A-28"]
+
+[[table]]
+path = "surfaces/budgets.toml"
+rules = ["X-13", "X-4", "X-6", "X-10", "X-19", "X-20", "X-36", "X-45", "X-46", "X-61", "AT-13"]
+
+[[table]]
+path = "projection/rules.toml"
+rules = ["C-6", "C-27", "MD-6 (4)", "INV-38", "X-15", "X-16", "X-10"]
+
+[[table]]
+path = "projection/notification.toml"
+rules = ["X-8", "X-7", "X-20", "X-21", "AT-5", "AT-12", "AT-13", "AT-42", "C-27"]
+
+[[table]]
+path = "projection/live-activity.toml"
+rules = ["X-4", "X-6", "X-7", "X-13", "C-27"]
+
+[[table]]
+path = "projection/live-update.toml"
+rules = ["X-4", "X-6", "X-7", "X-13", "C-27"]
+
+[[table]]
+path = "projection/watch.toml"
+rules = ["X-13", "X-19", "X-45", "A-28"]
+
+[[table]]
+path = "projection/voice.toml"
+rules = ["X-13", "X-20", "X-33", "X-36", "X-19", "AT-13", "C-27"]
+
+[[table]]
+path = "projection/glasses.toml"
+rules = ["X-13", "X-46", "X-10", "X-16", "C-27"]
+
+[[table]]
+path = "projection/a2ui.toml"
+rules = ["X-14", "X-15", "X-17", "C-6", "C-27", "INV-38"]
+
+[[table]]
+path = "projection/ag-ui.toml"
+rules = ["X-15", "C-6", "C-27", "MD-6 (4)", "INV-38"]
+
+[[table]]
+path = "projection/mcp-apps.toml"
+rules = ["X-17", "X-15", "X-16", "X-55", "C-6", "C-27"]
+
+[[table]]
+path = "projection/approval-act-statement.toml"
+rules = ["X-22", "C-26", "A-29", "X-18", "X-21"]

@@ -1,0 +1,1034 @@
+[
+  {
+    "rule": "MF-55",
+    "description": "A released One behaviour model with role, base, version, format, licence, evaluation and lineage",
+    "input": {
+      "name": "one-small",
+      "version": "2026.10.1",
+      "role": "cloud",
+      "component": "Qwen3.5",
+      "format": "safetensors",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "source": "https://huggingface.co/Qwen/Qwen3.5-4B",
+      "status": "released",
+      "signature": "sigstore-bundle:one-small-2026.10.1",
+      "model_version_id": "mdl_01m4ezb900f9at0tvpg669f8nd",
+      "kind": "one_behaviour",
+      "model_role": "small_lm",
+      "base_model": {
+        "name": "qwen3.5-4b",
+        "version": "1",
+        "model_version_id": "mdl_01m4ezb900f728zpq5y3xgc48w"
+      },
+      "platform": "cloud",
+      "quantisation": "bf16",
+      "size_bytes": 8000000000,
+      "licence": {
+        "spdx": "Apache-2.0"
+      },
+      "evaluation": {
+        "gate": "passed",
+        "set": "tr_en",
+        "set_version": "0.1.0",
+        "result_ref": "ml/evals/results/one-small-2026.10.1.toml"
+      },
+      "lineage": {
+        "kind": "open_and_synthetic",
+        "manifests": [
+          "ml/datasets/manifests/one-behaviour-2026-10.toml"
+        ],
+        "training_compute_flop": 3.2e+20
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "MF-55",
+    "description": "An on-device embedding candidate carries its dimension",
+    "input": {
+      "name": "embeddinggemma-2-text",
+      "version": "1",
+      "role": "device",
+      "component": "EmbeddingGemma 2",
+      "format": "litertlm",
+      "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "source": "https://huggingface.co/google/embeddinggemma-2",
+      "status": "candidate",
+      "model_version_id": "mdl_01m4ezb900ejftnde0sfbe3v7q",
+      "kind": "embedding",
+      "model_role": "embedding",
+      "platform": "android",
+      "quantisation": "int8",
+      "size_bytes": 191000000,
+      "embedding_dimension": 256,
+      "licence": {
+        "spdx": "Apache-2.0"
+      },
+      "evaluation": {
+        "gate": "pending"
+      },
+      "lineage": {
+        "kind": "upstream"
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "MF-55",
+    "description": "A personal adapter bound to the One small model",
+    "input": {
+      "name": "personal-adapter",
+      "version": "3",
+      "role": "cloud",
+      "component": "Qwen3.5",
+      "format": "safetensors",
+      "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "source": "user_space",
+      "status": "released",
+      "signature": "user-space-signature",
+      "model_version_id": "mdl_01m4ezb900eyhave63svcy9vzt",
+      "kind": "personal_adapter",
+      "model_role": "small_lm",
+      "base_model": {
+        "name": "one-small",
+        "version": "2026.10.1",
+        "model_version_id": "mdl_01m4ezb900f9at0tvpg669f8nd"
+      },
+      "platform": "cloud",
+      "quantisation": "bf16",
+      "size_bytes": 40000000,
+      "licence": {
+        "spdx": "Apache-2.0"
+      },
+      "evaluation": {
+        "gate": "passed",
+        "set": "adapter_gate",
+        "set_version": "1",
+        "result_ref": "one_model:adapter-gate"
+      },
+      "lineage": {
+        "kind": "personal"
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "MF-13",
+    "description": "A general starting attention model on the phone",
+    "input": {
+      "name": "attention-start",
+      "version": "1",
+      "role": "device",
+      "component": "Suiss synthetic",
+      "format": "onnx",
+      "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+      "source": "https://models.suiss.app/attention-start/1",
+      "status": "candidate",
+      "model_version_id": "mdl_01m4ezb900fvmv9zra2mg2pdj1",
+      "kind": "device",
+      "model_role": "attention",
+      "platform": "ios",
+      "quantisation": "fp32",
+      "size_bytes": 3000000,
+      "licence": {
+        "spdx": "LicenseRef-Suiss-Proprietary"
+      },
+      "evaluation": {
+        "gate": "pending"
+      },
+      "lineage": {
+        "kind": "open_and_synthetic",
+        "manifests": [
+          "ml/datasets/manifests/attention-start-1.toml"
+        ]
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "MF-55",
+    "description": "An entry without licence is rejected",
+    "input": {
+      "name": "one-small",
+      "version": "2026.10.1",
+      "role": "cloud",
+      "component": "Qwen3.5",
+      "format": "safetensors",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "source": "https://huggingface.co/Qwen/Qwen3.5-4B",
+      "status": "released",
+      "signature": "sigstore-bundle:one-small-2026.10.1",
+      "model_version_id": "mdl_01m4ezb900f9at0tvpg669f8nd",
+      "kind": "one_behaviour",
+      "model_role": "small_lm",
+      "base_model": {
+        "name": "qwen3.5-4b",
+        "version": "1",
+        "model_version_id": "mdl_01m4ezb900f728zpq5y3xgc48w"
+      },
+      "platform": "cloud",
+      "quantisation": "bf16",
+      "size_bytes": 8000000000,
+      "evaluation": {
+        "gate": "passed",
+        "set": "tr_en",
+        "set_version": "0.1.0",
+        "result_ref": "ml/evals/results/one-small-2026.10.1.toml"
+      },
+      "lineage": {
+        "kind": "open_and_synthetic",
+        "manifests": [
+          "ml/datasets/manifests/one-behaviour-2026-10.toml"
+        ],
+        "training_compute_flop": 3.2e+20
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-55",
+    "description": "An entry without evaluation result is rejected",
+    "input": {
+      "name": "one-small",
+      "version": "2026.10.1",
+      "role": "cloud",
+      "component": "Qwen3.5",
+      "format": "safetensors",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "source": "https://huggingface.co/Qwen/Qwen3.5-4B",
+      "status": "released",
+      "signature": "sigstore-bundle:one-small-2026.10.1",
+      "model_version_id": "mdl_01m4ezb900f9at0tvpg669f8nd",
+      "kind": "one_behaviour",
+      "model_role": "small_lm",
+      "base_model": {
+        "name": "qwen3.5-4b",
+        "version": "1",
+        "model_version_id": "mdl_01m4ezb900f728zpq5y3xgc48w"
+      },
+      "platform": "cloud",
+      "quantisation": "bf16",
+      "size_bytes": 8000000000,
+      "licence": {
+        "spdx": "Apache-2.0"
+      },
+      "lineage": {
+        "kind": "open_and_synthetic",
+        "manifests": [
+          "ml/datasets/manifests/one-behaviour-2026-10.toml"
+        ],
+        "training_compute_flop": 3.2e+20
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-55",
+    "description": "An entry without training data lineage is rejected",
+    "input": {
+      "name": "one-small",
+      "version": "2026.10.1",
+      "role": "cloud",
+      "component": "Qwen3.5",
+      "format": "safetensors",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "source": "https://huggingface.co/Qwen/Qwen3.5-4B",
+      "status": "released",
+      "signature": "sigstore-bundle:one-small-2026.10.1",
+      "model_version_id": "mdl_01m4ezb900f9at0tvpg669f8nd",
+      "kind": "one_behaviour",
+      "model_role": "small_lm",
+      "base_model": {
+        "name": "qwen3.5-4b",
+        "version": "1",
+        "model_version_id": "mdl_01m4ezb900f728zpq5y3xgc48w"
+      },
+      "platform": "cloud",
+      "quantisation": "bf16",
+      "size_bytes": 8000000000,
+      "licence": {
+        "spdx": "Apache-2.0"
+      },
+      "evaluation": {
+        "gate": "passed",
+        "set": "tr_en",
+        "set_version": "0.1.0",
+        "result_ref": "ml/evals/results/one-small-2026.10.1.toml"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-55",
+    "description": "An entry without base model where one is required is rejected",
+    "input": {
+      "name": "one-small",
+      "version": "2026.10.1",
+      "role": "cloud",
+      "component": "Qwen3.5",
+      "format": "safetensors",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "source": "https://huggingface.co/Qwen/Qwen3.5-4B",
+      "status": "released",
+      "signature": "sigstore-bundle:one-small-2026.10.1",
+      "model_version_id": "mdl_01m4ezb900f9at0tvpg669f8nd",
+      "kind": "one_behaviour",
+      "model_role": "small_lm",
+      "platform": "cloud",
+      "quantisation": "bf16",
+      "size_bytes": 8000000000,
+      "licence": {
+        "spdx": "Apache-2.0"
+      },
+      "evaluation": {
+        "gate": "passed",
+        "set": "tr_en",
+        "set_version": "0.1.0",
+        "result_ref": "ml/evals/results/one-small-2026.10.1.toml"
+      },
+      "lineage": {
+        "kind": "open_and_synthetic",
+        "manifests": [
+          "ml/datasets/manifests/one-behaviour-2026-10.toml"
+        ],
+        "training_compute_flop": 3.2e+20
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-16",
+    "description": "An entry without platform is rejected",
+    "input": {
+      "name": "one-small",
+      "version": "2026.10.1",
+      "role": "cloud",
+      "component": "Qwen3.5",
+      "format": "safetensors",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "source": "https://huggingface.co/Qwen/Qwen3.5-4B",
+      "status": "released",
+      "signature": "sigstore-bundle:one-small-2026.10.1",
+      "model_version_id": "mdl_01m4ezb900f9at0tvpg669f8nd",
+      "kind": "one_behaviour",
+      "model_role": "small_lm",
+      "base_model": {
+        "name": "qwen3.5-4b",
+        "version": "1",
+        "model_version_id": "mdl_01m4ezb900f728zpq5y3xgc48w"
+      },
+      "quantisation": "bf16",
+      "size_bytes": 8000000000,
+      "licence": {
+        "spdx": "Apache-2.0"
+      },
+      "evaluation": {
+        "gate": "passed",
+        "set": "tr_en",
+        "set_version": "0.1.0",
+        "result_ref": "ml/evals/results/one-small-2026.10.1.toml"
+      },
+      "lineage": {
+        "kind": "open_and_synthetic",
+        "manifests": [
+          "ml/datasets/manifests/one-behaviour-2026-10.toml"
+        ],
+        "training_compute_flop": 3.2e+20
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-16",
+    "description": "An entry without quantisation is rejected",
+    "input": {
+      "name": "one-small",
+      "version": "2026.10.1",
+      "role": "cloud",
+      "component": "Qwen3.5",
+      "format": "safetensors",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "source": "https://huggingface.co/Qwen/Qwen3.5-4B",
+      "status": "released",
+      "signature": "sigstore-bundle:one-small-2026.10.1",
+      "model_version_id": "mdl_01m4ezb900f9at0tvpg669f8nd",
+      "kind": "one_behaviour",
+      "model_role": "small_lm",
+      "base_model": {
+        "name": "qwen3.5-4b",
+        "version": "1",
+        "model_version_id": "mdl_01m4ezb900f728zpq5y3xgc48w"
+      },
+      "platform": "cloud",
+      "size_bytes": 8000000000,
+      "licence": {
+        "spdx": "Apache-2.0"
+      },
+      "evaluation": {
+        "gate": "passed",
+        "set": "tr_en",
+        "set_version": "0.1.0",
+        "result_ref": "ml/evals/results/one-small-2026.10.1.toml"
+      },
+      "lineage": {
+        "kind": "open_and_synthetic",
+        "manifests": [
+          "ml/datasets/manifests/one-behaviour-2026-10.toml"
+        ],
+        "training_compute_flop": 3.2e+20
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-16",
+    "description": "An entry without size is rejected",
+    "input": {
+      "name": "one-small",
+      "version": "2026.10.1",
+      "role": "cloud",
+      "component": "Qwen3.5",
+      "format": "safetensors",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "source": "https://huggingface.co/Qwen/Qwen3.5-4B",
+      "status": "released",
+      "signature": "sigstore-bundle:one-small-2026.10.1",
+      "model_version_id": "mdl_01m4ezb900f9at0tvpg669f8nd",
+      "kind": "one_behaviour",
+      "model_role": "small_lm",
+      "base_model": {
+        "name": "qwen3.5-4b",
+        "version": "1",
+        "model_version_id": "mdl_01m4ezb900f728zpq5y3xgc48w"
+      },
+      "platform": "cloud",
+      "quantisation": "bf16",
+      "licence": {
+        "spdx": "Apache-2.0"
+      },
+      "evaluation": {
+        "gate": "passed",
+        "set": "tr_en",
+        "set_version": "0.1.0",
+        "result_ref": "ml/evals/results/one-small-2026.10.1.toml"
+      },
+      "lineage": {
+        "kind": "open_and_synthetic",
+        "manifests": [
+          "ml/datasets/manifests/one-behaviour-2026-10.toml"
+        ],
+        "training_compute_flop": 3.2e+20
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "SEC-26",
+    "description": "A code-executing format is rejected",
+    "input": {
+      "name": "one-small",
+      "version": "2026.10.1",
+      "role": "cloud",
+      "component": "Qwen3.5",
+      "format": "pt",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "source": "https://huggingface.co/Qwen/Qwen3.5-4B",
+      "status": "released",
+      "signature": "sigstore-bundle:one-small-2026.10.1",
+      "model_version_id": "mdl_01m4ezb900f9at0tvpg669f8nd",
+      "kind": "one_behaviour",
+      "model_role": "small_lm",
+      "base_model": {
+        "name": "qwen3.5-4b",
+        "version": "1",
+        "model_version_id": "mdl_01m4ezb900f728zpq5y3xgc48w"
+      },
+      "platform": "cloud",
+      "quantisation": "bf16",
+      "size_bytes": 8000000000,
+      "licence": {
+        "spdx": "Apache-2.0"
+      },
+      "evaluation": {
+        "gate": "passed",
+        "set": "tr_en",
+        "set_version": "0.1.0",
+        "result_ref": "ml/evals/results/one-small-2026.10.1.toml"
+      },
+      "lineage": {
+        "kind": "open_and_synthetic",
+        "manifests": [
+          "ml/datasets/manifests/one-behaviour-2026-10.toml"
+        ],
+        "training_compute_flop": 3.2e+20
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "SEC-26",
+    "description": "sha256 is 64 lower-case hex digits",
+    "input": {
+      "name": "one-small",
+      "version": "2026.10.1",
+      "role": "cloud",
+      "component": "Qwen3.5",
+      "format": "safetensors",
+      "sha256": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "source": "https://huggingface.co/Qwen/Qwen3.5-4B",
+      "status": "released",
+      "signature": "sigstore-bundle:one-small-2026.10.1",
+      "model_version_id": "mdl_01m4ezb900f9at0tvpg669f8nd",
+      "kind": "one_behaviour",
+      "model_role": "small_lm",
+      "base_model": {
+        "name": "qwen3.5-4b",
+        "version": "1",
+        "model_version_id": "mdl_01m4ezb900f728zpq5y3xgc48w"
+      },
+      "platform": "cloud",
+      "quantisation": "bf16",
+      "size_bytes": 8000000000,
+      "licence": {
+        "spdx": "Apache-2.0"
+      },
+      "evaluation": {
+        "gate": "passed",
+        "set": "tr_en",
+        "set_version": "0.1.0",
+        "result_ref": "ml/evals/results/one-small-2026.10.1.toml"
+      },
+      "lineage": {
+        "kind": "open_and_synthetic",
+        "manifests": [
+          "ml/datasets/manifests/one-behaviour-2026-10.toml"
+        ],
+        "training_compute_flop": 3.2e+20
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "SEC-26",
+    "description": "A released model needs a signature",
+    "input": {
+      "name": "one-small",
+      "version": "2026.10.1",
+      "role": "cloud",
+      "component": "Qwen3.5",
+      "format": "safetensors",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "source": "https://huggingface.co/Qwen/Qwen3.5-4B",
+      "status": "released",
+      "signature": "",
+      "model_version_id": "mdl_01m4ezb900f9at0tvpg669f8nd",
+      "kind": "one_behaviour",
+      "model_role": "small_lm",
+      "base_model": {
+        "name": "qwen3.5-4b",
+        "version": "1",
+        "model_version_id": "mdl_01m4ezb900f728zpq5y3xgc48w"
+      },
+      "platform": "cloud",
+      "quantisation": "bf16",
+      "size_bytes": 8000000000,
+      "licence": {
+        "spdx": "Apache-2.0"
+      },
+      "evaluation": {
+        "gate": "passed",
+        "set": "tr_en",
+        "set_version": "0.1.0",
+        "result_ref": "ml/evals/results/one-small-2026.10.1.toml"
+      },
+      "lineage": {
+        "kind": "open_and_synthetic",
+        "manifests": [
+          "ml/datasets/manifests/one-behaviour-2026-10.toml"
+        ],
+        "training_compute_flop": 3.2e+20
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-52",
+    "description": "A released model has passed the evaluation gate",
+    "input": {
+      "name": "one-small",
+      "version": "2026.10.1",
+      "role": "cloud",
+      "component": "Qwen3.5",
+      "format": "safetensors",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "source": "https://huggingface.co/Qwen/Qwen3.5-4B",
+      "status": "released",
+      "signature": "sigstore-bundle:one-small-2026.10.1",
+      "model_version_id": "mdl_01m4ezb900f9at0tvpg669f8nd",
+      "kind": "one_behaviour",
+      "model_role": "small_lm",
+      "base_model": {
+        "name": "qwen3.5-4b",
+        "version": "1",
+        "model_version_id": "mdl_01m4ezb900f728zpq5y3xgc48w"
+      },
+      "platform": "cloud",
+      "quantisation": "bf16",
+      "size_bytes": 8000000000,
+      "licence": {
+        "spdx": "Apache-2.0"
+      },
+      "evaluation": {
+        "gate": "pending"
+      },
+      "lineage": {
+        "kind": "open_and_synthetic",
+        "manifests": [
+          "ml/datasets/manifests/one-behaviour-2026-10.toml"
+        ],
+        "training_compute_flop": 3.2e+20
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "T-39 (5)",
+    "description": "Placement is cloud or device",
+    "input": {
+      "name": "one-small",
+      "version": "2026.10.1",
+      "role": "edge",
+      "component": "Qwen3.5",
+      "format": "safetensors",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "source": "https://huggingface.co/Qwen/Qwen3.5-4B",
+      "status": "released",
+      "signature": "sigstore-bundle:one-small-2026.10.1",
+      "model_version_id": "mdl_01m4ezb900f9at0tvpg669f8nd",
+      "kind": "one_behaviour",
+      "model_role": "small_lm",
+      "base_model": {
+        "name": "qwen3.5-4b",
+        "version": "1",
+        "model_version_id": "mdl_01m4ezb900f728zpq5y3xgc48w"
+      },
+      "platform": "cloud",
+      "quantisation": "bf16",
+      "size_bytes": 8000000000,
+      "licence": {
+        "spdx": "Apache-2.0"
+      },
+      "evaluation": {
+        "gate": "passed",
+        "set": "tr_en",
+        "set_version": "0.1.0",
+        "result_ref": "ml/evals/results/one-small-2026.10.1.toml"
+      },
+      "lineage": {
+        "kind": "open_and_synthetic",
+        "manifests": [
+          "ml/datasets/manifests/one-behaviour-2026-10.toml"
+        ],
+        "training_compute_flop": 3.2e+20
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "T-39 (5)",
+    "description": "Status is candidate, released or retired",
+    "input": {
+      "name": "one-small",
+      "version": "2026.10.1",
+      "role": "cloud",
+      "component": "Qwen3.5",
+      "format": "safetensors",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "source": "https://huggingface.co/Qwen/Qwen3.5-4B",
+      "status": "beta",
+      "signature": "sigstore-bundle:one-small-2026.10.1",
+      "model_version_id": "mdl_01m4ezb900f9at0tvpg669f8nd",
+      "kind": "one_behaviour",
+      "model_role": "small_lm",
+      "base_model": {
+        "name": "qwen3.5-4b",
+        "version": "1",
+        "model_version_id": "mdl_01m4ezb900f728zpq5y3xgc48w"
+      },
+      "platform": "cloud",
+      "quantisation": "bf16",
+      "size_bytes": 8000000000,
+      "licence": {
+        "spdx": "Apache-2.0"
+      },
+      "evaluation": {
+        "gate": "passed",
+        "set": "tr_en",
+        "set_version": "0.1.0",
+        "result_ref": "ml/evals/results/one-small-2026.10.1.toml"
+      },
+      "lineage": {
+        "kind": "open_and_synthetic",
+        "manifests": [
+          "ml/datasets/manifests/one-behaviour-2026-10.toml"
+        ],
+        "training_compute_flop": 3.2e+20
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-14",
+    "description": "No language model runs on a device",
+    "input": {
+      "name": "one-small",
+      "version": "2026.10.1",
+      "role": "device",
+      "component": "Qwen3.5",
+      "format": "safetensors",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "source": "https://huggingface.co/Qwen/Qwen3.5-4B",
+      "status": "released",
+      "signature": "sigstore-bundle:one-small-2026.10.1",
+      "model_version_id": "mdl_01m4ezb900f9at0tvpg669f8nd",
+      "kind": "device",
+      "model_role": "small_lm",
+      "base_model": {
+        "name": "qwen3.5-4b",
+        "version": "1",
+        "model_version_id": "mdl_01m4ezb900f728zpq5y3xgc48w"
+      },
+      "platform": "ios",
+      "quantisation": "bf16",
+      "size_bytes": 8000000000,
+      "licence": {
+        "spdx": "Apache-2.0"
+      },
+      "evaluation": {
+        "gate": "passed",
+        "set": "tr_en",
+        "set_version": "0.1.0",
+        "result_ref": "ml/evals/results/one-small-2026.10.1.toml"
+      },
+      "lineage": {
+        "kind": "open_and_synthetic",
+        "manifests": [
+          "ml/datasets/manifests/one-behaviour-2026-10.toml"
+        ],
+        "training_compute_flop": 3.2e+20
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-16",
+    "description": "A cloud entry has platform cloud",
+    "input": {
+      "name": "one-small",
+      "version": "2026.10.1",
+      "role": "cloud",
+      "component": "Qwen3.5",
+      "format": "safetensors",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "source": "https://huggingface.co/Qwen/Qwen3.5-4B",
+      "status": "released",
+      "signature": "sigstore-bundle:one-small-2026.10.1",
+      "model_version_id": "mdl_01m4ezb900f9at0tvpg669f8nd",
+      "kind": "one_behaviour",
+      "model_role": "small_lm",
+      "base_model": {
+        "name": "qwen3.5-4b",
+        "version": "1",
+        "model_version_id": "mdl_01m4ezb900f728zpq5y3xgc48w"
+      },
+      "platform": "ios",
+      "quantisation": "bf16",
+      "size_bytes": 8000000000,
+      "licence": {
+        "spdx": "Apache-2.0"
+      },
+      "evaluation": {
+        "gate": "passed",
+        "set": "tr_en",
+        "set_version": "0.1.0",
+        "result_ref": "ml/evals/results/one-small-2026.10.1.toml"
+      },
+      "lineage": {
+        "kind": "open_and_synthetic",
+        "manifests": [
+          "ml/datasets/manifests/one-behaviour-2026-10.toml"
+        ],
+        "training_compute_flop": 3.2e+20
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-32",
+    "description": "A personal adapter is only for the small model",
+    "input": {
+      "name": "personal-adapter",
+      "version": "3",
+      "role": "cloud",
+      "component": "Qwen3.5",
+      "format": "safetensors",
+      "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "source": "user_space",
+      "status": "released",
+      "signature": "user-space-signature",
+      "model_version_id": "mdl_01m4ezb900eyhave63svcy9vzt",
+      "kind": "personal_adapter",
+      "model_role": "large_lm",
+      "base_model": {
+        "name": "one-small",
+        "version": "2026.10.1",
+        "model_version_id": "mdl_01m4ezb900f9at0tvpg669f8nd"
+      },
+      "platform": "cloud",
+      "quantisation": "bf16",
+      "size_bytes": 40000000,
+      "licence": {
+        "spdx": "Apache-2.0"
+      },
+      "evaluation": {
+        "gate": "passed",
+        "set": "adapter_gate",
+        "set_version": "1",
+        "result_ref": "one_model:adapter-gate"
+      },
+      "lineage": {
+        "kind": "personal"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-28",
+    "description": "A personal adapter lives only in the user space",
+    "input": {
+      "name": "personal-adapter",
+      "version": "3",
+      "role": "cloud",
+      "component": "Qwen3.5",
+      "format": "safetensors",
+      "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "source": "https://huggingface.co/x",
+      "status": "released",
+      "signature": "user-space-signature",
+      "model_version_id": "mdl_01m4ezb900eyhave63svcy9vzt",
+      "kind": "personal_adapter",
+      "model_role": "small_lm",
+      "base_model": {
+        "name": "one-small",
+        "version": "2026.10.1",
+        "model_version_id": "mdl_01m4ezb900f9at0tvpg669f8nd"
+      },
+      "platform": "cloud",
+      "quantisation": "bf16",
+      "size_bytes": 40000000,
+      "licence": {
+        "spdx": "Apache-2.0"
+      },
+      "evaluation": {
+        "gate": "passed",
+        "set": "adapter_gate",
+        "set_version": "1",
+        "result_ref": "one_model:adapter-gate"
+      },
+      "lineage": {
+        "kind": "personal"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-46",
+    "description": "A One behaviour model records its training compute",
+    "input": {
+      "name": "one-small",
+      "version": "2026.10.1",
+      "role": "cloud",
+      "component": "Qwen3.5",
+      "format": "safetensors",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "source": "https://huggingface.co/Qwen/Qwen3.5-4B",
+      "status": "released",
+      "signature": "sigstore-bundle:one-small-2026.10.1",
+      "model_version_id": "mdl_01m4ezb900f9at0tvpg669f8nd",
+      "kind": "one_behaviour",
+      "model_role": "small_lm",
+      "base_model": {
+        "name": "qwen3.5-4b",
+        "version": "1",
+        "model_version_id": "mdl_01m4ezb900f728zpq5y3xgc48w"
+      },
+      "platform": "cloud",
+      "quantisation": "bf16",
+      "size_bytes": 8000000000,
+      "licence": {
+        "spdx": "Apache-2.0"
+      },
+      "evaluation": {
+        "gate": "passed",
+        "set": "tr_en",
+        "set_version": "0.1.0",
+        "result_ref": "ml/evals/results/one-small-2026.10.1.toml"
+      },
+      "lineage": {
+        "kind": "open_and_synthetic",
+        "manifests": [
+          "ml/datasets/manifests/one-behaviour-2026-10.toml"
+        ]
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-55",
+    "description": "An embedding entry carries its dimension",
+    "input": {
+      "name": "embeddinggemma-2-text",
+      "version": "1",
+      "role": "device",
+      "component": "EmbeddingGemma 2",
+      "format": "litertlm",
+      "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "source": "https://huggingface.co/google/embeddinggemma-2",
+      "status": "candidate",
+      "model_version_id": "mdl_01m4ezb900ejftnde0sfbe3v7q",
+      "kind": "embedding",
+      "model_role": "embedding",
+      "platform": "android",
+      "quantisation": "int8",
+      "size_bytes": 191000000,
+      "licence": {
+        "spdx": "Apache-2.0"
+      },
+      "evaluation": {
+        "gate": "pending"
+      },
+      "lineage": {
+        "kind": "upstream"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-41",
+    "description": "Shared training lineage names its one_training_lineage record",
+    "input": {
+      "name": "one-small",
+      "version": "2026.10.1",
+      "role": "cloud",
+      "component": "Qwen3.5",
+      "format": "safetensors",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "source": "https://huggingface.co/Qwen/Qwen3.5-4B",
+      "status": "released",
+      "signature": "sigstore-bundle:one-small-2026.10.1",
+      "model_version_id": "mdl_01m4ezb900f9at0tvpg669f8nd",
+      "kind": "one_behaviour",
+      "model_role": "small_lm",
+      "base_model": {
+        "name": "qwen3.5-4b",
+        "version": "1",
+        "model_version_id": "mdl_01m4ezb900f728zpq5y3xgc48w"
+      },
+      "platform": "cloud",
+      "quantisation": "bf16",
+      "size_bytes": 8000000000,
+      "licence": {
+        "spdx": "Apache-2.0"
+      },
+      "evaluation": {
+        "gate": "passed",
+        "set": "tr_en",
+        "set_version": "0.1.0",
+        "result_ref": "ml/evals/results/one-small-2026.10.1.toml"
+      },
+      "lineage": {
+        "kind": "shared_dp",
+        "manifests": [
+          "ml/datasets/manifests/one-behaviour-2026-10.toml"
+        ],
+        "training_compute_flop": 3.2e+20
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-45",
+    "description": "Open and synthetic lineage lists dataset manifests",
+    "input": {
+      "name": "attention-start",
+      "version": "1",
+      "role": "device",
+      "component": "Suiss synthetic",
+      "format": "onnx",
+      "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+      "source": "https://models.suiss.app/attention-start/1",
+      "status": "candidate",
+      "model_version_id": "mdl_01m4ezb900fvmv9zra2mg2pdj1",
+      "kind": "device",
+      "model_role": "attention",
+      "platform": "ios",
+      "quantisation": "fp32",
+      "size_bytes": 3000000,
+      "licence": {
+        "spdx": "LicenseRef-Suiss-Proprietary"
+      },
+      "evaluation": {
+        "gate": "pending"
+      },
+      "lineage": {
+        "kind": "open_and_synthetic",
+        "manifests": []
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-55",
+    "description": "An unknown field is rejected",
+    "input": {
+      "name": "one-small",
+      "version": "2026.10.1",
+      "role": "cloud",
+      "component": "Qwen3.5",
+      "format": "safetensors",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "source": "https://huggingface.co/Qwen/Qwen3.5-4B",
+      "status": "released",
+      "signature": "sigstore-bundle:one-small-2026.10.1",
+      "model_version_id": "mdl_01m4ezb900f9at0tvpg669f8nd",
+      "kind": "one_behaviour",
+      "model_role": "small_lm",
+      "base_model": {
+        "name": "qwen3.5-4b",
+        "version": "1",
+        "model_version_id": "mdl_01m4ezb900f728zpq5y3xgc48w"
+      },
+      "platform": "cloud",
+      "quantisation": "bf16",
+      "size_bytes": 8000000000,
+      "licence": {
+        "spdx": "Apache-2.0"
+      },
+      "evaluation": {
+        "gate": "passed",
+        "set": "tr_en",
+        "set_version": "0.1.0",
+        "result_ref": "ml/evals/results/one-small-2026.10.1.toml"
+      },
+      "lineage": {
+        "kind": "open_and_synthetic",
+        "manifests": [
+          "ml/datasets/manifests/one-behaviour-2026-10.toml"
+        ],
+        "training_compute_flop": 3.2e+20
+      },
+      "notes": "x"
+    },
+    "valid": false
+  }
+]

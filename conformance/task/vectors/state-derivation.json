@@ -1,0 +1,2494 @@
+[
+  {
+    "rule": "CP-3",
+    "description": "Created task is pending",
+    "input": [
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 1,
+        "at": "2026-10-16T09:00:00Z",
+        "kind": "task_created",
+        "source": "one",
+        "plan_version": 1
+      }
+    ],
+    "expected": {
+      "state": "pending"
+    }
+  },
+  {
+    "rule": "CP-3",
+    "description": "First step started: running",
+    "input": [
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 1,
+        "at": "2026-10-16T09:00:00Z",
+        "kind": "task_created",
+        "source": "one",
+        "plan_version": 1
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 2,
+        "at": "2026-10-16T09:00:01Z",
+        "kind": "step_started",
+        "source": "executor",
+        "step_id": "s1",
+        "effectful": true,
+        "decision_ref": {
+          "ref": "DecisionRecordRef",
+          "id": "dec-1"
+        },
+        "exercise_ref": {
+          "ref": "ExerciseRef",
+          "id": "ex-1"
+        }
+      }
+    ],
+    "expected": {
+      "state": "running"
+    }
+  },
+  {
+    "rule": "CP-3",
+    "description": "Step finished, criterion verified: completed",
+    "input": [
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 1,
+        "at": "2026-10-16T09:00:00Z",
+        "kind": "task_created",
+        "source": "one",
+        "plan_version": 1
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 2,
+        "at": "2026-10-16T09:00:01Z",
+        "kind": "step_started",
+        "source": "executor",
+        "step_id": "s1",
+        "effectful": true,
+        "decision_ref": {
+          "ref": "DecisionRecordRef",
+          "id": "dec-1"
+        },
+        "exercise_ref": {
+          "ref": "ExerciseRef",
+          "id": "ex-1"
+        }
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 3,
+        "at": "2026-10-16T09:00:02Z",
+        "kind": "step_finished",
+        "source": "executor",
+        "step_id": "s1",
+        "result": {
+          "status": "done",
+          "outcome": {
+            "subject": "effect",
+            "certainty": "confirmed",
+            "value": "occurred",
+            "confirmation": {
+              "ref": "ClaimRef",
+              "id": "claim-1"
+            }
+          }
+        }
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 4,
+        "at": "2026-10-16T09:00:03Z",
+        "kind": "completion_verified",
+        "source": "one",
+        "evidence_ref": {
+          "ref": "ClaimRef",
+          "id": "claim-order-1"
+        }
+      }
+    ],
+    "expected": {
+      "state": "completed"
+    }
+  },
+  {
+    "rule": "CP-3",
+    "description": "Completion while a step still runs is rejected",
+    "input": [
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 1,
+        "at": "2026-10-16T09:00:00Z",
+        "kind": "task_created",
+        "source": "one",
+        "plan_version": 1
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 2,
+        "at": "2026-10-16T09:00:01Z",
+        "kind": "step_started",
+        "source": "executor",
+        "step_id": "s1",
+        "effectful": true,
+        "decision_ref": {
+          "ref": "DecisionRecordRef",
+          "id": "dec-1"
+        },
+        "exercise_ref": {
+          "ref": "ExerciseRef",
+          "id": "ex-1"
+        }
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 3,
+        "at": "2026-10-16T09:00:02Z",
+        "kind": "completion_verified",
+        "source": "one",
+        "evidence_ref": {
+          "ref": "ClaimRef",
+          "id": "claim-order-1"
+        }
+      }
+    ],
+    "expected": {
+      "rejected": {
+        "seq": 3,
+        "code": "guard_failed",
+        "guard": "no_step_running"
+      }
+    }
+  },
+  {
+    "rule": "CP-3",
+    "description": "Pending cannot complete directly",
+    "input": [
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 1,
+        "at": "2026-10-16T09:00:00Z",
+        "kind": "task_created",
+        "source": "one",
+        "plan_version": 1
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 2,
+        "at": "2026-10-16T09:00:01Z",
+        "kind": "completion_verified",
+        "source": "one",
+        "evidence_ref": {
+          "ref": "ClaimRef",
+          "id": "claim-order-1"
+        }
+      }
+    ],
+    "expected": {
+      "rejected": {
+        "seq": 2,
+        "code": "illegal_transition"
+      }
+    }
+  },
+  {
+    "rule": "CP-3",
+    "description": "Pending can be cancelled",
+    "input": [
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 1,
+        "at": "2026-10-16T09:00:00Z",
+        "kind": "task_created",
+        "source": "one",
+        "plan_version": 1
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 2,
+        "at": "2026-10-16T09:00:01Z",
+        "kind": "task_cancelled",
+        "source": "user",
+        "cause": "user"
+      }
+    ],
+    "expected": {
+      "state": "cancelled"
+    }
+  },
+  {
+    "rule": "CP-3",
+    "description": "Pending cannot pause",
+    "input": [
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 1,
+        "at": "2026-10-16T09:00:00Z",
+        "kind": "task_created",
+        "source": "one",
+        "plan_version": 1
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 2,
+        "at": "2026-10-16T09:00:01Z",
+        "kind": "pause_requested",
+        "source": "user"
+      }
+    ],
+    "expected": {
+      "rejected": {
+        "seq": 2,
+        "code": "illegal_transition"
+      }
+    }
+  },
+  {
+    "rule": "CP-44",
+    "description": "Approval wait: waiting_user",
+    "input": [
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 1,
+        "at": "2026-10-16T09:00:00Z",
+        "kind": "task_created",
+        "source": "one",
+        "plan_version": 1
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 2,
+        "at": "2026-10-16T09:00:01Z",
+        "kind": "step_started",
+        "source": "executor",
+        "step_id": "s1",
+        "effectful": true,
+        "decision_ref": {
+          "ref": "DecisionRecordRef",
+          "id": "dec-1"
+        },
+        "exercise_ref": {
+          "ref": "ExerciseRef",
+          "id": "ex-1"
+        }
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 3,
+        "at": "2026-10-16T09:00:02Z",
+        "kind": "wait_opened",
+        "source": "one",
+        "wait": "user",
+        "waitpoint_ref": {
+          "ref": "WaitpointRef",
+          "id": "wp-1"
+        },
+        "reason": "approval"
+      }
+    ],
+    "expected": {
+      "state": "waiting_user"
+    }
+  },
+  {
+    "rule": "CP-44",
+    "description": "Approval answered with a new Access decision: running",
+    "input": [
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 1,
+        "at": "2026-10-16T09:00:00Z",
+        "kind": "task_created",
+        "source": "one",
+        "plan_version": 1
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 2,
+        "at": "2026-10-16T09:00:01Z",
+        "kind": "step_started",
+        "source": "executor",
+        "step_id": "s1",
+        "effectful": true,
+        "decision_ref": {
+          "ref": "DecisionRecordRef",
+          "id": "dec-1"
+        },
+        "exercise_ref": {
+          "ref": "ExerciseRef",
+          "id": "ex-1"
+        }
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 3,
+        "at": "2026-10-16T09:00:02Z",
+        "kind": "wait_opened",
+        "source": "one",
+        "wait": "user",
+        "waitpoint_ref": {
+          "ref": "WaitpointRef",
+          "id": "wp-1"
+        },
+        "reason": "approval"
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 4,
+        "at": "2026-10-16T09:00:03Z",
+        "kind": "wait_resolved",
+        "source": "relay",
+        "waitpoint_ref": {
+          "ref": "WaitpointRef",
+          "id": "wp-1"
+        },
+        "continuation_ref": {
+          "ref": "DecisionRecordRef",
+          "id": "cont-1"
+        }
+      }
+    ],
+    "expected": {
+      "state": "running"
+    }
+  },
+  {
+    "rule": "CP-44",
+    "description": "Unanswered approval expires: failed; silence is not approval",
+    "input": [
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 1,
+        "at": "2026-10-16T09:00:00Z",
+        "kind": "task_created",
+        "source": "one",
+        "plan_version": 1
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 2,
+        "at": "2026-10-16T09:00:01Z",
+        "kind": "step_started",
+        "source": "executor",
+        "step_id": "s1",
+        "effectful": true,
+        "decision_ref": {
+          "ref": "DecisionRecordRef",
+          "id": "dec-1"
+        },
+        "exercise_ref": {
+          "ref": "ExerciseRef",
+          "id": "ex-1"
+        }
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 3,
+        "at": "2026-10-16T09:00:02Z",
+        "kind": "wait_opened",
+        "source": "one",
+        "wait": "user",
+        "waitpoint_ref": {
+          "ref": "WaitpointRef",
+          "id": "wp-1"
+        },
+        "reason": "approval"
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 4,
+        "at": "2026-10-16T09:00:03Z",
+        "kind": "wait_expired",
+        "source": "relay",
+        "waitpoint_ref": {
+          "ref": "WaitpointRef",
+          "id": "wp-1"
+        }
+      }
+    ],
+    "expected": {
+      "state": "failed"
+    }
+  },
+  {
+    "rule": "CP-3",
+    "description": "Peer reply wait: waiting_external",
+    "input": [
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 1,
+        "at": "2026-10-16T09:00:00Z",
+        "kind": "task_created",
+        "source": "one",
+        "plan_version": 1
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 2,
+        "at": "2026-10-16T09:00:01Z",
+        "kind": "step_started",
+        "source": "executor",
+        "step_id": "s1",
+        "effectful": true,
+        "decision_ref": {
+          "ref": "DecisionRecordRef",
+          "id": "dec-1"
+        },
+        "exercise_ref": {
+          "ref": "ExerciseRef",
+          "id": "ex-1"
+        }
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 3,
+        "at": "2026-10-16T09:00:02Z",
+        "kind": "wait_opened",
+        "source": "one",
+        "wait": "external",
+        "waitpoint_ref": {
+          "ref": "WaitpointRef",
+          "id": "wp-1"
+        },
+        "reason": "peer_reply"
+      }
+    ],
+    "expected": {
+      "state": "waiting_external"
+    }
+  },
+  {
+    "rule": "CP-3",
+    "description": "External wait resolved: running",
+    "input": [
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 1,
+        "at": "2026-10-16T09:00:00Z",
+        "kind": "task_created",
+        "source": "one",
+        "plan_version": 1
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 2,
+        "at": "2026-10-16T09:00:01Z",
+        "kind": "step_started",
+        "source": "executor",
+        "step_id": "s1",
+        "effectful": true,
+        "decision_ref": {
+          "ref": "DecisionRecordRef",
+          "id": "dec-1"
+        },
+        "exercise_ref": {
+          "ref": "ExerciseRef",
+          "id": "ex-1"
+        }
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 3,
+        "at": "2026-10-16T09:00:02Z",
+        "kind": "wait_opened",
+        "source": "one",
+        "wait": "external",
+        "waitpoint_ref": {
+          "ref": "WaitpointRef",
+          "id": "wp-1"
+        },
+        "reason": "price_threshold"
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 4,
+        "at": "2026-10-16T09:00:03Z",
+        "kind": "wait_resolved",
+        "source": "relay",
+        "waitpoint_ref": {
+          "ref": "WaitpointRef",
+          "id": "wp-1"
+        },
+        "continuation_ref": {
+          "ref": "DecisionRecordRef",
+          "id": "cont-1"
+        }
+      }
+    ],
+    "expected": {
+      "state": "running"
+    }
+  },
+  {
+    "rule": "CP-3",
+    "description": "External wait expired: failed",
+    "input": [
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 1,
+        "at": "2026-10-16T09:00:00Z",
+        "kind": "task_created",
+        "source": "one",
+        "plan_version": 1
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 2,
+        "at": "2026-10-16T09:00:01Z",
+        "kind": "step_started",
+        "source": "executor",
+        "step_id": "s1",
+        "effectful": true,
+        "decision_ref": {
+          "ref": "DecisionRecordRef",
+          "id": "dec-1"
+        },
+        "exercise_ref": {
+          "ref": "ExerciseRef",
+          "id": "ex-1"
+        }
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 3,
+        "at": "2026-10-16T09:00:02Z",
+        "kind": "wait_opened",
+        "source": "one",
+        "wait": "external",
+        "waitpoint_ref": {
+          "ref": "WaitpointRef",
+          "id": "wp-1"
+        },
+        "reason": "site"
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 4,
+        "at": "2026-10-16T09:00:03Z",
+        "kind": "wait_expired",
+        "source": "relay",
+        "waitpoint_ref": {
+          "ref": "WaitpointRef",
+          "id": "wp-1"
+        }
+      }
+    ],
+    "expected": {
+      "state": "failed"
+    }
+  },
+  {
+    "rule": "CP-3",
+    "description": "Waiting user can be cancelled",
+    "input": [
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 1,
+        "at": "2026-10-16T09:00:00Z",
+        "kind": "task_created",
+        "source": "one",
+        "plan_version": 1
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 2,
+        "at": "2026-10-16T09:00:01Z",
+        "kind": "step_started",
+        "source": "executor",
+        "step_id": "s1",
+        "effectful": true,
+        "decision_ref": {
+          "ref": "DecisionRecordRef",
+          "id": "dec-1"
+        },
+        "exercise_ref": {
+          "ref": "ExerciseRef",
+          "id": "ex-1"
+        }
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 3,
+        "at": "2026-10-16T09:00:02Z",
+        "kind": "wait_opened",
+        "source": "one",
+        "wait": "user",
+        "waitpoint_ref": {
+          "ref": "WaitpointRef",
+          "id": "wp-1"
+        },
+        "reason": "approval"
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 4,
+        "at": "2026-10-16T09:00:03Z",
+        "kind": "task_cancelled",
+        "source": "user",
+        "cause": "user"
+      }
+    ],
+    "expected": {
+      "state": "cancelled"
+    }
+  },
+  {
+    "rule": "CP-3",
+    "description": "Authority revoked while waiting externally: cancelled",
+    "input": [
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 1,
+        "at": "2026-10-16T09:00:00Z",
+        "kind": "task_created",
+        "source": "one",
+        "plan_version": 1
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 2,
+        "at": "2026-10-16T09:00:01Z",
+        "kind": "step_started",
+        "source": "executor",
+        "step_id": "s1",
+        "effectful": true,
+        "decision_ref": {
+          "ref": "DecisionRecordRef",
+          "id": "dec-1"
+        },
+        "exercise_ref": {
+          "ref": "ExerciseRef",
+          "id": "ex-1"
+        }
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 3,
+        "at": "2026-10-16T09:00:02Z",
+        "kind": "wait_opened",
+        "source": "one",
+        "wait": "external",
+        "waitpoint_ref": {
+          "ref": "WaitpointRef",
+          "id": "wp-1"
+        },
+        "reason": "peer_reply"
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 4,
+        "at": "2026-10-16T09:00:03Z",
+        "kind": "task_cancelled",
+        "source": "access",
+        "cause": "authority_revoked"
+      }
+    ],
+    "expected": {
+      "state": "cancelled"
+    }
+  },
+  {
+    "rule": "CP-3",
+    "description": "Waiting user cannot complete",
+    "input": [
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 1,
+        "at": "2026-10-16T09:00:00Z",
+        "kind": "task_created",
+        "source": "one",
+        "plan_version": 1
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 2,
+        "at": "2026-10-16T09:00:01Z",
+        "kind": "step_started",
+        "source": "executor",
+        "step_id": "s1",
+        "effectful": true,
+        "decision_ref": {
+          "ref": "DecisionRecordRef",
+          "id": "dec-1"
+        },
+        "exercise_ref": {
+          "ref": "ExerciseRef",
+          "id": "ex-1"
+        }
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 3,
+        "at": "2026-10-16T09:00:02Z",
+        "kind": "wait_opened",
+        "source": "one",
+        "wait": "user",
+        "waitpoint_ref": {
+          "ref": "WaitpointRef",
+          "id": "wp-1"
+        },
+        "reason": "approval"
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 4,
+        "at": "2026-10-16T09:00:03Z",
+        "kind": "completion_verified",
+        "source": "one",
+        "evidence_ref": {
+          "ref": "ClaimRef",
+          "id": "claim-order-1"
+        }
+      }
+    ],
+    "expected": {
+      "rejected": {
+        "seq": 4,
+        "code": "illegal_transition"
+      }
+    }
+  },
+  {
+    "rule": "CP-3",
+    "description": "Waiting user cannot pause",
+    "input": [
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 1,
+        "at": "2026-10-16T09:00:00Z",
+        "kind": "task_created",
+        "source": "one",
+        "plan_version": 1
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 2,
+        "at": "2026-10-16T09:00:01Z",
+        "kind": "step_started",
+        "source": "executor",
+        "step_id": "s1",
+        "effectful": true,
+        "decision_ref": {
+          "ref": "DecisionRecordRef",
+          "id": "dec-1"
+        },
+        "exercise_ref": {
+          "ref": "ExerciseRef",
+          "id": "ex-1"
+        }
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 3,
+        "at": "2026-10-16T09:00:02Z",
+        "kind": "wait_opened",
+        "source": "one",
+        "wait": "user",
+        "waitpoint_ref": {
+          "ref": "WaitpointRef",
+          "id": "wp-1"
+        },
+        "reason": "approval"
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 4,
+        "at": "2026-10-16T09:00:03Z",
+        "kind": "pause_confirmed",
+        "source": "executor",
+        "execution_report_ref": {
+          "ref": "ExecutionReportRef",
+          "id": "rep-1"
+        }
+      }
+    ],
+    "expected": {
+      "rejected": {
+        "seq": 4,
+        "code": "illegal_transition"
+      }
+    }
+  },
+  {
+    "rule": "CP-3",
+    "description": "Resolving a waitpoint that is not the open one is rejected",
+    "input": [
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 1,
+        "at": "2026-10-16T09:00:00Z",
+        "kind": "task_created",
+        "source": "one",
+        "plan_version": 1
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 2,
+        "at": "2026-10-16T09:00:01Z",
+        "kind": "step_started",
+        "source": "executor",
+        "step_id": "s1",
+        "effectful": true,
+        "decision_ref": {
+          "ref": "DecisionRecordRef",
+          "id": "dec-1"
+        },
+        "exercise_ref": {
+          "ref": "ExerciseRef",
+          "id": "ex-1"
+        }
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 3,
+        "at": "2026-10-16T09:00:02Z",
+        "kind": "wait_opened",
+        "source": "one",
+        "wait": "user",
+        "waitpoint_ref": {
+          "ref": "WaitpointRef",
+          "id": "wp-1"
+        },
+        "reason": "approval"
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 4,
+        "at": "2026-10-16T09:00:03Z",
+        "kind": "wait_resolved",
+        "source": "relay",
+        "waitpoint_ref": {
+          "ref": "WaitpointRef",
+          "id": "wp-other"
+        },
+        "continuation_ref": {
+          "ref": "DecisionRecordRef",
+          "id": "cont-1"
+        }
+      }
+    ],
+    "expected": {
+      "rejected": {
+        "seq": 4,
+        "code": "guard_failed",
+        "guard": "waitpoint_is_open_wait"
+      }
+    }
+  },
+  {
+    "rule": "CP-3",
+    "description": "Second wait while one is open cannot happen from waiting",
+    "input": [
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 1,
+        "at": "2026-10-16T09:00:00Z",
+        "kind": "task_created",
+        "source": "one",
+        "plan_version": 1
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 2,
+        "at": "2026-10-16T09:00:01Z",
+        "kind": "step_started",
+        "source": "executor",
+        "step_id": "s1",
+        "effectful": true,
+        "decision_ref": {
+          "ref": "DecisionRecordRef",
+          "id": "dec-1"
+        },
+        "exercise_ref": {
+          "ref": "ExerciseRef",
+          "id": "ex-1"
+        }
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 3,
+        "at": "2026-10-16T09:00:02Z",
+        "kind": "wait_opened",
+        "source": "one",
+        "wait": "user",
+        "waitpoint_ref": {
+          "ref": "WaitpointRef",
+          "id": "wp-1"
+        },
+        "reason": "approval"
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 4,
+        "at": "2026-10-16T09:00:03Z",
+        "kind": "wait_opened",
+        "source": "one",
+        "wait": "user",
+        "waitpoint_ref": {
+          "ref": "WaitpointRef",
+          "id": "wp-2"
+        },
+        "reason": "approval"
+      }
+    ],
+    "expected": {
+      "rejected": {
+        "seq": 4,
+        "code": "illegal_transition"
+      }
+    }
+  },
+  {
+    "rule": "CP-11",
+    "description": "Pause requested only: still running and shown as stopping",
+    "input": [
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 1,
+        "at": "2026-10-16T09:00:00Z",
+        "kind": "task_created",
+        "source": "one",
+        "plan_version": 1
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 2,
+        "at": "2026-10-16T09:00:01Z",
+        "kind": "step_started",
+        "source": "executor",
+        "step_id": "s1",
+        "effectful": true,
+        "decision_ref": {
+          "ref": "DecisionRecordRef",
+          "id": "dec-1"
+        },
+        "exercise_ref": {
+          "ref": "ExerciseRef",
+          "id": "ex-1"
+        }
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 3,
+        "at": "2026-10-16T09:00:02Z",
+        "kind": "pause_requested",
+        "source": "user"
+      }
+    ],
+    "expected": {
+      "state": "running"
+    }
+  },
+  {
+    "rule": "CP-3",
+    "description": "Pause request then Executor confirmation: paused",
+    "input": [
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 1,
+        "at": "2026-10-16T09:00:00Z",
+        "kind": "task_created",
+        "source": "one",
+        "plan_version": 1
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 2,
+        "at": "2026-10-16T09:00:01Z",
+        "kind": "step_started",
+        "source": "executor",
+        "step_id": "s1",
+        "effectful": true,
+        "decision_ref": {
+          "ref": "DecisionRecordRef",
+          "id": "dec-1"
+        },
+        "exercise_ref": {
+          "ref": "ExerciseRef",
+          "id": "ex-1"
+        }
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 3,
+        "at": "2026-10-16T09:00:02Z",
+        "kind": "pause_requested",
+        "source": "user"
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 4,
+        "at": "2026-10-16T09:00:03Z",
+        "kind": "pause_confirmed",
+        "source": "executor",
+        "execution_report_ref": {
+          "ref": "ExecutionReportRef",
+          "id": "rep-1"
+        }
+      }
+    ],
+    "expected": {
+      "state": "paused"
+    }
+  },
+  {
+    "rule": "CP-3",
+    "description": "Pause confirmation without a pause request is rejected",
+    "input": [
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 1,
+        "at": "2026-10-16T09:00:00Z",
+        "kind": "task_created",
+        "source": "one",
+        "plan_version": 1
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 2,
+        "at": "2026-10-16T09:00:01Z",
+        "kind": "step_started",
+        "source": "executor",
+        "step_id": "s1",
+        "effectful": true,
+        "decision_ref": {
+          "ref": "DecisionRecordRef",
+          "id": "dec-1"
+        },
+        "exercise_ref": {
+          "ref": "ExerciseRef",
+          "id": "ex-1"
+        }
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 3,
+        "at": "2026-10-16T09:00:02Z",
+        "kind": "pause_confirmed",
+        "source": "executor",
+        "execution_report_ref": {
+          "ref": "ExecutionReportRef",
+          "id": "rep-1"
+        }
+      }
+    ],
+    "expected": {
+      "rejected": {
+        "seq": 3,
+        "code": "guard_failed",
+        "guard": "pause_request_open"
+      }
+    }
+  },
+  {
+    "rule": "CP-3",
+    "description": "Paused written by One instead of the Executor is rejected",
+    "input": [
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 1,
+        "at": "2026-10-16T09:00:00Z",
+        "kind": "task_created",
+        "source": "one",
+        "plan_version": 1
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 2,
+        "at": "2026-10-16T09:00:01Z",
+        "kind": "step_started",
+        "source": "executor",
+        "step_id": "s1",
+        "effectful": true,
+        "decision_ref": {
+          "ref": "DecisionRecordRef",
+          "id": "dec-1"
+        },
+        "exercise_ref": {
+          "ref": "ExerciseRef",
+          "id": "ex-1"
+        }
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 3,
+        "at": "2026-10-16T09:00:02Z",
+        "kind": "pause_requested",
+        "source": "user"
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 4,
+        "at": "2026-10-16T09:00:03Z",
+        "kind": "pause_confirmed",
+        "source": "one",
+        "execution_report_ref": {
+          "ref": "ExecutionReportRef",
+          "id": "rep-1"
+        }
+      }
+    ],
+    "expected": {
+      "rejected": {
+        "seq": 4,
+        "code": "schema_invalid"
+      }
+    }
+  },
+  {
+    "rule": "CP-3",
+    "description": "Paused without the Executor report reference is rejected",
+    "input": [
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 1,
+        "at": "2026-10-16T09:00:00Z",
+        "kind": "task_created",
+        "source": "one",
+        "plan_version": 1
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 2,
+        "at": "2026-10-16T09:00:01Z",
+        "kind": "step_started",
+        "source": "executor",
+        "step_id": "s1",
+        "effectful": true,
+        "decision_ref": {
+          "ref": "DecisionRecordRef",
+          "id": "dec-1"
+        },
+        "exercise_ref": {
+          "ref": "ExerciseRef",
+          "id": "ex-1"
+        }
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 3,
+        "at": "2026-10-16T09:00:02Z",
+        "kind": "pause_requested",
+        "source": "user"
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 4,
+        "at": "2026-10-16T09:00:03Z",
+        "kind": "pause_confirmed",
+        "source": "executor"
+      }
+    ],
+    "expected": {
+      "rejected": {
+        "seq": 4,
+        "code": "schema_invalid"
+      }
+    }
+  },
+  {
+    "rule": "CP-44",
+    "description": "Resume after pause with a continuation decision: running",
+    "input": [
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 1,
+        "at": "2026-10-16T09:00:00Z",
+        "kind": "task_created",
+        "source": "one",
+        "plan_version": 1
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 2,
+        "at": "2026-10-16T09:00:01Z",
+        "kind": "step_started",
+        "source": "executor",
+        "step_id": "s1",
+        "effectful": true,
+        "decision_ref": {
+          "ref": "DecisionRecordRef",
+          "id": "dec-1"
+        },
+        "exercise_ref": {
+          "ref": "ExerciseRef",
+          "id": "ex-1"
+        }
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 3,
+        "at": "2026-10-16T09:00:02Z",
+        "kind": "pause_requested",
+        "source": "user"
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 4,
+        "at": "2026-10-16T09:00:03Z",
+        "kind": "pause_confirmed",
+        "source": "executor",
+        "execution_report_ref": {
+          "ref": "ExecutionReportRef",
+          "id": "rep-1"
+        }
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 5,
+        "at": "2026-10-16T09:00:04Z",
+        "kind": "resumed",
+        "source": "one",
+        "continuation_ref": {
+          "ref": "DecisionRecordRef",
+          "id": "cont-2"
+        }
+      }
+    ],
+    "expected": {
+      "state": "running"
+    }
+  },
+  {
+    "rule": "CP-44",
+    "description": "Resume without a continuation decision is rejected",
+    "input": [
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 1,
+        "at": "2026-10-16T09:00:00Z",
+        "kind": "task_created",
+        "source": "one",
+        "plan_version": 1
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 2,
+        "at": "2026-10-16T09:00:01Z",
+        "kind": "step_started",
+        "source": "executor",
+        "step_id": "s1",
+        "effectful": true,
+        "decision_ref": {
+          "ref": "DecisionRecordRef",
+          "id": "dec-1"
+        },
+        "exercise_ref": {
+          "ref": "ExerciseRef",
+          "id": "ex-1"
+        }
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 3,
+        "at": "2026-10-16T09:00:02Z",
+        "kind": "pause_requested",
+        "source": "user"
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 4,
+        "at": "2026-10-16T09:00:03Z",
+        "kind": "pause_confirmed",
+        "source": "executor",
+        "execution_report_ref": {
+          "ref": "ExecutionReportRef",
+          "id": "rep-1"
+        }
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 5,
+        "at": "2026-10-16T09:00:04Z",
+        "kind": "resumed",
+        "source": "one"
+      }
+    ],
+    "expected": {
+      "rejected": {
+        "seq": 5,
+        "code": "schema_invalid"
+      }
+    }
+  },
+  {
+    "rule": "CP-3",
+    "description": "Paused can be cancelled",
+    "input": [
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 1,
+        "at": "2026-10-16T09:00:00Z",
+        "kind": "task_created",
+        "source": "one",
+        "plan_version": 1
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 2,
+        "at": "2026-10-16T09:00:01Z",
+        "kind": "step_started",
+        "source": "executor",
+        "step_id": "s1",
+        "effectful": true,
+        "decision_ref": {
+          "ref": "DecisionRecordRef",
+          "id": "dec-1"
+        },
+        "exercise_ref": {
+          "ref": "ExerciseRef",
+          "id": "ex-1"
+        }
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 3,
+        "at": "2026-10-16T09:00:02Z",
+        "kind": "pause_requested",
+        "source": "user"
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 4,
+        "at": "2026-10-16T09:00:03Z",
+        "kind": "pause_confirmed",
+        "source": "executor",
+        "execution_report_ref": {
+          "ref": "ExecutionReportRef",
+          "id": "rep-1"
+        }
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 5,
+        "at": "2026-10-16T09:00:04Z",
+        "kind": "task_cancelled",
+        "source": "user",
+        "cause": "user"
+      }
+    ],
+    "expected": {
+      "state": "cancelled"
+    }
+  },
+  {
+    "rule": "CP-3",
+    "description": "Paused cannot fail",
+    "input": [
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 1,
+        "at": "2026-10-16T09:00:00Z",
+        "kind": "task_created",
+        "source": "one",
+        "plan_version": 1
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 2,
+        "at": "2026-10-16T09:00:01Z",
+        "kind": "step_started",
+        "source": "executor",
+        "step_id": "s1",
+        "effectful": true,
+        "decision_ref": {
+          "ref": "DecisionRecordRef",
+          "id": "dec-1"
+        },
+        "exercise_ref": {
+          "ref": "ExerciseRef",
+          "id": "ex-1"
+        }
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 3,
+        "at": "2026-10-16T09:00:02Z",
+        "kind": "pause_requested",
+        "source": "user"
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 4,
+        "at": "2026-10-16T09:00:03Z",
+        "kind": "pause_confirmed",
+        "source": "executor",
+        "execution_report_ref": {
+          "ref": "ExecutionReportRef",
+          "id": "rep-1"
+        }
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 5,
+        "at": "2026-10-16T09:00:04Z",
+        "kind": "task_failed",
+        "source": "one",
+        "reason": "step_failed"
+      }
+    ],
+    "expected": {
+      "rejected": {
+        "seq": 5,
+        "code": "illegal_transition"
+      }
+    }
+  },
+  {
+    "rule": "CP-3",
+    "description": "A pause request does not survive a resume",
+    "input": [
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 1,
+        "at": "2026-10-16T09:00:00Z",
+        "kind": "task_created",
+        "source": "one",
+        "plan_version": 1
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 2,
+        "at": "2026-10-16T09:00:01Z",
+        "kind": "step_started",
+        "source": "executor",
+        "step_id": "s1",
+        "effectful": true,
+        "decision_ref": {
+          "ref": "DecisionRecordRef",
+          "id": "dec-1"
+        },
+        "exercise_ref": {
+          "ref": "ExerciseRef",
+          "id": "ex-1"
+        }
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 3,
+        "at": "2026-10-16T09:00:02Z",
+        "kind": "pause_requested",
+        "source": "user"
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 4,
+        "at": "2026-10-16T09:00:03Z",
+        "kind": "pause_confirmed",
+        "source": "executor",
+        "execution_report_ref": {
+          "ref": "ExecutionReportRef",
+          "id": "rep-1"
+        }
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 5,
+        "at": "2026-10-16T09:00:04Z",
+        "kind": "resumed",
+        "source": "one",
+        "continuation_ref": {
+          "ref": "DecisionRecordRef",
+          "id": "cont-2"
+        }
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 6,
+        "at": "2026-10-16T09:00:05Z",
+        "kind": "pause_confirmed",
+        "source": "executor",
+        "execution_report_ref": {
+          "ref": "ExecutionReportRef",
+          "id": "rep-2"
+        }
+      }
+    ],
+    "expected": {
+      "rejected": {
+        "seq": 6,
+        "code": "guard_failed",
+        "guard": "pause_request_open"
+      }
+    }
+  },
+  {
+    "rule": "CP-3",
+    "description": "Running fails: failed",
+    "input": [
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 1,
+        "at": "2026-10-16T09:00:00Z",
+        "kind": "task_created",
+        "source": "one",
+        "plan_version": 1
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 2,
+        "at": "2026-10-16T09:00:01Z",
+        "kind": "step_started",
+        "source": "executor",
+        "step_id": "s1",
+        "effectful": true,
+        "decision_ref": {
+          "ref": "DecisionRecordRef",
+          "id": "dec-1"
+        },
+        "exercise_ref": {
+          "ref": "ExerciseRef",
+          "id": "ex-1"
+        }
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 3,
+        "at": "2026-10-16T09:00:02Z",
+        "kind": "step_finished",
+        "source": "executor",
+        "step_id": "s1",
+        "result": {
+          "status": "failed",
+          "reason": "provider_error",
+          "outcome": {
+            "subject": "execution",
+            "certainty": "confirmed",
+            "value": "failed",
+            "confirmation": {
+              "ref": "ExecutionReportRef",
+              "id": "report-1"
+            }
+          }
+        }
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 4,
+        "at": "2026-10-16T09:00:03Z",
+        "kind": "task_failed",
+        "source": "one",
+        "reason": "step_failed"
+      }
+    ],
+    "expected": {
+      "state": "failed"
+    }
+  },
+  {
+    "rule": "CP-3",
+    "description": "Completed is terminal",
+    "input": [
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 1,
+        "at": "2026-10-16T09:00:00Z",
+        "kind": "task_created",
+        "source": "one",
+        "plan_version": 1
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 2,
+        "at": "2026-10-16T09:00:01Z",
+        "kind": "step_started",
+        "source": "executor",
+        "step_id": "s1",
+        "effectful": true,
+        "decision_ref": {
+          "ref": "DecisionRecordRef",
+          "id": "dec-1"
+        },
+        "exercise_ref": {
+          "ref": "ExerciseRef",
+          "id": "ex-1"
+        }
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 3,
+        "at": "2026-10-16T09:00:02Z",
+        "kind": "step_finished",
+        "source": "executor",
+        "step_id": "s1",
+        "result": {
+          "status": "done",
+          "outcome": {
+            "subject": "effect",
+            "certainty": "confirmed",
+            "value": "occurred",
+            "confirmation": {
+              "ref": "ClaimRef",
+              "id": "claim-1"
+            }
+          }
+        }
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 4,
+        "at": "2026-10-16T09:00:03Z",
+        "kind": "completion_verified",
+        "source": "one",
+        "evidence_ref": {
+          "ref": "ClaimRef",
+          "id": "claim-order-1"
+        }
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 5,
+        "at": "2026-10-16T09:00:04Z",
+        "kind": "step_started",
+        "source": "executor",
+        "step_id": "s2",
+        "effectful": true,
+        "decision_ref": {
+          "ref": "DecisionRecordRef",
+          "id": "dec-1"
+        },
+        "exercise_ref": {
+          "ref": "ExerciseRef",
+          "id": "ex-1"
+        }
+      }
+    ],
+    "expected": {
+      "rejected": {
+        "seq": 5,
+        "code": "event_after_terminal"
+      }
+    }
+  },
+  {
+    "rule": "CP-3",
+    "description": "Cancelled is terminal",
+    "input": [
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 1,
+        "at": "2026-10-16T09:00:00Z",
+        "kind": "task_created",
+        "source": "one",
+        "plan_version": 1
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 2,
+        "at": "2026-10-16T09:00:01Z",
+        "kind": "task_cancelled",
+        "source": "user",
+        "cause": "user"
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 3,
+        "at": "2026-10-16T09:00:02Z",
+        "kind": "step_started",
+        "source": "executor",
+        "step_id": "s1",
+        "effectful": true,
+        "decision_ref": {
+          "ref": "DecisionRecordRef",
+          "id": "dec-1"
+        },
+        "exercise_ref": {
+          "ref": "ExerciseRef",
+          "id": "ex-1"
+        }
+      }
+    ],
+    "expected": {
+      "rejected": {
+        "seq": 3,
+        "code": "event_after_terminal"
+      }
+    }
+  },
+  {
+    "rule": "CP-3",
+    "description": "Failed cannot be cancelled",
+    "input": [
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 1,
+        "at": "2026-10-16T09:00:00Z",
+        "kind": "task_created",
+        "source": "one",
+        "plan_version": 1
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 2,
+        "at": "2026-10-16T09:00:01Z",
+        "kind": "step_started",
+        "source": "executor",
+        "step_id": "s1",
+        "effectful": true,
+        "decision_ref": {
+          "ref": "DecisionRecordRef",
+          "id": "dec-1"
+        },
+        "exercise_ref": {
+          "ref": "ExerciseRef",
+          "id": "ex-1"
+        }
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 3,
+        "at": "2026-10-16T09:00:02Z",
+        "kind": "step_finished",
+        "source": "executor",
+        "step_id": "s1",
+        "result": {
+          "status": "failed",
+          "reason": "provider_error",
+          "outcome": {
+            "subject": "execution",
+            "certainty": "confirmed",
+            "value": "failed",
+            "confirmation": {
+              "ref": "ExecutionReportRef",
+              "id": "report-1"
+            }
+          }
+        }
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 4,
+        "at": "2026-10-16T09:00:03Z",
+        "kind": "task_failed",
+        "source": "one",
+        "reason": "step_failed"
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 5,
+        "at": "2026-10-16T09:00:04Z",
+        "kind": "task_cancelled",
+        "source": "user",
+        "cause": "user"
+      }
+    ],
+    "expected": {
+      "rejected": {
+        "seq": 5,
+        "code": "event_after_terminal"
+      }
+    }
+  },
+  {
+    "rule": "INV-30",
+    "description": "Late Executor report after cancellation keeps the state",
+    "input": [
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 1,
+        "at": "2026-10-16T09:00:00Z",
+        "kind": "task_created",
+        "source": "one",
+        "plan_version": 1
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 2,
+        "at": "2026-10-16T09:00:01Z",
+        "kind": "step_started",
+        "source": "executor",
+        "step_id": "s1",
+        "effectful": true,
+        "decision_ref": {
+          "ref": "DecisionRecordRef",
+          "id": "dec-1"
+        },
+        "exercise_ref": {
+          "ref": "ExerciseRef",
+          "id": "ex-1"
+        }
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 3,
+        "at": "2026-10-16T09:00:02Z",
+        "kind": "task_cancelled",
+        "source": "user",
+        "cause": "user"
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 4,
+        "at": "2026-10-16T09:00:03Z",
+        "kind": "step_outcome_reported",
+        "source": "executor",
+        "step_id": "s1",
+        "outcome": {
+          "subject": "effect",
+          "certainty": "confirmed",
+          "value": "occurred",
+          "confirmation": {
+            "ref": "ClaimRef",
+            "id": "claim-9"
+          }
+        }
+      }
+    ],
+    "expected": {
+      "state": "cancelled"
+    }
+  },
+  {
+    "rule": "INV-30",
+    "description": "Late report for a step that never started is rejected",
+    "input": [
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 1,
+        "at": "2026-10-16T09:00:00Z",
+        "kind": "task_created",
+        "source": "one",
+        "plan_version": 1
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 2,
+        "at": "2026-10-16T09:00:01Z",
+        "kind": "task_cancelled",
+        "source": "user",
+        "cause": "user"
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 3,
+        "at": "2026-10-16T09:00:02Z",
+        "kind": "step_outcome_reported",
+        "source": "executor",
+        "step_id": "s9",
+        "outcome": {
+          "subject": "effect",
+          "certainty": "confirmed",
+          "value": "occurred",
+          "confirmation": {
+            "ref": "ClaimRef",
+            "id": "claim-9"
+          }
+        }
+      }
+    ],
+    "expected": {
+      "rejected": {
+        "seq": 3,
+        "code": "guard_failed",
+        "guard": "step_started_before"
+      }
+    }
+  },
+  {
+    "rule": "CP-45",
+    "description": "Checkpoint while waiting keeps the state",
+    "input": [
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 1,
+        "at": "2026-10-16T09:00:00Z",
+        "kind": "task_created",
+        "source": "one",
+        "plan_version": 1
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 2,
+        "at": "2026-10-16T09:00:01Z",
+        "kind": "step_started",
+        "source": "executor",
+        "step_id": "s1",
+        "effectful": true,
+        "decision_ref": {
+          "ref": "DecisionRecordRef",
+          "id": "dec-1"
+        },
+        "exercise_ref": {
+          "ref": "ExerciseRef",
+          "id": "ex-1"
+        }
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 3,
+        "at": "2026-10-16T09:00:02Z",
+        "kind": "wait_opened",
+        "source": "one",
+        "wait": "user",
+        "waitpoint_ref": {
+          "ref": "WaitpointRef",
+          "id": "wp-1"
+        },
+        "reason": "approval"
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 4,
+        "at": "2026-10-16T09:00:03Z",
+        "kind": "checkpoint_recorded",
+        "source": "executor",
+        "checkpoint_ref": {
+          "ref": "CheckpointRef",
+          "id": "ckpt-1"
+        }
+      }
+    ],
+    "expected": {
+      "state": "waiting_user"
+    }
+  },
+  {
+    "rule": "CP-45",
+    "description": "Checkpoint in pending is rejected",
+    "input": [
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 1,
+        "at": "2026-10-16T09:00:00Z",
+        "kind": "task_created",
+        "source": "one",
+        "plan_version": 1
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 2,
+        "at": "2026-10-16T09:00:01Z",
+        "kind": "checkpoint_recorded",
+        "source": "executor",
+        "checkpoint_ref": {
+          "ref": "CheckpointRef",
+          "id": "ckpt-1"
+        }
+      }
+    ],
+    "expected": {
+      "rejected": {
+        "seq": 2,
+        "code": "illegal_transition"
+      }
+    }
+  },
+  {
+    "rule": "CP-42",
+    "description": "History not starting with task_created is rejected",
+    "input": [
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 1,
+        "at": "2026-10-16T09:00:00Z",
+        "kind": "step_started",
+        "source": "executor",
+        "step_id": "s1",
+        "effectful": true,
+        "decision_ref": {
+          "ref": "DecisionRecordRef",
+          "id": "dec-1"
+        },
+        "exercise_ref": {
+          "ref": "ExerciseRef",
+          "id": "ex-1"
+        }
+      }
+    ],
+    "expected": {
+      "rejected": {
+        "seq": 1,
+        "code": "first_event_not_created"
+      }
+    }
+  },
+  {
+    "rule": "CP-42",
+    "description": "Second task_created is rejected",
+    "input": [
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 1,
+        "at": "2026-10-16T09:00:00Z",
+        "kind": "task_created",
+        "source": "one",
+        "plan_version": 1
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 2,
+        "at": "2026-10-16T09:00:01Z",
+        "kind": "task_created",
+        "source": "one",
+        "plan_version": 1
+      }
+    ],
+    "expected": {
+      "rejected": {
+        "seq": 2,
+        "code": "duplicate_created"
+      }
+    }
+  },
+  {
+    "rule": "CP-42",
+    "description": "The same step cannot start twice",
+    "input": [
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 1,
+        "at": "2026-10-16T09:00:00Z",
+        "kind": "task_created",
+        "source": "one",
+        "plan_version": 1
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 2,
+        "at": "2026-10-16T09:00:01Z",
+        "kind": "step_started",
+        "source": "executor",
+        "step_id": "s1",
+        "effectful": true,
+        "decision_ref": {
+          "ref": "DecisionRecordRef",
+          "id": "dec-1"
+        },
+        "exercise_ref": {
+          "ref": "ExerciseRef",
+          "id": "ex-1"
+        }
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 3,
+        "at": "2026-10-16T09:00:02Z",
+        "kind": "step_finished",
+        "source": "executor",
+        "step_id": "s1",
+        "result": {
+          "status": "done",
+          "outcome": {
+            "subject": "effect",
+            "certainty": "confirmed",
+            "value": "occurred",
+            "confirmation": {
+              "ref": "ClaimRef",
+              "id": "claim-1"
+            }
+          }
+        }
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 4,
+        "at": "2026-10-16T09:00:03Z",
+        "kind": "step_started",
+        "source": "executor",
+        "step_id": "s1",
+        "effectful": true,
+        "decision_ref": {
+          "ref": "DecisionRecordRef",
+          "id": "dec-1"
+        },
+        "exercise_ref": {
+          "ref": "ExerciseRef",
+          "id": "ex-1"
+        }
+      }
+    ],
+    "expected": {
+      "rejected": {
+        "seq": 4,
+        "code": "guard_failed",
+        "guard": "step_not_started"
+      }
+    }
+  },
+  {
+    "rule": "CP-42",
+    "description": "Finishing a step that never started is rejected",
+    "input": [
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 1,
+        "at": "2026-10-16T09:00:00Z",
+        "kind": "task_created",
+        "source": "one",
+        "plan_version": 1
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 2,
+        "at": "2026-10-16T09:00:01Z",
+        "kind": "step_started",
+        "source": "executor",
+        "step_id": "s1",
+        "effectful": true,
+        "decision_ref": {
+          "ref": "DecisionRecordRef",
+          "id": "dec-1"
+        },
+        "exercise_ref": {
+          "ref": "ExerciseRef",
+          "id": "ex-1"
+        }
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 3,
+        "at": "2026-10-16T09:00:02Z",
+        "kind": "step_finished",
+        "source": "executor",
+        "step_id": "s7",
+        "result": {
+          "status": "done",
+          "outcome": {
+            "subject": "effect",
+            "certainty": "confirmed",
+            "value": "occurred",
+            "confirmation": {
+              "ref": "ClaimRef",
+              "id": "claim-1"
+            }
+          }
+        }
+      }
+    ],
+    "expected": {
+      "rejected": {
+        "seq": 3,
+        "code": "guard_failed",
+        "guard": "step_running"
+      }
+    }
+  },
+  {
+    "rule": "CP-6",
+    "description": "Effectful step started without an Access decision is rejected",
+    "input": [
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 1,
+        "at": "2026-10-16T09:00:00Z",
+        "kind": "task_created",
+        "source": "one",
+        "plan_version": 1
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 2,
+        "at": "2026-10-16T09:00:01Z",
+        "kind": "step_started",
+        "source": "executor",
+        "step_id": "s1",
+        "effectful": true,
+        "exercise_ref": {
+          "ref": "ExerciseRef",
+          "id": "ex-1"
+        }
+      }
+    ],
+    "expected": {
+      "rejected": {
+        "seq": 2,
+        "code": "schema_invalid"
+      }
+    }
+  },
+  {
+    "rule": "CP-9",
+    "description": "User absent for a session-bound step: waiting_user",
+    "input": [
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 1,
+        "at": "2026-10-16T09:00:00Z",
+        "kind": "task_created",
+        "source": "one",
+        "plan_version": 1
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 2,
+        "at": "2026-10-16T09:00:01Z",
+        "kind": "step_started",
+        "source": "executor",
+        "step_id": "s1",
+        "effectful": true,
+        "decision_ref": {
+          "ref": "DecisionRecordRef",
+          "id": "dec-1"
+        },
+        "exercise_ref": {
+          "ref": "ExerciseRef",
+          "id": "ex-1"
+        }
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 3,
+        "at": "2026-10-16T09:00:02Z",
+        "kind": "wait_opened",
+        "source": "one",
+        "wait": "user",
+        "waitpoint_ref": {
+          "ref": "WaitpointRef",
+          "id": "wp-1"
+        },
+        "reason": "user_absent"
+      }
+    ],
+    "expected": {
+      "state": "waiting_user"
+    }
+  },
+  {
+    "rule": "CP-3",
+    "description": "Full journey: wait, resume, pause, resume, complete",
+    "input": [
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 1,
+        "at": "2026-10-16T09:00:00Z",
+        "kind": "task_created",
+        "source": "one",
+        "plan_version": 1
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 2,
+        "at": "2026-10-16T09:00:01Z",
+        "kind": "step_started",
+        "source": "executor",
+        "step_id": "s1",
+        "effectful": true,
+        "decision_ref": {
+          "ref": "DecisionRecordRef",
+          "id": "dec-1"
+        },
+        "exercise_ref": {
+          "ref": "ExerciseRef",
+          "id": "ex-1"
+        }
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 3,
+        "at": "2026-10-16T09:00:02Z",
+        "kind": "wait_opened",
+        "source": "one",
+        "wait": "user",
+        "waitpoint_ref": {
+          "ref": "WaitpointRef",
+          "id": "wp-1"
+        },
+        "reason": "approval"
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 4,
+        "at": "2026-10-16T09:00:03Z",
+        "kind": "wait_resolved",
+        "source": "relay",
+        "waitpoint_ref": {
+          "ref": "WaitpointRef",
+          "id": "wp-1"
+        },
+        "continuation_ref": {
+          "ref": "DecisionRecordRef",
+          "id": "cont-1"
+        }
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 5,
+        "at": "2026-10-16T09:00:04Z",
+        "kind": "step_finished",
+        "source": "executor",
+        "step_id": "s1",
+        "result": {
+          "status": "done",
+          "outcome": {
+            "subject": "effect",
+            "certainty": "confirmed",
+            "value": "occurred",
+            "confirmation": {
+              "ref": "ClaimRef",
+              "id": "claim-1"
+            }
+          }
+        }
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 6,
+        "at": "2026-10-16T09:00:05Z",
+        "kind": "step_started",
+        "source": "executor",
+        "step_id": "s2",
+        "effectful": false,
+        "decision_ref": {
+          "ref": "DecisionRecordRef",
+          "id": "dec-2"
+        },
+        "exercise_ref": {
+          "ref": "ExerciseRef",
+          "id": "ex-2"
+        }
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 7,
+        "at": "2026-10-16T09:00:06Z",
+        "kind": "pause_requested",
+        "source": "user"
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 8,
+        "at": "2026-10-16T09:00:07Z",
+        "kind": "pause_confirmed",
+        "source": "executor",
+        "execution_report_ref": {
+          "ref": "ExecutionReportRef",
+          "id": "rep-1"
+        }
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 9,
+        "at": "2026-10-16T09:00:08Z",
+        "kind": "resumed",
+        "source": "one",
+        "continuation_ref": {
+          "ref": "DecisionRecordRef",
+          "id": "cont-2"
+        }
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 10,
+        "at": "2026-10-16T09:00:09Z",
+        "kind": "step_finished",
+        "source": "executor",
+        "step_id": "s2",
+        "result": {
+          "status": "done",
+          "outcome": {
+            "subject": "effect",
+            "certainty": "confirmed",
+            "value": "occurred",
+            "confirmation": {
+              "ref": "ClaimRef",
+              "id": "claim-1"
+            }
+          }
+        }
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 11,
+        "at": "2026-10-16T09:00:10Z",
+        "kind": "completion_verified",
+        "source": "one",
+        "evidence_ref": {
+          "ref": "ClaimRef",
+          "id": "claim-order-1"
+        }
+      }
+    ],
+    "expected": {
+      "state": "completed"
+    }
+  },
+  {
+    "rule": "CP-42",
+    "description": "A gap in seq is rejected",
+    "input": [
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 1,
+        "at": "2026-10-16T09:00:00Z",
+        "kind": "task_created",
+        "source": "one",
+        "plan_version": 1
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 3,
+        "at": "2026-10-16T09:00:01Z",
+        "kind": "step_started",
+        "source": "executor",
+        "step_id": "s1",
+        "effectful": true,
+        "decision_ref": {
+          "ref": "DecisionRecordRef",
+          "id": "dec-1"
+        },
+        "exercise_ref": {
+          "ref": "ExerciseRef",
+          "id": "ex-1"
+        }
+      }
+    ],
+    "expected": {
+      "rejected": {
+        "seq": 3,
+        "code": "seq_not_contiguous"
+      }
+    }
+  },
+  {
+    "rule": "CP-42",
+    "description": "An event of another task is rejected",
+    "input": [
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 1,
+        "at": "2026-10-16T09:00:00Z",
+        "kind": "task_created",
+        "source": "one",
+        "plan_version": 1
+      },
+      {
+        "task_id": "task_01k7n51z02e818400000000000",
+        "seq": 2,
+        "at": "2026-10-16T09:00:01Z",
+        "kind": "step_started",
+        "source": "executor",
+        "step_id": "s1",
+        "effectful": true,
+        "decision_ref": {
+          "ref": "DecisionRecordRef",
+          "id": "dec-1"
+        },
+        "exercise_ref": {
+          "ref": "ExerciseRef",
+          "id": "ex-1"
+        }
+      }
+    ],
+    "expected": {
+      "rejected": {
+        "seq": 2,
+        "code": "task_id_mismatch"
+      }
+    }
+  },
+  {
+    "rule": "CP-3",
+    "description": "Empty history has no state",
+    "input": [],
+    "expected": {
+      "rejected": {
+        "seq": null,
+        "code": "first_event_not_created"
+      }
+    }
+  }
+]

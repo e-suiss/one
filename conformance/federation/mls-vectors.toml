@@ -1,0 +1,76 @@
+# OO-29, OO-7
+
+[protocol]
+specification = "RFC 9420"
+ciphersuite = "MLS_128_DHKEMX25519_AES128GCM_SHA256_Ed25519"
+ciphersuite_id = 1
+source = "https://github.com/mlswg/mls-implementations/tree/main/test-vectors"
+pin = "commit hash recorded when the vectors are vendored"
+
+[[external]]
+file = "crypto-basics.json"
+covers = "ciphersuite primitives"
+
+[[external]]
+file = "secret-tree.json"
+covers = "per-sender keys and generations"
+
+[[external]]
+file = "message-protection.json"
+covers = "application and handshake message protection"
+
+[[external]]
+file = "key-schedule.json"
+covers = "epoch secrets across key updates"
+
+[[external]]
+file = "psk_secret.json"
+covers = "pre-shared key injection"
+
+[[external]]
+file = "transcript-hashes.json"
+covers = "confirmed and interim transcript hashes"
+
+[[external]]
+file = "tree-math.json"
+covers = "ratchet tree indexing"
+
+[[external]]
+file = "tree-operations.json"
+covers = "add, update and remove on the tree"
+
+[[external]]
+file = "tree-validation.json"
+covers = "tree hashes and parent hashes"
+
+[[external]]
+file = "treekem.json"
+covers = "path secrets and decryption after updates"
+
+[[external]]
+file = "messages.json"
+covers = "wire encoding"
+
+[[external]]
+file = "deserialization.json"
+covers = "variable-length integer decoding"
+
+[[external]]
+file = "welcome.json"
+covers = "joining by welcome"
+
+[[external]]
+file = "passive-client-welcome.json"
+covers = "passive member joining"
+
+[[external]]
+file = "passive-client-handling-commit.json"
+covers = "passive member processing commits"
+
+[[external]]
+file = "passive-client-random.json"
+covers = "randomised add, update and remove sequences"
+
+[local]
+vectors = "vectors/key-rotation.json"
+covers = ["device add by the person's own action", "device removal", "key update", "cloud One with valid and expired key permit", "no group secret at the delivery service"]

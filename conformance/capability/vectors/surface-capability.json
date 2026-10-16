@@ -1,0 +1,1047 @@
+[
+  {
+    "rule": "C-18",
+    "description": "Watch complication declaration",
+    "input": {
+      "type": "SurfaceCapability",
+      "id": "srf_01m4nvrqgwe0z8v8q3dmc7grzv",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "person-ada"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "general"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "record.trusted",
+      "recorded_at": "2026-10-16T09:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "one-instance-ada"
+        },
+        "model_version": "mdl_01k7n51z06er38c00000000000",
+        "config_version": "registry-1"
+      },
+      "device_id": "dev_01k7n51z05em2ra00000000000",
+      "surface_class": "watch",
+      "surface_kind": "complication",
+      "modalities": [
+        "small_visual",
+        "haptic"
+      ],
+      "size_budget": {
+        "binary_answer_only": true
+      },
+      "local_actions": [],
+      "screen_observation": false,
+      "signals": [
+        "worn",
+        "locked"
+      ],
+      "approval_surface_profile_ref": "access:asp:watch-v1",
+      "declared_at": "2026-10-16T09:00:00Z"
+    },
+    "valid": true
+  },
+  {
+    "rule": "C-18",
+    "description": "Missing device_id is rejected",
+    "input": {
+      "type": "SurfaceCapability",
+      "id": "srf_01m57ztgddepgr1mdwkqrv0atw",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "person-ada"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "general"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "record.trusted",
+      "recorded_at": "2026-10-16T09:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "one-instance-ada"
+        },
+        "model_version": "mdl_01k7n51z06er38c00000000000",
+        "config_version": "registry-1"
+      },
+      "surface_class": "watch",
+      "surface_kind": "complication",
+      "modalities": [
+        "small_visual",
+        "haptic"
+      ],
+      "size_budget": {
+        "binary_answer_only": true
+      },
+      "local_actions": [],
+      "screen_observation": false,
+      "signals": [
+        "worn",
+        "locked"
+      ],
+      "approval_surface_profile_ref": "access:asp:watch-v1",
+      "declared_at": "2026-10-16T09:00:00Z"
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-18",
+    "description": "Missing surface_class is rejected",
+    "input": {
+      "type": "SurfaceCapability",
+      "id": "srf_01m5bewr3xe4d9w08tpxxtyemq",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "person-ada"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "general"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "record.trusted",
+      "recorded_at": "2026-10-16T09:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "one-instance-ada"
+        },
+        "model_version": "mdl_01k7n51z06er38c00000000000",
+        "config_version": "registry-1"
+      },
+      "device_id": "dev_01k7n51z05em2ra00000000000",
+      "surface_kind": "complication",
+      "modalities": [
+        "small_visual",
+        "haptic"
+      ],
+      "size_budget": {
+        "binary_answer_only": true
+      },
+      "local_actions": [],
+      "screen_observation": false,
+      "signals": [
+        "worn",
+        "locked"
+      ],
+      "approval_surface_profile_ref": "access:asp:watch-v1",
+      "declared_at": "2026-10-16T09:00:00Z"
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-18",
+    "description": "Missing surface_kind is rejected",
+    "input": {
+      "type": "SurfaceCapability",
+      "id": "srf_01m46xzp3aegf987kcthhbnvs2",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "person-ada"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "general"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "record.trusted",
+      "recorded_at": "2026-10-16T09:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "one-instance-ada"
+        },
+        "model_version": "mdl_01k7n51z06er38c00000000000",
+        "config_version": "registry-1"
+      },
+      "device_id": "dev_01k7n51z05em2ra00000000000",
+      "surface_class": "watch",
+      "modalities": [
+        "small_visual",
+        "haptic"
+      ],
+      "size_budget": {
+        "binary_answer_only": true
+      },
+      "local_actions": [],
+      "screen_observation": false,
+      "signals": [
+        "worn",
+        "locked"
+      ],
+      "approval_surface_profile_ref": "access:asp:watch-v1",
+      "declared_at": "2026-10-16T09:00:00Z"
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-18",
+    "description": "Missing modalities is rejected",
+    "input": {
+      "type": "SurfaceCapability",
+      "id": "srf_01m5ww07cherj97kkzk85ab2gp",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "person-ada"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "general"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "record.trusted",
+      "recorded_at": "2026-10-16T09:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "one-instance-ada"
+        },
+        "model_version": "mdl_01k7n51z06er38c00000000000",
+        "config_version": "registry-1"
+      },
+      "device_id": "dev_01k7n51z05em2ra00000000000",
+      "surface_class": "watch",
+      "surface_kind": "complication",
+      "size_budget": {
+        "binary_answer_only": true
+      },
+      "local_actions": [],
+      "screen_observation": false,
+      "signals": [
+        "worn",
+        "locked"
+      ],
+      "approval_surface_profile_ref": "access:asp:watch-v1",
+      "declared_at": "2026-10-16T09:00:00Z"
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-18",
+    "description": "Missing size_budget is rejected",
+    "input": {
+      "type": "SurfaceCapability",
+      "id": "srf_01m4rbc9syevpv5jqv122yagw9",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "person-ada"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "general"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "record.trusted",
+      "recorded_at": "2026-10-16T09:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "one-instance-ada"
+        },
+        "model_version": "mdl_01k7n51z06er38c00000000000",
+        "config_version": "registry-1"
+      },
+      "device_id": "dev_01k7n51z05em2ra00000000000",
+      "surface_class": "watch",
+      "surface_kind": "complication",
+      "modalities": [
+        "small_visual",
+        "haptic"
+      ],
+      "local_actions": [],
+      "screen_observation": false,
+      "signals": [
+        "worn",
+        "locked"
+      ],
+      "approval_surface_profile_ref": "access:asp:watch-v1",
+      "declared_at": "2026-10-16T09:00:00Z"
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-18",
+    "description": "Missing local_actions is rejected",
+    "input": {
+      "type": "SurfaceCapability",
+      "id": "srf_01m5hnhjgbfpp828mfqh17bs6t",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "person-ada"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "general"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "record.trusted",
+      "recorded_at": "2026-10-16T09:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "one-instance-ada"
+        },
+        "model_version": "mdl_01k7n51z06er38c00000000000",
+        "config_version": "registry-1"
+      },
+      "device_id": "dev_01k7n51z05em2ra00000000000",
+      "surface_class": "watch",
+      "surface_kind": "complication",
+      "modalities": [
+        "small_visual",
+        "haptic"
+      ],
+      "size_budget": {
+        "binary_answer_only": true
+      },
+      "screen_observation": false,
+      "signals": [
+        "worn",
+        "locked"
+      ],
+      "approval_surface_profile_ref": "access:asp:watch-v1",
+      "declared_at": "2026-10-16T09:00:00Z"
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-18",
+    "description": "Missing screen_observation is rejected",
+    "input": {
+      "type": "SurfaceCapability",
+      "id": "srf_01m4815mqvfad8ea5naaj0zweg",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "person-ada"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "general"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "record.trusted",
+      "recorded_at": "2026-10-16T09:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "one-instance-ada"
+        },
+        "model_version": "mdl_01k7n51z06er38c00000000000",
+        "config_version": "registry-1"
+      },
+      "device_id": "dev_01k7n51z05em2ra00000000000",
+      "surface_class": "watch",
+      "surface_kind": "complication",
+      "modalities": [
+        "small_visual",
+        "haptic"
+      ],
+      "size_budget": {
+        "binary_answer_only": true
+      },
+      "local_actions": [],
+      "signals": [
+        "worn",
+        "locked"
+      ],
+      "approval_surface_profile_ref": "access:asp:watch-v1",
+      "declared_at": "2026-10-16T09:00:00Z"
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-18",
+    "description": "Missing signals is rejected",
+    "input": {
+      "type": "SurfaceCapability",
+      "id": "srf_01m4z9w6xnee78th4f4h0acx8a",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "person-ada"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "general"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "record.trusted",
+      "recorded_at": "2026-10-16T09:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "one-instance-ada"
+        },
+        "model_version": "mdl_01k7n51z06er38c00000000000",
+        "config_version": "registry-1"
+      },
+      "device_id": "dev_01k7n51z05em2ra00000000000",
+      "surface_class": "watch",
+      "surface_kind": "complication",
+      "modalities": [
+        "small_visual",
+        "haptic"
+      ],
+      "size_budget": {
+        "binary_answer_only": true
+      },
+      "local_actions": [],
+      "screen_observation": false,
+      "approval_surface_profile_ref": "access:asp:watch-v1",
+      "declared_at": "2026-10-16T09:00:00Z"
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-18",
+    "description": "Missing approval_surface_profile_ref is rejected",
+    "input": {
+      "type": "SurfaceCapability",
+      "id": "srf_01m65czw0xeejty53g9fmx9j65",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "person-ada"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "general"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "record.trusted",
+      "recorded_at": "2026-10-16T09:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "one-instance-ada"
+        },
+        "model_version": "mdl_01k7n51z06er38c00000000000",
+        "config_version": "registry-1"
+      },
+      "device_id": "dev_01k7n51z05em2ra00000000000",
+      "surface_class": "watch",
+      "surface_kind": "complication",
+      "modalities": [
+        "small_visual",
+        "haptic"
+      ],
+      "size_budget": {
+        "binary_answer_only": true
+      },
+      "local_actions": [],
+      "screen_observation": false,
+      "signals": [
+        "worn",
+        "locked"
+      ],
+      "declared_at": "2026-10-16T09:00:00Z"
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-18",
+    "description": "Missing declared_at is rejected",
+    "input": {
+      "type": "SurfaceCapability",
+      "id": "srf_01m5x3t7yje2ra77mgcf0qkt24",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "person-ada"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "general"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "record.trusted",
+      "recorded_at": "2026-10-16T09:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "one-instance-ada"
+        },
+        "model_version": "mdl_01k7n51z06er38c00000000000",
+        "config_version": "registry-1"
+      },
+      "device_id": "dev_01k7n51z05em2ra00000000000",
+      "surface_class": "watch",
+      "surface_kind": "complication",
+      "modalities": [
+        "small_visual",
+        "haptic"
+      ],
+      "size_budget": {
+        "binary_answer_only": true
+      },
+      "local_actions": [],
+      "screen_observation": false,
+      "signals": [
+        "worn",
+        "locked"
+      ],
+      "approval_surface_profile_ref": "access:asp:watch-v1"
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-18",
+    "description": "A surface cannot carry its own approval ceiling",
+    "input": {
+      "type": "SurfaceCapability",
+      "id": "srf_01m5vv71b7es4vf3207ty3sdpj",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "person-ada"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "general"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "record.trusted",
+      "recorded_at": "2026-10-16T09:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "one-instance-ada"
+        },
+        "model_version": "mdl_01k7n51z06er38c00000000000",
+        "config_version": "registry-1"
+      },
+      "device_id": "dev_01k7n51z05em2ra00000000000",
+      "surface_class": "watch",
+      "surface_kind": "complication",
+      "modalities": [
+        "small_visual",
+        "haptic"
+      ],
+      "size_budget": {
+        "binary_answer_only": true
+      },
+      "local_actions": [],
+      "screen_observation": false,
+      "signals": [
+        "worn",
+        "locked"
+      ],
+      "approval_surface_profile_ref": "access:asp:watch-v1",
+      "declared_at": "2026-10-16T09:00:00Z",
+      "approval_ceiling": "CT3"
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-18",
+    "description": "Current signal values are not part of the declaration",
+    "input": {
+      "type": "SurfaceCapability",
+      "id": "srf_01m4tqvc55eb29r2x3srwctpap",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "person-ada"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "general"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "record.trusted",
+      "recorded_at": "2026-10-16T09:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "one-instance-ada"
+        },
+        "model_version": "mdl_01k7n51z06er38c00000000000",
+        "config_version": "registry-1"
+      },
+      "device_id": "dev_01k7n51z05em2ra00000000000",
+      "surface_class": "watch",
+      "surface_kind": "complication",
+      "modalities": [
+        "small_visual",
+        "haptic"
+      ],
+      "size_budget": {
+        "binary_answer_only": true
+      },
+      "local_actions": [],
+      "screen_observation": false,
+      "signals": [
+        "worn",
+        "locked"
+      ],
+      "approval_surface_profile_ref": "access:asp:watch-v1",
+      "declared_at": "2026-10-16T09:00:00Z",
+      "signal_values": {
+        "worn": true
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "X-36",
+    "description": "Car surface with a visual modality is rejected",
+    "input": {
+      "type": "SurfaceCapability",
+      "id": "srf_01m5es4k9zf66sxrsk60m1j6y6",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "person-ada"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "general"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "record.trusted",
+      "recorded_at": "2026-10-16T09:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "one-instance-ada"
+        },
+        "model_version": "mdl_01k7n51z06er38c00000000000",
+        "config_version": "registry-1"
+      },
+      "device_id": "dev_01k7n51z05em2ra00000000000",
+      "surface_class": "voice:car",
+      "surface_kind": "car_voice_template",
+      "modalities": [
+        "voice",
+        "full_visual"
+      ],
+      "size_budget": {
+        "binary_answer_only": true
+      },
+      "local_actions": [],
+      "screen_observation": false,
+      "signals": [
+        "worn",
+        "locked"
+      ],
+      "approval_surface_profile_ref": "access:asp:watch-v1",
+      "declared_at": "2026-10-16T09:00:00Z"
+    },
+    "valid": false
+  },
+  {
+    "rule": "X-36",
+    "description": "Car surface voice only",
+    "input": {
+      "type": "SurfaceCapability",
+      "id": "srf_01m5hcjefsee8rrdwd945ntmsn",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "person-ada"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "general"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "record.trusted",
+      "recorded_at": "2026-10-16T09:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "one-instance-ada"
+        },
+        "model_version": "mdl_01k7n51z06er38c00000000000",
+        "config_version": "registry-1"
+      },
+      "device_id": "dev_01k7n51z05em2ra00000000000",
+      "surface_class": "voice:car",
+      "surface_kind": "car_voice_template",
+      "modalities": [
+        "voice"
+      ],
+      "size_budget": {
+        "binary_answer_only": true
+      },
+      "local_actions": [],
+      "screen_observation": false,
+      "signals": [
+        "driving"
+      ],
+      "approval_surface_profile_ref": "access:asp:watch-v1",
+      "declared_at": "2026-10-16T09:00:00Z"
+    },
+    "valid": true
+  },
+  {
+    "rule": "X-13",
+    "description": "Live Activity with a 4 KB budget",
+    "input": {
+      "type": "SurfaceCapability",
+      "id": "srf_01m6729rzbf3yt1h9gbzgef5x5",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "person-ada"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "general"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "record.trusted",
+      "recorded_at": "2026-10-16T09:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "one-instance-ada"
+        },
+        "model_version": "mdl_01k7n51z06er38c00000000000",
+        "config_version": "registry-1"
+      },
+      "device_id": "dev_01k7n51z05em2ra00000000000",
+      "surface_class": "phone",
+      "surface_kind": "live_activity",
+      "modalities": [
+        "small_visual"
+      ],
+      "size_budget": {
+        "max_bytes": 4096
+      },
+      "local_actions": [],
+      "screen_observation": false,
+      "signals": [
+        "worn",
+        "locked"
+      ],
+      "approval_surface_profile_ref": "access:asp:watch-v1",
+      "declared_at": "2026-10-16T09:00:00Z"
+    },
+    "valid": true
+  },
+  {
+    "rule": "X-3",
+    "description": "Unknown surface class is rejected",
+    "input": {
+      "type": "SurfaceCapability",
+      "id": "srf_01m55dy107entv71zeksma0mdq",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "person-ada"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "general"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "record.trusted",
+      "recorded_at": "2026-10-16T09:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "one-instance-ada"
+        },
+        "model_version": "mdl_01k7n51z06er38c00000000000",
+        "config_version": "registry-1"
+      },
+      "device_id": "dev_01k7n51z05em2ra00000000000",
+      "surface_class": "tv",
+      "surface_kind": "complication",
+      "modalities": [
+        "small_visual",
+        "haptic"
+      ],
+      "size_budget": {
+        "binary_answer_only": true
+      },
+      "local_actions": [],
+      "screen_observation": false,
+      "signals": [
+        "worn",
+        "locked"
+      ],
+      "approval_surface_profile_ref": "access:asp:watch-v1",
+      "declared_at": "2026-10-16T09:00:00Z"
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-18",
+    "description": "A SurfaceCapability identified with another concept's prefix is rejected",
+    "input": {
+      "type": "SurfaceCapability",
+      "id": "cap_01m4nvrqgwe0z8v8q3dmc7grzv",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "person-ada"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "general"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "record.trusted",
+      "recorded_at": "2026-10-16T09:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "one-instance-ada"
+        },
+        "model_version": "mdl_01k7n51z06er38c00000000000",
+        "config_version": "registry-1"
+      },
+      "device_id": "dev_01k7n51z05em2ra00000000000",
+      "surface_class": "watch",
+      "surface_kind": "complication",
+      "modalities": [
+        "small_visual",
+        "haptic"
+      ],
+      "size_budget": {
+        "binary_answer_only": true
+      },
+      "local_actions": [],
+      "screen_observation": false,
+      "signals": [
+        "worn",
+        "locked"
+      ],
+      "approval_surface_profile_ref": "access:asp:watch-v1",
+      "declared_at": "2026-10-16T09:00:00Z"
+    },
+    "valid": false
+  }
+]

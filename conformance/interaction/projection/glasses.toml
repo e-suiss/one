@@ -1,0 +1,20 @@
+# X-13, X-46, X-10, X-16, C-27
+
+version = 1
+runtime = "projected from the phone (Meta Wearables Device Access Toolkit, Android XR Jetpack Projected)"
+primitives = ["text", "image", "list", "button"]
+video = false
+
+[map]
+title = "text: subject.title[locale]"
+body = "text: minimal_projection.sentence[locale] or typed details within 160 characters"
+list = "list: details.options[].title or details.steps[].label, at most 3"
+image = "image: one asset, loaded only after the user opens it"
+buttons = "button: minimal_projection.yes, minimal_projection.no"
+
+[component_to_primitive]
+card = ["text", "button"]
+list = ["list", "button"]
+progress = ["text"]
+receipt = ["text", "button"]
+approval = ["text", "button"]

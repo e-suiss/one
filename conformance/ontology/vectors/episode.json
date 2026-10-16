@@ -1,0 +1,1372 @@
+[
+  {
+    "rule": "C-11",
+    "description": "Conversation history is an Episode; messages are its content",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Episode",
+      "id": "epi_01m5104az8e8ha48h248h248h2",
+      "kind": "conversation",
+      "modes": [
+        "text",
+        "voice"
+      ],
+      "started_at": "2026-10-19T08:10:00Z",
+      "ended_at": "2026-10-19T08:14:00Z",
+      "entries": [
+        {
+          "seq": 0,
+          "at": "2026-10-19T08:10:00Z",
+          "actor": "user",
+          "mode": "voice",
+          "observation": "obs_01m5104a00e48s248h248h248h",
+          "kind": "observation"
+        },
+        {
+          "seq": 1,
+          "at": "2026-10-19T08:10:05Z",
+          "actor": "one",
+          "mode": "text",
+          "kind": "conversation_turn",
+          "content": {
+            "text": "Not ettim: sıcak.",
+            "lang": "tr"
+          }
+        },
+        {
+          "seq": 2,
+          "at": "2026-10-19T08:10:06Z",
+          "actor": "one",
+          "mode": "card",
+          "interaction": "int_01m5104gtrexvvexvqexvqexvq",
+          "kind": "interaction"
+        }
+      ],
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": true
+  },
+  {
+    "rule": "C-5",
+    "description": "Mode changes inside one Episode do not change the concept",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Episode",
+      "id": "epi_01m5104az8e8ha48h248h248h2",
+      "kind": "conversation",
+      "modes": [
+        "text",
+        "voice"
+      ],
+      "started_at": "2026-10-19T08:10:00Z",
+      "ended_at": "2026-10-19T08:14:00Z",
+      "entries": [
+        {
+          "seq": 0,
+          "at": "2026-10-19T08:10:00Z",
+          "actor": "user",
+          "mode": "voice",
+          "observation": "obs_01m5104a00e48s248h248h248h",
+          "kind": "observation"
+        },
+        {
+          "seq": 1,
+          "at": "2026-10-19T08:10:05Z",
+          "actor": "one",
+          "mode": "text",
+          "kind": "conversation_turn",
+          "content": {
+            "text": "Not ettim: sıcak.",
+            "lang": "tr"
+          }
+        },
+        {
+          "seq": 2,
+          "at": "2026-10-19T08:10:06Z",
+          "actor": "one",
+          "mode": "card",
+          "interaction": "int_01m5104gtrexvvexvqexvqexvq",
+          "kind": "interaction"
+        }
+      ],
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": true
+  },
+  {
+    "rule": "C-11",
+    "description": "Task run Episode names its Task",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Episode",
+      "id": "epi_01m5104az8e8ha48h248h248h2",
+      "kind": "task_run",
+      "modes": [
+        "workspace"
+      ],
+      "started_at": "2026-10-19T08:10:00Z",
+      "task": "task_01m5104fvgeskacsk6csk6csk6",
+      "entries": [],
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": true
+  },
+  {
+    "rule": "C-11",
+    "description": "Task run without its Task is rejected",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Episode",
+      "id": "epi_01m5104az8e8ha48h248h248h2",
+      "kind": "task_run",
+      "modes": [
+        "workspace"
+      ],
+      "started_at": "2026-10-19T08:10:00Z",
+      "entries": [],
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-5",
+    "description": "There is no chat kind",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Episode",
+      "id": "epi_01m5104az8e8ha48h248h248h2",
+      "kind": "chat",
+      "modes": [
+        "text",
+        "voice"
+      ],
+      "started_at": "2026-10-19T08:10:00Z",
+      "ended_at": "2026-10-19T08:14:00Z",
+      "entries": [
+        {
+          "seq": 0,
+          "at": "2026-10-19T08:10:00Z",
+          "actor": "user",
+          "mode": "voice",
+          "observation": "obs_01m5104a00e48s248h248h248h",
+          "kind": "observation"
+        },
+        {
+          "seq": 1,
+          "at": "2026-10-19T08:10:05Z",
+          "actor": "one",
+          "mode": "text",
+          "kind": "conversation_turn",
+          "content": {
+            "text": "Not ettim: sıcak.",
+            "lang": "tr"
+          }
+        },
+        {
+          "seq": 2,
+          "at": "2026-10-19T08:10:06Z",
+          "actor": "one",
+          "mode": "card",
+          "interaction": "int_01m5104gtrexvvexvqexvqexvq",
+          "kind": "interaction"
+        }
+      ],
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-5",
+    "description": "There is no chat mode",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Episode",
+      "id": "epi_01m5104az8e8ha48h248h248h2",
+      "kind": "conversation",
+      "modes": [
+        "chat"
+      ],
+      "started_at": "2026-10-19T08:10:00Z",
+      "ended_at": "2026-10-19T08:14:00Z",
+      "entries": [
+        {
+          "seq": 0,
+          "at": "2026-10-19T08:10:00Z",
+          "actor": "user",
+          "mode": "voice",
+          "observation": "obs_01m5104a00e48s248h248h248h",
+          "kind": "observation"
+        },
+        {
+          "seq": 1,
+          "at": "2026-10-19T08:10:05Z",
+          "actor": "one",
+          "mode": "text",
+          "kind": "conversation_turn",
+          "content": {
+            "text": "Not ettim: sıcak.",
+            "lang": "tr"
+          }
+        },
+        {
+          "seq": 2,
+          "at": "2026-10-19T08:10:06Z",
+          "actor": "one",
+          "mode": "card",
+          "interaction": "int_01m5104gtrexvvexvqexvqexvq",
+          "kind": "interaction"
+        }
+      ],
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-11",
+    "description": "Messages are not a separate collection or type",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Episode",
+      "id": "epi_01m5104az8e8ha48h248h248h2",
+      "kind": "conversation",
+      "modes": [
+        "text",
+        "voice"
+      ],
+      "started_at": "2026-10-19T08:10:00Z",
+      "ended_at": "2026-10-19T08:14:00Z",
+      "entries": [
+        {
+          "seq": 0,
+          "at": "2026-10-19T08:10:00Z",
+          "actor": "user",
+          "mode": "voice",
+          "observation": "obs_01m5104a00e48s248h248h248h",
+          "kind": "observation"
+        },
+        {
+          "seq": 1,
+          "at": "2026-10-19T08:10:05Z",
+          "actor": "one",
+          "mode": "text",
+          "kind": "conversation_turn",
+          "content": {
+            "text": "Not ettim: sıcak.",
+            "lang": "tr"
+          }
+        },
+        {
+          "seq": 2,
+          "at": "2026-10-19T08:10:06Z",
+          "actor": "one",
+          "mode": "card",
+          "interaction": "int_01m5104gtrexvvexvqexvqexvq",
+          "kind": "interaction"
+        }
+      ],
+      "messages": [
+        {
+          "id": "msg_1",
+          "text": "hi"
+        }
+      ],
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-11",
+    "description": "An entry carries exactly one of observation, interaction or output",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Episode",
+      "id": "epi_01m5104az8e8ha48h248h248h2",
+      "kind": "conversation",
+      "modes": [
+        "text",
+        "voice"
+      ],
+      "started_at": "2026-10-19T08:10:00Z",
+      "ended_at": "2026-10-19T08:14:00Z",
+      "entries": [
+        {
+          "seq": 0,
+          "at": "2026-10-19T08:10:00Z",
+          "actor": "user",
+          "observation": "obs_01m5104a00e48s248h248h248h",
+          "kind": "observation",
+          "content": {
+            "text": "x",
+            "lang": "en"
+          }
+        }
+      ],
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-11",
+    "description": "An Episode is time-bounded: start time is mandatory",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Episode",
+      "id": "epi_01m5104az8e8ha48h248h248h2",
+      "kind": "conversation",
+      "modes": [
+        "text",
+        "voice"
+      ],
+      "ended_at": "2026-10-19T08:14:00Z",
+      "entries": [
+        {
+          "seq": 0,
+          "at": "2026-10-19T08:10:00Z",
+          "actor": "user",
+          "mode": "voice",
+          "observation": "obs_01m5104a00e48s248h248h248h",
+          "kind": "observation"
+        },
+        {
+          "seq": 1,
+          "at": "2026-10-19T08:10:05Z",
+          "actor": "one",
+          "mode": "text",
+          "kind": "conversation_turn",
+          "content": {
+            "text": "Not ettim: sıcak.",
+            "lang": "tr"
+          }
+        },
+        {
+          "seq": 2,
+          "at": "2026-10-19T08:10:06Z",
+          "actor": "one",
+          "mode": "card",
+          "interaction": "int_01m5104gtrexvvexvqexvqexvq",
+          "kind": "interaction"
+        }
+      ],
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "M-6",
+    "description": "conversation episode",
+    "input": {
+      "type": "Episode",
+      "id": "epi_01k742sgz8fpbvee16bvnbpem8",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "leisure"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-01T08:10:05Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "user"
+      },
+      "kind": "conversation",
+      "modes": [
+        "text"
+      ],
+      "started_at": "2026-10-01T08:09:00Z",
+      "ended_at": "2026-10-01T08:10:00Z",
+      "entries": [
+        {
+          "seq": 0,
+          "at": "2026-10-01T08:09:00Z",
+          "actor": "user",
+          "kind": "conversation_turn",
+          "source_kind": "user_statement",
+          "provenance": "user.direct",
+          "content": {
+            "text": "I usually take an Americano in the morning.",
+            "lang": "en"
+          }
+        }
+      ]
+    },
+    "valid": true
+  },
+  {
+    "rule": "M-3",
+    "description": "connected source episode carries a reference, not content",
+    "input": {
+      "type": "Episode",
+      "id": "epi_01k742shygfvrv2b7dv0eze8hp",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "leisure"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "external.calendar",
+      "recorded_at": "2026-10-01T08:10:05Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01k742sgz8ezrvb1ad5hsd1p0p"
+        },
+        "model_version": "mdl_01k742sgz8fpttyr5nkb810tbn",
+        "config_version": "consolidation-1"
+      },
+      "kind": "connected_source_event",
+      "modes": [
+        "text"
+      ],
+      "started_at": "2026-10-01T08:09:00Z",
+      "ended_at": "2026-10-01T08:10:00Z",
+      "entries": [
+        {
+          "seq": 0,
+          "at": "2026-10-01T08:09:00Z",
+          "actor": "other_party",
+          "kind": "source_event_ref",
+          "source_kind": "connected_source",
+          "provenance": "external.calendar",
+          "source": {
+            "ref": {
+              "ref": "ExternalRef",
+              "system": "calendar",
+              "locator": "calendar:synthetic-event-42"
+            },
+            "read_at": "2026-10-01T07:00:00Z"
+          }
+        }
+      ]
+    },
+    "valid": true
+  },
+  {
+    "rule": "M-3",
+    "description": "connected source episode with copied content is rejected",
+    "input": {
+      "type": "Episode",
+      "id": "epi_01k742shygfvrv2b7dv0eze8hp",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "leisure"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "external.calendar",
+      "recorded_at": "2026-10-01T08:10:05Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01k742sgz8ezrvb1ad5hsd1p0p"
+        },
+        "model_version": "mdl_01k742sgz8fpttyr5nkb810tbn",
+        "config_version": "consolidation-1"
+      },
+      "kind": "connected_source_event",
+      "modes": [
+        "text"
+      ],
+      "started_at": "2026-10-01T08:09:00Z",
+      "ended_at": "2026-10-01T08:10:00Z",
+      "entries": [
+        {
+          "seq": 0,
+          "at": "2026-10-01T08:09:00Z",
+          "actor": "other_party",
+          "kind": "source_event_ref",
+          "source_kind": "connected_source",
+          "provenance": "external.calendar",
+          "content": {
+            "text": "Meeting with Ayşe",
+            "lang": "en"
+          },
+          "source": {
+            "ref": {
+              "ref": "ExternalRef",
+              "system": "calendar",
+              "locator": "calendar:synthetic-event-42"
+            },
+            "read_at": "2026-10-01T07:00:00Z"
+          }
+        }
+      ]
+    },
+    "valid": false
+  },
+  {
+    "rule": "M-43",
+    "description": "imported episode is labelled external.import",
+    "input": {
+      "type": "Episode",
+      "id": "epi_01k742sjxrf4tah97jy8ps10ps",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "leisure"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "external.import",
+      "recorded_at": "2026-10-01T08:10:05Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01k742sgz8ezrvb1ad5hsd1p0p"
+        },
+        "model_version": "mdl_01k742sgz8fpttyr5nkb810tbn",
+        "config_version": "consolidation-1"
+      },
+      "kind": "import",
+      "modes": [
+        "text"
+      ],
+      "started_at": "2026-10-01T08:09:00Z",
+      "ended_at": "2026-10-01T08:10:00Z",
+      "entries": [
+        {
+          "seq": 0,
+          "at": "2026-10-01T08:09:00Z",
+          "actor": "other_party",
+          "kind": "imported_item",
+          "source_kind": "import",
+          "provenance": "external.import",
+          "content": {
+            "text": "User likes jazz.",
+            "lang": "en"
+          },
+          "import_source": "assistant_dump"
+        }
+      ]
+    },
+    "valid": true
+  },
+  {
+    "rule": "M-43",
+    "description": "imported episode cannot claim a user label",
+    "input": {
+      "type": "Episode",
+      "id": "epi_01k742sjxrf4tah97jy8ps10ps",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "leisure"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-01T08:10:05Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01k742sgz8ezrvb1ad5hsd1p0p"
+        },
+        "model_version": "mdl_01k742sgz8fpttyr5nkb810tbn",
+        "config_version": "consolidation-1"
+      },
+      "kind": "import",
+      "modes": [
+        "text"
+      ],
+      "started_at": "2026-10-01T08:09:00Z",
+      "ended_at": "2026-10-01T08:10:00Z",
+      "entries": [
+        {
+          "seq": 0,
+          "at": "2026-10-01T08:09:00Z",
+          "actor": "other_party",
+          "kind": "imported_item",
+          "source_kind": "import",
+          "provenance": "user.direct",
+          "content": {
+            "text": "User likes jazz.",
+            "lang": "en"
+          },
+          "import_source": "assistant_dump"
+        }
+      ]
+    },
+    "valid": false
+  },
+  {
+    "rule": "M-36",
+    "description": "offline explicit remember queued on a device",
+    "input": {
+      "type": "Episode",
+      "id": "epi_01k742skx0ez48xc4jaet4rfcx",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "leisure"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-01T08:10:05Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "user"
+      },
+      "kind": "conversation",
+      "modes": [
+        "text"
+      ],
+      "started_at": "2026-10-01T08:09:00Z",
+      "ended_at": "2026-10-01T08:10:00Z",
+      "entries": [
+        {
+          "seq": 0,
+          "at": "2026-10-01T08:09:00Z",
+          "actor": "user",
+          "kind": "explicit_remember",
+          "source_kind": "user_statement",
+          "provenance": "user.direct",
+          "content": {
+            "text": "Bunu hatırla: annemin doğum günü 3 Mayıs.",
+            "lang": "tr"
+          }
+        }
+      ],
+      "queued_on_device": "dev_01k742sgz8fx5sr7typceyq7n4"
+    },
+    "valid": true
+  },
+  {
+    "rule": "M-25",
+    "description": "forgotten episode skeleton",
+    "input": {
+      "type": "Episode",
+      "id": "epi_01k742td9ge90b1m110fw6c5nf",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "version": 1,
+      "status": "forgotten",
+      "recorded_at": "2026-10-01T08:10:05Z",
+      "deleted_at": "2026-10-10T12:00:00Z",
+      "retention_class": "one_memory"
+    },
+    "valid": true
+  },
+  {
+    "rule": "M-6",
+    "description": "conversation episode must come from the user",
+    "input": {
+      "type": "Episode",
+      "id": "epi_01k742sgz8fpbvee16bvnbpem8",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "leisure"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-01T08:10:05Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "user"
+      },
+      "kind": "conversation",
+      "modes": [
+        "text"
+      ],
+      "started_at": "2026-10-01T08:09:00Z",
+      "ended_at": "2026-10-01T08:10:00Z",
+      "entries": [
+        {
+          "seq": 0,
+          "at": "2026-10-01T08:09:00Z",
+          "actor": "user",
+          "kind": "conversation_turn",
+          "source_kind": "external_content",
+          "provenance": "user.direct",
+          "content": {
+            "text": "I usually take an Americano in the morning.",
+            "lang": "en"
+          }
+        }
+      ]
+    },
+    "valid": false
+  },
+  {
+    "rule": "M-6",
+    "description": "Only the user makes an explicit remember",
+    "input": {
+      "type": "Episode",
+      "id": "epi_01k742skx0ez48xc4jaet4rfcx",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "leisure"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-01T08:10:05Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "user"
+      },
+      "kind": "conversation",
+      "modes": [
+        "text"
+      ],
+      "started_at": "2026-10-01T08:09:00Z",
+      "ended_at": "2026-10-01T08:10:00Z",
+      "entries": [
+        {
+          "seq": 0,
+          "at": "2026-10-01T08:09:00Z",
+          "actor": "one",
+          "kind": "explicit_remember",
+          "source_kind": "user_statement",
+          "provenance": "user.direct",
+          "content": {
+            "text": "Bunu hatırla: annemin doğum günü 3 Mayıs.",
+            "lang": "tr"
+          }
+        }
+      ],
+      "queued_on_device": "dev_01k742sgz8fx5sr7typceyq7n4"
+    },
+    "valid": false
+  },
+  {
+    "rule": "M-6",
+    "description": "Every entry names its kind",
+    "input": {
+      "type": "Episode",
+      "id": "epi_01k742sgz8fpbvee16bvnbpem8",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "leisure"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-01T08:10:05Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "user"
+      },
+      "kind": "conversation",
+      "modes": [
+        "text"
+      ],
+      "started_at": "2026-10-01T08:09:00Z",
+      "ended_at": "2026-10-01T08:10:00Z",
+      "entries": [
+        {
+          "seq": 0,
+          "at": "2026-10-01T08:09:00Z",
+          "actor": "user",
+          "source_kind": "user_statement",
+          "provenance": "user.direct",
+          "content": {
+            "text": "I usually take an Americano in the morning.",
+            "lang": "en"
+          }
+        }
+      ]
+    },
+    "valid": false
+  },
+  {
+    "rule": "M-3",
+    "description": "A connected source event keeps its external label",
+    "input": {
+      "type": "Episode",
+      "id": "epi_01k742shygfvrv2b7dv0eze8hp",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "leisure"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "external.calendar",
+      "recorded_at": "2026-10-01T08:10:05Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01k742sgz8ezrvb1ad5hsd1p0p"
+        },
+        "model_version": "mdl_01k742sgz8fpttyr5nkb810tbn",
+        "config_version": "consolidation-1"
+      },
+      "kind": "connected_source_event",
+      "modes": [
+        "text"
+      ],
+      "started_at": "2026-10-01T08:09:00Z",
+      "ended_at": "2026-10-01T08:10:00Z",
+      "entries": [
+        {
+          "seq": 0,
+          "at": "2026-10-01T08:09:00Z",
+          "actor": "other_party",
+          "kind": "source_event_ref",
+          "source_kind": "connected_source",
+          "provenance": "user.direct",
+          "source": {
+            "ref": {
+              "ref": "ExternalRef",
+              "system": "calendar",
+              "locator": "calendar:synthetic-event-42"
+            },
+            "read_at": "2026-10-01T07:00:00Z"
+          }
+        }
+      ]
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-11",
+    "description": "One's reply is a conversation turn of the same Episode",
+    "input": {
+      "type": "Episode",
+      "id": "epi_01k742sgz8fpbvee16bvnbpem8",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "leisure"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-01T08:10:05Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "user"
+      },
+      "kind": "conversation",
+      "modes": [
+        "text"
+      ],
+      "started_at": "2026-10-01T08:09:00Z",
+      "ended_at": "2026-10-01T08:10:00Z",
+      "entries": [
+        {
+          "seq": 0,
+          "at": "2026-10-01T08:09:00Z",
+          "actor": "user",
+          "kind": "conversation_turn",
+          "source_kind": "user_statement",
+          "provenance": "user.direct",
+          "content": {
+            "text": "I usually take an Americano in the morning.",
+            "lang": "en"
+          }
+        },
+        {
+          "seq": 1,
+          "at": "2026-10-01T08:09:30Z",
+          "actor": "one",
+          "kind": "conversation_turn",
+          "content": {
+            "text": "Noted.",
+            "lang": "en"
+          }
+        }
+      ]
+    },
+    "valid": true
+  },
+  {
+    "rule": "M-6",
+    "description": "One's reply carries no user source kind",
+    "input": {
+      "type": "Episode",
+      "id": "epi_01k742sgz8fpbvee16bvnbpem8",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "leisure"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-01T08:10:05Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "user"
+      },
+      "kind": "conversation",
+      "modes": [
+        "text"
+      ],
+      "started_at": "2026-10-01T08:09:00Z",
+      "ended_at": "2026-10-01T08:10:00Z",
+      "entries": [
+        {
+          "seq": 0,
+          "at": "2026-10-01T08:09:00Z",
+          "actor": "user",
+          "kind": "conversation_turn",
+          "source_kind": "user_statement",
+          "provenance": "user.direct",
+          "content": {
+            "text": "I usually take an Americano in the morning.",
+            "lang": "en"
+          }
+        },
+        {
+          "seq": 1,
+          "at": "2026-10-01T08:09:30Z",
+          "actor": "one",
+          "kind": "conversation_turn",
+          "content": {
+            "text": "Noted.",
+            "lang": "en"
+          },
+          "source_kind": "user_statement"
+        }
+      ]
+    },
+    "valid": false
+  }
+]

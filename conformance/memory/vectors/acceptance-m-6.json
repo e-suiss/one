@@ -1,0 +1,169 @@
+[
+  {
+    "rule": "M-6",
+    "description": "a record without a source episode is not written",
+    "input": {
+      "operation": "write",
+      "record": {
+        "source_episodes": []
+      }
+    },
+    "expected": {
+      "outcome": "rejected",
+      "error": "empty_source_episodes"
+    }
+  },
+  {
+    "rule": "M-6",
+    "description": "a record whose source episode does not exist is not written",
+    "input": {
+      "operation": "write",
+      "record": {
+        "source_episodes": [
+          "epi_01k742wgnrfcn9jqqccy4mj807"
+        ]
+      },
+      "existing_episodes": [
+        "epi_01k742sgz8fpbvee16bvnbpem8"
+      ]
+    },
+    "expected": {
+      "outcome": "rejected",
+      "error": "unknown_source_episode"
+    }
+  },
+  {
+    "rule": "M-6",
+    "description": "physical delete does not exist",
+    "input": {
+      "operation": "delete",
+      "record": "mem_01k742v0tges7ahv74rwr6c2dw"
+    },
+    "expected": {
+      "outcome": "rejected",
+      "error": "no_physical_delete"
+    }
+  },
+  {
+    "rule": "M-6",
+    "description": "correction writes a new version and invalidates the old one; both remain",
+    "input": {
+      "operation": "correct",
+      "record": "mem_01k742v0tges7ahv74rwr6c2dw",
+      "version": 1,
+      "at": "2026-10-03T09:00:00Z",
+      "statement": {
+        "text": "I drink my coffee hot now.",
+        "lang": "en"
+      }
+    },
+    "expected": {
+      "outcome": "accepted",
+      "records": [
+        {
+          "id": "mem_01k742v0tges7ahv74rwr6c2dw",
+          "version": 1,
+          "epistemic_state": "invalidated",
+          "superseded_at": "2026-10-03T09:00:00Z",
+          "status": "active"
+        },
+        {
+          "id": "new",
+          "version": 2,
+          "supersedes": "mem_01k742v0tges7ahv74rwr6c2dw",
+          "epistemic_state": "stated",
+          "superseded_at": null,
+          "status": "active"
+        }
+      ]
+    }
+  },
+  {
+    "rule": "M-6",
+    "description": "in-place update of a canonical record is rejected",
+    "input": {
+      "operation": "update_in_place",
+      "record": "mem_01k742v0tges7ahv74rwr6c2dw",
+      "fields": {
+        "statement": {
+          "text": "x",
+          "lang": "en"
+        }
+      }
+    },
+    "expected": {
+      "outcome": "rejected",
+      "error": "records_are_versioned"
+    }
+  },
+  {
+    "rule": "M-10",
+    "description": "a relationship edge change closes the old edge and opens a new one; both stay queryable",
+    "input": {
+      "operation": "relationship_edge_change",
+      "edge": "mem_01k742v1srfrz815ksqrjd1t3n",
+      "predicate": "has_manager",
+      "old_object": "contacts:synthetic-ayse-yilmaz",
+      "new_object": "contacts:synthetic-can-kaya",
+      "changed_at": "2026-05-01T00:00:00Z",
+      "learned_at": "2026-05-03T10:00:00Z"
+    },
+    "expected": {
+      "outcome": "accepted",
+      "edges": [
+        {
+          "id": "mem_01k742v1srfrz815ksqrjd1t3n",
+          "version": 2,
+          "supersedes": "mem_01k742v1srfrz815ksqrjd1t3n",
+          "valid_to": "2026-05-01T00:00:00Z",
+          "time_kind": "past",
+          "recorded_at": "2026-05-03T10:00:00Z"
+        },
+        {
+          "id": "new",
+          "version": 1,
+          "valid_from": "2026-05-01T00:00:00Z",
+          "valid_to": null,
+          "recorded_at": "2026-05-03T10:00:00Z"
+        }
+      ],
+      "superseded": [
+        {
+          "id": "mem_01k742v1srfrz815ksqrjd1t3n",
+          "version": 1,
+          "epistemic_state": "invalidated",
+          "superseded_at": "2026-05-03T10:00:00Z"
+        }
+      ]
+    }
+  },
+  {
+    "rule": "M-6",
+    "description": "the text view is regenerated from the record, never edited",
+    "input": {
+      "operation": "edit_text_view",
+      "record": "mem_01k742v0tges7ahv74rwr6c2dw"
+    },
+    "expected": {
+      "outcome": "rejected",
+      "error": "view_is_derived"
+    }
+  },
+  {
+    "rule": "C-22",
+    "description": "a stale view is rebuilt from the records",
+    "input": {
+      "operation": "build_view",
+      "cached_view_version": 1,
+      "record_versions": {
+        "mem_01k742v0tges7ahv74rwr6c2dw": 2
+      }
+    },
+    "expected": {
+      "outcome": "rebuilt",
+      "view_source_versions": {
+        "mem_01k742v0tges7ahv74rwr6c2dw": 2
+      }
+    }
+  }
+]

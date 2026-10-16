@@ -1,0 +1,77 @@
+# X-2, X-3, X-5, X-19, X-45, X-46, C-5, C-18, A-28, Access E49
+
+version = 1
+chat_is_canonical_unit = false
+
+[mode.presence]
+purpose = "Short daily interaction: status, one-sentence question, low-risk approval, voice command"
+projection = "minimal"
+rich_content = "deep_link_to_workspace"
+
+[mode.workspace]
+purpose = "Deep work: comparison, long text, plan, chat, memory and activity review"
+projection = "full"
+classes = ["phone", "desktop"]
+
+[mode.control]
+purpose = "Managing One: settings, authority, rules, sub-agents, consent, devices"
+projection = "full"
+classes = ["phone", "desktop"]
+inside = "workspace"
+
+[class.phone]
+examples = ["iPhone", "Android phone", "tablet"]
+channels = ["visual", "voice", "touch"]
+modes = ["presence", "workspace", "control"]
+targets = ["workspace", "notification", "live_activity", "live_update", "widget"]
+approval_ceiling = "full_with_strong_auth"
+strong_auth = "passkey"
+
+[class.desktop]
+examples = ["macOS", "Windows", "Linux", "web workspace", "browser extension"]
+channels = ["visual", "keyboard"]
+modes = ["presence", "workspace", "control"]
+targets = ["workspace", "notification", "menu_bar"]
+approval_ceiling = "full_with_strong_auth"
+strong_auth = "passkey"
+
+[class.watch]
+examples = ["Apple Watch", "Wear OS"]
+channels = ["small_visual", "haptic"]
+modes = ["presence"]
+targets = ["watch_app", "complication", "notification"]
+approval_ceiling = "low_risk"
+approval_gesture_default = "hold"
+approval_gesture_options = ["hold", "two_step"]
+
+[class."voice:car"]
+examples = ["CarPlay", "Android Auto"]
+channels = ["voice"]
+modes = ["presence"]
+targets = ["car_voice"]
+approval_ceiling = "low_risk"
+
+[class."voice:glasses"]
+examples = ["Meta glasses", "Android XR glasses"]
+channels = ["voice", "small_visual", "camera"]
+modes = ["presence"]
+targets = ["glasses_display", "glasses_voice"]
+approval_ceiling = "low_risk"
+runtime = "projected_from_phone"
+
+[ceiling.low_risk]
+risk = ["CT0", "CT1"]
+reversibility = ["reversible", "compensable"]
+mandate_fit = ["within"]
+otherwise = "redirect_to_phone_or_desktop"
+
+[ceiling.full_with_strong_auth]
+risk = ["CT0", "CT1", "CT2", "CT3"]
+reversibility = ["reversible", "compensable", "irreversible"]
+mandate_fit = ["within", "exceeds", "non_delegable"]
+non_delegable = "direct_act_only"
+user_setting = "tighten_only"
+
+[ceiling.stop]
+effect = "stop"
+all_classes = true

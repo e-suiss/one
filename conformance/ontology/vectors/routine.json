@@ -1,0 +1,1179 @@
+[
+  {
+    "rule": "C-14",
+    "description": "Typed Routine with constant authority NONE",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Routine",
+      "id": "rtn_01m5104cxreh288h248h248h24",
+      "trigger": {
+        "days": [
+          "mon",
+          "tue",
+          "wed",
+          "thu",
+          "fri"
+        ],
+        "time_window": {
+          "start": "07:30",
+          "end": "09:30"
+        },
+        "context": {
+          "text": "on the way to the office",
+          "lang": "en"
+        }
+      },
+      "behaviour": {
+        "capability": "app.suiss.commerce.coffee.order",
+        "preference": "mem_01m5104ew8esb9cnjpasb5cnjp",
+        "summary": {
+          "text": "Coffee order: iced Americano",
+          "lang": "en"
+        }
+      },
+      "evidence": {
+        "spontaneous": 10,
+        "after_suggestion": 0
+      },
+      "exceptions": [
+        {
+          "text": "holiday",
+          "lang": "en"
+        }
+      ],
+      "first_seen": "2026-07-27T07:40:00Z",
+      "last_seen": "2026-10-19T08:10:00Z",
+      "period": "P1D",
+      "source": "learned",
+      "state": "active",
+      "authority": "NONE",
+      "sensitive": true,
+      "derived_from": [
+        "mem_01m5104dx0enasanananananan"
+      ],
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": true
+  },
+  {
+    "rule": "AT-27",
+    "description": "Routine carrying authority is rejected",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Routine",
+      "id": "rtn_01m5104cxreh288h248h248h24",
+      "trigger": {
+        "days": [
+          "mon",
+          "tue",
+          "wed",
+          "thu",
+          "fri"
+        ],
+        "time_window": {
+          "start": "07:30",
+          "end": "09:30"
+        },
+        "context": {
+          "text": "on the way to the office",
+          "lang": "en"
+        }
+      },
+      "behaviour": {
+        "capability": "app.suiss.commerce.coffee.order",
+        "preference": "mem_01m5104ew8esb9cnjpasb5cnjp",
+        "summary": {
+          "text": "Coffee order: iced Americano",
+          "lang": "en"
+        }
+      },
+      "evidence": {
+        "spontaneous": 10,
+        "after_suggestion": 0
+      },
+      "exceptions": [
+        {
+          "text": "holiday",
+          "lang": "en"
+        }
+      ],
+      "first_seen": "2026-07-27T07:40:00Z",
+      "last_seen": "2026-10-19T08:10:00Z",
+      "period": "P1D",
+      "source": "learned",
+      "state": "active",
+      "authority": "GRANTED",
+      "sensitive": true,
+      "derived_from": [
+        "mem_01m5104dx0enasanananananan"
+      ],
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "AT-27",
+    "description": "Authority field cannot be lowered to a boolean grant",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Routine",
+      "id": "rtn_01m5104cxreh288h248h248h24",
+      "trigger": {
+        "days": [
+          "mon",
+          "tue",
+          "wed",
+          "thu",
+          "fri"
+        ],
+        "time_window": {
+          "start": "07:30",
+          "end": "09:30"
+        },
+        "context": {
+          "text": "on the way to the office",
+          "lang": "en"
+        }
+      },
+      "behaviour": {
+        "capability": "app.suiss.commerce.coffee.order",
+        "preference": "mem_01m5104ew8esb9cnjpasb5cnjp",
+        "summary": {
+          "text": "Coffee order: iced Americano",
+          "lang": "en"
+        }
+      },
+      "evidence": {
+        "spontaneous": 10,
+        "after_suggestion": 0
+      },
+      "exceptions": [
+        {
+          "text": "holiday",
+          "lang": "en"
+        }
+      ],
+      "first_seen": "2026-07-27T07:40:00Z",
+      "last_seen": "2026-10-19T08:10:00Z",
+      "period": "P1D",
+      "source": "learned",
+      "state": "active",
+      "authority": true,
+      "sensitive": true,
+      "derived_from": [
+        "mem_01m5104dx0enasanananananan"
+      ],
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-14",
+    "description": "Authority field is mandatory",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Routine",
+      "id": "rtn_01m5104cxreh288h248h248h24",
+      "trigger": {
+        "days": [
+          "mon",
+          "tue",
+          "wed",
+          "thu",
+          "fri"
+        ],
+        "time_window": {
+          "start": "07:30",
+          "end": "09:30"
+        },
+        "context": {
+          "text": "on the way to the office",
+          "lang": "en"
+        }
+      },
+      "behaviour": {
+        "capability": "app.suiss.commerce.coffee.order",
+        "preference": "mem_01m5104ew8esb9cnjpasb5cnjp",
+        "summary": {
+          "text": "Coffee order: iced Americano",
+          "lang": "en"
+        }
+      },
+      "evidence": {
+        "spontaneous": 10,
+        "after_suggestion": 0
+      },
+      "exceptions": [
+        {
+          "text": "holiday",
+          "lang": "en"
+        }
+      ],
+      "first_seen": "2026-07-27T07:40:00Z",
+      "last_seen": "2026-10-19T08:10:00Z",
+      "period": "P1D",
+      "source": "learned",
+      "state": "active",
+      "sensitive": true,
+      "derived_from": [
+        "mem_01m5104dx0enasanananananan"
+      ],
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-14",
+    "description": "A Routine is not a Trigger: no Access Trigger reference",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Routine",
+      "id": "rtn_01m5104cxreh288h248h248h24",
+      "trigger": {
+        "days": [
+          "mon",
+          "tue",
+          "wed",
+          "thu",
+          "fri"
+        ],
+        "time_window": {
+          "start": "07:30",
+          "end": "09:30"
+        },
+        "context": {
+          "text": "on the way to the office",
+          "lang": "en"
+        }
+      },
+      "behaviour": {
+        "capability": "app.suiss.commerce.coffee.order",
+        "preference": "mem_01m5104ew8esb9cnjpasb5cnjp",
+        "summary": {
+          "text": "Coffee order: iced Americano",
+          "lang": "en"
+        }
+      },
+      "evidence": {
+        "spontaneous": 10,
+        "after_suggestion": 0
+      },
+      "exceptions": [
+        {
+          "text": "holiday",
+          "lang": "en"
+        }
+      ],
+      "first_seen": "2026-07-27T07:40:00Z",
+      "last_seen": "2026-10-19T08:10:00Z",
+      "period": "P1D",
+      "source": "learned",
+      "state": "active",
+      "authority": "NONE",
+      "sensitive": true,
+      "derived_from": [
+        "mem_01m5104dx0enasanananananan"
+      ],
+      "access_trigger": {
+        "ref": "TriggerRef",
+        "id": "trg_9"
+      },
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-14",
+    "description": "A Routine carries no Mandate",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Routine",
+      "id": "rtn_01m5104cxreh288h248h248h24",
+      "trigger": {
+        "days": [
+          "mon",
+          "tue",
+          "wed",
+          "thu",
+          "fri"
+        ],
+        "time_window": {
+          "start": "07:30",
+          "end": "09:30"
+        },
+        "context": {
+          "text": "on the way to the office",
+          "lang": "en"
+        }
+      },
+      "behaviour": {
+        "capability": "app.suiss.commerce.coffee.order",
+        "preference": "mem_01m5104ew8esb9cnjpasb5cnjp",
+        "summary": {
+          "text": "Coffee order: iced Americano",
+          "lang": "en"
+        }
+      },
+      "evidence": {
+        "spontaneous": 10,
+        "after_suggestion": 0
+      },
+      "exceptions": [
+        {
+          "text": "holiday",
+          "lang": "en"
+        }
+      ],
+      "first_seen": "2026-07-27T07:40:00Z",
+      "last_seen": "2026-10-19T08:10:00Z",
+      "period": "P1D",
+      "source": "learned",
+      "state": "active",
+      "authority": "NONE",
+      "sensitive": true,
+      "derived_from": [
+        "mem_01m5104dx0enasanananananan"
+      ],
+      "mandate": {
+        "ref": "MandateRef",
+        "id": "mdt_1"
+      },
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "AT-29",
+    "description": "Spontaneous and after-suggestion evidence are counted apart",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Routine",
+      "id": "rtn_01m5104cxreh288h248h248h24",
+      "trigger": {
+        "days": [
+          "mon",
+          "tue",
+          "wed",
+          "thu",
+          "fri"
+        ],
+        "time_window": {
+          "start": "07:30",
+          "end": "09:30"
+        },
+        "context": {
+          "text": "on the way to the office",
+          "lang": "en"
+        }
+      },
+      "behaviour": {
+        "capability": "app.suiss.commerce.coffee.order",
+        "preference": "mem_01m5104ew8esb9cnjpasb5cnjp",
+        "summary": {
+          "text": "Coffee order: iced Americano",
+          "lang": "en"
+        }
+      },
+      "evidence": {
+        "count": 10
+      },
+      "exceptions": [
+        {
+          "text": "holiday",
+          "lang": "en"
+        }
+      ],
+      "first_seen": "2026-07-27T07:40:00Z",
+      "last_seen": "2026-10-19T08:10:00Z",
+      "period": "P1D",
+      "source": "learned",
+      "state": "active",
+      "authority": "NONE",
+      "sensitive": true,
+      "derived_from": [
+        "mem_01m5104dx0enasanananananan"
+      ],
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "AT-29",
+    "description": "After-suggestion count is mandatory",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Routine",
+      "id": "rtn_01m5104cxreh288h248h248h24",
+      "trigger": {
+        "days": [
+          "mon",
+          "tue",
+          "wed",
+          "thu",
+          "fri"
+        ],
+        "time_window": {
+          "start": "07:30",
+          "end": "09:30"
+        },
+        "context": {
+          "text": "on the way to the office",
+          "lang": "en"
+        }
+      },
+      "behaviour": {
+        "capability": "app.suiss.commerce.coffee.order",
+        "preference": "mem_01m5104ew8esb9cnjpasb5cnjp",
+        "summary": {
+          "text": "Coffee order: iced Americano",
+          "lang": "en"
+        }
+      },
+      "evidence": {
+        "spontaneous": 10
+      },
+      "exceptions": [
+        {
+          "text": "holiday",
+          "lang": "en"
+        }
+      ],
+      "first_seen": "2026-07-27T07:40:00Z",
+      "last_seen": "2026-10-19T08:10:00Z",
+      "period": "P1D",
+      "source": "learned",
+      "state": "active",
+      "authority": "NONE",
+      "sensitive": true,
+      "derived_from": [
+        "mem_01m5104dx0enasanananananan"
+      ],
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "AT-27",
+    "description": "Source is learned, stated or confirmed",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Routine",
+      "id": "rtn_01m5104cxreh288h248h248h24",
+      "trigger": {
+        "days": [
+          "mon",
+          "tue",
+          "wed",
+          "thu",
+          "fri"
+        ],
+        "time_window": {
+          "start": "07:30",
+          "end": "09:30"
+        },
+        "context": {
+          "text": "on the way to the office",
+          "lang": "en"
+        }
+      },
+      "behaviour": {
+        "capability": "app.suiss.commerce.coffee.order",
+        "preference": "mem_01m5104ew8esb9cnjpasb5cnjp",
+        "summary": {
+          "text": "Coffee order: iced Americano",
+          "lang": "en"
+        }
+      },
+      "evidence": {
+        "spontaneous": 10,
+        "after_suggestion": 0
+      },
+      "exceptions": [
+        {
+          "text": "holiday",
+          "lang": "en"
+        }
+      ],
+      "first_seen": "2026-07-27T07:40:00Z",
+      "last_seen": "2026-10-19T08:10:00Z",
+      "period": "P1D",
+      "source": "model",
+      "state": "active",
+      "authority": "NONE",
+      "sensitive": true,
+      "derived_from": [
+        "mem_01m5104dx0enasanananananan"
+      ],
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-14",
+    "description": "State is active, suspended or invalid",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Routine",
+      "id": "rtn_01m5104cxreh288h248h248h24",
+      "trigger": {
+        "days": [
+          "mon",
+          "tue",
+          "wed",
+          "thu",
+          "fri"
+        ],
+        "time_window": {
+          "start": "07:30",
+          "end": "09:30"
+        },
+        "context": {
+          "text": "on the way to the office",
+          "lang": "en"
+        }
+      },
+      "behaviour": {
+        "capability": "app.suiss.commerce.coffee.order",
+        "preference": "mem_01m5104ew8esb9cnjpasb5cnjp",
+        "summary": {
+          "text": "Coffee order: iced Americano",
+          "lang": "en"
+        }
+      },
+      "evidence": {
+        "spontaneous": 10,
+        "after_suggestion": 0
+      },
+      "exceptions": [
+        {
+          "text": "holiday",
+          "lang": "en"
+        }
+      ],
+      "first_seen": "2026-07-27T07:40:00Z",
+      "last_seen": "2026-10-19T08:10:00Z",
+      "period": "P1D",
+      "source": "learned",
+      "state": "enabled",
+      "authority": "NONE",
+      "sensitive": true,
+      "derived_from": [
+        "mem_01m5104dx0enasanananananan"
+      ],
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "AT-31",
+    "description": "A place routine is always sensitive",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Routine",
+      "id": "rtn_01m5104cxreh288h248h248h24",
+      "trigger": {
+        "days": [
+          "tue"
+        ],
+        "place": {
+          "ref": "ExternalRef",
+          "system": "place",
+          "locator": "geo:pool-17"
+        }
+      },
+      "behaviour": {
+        "capability": "app.suiss.commerce.coffee.order",
+        "preference": "mem_01m5104ew8esb9cnjpasb5cnjp",
+        "summary": {
+          "text": "Coffee order: iced Americano",
+          "lang": "en"
+        }
+      },
+      "evidence": {
+        "spontaneous": 10,
+        "after_suggestion": 0
+      },
+      "exceptions": [
+        {
+          "text": "holiday",
+          "lang": "en"
+        }
+      ],
+      "first_seen": "2026-07-27T07:40:00Z",
+      "last_seen": "2026-10-19T08:10:00Z",
+      "period": "P1D",
+      "source": "learned",
+      "state": "active",
+      "authority": "NONE",
+      "sensitive": false,
+      "derived_from": [
+        "mem_01m5104dx0enasanananananan"
+      ],
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "AT-31",
+    "description": "A place routine marked sensitive is accepted",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Routine",
+      "id": "rtn_01m5104cxreh288h248h248h24",
+      "trigger": {
+        "days": [
+          "tue"
+        ],
+        "place": {
+          "ref": "ExternalRef",
+          "system": "place",
+          "locator": "geo:pool-17"
+        }
+      },
+      "behaviour": {
+        "capability": "app.suiss.commerce.coffee.order",
+        "preference": "mem_01m5104ew8esb9cnjpasb5cnjp",
+        "summary": {
+          "text": "Coffee order: iced Americano",
+          "lang": "en"
+        }
+      },
+      "evidence": {
+        "spontaneous": 10,
+        "after_suggestion": 0
+      },
+      "exceptions": [
+        {
+          "text": "holiday",
+          "lang": "en"
+        }
+      ],
+      "first_seen": "2026-07-27T07:40:00Z",
+      "last_seen": "2026-10-19T08:10:00Z",
+      "period": "P1D",
+      "source": "learned",
+      "state": "active",
+      "authority": "NONE",
+      "sensitive": true,
+      "derived_from": [
+        "mem_01m5104dx0enasanananananan"
+      ],
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": true
+  },
+  {
+    "rule": "C-21",
+    "description": "Routine without evidence records is rejected",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Routine",
+      "id": "rtn_01m5104cxreh288h248h248h24",
+      "trigger": {
+        "days": [
+          "mon",
+          "tue",
+          "wed",
+          "thu",
+          "fri"
+        ],
+        "time_window": {
+          "start": "07:30",
+          "end": "09:30"
+        },
+        "context": {
+          "text": "on the way to the office",
+          "lang": "en"
+        }
+      },
+      "behaviour": {
+        "capability": "app.suiss.commerce.coffee.order",
+        "preference": "mem_01m5104ew8esb9cnjpasb5cnjp",
+        "summary": {
+          "text": "Coffee order: iced Americano",
+          "lang": "en"
+        }
+      },
+      "evidence": {
+        "spontaneous": 10,
+        "after_suggestion": 0
+      },
+      "exceptions": [
+        {
+          "text": "holiday",
+          "lang": "en"
+        }
+      ],
+      "first_seen": "2026-07-27T07:40:00Z",
+      "last_seen": "2026-10-19T08:10:00Z",
+      "period": "P1D",
+      "source": "learned",
+      "state": "active",
+      "authority": "NONE",
+      "sensitive": true,
+      "derived_from": [],
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "AT-27",
+    "description": "Trigger needs a readable condition",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Routine",
+      "id": "rtn_01m5104cxreh288h248h248h24",
+      "trigger": {},
+      "behaviour": {
+        "capability": "app.suiss.commerce.coffee.order",
+        "preference": "mem_01m5104ew8esb9cnjpasb5cnjp",
+        "summary": {
+          "text": "Coffee order: iced Americano",
+          "lang": "en"
+        }
+      },
+      "evidence": {
+        "spontaneous": 10,
+        "after_suggestion": 0
+      },
+      "exceptions": [
+        {
+          "text": "holiday",
+          "lang": "en"
+        }
+      ],
+      "first_seen": "2026-07-27T07:40:00Z",
+      "last_seen": "2026-10-19T08:10:00Z",
+      "period": "P1D",
+      "source": "learned",
+      "state": "active",
+      "authority": "NONE",
+      "sensitive": true,
+      "derived_from": [
+        "mem_01m5104dx0enasanananananan"
+      ],
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": false
+  }
+]

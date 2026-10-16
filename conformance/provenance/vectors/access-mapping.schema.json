@@ -1,0 +1,227 @@
+[
+  {
+    "rule": "T-36 (5)",
+    "description": "user.direct paired with user",
+    "input": {
+      "label": "user.direct",
+      "provenance": "user"
+    },
+    "valid": true
+  },
+  {
+    "rule": "T-36 (5)",
+    "description": "user.memory paired with user",
+    "input": {
+      "label": "user.memory",
+      "provenance": "user"
+    },
+    "valid": true
+  },
+  {
+    "rule": "T-36 (5)",
+    "description": "record.trusted paired with trusted",
+    "input": {
+      "label": "record.trusted",
+      "provenance": "trusted"
+    },
+    "valid": true
+  },
+  {
+    "rule": "T-36 (5)",
+    "description": "one.inferred paired with untrusted-external",
+    "input": {
+      "label": "one.inferred",
+      "provenance": "untrusted-external"
+    },
+    "valid": true
+  },
+  {
+    "rule": "T-36 (5)",
+    "description": "external.web paired with untrusted-external",
+    "input": {
+      "label": "external.web",
+      "provenance": "untrusted-external"
+    },
+    "valid": true
+  },
+  {
+    "rule": "T-36 (5)",
+    "description": "external.email paired with untrusted-external",
+    "input": {
+      "label": "external.email",
+      "provenance": "untrusted-external"
+    },
+    "valid": true
+  },
+  {
+    "rule": "T-36 (5)",
+    "description": "external.calendar paired with untrusted-external",
+    "input": {
+      "label": "external.calendar",
+      "provenance": "untrusted-external"
+    },
+    "valid": true
+  },
+  {
+    "rule": "T-36 (5)",
+    "description": "external.document paired with untrusted-external",
+    "input": {
+      "label": "external.document",
+      "provenance": "untrusted-external"
+    },
+    "valid": true
+  },
+  {
+    "rule": "T-36 (5)",
+    "description": "external.screen paired with untrusted-external",
+    "input": {
+      "label": "external.screen",
+      "provenance": "untrusted-external"
+    },
+    "valid": true
+  },
+  {
+    "rule": "T-36 (5)",
+    "description": "external.media paired with untrusted-external",
+    "input": {
+      "label": "external.media",
+      "provenance": "untrusted-external"
+    },
+    "valid": true
+  },
+  {
+    "rule": "T-36 (5)",
+    "description": "external.message paired with untrusted-external",
+    "input": {
+      "label": "external.message",
+      "provenance": "untrusted-external"
+    },
+    "valid": true
+  },
+  {
+    "rule": "T-36 (5)",
+    "description": "external.one paired with untrusted-external",
+    "input": {
+      "label": "external.one",
+      "provenance": "untrusted-external"
+    },
+    "valid": true
+  },
+  {
+    "rule": "T-36 (5)",
+    "description": "external.agent paired with untrusted-external",
+    "input": {
+      "label": "external.agent",
+      "provenance": "untrusted-external"
+    },
+    "valid": true
+  },
+  {
+    "rule": "T-36 (5)",
+    "description": "external.tool_description paired with untrusted-external",
+    "input": {
+      "label": "external.tool_description",
+      "provenance": "untrusted-external"
+    },
+    "valid": true
+  },
+  {
+    "rule": "T-36 (5)",
+    "description": "external.tool_output paired with untrusted-external",
+    "input": {
+      "label": "external.tool_output",
+      "provenance": "untrusted-external"
+    },
+    "valid": true
+  },
+  {
+    "rule": "T-36 (5)",
+    "description": "external.import paired with untrusted-external",
+    "input": {
+      "label": "external.import",
+      "provenance": "untrusted-external"
+    },
+    "valid": true
+  },
+  {
+    "rule": "T-36 (5)",
+    "description": "external.app paired with untrusted-external",
+    "input": {
+      "label": "external.app",
+      "provenance": "untrusted-external"
+    },
+    "valid": true
+  },
+  {
+    "rule": "T-36 (5)",
+    "description": "external.unknown paired with untrusted-external",
+    "input": {
+      "label": "external.unknown",
+      "provenance": "untrusted-external"
+    },
+    "valid": true
+  },
+  {
+    "rule": "T-36 (5)",
+    "description": "external.mixed paired with untrusted-external",
+    "input": {
+      "label": "external.mixed",
+      "provenance": "untrusted-external"
+    },
+    "valid": true
+  },
+  {
+    "rule": "T-36 (5)",
+    "description": "one.inferred paired with trusted is rejected",
+    "input": {
+      "label": "one.inferred",
+      "provenance": "trusted"
+    },
+    "valid": false
+  },
+  {
+    "rule": "T-36 (5)",
+    "description": "external.email paired with user is rejected",
+    "input": {
+      "label": "external.email",
+      "provenance": "user"
+    },
+    "valid": false
+  },
+  {
+    "rule": "T-36 (5)",
+    "description": "user.memory paired with trusted is rejected",
+    "input": {
+      "label": "user.memory",
+      "provenance": "trusted"
+    },
+    "valid": false
+  },
+  {
+    "rule": "T-36 (5)",
+    "description": "record.trusted paired with user is rejected",
+    "input": {
+      "label": "record.trusted",
+      "provenance": "user"
+    },
+    "valid": false
+  },
+  {
+    "rule": "T-36 (5)",
+    "description": "user.direct paired with untrusted-external is rejected",
+    "input": {
+      "label": "user.direct",
+      "provenance": "untrusted-external"
+    },
+    "valid": false
+  },
+  {
+    "rule": "T-36 (5)",
+    "description": "unknown Access value is rejected",
+    "input": {
+      "label": "external.web",
+      "provenance": "external"
+    },
+    "valid": false
+  }
+]

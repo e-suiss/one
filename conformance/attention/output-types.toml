@@ -1,0 +1,241 @@
+# AT-9, AT-23, AT-34, AT-42
+# AT-10, AT-14, AT-17, AT-25, AT-36, AT-41, MF-48
+
+version = 1
+namespace = "app.suiss.one.output"
+
+[[output_type]]
+id = "app.suiss.one.output.approval.request"
+title = "Approval request"
+delivery = "relay"
+row = "approval_request"
+interruption_ceiling = "time-sensitive"
+mute_scope = "type_and_capability"
+mutable = true
+budget_exempt = false
+rules = ["AT-25", "AT-42"]
+
+[[output_type]]
+id = "app.suiss.one.output.task.takeover_request"
+title = "Takeover request"
+delivery = "relay"
+row = "approval_request"
+interruption_ceiling = "time-sensitive"
+mute_scope = "type_and_capability"
+mutable = true
+budget_exempt = false
+rules = ["AT-14", "AT-42"]
+
+[[output_type]]
+id = "app.suiss.one.output.task.prepared"
+title = "Prepared work"
+delivery = "relay"
+row = "own_work_info"
+interruption_ceiling = "active"
+mute_scope = "type_and_capability"
+mutable = true
+budget_exempt = false
+rules = ["AT-5", "AT-17"]
+
+[[output_type]]
+id = "app.suiss.one.output.task.result"
+title = "Awaited result"
+delivery = "relay"
+row = "own_work_info"
+interruption_ceiling = "active"
+mute_scope = "type_and_capability"
+mutable = true
+budget_exempt = false
+rules = ["AT-5", "AT-14"]
+
+[[output_type]]
+id = "app.suiss.one.output.task.stopped"
+title = "Stopped or expired work"
+delivery = "relay"
+row = "own_work_info"
+interruption_ceiling = "active"
+mute_scope = "type_and_capability"
+mutable = true
+budget_exempt = false
+rules = ["AT-14", "AT-17"]
+
+[[output_type]]
+id = "app.suiss.one.output.travel.change"
+title = "Travel change"
+delivery = "relay"
+row = "own_work_info"
+interruption_ceiling = "time-sensitive"
+mute_scope = "type"
+mutable = true
+budget_exempt = false
+rules = ["AT-5", "AT-20", "AT-42"]
+
+[[output_type]]
+id = "app.suiss.one.output.delivery.update"
+title = "Delivery update"
+delivery = "relay"
+row = "own_work_info"
+interruption_ceiling = "time-sensitive"
+mute_scope = "type"
+mutable = true
+budget_exempt = false
+rules = ["AT-5", "AT-20", "AT-42"]
+
+[[output_type]]
+id = "app.suiss.one.output.reservation.update"
+title = "Reservation update"
+delivery = "relay"
+row = "own_work_info"
+interruption_ceiling = "time-sensitive"
+mute_scope = "type"
+mutable = true
+budget_exempt = false
+rules = ["AT-20"]
+
+[[output_type]]
+id = "app.suiss.one.output.bill.reminder"
+title = "Bill reminder"
+delivery = "relay"
+row = "own_work_info"
+interruption_ceiling = "active"
+mute_scope = "type"
+mutable = true
+budget_exempt = false
+rules = ["AT-9", "AT-19", "AT-20"]
+
+[[output_type]]
+id = "app.suiss.one.output.subscription.renewal"
+title = "Subscription renewal"
+delivery = "relay"
+row = "own_work_info"
+interruption_ceiling = "active"
+mute_scope = "type"
+mutable = true
+budget_exempt = false
+rules = ["AT-20"]
+
+[[output_type]]
+id = "app.suiss.one.output.deadline.reminder"
+title = "Deadline reminder"
+delivery = "relay"
+row = "own_work_info"
+interruption_ceiling = "time-sensitive"
+mute_scope = "type"
+mutable = true
+budget_exempt = false
+rules = ["AT-17", "AT-20"]
+
+[[output_type]]
+id = "app.suiss.one.output.reminder.requested"
+title = "Requested reminder"
+delivery = "relay"
+row = "own_work_info"
+interruption_ceiling = "time-sensitive"
+mute_scope = "type"
+mutable = true
+budget_exempt = false
+rules = ["AT-20", "MF-13"]
+
+[[output_type]]
+id = "app.suiss.one.output.meeting.preparation"
+title = "Meeting preparation"
+delivery = "relay"
+row = "own_work_info"
+interruption_ceiling = "active"
+mute_scope = "type"
+mutable = true
+budget_exempt = false
+rules = ["AT-9", "AT-20"]
+
+[[output_type]]
+id = "app.suiss.one.output.work.pending_item"
+title = "Pending Work item"
+delivery = "relay"
+row = "own_work_info"
+interruption_ceiling = "active"
+mute_scope = "type"
+mutable = true
+budget_exempt = false
+rules = ["AT-20"]
+
+[[output_type]]
+id = "app.suiss.one.output.routine.suggestion"
+title = "Routine suggestion"
+delivery = "relay"
+row = "own_work_info"
+interruption_ceiling = "active"
+mute_scope = "type"
+mutable = true
+budget_exempt = false
+rules = ["AT-23", "AT-30", "AT-32"]
+
+[[output_type]]
+id = "app.suiss.one.output.rule.suggestion"
+title = "Rule suggestion"
+delivery = "relay"
+row = "own_work_info"
+interruption_ceiling = "active"
+mute_scope = "type"
+mutable = true
+budget_exempt = false
+rules = ["AT-23", "A-22"]
+
+[[output_type]]
+id = "app.suiss.one.output.attention.regret_question"
+title = "Was this interruption worth it"
+delivery = "relay"
+row = "own_work_info"
+interruption_ceiling = "active"
+mute_scope = "type"
+mutable = true
+budget_exempt = false
+rules = ["AT-36"]
+
+[[output_type]]
+id = "app.suiss.one.output.digest.ready"
+title = "Daily digest ready"
+delivery = "relay"
+row = "own_work_info"
+interruption_ceiling = "passive"
+mute_scope = "type"
+mutable = true
+budget_exempt = true
+rules = ["AT-5", "AT-17"]
+
+[[output_type]]
+id = "app.suiss.one.output.task.progress"
+title = "Progress update"
+delivery = "relay"
+row = "progress_update"
+interruption_ceiling = "passive"
+mute_scope = "task"
+mutable = true
+budget_exempt = false
+rules = ["AT-9", "AT-14"]
+
+[[output_type]]
+id = "app.suiss.one.output.session.break_reminder"
+title = "Break reminder"
+delivery = "in_app"
+mute_scope = "none"
+mutable = false
+budget_exempt = true
+rules = ["AT-41", "PV-50"]
+
+[[output_type]]
+id = "app.suiss.one.output.session.ai_disclosure"
+title = "AI reminder"
+delivery = "in_app"
+mute_scope = "none"
+mutable = false
+budget_exempt = true
+rules = ["AT-41", "PV-55"]
+
+[[output_type]]
+id = "app.suiss.one.output.model.change_notice"
+title = "Model change notice"
+delivery = "in_app"
+mute_scope = "none"
+mutable = false
+budget_exempt = true
+rules = ["MF-48"]

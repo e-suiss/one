@@ -1,0 +1,9 @@
+# T-31
+
+[[table]]
+path = "buf.yaml"
+rules = ["T-31"]
+
+[[table]]
+path = "one/serving/v1/serving.proto"
+rules = ["T-31", "T-8", "MF-6", "MF-55"]

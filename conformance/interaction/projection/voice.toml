@@ -1,0 +1,34 @@
+# X-13, X-20, X-33, X-36, X-19, AT-13, C-27
+
+version = 1
+targets = ["car_voice", "glasses_voice"]
+text_output_in_car = false
+visual_output_in_car = false
+
+[carplay]
+category = "voice-based conversational app"
+template = "CPVoiceControlTemplate"
+utterance = "minimal_projection.sentence[locale]"
+answers = "minimal_projection.yes.label, minimal_projection.no.label by voice"
+
+[android_auto]
+input = "Car App Library microphone"
+utterance = "minimal_projection.sentence[locale]"
+answers = "binary voice"
+
+[glasses_voice]
+transport = "phone app over Bluetooth audio"
+utterance = "minimal_projection.sentence[locale]"
+answers = "binary voice"
+
+[full]
+when = "kind in target kinds, spoken text within 200 characters, at most 3 spoken options"
+utterance = "subject.title + typed details read by kind template"
+
+[sensitive]
+utterance = "neutral sentence from budgets.toml"
+content_read_aloud = false
+
+[deferred]
+kinds = ["comparison", "form", "digest_item"]
+utterance = "minimal projection with a deep link to the phone"

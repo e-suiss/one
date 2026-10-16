@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/task/step-result/v1.json",
+  "title": "StepResult",
+  "description": "The result of one plan step, shown separately to the user: done, failed, not run or unknown.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["status"],
+  "properties": {
+    "status": { "type": "string", "enum": ["done", "failed", "not_run", "unknown"] },
+    "outcome": { "$ref": "https://suiss.app/schemas/one/task/outcome/v1.json" },
+    "reason": {
+      "type": "string",
+      "enum": [
+        "schema_rejected",
+        "access_denied",
+        "provider_error",
+        "blocked_by_site",
+        "terms_forbid_agents",
+        "wait_expired",
+        "budget_exhausted",
+        "authority_revoked",
+        "earlier_step_failed",
+        "earlier_step_unknown",
+        "crash_unverified",
+        "cancelled"
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "status": { "const": "done" } } },
+      "then": {
+        "required": ["outcome"],
+        "properties": {
+          "outcome": {
+            "required": ["certainty", "value"],
+            "properties": {
+              "subject": { "enum": ["execution", "effect"] },
+              "certainty": { "const": "confirmed" },
+              "value": { "enum": ["succeeded", "occurred"] }
+            }
+          }
+        },
+        "not": { "required": ["reason"] }
+      }
+    },
+    {
+      "if": { "properties": { "status": { "const": "failed" } } },
+      "then": {
+        "required": ["outcome", "reason"],
+        "properties": {
+          "outcome": {
+            "required": ["certainty", "value"],
+            "properties": {
+              "subject": { "enum": ["execution", "effect"] },
+              "certainty": { "const": "confirmed" },
+              "value": { "enum": ["failed", "not_occurred"] }
+            }
+          },
+          "reason": { "not": { "enum": ["earlier_step_failed", "earlier_step_unknown", "crash_unverified"] } }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "status": { "const": "unknown" } } },
+      "then": {
+        "required": ["outcome"],
+        "properties": {
+          "outcome": {
+            "properties": {
+              "subject": { "enum": ["execution", "effect"] },
+              "certainty": { "const": "unknown" }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "status": { "const": "not_run" } } },
+      "then": {
+        "required": ["reason"],
+        "not": { "required": ["outcome"] },
+        "properties": {
+          "reason": { "enum": ["earlier_step_failed", "earlier_step_unknown", "authority_revoked", "budget_exhausted", "cancelled", "access_denied", "schema_rejected"] }
+        }
+      }
+    }
+  ]
+}

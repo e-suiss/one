@@ -1,0 +1,75 @@
+# X-12, X-13, C-7, C-25, AT-42
+
+version = 1
+
+[kind.approval]
+meaning = "A request for the user's approval of an action an Access request allows"
+components = ["approval", "card"]
+relay_class = "action_required"
+yes = { effect = "approve", tr = "Evet", en = "Yes" }
+no = { effect = "decline", tr = "Hayır", en = "No" }
+example = { tr = "180 TL kahve siparişini onaylıyor musun?", en = "Do you approve the 180 TL coffee order?" }
+
+[kind.choice]
+meaning = "A pick among typed options"
+components = ["list", "card"]
+relay_class = "transactional"
+yes = { effect = "choose", tr = "Seç", en = "Pick" }
+no = { effect = "open", tr = "Diğerleri", en = "Others" }
+example = { tr = "Saat 19:30 için Lokanta Nar'ı seçeyim mi?", en = "Shall I pick Lokanta Nar for 19:30?" }
+
+[kind.question]
+meaning = "A question One asks while a task waits"
+components = ["card"]
+relay_class = "transactional"
+yes = { effect = "answer", value = true, tr = "Evet", en = "Yes" }
+no = { effect = "answer", value = false, tr = "Hayır", en = "No" }
+example = { tr = "Toplantıyı yarın sabaha taşıyayım mı?", en = "Shall I move the meeting to tomorrow morning?" }
+
+[kind.info]
+meaning = "Information for the user with no decision"
+components = ["card"]
+relay_class = "transactional"
+yes = { effect = "acknowledge", tr = "Tamam", en = "OK" }
+no = { effect = "open", tr = "Aç", en = "Open" }
+example = { tr = "Uçuşun iptal edildi; yeni seçenekler telefonunda.", en = "Your flight was cancelled; new options are on your phone." }
+
+[kind.progress]
+meaning = "Ongoing work shown as one item updated in place"
+components = ["progress", "timeline"]
+relay_class = "transactional"
+yes = { effect = "open", tr = "Aç", en = "Open" }
+no = { effect = "stop", tr = "Dur", en = "Stop" }
+example = { tr = "Kahve siparişin hazırlanıyor.", en = "Your coffee order is being prepared." }
+
+[kind.receipt]
+meaning = "The result of finished work"
+components = ["receipt"]
+relay_class = "transactional"
+yes = { effect = "acknowledge", tr = "Tamam", en = "OK" }
+no = { effect = "open", tr = "Ayrıntı", en = "Details" }
+example = { tr = "Kahve siparişin verildi, 180 TL.", en = "Your coffee order was placed, 180 TL." }
+
+[kind.comparison]
+meaning = "A side-by-side comparison of two to four options"
+components = ["comparison"]
+relay_class = "transactional"
+yes = { effect = "choose", tr = "Seç", en = "Pick" }
+no = { effect = "open", tr = "Karşılaştır", en = "Compare" }
+example = { tr = "En ucuz uçuş 07:10'da, 2.450 TL; onu seçeyim mi?", en = "The cheapest flight is at 07:10, 2,450 TL; shall I pick it?" }
+
+[kind.form]
+meaning = "Typed fields for the user to fill"
+components = ["form"]
+relay_class = "transactional"
+yes = { effect = "open", tr = "Doldur", en = "Fill in" }
+no = { effect = "defer", tr = "Sonra", en = "Later" }
+example = { tr = "Otel rezervasyonu için iki bilgi eksik.", en = "Two details are missing for the hotel booking." }
+
+[kind.digest_item]
+meaning = "One entry of the daily digest"
+components = ["card", "list"]
+relay_class = "none"
+yes = { effect = "open", tr = "Aç", en = "Open" }
+no = { effect = "dismiss", tr = "Geç", en = "Skip" }
+example = { tr = "Paketin yarın geliyor.", en = "Your parcel arrives tomorrow." }

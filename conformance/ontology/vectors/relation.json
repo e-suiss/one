@@ -1,0 +1,471 @@
+[
+  {
+    "rule": "C-23",
+    "description": "MemoryRecord derived-from Episode",
+    "input": {
+      "relation": "derived-from",
+      "source": {
+        "type": "MemoryRecord",
+        "id": "mem_01m5104dx0enasanananananan"
+      },
+      "target": {
+        "type": "Episode",
+        "id": "epi_01m5104az8e8ha48h248h248h2"
+      },
+      "recorded_at": "2026-10-19T08:10:00Z"
+    },
+    "valid": true
+  },
+  {
+    "rule": "C-23",
+    "description": "MemoryRecord derived-from Observation",
+    "input": {
+      "relation": "derived-from",
+      "source": {
+        "type": "MemoryRecord",
+        "id": "mem_01m5104dx0enasanananananan"
+      },
+      "target": {
+        "type": "Observation",
+        "id": "obs_01m5104a00e48s248h248h248h"
+      },
+      "recorded_at": "2026-10-19T08:10:00Z"
+    },
+    "valid": true
+  },
+  {
+    "rule": "C-23",
+    "description": "Routine derived-from its evidence records",
+    "input": {
+      "relation": "derived-from",
+      "source": {
+        "type": "Routine",
+        "id": "rtn_01m5104cxreh288h248h248h24"
+      },
+      "target": {
+        "type": "MemoryRecord",
+        "id": "mem_01m5104dx0enasanananananan"
+      },
+      "recorded_at": "2026-10-19T08:10:00Z"
+    },
+    "valid": true
+  },
+  {
+    "rule": "C-23",
+    "description": "MemoryRecord cannot be derived from a Goal",
+    "input": {
+      "relation": "derived-from",
+      "source": {
+        "type": "MemoryRecord",
+        "id": "mem_01m5104dx0enasanananananan"
+      },
+      "target": {
+        "type": "Goal",
+        "id": "goal_01m5104bygecsv6csk6csk6csk"
+      },
+      "recorded_at": "2026-10-19T08:10:00Z"
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-23",
+    "description": "Task is not a derived-from source",
+    "input": {
+      "relation": "derived-from",
+      "source": {
+        "type": "Task",
+        "id": "task_01m5104fvgeskacsk6csk6csk6"
+      },
+      "target": {
+        "type": "Episode",
+        "id": "epi_01m5104az8e8ha48h248h248h2"
+      },
+      "recorded_at": "2026-10-19T08:10:00Z"
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-23",
+    "description": "MemoryRecord about a Suiss person",
+    "input": {
+      "relation": "about",
+      "source": {
+        "type": "MemoryRecord",
+        "id": "mem_01m5104dx0enasanananananan"
+      },
+      "target": {
+        "ref": "PartyRef",
+        "id": "pty_0002"
+      },
+      "recorded_at": "2026-10-19T08:10:00Z"
+    },
+    "valid": true
+  },
+  {
+    "rule": "C-24",
+    "description": "MemoryRecord about an external person",
+    "input": {
+      "relation": "about",
+      "source": {
+        "type": "MemoryRecord",
+        "id": "mem_01m5104dx0enasanananananan"
+      },
+      "target": {
+        "ref": "ExternalPersonRef",
+        "system": "contacts",
+        "locator": "contact:can"
+      },
+      "recorded_at": "2026-10-19T08:10:00Z"
+    },
+    "valid": true
+  },
+  {
+    "rule": "C-23",
+    "description": "MemoryRecord about a Goal",
+    "input": {
+      "relation": "about",
+      "source": {
+        "type": "MemoryRecord",
+        "id": "mem_01m5104dx0enasanananananan"
+      },
+      "target": {
+        "type": "Goal",
+        "id": "goal_01m5104bygecsv6csk6csk6csk"
+      },
+      "recorded_at": "2026-10-19T08:10:00Z"
+    },
+    "valid": true
+  },
+  {
+    "rule": "C-23",
+    "description": "Only a MemoryRecord has about",
+    "input": {
+      "relation": "about",
+      "source": {
+        "type": "Task",
+        "id": "task_01m5104fvgeskacsk6csk6csk6"
+      },
+      "target": {
+        "type": "Goal",
+        "id": "goal_01m5104bygecsv6csk6csk6csk"
+      },
+      "recorded_at": "2026-10-19T08:10:00Z"
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-23",
+    "description": "supersedes within one concept",
+    "input": {
+      "relation": "supersedes",
+      "source": {
+        "type": "Goal",
+        "id": "goal_01m5104krgf8xbmeht78x3meht"
+      },
+      "target": {
+        "type": "Goal",
+        "id": "goal_01m5104bygecsv6csk6csk6csk"
+      },
+      "recorded_at": "2026-10-19T08:10:00Z"
+    },
+    "valid": true
+  },
+  {
+    "rule": "C-23",
+    "description": "supersedes across concepts is rejected",
+    "input": {
+      "relation": "supersedes",
+      "source": {
+        "type": "Routine",
+        "id": "rtn_01m5104cxreh288h248h248h24"
+      },
+      "target": {
+        "type": "Goal",
+        "id": "goal_01m5104bygecsv6csk6csk6csk"
+      },
+      "recorded_at": "2026-10-19T08:10:00Z"
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-23",
+    "description": "supersedes is not retroactive",
+    "input": {
+      "relation": "supersedes",
+      "source": {
+        "type": "Routine",
+        "id": "rtn_01m5104mqrf958mjja9954mjja"
+      },
+      "target": {
+        "type": "Routine",
+        "id": "rtn_01m5104cxreh288h248h248h24"
+      },
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "retroactive": true
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-23",
+    "description": "supersedes carries no back-dated effective time",
+    "input": {
+      "relation": "supersedes",
+      "source": {
+        "type": "Routine",
+        "id": "rtn_01m5104mqrf958mjja9954mjja"
+      },
+      "target": {
+        "type": "Routine",
+        "id": "rtn_01m5104cxreh288h248h248h24"
+      },
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "effective_from": "2026-01-01T00:00:00Z"
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-23",
+    "description": "Task serves Goal",
+    "input": {
+      "relation": "serves",
+      "source": {
+        "type": "Task",
+        "id": "task_01m5104fvgeskacsk6csk6csk6"
+      },
+      "target": {
+        "type": "Goal",
+        "id": "goal_01m5104bygecsv6csk6csk6csk"
+      },
+      "recorded_at": "2026-10-19T08:10:00Z"
+    },
+    "valid": true
+  },
+  {
+    "rule": "C-23",
+    "description": "Suggestion (Interaction) serves Goal",
+    "input": {
+      "relation": "serves",
+      "source": {
+        "type": "Interaction",
+        "id": "int_01m5104gtrexvvexvqexvqexvq"
+      },
+      "target": {
+        "type": "Goal",
+        "id": "goal_01m5104bygecsv6csk6csk6csk"
+      },
+      "recorded_at": "2026-10-19T08:10:00Z"
+    },
+    "valid": true
+  },
+  {
+    "rule": "C-23",
+    "description": "serves targets only a Goal",
+    "input": {
+      "relation": "serves",
+      "source": {
+        "type": "Task",
+        "id": "task_01m5104fvgeskacsk6csk6csk6"
+      },
+      "target": {
+        "type": "Routine",
+        "id": "rtn_01m5104cxreh288h248h248h24"
+      },
+      "recorded_at": "2026-10-19T08:10:00Z"
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-23",
+    "description": "serves does not make an action permitted",
+    "input": {
+      "relation": "serves",
+      "source": {
+        "type": "Task",
+        "id": "task_01m5104fvgeskacsk6csk6csk6"
+      },
+      "target": {
+        "type": "Goal",
+        "id": "goal_01m5104bygecsv6csk6csk6csk"
+      },
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "authority": "ALLOW"
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-23",
+    "description": "Interaction concerns a Task",
+    "input": {
+      "relation": "concerns",
+      "source": {
+        "type": "Interaction",
+        "id": "int_01m5104gtrexvvexvqexvqexvq"
+      },
+      "target": {
+        "type": "Task",
+        "id": "task_01m5104fvgeskacsk6csk6csk6"
+      },
+      "recorded_at": "2026-10-19T08:10:00Z"
+    },
+    "valid": true
+  },
+  {
+    "rule": "C-23",
+    "description": "Interaction concerns another product's object",
+    "input": {
+      "relation": "concerns",
+      "source": {
+        "type": "Interaction",
+        "id": "int_01m5104gtrexvvexvqexvqexvq"
+      },
+      "target": {
+        "ref": "CommitmentRef",
+        "id": "cmt_4"
+      },
+      "recorded_at": "2026-10-19T08:10:00Z"
+    },
+    "valid": true
+  },
+  {
+    "rule": "C-23",
+    "description": "concerns does not target a source-system object",
+    "input": {
+      "relation": "concerns",
+      "source": {
+        "type": "Interaction",
+        "id": "int_01m5104gtrexvvexvqexvqexvq"
+      },
+      "target": {
+        "ref": "ExternalRef",
+        "system": "web",
+        "locator": "https://example.org"
+      },
+      "recorded_at": "2026-10-19T08:10:00Z"
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-23",
+    "description": "Only an Interaction has concerns",
+    "input": {
+      "relation": "concerns",
+      "source": {
+        "type": "Task",
+        "id": "task_01m5104fvgeskacsk6csk6csk6"
+      },
+      "target": {
+        "type": "Goal",
+        "id": "goal_01m5104bygecsv6csk6csk6csk"
+      },
+      "recorded_at": "2026-10-19T08:10:00Z"
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-15",
+    "description": "Task references a Work Commitment",
+    "input": {
+      "relation": "references",
+      "source": {
+        "type": "Task",
+        "id": "task_01m5104fvgeskacsk6csk6csk6"
+      },
+      "target": {
+        "ref": "CommitmentRef",
+        "id": "cmt_4"
+      },
+      "recorded_at": "2026-10-19T08:10:00Z"
+    },
+    "valid": true
+  },
+  {
+    "rule": "C-23",
+    "description": "references never points to a One canonical record",
+    "input": {
+      "relation": "references",
+      "source": {
+        "type": "Task",
+        "id": "task_01m5104fvgeskacsk6csk6csk6"
+      },
+      "target": {
+        "type": "Goal",
+        "id": "goal_01m5104bygecsv6csk6csk6csk"
+      },
+      "recorded_at": "2026-10-19T08:10:00Z"
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-23",
+    "description": "No relation carries authority",
+    "input": {
+      "relation": "about",
+      "source": {
+        "type": "MemoryRecord",
+        "id": "mem_01m5104dx0enasanananananan"
+      },
+      "target": {
+        "type": "Routine",
+        "id": "rtn_01m5104cxreh288h248h248h24"
+      },
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "authority": "NONE"
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-23",
+    "description": "No relation carries a Grant",
+    "input": {
+      "relation": "references",
+      "source": {
+        "type": "Task",
+        "id": "task_01m5104fvgeskacsk6csk6csk6"
+      },
+      "target": {
+        "ref": "GrantRef",
+        "id": "grt_1"
+      },
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "grant": {
+        "ref": "GrantRef",
+        "id": "grt_1"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-2",
+    "description": "Only the six relations exist",
+    "input": {
+      "relation": "owns",
+      "source": {
+        "type": "Task",
+        "id": "task_01m5104fvgeskacsk6csk6csk6"
+      },
+      "target": {
+        "type": "Goal",
+        "id": "goal_01m5104bygecsv6csk6csk6csk"
+      },
+      "recorded_at": "2026-10-19T08:10:00Z"
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-19",
+    "description": "Endpoint identifier must match its concept prefix",
+    "input": {
+      "relation": "serves",
+      "source": {
+        "type": "Task",
+        "id": "goal_01m5104bygecsv6csk6csk6csk"
+      },
+      "target": {
+        "type": "Goal",
+        "id": "goal_01m5104bygecsv6csk6csk6csk"
+      },
+      "recorded_at": "2026-10-19T08:10:00Z"
+    },
+    "valid": false
+  }
+]

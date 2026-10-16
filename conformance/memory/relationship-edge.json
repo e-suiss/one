@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/memory/relationship-edge/v1.json",
+  "title": "RelationshipEdge",
+  "description": "A typed, bitemporal relationship edge between two entities (the relationship table row of M-6), distinct from the six canonical record relations of C-23. A memory record of type MemoryRecord with subject, predicate and object; valid_from/valid_to say when it held in the world, recorded_at/superseded_at when One learned or invalidated it. A change closes the old edge (new version with valid_to) and opens a new one; both stay queryable. M-6, M-10, M-11, C-12.",
+  "if": {
+    "properties": {
+      "status": {
+        "const": "forgotten"
+      }
+    },
+    "required": [
+      "status"
+    ]
+  },
+  "then": {
+    "$ref": "https://suiss.app/schemas/one/memory/memory-record/v1.json#/$defs/skeleton"
+  },
+  "else": {
+    "$ref": "https://suiss.app/schemas/one/memory/memory-record/v1.json#/$defs/live_body",
+    "required": [
+      "subject",
+      "predicate",
+      "object"
+    ],
+    "properties": {
+      "subject": {
+        "$ref": "https://suiss.app/schemas/one/memory/common/v1.json#/$defs/entity_ref"
+      },
+      "predicate": {
+        "$ref": "https://suiss.app/schemas/one/memory/fields/v1.json#/$defs/predicate"
+      },
+      "object": {
+        "$ref": "https://suiss.app/schemas/one/memory/common/v1.json#/$defs/entity_ref"
+      }
+    },
+    "unevaluatedProperties": false
+  }
+}

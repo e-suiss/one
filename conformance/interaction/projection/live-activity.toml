@@ -1,0 +1,39 @@
+# X-4, X-6, X-7, X-13, C-27
+
+version = 1
+platform = "ios"
+kinds = ["progress"]
+budget_target = "live_activity"
+measure = "utf8 length of canonical JSON of { attributes, content_state }, per locale; the larger locale decides"
+canonical_json = "sorted keys, no insignificant whitespace, UTF-8"
+over_budget = "minimal"
+start = "relay push-to-start"
+updates = "relay push update"
+dismissal_cancels_task = false
+
+[attributes]
+interaction_id = "id"
+task = "subject.ref.id"
+kind = "kind"
+
+[content_state.full]
+version = "version"
+title = "subject.title[locale]"
+status = "minimal_projection.sentence[locale]"
+phase = "details.progress.phase"
+fraction = "details.progress.fraction"
+step = "details.progress.step_label"
+steps = "details.steps[].{label,status}"
+deep_link = "deep_link"
+
+[content_state.minimal]
+version = "version"
+status = "minimal_projection.sentence[locale]"
+fraction = "details.progress.fraction"
+deep_link = "deep_link"
+
+[options]
+stale_date = "expires_at"
+relevance_score = "interruption"
+alert = "only when a new version needs the user (X-7)"
+buttons = "minimal_projection.yes, minimal_projection.no as App Intents; approve never shown above the surface ceiling"

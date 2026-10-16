@@ -1,0 +1,364 @@
+[
+  {
+    "rule": "SEC-14 (1)",
+    "description": "join of a single label is that label",
+    "input": {
+      "op": "join",
+      "inputs": [
+        {
+          "label": "user.direct"
+        }
+      ]
+    },
+    "expected": {
+      "label": "user.direct"
+    }
+  },
+  {
+    "rule": "SEC-14 (1)",
+    "description": "join of identical labels is that label",
+    "input": {
+      "op": "join",
+      "inputs": [
+        {
+          "label": "user.direct"
+        },
+        {
+          "label": "user.direct"
+        }
+      ]
+    },
+    "expected": {
+      "label": "user.direct"
+    }
+  },
+  {
+    "rule": "SEC-14 (1)",
+    "description": "user.memory is worse than user.direct",
+    "input": {
+      "op": "join",
+      "inputs": [
+        {
+          "label": "user.direct"
+        },
+        {
+          "label": "user.memory"
+        }
+      ]
+    },
+    "expected": {
+      "label": "user.memory"
+    }
+  },
+  {
+    "rule": "SEC-14 (1)",
+    "description": "record.trusted is worse than user.memory",
+    "input": {
+      "op": "join",
+      "inputs": [
+        {
+          "label": "user.memory"
+        },
+        {
+          "label": "record.trusted"
+        }
+      ]
+    },
+    "expected": {
+      "label": "record.trusted"
+    }
+  },
+  {
+    "rule": "SEC-14 (1)",
+    "description": "user input combined with an Access record value",
+    "input": {
+      "op": "join",
+      "inputs": [
+        {
+          "label": "user.direct"
+        },
+        {
+          "label": "record.trusted"
+        }
+      ]
+    },
+    "expected": {
+      "label": "record.trusted"
+    }
+  },
+  {
+    "rule": "SEC-14 (1)",
+    "description": "record value combined with a One inference",
+    "input": {
+      "op": "join",
+      "inputs": [
+        {
+          "label": "record.trusted"
+        },
+        {
+          "label": "one.inferred"
+        }
+      ]
+    },
+    "expected": {
+      "label": "one.inferred"
+    }
+  },
+  {
+    "rule": "SEC-31 (5)",
+    "description": "user input combined with a One inference",
+    "input": {
+      "op": "join",
+      "inputs": [
+        {
+          "label": "user.direct"
+        },
+        {
+          "label": "one.inferred"
+        }
+      ]
+    },
+    "expected": {
+      "label": "one.inferred"
+    }
+  },
+  {
+    "rule": "SEC-31 (5)",
+    "description": "recipient built from user text and an email address",
+    "input": {
+      "op": "join",
+      "inputs": [
+        {
+          "label": "user.direct"
+        },
+        {
+          "label": "external.email"
+        }
+      ]
+    },
+    "expected": {
+      "label": "external.email"
+    }
+  },
+  {
+    "rule": "SEC-14 (1)",
+    "description": "inference combined with web content",
+    "input": {
+      "op": "join",
+      "inputs": [
+        {
+          "label": "one.inferred"
+        },
+        {
+          "label": "external.web"
+        }
+      ]
+    },
+    "expected": {
+      "label": "external.web"
+    }
+  },
+  {
+    "rule": "INV-15",
+    "description": "every tier present: the external label wins",
+    "input": {
+      "op": "join",
+      "inputs": [
+        {
+          "label": "user.direct"
+        },
+        {
+          "label": "user.memory"
+        },
+        {
+          "label": "record.trusted"
+        },
+        {
+          "label": "one.inferred"
+        },
+        {
+          "label": "external.calendar"
+        }
+      ]
+    },
+    "expected": {
+      "label": "external.calendar"
+    }
+  },
+  {
+    "rule": "SEC-14 (1)",
+    "description": "same external source twice keeps that source",
+    "input": {
+      "op": "join",
+      "inputs": [
+        {
+          "label": "external.email"
+        },
+        {
+          "label": "external.email"
+        }
+      ]
+    },
+    "expected": {
+      "label": "external.email"
+    }
+  },
+  {
+    "rule": "SEC-14 (1)",
+    "description": "two different external sources join to external.mixed with both sources",
+    "input": {
+      "op": "join",
+      "inputs": [
+        {
+          "label": "external.email"
+        },
+        {
+          "label": "external.web"
+        }
+      ]
+    },
+    "expected": {
+      "label": "external.mixed",
+      "sources": [
+        "external.email",
+        "external.web"
+      ]
+    }
+  },
+  {
+    "rule": "SEC-14 (1)",
+    "description": "user text with document and screen content",
+    "input": {
+      "op": "join",
+      "inputs": [
+        {
+          "label": "user.direct"
+        },
+        {
+          "label": "external.document"
+        },
+        {
+          "label": "external.screen"
+        }
+      ]
+    },
+    "expected": {
+      "label": "external.mixed",
+      "sources": [
+        "external.document",
+        "external.screen"
+      ]
+    }
+  },
+  {
+    "rule": "SEC-14 (1)",
+    "description": "joining an external.mixed value flattens its sources",
+    "input": {
+      "op": "join",
+      "inputs": [
+        {
+          "label": "external.mixed",
+          "sources": [
+            "external.email",
+            "external.web"
+          ]
+        },
+        {
+          "label": "external.one"
+        }
+      ]
+    },
+    "expected": {
+      "label": "external.mixed",
+      "sources": [
+        "external.email",
+        "external.one",
+        "external.web"
+      ]
+    }
+  },
+  {
+    "rule": "SEC-14 (1)",
+    "description": "joining external.mixed with one of its own sources keeps the source set",
+    "input": {
+      "op": "join",
+      "inputs": [
+        {
+          "label": "external.mixed",
+          "sources": [
+            "external.email",
+            "external.web"
+          ]
+        },
+        {
+          "label": "external.email"
+        }
+      ]
+    },
+    "expected": {
+      "label": "external.mixed",
+      "sources": [
+        "external.email",
+        "external.web"
+      ]
+    }
+  },
+  {
+    "rule": "SEC-14 (1)",
+    "description": "unlabelled input combined with tool output",
+    "input": {
+      "op": "join",
+      "inputs": [
+        {
+          "label": "external.unknown"
+        },
+        {
+          "label": "external.tool_output"
+        }
+      ]
+    },
+    "expected": {
+      "label": "external.mixed",
+      "sources": [
+        "external.tool_output",
+        "external.unknown"
+      ]
+    }
+  },
+  {
+    "rule": "MD-14 (2)",
+    "description": "memory combined with memory",
+    "input": {
+      "op": "join",
+      "inputs": [
+        {
+          "label": "user.memory"
+        },
+        {
+          "label": "user.memory"
+        }
+      ]
+    },
+    "expected": {
+      "label": "user.memory"
+    }
+  },
+  {
+    "rule": "MD-14 (2)",
+    "description": "memory value combined with an imported record",
+    "input": {
+      "op": "join",
+      "inputs": [
+        {
+          "label": "user.memory"
+        },
+        {
+          "label": "external.import"
+        }
+      ]
+    },
+    "expected": {
+      "label": "external.import"
+    }
+  }
+]

@@ -1,0 +1,20 @@
+# X-4, X-6, X-7, X-13, C-27
+
+version = 1
+platform = "android"
+style = "Notification.ProgressStyle"
+kinds = ["progress"]
+budget_target = "live_update"
+custom_view = false
+rich_approval_card = false
+user_dismissed = "never re-posted for the same task"
+
+[map]
+short_critical_text = "chip text from details.progress.step_label or fraction, at most 7 characters"
+content_title = "subject.title[locale]"
+content_text = "minimal_projection.sentence[locale]"
+progress = "details.progress.fraction"
+progress_points = "details.steps"
+content_intent = "deep_link"
+actions = "minimal_projection.yes, minimal_projection.no; approve only within the surface ceiling"
+ongoing = true

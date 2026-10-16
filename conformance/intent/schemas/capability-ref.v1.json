@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/intent/capability-ref/v1.json",
+  "title": "Capability reference",
+  "$ref": "#/$defs/proposed",
+  "$defs": {
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "id",
+        "digest"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://",
+          "maxLength": 2048
+        },
+        "digest": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        }
+      }
+    },
+    "bound": {
+      "type": "object",
+      "required": [
+        "name",
+        "version",
+        "input_schema"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "$ref": "https://suiss.app/schemas/one/capability/name/v1.json#/$defs/name"
+        },
+        "version": {
+          "$ref": "https://suiss.app/schemas/one/capability/name/v1.json#/$defs/version"
+        },
+        "input_schema": {
+          "$ref": "#/$defs/input_schema"
+        }
+      },
+      "description": "A proposed capability bound to the input schema the registry gives for that name and version"
+    },
+    "proposed": {
+      "$ref": "https://suiss.app/schemas/one/capability/name/v1.json#/$defs/ref"
+    }
+  },
+  "description": "Capability references in intents; name, version and the name+version pair come from the capability name contract"
+}

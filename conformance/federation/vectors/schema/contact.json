@@ -1,0 +1,78 @@
+[
+  {
+    "rule": "OO-31",
+    "description": "Known recipient, no first contact",
+    "input": {
+      "firstContact": false
+    },
+    "valid": true
+  },
+  {
+    "rule": "OO-31",
+    "description": "First contact on the person's explicit request to a person",
+    "input": {
+      "firstContact": true,
+      "initiation": "user-request",
+      "recipientPartyKind": "person"
+    },
+    "valid": true
+  },
+  {
+    "rule": "OO-31",
+    "description": "First contact inside a mandate to an organisation agent",
+    "input": {
+      "firstContact": true,
+      "initiation": "mandate",
+      "recipientPartyKind": "organization"
+    },
+    "valid": true
+  },
+  {
+    "rule": "OO-31",
+    "description": "First contact inside a mandate to a person",
+    "input": {
+      "firstContact": true,
+      "initiation": "mandate",
+      "recipientPartyKind": "person"
+    },
+    "valid": false
+  },
+  {
+    "rule": "OO-31",
+    "description": "First contact without initiation",
+    "input": {
+      "firstContact": true,
+      "recipientPartyKind": "person"
+    },
+    "valid": false
+  },
+  {
+    "rule": "OO-11",
+    "description": "Sender-asserted relationship level",
+    "input": {
+      "firstContact": false,
+      "relationshipLevel": "trusted"
+    },
+    "valid": false
+  },
+  {
+    "rule": "OO-13",
+    "description": "First-contact token inside the encrypted content",
+    "input": {
+      "firstContact": true,
+      "initiation": "user-request",
+      "recipientPartyKind": "person",
+      "token": "AAAA"
+    },
+    "valid": false
+  },
+  {
+    "rule": "OO-31",
+    "description": "Initiation on a non-first-contact message",
+    "input": {
+      "firstContact": false,
+      "initiation": "user-request"
+    },
+    "valid": false
+  }
+]

@@ -1,0 +1,101 @@
+# C-1, C-2, C-10, C-11, C-12, C-13, C-14, C-15, C-16, C-17, C-18, C-19, MD-6 (1), F-6, T-28 (5)
+
+discriminator = "type"
+union = "https://suiss.app/schemas/one/ontology/concept/v1.json"
+ids = "https://suiss.app/schemas/one/ontology/id/v1.json"
+
+[[concept]]
+name = "Observation"
+rule = "C-10"
+id_prefix = "obs"
+id_type = "ObservationId"
+schema = "https://suiss.app/schemas/one/ontology/observation/v1.json"
+area = "ontology"
+
+[[concept]]
+name = "Episode"
+rule = "C-11"
+id_prefix = "epi"
+id_type = "EpisodeId"
+schema = "https://suiss.app/schemas/one/ontology/episode/v1.json"
+area = "ontology"
+
+[[concept]]
+name = "MemoryRecord"
+rule = "C-12"
+id_prefix = "mem"
+id_type = "MemoryRecordId"
+schema = "https://suiss.app/schemas/one/memory/memory-record/v1.json"
+area = "memory"
+
+[[concept]]
+name = "Goal"
+rule = "C-13"
+id_prefix = "goal"
+id_type = "GoalId"
+schema = "https://suiss.app/schemas/one/ontology/goal/v1.json"
+area = "ontology"
+
+[[concept]]
+name = "Routine"
+rule = "C-14"
+id_prefix = "rtn"
+id_type = "RoutineId"
+schema = "https://suiss.app/schemas/one/ontology/routine/v1.json"
+area = "ontology"
+
+[[concept]]
+name = "Task"
+rule = "C-15"
+id_prefix = "task"
+id_type = "TaskId"
+schema = "https://suiss.app/schemas/one/task/task/v1.json"
+area = "task"
+
+[[concept]]
+name = "Interaction"
+rule = "C-16"
+id_prefix = "int"
+id_type = "InteractionId"
+schema = "https://suiss.app/schemas/one/interaction/interaction/v1.json"
+area = "interaction"
+
+[[concept]]
+name = "CapabilityDefinition"
+rule = "C-17"
+id_prefix = "cap"
+id_type = "CapabilityId"
+schema = "https://suiss.app/schemas/one/capability/definition/v1.json"
+area = "capability"
+
+[[concept]]
+name = "SurfaceCapability"
+rule = "C-18"
+id_prefix = "srf"
+id_type = "SurfaceCapabilityId"
+schema = "https://suiss.app/schemas/one/capability/surface-capability/v1.json"
+area = "capability"
+
+[[operational_prefix]]
+id_prefix = "dev"
+id_type = "DeviceId"
+rule = "C-24"
+
+[[operational_prefix]]
+id_prefix = "mdl"
+id_type = "ModelVersionId"
+rule = "C-9"
+
+[[operational_prefix]]
+id_prefix = "adp"
+id_type = "AdapterId"
+rule = "C-9"
+
+[id_grammar]
+form = "<prefix>_<26 Crockford base32 digits>"
+alphabet = "0123456789abcdefghjkmnpqrstvwxyz"
+body = "UUIDv7"
+meaningful_bits = ["unix_ms_48", "version_4", "variant_2"]
+random_bits = 74
+random_source = "CSPRNG"
+encodes = []

@@ -1,0 +1,343 @@
+[
+  {
+    "rule": "SEC-14 (1)",
+    "description": "user.direct has trust rank 4",
+    "input": {
+      "op": "rank",
+      "label": "user.direct"
+    },
+    "expected": {
+      "rank": 4
+    }
+  },
+  {
+    "rule": "SEC-14 (1)",
+    "description": "user.memory has trust rank 3",
+    "input": {
+      "op": "rank",
+      "label": "user.memory"
+    },
+    "expected": {
+      "rank": 3
+    }
+  },
+  {
+    "rule": "SEC-14 (1)",
+    "description": "record.trusted has trust rank 2",
+    "input": {
+      "op": "rank",
+      "label": "record.trusted"
+    },
+    "expected": {
+      "rank": 2
+    }
+  },
+  {
+    "rule": "SEC-14 (1)",
+    "description": "one.inferred has trust rank 1",
+    "input": {
+      "op": "rank",
+      "label": "one.inferred"
+    },
+    "expected": {
+      "rank": 1
+    }
+  },
+  {
+    "rule": "SEC-14 (1)",
+    "description": "external.web has trust rank 0 (web page content, including hidden text, URL query and fragment)",
+    "input": {
+      "op": "rank",
+      "label": "external.web"
+    },
+    "expected": {
+      "rank": 0
+    }
+  },
+  {
+    "rule": "SEC-14 (1)",
+    "description": "external.email has trust rank 0 (email headers, body and attachments metadata)",
+    "input": {
+      "op": "rank",
+      "label": "external.email"
+    },
+    "expected": {
+      "rank": 0
+    }
+  },
+  {
+    "rule": "SEC-14 (1)",
+    "description": "external.calendar has trust rank 0 (calendar invitation content)",
+    "input": {
+      "op": "rank",
+      "label": "external.calendar"
+    },
+    "expected": {
+      "rank": 0
+    }
+  },
+  {
+    "rule": "SEC-14 (1)",
+    "description": "external.document has trust rank 0 (document or PDF content)",
+    "input": {
+      "op": "rank",
+      "label": "external.document"
+    },
+    "expected": {
+      "rank": 0
+    }
+  },
+  {
+    "rule": "SEC-14 (1)",
+    "description": "external.screen has trust rank 0 (screen capture or screenshot text)",
+    "input": {
+      "op": "rank",
+      "label": "external.screen"
+    },
+    "expected": {
+      "rank": 0
+    }
+  },
+  {
+    "rule": "SEC-14 (1)",
+    "description": "external.media has trust rank 0 (photo, audio or video content not dictated by the user)",
+    "input": {
+      "op": "rank",
+      "label": "external.media"
+    },
+    "expected": {
+      "rank": 0
+    }
+  },
+  {
+    "rule": "SEC-14 (1)",
+    "description": "external.message has trust rank 0 (message from another person or an unverified channel sender)",
+    "input": {
+      "op": "rank",
+      "label": "external.message"
+    },
+    "expected": {
+      "rank": 0
+    }
+  },
+  {
+    "rule": "SEC-14 (1)",
+    "description": "external.one has trust rank 0 (field received from another One)",
+    "input": {
+      "op": "rank",
+      "label": "external.one"
+    },
+    "expected": {
+      "rank": 0
+    }
+  },
+  {
+    "rule": "SEC-14 (1)",
+    "description": "external.agent has trust rank 0 (message from another agent that is not a One)",
+    "input": {
+      "op": "rank",
+      "label": "external.agent"
+    },
+    "expected": {
+      "rank": 0
+    }
+  },
+  {
+    "rule": "SEC-14 (1)",
+    "description": "external.tool_description has trust rank 0 (tool name, description, schema or annotation)",
+    "input": {
+      "op": "rank",
+      "label": "external.tool_description"
+    },
+    "expected": {
+      "rank": 0
+    }
+  },
+  {
+    "rule": "SEC-14 (1)",
+    "description": "external.tool_output has trust rank 0 (tool, MCP or API call output)",
+    "input": {
+      "op": "rank",
+      "label": "external.tool_output"
+    },
+    "expected": {
+      "rank": 0
+    }
+  },
+  {
+    "rule": "SEC-14 (1)",
+    "description": "external.import has trust rank 0 (imported record)",
+    "input": {
+      "op": "rank",
+      "label": "external.import"
+    },
+    "expected": {
+      "rank": 0
+    }
+  },
+  {
+    "rule": "SEC-14 (1)",
+    "description": "external.app has trust rank 0 (content handed over by another app (notification, share sheet, clipboard))",
+    "input": {
+      "op": "rank",
+      "label": "external.app"
+    },
+    "expected": {
+      "rank": 0
+    }
+  },
+  {
+    "rule": "SEC-14 (1)",
+    "description": "external.unknown has trust rank 0 (unlabelled or unrecognised label opened as untrusted)",
+    "input": {
+      "op": "rank",
+      "label": "external.unknown"
+    },
+    "expected": {
+      "rank": 0
+    }
+  },
+  {
+    "rule": "SEC-14 (1)",
+    "description": "external.mixed has trust rank 0 (join of two or more different external sources)",
+    "input": {
+      "op": "rank",
+      "label": "external.mixed"
+    },
+    "expected": {
+      "rank": 0
+    }
+  },
+  {
+    "rule": "SEC-14 (1)",
+    "description": "external.web is less trusted than one.inferred",
+    "input": {
+      "op": "compare",
+      "a": "external.web",
+      "b": "one.inferred"
+    },
+    "expected": {
+      "order": "less"
+    }
+  },
+  {
+    "rule": "SEC-14 (1)",
+    "description": "one.inferred is less trusted than record.trusted",
+    "input": {
+      "op": "compare",
+      "a": "one.inferred",
+      "b": "record.trusted"
+    },
+    "expected": {
+      "order": "less"
+    }
+  },
+  {
+    "rule": "SEC-14 (1)",
+    "description": "record.trusted is less trusted than user.memory",
+    "input": {
+      "op": "compare",
+      "a": "record.trusted",
+      "b": "user.memory"
+    },
+    "expected": {
+      "order": "less"
+    }
+  },
+  {
+    "rule": "SEC-14 (1)",
+    "description": "user.memory is less trusted than user.direct",
+    "input": {
+      "op": "compare",
+      "a": "user.memory",
+      "b": "user.direct"
+    },
+    "expected": {
+      "order": "less"
+    }
+  },
+  {
+    "rule": "SEC-14 (1)",
+    "description": "user.direct is greater trusted than external.email",
+    "input": {
+      "op": "compare",
+      "a": "user.direct",
+      "b": "external.email"
+    },
+    "expected": {
+      "order": "greater"
+    }
+  },
+  {
+    "rule": "SEC-14 (1)",
+    "description": "record.trusted is greater trusted than one.inferred",
+    "input": {
+      "op": "compare",
+      "a": "record.trusted",
+      "b": "one.inferred"
+    },
+    "expected": {
+      "order": "greater"
+    }
+  },
+  {
+    "rule": "SEC-14 (1)",
+    "description": "external.email and external.web are equally trusted",
+    "input": {
+      "op": "compare",
+      "a": "external.email",
+      "b": "external.web"
+    },
+    "expected": {
+      "order": "equal"
+    }
+  },
+  {
+    "rule": "SEC-14 (1)",
+    "description": "external.unknown and external.mixed are equally trusted",
+    "input": {
+      "op": "compare",
+      "a": "external.unknown",
+      "b": "external.mixed"
+    },
+    "expected": {
+      "order": "equal"
+    }
+  },
+  {
+    "rule": "SEC-14 (1)",
+    "description": "external.one and external.tool_output are equally trusted",
+    "input": {
+      "op": "compare",
+      "a": "external.one",
+      "b": "external.tool_output"
+    },
+    "expected": {
+      "order": "equal"
+    }
+  },
+  {
+    "rule": "SEC-14 (1)",
+    "description": "one.inferred and one.inferred are equally trusted",
+    "input": {
+      "op": "compare",
+      "a": "one.inferred",
+      "b": "one.inferred"
+    },
+    "expected": {
+      "order": "equal"
+    }
+  },
+  {
+    "rule": "SEC-14 (1)",
+    "description": "user.direct and user.direct are equally trusted",
+    "input": {
+      "op": "compare",
+      "a": "user.direct",
+      "b": "user.direct"
+    },
+    "expected": {
+      "order": "equal"
+    }
+  }
+]

@@ -1,0 +1,263 @@
+[
+  {
+    "rule": "A-49",
+    "description": "Coffee purchase intent",
+    "input": {
+      "merchant": {
+        "merchant_ref": "merchant-42",
+        "origin": "https://cafe.example"
+      },
+      "offer_ref": "offer:cafe:flat-white:2026-10-16",
+      "items": [
+        {
+          "product_ref": "sku-fw",
+          "title": "Flat white",
+          "quantity": 1,
+          "unit_price": {
+            "value": "180.00",
+            "currency": "TRY"
+          }
+        }
+      ],
+      "total_limit": {
+        "value": "500.00",
+        "currency": "TRY"
+      },
+      "payment": {
+        "via": "pay",
+        "mandate_ref": {
+          "ref": "MandateRef",
+          "id": "coffee-weekday"
+        }
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "A-34",
+    "description": "Card number is rejected",
+    "input": {
+      "merchant": {
+        "merchant_ref": "merchant-42",
+        "origin": "https://cafe.example"
+      },
+      "offer_ref": "offer:cafe:flat-white:2026-10-16",
+      "items": [
+        {
+          "product_ref": "sku-fw",
+          "title": "Flat white",
+          "quantity": 1,
+          "unit_price": {
+            "value": "180.00",
+            "currency": "TRY"
+          }
+        }
+      ],
+      "total_limit": {
+        "value": "500.00",
+        "currency": "TRY"
+      },
+      "payment": {
+        "via": "pay",
+        "mandate_ref": {
+          "ref": "MandateRef",
+          "id": "coffee-weekday"
+        },
+        "card_number": "4111111111111111"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "A-31",
+    "description": "Payment outside Pay is rejected",
+    "input": {
+      "merchant": {
+        "merchant_ref": "merchant-42",
+        "origin": "https://cafe.example"
+      },
+      "offer_ref": "offer:cafe:flat-white:2026-10-16",
+      "items": [
+        {
+          "product_ref": "sku-fw",
+          "title": "Flat white",
+          "quantity": 1,
+          "unit_price": {
+            "value": "180.00",
+            "currency": "TRY"
+          }
+        }
+      ],
+      "total_limit": {
+        "value": "500.00",
+        "currency": "TRY"
+      },
+      "payment": {
+        "via": "merchant_checkout",
+        "mandate_ref": {
+          "ref": "MandateRef",
+          "id": "coffee-weekday"
+        }
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "A-49",
+    "description": "No items is rejected",
+    "input": {
+      "merchant": {
+        "merchant_ref": "merchant-42",
+        "origin": "https://cafe.example"
+      },
+      "offer_ref": "offer:cafe:flat-white:2026-10-16",
+      "items": [],
+      "total_limit": {
+        "value": "500.00",
+        "currency": "TRY"
+      },
+      "payment": {
+        "via": "pay",
+        "mandate_ref": {
+          "ref": "MandateRef",
+          "id": "coffee-weekday"
+        }
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "A-49",
+    "description": "No total limit is rejected",
+    "input": {
+      "merchant": {
+        "merchant_ref": "merchant-42",
+        "origin": "https://cafe.example"
+      },
+      "offer_ref": "offer:cafe:flat-white:2026-10-16",
+      "items": [
+        {
+          "product_ref": "sku-fw",
+          "title": "Flat white",
+          "quantity": 1,
+          "unit_price": {
+            "value": "180.00",
+            "currency": "TRY"
+          }
+        }
+      ],
+      "payment": {
+        "via": "pay",
+        "mandate_ref": {
+          "ref": "MandateRef",
+          "id": "coffee-weekday"
+        }
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "A-49",
+    "description": "Embedded order record is rejected; the order is referenced",
+    "input": {
+      "merchant": {
+        "merchant_ref": "merchant-42",
+        "origin": "https://cafe.example"
+      },
+      "offer_ref": "offer:cafe:flat-white:2026-10-16",
+      "items": [
+        {
+          "product_ref": "sku-fw",
+          "title": "Flat white",
+          "quantity": 1,
+          "unit_price": {
+            "value": "180.00",
+            "currency": "TRY"
+          }
+        }
+      ],
+      "total_limit": {
+        "value": "500.00",
+        "currency": "TRY"
+      },
+      "payment": {
+        "via": "pay",
+        "mandate_ref": {
+          "ref": "MandateRef",
+          "id": "coffee-weekday"
+        }
+      },
+      "order": {
+        "id": "o-1"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "A-49",
+    "description": "Without the offer it came from is rejected",
+    "input": {
+      "merchant": {
+        "merchant_ref": "merchant-42",
+        "origin": "https://cafe.example"
+      },
+      "items": [
+        {
+          "product_ref": "sku-fw",
+          "title": "Flat white",
+          "quantity": 1,
+          "unit_price": {
+            "value": "180.00",
+            "currency": "TRY"
+          }
+        }
+      ],
+      "total_limit": {
+        "value": "500.00",
+        "currency": "TRY"
+      },
+      "payment": {
+        "via": "pay",
+        "mandate_ref": {
+          "ref": "MandateRef",
+          "id": "coffee-weekday"
+        }
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "A-49",
+    "description": "Lower-case currency is rejected",
+    "input": {
+      "merchant": {
+        "merchant_ref": "merchant-42",
+        "origin": "https://cafe.example"
+      },
+      "offer_ref": "offer:cafe:flat-white:2026-10-16",
+      "items": [
+        {
+          "product_ref": "sku-fw",
+          "title": "Flat white",
+          "quantity": 1,
+          "unit_price": {
+            "value": "180.00",
+            "currency": "TRY"
+          }
+        }
+      ],
+      "total_limit": {
+        "value": "500.00",
+        "currency": "try"
+      },
+      "payment": {
+        "via": "pay",
+        "mandate_ref": {
+          "ref": "MandateRef",
+          "id": "coffee-weekday"
+        }
+      }
+    },
+    "valid": false
+  }
+]

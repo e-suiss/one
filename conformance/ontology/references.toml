@@ -1,0 +1,95 @@
+# C-4, C-24, MD-6 (1)
+
+schema = "https://suiss.app/schemas/one/ontology/reference/v1.json"
+second_canonical_copy = false
+birth_date = false
+
+[[owned]]
+concept = "User and other Suiss persons"
+owner = "access"
+refs = ["PartyRef"]
+
+[[owned]]
+concept = "Person not in Suiss"
+owner = "source system"
+refs = ["ExternalPersonRef"]
+memory = "relationship"
+
+[[owned]]
+concept = "One identity"
+owner = "access"
+refs = ["PartyRef", "InstanceRef"]
+
+[[owned]]
+concept = "Sub-agent and execution instance"
+owner = "access"
+refs = ["InstanceRef"]
+
+[[owned]]
+concept = "Device and local executor"
+owner = "access"
+refs = ["InstanceRef", "KeyBindingRef", "ExecutorRef"]
+
+[[owned]]
+concept = "Grant, Mandate, Trigger, Exercise, DecisionRecord, Claim"
+owner = "access"
+refs = ["GrantRef", "MandateRef", "TriggerRef", "ExerciseRef", "DecisionRecordRef", "ClaimRef"]
+cache = "within freshness bound"
+
+[[owned]]
+concept = "Relationship level"
+owner = "access"
+refs = ["AcceptanceRef"]
+
+[[owned]]
+concept = "Connected account"
+owner = "access"
+refs = ["ConnectedAccountRef"]
+
+[[owned]]
+concept = "Household, guardianship, age band"
+owner = "access"
+refs = ["HouseholdRef", "GuardianshipRef", "AgeBandRef"]
+
+[[owned]]
+concept = "Action requirement"
+owner = "access"
+refs = ["ActionRef"]
+
+[[owned]]
+concept = "Commitment, offer chain, Needs Attention item, personal tenant"
+owner = "work"
+refs = ["CommitmentRef", "OfferChainRef", "NeedsAttentionRef", "TenantRef"]
+
+[[owned]]
+concept = "Presence"
+owner = "relay"
+refs = []
+stored = false
+
+[[owned]]
+concept = "Notification, waitpoint, mailbox message"
+owner = "relay"
+refs = ["NotificationRef", "WaitpointRef", "MailboxMessageRef"]
+
+[[owned]]
+concept = "Execution session, checkpoint, effect report, stop state, browser session profile"
+owner = "executor"
+refs = ["ClaimRef", "ExecutionReportRef", "CheckpointRef"]
+
+[[owned]]
+concept = "Payment, order, agent token"
+owner = "pay"
+refs = ["PaymentRef", "OrderRef", "AgentTokenRef"]
+
+[[owned]]
+concept = "Calendar event, e-mail, document, booking"
+owner = "source system"
+refs = ["ExternalRef"]
+with = "Observation"
+
+[[owned]]
+concept = "Model, provider, model configuration"
+owner = "one operations"
+refs = []
+operational = true

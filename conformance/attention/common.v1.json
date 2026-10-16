@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/attention/common/v1.json",
+  "title": "One attention shared definitions",
+  "$comment": "AT-1, AT-5, AT-9, AT-42, Relay C-33, Relay CH-65",
+  "$defs": {
+    "AttentionDecisionId": {
+      "$ref": "https://suiss.app/schemas/one/ontology/id/v1.json#/$defs/AttentionDecisionId"
+    },
+    "OutputTypeId": {
+      "type": "string",
+      "pattern": "^app\\.suiss\\.one\\.output\\.[a-z][a-z0-9_]*\\.[a-z][a-z0-9_]*$"
+    },
+    "Arm": {
+      "enum": [
+        "interrupt_now",
+        "next_break",
+        "digest",
+        "save_quietly",
+        "discard"
+      ]
+    },
+    "NotifyArm": {
+      "enum": [
+        "interrupt_now",
+        "next_break"
+      ]
+    },
+    "Interruption": {
+      "$ref": "https://suiss.app/schemas/one/interaction/common/v1.json#/$defs/interruption"
+    },
+    "RelayClass": {
+      "enum": [
+        "security",
+        "transactional",
+        "operational",
+        "social",
+        "marketing",
+        "system",
+        "action_required"
+      ]
+    },
+    "OneRelayClass": {
+      "enum": [
+        "action_required",
+        "transactional"
+      ]
+    },
+    "Timing": {
+      "enum": [
+        "immediate",
+        "next_break"
+      ]
+    },
+    "RowId": {
+      "enum": [
+        "approval_request",
+        "own_work_info",
+        "progress_update",
+        "critical_grant"
+      ]
+    }
+  }
+}

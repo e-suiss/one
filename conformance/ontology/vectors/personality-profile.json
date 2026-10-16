@@ -1,0 +1,380 @@
+[
+  {
+    "rule": "MF-47",
+    "description": "Versioned profile with structured fields",
+    "input": {
+      "view": "personality_profile",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "version": 3,
+      "retention_class": "one_memory",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "assistant_name": "One",
+      "address": {
+        "form": "informal",
+        "use_user_name": true
+      },
+      "style": {
+        "length": "medium",
+        "formality": "casual",
+        "humour": true
+      },
+      "values": [
+        {
+          "statement": {
+            "text": "Önce bana sor",
+            "lang": "tr"
+          },
+          "record": "mem_01m5104dx0enasanananananan"
+        }
+      ],
+      "rules": [
+        {
+          "statement": {
+            "text": "Keep morning replies short",
+            "lang": "en"
+          },
+          "record": "mem_01m5104ew8esb9cnjpasb5cnjp"
+        }
+      ],
+      "source_records": [
+        "mem_01m5104dx0enasanananananan",
+        "mem_01m5104ew8esb9cnjpasb5cnjp"
+      ]
+    },
+    "valid": true
+  },
+  {
+    "rule": "C-28",
+    "description": "The profile is a view and has no canonical identity",
+    "input": {
+      "type": "MemoryRecord",
+      "view": "personality_profile",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "version": 3,
+      "retention_class": "one_memory",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "assistant_name": "One",
+      "address": {
+        "form": "informal",
+        "use_user_name": true
+      },
+      "style": {
+        "length": "medium",
+        "formality": "casual",
+        "humour": true
+      },
+      "values": [
+        {
+          "statement": {
+            "text": "Önce bana sor",
+            "lang": "tr"
+          },
+          "record": "mem_01m5104dx0enasanananananan"
+        }
+      ],
+      "rules": [
+        {
+          "statement": {
+            "text": "Keep morning replies short",
+            "lang": "en"
+          },
+          "record": "mem_01m5104ew8esb9cnjpasb5cnjp"
+        }
+      ],
+      "source_records": [
+        "mem_01m5104dx0enasanananananan",
+        "mem_01m5104ew8esb9cnjpasb5cnjp"
+      ],
+      "id": "mem_01m5104dx0enasanananananan"
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-28",
+    "description": "The profile is not a canonical type",
+    "input": {
+      "view": "personality_profile",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "version": 3,
+      "retention_class": "one_memory",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "assistant_name": "One",
+      "address": {
+        "form": "informal",
+        "use_user_name": true
+      },
+      "style": {
+        "length": "medium",
+        "formality": "casual",
+        "humour": true
+      },
+      "values": [
+        {
+          "statement": {
+            "text": "Önce bana sor",
+            "lang": "tr"
+          },
+          "record": "mem_01m5104dx0enasanananananan"
+        }
+      ],
+      "rules": [
+        {
+          "statement": {
+            "text": "Keep morning replies short",
+            "lang": "en"
+          },
+          "record": "mem_01m5104ew8esb9cnjpasb5cnjp"
+        }
+      ],
+      "source_records": [
+        "mem_01m5104dx0enasanananananan",
+        "mem_01m5104ew8esb9cnjpasb5cnjp"
+      ],
+      "type": "PersonalityProfile"
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-49",
+    "description": "No field aimed at emotional bond or engagement",
+    "input": {
+      "view": "personality_profile",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "version": 3,
+      "retention_class": "one_memory",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "assistant_name": "One",
+      "address": {
+        "form": "informal",
+        "use_user_name": true
+      },
+      "style": {
+        "length": "medium",
+        "formality": "casual",
+        "humour": true
+      },
+      "values": [
+        {
+          "statement": {
+            "text": "Önce bana sor",
+            "lang": "tr"
+          },
+          "record": "mem_01m5104dx0enasanananananan"
+        }
+      ],
+      "rules": [
+        {
+          "statement": {
+            "text": "Keep morning replies short",
+            "lang": "en"
+          },
+          "record": "mem_01m5104ew8esb9cnjpasb5cnjp"
+        }
+      ],
+      "source_records": [
+        "mem_01m5104dx0enasanananananan",
+        "mem_01m5104ew8esb9cnjpasb5cnjp"
+      ],
+      "engagement_goal": "maximise_session_length"
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-47",
+    "description": "Profile is in one_memory",
+    "input": {
+      "view": "personality_profile",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "version": 3,
+      "retention_class": "one_sensitive",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "assistant_name": "One",
+      "address": {
+        "form": "informal",
+        "use_user_name": true
+      },
+      "style": {
+        "length": "medium",
+        "formality": "casual",
+        "humour": true
+      },
+      "values": [
+        {
+          "statement": {
+            "text": "Önce bana sor",
+            "lang": "tr"
+          },
+          "record": "mem_01m5104dx0enasanananananan"
+        }
+      ],
+      "rules": [
+        {
+          "statement": {
+            "text": "Keep morning replies short",
+            "lang": "en"
+          },
+          "record": "mem_01m5104ew8esb9cnjpasb5cnjp"
+        }
+      ],
+      "source_records": [
+        "mem_01m5104dx0enasanananananan",
+        "mem_01m5104ew8esb9cnjpasb5cnjp"
+      ]
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-47",
+    "description": "Profile is versioned",
+    "input": {
+      "view": "personality_profile",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "retention_class": "one_memory",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "assistant_name": "One",
+      "address": {
+        "form": "informal",
+        "use_user_name": true
+      },
+      "style": {
+        "length": "medium",
+        "formality": "casual",
+        "humour": true
+      },
+      "values": [
+        {
+          "statement": {
+            "text": "Önce bana sor",
+            "lang": "tr"
+          },
+          "record": "mem_01m5104dx0enasanananananan"
+        }
+      ],
+      "rules": [
+        {
+          "statement": {
+            "text": "Keep morning replies short",
+            "lang": "en"
+          },
+          "record": "mem_01m5104ew8esb9cnjpasb5cnjp"
+        }
+      ],
+      "source_records": [
+        "mem_01m5104dx0enasanananananan",
+        "mem_01m5104ew8esb9cnjpasb5cnjp"
+      ]
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-47",
+    "description": "Each value is bound to its behaviour-rule record",
+    "input": {
+      "view": "personality_profile",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "version": 3,
+      "retention_class": "one_memory",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "assistant_name": "One",
+      "address": {
+        "form": "informal",
+        "use_user_name": true
+      },
+      "style": {
+        "length": "medium",
+        "formality": "casual",
+        "humour": true
+      },
+      "values": [
+        {
+          "statement": {
+            "text": "Save money first",
+            "lang": "en"
+          }
+        }
+      ],
+      "rules": [
+        {
+          "statement": {
+            "text": "Keep morning replies short",
+            "lang": "en"
+          },
+          "record": "mem_01m5104ew8esb9cnjpasb5cnjp"
+        }
+      ],
+      "source_records": [
+        "mem_01m5104dx0enasanananananan",
+        "mem_01m5104ew8esb9cnjpasb5cnjp"
+      ]
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-47",
+    "description": "Style length is short, medium or detailed",
+    "input": {
+      "view": "personality_profile",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "version": 3,
+      "retention_class": "one_memory",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "assistant_name": "One",
+      "address": {
+        "form": "informal",
+        "use_user_name": true
+      },
+      "style": {
+        "length": "long",
+        "formality": "neutral",
+        "humour": false
+      },
+      "values": [
+        {
+          "statement": {
+            "text": "Önce bana sor",
+            "lang": "tr"
+          },
+          "record": "mem_01m5104dx0enasanananananan"
+        }
+      ],
+      "rules": [
+        {
+          "statement": {
+            "text": "Keep morning replies short",
+            "lang": "en"
+          },
+          "record": "mem_01m5104ew8esb9cnjpasb5cnjp"
+        }
+      ],
+      "source_records": [
+        "mem_01m5104dx0enasanananananan",
+        "mem_01m5104ew8esb9cnjpasb5cnjp"
+      ]
+    },
+    "valid": false
+  }
+]

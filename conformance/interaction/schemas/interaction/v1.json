@@ -1,0 +1,2108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/interaction/interaction/v1.json",
+  "title": "Interaction",
+  "description": "The canonical semantic Interaction record with the C-19 common header; every surface output is a projection of it (X-12, C-16, C-25).",
+  "type": "object",
+  "required": [
+    "type",
+    "id",
+    "status",
+    "supersedes",
+    "kind",
+    "subject",
+    "details",
+    "risk",
+    "reversibility",
+    "sensitive",
+    "why_now",
+    "interruption",
+    "timing",
+    "minimal_projection",
+    "surface_budgets",
+    "actions",
+    "answer_nonce",
+    "min_assurance",
+    "expires_at"
+  ],
+  "properties": {
+    "type": {
+      "const": "Interaction"
+    },
+    "id": {
+      "$ref": "../common/v1.json#/$defs/interaction_id"
+    },
+    "status": {
+      "description": "Record lifecycle only (C-19)",
+      "enum": [
+        "active",
+        "deleted"
+      ]
+    },
+    "supersedes": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "https://suiss.app/schemas/one/ontology/id/v1.json#/$defs/InteractionId"
+        }
+      ]
+    },
+    "kind": {
+      "oneOf": [
+        {
+          "$ref": "../common/v1.json#/$defs/core_kind"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "extension",
+            "version",
+            "maps_to"
+          ],
+          "properties": {
+            "extension": {
+              "$ref": "../common/v1.json#/$defs/extension_name"
+            },
+            "version": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "maps_to": {
+              "$ref": "../common/v1.json#/$defs/core_kind"
+            }
+          }
+        }
+      ]
+    },
+    "subject": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "title",
+        "ref"
+      ],
+      "properties": {
+        "title": {
+          "allOf": [
+            {
+              "$ref": "../common/v1.json#/$defs/localized"
+            }
+          ],
+          "properties": {
+            "tr": {
+              "maxLength": 60
+            },
+            "en": {
+              "maxLength": 60
+            }
+          }
+        },
+        "ref": {
+          "$ref": "https://suiss.app/schemas/one/ontology/reference/v1.json#/$defs/Target"
+        },
+        "concerns": {
+          "type": "array",
+          "maxItems": 8,
+          "items": {
+            "$ref": "https://suiss.app/schemas/one/ontology/reference/v1.json#/$defs/Target"
+          }
+        }
+      }
+    },
+    "details": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "amount": {
+          "$ref": "../common/v1.json#/$defs/money"
+        },
+        "counterparty": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "display"
+          ],
+          "properties": {
+            "display": {
+              "allOf": [
+                {
+                  "$ref": "../common/v1.json#/$defs/line"
+                }
+              ],
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "ref": {
+              "$ref": "https://suiss.app/schemas/one/ontology/reference/v1.json#/$defs/Target"
+            }
+          }
+        },
+        "time": {
+          "$ref": "../common/v1.json#/$defs/timestamp"
+        },
+        "time_range": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "start",
+            "end"
+          ],
+          "properties": {
+            "start": {
+              "$ref": "../common/v1.json#/$defs/timestamp"
+            },
+            "end": {
+              "$ref": "../common/v1.json#/$defs/timestamp"
+            }
+          }
+        },
+        "place": {
+          "$ref": "#/$defs/place"
+        },
+        "options": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 10,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "title"
+            ],
+            "properties": {
+              "id": {
+                "$ref": "../common/v1.json#/$defs/action_id"
+              },
+              "title": {
+                "allOf": [
+                  {
+                    "$ref": "../common/v1.json#/$defs/line"
+                  }
+                ],
+                "minLength": 1,
+                "maxLength": 80
+              },
+              "summary": {
+                "allOf": [
+                  {
+                    "$ref": "../common/v1.json#/$defs/line"
+                  }
+                ],
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "amount": {
+                "$ref": "../common/v1.json#/$defs/money"
+              },
+              "time": {
+                "$ref": "../common/v1.json#/$defs/timestamp"
+              },
+              "place": {
+                "$ref": "#/$defs/place"
+              },
+              "attributes": {
+                "type": "array",
+                "maxItems": 8,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "label",
+                    "value"
+                  ],
+                  "properties": {
+                    "label": {
+                      "allOf": [
+                        {
+                          "$ref": "../common/v1.json#/$defs/line"
+                        }
+                      ],
+                      "minLength": 1,
+                      "maxLength": 40
+                    },
+                    "value": {
+                      "allOf": [
+                        {
+                          "$ref": "../common/v1.json#/$defs/line"
+                        }
+                      ],
+                      "minLength": 1,
+                      "maxLength": 80
+                    }
+                  }
+                }
+              },
+              "image": {
+                "$ref": "#/$defs/asset"
+              },
+              "recommended": {
+                "type": "boolean"
+              }
+            }
+          }
+        },
+        "fields": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 20,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "label",
+              "type",
+              "required"
+            ],
+            "properties": {
+              "id": {
+                "$ref": "../common/v1.json#/$defs/action_id"
+              },
+              "label": {
+                "allOf": [
+                  {
+                    "$ref": "../common/v1.json#/$defs/localized"
+                  }
+                ],
+                "properties": {
+                  "tr": {
+                    "maxLength": 60
+                  },
+                  "en": {
+                    "maxLength": 60
+                  }
+                }
+              },
+              "type": {
+                "enum": [
+                  "text",
+                  "number",
+                  "date",
+                  "time",
+                  "date_time",
+                  "choice",
+                  "boolean",
+                  "amount",
+                  "place"
+                ]
+              },
+              "required": {
+                "type": "boolean"
+              },
+              "max_length": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 500
+              },
+              "options": {
+                "type": "array",
+                "minItems": 2,
+                "maxItems": 10,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "id",
+                    "label"
+                  ],
+                  "properties": {
+                    "id": {
+                      "$ref": "../common/v1.json#/$defs/action_id"
+                    },
+                    "label": {
+                      "allOf": [
+                        {
+                          "$ref": "../common/v1.json#/$defs/localized"
+                        }
+                      ],
+                      "properties": {
+                        "tr": {
+                          "maxLength": 60
+                        },
+                        "en": {
+                          "maxLength": 60
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "choice"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "options"
+              ]
+            }
+          }
+        },
+        "progress": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "phase"
+          ],
+          "properties": {
+            "phase": {
+              "enum": [
+                "starting",
+                "in_progress",
+                "waiting",
+                "stopping",
+                "finished",
+                "unknown"
+              ]
+            },
+            "fraction": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "step_label": {
+              "allOf": [
+                {
+                  "$ref": "../common/v1.json#/$defs/line"
+                }
+              ],
+              "minLength": 1,
+              "maxLength": 60
+            }
+          }
+        },
+        "steps": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 100,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "label",
+              "status"
+            ],
+            "properties": {
+              "label": {
+                "allOf": [
+                  {
+                    "$ref": "../common/v1.json#/$defs/line"
+                  }
+                ],
+                "minLength": 1,
+                "maxLength": 80
+              },
+              "status": {
+                "enum": [
+                  "pending",
+                  "active",
+                  "done",
+                  "skipped",
+                  "failed",
+                  "unknown"
+                ]
+              },
+              "at": {
+                "$ref": "../common/v1.json#/$defs/timestamp"
+              }
+            }
+          }
+        },
+        "outcome": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status",
+            "executor_confirmed"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "done",
+                "partial",
+                "failed",
+                "unknown",
+                "stopping",
+                "stopped"
+              ]
+            },
+            "executor_confirmed": {
+              "type": "boolean"
+            },
+            "cost": {
+              "$ref": "../common/v1.json#/$defs/money"
+            },
+            "refs": {
+              "type": "array",
+              "maxItems": 8,
+              "items": {
+                "$ref": "https://suiss.app/schemas/one/ontology/reference/v1.json#/$defs/Target"
+              }
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "done",
+                      "stopped"
+                    ]
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "executor_confirmed": {
+                    "const": true
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "note": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "text",
+            "untrusted"
+          ],
+          "properties": {
+            "text": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            },
+            "untrusted": {
+              "const": true
+            }
+          }
+        }
+      }
+    },
+    "presentation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "catalog_version",
+        "components"
+      ],
+      "properties": {
+        "catalog_version": {
+          "const": 1
+        },
+        "components": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 12,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "component",
+              "version"
+            ],
+            "properties": {
+              "component": {
+                "enum": [
+                  "card",
+                  "list",
+                  "comparison",
+                  "approval",
+                  "form",
+                  "timeline",
+                  "map",
+                  "progress",
+                  "receipt"
+                ]
+              },
+              "version": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "binds": {
+                "type": "array",
+                "uniqueItems": true,
+                "maxItems": 10,
+                "items": {
+                  "enum": [
+                    "amount",
+                    "counterparty",
+                    "time",
+                    "time_range",
+                    "place",
+                    "options",
+                    "fields",
+                    "progress",
+                    "steps",
+                    "outcome",
+                    "note"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "risk": {
+      "$ref": "../common/v1.json#/$defs/risk"
+    },
+    "reversibility": {
+      "$ref": "../common/v1.json#/$defs/reversibility"
+    },
+    "mandate_fit": {
+      "enum": [
+        "within",
+        "exceeds",
+        "non_delegable"
+      ]
+    },
+    "sensitive": {
+      "type": "boolean"
+    },
+    "field_provenance": {
+      "description": "Internal provenance label per detail field (SEC-14); `provenance` is the joined label of the record",
+      "type": "object",
+      "propertyNames": {
+        "enum": [
+          "amount",
+          "counterparty",
+          "time",
+          "time_range",
+          "place",
+          "options",
+          "fields",
+          "progress",
+          "steps",
+          "outcome",
+          "note"
+        ]
+      },
+      "additionalProperties": {
+        "$ref": "https://suiss.app/schemas/one/provenance/label/v1.json"
+      }
+    },
+    "why_now": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reason",
+        "evidence"
+      ],
+      "properties": {
+        "reason": {
+          "allOf": [
+            {
+              "$ref": "../common/v1.json#/$defs/localized"
+            }
+          ],
+          "properties": {
+            "tr": {
+              "maxLength": 200
+            },
+            "en": {
+              "maxLength": 200
+            }
+          }
+        },
+        "evidence": {
+          "type": "array",
+          "maxItems": 8,
+          "items": {
+            "$ref": "https://suiss.app/schemas/one/ontology/reference/v1.json#/$defs/Target"
+          }
+        }
+      }
+    },
+    "interruption": {
+      "$ref": "../common/v1.json#/$defs/interruption"
+    },
+    "critical_grant": {
+      "$ref": "https://suiss.app/schemas/one/ontology/reference/v1.json#/$defs/GrantRef"
+    },
+    "timing": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "delivery"
+      ],
+      "properties": {
+        "delivery": {
+          "enum": [
+            "immediate",
+            "next_break"
+          ]
+        },
+        "max_defer": {
+          "$ref": "../common/v1.json#/$defs/duration"
+        },
+        "surface_policy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "steps"
+          ],
+          "properties": {
+            "steps": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 5,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "surfaces",
+                  "escalate_after"
+                ],
+                "properties": {
+                  "surfaces": {
+                    "type": "array",
+                    "minItems": 1,
+                    "maxItems": 8,
+                    "items": {
+                      "oneOf": [
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "device_id"
+                          ],
+                          "properties": {
+                            "device_id": {
+                              "$ref": "../common/v1.json#/$defs/device_id"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "channel"
+                          ],
+                          "properties": {
+                            "channel": {
+                              "enum": [
+                                "push",
+                                "email",
+                                "sms",
+                                "inbox"
+                              ]
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "escalate_after": {
+                    "$ref": "../common/v1.json#/$defs/duration"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "delivery": {
+                "const": "next_break"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "max_defer"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "delivery": {
+                "const": "immediate"
+              }
+            }
+          },
+          "then": {
+            "not": {
+              "required": [
+                "max_defer"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "minimal_projection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sentence",
+        "yes",
+        "no"
+      ],
+      "properties": {
+        "sentence": {
+          "allOf": [
+            {
+              "$ref": "../common/v1.json#/$defs/localized"
+            }
+          ],
+          "properties": {
+            "tr": {
+              "maxLength": 120
+            },
+            "en": {
+              "maxLength": 120
+            }
+          }
+        },
+        "yes": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "action",
+            "label"
+          ],
+          "properties": {
+            "action": {
+              "$ref": "../common/v1.json#/$defs/action_id"
+            },
+            "label": {
+              "allOf": [
+                {
+                  "$ref": "../common/v1.json#/$defs/localized"
+                }
+              ],
+              "properties": {
+                "tr": {
+                  "maxLength": 12
+                },
+                "en": {
+                  "maxLength": 12
+                }
+              }
+            }
+          }
+        },
+        "no": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "action",
+            "label"
+          ],
+          "properties": {
+            "action": {
+              "$ref": "../common/v1.json#/$defs/action_id"
+            },
+            "label": {
+              "allOf": [
+                {
+                  "$ref": "../common/v1.json#/$defs/localized"
+                }
+              ],
+              "properties": {
+                "tr": {
+                  "maxLength": 12
+                },
+                "en": {
+                  "maxLength": 12
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "surface_budgets": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "table"
+      ],
+      "properties": {
+        "table": {
+          "const": "https://suiss.app/schemas/one/interaction/surface-budgets/v1.json"
+        },
+        "tighten": {
+          "type": "object",
+          "additionalProperties": false,
+          "minProperties": 1,
+          "properties": {
+            "phone": {
+              "type": "object",
+              "additionalProperties": false,
+              "minProperties": 1,
+              "properties": {
+                "visuals": {
+                  "enum": [
+                    "normal",
+                    "reduced",
+                    "text_only"
+                  ]
+                },
+                "max_title_chars": {
+                  "type": "integer",
+                  "minimum": 8,
+                  "maximum": 64
+                },
+                "max_body_chars": {
+                  "type": "integer",
+                  "minimum": 16,
+                  "maximum": 180
+                },
+                "max_actions": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 3
+                },
+                "no_approval": {
+                  "const": true
+                }
+              }
+            },
+            "desktop": {
+              "type": "object",
+              "additionalProperties": false,
+              "minProperties": 1,
+              "properties": {
+                "visuals": {
+                  "enum": [
+                    "normal",
+                    "reduced",
+                    "text_only"
+                  ]
+                },
+                "max_title_chars": {
+                  "type": "integer",
+                  "minimum": 8,
+                  "maximum": 64
+                },
+                "max_body_chars": {
+                  "type": "integer",
+                  "minimum": 16,
+                  "maximum": 180
+                },
+                "max_actions": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 3
+                },
+                "no_approval": {
+                  "const": true
+                }
+              }
+            },
+            "watch": {
+              "type": "object",
+              "additionalProperties": false,
+              "minProperties": 1,
+              "properties": {
+                "visuals": {
+                  "enum": [
+                    "normal",
+                    "reduced",
+                    "text_only"
+                  ]
+                },
+                "max_title_chars": {
+                  "type": "integer",
+                  "minimum": 8,
+                  "maximum": 64
+                },
+                "max_body_chars": {
+                  "type": "integer",
+                  "minimum": 16,
+                  "maximum": 180
+                },
+                "max_actions": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 3
+                },
+                "no_approval": {
+                  "const": true
+                }
+              }
+            },
+            "voice:car": {
+              "type": "object",
+              "additionalProperties": false,
+              "minProperties": 1,
+              "properties": {
+                "visuals": {
+                  "enum": [
+                    "normal",
+                    "reduced",
+                    "text_only"
+                  ]
+                },
+                "max_title_chars": {
+                  "type": "integer",
+                  "minimum": 8,
+                  "maximum": 64
+                },
+                "max_body_chars": {
+                  "type": "integer",
+                  "minimum": 16,
+                  "maximum": 180
+                },
+                "max_actions": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 3
+                },
+                "no_approval": {
+                  "const": true
+                }
+              }
+            },
+            "voice:glasses": {
+              "type": "object",
+              "additionalProperties": false,
+              "minProperties": 1,
+              "properties": {
+                "visuals": {
+                  "enum": [
+                    "normal",
+                    "reduced",
+                    "text_only"
+                  ]
+                },
+                "max_title_chars": {
+                  "type": "integer",
+                  "minimum": 8,
+                  "maximum": 64
+                },
+                "max_body_chars": {
+                  "type": "integer",
+                  "minimum": 16,
+                  "maximum": 180
+                },
+                "max_actions": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 3
+                },
+                "no_approval": {
+                  "const": true
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "actions": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 8,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "effect",
+          "label"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "../common/v1.json#/$defs/action_id"
+          },
+          "effect": {
+            "enum": [
+              "approve",
+              "decline",
+              "choose",
+              "answer",
+              "submit",
+              "acknowledge",
+              "open",
+              "dismiss",
+              "defer",
+              "stop",
+              "undo",
+              "request_refund"
+            ]
+          },
+          "label": {
+            "allOf": [
+              {
+                "$ref": "../common/v1.json#/$defs/localized"
+              }
+            ],
+            "properties": {
+              "tr": {
+                "maxLength": 24
+              },
+              "en": {
+                "maxLength": 24
+              }
+            }
+          },
+          "option_id": {
+            "$ref": "../common/v1.json#/$defs/action_id"
+          },
+          "value": {
+            "type": "boolean"
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "effect": {
+                  "const": "choose"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "option_id"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "effect": {
+                  "const": "answer"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "value"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "effect": {
+                  "not": {
+                    "enum": [
+                      "choose"
+                    ]
+                  }
+                }
+              }
+            },
+            "then": {
+              "not": {
+                "required": [
+                  "option_id"
+                ]
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "effect": {
+                  "not": {
+                    "enum": [
+                      "answer"
+                    ]
+                  }
+                }
+              }
+            },
+            "then": {
+              "not": {
+                "required": [
+                  "value"
+                ]
+              }
+            }
+          }
+        ]
+      }
+    },
+    "answer_nonce": {
+      "$ref": "../common/v1.json#/$defs/nonce"
+    },
+    "min_assurance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "surface_classes",
+        "authentication"
+      ],
+      "properties": {
+        "surface_classes": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "../common/v1.json#/$defs/surface_class"
+          }
+        },
+        "authentication": {
+          "$ref": "../common/v1.json#/$defs/authentication"
+        },
+        "direct_act_only": {
+          "type": "boolean"
+        }
+      }
+    },
+    "deep_link": {
+      "$ref": "../common/v1.json#/$defs/deep_link"
+    },
+    "expires_at": {
+      "$ref": "../common/v1.json#/$defs/timestamp"
+    }
+  },
+  "allOf": [
+    {
+      "$ref": "https://suiss.app/schemas/one/memory/common/v1.json#/$defs/record_header"
+    },
+    {
+      "if": {
+        "properties": {
+          "version": {
+            "const": 1
+          }
+        },
+        "required": [
+          "version"
+        ]
+      },
+      "then": {
+        "properties": {
+          "supersedes": {
+            "type": "null"
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "supersedes": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "interruption": {
+            "const": "critical"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "critical_grant"
+        ]
+      },
+      "else": {
+        "not": {
+          "required": [
+            "critical_grant"
+          ]
+        }
+      }
+    },
+    {
+      "if": {
+        "required": [
+          "data_class"
+        ],
+        "properties": {
+          "data_class": {
+            "anyOf": [
+              {
+                "$ref": "https://suiss.app/schemas/one/memory/data-class/v1.json#/$defs/is_sensitive"
+              },
+              {
+                "required": [
+                  "kinds"
+                ],
+                "properties": {
+                  "kinds": {
+                    "contains": {
+                      "const": "one_time_code"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "sensitive": {
+            "const": true
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "reversibility": {
+            "const": "irreversible"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "actions": {
+            "not": {
+              "contains": {
+                "type": "object",
+                "required": [
+                  "effect"
+                ],
+                "properties": {
+                  "effect": {
+                    "enum": [
+                      "undo",
+                      "request_refund"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "reversibility": {
+            "const": "compensable"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "actions": {
+            "not": {
+              "contains": {
+                "type": "object",
+                "required": [
+                  "effect"
+                ],
+                "properties": {
+                  "effect": {
+                    "enum": [
+                      "undo"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "reversibility": {
+            "const": "reversible"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "actions": {
+            "not": {
+              "contains": {
+                "type": "object",
+                "required": [
+                  "effect"
+                ],
+                "properties": {
+                  "effect": {
+                    "enum": [
+                      "request_refund"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "anyOf": [
+              {
+                "enum": [
+                  "approval"
+                ]
+              },
+              {
+                "type": "object",
+                "required": [
+                  "maps_to"
+                ],
+                "properties": {
+                  "maps_to": {
+                    "enum": [
+                      "approval"
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "mandate_fit"
+        ],
+        "properties": {
+          "subject": {
+            "properties": {
+              "ref": {
+                "required": [
+                  "ref"
+                ],
+                "properties": {
+                  "ref": {
+                    "enum": [
+                      "DecisionRecordRef",
+                      "NeedsAttentionRef"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "actions": {
+            "allOf": [
+              {
+                "contains": {
+                  "type": "object",
+                  "required": [
+                    "effect"
+                  ],
+                  "properties": {
+                    "effect": {
+                      "enum": [
+                        "approve"
+                      ]
+                    }
+                  }
+                }
+              },
+              {
+                "contains": {
+                  "type": "object",
+                  "required": [
+                    "effect"
+                  ],
+                  "properties": {
+                    "effect": {
+                      "enum": [
+                        "decline"
+                      ]
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          "timing": {
+            "required": [
+              "surface_policy"
+            ]
+          }
+        }
+      },
+      "else": {
+        "not": {
+          "required": [
+            "mandate_fit"
+          ]
+        },
+        "properties": {
+          "actions": {
+            "not": {
+              "contains": {
+                "type": "object",
+                "required": [
+                  "effect"
+                ],
+                "properties": {
+                  "effect": {
+                    "enum": [
+                      "approve"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "allOf": [
+          {
+            "properties": {
+              "kind": {
+                "anyOf": [
+                  {
+                    "enum": [
+                      "approval"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "required": [
+                      "maps_to"
+                    ],
+                    "properties": {
+                      "maps_to": {
+                        "enum": [
+                          "approval"
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "properties": {
+              "interruption": {
+                "enum": [
+                  "passive",
+                  "active"
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "then": {
+        "properties": {
+          "timing": {
+            "properties": {
+              "delivery": {
+                "const": "next_break"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "allOf": [
+          {
+            "properties": {
+              "kind": {
+                "anyOf": [
+                  {
+                    "enum": [
+                      "approval"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "required": [
+                      "maps_to"
+                    ],
+                    "properties": {
+                      "maps_to": {
+                        "enum": [
+                          "approval"
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "anyOf": [
+              {
+                "required": [
+                  "risk"
+                ],
+                "properties": {
+                  "risk": {
+                    "enum": [
+                      "CT2",
+                      "CT3"
+                    ]
+                  }
+                }
+              },
+              {
+                "required": [
+                  "reversibility"
+                ],
+                "properties": {
+                  "reversibility": {
+                    "const": "irreversible"
+                  }
+                }
+              },
+              {
+                "required": [
+                  "mandate_fit"
+                ],
+                "properties": {
+                  "mandate_fit": {
+                    "enum": [
+                      "exceeds",
+                      "non_delegable"
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "then": {
+        "properties": {
+          "min_assurance": {
+            "properties": {
+              "surface_classes": {
+                "items": {
+                  "enum": [
+                    "phone",
+                    "desktop"
+                  ]
+                }
+              },
+              "authentication": {
+                "const": "passkey"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "required": [
+          "mandate_fit"
+        ],
+        "properties": {
+          "mandate_fit": {
+            "const": "non_delegable"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "min_assurance": {
+            "required": [
+              "direct_act_only"
+            ],
+            "properties": {
+              "direct_act_only": {
+                "const": true
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "anyOf": [
+              {
+                "enum": [
+                  "choice",
+                  "comparison"
+                ]
+              },
+              {
+                "type": "object",
+                "required": [
+                  "maps_to"
+                ],
+                "properties": {
+                  "maps_to": {
+                    "enum": [
+                      "choice",
+                      "comparison"
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "details": {
+            "required": [
+              "options"
+            ]
+          },
+          "actions": {
+            "contains": {
+              "type": "object",
+              "required": [
+                "effect"
+              ],
+              "properties": {
+                "effect": {
+                  "enum": [
+                    "choose"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "actions": {
+            "not": {
+              "contains": {
+                "type": "object",
+                "required": [
+                  "effect"
+                ],
+                "properties": {
+                  "effect": {
+                    "enum": [
+                      "choose"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "anyOf": [
+              {
+                "enum": [
+                  "comparison"
+                ]
+              },
+              {
+                "type": "object",
+                "required": [
+                  "maps_to"
+                ],
+                "properties": {
+                  "maps_to": {
+                    "enum": [
+                      "comparison"
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "details": {
+            "properties": {
+              "options": {
+                "maxItems": 4
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "anyOf": [
+              {
+                "enum": [
+                  "question"
+                ]
+              },
+              {
+                "type": "object",
+                "required": [
+                  "maps_to"
+                ],
+                "properties": {
+                  "maps_to": {
+                    "enum": [
+                      "question"
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "actions": {
+            "contains": {
+              "type": "object",
+              "required": [
+                "effect"
+              ],
+              "properties": {
+                "effect": {
+                  "enum": [
+                    "answer"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "actions": {
+            "not": {
+              "contains": {
+                "type": "object",
+                "required": [
+                  "effect"
+                ],
+                "properties": {
+                  "effect": {
+                    "enum": [
+                      "answer"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "anyOf": [
+              {
+                "enum": [
+                  "form"
+                ]
+              },
+              {
+                "type": "object",
+                "required": [
+                  "maps_to"
+                ],
+                "properties": {
+                  "maps_to": {
+                    "enum": [
+                      "form"
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "details": {
+            "required": [
+              "fields"
+            ]
+          },
+          "actions": {
+            "contains": {
+              "type": "object",
+              "required": [
+                "effect"
+              ],
+              "properties": {
+                "effect": {
+                  "enum": [
+                    "submit",
+                    "open"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "details": {
+            "not": {
+              "required": [
+                "fields"
+              ]
+            }
+          },
+          "actions": {
+            "not": {
+              "contains": {
+                "type": "object",
+                "required": [
+                  "effect"
+                ],
+                "properties": {
+                  "effect": {
+                    "enum": [
+                      "submit"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "anyOf": [
+              {
+                "enum": [
+                  "progress"
+                ]
+              },
+              {
+                "type": "object",
+                "required": [
+                  "maps_to"
+                ],
+                "properties": {
+                  "maps_to": {
+                    "enum": [
+                      "progress"
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "details": {
+            "required": [
+              "progress"
+            ]
+          },
+          "interruption": {
+            "const": "passive"
+          },
+          "actions": {
+            "contains": {
+              "type": "object",
+              "required": [
+                "effect"
+              ],
+              "properties": {
+                "effect": {
+                  "enum": [
+                    "stop"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "anyOf": [
+              {
+                "enum": [
+                  "receipt"
+                ]
+              },
+              {
+                "type": "object",
+                "required": [
+                  "maps_to"
+                ],
+                "properties": {
+                  "maps_to": {
+                    "enum": [
+                      "receipt"
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "details": {
+            "required": [
+              "outcome"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "anyOf": [
+              {
+                "enum": [
+                  "digest_item"
+                ]
+              },
+              {
+                "type": "object",
+                "required": [
+                  "maps_to"
+                ],
+                "properties": {
+                  "maps_to": {
+                    "enum": [
+                      "digest_item"
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "interruption": {
+            "const": "passive"
+          }
+        }
+      }
+    }
+  ],
+  "unevaluatedProperties": false,
+  "$defs": {
+    "place": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "allOf": [
+            {
+              "$ref": "../common/v1.json#/$defs/line"
+            }
+          ],
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "address": {
+          "allOf": [
+            {
+              "$ref": "../common/v1.json#/$defs/line"
+            }
+          ],
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "geo": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "lat",
+            "lon"
+          ],
+          "properties": {
+            "lat": {
+              "type": "number",
+              "minimum": -90,
+              "maximum": 90
+            },
+            "lon": {
+              "type": "number",
+              "minimum": -180,
+              "maximum": 180
+            }
+          }
+        }
+      }
+    },
+    "asset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "asset_id",
+        "alt",
+        "load"
+      ],
+      "properties": {
+        "asset_id": {
+          "description": "Key of the asset in One's encrypted blob store; opaque",
+          "$ref": "https://suiss.app/schemas/one/ontology/reference/v1.json#/$defs/opaque_id"
+        },
+        "alt": {
+          "allOf": [
+            {
+              "$ref": "../common/v1.json#/$defs/localized"
+            }
+          ],
+          "properties": {
+            "tr": {
+              "maxLength": 120
+            },
+            "en": {
+              "maxLength": 120
+            }
+          }
+        },
+        "load": {
+          "const": "on_user_open"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,50 @@
+[
+  {
+    "rule": "PV-16",
+    "description": "`one_memory` is a One retention class",
+    "input": "one_memory",
+    "valid": true
+  },
+  {
+    "rule": "PV-16",
+    "description": "`one_model` is a One retention class",
+    "input": "one_model",
+    "valid": true
+  },
+  {
+    "rule": "PV-16",
+    "description": "`one_observation` is a One retention class",
+    "input": "one_observation",
+    "valid": true
+  },
+  {
+    "rule": "PV-16",
+    "description": "`one_sensitive` is a One retention class",
+    "input": "one_sensitive",
+    "valid": true
+  },
+  {
+    "rule": "PV-16",
+    "description": "`one_provider_trace` is a One retention class",
+    "input": "one_provider_trace",
+    "valid": true
+  },
+  {
+    "rule": "PV-16",
+    "description": "`one_browser_profile` is a One retention class",
+    "input": "one_browser_profile",
+    "valid": true
+  },
+  {
+    "rule": "PV-16",
+    "description": "`one_training_lineage` is a One retention class",
+    "input": "one_training_lineage",
+    "valid": true
+  },
+  {
+    "rule": "PV-16",
+    "description": "Pay and Work classes are not One classes",
+    "input": "pay_ledger",
+    "valid": false
+  }
+]

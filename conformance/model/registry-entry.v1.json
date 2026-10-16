@@ -1,0 +1,207 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/model/registry-entry/v1.json",
+  "title": "Model registry entry",
+  "$comment": "MF-55, MF-16, MF-13, MF-14, MF-32, MF-44, MF-45, MF-46, MF-52, T-39 (5), SEC-26",
+  "type": "object",
+  "required": [
+    "name",
+    "version",
+    "role",
+    "component",
+    "format",
+    "sha256",
+    "source",
+    "status",
+    "model_version_id",
+    "kind",
+    "model_role",
+    "platform",
+    "quantisation",
+    "size_bytes",
+    "licence",
+    "evaluation",
+    "lineage"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "name": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$" },
+    "version": { "type": "string", "minLength": 1, "pattern": "^[0-9A-Za-z.+_-]+$" },
+    "role": { "$ref": "https://suiss.app/schemas/one/model/common/v1.json#/$defs/Placement" },
+    "component": { "type": "string", "minLength": 1 },
+    "format": {
+      "enum": ["safetensors", "gguf", "onnx", "tflite", "litertlm", "mlpackage", "pte"]
+    },
+    "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "source": { "type": "string", "pattern": "\\S" },
+    "status": { "enum": ["candidate", "released", "retired"] },
+    "signature": { "type": "string", "default": "" },
+    "model_version_id": { "$ref": "https://suiss.app/schemas/one/model/common/v1.json#/$defs/ModelVersionId" },
+    "kind": {
+      "enum": ["base", "one_behaviour", "personal_adapter", "device", "embedding", "voice"]
+    },
+    "model_role": { "$ref": "https://suiss.app/schemas/one/model/common/v1.json#/$defs/ModelRole" },
+    "base_model": {
+      "type": "object",
+      "required": ["name", "version", "model_version_id"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$" },
+        "version": { "type": "string", "minLength": 1 },
+        "model_version_id": { "$ref": "https://suiss.app/schemas/one/model/common/v1.json#/$defs/ModelVersionId" }
+      }
+    },
+    "platform": { "enum": ["cloud", "ios", "android", "macos", "windows", "linux"] },
+    "quantisation": { "type": "string", "pattern": "^(fp32|fp16|bf16|fp8|int8|int4|q[2-8](_[0-9a-z]+)*)$" },
+    "size_bytes": { "type": "integer", "minimum": 1 },
+    "embedding_dimension": { "type": "integer", "minimum": 1 },
+    "licence": {
+      "type": "object",
+      "required": ["spdx"],
+      "additionalProperties": false,
+      "properties": {
+        "spdx": { "type": "string", "pattern": "^(LicenseRef-[A-Za-z0-9.-]+|[A-Za-z0-9.+-]+)$" }
+      }
+    },
+    "evaluation": {
+      "type": "object",
+      "required": ["gate"],
+      "additionalProperties": false,
+      "properties": {
+        "gate": { "enum": ["pending", "passed", "failed"] },
+        "set": { "type": "string", "pattern": "^[a-z0-9_]+$" },
+        "set_version": { "type": "string", "minLength": 1 },
+        "result_ref": { "type": "string", "minLength": 1 }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "gate": { "enum": ["passed", "failed"] } } },
+          "then": { "required": ["set", "set_version", "result_ref"] }
+        }
+      ]
+    },
+    "lineage": {
+      "type": "object",
+      "required": ["kind"],
+      "additionalProperties": false,
+      "properties": {
+        "kind": { "enum": ["upstream", "open_and_synthetic", "personal", "shared_dp"] },
+        "manifests": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^ml/datasets/manifests/[a-z0-9._/-]+\\.toml$" }
+        },
+        "training_lineage_ref": { "type": "string", "minLength": 1 },
+        "training_compute_flop": { "type": "number", "exclusiveMinimum": 0 }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "kind": { "const": "open_and_synthetic" } } },
+          "then": { "required": ["manifests"], "properties": { "manifests": { "minItems": 1 } } }
+        },
+        {
+          "if": { "properties": { "kind": { "const": "shared_dp" } } },
+          "then": { "required": ["manifests", "training_lineage_ref"] }
+        },
+        {
+          "if": { "properties": { "kind": { "enum": ["upstream", "personal"] } } },
+          "then": { "not": { "required": ["training_lineage_ref"] } }
+        }
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "status": { "const": "released" } } },
+      "then": {
+        "required": ["signature"],
+        "properties": {
+          "signature": { "minLength": 1, "pattern": "\\S" },
+          "evaluation": { "properties": { "gate": { "const": "passed" } } }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "role": { "const": "cloud" } } },
+      "then": { "properties": { "platform": { "const": "cloud" } } },
+      "else": {
+        "properties": {
+          "platform": { "enum": ["ios", "android", "macos", "windows", "linux"] },
+          "model_role": {
+            "not": { "$ref": "https://suiss.app/schemas/one/model/common/v1.json#/$defs/LanguageModelRole" }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "kind": { "const": "base" } } },
+      "then": {
+        "not": { "required": ["base_model"] },
+        "properties": {
+          "lineage": { "properties": { "kind": { "const": "upstream" } } },
+          "model_role": { "enum": ["small_lm", "large_lm", "embedding", "speech_recognition", "speech_synthesis"] }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "kind": { "const": "one_behaviour" } } },
+      "then": {
+        "required": ["base_model"],
+        "properties": {
+          "role": { "const": "cloud" },
+          "model_role": { "enum": ["small_lm", "large_lm", "quarantine"] },
+          "lineage": {
+            "required": ["training_compute_flop"],
+            "properties": { "kind": { "enum": ["open_and_synthetic", "shared_dp"] } }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "kind": { "const": "personal_adapter" } } },
+      "then": {
+        "required": ["base_model"],
+        "properties": {
+          "role": { "const": "cloud" },
+          "model_role": { "const": "small_lm" },
+          "source": { "const": "user_space" },
+          "format": { "const": "safetensors" },
+          "lineage": { "properties": { "kind": { "const": "personal" } } }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "kind": { "const": "device" } } },
+      "then": {
+        "properties": {
+          "role": { "const": "device" },
+          "model_role": { "enum": ["short_command_classifier", "attention", "risk"] }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "kind": { "const": "embedding" } } },
+      "then": {
+        "required": ["embedding_dimension"],
+        "properties": { "model_role": { "const": "embedding" } }
+      }
+    },
+    {
+      "if": { "properties": { "model_role": { "const": "embedding" } } },
+      "then": { "required": ["embedding_dimension"] },
+      "else": { "not": { "required": ["embedding_dimension"] } }
+    },
+    {
+      "if": { "properties": { "kind": { "const": "voice" } } },
+      "then": {
+        "properties": {
+          "model_role": { "enum": ["speech_recognition", "speech_synthesis", "voice_activity", "wake_word"] }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "lineage": { "properties": { "kind": { "const": "personal" } } } } },
+      "then": { "properties": { "kind": { "enum": ["personal_adapter", "device"] } } }
+    }
+  ]
+}

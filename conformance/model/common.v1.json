@@ -1,0 +1,245 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/model/common/v1.json",
+  "title": "One model layer shared definitions",
+  "$comment": "MF-6, MF-7, MF-13, MF-20, MF-22, MF-24, MF-55, PV-16, PV-20",
+  "$defs": {
+    "ModelRequestId": {
+      "$ref": "https://suiss.app/schemas/one/ontology/id/v1.json#/$defs/ModelRequestId"
+    },
+    "ModelVersionId": {
+      "$ref": "https://suiss.app/schemas/one/ontology/id/v1.json#/$defs/ModelVersionId"
+    },
+    "AdapterId": {
+      "$ref": "https://suiss.app/schemas/one/ontology/id/v1.json#/$defs/AdapterId"
+    },
+    "TaskId": {
+      "$ref": "https://suiss.app/schemas/one/ontology/id/v1.json#/$defs/TaskId"
+    },
+    "MemoryRecordId": {
+      "$ref": "https://suiss.app/schemas/one/ontology/id/v1.json#/$defs/MemoryRecordId"
+    },
+    "CapabilityName": {
+      "$ref": "https://suiss.app/schemas/one/capability/name/v1.json#/$defs/name"
+    },
+    "Timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]{1,9})?Z$"
+    },
+    "Region": {
+      "description": "Suiss serving region code",
+      "type": "string",
+      "pattern": "^[a-z]{2}(-[a-z0-9]+)*$"
+    },
+    "ModelRole": {
+      "enum": [
+        "small_lm",
+        "large_lm",
+        "quarantine",
+        "embedding",
+        "speech_recognition",
+        "speech_synthesis",
+        "short_command_classifier",
+        "attention",
+        "risk",
+        "voice_activity",
+        "wake_word"
+      ]
+    },
+    "LanguageModelRole": {
+      "enum": [
+        "small_lm",
+        "large_lm",
+        "quarantine"
+      ]
+    },
+    "Placement": {
+      "description": "Where the model runs; the `role` field of conformance/models/registry.toml",
+      "enum": [
+        "cloud",
+        "device"
+      ]
+    },
+    "ModelRef": {
+      "description": "The model role and exact version that served a request",
+      "type": "object",
+      "required": [
+        "model_role",
+        "model_version_id"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "model_role": {
+          "$ref": "#/$defs/ModelRole"
+        },
+        "model_version_id": {
+          "$ref": "#/$defs/ModelVersionId"
+        },
+        "adapter_id": {
+          "$ref": "#/$defs/AdapterId"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "required": [
+              "adapter_id"
+            ]
+          },
+          "then": {
+            "properties": {
+              "model_role": {
+                "const": "small_lm"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "ErrorCode": {
+      "enum": [
+        "rate_limited",
+        "refusal",
+        "context_size_exceeded",
+        "unavailable"
+      ]
+    },
+    "Usage": {
+      "type": "object",
+      "required": [
+        "input_tokens",
+        "output_tokens",
+        "cached_input_tokens",
+        "reasoning_tokens",
+        "latency_ms"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "input_tokens": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "output_tokens": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "cached_input_tokens": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "reasoning_tokens": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "latency_ms": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "CapabilityVersion": {
+      "$ref": "https://suiss.app/schemas/one/capability/name/v1.json#/$defs/version"
+    },
+    "ContentRetentionClasses": {
+      "description": "Retention classes of the personal data a request or routing record carries; empty when the data class is general",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "allOf": [
+          {
+            "$ref": "https://suiss.app/schemas/one/memory/retention-class/v1.json"
+          },
+          {
+            "not": {
+              "enum": [
+                "one_provider_trace",
+                "one_training_lineage"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "ContentClasses": {
+      "description": "Content data class rules: data_class is the union of the content's memory data classes; a PV-20 code is present exactly when one_sensitive is among the retention classes; general data carries no retention class",
+      "type": "object",
+      "required": [
+        "data_class",
+        "retention_classes"
+      ],
+      "properties": {
+        "data_class": {
+          "$ref": "https://suiss.app/schemas/one/memory/data-class/v1.json"
+        },
+        "retention_classes": {
+          "$ref": "#/$defs/ContentRetentionClasses"
+        },
+        "device_only": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "data_class": {
+                "$ref": "https://suiss.app/schemas/one/memory/data-class/v1.json#/$defs/is_sensitive"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "retention_classes": {
+                "contains": {
+                  "const": "one_sensitive"
+                }
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "retention_classes": {
+                "not": {
+                  "contains": {
+                    "const": "one_sensitive"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "data_class": {
+                "properties": {
+                  "kinds": {
+                    "contains": {
+                      "const": "general"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "retention_classes": {
+                "maxItems": 0
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "retention_classes": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

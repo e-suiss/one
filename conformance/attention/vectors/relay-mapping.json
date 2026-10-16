@@ -1,0 +1,238 @@
+[
+  {
+    "rule": "AT-42",
+    "description": "A non-urgent approval request is action_required with an explicit next_break",
+    "input": {
+      "output_type": "app.suiss.one.output.approval.request",
+      "interruption": "time-sensitive",
+      "urgent": false,
+      "critical_grant": false,
+      "personal_agent_registered": true
+    },
+    "expected": {
+      "send": true,
+      "relay_class": "action_required",
+      "interruption": "time-sensitive",
+      "timing": "next_break",
+      "max_defer_required": true
+    }
+  },
+  {
+    "rule": "AT-42",
+    "description": "An urgent approval request is action_required and immediate",
+    "input": {
+      "output_type": "app.suiss.one.output.approval.request",
+      "interruption": "time-sensitive",
+      "urgent": true,
+      "critical_grant": false,
+      "personal_agent_registered": true
+    },
+    "expected": {
+      "send": true,
+      "relay_class": "action_required",
+      "interruption": "time-sensitive",
+      "timing": "immediate",
+      "max_defer_required": false
+    }
+  },
+  {
+    "rule": "AT-42",
+    "description": "Time-sensitive information about the user's own work is transactional up to time-sensitive",
+    "input": {
+      "output_type": "app.suiss.one.output.travel.change",
+      "interruption": "time-sensitive",
+      "urgent": true,
+      "critical_grant": false,
+      "personal_agent_registered": true
+    },
+    "expected": {
+      "send": true,
+      "relay_class": "transactional",
+      "interruption": "time-sensitive",
+      "timing": "immediate",
+      "max_defer_required": false
+    }
+  },
+  {
+    "rule": "AT-42",
+    "description": "Delivery at the door is transactional time-sensitive",
+    "input": {
+      "output_type": "app.suiss.one.output.delivery.update",
+      "interruption": "time-sensitive",
+      "urgent": false,
+      "critical_grant": false,
+      "personal_agent_registered": true
+    },
+    "expected": {
+      "send": true,
+      "relay_class": "transactional",
+      "interruption": "time-sensitive",
+      "timing": "next_break",
+      "max_defer_required": true
+    }
+  },
+  {
+    "rule": "AT-42",
+    "description": "A bill reminder is lowered to its type ceiling",
+    "input": {
+      "output_type": "app.suiss.one.output.bill.reminder",
+      "interruption": "time-sensitive",
+      "urgent": false,
+      "critical_grant": false,
+      "personal_agent_registered": true
+    },
+    "expected": {
+      "send": true,
+      "relay_class": "transactional",
+      "interruption": "active",
+      "timing": "next_break",
+      "max_defer_required": true
+    }
+  },
+  {
+    "rule": "AT-42",
+    "description": "Without the personal agent registration the transactional ceiling is active",
+    "input": {
+      "output_type": "app.suiss.one.output.travel.change",
+      "interruption": "time-sensitive",
+      "urgent": true,
+      "critical_grant": false,
+      "personal_agent_registered": false
+    },
+    "expected": {
+      "send": true,
+      "relay_class": "transactional",
+      "interruption": "active",
+      "timing": "immediate",
+      "max_defer_required": false
+    }
+  },
+  {
+    "rule": "AT-14",
+    "description": "A progress update is transactional and passive",
+    "input": {
+      "output_type": "app.suiss.one.output.task.progress",
+      "interruption": "active",
+      "urgent": false,
+      "critical_grant": false,
+      "personal_agent_registered": true
+    },
+    "expected": {
+      "send": true,
+      "relay_class": "transactional",
+      "interruption": "passive",
+      "timing": "immediate",
+      "max_defer_required": false
+    }
+  },
+  {
+    "rule": "AT-6",
+    "description": "Output covered by the user's critical Grant keeps its class and goes critical",
+    "input": {
+      "output_type": "app.suiss.one.output.travel.change",
+      "interruption": "time-sensitive",
+      "urgent": true,
+      "critical_grant": true,
+      "personal_agent_registered": true
+    },
+    "expected": {
+      "send": true,
+      "relay_class": "transactional",
+      "interruption": "critical",
+      "timing": "immediate",
+      "max_defer_required": false
+    }
+  },
+  {
+    "rule": "AT-6",
+    "description": "An approval request covered by a critical Grant keeps action_required",
+    "input": {
+      "output_type": "app.suiss.one.output.approval.request",
+      "interruption": "time-sensitive",
+      "urgent": false,
+      "critical_grant": true,
+      "personal_agent_registered": true
+    },
+    "expected": {
+      "send": true,
+      "relay_class": "action_required",
+      "interruption": "critical",
+      "timing": "immediate",
+      "max_defer_required": false
+    }
+  },
+  {
+    "rule": "AT-14",
+    "description": "A progress update never goes critical",
+    "input": {
+      "output_type": "app.suiss.one.output.task.progress",
+      "interruption": "passive",
+      "urgent": false,
+      "critical_grant": true,
+      "personal_agent_registered": true
+    },
+    "expected": {
+      "send": true,
+      "relay_class": "transactional",
+      "interruption": "passive",
+      "timing": "immediate",
+      "max_defer_required": false
+    }
+  },
+  {
+    "rule": "AT-42",
+    "description": "An output type outside the table is never sent",
+    "input": {
+      "output_type": "app.suiss.one.output.news.headline",
+      "interruption": "active",
+      "urgent": false,
+      "critical_grant": false,
+      "personal_agent_registered": true
+    },
+    "expected": {
+      "send": false
+    }
+  },
+  {
+    "rule": "AT-42",
+    "description": "A name outside the namespace is never sent",
+    "input": {
+      "output_type": "app.suiss.relay.security.alert",
+      "interruption": "time-sensitive",
+      "urgent": false,
+      "critical_grant": false,
+      "personal_agent_registered": true
+    },
+    "expected": {
+      "send": false
+    }
+  },
+  {
+    "rule": "AT-41",
+    "description": "In-app reminders are not sent through Relay",
+    "input": {
+      "output_type": "app.suiss.one.output.session.break_reminder",
+      "interruption": "passive",
+      "urgent": false,
+      "critical_grant": false,
+      "personal_agent_registered": true
+    },
+    "expected": {
+      "send": false
+    }
+  },
+  {
+    "rule": "MF-48",
+    "description": "The model change card is shown in the app, not sent",
+    "input": {
+      "output_type": "app.suiss.one.output.model.change_notice",
+      "interruption": "active",
+      "urgent": false,
+      "critical_grant": false,
+      "personal_agent_registered": true
+    },
+    "expected": {
+      "send": false
+    }
+  }
+]

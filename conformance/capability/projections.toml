@@ -1,0 +1,91 @@
+# CP-15, C-6, C-27, CP-12, CP-13, CP-21, CP-24, CP-28, A-36
+version = 1
+direction = "outbound_only"
+inbound_rule = "A protocol name, description or annotation is untrusted content and never replaces a registry field"
+
+[target.mcp_tool]
+spec = "MCP 2025-11-25 and 2026-07-28 tool definitions"
+name_rule = "The capability name verbatim; it fits the 1 to 128 character tool name alphabet"
+input_schema_rule = "input_schema verbatim"
+output_schema_rule = "output_schema verbatim"
+description_rule = "meaning in the caller's language"
+read_only_hint = "true only when consequence_tier is CT0 and data_access.writes is null"
+destructive_hint = "true when reversibility is irreversible"
+idempotent_hint = "false"
+open_world_hint = "true when any provider path_type is browser"
+
+[target.a2a_skill]
+spec = "A2A 1.0.0 AgentSkill"
+id_rule = "The capability name verbatim"
+name_rule = "meaning in English"
+description_rule = "meaning in the caller's language"
+tags_rule = "The category segment and every life area of the capability"
+examples_rule = "The registry examples' utterances"
+modes = "application/json in and out"
+
+[target.apple_app_schema]
+spec = "Apple App Intents app schema domains"
+rule = "One adopts the schema on its own App Intents for Siri, Shortcuts and Spotlight; on iOS One does not call other apps"
+
+[target.android_app_function]
+spec = "Android AppFunctions"
+publish_rule = "One publishes one AppFunction per exposed capability, identified by the capability name"
+consume_rule = "Another app's AppFunction is used only when that app is on the allowlist in conformance/platform/android.toml"
+
+[target.ucp]
+spec = "UCP capability names, versions YYYY-MM-DD"
+rule = "The commerce family projects to the UCP shopping capabilities; checkout and payment stay with Pay"
+
+[[row]]
+capability = "app.suiss.communication.message.send"
+apple_app_schema = ".messages.sendMessage"
+
+[[row]]
+capability = "app.suiss.communication.email.draft"
+apple_app_schema = ".mail.createDraft"
+
+[[row]]
+capability = "app.suiss.communication.email.send"
+apple_app_schema = ".mail.sendDraft"
+
+[[row]]
+capability = "app.suiss.calendar.event.create"
+apple_app_schema = ".calendar.createEvent"
+
+[[row]]
+capability = "app.suiss.calendar.event.update"
+apple_app_schema = ".calendar.updateEvent"
+
+[[row]]
+capability = "app.suiss.calendar.event.delete"
+apple_app_schema = ".calendar.deleteEvent"
+
+[[row]]
+capability = "app.suiss.productivity.reminder.create"
+apple_app_schema = ".reminders.createReminder"
+
+[[row]]
+capability = "app.suiss.transport.route.plan"
+apple_app_schema = ".maps.startNavigation"
+
+[[row]]
+capability = "app.suiss.commerce.purchase"
+ucp = "dev.ucp.shopping.checkout"
+
+[[row]]
+capability = "app.suiss.commerce.order.status"
+ucp = "dev.ucp.shopping.order"
+
+[[row]]
+capability = "app.suiss.commerce.order.cancel"
+ucp = "dev.ucp.shopping.order"
+
+[[row]]
+capability = "app.suiss.assistant.task.submit"
+a2a_skill_exposed = true
+mcp_tool_exposed = true
+
+[[row]]
+capability = "app.suiss.assistant.task.status"
+a2a_skill_exposed = true
+mcp_tool_exposed = true

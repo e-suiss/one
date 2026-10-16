@@ -1,0 +1,161 @@
+// T-31, T-8, MF-6
+syntax = "proto3";
+
+package one.serving.v1;
+
+// The model serving service One's model client calls; serving sees only this contract and no One record.
+service ModelService {
+  // One generation request and its complete response.
+  rpc Generate(GenerateRequest) returns (GenerateResponse);
+  // One generation request answered as a stream; a stream cut short never yields a usable partial output.
+  rpc GenerateStream(GenerateStreamRequest) returns (stream GenerateStreamResponse);
+  // Embeddings for a batch of texts with the embedding model version that produced them.
+  rpc Embed(EmbedRequest) returns (EmbedResponse);
+}
+
+// What the request may use.
+enum Capability {
+  CAPABILITY_UNSPECIFIED = 0;
+  CAPABILITY_TEXT_GENERATION = 1;
+  CAPABILITY_TOOL_CALLING = 2;
+  CAPABILITY_STRUCTURED_OUTPUT = 3;
+  CAPABILITY_LONG_CONTEXT = 4;
+  CAPABILITY_MULTI_STEP_PLANNING = 5;
+}
+
+// The role a model plays, chosen by One's router.
+enum ModelRole {
+  MODEL_ROLE_UNSPECIFIED = 0;
+  MODEL_ROLE_SMALL_LM = 1;
+  MODEL_ROLE_LARGE_LM = 2;
+  MODEL_ROLE_QUARANTINE = 3;
+  MODEL_ROLE_CRITIC = 4;
+}
+
+// Language of the conversation.
+enum Language {
+  LANGUAGE_UNSPECIFIED = 0;
+  LANGUAGE_TR = 1;
+  LANGUAGE_EN = 2;
+}
+
+// Who wrote a message.
+enum MessageRole {
+  MESSAGE_ROLE_UNSPECIFIED = 0;
+  MESSAGE_ROLE_SYSTEM = 1;
+  MESSAGE_ROLE_USER = 2;
+  MESSAGE_ROLE_ASSISTANT = 3;
+  MESSAGE_ROLE_TOOL = 4;
+}
+
+// One message of the context with its provenance label code (SEC-14).
+message Message {
+  MessageRole role = 1;
+  string provenance_label = 2;
+  string content = 3;
+}
+
+// A tool the model may call, with its input JSON Schema as JSON text.
+message Tool {
+  string name = 1;
+  string input_schema_json = 2;
+}
+
+// Request flags.
+message Mode {
+  bool ephemeral = 1;
+  bool personalise = 2;
+}
+
+// A generation request.
+message GenerateRequest {
+  string request_id = 1;
+  string task_id = 2;
+  repeated Capability capabilities = 3;
+  ModelRole role = 4;
+  string model_version_id = 5;
+  string adapter_id = 6;
+  Language language = 7;
+  repeated Message messages = 8;
+  repeated Tool tools = 9;
+  string response_schema_json = 10;
+  uint32 latency_budget_ms = 11;
+  uint32 max_output_tokens = 12;
+  repeated string data_classes = 13;
+  Mode mode = 14;
+}
+
+// The closed error set (MF-6).
+enum ErrorCode {
+  ERROR_CODE_UNSPECIFIED = 0;
+  ERROR_CODE_RATE_LIMITED = 1;
+  ERROR_CODE_REFUSAL = 2;
+  ERROR_CODE_CONTEXT_SIZE_EXCEEDED = 3;
+  ERROR_CODE_UNAVAILABLE = 4;
+}
+
+// Token counts and latency.
+message Usage {
+  uint32 input_tokens = 1;
+  uint32 output_tokens = 2;
+  uint32 cached_tokens = 3;
+  uint32 reasoning_tokens = 4;
+  uint32 latency_ms = 5;
+}
+
+// A tool call the model asked for.
+message ToolCall {
+  string name = 1;
+  string input_json = 2;
+}
+
+// The model's output.
+message Output {
+  string text = 1;
+  string structured_json = 2;
+  repeated ToolCall tool_calls = 3;
+}
+
+// A complete generation response.
+message GenerateResponse {
+  string request_id = 1;
+  string model_version_id = 2;
+  oneof result {
+    Output output = 3;
+    ErrorCode error = 4;
+  }
+  Usage usage = 5;
+}
+
+// A streamed generation request.
+message GenerateStreamRequest {
+  GenerateRequest request = 1;
+}
+
+// One event of a streamed response; only the final event carries the usable output.
+message GenerateStreamResponse {
+  oneof event {
+    string text_delta = 1;
+    GenerateResponse final = 2;
+  }
+}
+
+// An embedding request.
+message EmbedRequest {
+  string request_id = 1;
+  string model_version_id = 2;
+  repeated string texts = 3;
+}
+
+// One embedding.
+message Embedding {
+  repeated float values = 1;
+}
+
+// Embeddings tagged with the model version that produced them (MF-55).
+message EmbedResponse {
+  string request_id = 1;
+  string model_version_id = 2;
+  repeated Embedding embeddings = 3;
+  Usage usage = 4;
+}

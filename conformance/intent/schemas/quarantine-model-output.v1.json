@@ -1,0 +1,248 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/intent/quarantine-model-output/v1.json",
+  "title": "Quarantine model output",
+  "type": "object",
+  "required": [
+    "fields"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "fields": {
+      "type": "object",
+      "maxProperties": 64,
+      "propertyNames": {
+        "$ref": "#/$defs/field_name"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/typed_field",
+        "unevaluatedProperties": false
+      }
+    },
+    "display_summary": {
+      "type": "object",
+      "required": [
+        "text",
+        "lang"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "$ref": "#/$defs/summary_text"
+        },
+        "lang": {
+          "$ref": "#/$defs/lang"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "field_name": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]{0,63}$"
+    },
+    "lang": {
+      "enum": [
+        "tr",
+        "en"
+      ]
+    },
+    "summary_text": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000
+    },
+    "line": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "pattern": "^[^\\u0000-\\u001f\\u007f-\\u009f\\u2028\\u2029]+$"
+    },
+    "option_code": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9_]{0,63}$"
+    },
+    "amount": {
+      "$ref": "https://suiss.app/schemas/one/interaction/common/v1.json#/$defs/money"
+    },
+    "address": {
+      "type": "object",
+      "required": [
+        "lines",
+        "country"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "lines": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 5,
+          "items": {
+            "$ref": "#/$defs/line"
+          }
+        },
+        "locality": {
+          "$ref": "#/$defs/line"
+        },
+        "region": {
+          "$ref": "#/$defs/line"
+        },
+        "postal_code": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9 -]{0,15}$"
+        },
+        "country": {
+          "type": "string",
+          "pattern": "^[A-Z]{2}$"
+        }
+      }
+    },
+    "typed_field": {
+      "type": "object",
+      "required": [
+        "kind",
+        "value"
+      ],
+      "oneOf": [
+        {
+          "properties": {
+            "kind": {
+              "const": "date"
+            },
+            "value": {
+              "type": "string",
+              "format": "date",
+              "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+            }
+          }
+        },
+        {
+          "properties": {
+            "kind": {
+              "const": "date_time"
+            },
+            "value": {
+              "type": "string",
+              "format": "date-time",
+              "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]{1,9})?Z$"
+            }
+          }
+        },
+        {
+          "properties": {
+            "kind": {
+              "const": "amount"
+            },
+            "value": {
+              "$ref": "#/$defs/amount"
+            }
+          }
+        },
+        {
+          "properties": {
+            "kind": {
+              "const": "integer"
+            },
+            "value": {
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            }
+          }
+        },
+        {
+          "properties": {
+            "kind": {
+              "const": "boolean"
+            },
+            "value": {
+              "type": "boolean"
+            }
+          }
+        },
+        {
+          "properties": {
+            "kind": {
+              "const": "name"
+            },
+            "value": {
+              "$ref": "#/$defs/line"
+            }
+          }
+        },
+        {
+          "properties": {
+            "kind": {
+              "const": "email"
+            },
+            "value": {
+              "type": "string",
+              "format": "email",
+              "maxLength": 254,
+              "pattern": "^[^\\s@]+@[^\\s@]+$"
+            }
+          }
+        },
+        {
+          "properties": {
+            "kind": {
+              "const": "phone"
+            },
+            "value": {
+              "type": "string",
+              "pattern": "^\\+[1-9][0-9]{6,14}$"
+            }
+          }
+        },
+        {
+          "properties": {
+            "kind": {
+              "const": "url"
+            },
+            "value": {
+              "type": "string",
+              "format": "uri",
+              "maxLength": 2048,
+              "pattern": "^https?://[^\\s]+$"
+            }
+          }
+        },
+        {
+          "properties": {
+            "kind": {
+              "const": "address"
+            },
+            "value": {
+              "$ref": "#/$defs/address"
+            }
+          }
+        },
+        {
+          "properties": {
+            "kind": {
+              "const": "choice"
+            },
+            "value": {
+              "$ref": "#/$defs/option_code"
+            }
+          }
+        },
+        {
+          "properties": {
+            "kind": {
+              "const": "choice_list"
+            },
+            "value": {
+              "type": "array",
+              "maxItems": 64,
+              "uniqueItems": true,
+              "items": {
+                "$ref": "#/$defs/option_code"
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

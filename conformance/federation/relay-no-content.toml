@@ -1,0 +1,29 @@
+# OO-7, OO-6, OO-35
+
+[test]
+id = "RELAY-NO-CONTENT"
+rules = ["OO-7"]
+vectors = "vectors/relay-no-content.json"
+procedure = [
+  "deliver one message of every kind with a distinct random canary in every typed field, in the note, in the capability name and in the correlation id",
+  "include messages that cause MLS commit, welcome and key-package traffic",
+  "after delivery, lease and ack, export Relay storage, events, logs, traces, metrics and push payloads for the test window",
+  "fail if any canary, any envelope field value, or any field not in allowed_fields appears in the export",
+  "fail if any exported value equals a function of plaintext other than ciphertext size",
+]
+
+[allowed_fields]
+sender = "senderAccessId"
+recipient = "recipient"
+size = "size"
+time = "enqueuedAt"
+rate = "rateBucket"
+relay_typed = ["deliveryClass", "seq", "trustLabel"]
+opaque = ["ciphertext"]
+
+[delivery_class]
+values = ["mls-application", "mls-commit", "mls-welcome", "mls-key-package"]
+note = "assigned from the MLS wire format, not from the decrypted One kind"
+
+[push]
+allowed_fields = ["wake"]

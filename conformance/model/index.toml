@@ -1,0 +1,66 @@
+# MF-6, MF-16, MF-22, MF-55
+
+[[schema]]
+path = "common.v1.json"
+id = "https://suiss.app/schemas/one/model/common/v1.json"
+rules = ["MF-6", "MF-20", "MF-22", "MF-24", "MF-55", "PV-16", "PV-20"]
+
+[[schema]]
+path = "request.v1.json"
+id = "https://suiss.app/schemas/one/model/request/v1.json"
+rules = ["MF-6", "MF-4", "MF-20", "MF-21", "MF-26"]
+
+[[schema]]
+path = "response.v1.json"
+id = "https://suiss.app/schemas/one/model/response/v1.json"
+rules = ["MF-6", "MF-2", "MF-23", "MF-32"]
+
+[[schema]]
+path = "registry-entry.v1.json"
+id = "https://suiss.app/schemas/one/model/registry-entry/v1.json"
+rules = ["MF-55", "MF-16", "MF-13", "MF-14", "MF-28", "MF-32", "MF-41", "MF-44", "MF-45", "MF-46", "MF-52", "T-39 (5)", "SEC-26"]
+
+[[schema]]
+path = "registry.v1.json"
+id = "https://suiss.app/schemas/one/model/registry/v1.json"
+rules = ["MF-55", "MF-16", "T-39 (5)"]
+
+[[schema]]
+path = "embedding-vector.v1.json"
+id = "https://suiss.app/schemas/one/model/embedding-vector/v1.json"
+rules = ["MF-55"]
+
+[[schema]]
+path = "routing-record.v1.json"
+id = "https://suiss.app/schemas/one/model/routing-record/v1.json"
+rules = ["MF-22", "MF-3", "MF-19", "MF-20", "MF-21", "MF-23", "MF-24", "MF-26", "PV-16", "SEC-27"]
+
+[[vectors]]
+path = "vectors/request.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/model/request/v1.json"
+rules = ["MF-6", "MF-20", "MF-26", "MF-50", "T-28 (5)"]
+
+[[vectors]]
+path = "vectors/response.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/model/response/v1.json"
+rules = ["MF-6", "MF-2", "MF-23", "MF-32"]
+
+[[vectors]]
+path = "vectors/registry-entry.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/model/registry-entry/v1.json"
+rules = ["MF-55", "MF-13", "MF-14", "MF-16", "MF-28", "MF-32", "MF-41", "MF-45", "MF-46", "MF-52", "T-39 (5)", "SEC-26"]
+
+[[vectors]]
+path = "vectors/embedding-vector.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/model/embedding-vector/v1.json"
+rules = ["MF-55"]
+
+[[vectors]]
+path = "vectors/routing-record.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/model/routing-record/v1.json"
+rules = ["MF-22", "MF-3", "MF-20", "MF-21", "MF-23", "MF-24", "MF-26"]

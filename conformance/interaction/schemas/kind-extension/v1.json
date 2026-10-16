@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/interaction/kind-extension/v1.json",
+  "title": "Interaction kind extension registry",
+  "description": "Extension kinds: a reverse-DNS name under the Suiss root, a version and a mandatory core kind; an unmapped extension is rejected (C-7, C-3, X-12).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "extension"],
+  "properties": {
+    "version": { "const": 1 },
+    "extension": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/entry" }
+    }
+  },
+  "$defs": {
+    "entry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "version", "maps_to", "meaning", "rule"],
+      "properties": {
+        "name": { "$ref": "../common/v1.json#/$defs/extension_name" },
+        "version": { "type": "integer", "minimum": 1 },
+        "maps_to": { "$ref": "../common/v1.json#/$defs/core_kind" },
+        "meaning": { "type": "string", "minLength": 1, "maxLength": 160 },
+        "rule": { "type": "string", "pattern": "^[A-Z]+(-[A-Z]+)*-[0-9]+$" }
+      }
+    }
+  }
+}

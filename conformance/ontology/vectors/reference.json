@@ -1,0 +1,139 @@
+[
+  {
+    "rule": "C-24",
+    "description": "Grant is a reference only",
+    "input": {
+      "ref": "GrantRef",
+      "id": "grt_1"
+    },
+    "valid": true
+  },
+  {
+    "rule": "C-4",
+    "description": "A reference holds no copy of the owner's record",
+    "input": {
+      "ref": "GrantRef",
+      "id": "grt_1",
+      "scope": [
+        "payments"
+      ],
+      "expires_at": "2026-10-19T08:10:00Z"
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-24",
+    "description": "Suiss person is a PartyRef without copied profile data",
+    "input": {
+      "ref": "PartyRef",
+      "id": "pty_0002",
+      "name": "Ayşe"
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-24",
+    "description": "External person is a pointer to the source entry",
+    "input": {
+      "ref": "ExternalPersonRef",
+      "system": "contacts",
+      "locator": "contact:can"
+    },
+    "valid": true
+  },
+  {
+    "rule": "C-24",
+    "description": "No birth date field",
+    "input": {
+      "ref": "ExternalPersonRef",
+      "system": "contacts",
+      "locator": "contact:can",
+      "birth_date": "1990-04-01"
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-24",
+    "description": "Age arrives only as an Access age band",
+    "input": {
+      "ref": "AgeBandRef",
+      "id": "age_13_15"
+    },
+    "valid": true
+  },
+  {
+    "rule": "C-24",
+    "description": "Presence is a transient Relay signal and has no reference type",
+    "input": {
+      "ref": "PresenceRef",
+      "id": "prs_1"
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-24",
+    "description": "Executor state arrives as Claim and report references",
+    "input": {
+      "ref": "ExecutionReportRef",
+      "id": "rep_8"
+    },
+    "valid": true
+  },
+  {
+    "rule": "C-24",
+    "description": "Payment is a Pay reference",
+    "input": {
+      "ref": "PaymentRef",
+      "id": "pay_3"
+    },
+    "valid": true
+  },
+  {
+    "rule": "C-24",
+    "description": "An identifier containing whitespace is not opaque ASCII",
+    "input": {
+      "ref": "WaitpointRef",
+      "id": "wp 1"
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-24",
+    "description": "ActionRef is the structured Access form",
+    "input": {
+      "namespace": "app.suiss.dining.table",
+      "name": "reserve",
+      "version": "2026-10-01",
+      "schema_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "valid": true
+  },
+  {
+    "rule": "C-24",
+    "description": "ActionRef carries its schema digest",
+    "input": {
+      "namespace": "app.suiss.dining.table",
+      "name": "reserve",
+      "version": "2026-10-01"
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-24",
+    "description": "ActionRef is not an opaque {ref, id} pair",
+    "input": {
+      "ref": "ActionRef",
+      "id": "act_1"
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-24",
+    "description": "A DecisionRecordRef points at an Access decision, approval act or continuation",
+    "input": {
+      "ref": "DecisionRecordRef",
+      "id": "dec_01"
+    },
+    "valid": true
+  }
+]

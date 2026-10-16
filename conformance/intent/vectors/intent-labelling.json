@@ -1,0 +1,141 @@
+[
+  {
+    "rule": "T-36 (2)",
+    "description": "ref takes the variable label; literal takes the join of the planner context labels",
+    "input": {
+      "model_output": {
+        "capability": {
+          "name": "app.suiss.fixture.message.send",
+          "version": "2026-10-01"
+        },
+        "inputs": {
+          "recipient": {
+            "ref": "var_1"
+          },
+          "body": {
+            "literal": "Selam"
+          }
+        }
+      },
+      "variables": {
+        "var_1": {
+          "label": "external.email"
+        }
+      },
+      "planner_context_labels": [
+        "user.direct"
+      ]
+    },
+    "expected": {
+      "inputs": {
+        "recipient": "external.email",
+        "body": "user.direct"
+      },
+      "worst": "external.email"
+    }
+  },
+  {
+    "rule": "T-36 (2)",
+    "description": "literal in a context with memory and an Access record takes record.trusted",
+    "input": {
+      "model_output": {
+        "capability": {
+          "name": "app.suiss.fixture.message.send",
+          "version": "2026-10-01"
+        },
+        "inputs": {
+          "body": {
+            "literal": "Selam"
+          },
+          "recipient": {
+            "literal": "ayse@example.com"
+          }
+        }
+      },
+      "variables": {},
+      "planner_context_labels": [
+        "user.direct",
+        "user.memory",
+        "record.trusted"
+      ]
+    },
+    "expected": {
+      "inputs": {
+        "body": "record.trusted",
+        "recipient": "record.trusted"
+      },
+      "worst": "record.trusted"
+    }
+  },
+  {
+    "rule": "SEC-12",
+    "description": "unknown variable reference opens as external.unknown",
+    "input": {
+      "model_output": {
+        "capability": {
+          "name": "app.suiss.fixture.message.send",
+          "version": "2026-10-01"
+        },
+        "inputs": {
+          "recipient": {
+            "ref": "var_9"
+          },
+          "body": {
+            "literal": "Selam"
+          }
+        }
+      },
+      "variables": {
+        "var_1": {
+          "label": "user.memory"
+        }
+      },
+      "planner_context_labels": [
+        "user.direct"
+      ]
+    },
+    "expected": {
+      "inputs": {
+        "recipient": "external.unknown",
+        "body": "user.direct"
+      },
+      "worst": "external.unknown"
+    }
+  },
+  {
+    "rule": "SEC-14 (1)",
+    "description": "one.inferred variable keeps its label",
+    "input": {
+      "model_output": {
+        "capability": {
+          "name": "app.suiss.fixture.message.send",
+          "version": "2026-10-01"
+        },
+        "inputs": {
+          "recipient": {
+            "ref": "var_2"
+          },
+          "body": {
+            "literal": "Her zamanki"
+          }
+        }
+      },
+      "variables": {
+        "var_2": {
+          "label": "one.inferred"
+        }
+      },
+      "planner_context_labels": [
+        "user.direct",
+        "user.memory"
+      ]
+    },
+    "expected": {
+      "inputs": {
+        "recipient": "one.inferred",
+        "body": "user.memory"
+      },
+      "worst": "one.inferred"
+    }
+  }
+]

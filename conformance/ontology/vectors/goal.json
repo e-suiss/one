@@ -1,0 +1,270 @@
+[
+  {
+    "rule": "C-13",
+    "description": "Goal is an identity bound to its goal records",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Goal",
+      "id": "goal_01m5104bygecsv6csk6csk6csk",
+      "derived_from": [
+        "mem_01m5104dx0enasanananananan"
+      ],
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": true
+  },
+  {
+    "rule": "C-21",
+    "description": "Goal without evidence records is rejected",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Goal",
+      "id": "goal_01m5104bygecsv6csk6csk6csk",
+      "derived_from": [],
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-13",
+    "description": "Goal content comes from goal records, not the Goal object",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Goal",
+      "id": "goal_01m5104bygecsv6csk6csk6csk",
+      "derived_from": [
+        "mem_01m5104dx0enasanananananan"
+      ],
+      "title": "Run 5 km by month end",
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-13",
+    "description": "Goal is not authority",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Goal",
+      "id": "goal_01m5104bygecsv6csk6csk6csk",
+      "derived_from": [
+        "mem_01m5104dx0enasanananananan"
+      ],
+      "authority": "GRANTED",
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-13",
+    "description": "Goal carries no Grant",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Goal",
+      "id": "goal_01m5104bygecsv6csk6csk6csk",
+      "derived_from": [
+        "mem_01m5104dx0enasanananananan"
+      ],
+      "grant": {
+        "ref": "GrantRef",
+        "id": "grt_1"
+      },
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-19",
+    "description": "A model-version prefix is not a Goal identifier",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Goal",
+      "id": "mdl_01m5104ht0f248h248h248h248",
+      "derived_from": [
+        "mem_01m5104dx0enasanananananan"
+      ],
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": false
+  }
+]

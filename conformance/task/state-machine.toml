@@ -1,0 +1,192 @@
+# CP-3, CP-42, CP-44, CP-11, INV-30, INV-32
+version = 1
+event_schema = "https://suiss.app/schemas/one/task/event/v1.json"
+initial_event = "task_created"
+initial_state = "pending"
+
+[[state]]
+name = "pending"
+terminal = false
+meaning = "Planned; the first step has not started"
+
+[[state]]
+name = "running"
+terminal = false
+meaning = "A step is executing"
+
+[[state]]
+name = "waiting_user"
+terminal = false
+meaning = "Waiting for the user's approval, input or takeover at a Relay waitpoint"
+
+[[state]]
+name = "waiting_external"
+terminal = false
+meaning = "Waiting for an external event: a peer One's reply, a price threshold, a site, a trigger event"
+
+[[state]]
+name = "paused"
+terminal = false
+meaning = "Stopped by the user or One; the Executor confirmed the pause"
+
+[[state]]
+name = "completed"
+terminal = true
+meaning = "The completion criterion was verified"
+
+[[state]]
+name = "failed"
+terminal = true
+meaning = "The completion criterion could not be reached; reason and completed steps stay visible"
+
+[[state]]
+name = "cancelled"
+terminal = true
+meaning = "The user gave up or the authority was removed"
+
+[[transition]]
+event = "task_created"
+from = []
+to = "pending"
+guard = "first_event"
+
+[[transition]]
+event = "step_started"
+from = ["pending", "running"]
+to = "running"
+guard = "step_not_started"
+
+[[transition]]
+event = "wait_opened"
+when = { wait = "user" }
+from = ["running"]
+to = "waiting_user"
+guard = "no_open_wait"
+
+[[transition]]
+event = "wait_opened"
+when = { wait = "external" }
+from = ["running"]
+to = "waiting_external"
+guard = "no_open_wait"
+
+[[transition]]
+event = "wait_resolved"
+from = ["waiting_user", "waiting_external"]
+to = "running"
+guard = "waitpoint_is_open_wait"
+
+[[transition]]
+event = "wait_expired"
+from = ["waiting_user", "waiting_external"]
+to = "failed"
+guard = "waitpoint_is_open_wait"
+
+[[transition]]
+event = "pause_confirmed"
+from = ["running"]
+to = "paused"
+guard = "pause_request_open"
+
+[[transition]]
+event = "resumed"
+from = ["paused"]
+to = "running"
+
+[[transition]]
+event = "completion_verified"
+from = ["running"]
+to = "completed"
+guard = "no_step_running"
+
+[[transition]]
+event = "task_failed"
+from = ["running"]
+to = "failed"
+
+[[transition]]
+event = "task_cancelled"
+from = ["pending", "running", "waiting_user", "waiting_external", "paused"]
+to = "cancelled"
+
+[[stay]]
+event = "step_finished"
+in = ["running"]
+guard = "step_running"
+
+[[stay]]
+event = "pause_requested"
+in = ["running"]
+
+[[stay]]
+event = "checkpoint_recorded"
+in = ["running", "waiting_user", "waiting_external", "paused"]
+
+[[stay]]
+event = "step_outcome_reported"
+in = ["pending", "running", "waiting_user", "waiting_external", "paused", "completed", "failed", "cancelled"]
+guard = "step_started_before"
+
+[[guard]]
+name = "first_event"
+rule = "The event is the first of the history and carries seq 1"
+
+[[guard]]
+name = "step_not_started"
+rule = "No earlier step_started carries the same step_id"
+
+[[guard]]
+name = "step_running"
+rule = "A step_started with this step_id exists and no step_finished for it yet"
+
+[[guard]]
+name = "no_step_running"
+rule = "Every started step has a step_finished"
+
+[[guard]]
+name = "step_started_before"
+rule = "A step_started with this step_id exists"
+
+[[guard]]
+name = "no_open_wait"
+rule = "No waitpoint is open; at most one waitpoint drives the task state at a time"
+
+[[guard]]
+name = "waitpoint_is_open_wait"
+rule = "waitpoint_ref equals the waitpoint of the wait_opened that entered the current waiting state"
+
+[[guard]]
+name = "pause_request_open"
+rule = "A pause_requested was recorded since the task last entered running"
+
+[[reject]]
+code = "first_event_not_created"
+rule = "The history does not start with task_created"
+
+[[reject]]
+code = "duplicate_created"
+rule = "task_created appears after the first event"
+
+[[reject]]
+code = "seq_not_contiguous"
+rule = "seq does not equal the previous seq plus one"
+
+[[reject]]
+code = "task_id_mismatch"
+rule = "An event carries another task_id than the first event"
+
+[[reject]]
+code = "schema_invalid"
+rule = "The event does not validate against the event schema; this covers pause_confirmed from any source but the Executor"
+
+[[reject]]
+code = "illegal_transition"
+rule = "No transition or stay row admits the event in the current non-terminal state"
+
+[[reject]]
+code = "event_after_terminal"
+rule = "Any event other than step_outcome_reported after completed, failed or cancelled"
+
+[[reject]]
+code = "guard_failed"
+rule = "A row admits the event but its guard does not hold"

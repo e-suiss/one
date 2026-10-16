@@ -1,0 +1,210 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/task/event/v1.json",
+  "title": "TaskEvent",
+  "description": "One entry of a task's event history. The task state is a deterministic fold of these events over the transition table in state-machine.toml.",
+  "type": "object",
+  "required": ["task_id", "seq", "at", "source", "kind"],
+  "properties": {
+    "task_id": { "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/task_id" },
+    "seq": { "type": "integer", "minimum": 1 },
+    "at": { "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/timestamp" },
+    "source": { "type": "string", "enum": ["user", "one", "executor", "access", "relay"] },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "task_created",
+        "step_started",
+        "step_finished",
+        "step_outcome_reported",
+        "wait_opened",
+        "wait_resolved",
+        "wait_expired",
+        "pause_requested",
+        "pause_confirmed",
+        "resumed",
+        "checkpoint_recorded",
+        "completion_verified",
+        "task_failed",
+        "task_cancelled"
+      ]
+    }
+  },
+  "oneOf": [
+    { "$ref": "#/$defs/task_created" },
+    { "$ref": "#/$defs/step_started" },
+    { "$ref": "#/$defs/step_finished" },
+    { "$ref": "#/$defs/step_outcome_reported" },
+    { "$ref": "#/$defs/wait_opened" },
+    { "$ref": "#/$defs/wait_resolved" },
+    { "$ref": "#/$defs/wait_expired" },
+    { "$ref": "#/$defs/pause_requested" },
+    { "$ref": "#/$defs/pause_confirmed" },
+    { "$ref": "#/$defs/resumed" },
+    { "$ref": "#/$defs/checkpoint_recorded" },
+    { "$ref": "#/$defs/completion_verified" },
+    { "$ref": "#/$defs/task_failed" },
+    { "$ref": "#/$defs/task_cancelled" }
+  ],
+  "$defs": {
+    "step_id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9_-]{0,63}$" },
+    "task_created": {
+      "additionalProperties": false,
+      "required": ["plan_version"],
+      "properties": {
+        "task_id": true, "seq": true, "at": true, "kind": { "const": "task_created" },
+        "source": { "enum": ["one", "user"] },
+        "plan_version": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "step_started": {
+      "additionalProperties": false,
+      "required": ["step_id", "effectful"],
+      "properties": {
+        "task_id": true, "seq": true, "at": true, "kind": { "const": "step_started" },
+        "source": { "const": "executor" },
+        "step_id": { "$ref": "#/$defs/step_id" },
+        "effectful": { "type": "boolean" },
+        "decision_ref": { "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/decision_ref" },
+        "exercise_ref": { "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/exercise_ref" }
+      },
+      "if": { "properties": { "effectful": { "const": true } } },
+      "then": { "required": ["decision_ref", "exercise_ref"] }
+    },
+    "step_finished": {
+      "additionalProperties": false,
+      "required": ["step_id", "result"],
+      "properties": {
+        "task_id": true, "seq": true, "at": true, "kind": { "const": "step_finished" },
+        "source": { "const": "executor" },
+        "step_id": { "$ref": "#/$defs/step_id" },
+        "result": { "$ref": "https://suiss.app/schemas/one/task/step-result/v1.json" }
+      }
+    },
+    "step_outcome_reported": {
+      "description": "A late Executor report that turns an unknown outcome into a confirmed one; allowed in every state, terminal included, and never changes the task state.",
+      "additionalProperties": false,
+      "required": ["step_id", "outcome"],
+      "properties": {
+        "task_id": true, "seq": true, "at": true, "kind": { "const": "step_outcome_reported" },
+        "source": { "const": "executor" },
+        "step_id": { "$ref": "#/$defs/step_id" },
+        "outcome": {
+          "allOf": [
+            { "$ref": "https://suiss.app/schemas/one/task/outcome/v1.json" },
+            { "properties": { "certainty": { "const": "confirmed" } } }
+          ]
+        }
+      }
+    },
+    "wait_opened": {
+      "additionalProperties": false,
+      "required": ["wait", "waitpoint_ref", "reason"],
+      "properties": {
+        "task_id": true, "seq": true, "at": true, "kind": { "const": "wait_opened" },
+        "source": { "const": "one" },
+        "wait": { "enum": ["user", "external"] },
+        "waitpoint_ref": { "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/waitpoint_ref" },
+        "reason": {
+          "enum": ["approval", "input", "takeover", "authentication", "peer_reply", "price_threshold", "site", "trigger_event", "user_absent"]
+        }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "wait": { "const": "user" } } },
+          "then": { "properties": { "reason": { "enum": ["approval", "input", "takeover", "authentication", "user_absent"] } } },
+          "else": { "properties": { "reason": { "enum": ["peer_reply", "price_threshold", "site", "trigger_event"] } } }
+        }
+      ]
+    },
+    "wait_resolved": {
+      "additionalProperties": false,
+      "required": ["waitpoint_ref", "continuation_ref"],
+      "properties": {
+        "task_id": true, "seq": true, "at": true, "kind": { "const": "wait_resolved" },
+        "source": { "const": "relay" },
+        "waitpoint_ref": { "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/waitpoint_ref" },
+        "continuation_ref": { "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/decision_ref" }
+      }
+    },
+    "wait_expired": {
+      "additionalProperties": false,
+      "required": ["waitpoint_ref"],
+      "properties": {
+        "task_id": true, "seq": true, "at": true, "kind": { "const": "wait_expired" },
+        "source": { "const": "relay" },
+        "waitpoint_ref": { "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/waitpoint_ref" }
+      }
+    },
+    "pause_requested": {
+      "additionalProperties": false,
+      "required": [],
+      "properties": {
+        "task_id": true, "seq": true, "at": true, "kind": { "const": "pause_requested" },
+        "source": { "enum": ["user", "one"] }
+      }
+    },
+    "pause_confirmed": {
+      "additionalProperties": false,
+      "required": ["execution_report_ref"],
+      "properties": {
+        "task_id": true, "seq": true, "at": true, "kind": { "const": "pause_confirmed" },
+        "source": { "const": "executor" },
+        "execution_report_ref": { "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/execution_report_ref" }
+      }
+    },
+    "resumed": {
+      "additionalProperties": false,
+      "required": ["continuation_ref"],
+      "properties": {
+        "task_id": true, "seq": true, "at": true, "kind": { "const": "resumed" },
+        "source": { "const": "one" },
+        "continuation_ref": { "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/decision_ref" }
+      }
+    },
+    "checkpoint_recorded": {
+      "additionalProperties": false,
+      "required": ["checkpoint_ref"],
+      "properties": {
+        "task_id": true, "seq": true, "at": true, "kind": { "const": "checkpoint_recorded" },
+        "source": { "const": "executor" },
+        "checkpoint_ref": { "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/checkpoint_ref" }
+      }
+    },
+    "completion_verified": {
+      "additionalProperties": false,
+      "required": ["evidence_ref"],
+      "properties": {
+        "task_id": true, "seq": true, "at": true, "kind": { "const": "completion_verified" },
+        "source": { "const": "one" },
+        "evidence_ref": {
+          "oneOf": [
+            { "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/claim_ref" },
+            { "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/execution_report_ref" }
+          ]
+        }
+      }
+    },
+    "task_failed": {
+      "additionalProperties": false,
+      "required": ["reason"],
+      "properties": {
+        "task_id": true, "seq": true, "at": true, "kind": { "const": "task_failed" },
+        "source": { "enum": ["one", "executor"] },
+        "reason": { "enum": ["criterion_unreachable", "step_failed", "step_unknown", "budget_exhausted", "blocked_by_site", "terms_forbid_agents"] }
+      }
+    },
+    "task_cancelled": {
+      "additionalProperties": false,
+      "required": ["cause"],
+      "properties": {
+        "task_id": true, "seq": true, "at": true, "kind": { "const": "task_cancelled" },
+        "source": { "enum": ["user", "access"] },
+        "cause": { "enum": ["user", "authority_revoked"] }
+      },
+      "if": { "properties": { "cause": { "const": "user" } } },
+      "then": { "properties": { "source": { "const": "user" } } },
+      "else": { "properties": { "source": { "const": "access" } } }
+    }
+  }
+}

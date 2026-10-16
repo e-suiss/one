@@ -1,0 +1,92 @@
+# SEC-2, SEC-4, SEC-12, SEC-13, SEC-19, SEC-21 (1), SEC-31 (3), MD-4 (1), INV-10, CP-5, T-31, T-36 (2, 6)
+
+[[schema]]
+path = "schemas/origin-set.v1.json"
+id = "https://suiss.app/schemas/one/intent/origin-set/v1.json"
+rules = ["SEC-19", "CP-35", "Access E54 (4)"]
+
+[[schema]]
+path = "schemas/capability-ref.v1.json"
+id = "https://suiss.app/schemas/one/intent/capability-ref/v1.json"
+rules = ["CP-15", "CP-16", "CP-5"]
+
+[[schema]]
+path = "schemas/typed-intent.v1.json"
+id = "https://suiss.app/schemas/one/intent/typed-intent/v1.json"
+rules = ["SEC-4", "SEC-14 (4)", "SEC-19", "SEC-31 (3)", "MD-4 (1)", "INV-10", "CP-5"]
+
+[[schema]]
+path = "schemas/intent-model-output.v1.json"
+id = "https://suiss.app/schemas/one/intent/intent-model-output/v1.json"
+rules = ["SEC-4", "SEC-12", "T-31", "T-36 (2)"]
+
+[[schema]]
+path = "schemas/quarantine-model-output.v1.json"
+id = "https://suiss.app/schemas/one/intent/quarantine-model-output/v1.json"
+rules = ["SEC-13 (1)", "SEC-13 (4)", "T-31"]
+
+[[schema]]
+path = "schemas/quarantine-output.v1.json"
+id = "https://suiss.app/schemas/one/intent/quarantine-output/v1.json"
+rules = ["SEC-13 (1)", "SEC-13 (3)", "T-31", "T-36 (6)"]
+
+[[schema]]
+path = "schemas/model-context.v1.json"
+id = "https://suiss.app/schemas/one/intent/model-context/v1.json"
+rules = ["SEC-2", "SEC-3", "SEC-12", "SEC-13 (1)", "SEC-13 (2)", "SEC-21 (1)", "M-2", "INV-15", "T-36 (2)"]
+
+[[schema]]
+path = "fixtures/message-send-input.v1.json"
+id = "https://suiss.app/schemas/one/intent/fixture/message-send-input/v1.json"
+rules = ["CP-5", "CP-16"]
+
+[[vectors]]
+path = "vectors/typed-intent.schema.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/intent/typed-intent/v1.json"
+rules = ["SEC-4", "SEC-14 (2)", "SEC-14 (4)", "SEC-19", "CP-5"]
+
+[[vectors]]
+path = "vectors/intent-acceptance.json"
+kind = "behaviour"
+rules = ["SEC-4", "SEC-14 (1)", "SEC-14 (4)", "SEC-19", "SEC-31 (3)", "INV-10", "CP-5"]
+
+[[vectors]]
+path = "vectors/intent-model-output.schema.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/intent/intent-model-output/v1.json"
+rules = ["SEC-4", "SEC-12", "T-36 (2)"]
+
+[[vectors]]
+path = "vectors/intent-labelling.json"
+kind = "behaviour"
+rules = ["SEC-12", "SEC-14 (1)", "T-36 (2)"]
+
+[[vectors]]
+path = "vectors/quarantine-model-output.schema.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/intent/quarantine-model-output/v1.json"
+rules = ["SEC-13 (1)", "SEC-13 (3)", "SEC-13 (4)"]
+
+[[vectors]]
+path = "vectors/quarantine-output.schema.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/intent/quarantine-output/v1.json"
+rules = ["SEC-13 (1)", "SEC-13 (3)", "T-36 (6)"]
+
+[[vectors]]
+path = "vectors/model-context.schema.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/intent/model-context/v1.json"
+rules = ["SEC-2", "SEC-3", "SEC-12", "SEC-13 (1)", "SEC-13 (2)", "SEC-21 (1)", "T-36 (2)"]
+
+[[vectors]]
+path = "vectors/control-separation.json"
+kind = "behaviour"
+rules = ["SEC-2", "SEC-21 (1)"]
+
+[[vectors]]
+path = "vectors/fixture-message-send-input.schema.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/intent/fixture/message-send-input/v1.json"
+rules = ["CP-5"]

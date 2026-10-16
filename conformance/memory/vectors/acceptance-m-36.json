@@ -1,0 +1,153 @@
+[
+  {
+    "rule": "M-36",
+    "description": "conflict: the server version wins and replaces the device cache",
+    "input": {
+      "server": {
+        "id": "mem_01k742v0tges7ahv74rwr6c2dw",
+        "version": 3
+      },
+      "device_cache": {
+        "id": "mem_01k742v0tges7ahv74rwr6c2dw",
+        "version": 2,
+        "locally_modified": true
+      }
+    },
+    "expected": {
+      "device_cache": {
+        "id": "mem_01k742v0tges7ahv74rwr6c2dw",
+        "version": 3
+      },
+      "server": {
+        "id": "mem_01k742v0tges7ahv74rwr6c2dw",
+        "version": 3
+      }
+    }
+  },
+  {
+    "rule": "M-36",
+    "description": "an offline remember is queued as an episode and processed by the server",
+    "input": {
+      "device_offline": true,
+      "utterance": {
+        "text": "Bunu hatırla: annemin doğum günü 3 Mayıs.",
+        "lang": "tr"
+      },
+      "device_clock": "2026-10-05T09:00:00Z",
+      "reconnect_at": "2026-10-05T18:00:00Z"
+    },
+    "expected": {
+      "device_queue": [
+        {
+          "kind": "explicit_remember",
+          "queued_on_device": true
+        }
+      ],
+      "on_reconnect": {
+        "server_creates": "record",
+        "recorded_at": "server_time",
+        "epistemic_state": "stated",
+        "status": "active",
+        "reflected_to_device": true
+      }
+    }
+  },
+  {
+    "rule": "M-36",
+    "description": "an offline correction is processed against the server head on reconnect",
+    "input": {
+      "device_saw": {
+        "id": "mem_01k742v0tges7ahv74rwr6c2dw",
+        "version": 2
+      },
+      "server_head": {
+        "id": "mem_01k742v0tges7ahv74rwr6c2dw",
+        "version": 3
+      },
+      "queued": {
+        "kind": "conversation_turn",
+        "intent": "correct"
+      }
+    },
+    "expected": {
+      "server_writes": {
+        "version": 4,
+        "supersedes": "mem_01k742v0tges7ahv74rwr6c2dw"
+      },
+      "invalidated": {
+        "id": "mem_01k742v0tges7ahv74rwr6c2dw",
+        "version": 3
+      }
+    }
+  },
+  {
+    "rule": "M-36",
+    "description": "a device cannot push a merged memory record",
+    "input": {
+      "device_push": {
+        "kind": "memory_record",
+        "merge": "crdt"
+      }
+    },
+    "expected": {
+      "outcome": "rejected",
+      "error": "server_authoritative"
+    }
+  },
+  {
+    "rule": "M-36",
+    "description": "recorded_at is set by the server, never by the device clock",
+    "input": {
+      "device_push": {
+        "kind": "episode",
+        "recorded_at": "2020-01-01T00:00:00Z"
+      }
+    },
+    "expected": {
+      "recorded_at": "server_time",
+      "device_value": "ignored"
+    }
+  },
+  {
+    "rule": "M-37",
+    "description": "a device-only sensitive class never syncs to the cloud",
+    "input": {
+      "record": {
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": [
+            "health"
+          ]
+        }
+      },
+      "device_only_classes": [
+        "health"
+      ]
+    },
+    "expected": {
+      "uploaded": false,
+      "cloud_backup": false
+    }
+  },
+  {
+    "rule": "M-36",
+    "description": "the device cache is a subset encrypted with the device key",
+    "input": {
+      "cache": {
+        "contents": [
+          "frequent_preferences",
+          "upcoming_events",
+          "contacts",
+          "their_vectors"
+        ]
+      }
+    },
+    "expected": {
+      "store": "sqlite",
+      "encrypted_with": "device_key",
+      "canonical": false
+    }
+  }
+]

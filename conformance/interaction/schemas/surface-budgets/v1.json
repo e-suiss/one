@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/interaction/surface-budgets/v1.json",
+  "title": "Surface budget table",
+  "description": "Size budgets per surface class and target; an Interaction that does not fit a target is sent there only as its minimal projection with a deep link (X-13).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "schema", "outcomes", "order", "text_unit", "byte_unit", "minimal", "rule", "target"],
+  "properties": {
+    "version": { "const": 1 },
+    "schema": { "const": "https://suiss.app/schemas/one/interaction/surface-budgets/v1.json" },
+    "outcomes": { "const": ["full", "minimal", "neutral", "redirect", "none"] },
+    "order": {
+      "const": ["undeclared_target", "sensitive_on_voice", "approval_above_ceiling", "kind_not_on_target", "always_minimal", "over_budget", "fits"]
+    },
+    "text_unit": { "const": "unicode_code_point" },
+    "byte_unit": { "const": "utf8_canonical_json" },
+    "minimal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sentence_max_chars", "label_max_chars", "answers", "deep_link"],
+      "properties": {
+        "sentence_max_chars": { "const": 120 },
+        "label_max_chars": { "const": 12 },
+        "answers": { "const": 2 },
+        "deep_link": { "const": true }
+      }
+    },
+    "rule": {
+      "type": "object",
+      "propertyNames": { "enum": ["undeclared_target", "sensitive_on_voice", "approval_above_ceiling", "kind_not_on_target", "always_minimal", "over_budget", "fits"] },
+      "additionalProperties": {
+        "type": "object",
+        "required": ["outcome"],
+        "properties": {
+          "outcome": { "enum": ["full", "minimal", "neutral", "redirect", "none"] },
+          "targets": { "type": "array", "items": { "type": "string" } },
+          "neutral": { "$ref": "../common/v1.json#/$defs/localized" },
+          "redirect": { "$ref": "../common/v1.json#/$defs/localized" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "target": {
+      "type": "object",
+      "propertyNames": {
+        "enum": ["workspace", "notification", "live_activity", "live_update", "widget", "menu_bar", "watch_app", "complication", "car_voice", "glasses_display", "glasses_voice"]
+      },
+      "additionalProperties": { "$ref": "#/$defs/target" }
+    }
+  },
+  "$defs": {
+    "chars": { "type": "integer", "minimum": 0, "maximum": 200 },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["class", "kinds"],
+      "properties": {
+        "class": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "../common/v1.json#/$defs/surface_class" } },
+        "kinds": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "../common/v1.json#/$defs/core_kind" } },
+        "platform": { "enum": ["ios", "android"] },
+        "always_minimal": { "type": "boolean" },
+        "passive_only": { "type": "boolean" },
+        "max_components": { "type": "integer", "maximum": 12 },
+        "max_choice_options": { "type": "integer", "maximum": 10 },
+        "max_comparison_options": { "type": "integer", "maximum": 4 },
+        "max_form_fields": { "type": "integer", "maximum": 20 },
+        "max_title_chars": { "$ref": "#/$defs/chars" },
+        "max_body_chars": { "$ref": "#/$defs/chars" },
+        "max_status_chars": { "$ref": "#/$defs/chars" },
+        "max_chars": { "$ref": "#/$defs/chars" },
+        "max_spoken_chars": { "$ref": "#/$defs/chars" },
+        "max_spoken_options": { "type": "integer", "minimum": 0, "maximum": 3 },
+        "max_actions": { "type": "integer", "minimum": 0, "maximum": 3 },
+        "max_buttons": { "type": "integer", "minimum": 0, "maximum": 2 },
+        "max_bytes": { "const": 4096 },
+        "bytes_cover": { "const": ["attributes", "content_state"] },
+        "max_active_hours": { "const": 8 },
+        "max_visible_hours": { "const": 12 },
+        "network": { "const": false },
+        "chip_max_width_dp": { "const": 96 },
+        "chip_max_chars": { "type": "integer", "minimum": 1, "maximum": 7 },
+        "custom_view": { "const": false },
+        "rich_approval_card": { "const": false },
+        "lock_screen_sensitive": { "const": "relay_neutral_text" },
+        "images": { "type": "integer", "minimum": 0, "maximum": 1 },
+        "lists": { "type": "integer", "minimum": 0, "maximum": 1 },
+        "approval_gesture": { "enum": ["hold", "two_step"] },
+        "text": { "type": "boolean" },
+        "visual": { "type": "boolean" },
+        "answer": { "const": "binary_voice" },
+        "primitives": { "type": "array", "uniqueItems": true, "items": { "enum": ["text", "image", "list", "button"] } },
+        "video": { "const": false },
+        "max_list_items": { "type": "integer", "minimum": 0, "maximum": 3 },
+        "max_list_item_chars": { "$ref": "#/$defs/chars" },
+        "max_images": { "type": "integer", "minimum": 0, "maximum": 1 },
+        "image_load": { "const": "on_user_open" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "class": { "contains": { "const": "voice:car" } } } },
+          "then": { "required": ["text", "visual"], "properties": { "text": { "const": false }, "visual": { "const": false } } }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/attention/relay-mapping/v1.json",
+  "title": "One output to Relay class mapping table",
+  "$comment": "AT-42, AT-6, AT-14, Relay CH-65, Relay CH-68",
+  "type": "object",
+  "required": ["version", "forbidden_classes", "unlisted_output_type", "row"],
+  "additionalProperties": false,
+  "properties": {
+    "version": { "const": 1 },
+    "forbidden_classes": {
+      "type": "array",
+      "contains": { "const": "security" },
+      "items": { "$ref": "https://suiss.app/schemas/one/attention/common/v1.json#/$defs/RelayClass" }
+    },
+    "unlisted_output_type": { "const": "never_send" },
+    "row": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "oneOf": [
+          { "$ref": "#/$defs/ClassRow" },
+          { "$ref": "#/$defs/CriticalRow" }
+        ]
+      }
+    }
+  },
+  "$defs": {
+    "ClassRow": {
+      "type": "object",
+      "required": [
+        "id",
+        "relay_class",
+        "interruption_ceiling",
+        "timing_default",
+        "timing_immediate_only_if_urgent",
+        "max_defer_required_on_next_break",
+        "critical_overlay",
+        "rules"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "enum": ["approval_request", "own_work_info", "progress_update"] },
+        "relay_class": { "$ref": "https://suiss.app/schemas/one/attention/common/v1.json#/$defs/OneRelayClass" },
+        "interruption_ceiling": { "enum": ["passive", "active", "time-sensitive"] },
+        "requires_personal_agent": { "type": "boolean" },
+        "timing_default": { "$ref": "https://suiss.app/schemas/one/attention/common/v1.json#/$defs/Timing" },
+        "timing_immediate_only_if_urgent": { "type": "boolean" },
+        "max_defer_required_on_next_break": { "type": "boolean" },
+        "critical_overlay": { "type": "boolean" },
+        "rules": { "$ref": "#/$defs/Rules" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "id": { "const": "approval_request" } } },
+          "then": {
+            "properties": {
+              "relay_class": { "const": "action_required" },
+              "timing_default": { "const": "next_break" },
+              "max_defer_required_on_next_break": { "const": true }
+            }
+          }
+        },
+        {
+          "if": { "properties": { "id": { "const": "own_work_info" } } },
+          "then": {
+            "required": ["requires_personal_agent"],
+            "properties": {
+              "relay_class": { "const": "transactional" },
+              "requires_personal_agent": { "const": true }
+            }
+          }
+        },
+        {
+          "if": { "properties": { "id": { "const": "progress_update" } } },
+          "then": {
+            "properties": {
+              "relay_class": { "const": "transactional" },
+              "interruption_ceiling": { "const": "passive" },
+              "critical_overlay": { "const": false }
+            }
+          }
+        }
+      ]
+    },
+    "CriticalRow": {
+      "type": "object",
+      "required": ["id", "relay_class", "interruption", "timing", "overlays", "requires_access_grant", "counts_toward_budget", "rules"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "const": "critical_grant" },
+        "relay_class": { "const": "inherit" },
+        "interruption": { "const": "critical" },
+        "timing": { "const": "immediate" },
+        "overlays": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "enum": ["approval_request", "own_work_info"] }
+        },
+        "requires_access_grant": { "const": true },
+        "counts_toward_budget": { "const": false },
+        "rules": { "$ref": "#/$defs/Rules" }
+      }
+    },
+    "Rules": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "pattern": "^((Access|Relay|Work) )?[A-Z]+(-[A-Z]+)*-[0-9]+$" }
+    }
+  }
+}

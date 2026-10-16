@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/provenance/access-mapping/v1.json",
+  "title": "One label to Access provenance mapping pair",
+  "type": "object",
+  "required": ["label", "provenance"],
+  "additionalProperties": false,
+  "properties": {
+    "label": {
+      "$ref": "https://suiss.app/schemas/one/provenance/label/v1.json"
+    },
+    "provenance": {
+      "$ref": "https://suiss.app/schemas/one/provenance/access-provenance/v1.json"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "label": { "$ref": "https://suiss.app/schemas/one/provenance/label/v1.json#/$defs/user" } }
+      },
+      "then": {
+        "properties": { "provenance": { "const": "user" } }
+      }
+    },
+    {
+      "if": {
+        "properties": { "label": { "const": "record.trusted" } }
+      },
+      "then": {
+        "properties": { "provenance": { "const": "trusted" } }
+      }
+    },
+    {
+      "if": {
+        "properties": { "label": { "$ref": "https://suiss.app/schemas/one/provenance/label/v1.json#/$defs/untrusted" } }
+      },
+      "then": {
+        "properties": { "provenance": { "const": "untrusted-external" } }
+      }
+    }
+  ]
+}

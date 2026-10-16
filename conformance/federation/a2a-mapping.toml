@@ -1,0 +1,200 @@
+# OO-1, OO-4, OO-15, OO-16, OO-19, OO-20, OO-25
+
+[extension]
+uri = "https://suiss.app/a2a/one-federation/v1"
+a2a_version = "1.0"
+a2a_reference = "A2A Protocol Specification v1.0.1 (2026-05-28), sections 3.2.6, 4.4.4, 4.6, 5.5, 11, 14.2.2"
+extension_type = "profile"
+required = true
+schema_language = "JSON Schema 2020-12"
+schema_base = "https://suiss.app/schemas/one/federation/"
+versioning = "URI carries the major version; a breaking change takes a new URI (/v2) and peers never fall back to an older URI; schemaVersion MAJOR.MINOR inside the envelope, a MINOR only adds optional members; peers use the highest schemaVersion both list in AgentExtension.params.schemaVersions"
+binding = "HTTP+JSON"
+media_type = "application/a2a+json"
+activation = "client sends A2A-Extensions with the URI on every request; a server answers a request without it with ExtensionSupportRequiredError; the response lists the URI in A2A-Extensions"
+metadata_key = "the extension URI itself is the single metadata key; its value is the extension object"
+person_to_person_carriage = "the A2A HTTP+JSON request body is the plaintext of an MLS application message delivered through the recipient's agent mailbox"
+organization_carriage = "direct A2A HTTP+JSON over TLS to the organisation agent's endpoint"
+
+[[object]]
+a2a = "Task"
+one = "one offer chain; projection of the Work commitment in its requested and countered phases"
+rules = ["OO-1", "OO-25"]
+schema = "schemas/task.v1.json"
+
+[[object]]
+a2a = "Task.contextId"
+one = "Work correlation id; identical on every message of the chain"
+rules = ["OO-16"]
+
+[[object]]
+a2a = "Message"
+one = "one typed message"
+rules = ["OO-15", "OO-16"]
+schema = "schemas/message.v1.json"
+
+[[object]]
+a2a = "Message.metadata[uri]"
+one = "envelope: mandatory fields, reply reference, handle, first-contact fields"
+rules = ["OO-3", "OO-5", "OO-16"]
+schema = "schemas/envelope.v1.json"
+
+[[object]]
+a2a = "Part (data, part = body)"
+one = "typed body; fields are values of a taxonomy capability schema"
+rules = ["OO-15"]
+schema = "schemas/body.v1.json"
+
+[[object]]
+a2a = "Part (text, part = note)"
+one = "free-text note, untrusted, human only"
+rules = ["OO-17"]
+schema = "schemas/note.v1.json"
+
+[[object]]
+a2a = "Artifact (part = commitment)"
+one = "reference to the Work commitment created by acceptance"
+rules = ["OO-1", "OO-19"]
+schema = "schemas/task.v1.json#/$defs/commitmentArtifact"
+
+[[object]]
+a2a = "AgentCard.capabilities.extensions[]"
+one = "declaration of the extension, accepted schema versions, kinds and capabilities"
+rules = ["OO-4"]
+schema = "schemas/agent-extension.v1.json"
+
+# OO-15
+
+[kind_selection]
+key = ["kind", "sender_role", "work_state"]
+rule = "exactly one row matches a message; no match is refused with operation-not-permitted and no Work operation is written"
+
+[[kind]]
+kind = "offer"
+sender_role = "creditor"
+work_state = "none"
+work_operation = "request"
+work_result = "requested"
+task_state_after = "TASK_STATE_INPUT_REQUIRED"
+rules = ["OO-15"]
+
+[[kind]]
+kind = "counter-offer"
+sender_role = "debtor-candidate"
+work_state = "requested"
+work_operation = "counter"
+work_result = "countered"
+task_state_after = "TASK_STATE_INPUT_REQUIRED"
+rules = ["OO-15", "OO-16"]
+
+[[kind]]
+kind = "counter-offer"
+sender_role = "creditor"
+work_state = "countered"
+work_operation = "counter"
+work_result = "requested"
+task_state_after = "TASK_STATE_INPUT_REQUIRED"
+rules = ["OO-15", "OO-16"]
+
+[[kind]]
+kind = "commitment"
+sender_role = "debtor-candidate"
+work_state = "requested"
+work_operation = "promise"
+work_result = "promised"
+task_state_after = "TASK_STATE_COMPLETED"
+rules = ["OO-15", "OO-19"]
+
+[[kind]]
+kind = "commitment"
+sender_role = "creditor"
+work_state = "countered"
+work_operation = "accept-counter"
+work_result = "promised"
+task_state_after = "TASK_STATE_COMPLETED"
+rules = ["OO-15", "OO-19"]
+
+[[kind]]
+kind = "rejection"
+sender_role = "debtor-candidate"
+work_state = "requested"
+work_operation = "decline"
+work_result = "declined"
+task_state_after = "TASK_STATE_REJECTED"
+rules = ["OO-15"]
+
+[[kind]]
+kind = "query"
+sender_role = "any"
+work_state = "any open"
+work_operation = "open information wait"
+work_result = "unchanged; Epistemic information wait addressed to the recipient"
+task_state_after = "TASK_STATE_INPUT_REQUIRED"
+rules = ["OO-15"]
+
+[[kind]]
+kind = "answer"
+sender_role = "addressee of the query"
+work_state = "open information wait"
+work_operation = "claim satisfying the information wait"
+work_result = "unchanged; wait satisfied"
+task_state_after = "previous state of the Task"
+rules = ["OO-15", "OO-21"]
+
+# OO-16, OO-20
+
+[[expiry]]
+event = "expiresAt passes on an offer or counter-offer without a reply"
+work_operation = "expire, written by the Work service party"
+work_result = "expired"
+task_state_after = "TASK_STATE_CANCELED"
+note = "neither acceptance nor rejection"
+rules = ["OO-16", "OO-20"]
+
+# OO-4
+
+[[state]]
+a2a = "TASK_STATE_SUBMITTED"
+phase = "evaluating"
+meaning = "message received, not yet evaluated"
+
+[[state]]
+a2a = "TASK_STATE_WORKING"
+phase = "evaluating"
+meaning = "recipient agent evaluating within its grant and mandate"
+
+[[state]]
+a2a = "TASK_STATE_INPUT_REQUIRED"
+phase = "awaiting-counterparty"
+meaning = "negotiation wait for the other party's typed reply; a mailbox wait point; silence is not an answer"
+rules = ["OO-4", "OO-20"]
+
+[[state]]
+a2a = "TASK_STATE_AUTH_REQUIRED"
+phase = "awaiting-principal"
+meaning = "negotiation wait for the recipient person's own decision because no mandate covers the reply; the reason is not shared"
+rules = ["OO-4", "OO-19", "OO-23"]
+
+[[state]]
+a2a = "TASK_STATE_COMPLETED"
+phase = "committed"
+meaning = "a Work commitment was created (promise or accept-counter); not acceptance of its result"
+rules = ["OO-1"]
+
+[[state]]
+a2a = "TASK_STATE_REJECTED"
+phase = "declined"
+meaning = "Work decline with a reason code"
+rules = ["OO-15"]
+
+[[state]]
+a2a = "TASK_STATE_CANCELED"
+phase = "expired"
+meaning = "expiry passed without a reply; recorded as expired"
+rules = ["OO-16", "OO-20"]
+
+[[state]]
+a2a = "TASK_STATE_FAILED"
+phase = "refused"
+meaning = "protocol-level refusal with a refusal code; no Work operation"
+rules = ["OO-4"]

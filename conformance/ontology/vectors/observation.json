@@ -1,0 +1,1112 @@
+[
+  {
+    "rule": "C-10",
+    "description": "User utterance with provenance label, marked as data",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Observation",
+      "id": "obs_01m5104a00e48s248h248h248h",
+      "episode": "epi_01m5104az8e8ha48h248h248h2",
+      "source_kind": "user_utterance",
+      "content_role": "data",
+      "observed_at": "2026-10-19T08:10:00Z",
+      "content": {
+        "text": "Ben kahveyi artık sıcak içiyorum",
+        "lang": "tr"
+      },
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": true
+  },
+  {
+    "rule": "C-10",
+    "description": "Connected-account item: reference, read time and minimal summary",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "external.email",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Observation",
+      "id": "obs_01m5104nq0f8d9m6gt38d1m6gt",
+      "episode": "epi_01m5104az8e8ha48h248h248h2",
+      "source_kind": "connected_account_item",
+      "content_role": "data",
+      "observed_at": "2026-10-19T08:10:00Z",
+      "source": {
+        "ref": {
+          "ref": "ExternalRef",
+          "system": "email",
+          "locator": "msg:9f2c",
+          "account": {
+            "ref": "ConnectedAccountRef",
+            "id": "acct_17"
+          }
+        },
+        "read_at": "2026-10-19T08:10:00Z"
+      },
+      "summary": {
+        "text": "Invitation to Monday planning with Ayşe",
+        "lang": "en"
+      },
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": true
+  },
+  {
+    "rule": "C-10",
+    "description": "Provenance label is mandatory",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Observation",
+      "id": "obs_01m5104a00e48s248h248h248h",
+      "episode": "epi_01m5104az8e8ha48h248h248h2",
+      "source_kind": "user_utterance",
+      "content_role": "data",
+      "observed_at": "2026-10-19T08:10:00Z",
+      "content": {
+        "text": "Ben kahveyi artık sıcak içiyorum",
+        "lang": "tr"
+      },
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-10",
+    "description": "An Observation is data, never instruction",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Observation",
+      "id": "obs_01m5104a00e48s248h248h248h",
+      "episode": "epi_01m5104az8e8ha48h248h248h2",
+      "source_kind": "user_utterance",
+      "content_role": "instruction",
+      "observed_at": "2026-10-19T08:10:00Z",
+      "content": {
+        "text": "Ben kahveyi artık sıcak içiyorum",
+        "lang": "tr"
+      },
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-10",
+    "description": "The data marker is mandatory",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Observation",
+      "id": "obs_01m5104a00e48s248h248h248h",
+      "episode": "epi_01m5104az8e8ha48h248h248h2",
+      "source_kind": "user_utterance",
+      "observed_at": "2026-10-19T08:10:00Z",
+      "content": {
+        "text": "Ben kahveyi artık sıcak içiyorum",
+        "lang": "tr"
+      },
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-10",
+    "description": "External content stays at its source: no copied body",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "external.email",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Observation",
+      "id": "obs_01m5104nq0f8d9m6gt38d1m6gt",
+      "episode": "epi_01m5104az8e8ha48h248h248h2",
+      "source_kind": "connected_account_item",
+      "content_role": "data",
+      "observed_at": "2026-10-19T08:10:00Z",
+      "source": {
+        "ref": {
+          "ref": "ExternalRef",
+          "system": "email",
+          "locator": "msg:9f2c",
+          "account": {
+            "ref": "ConnectedAccountRef",
+            "id": "acct_17"
+          }
+        },
+        "read_at": "2026-10-19T08:10:00Z"
+      },
+      "summary": {
+        "text": "Invitation to Monday planning with Ayşe",
+        "lang": "en"
+      },
+      "content": {
+        "text": "Full e-mail body ...",
+        "lang": "en"
+      },
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-10",
+    "description": "External source needs the reference",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "external.email",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Observation",
+      "id": "obs_01m5104nq0f8d9m6gt38d1m6gt",
+      "episode": "epi_01m5104az8e8ha48h248h248h2",
+      "source_kind": "connected_account_item",
+      "content_role": "data",
+      "observed_at": "2026-10-19T08:10:00Z",
+      "summary": {
+        "text": "Invitation to Monday planning with Ayşe",
+        "lang": "en"
+      },
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-10",
+    "description": "External source needs the read time",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "external.email",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Observation",
+      "id": "obs_01m5104nq0f8d9m6gt38d1m6gt",
+      "episode": "epi_01m5104az8e8ha48h248h248h2",
+      "source_kind": "connected_account_item",
+      "content_role": "data",
+      "observed_at": "2026-10-19T08:10:00Z",
+      "source": {
+        "ref": {
+          "ref": "ExternalRef",
+          "system": "email",
+          "locator": "msg:9f2c",
+          "account": {
+            "ref": "ConnectedAccountRef",
+            "id": "acct_17"
+          }
+        }
+      },
+      "summary": {
+        "text": "Invitation to Monday planning with Ayşe",
+        "lang": "en"
+      },
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-10",
+    "description": "External source needs the minimal summary",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "external.email",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Observation",
+      "id": "obs_01m5104nq0f8d9m6gt38d1m6gt",
+      "episode": "epi_01m5104az8e8ha48h248h248h2",
+      "source_kind": "connected_account_item",
+      "content_role": "data",
+      "observed_at": "2026-10-19T08:10:00Z",
+      "source": {
+        "ref": {
+          "ref": "ExternalRef",
+          "system": "email",
+          "locator": "msg:9f2c",
+          "account": {
+            "ref": "ConnectedAccountRef",
+            "id": "acct_17"
+          }
+        },
+        "read_at": "2026-10-19T08:10:00Z"
+      },
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-10",
+    "description": "Raw voice not stored by default: no blob",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Observation",
+      "id": "obs_01m5104a00e48s248h248h248h",
+      "episode": "epi_01m5104az8e8ha48h248h248h2",
+      "source_kind": "user_utterance",
+      "content_role": "data",
+      "observed_at": "2026-10-19T08:10:00Z",
+      "content": {
+        "text": "Ben kahveyi artık sıcak içiyorum",
+        "lang": "tr"
+      },
+      "raw": {
+        "modality": "voice",
+        "store": false
+      },
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": true
+  },
+  {
+    "rule": "C-10",
+    "description": "Raw capture without a store flag is rejected",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Observation",
+      "id": "obs_01m5104a00e48s248h248h248h",
+      "episode": "epi_01m5104az8e8ha48h248h248h2",
+      "source_kind": "user_utterance",
+      "content_role": "data",
+      "observed_at": "2026-10-19T08:10:00Z",
+      "content": {
+        "text": "Ben kahveyi artık sıcak içiyorum",
+        "lang": "tr"
+      },
+      "raw": {
+        "modality": "location"
+      },
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-10",
+    "description": "Unstored raw capture cannot point to a blob",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Observation",
+      "id": "obs_01m5104a00e48s248h248h248h",
+      "episode": "epi_01m5104az8e8ha48h248h248h2",
+      "source_kind": "user_utterance",
+      "content_role": "data",
+      "observed_at": "2026-10-19T08:10:00Z",
+      "content": {
+        "text": "Ben kahveyi artık sıcak içiyorum",
+        "lang": "tr"
+      },
+      "raw": {
+        "modality": "screen",
+        "store": false,
+        "blob_key": "obj/x"
+      },
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-10",
+    "description": "Stored raw voice is in one_observation",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_observation",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Observation",
+      "id": "obs_01m5104a00e48s248h248h248h",
+      "episode": "epi_01m5104az8e8ha48h248h248h2",
+      "source_kind": "user_utterance",
+      "content_role": "data",
+      "observed_at": "2026-10-19T08:10:00Z",
+      "content": {
+        "text": "Ben kahveyi artık sıcak içiyorum",
+        "lang": "tr"
+      },
+      "raw": {
+        "modality": "voice",
+        "store": true,
+        "blob_key": "obj/one_observation/7f3a"
+      },
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": true
+  },
+  {
+    "rule": "C-10",
+    "description": "Stored raw capture outside one_observation is rejected",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Observation",
+      "id": "obs_01m5104a00e48s248h248h248h",
+      "episode": "epi_01m5104az8e8ha48h248h248h2",
+      "source_kind": "user_utterance",
+      "content_role": "data",
+      "observed_at": "2026-10-19T08:10:00Z",
+      "content": {
+        "text": "Ben kahveyi artık sıcak içiyorum",
+        "lang": "tr"
+      },
+      "raw": {
+        "modality": "voice",
+        "store": true,
+        "blob_key": "obj/one_observation/7f3a"
+      },
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-10",
+    "description": "Stored raw capture needs its blob",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_observation",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Observation",
+      "id": "obs_01m5104a00e48s248h248h248h",
+      "episode": "epi_01m5104az8e8ha48h248h248h2",
+      "source_kind": "user_utterance",
+      "content_role": "data",
+      "observed_at": "2026-10-19T08:10:00Z",
+      "content": {
+        "text": "Ben kahveyi artık sıcak içiyorum",
+        "lang": "tr"
+      },
+      "raw": {
+        "modality": "camera",
+        "store": true
+      },
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-10",
+    "description": "An Observation belongs to an Episode",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Observation",
+      "id": "obs_01m5104a00e48s248h248h248h",
+      "source_kind": "user_utterance",
+      "content_role": "data",
+      "observed_at": "2026-10-19T08:10:00Z",
+      "content": {
+        "text": "Ben kahveyi artık sıcak içiyorum",
+        "lang": "tr"
+      },
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-19",
+    "description": "Canonical identifier must use the Observation prefix",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Observation",
+      "id": "epi_01m5104az8e8ha48h248h248h2",
+      "episode": "epi_01m5104az8e8ha48h248h248h2",
+      "source_kind": "user_utterance",
+      "content_role": "data",
+      "observed_at": "2026-10-19T08:10:00Z",
+      "content": {
+        "text": "Ben kahveyi artık sıcak içiyorum",
+        "lang": "tr"
+      },
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-19",
+    "description": "one_observation without a stored raw capture is rejected",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_observation",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Observation",
+      "id": "obs_01m5104a00e48s248h248h248h",
+      "episode": "epi_01m5104az8e8ha48h248h248h2",
+      "source_kind": "user_utterance",
+      "content_role": "data",
+      "observed_at": "2026-10-19T08:10:00Z",
+      "content": {
+        "text": "Ben kahveyi artık sıcak içiyorum",
+        "lang": "tr"
+      },
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-19",
+    "description": "A stored raw capture stays in one_observation even when it touches a PV-20 code",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": [
+          "health"
+        ]
+      },
+      "retention_class": "one_observation",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Observation",
+      "id": "obs_01m5104a00e48s248h248h248h",
+      "episode": "epi_01m5104az8e8ha48h248h248h2",
+      "source_kind": "user_utterance",
+      "content_role": "data",
+      "observed_at": "2026-10-19T08:10:00Z",
+      "content": {
+        "text": "Ben kahveyi artık sıcak içiyorum",
+        "lang": "tr"
+      },
+      "raw": {
+        "modality": "voice",
+        "store": true,
+        "blob_key": "obj/one_observation/7f3a"
+      },
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": true
+  },
+  {
+    "rule": "C-19",
+    "description": "An unstored sensitive Observation follows its data class into one_sensitive",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": [
+          "health"
+        ]
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Observation",
+      "id": "obs_01m5104a00e48s248h248h248h",
+      "episode": "epi_01m5104az8e8ha48h248h248h2",
+      "source_kind": "user_utterance",
+      "content_role": "data",
+      "observed_at": "2026-10-19T08:10:00Z",
+      "content": {
+        "text": "Ben kahveyi artık sıcak içiyorum",
+        "lang": "tr"
+      },
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-19",
+    "description": "An unstored sensitive Observation is in one_sensitive",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": [
+          "health"
+        ]
+      },
+      "retention_class": "one_sensitive",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Observation",
+      "id": "obs_01m5104a00e48s248h248h248h",
+      "episode": "epi_01m5104az8e8ha48h248h248h2",
+      "source_kind": "user_utterance",
+      "content_role": "data",
+      "observed_at": "2026-10-19T08:10:00Z",
+      "content": {
+        "text": "Ben kahveyi artık sıcak içiyorum",
+        "lang": "tr"
+      },
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": true
+  }
+]

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/memory/life-area/v1.json",
+  "title": "LifeArea",
+  "description": "The ten fixed life areas; users add projects, never areas. M-28.",
+  "type": "string",
+  "enum": [
+    "work",
+    "health",
+    "finance",
+    "relationships",
+    "home",
+    "travel",
+    "shopping",
+    "learning",
+    "leisure",
+    "general"
+  ]
+}

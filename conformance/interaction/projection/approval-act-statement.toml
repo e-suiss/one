@@ -1,0 +1,70 @@
+# X-22, C-26, A-29, X-18, X-21
+
+version = 1
+owner = "access"
+act = "contribution"
+one_computes_digests = false
+
+[[field]]
+aas = "act"
+from = "const contribution"
+
+[[field]]
+aas = "approver"
+from = "responder.instance (+ responder.party)"
+
+[[field]]
+aas = "capacity"
+from = "const OWN"
+
+[[field]]
+aas = "contribution_class"
+from = "action effect: approve -> approve; decline -> no AAS, decline recorded on the request"
+
+[[field]]
+aas = "target"
+from = "intent digest of subject.ref (Access DecisionRecordRef), read from Access"
+
+[[field]]
+aas = "exercise_ref"
+from = "(Access domain, nonce)"
+
+[[field]]
+aas = "surface"
+from = "Approval Surface conformance profile of surface_class + client version"
+
+[[field]]
+aas = "render_digest"
+from = "digest of the Access-rendered view shown on device_id"
+
+[[field]]
+aas = "material_fields"
+from = "Access render definition"
+
+[[field]]
+aas = "issued_at"
+from = "responded_at"
+
+[[field]]
+aas = "expires_at"
+from = "Access short validity, never later than Interaction expires_at"
+
+[[field]]
+aas = "work_gate"
+from = "subject.ref when it is a Work NeedsAttentionRef"
+
+[evidence]
+authentication = "evidence.authentication"
+human_presence = "evidence.presence_gesture + evidence.user_verification"
+below_min_assurance = "not a contribution; request stays REQUIRE_ACTION"
+
+[provenance]
+from = "provenance"
+mapping = "https://suiss.app/schemas/one/provenance/access-mapping/v1.json"
+access_values = ["user", "trusted", "untrusted-external"]
+
+[idempotency]
+key = "SHA-256 of the signed response payload"
+replay = "same result returned; no new approval"
+same_nonce_other_payload = "rejected: already_answered"
+first_valid_wins = true

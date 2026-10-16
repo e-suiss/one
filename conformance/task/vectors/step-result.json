@@ -1,0 +1,160 @@
+[
+  {
+    "rule": "CP-6",
+    "description": "Done with a confirmed effect",
+    "input": {
+      "status": "done",
+      "outcome": {
+        "subject": "effect",
+        "certainty": "confirmed",
+        "value": "occurred",
+        "confirmation": {
+          "ref": "ClaimRef",
+          "id": "claim-1"
+        }
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "CP-6",
+    "description": "Done with an unknown outcome is rejected",
+    "input": {
+      "status": "done",
+      "outcome": {
+        "subject": "effect",
+        "certainty": "unknown"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "CP-6",
+    "description": "Done without an outcome is rejected",
+    "input": {
+      "status": "done"
+    },
+    "valid": false
+  },
+  {
+    "rule": "CP-6",
+    "description": "Failed with a confirmed failure and a reason",
+    "input": {
+      "status": "failed",
+      "reason": "provider_error",
+      "outcome": {
+        "subject": "execution",
+        "certainty": "confirmed",
+        "value": "failed",
+        "confirmation": {
+          "ref": "ExecutionReportRef",
+          "id": "report-1"
+        }
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "CP-6",
+    "description": "Failed without a reason is rejected",
+    "input": {
+      "status": "failed",
+      "outcome": {
+        "subject": "execution",
+        "certainty": "confirmed",
+        "value": "failed",
+        "confirmation": {
+          "ref": "ExecutionReportRef",
+          "id": "report-1"
+        }
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "CP-6",
+    "description": "Failed cannot claim an earlier step as its reason",
+    "input": {
+      "status": "failed",
+      "reason": "earlier_step_failed",
+      "outcome": {
+        "subject": "execution",
+        "certainty": "confirmed",
+        "value": "failed",
+        "confirmation": {
+          "ref": "ExecutionReportRef",
+          "id": "report-1"
+        }
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "CP-43",
+    "description": "Unknown after a crash between send and record",
+    "input": {
+      "status": "unknown",
+      "reason": "crash_unverified",
+      "outcome": {
+        "subject": "effect",
+        "certainty": "unknown"
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "CP-43",
+    "description": "Unknown with a confirmed outcome is rejected",
+    "input": {
+      "status": "unknown",
+      "outcome": {
+        "subject": "effect",
+        "certainty": "confirmed",
+        "value": "occurred",
+        "confirmation": {
+          "ref": "ClaimRef",
+          "id": "report-1"
+        }
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "CP-6",
+    "description": "Not run after an earlier failure",
+    "input": {
+      "status": "not_run",
+      "reason": "earlier_step_failed"
+    },
+    "valid": true
+  },
+  {
+    "rule": "CP-6",
+    "description": "Not run with an outcome is rejected",
+    "input": {
+      "status": "not_run",
+      "reason": "earlier_step_failed",
+      "outcome": {
+        "subject": "effect",
+        "certainty": "unknown"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "CP-6",
+    "description": "Not run without a reason is rejected",
+    "input": {
+      "status": "not_run"
+    },
+    "valid": false
+  },
+  {
+    "rule": "CP-6",
+    "description": "A fifth status is rejected",
+    "input": {
+      "status": "skipped"
+    },
+    "valid": false
+  }
+]

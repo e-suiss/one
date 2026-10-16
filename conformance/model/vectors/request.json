@@ -1,0 +1,1150 @@
+[
+  {
+    "rule": "MF-6",
+    "description": "A complete request with capabilities, context, response schema, latency budget and data class",
+    "input": {
+      "request_id": "mrq_01m4ezb900emrbphjhbhkq4zc8",
+      "task_id": "task_01m4ezb900f0svwjambxn7b04b",
+      "capabilities": [
+        "text_generation",
+        "structured_output"
+      ],
+      "context": {
+        "language": "tr",
+        "messages": [
+          {
+            "role": "system",
+            "provenance": "record.trusted",
+            "content": [
+              {
+                "type": "text",
+                "text": "Profile fields"
+              }
+            ]
+          },
+          {
+            "role": "user",
+            "provenance": "user.direct",
+            "content": [
+              {
+                "type": "text",
+                "text": "Yarin 9'a al"
+              }
+            ]
+          }
+        ],
+        "memory_refs": [
+          "mem_01m4ezb900fnca6vksgj7sn9dg"
+        ]
+      },
+      "response_schema": {
+        "type": "object"
+      },
+      "latency_budget_ms": 1500,
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_classes": [
+        "one_memory"
+      ],
+      "mode": {
+        "ephemeral": false,
+        "personalise": true
+      },
+      "hints": {
+        "task_kind": "short_command",
+        "expected_output_tokens": 40,
+        "tool_count": 0,
+        "plan_depth": 0
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "MF-6",
+    "description": "A request without a latency budget is rejected",
+    "input": {
+      "request_id": "mrq_01m4ezb900emrbphjhbhkq4zc8",
+      "task_id": "task_01m4ezb900f0svwjambxn7b04b",
+      "capabilities": [
+        "text_generation",
+        "structured_output"
+      ],
+      "context": {
+        "language": "tr",
+        "messages": [
+          {
+            "role": "system",
+            "provenance": "record.trusted",
+            "content": [
+              {
+                "type": "text",
+                "text": "Profile fields"
+              }
+            ]
+          },
+          {
+            "role": "user",
+            "provenance": "user.direct",
+            "content": [
+              {
+                "type": "text",
+                "text": "Yarin 9'a al"
+              }
+            ]
+          }
+        ],
+        "memory_refs": [
+          "mem_01m4ezb900fnca6vksgj7sn9dg"
+        ]
+      },
+      "response_schema": {
+        "type": "object"
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_classes": [
+        "one_memory"
+      ],
+      "mode": {
+        "ephemeral": false,
+        "personalise": true
+      },
+      "hints": {
+        "task_kind": "short_command",
+        "expected_output_tokens": 40,
+        "tool_count": 0,
+        "plan_depth": 0
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-6",
+    "description": "A request without a data class is rejected",
+    "input": {
+      "request_id": "mrq_01m4ezb900emrbphjhbhkq4zc8",
+      "task_id": "task_01m4ezb900f0svwjambxn7b04b",
+      "capabilities": [
+        "text_generation",
+        "structured_output"
+      ],
+      "context": {
+        "language": "tr",
+        "messages": [
+          {
+            "role": "system",
+            "provenance": "record.trusted",
+            "content": [
+              {
+                "type": "text",
+                "text": "Profile fields"
+              }
+            ]
+          },
+          {
+            "role": "user",
+            "provenance": "user.direct",
+            "content": [
+              {
+                "type": "text",
+                "text": "Yarin 9'a al"
+              }
+            ]
+          }
+        ],
+        "memory_refs": [
+          "mem_01m4ezb900fnca6vksgj7sn9dg"
+        ]
+      },
+      "response_schema": {
+        "type": "object"
+      },
+      "latency_budget_ms": 1500,
+      "mode": {
+        "ephemeral": false,
+        "personalise": true
+      },
+      "hints": {
+        "task_kind": "short_command",
+        "expected_output_tokens": 40,
+        "tool_count": 0,
+        "plan_depth": 0
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-6",
+    "description": "An empty data class list is rejected",
+    "input": {
+      "request_id": "mrq_01m4ezb900emrbphjhbhkq4zc8",
+      "task_id": "task_01m4ezb900f0svwjambxn7b04b",
+      "capabilities": [
+        "text_generation",
+        "structured_output"
+      ],
+      "context": {
+        "language": "tr",
+        "messages": [
+          {
+            "role": "system",
+            "provenance": "record.trusted",
+            "content": [
+              {
+                "type": "text",
+                "text": "Profile fields"
+              }
+            ]
+          },
+          {
+            "role": "user",
+            "provenance": "user.direct",
+            "content": [
+              {
+                "type": "text",
+                "text": "Yarin 9'a al"
+              }
+            ]
+          }
+        ],
+        "memory_refs": [
+          "mem_01m4ezb900fnca6vksgj7sn9dg"
+        ]
+      },
+      "response_schema": {
+        "type": "object"
+      },
+      "latency_budget_ms": 1500,
+      "data_class": {
+        "kinds": [],
+        "sensitive": []
+      },
+      "retention_classes": [],
+      "mode": {
+        "ephemeral": false,
+        "personalise": true
+      },
+      "hints": {
+        "task_kind": "short_command",
+        "expected_output_tokens": 40,
+        "tool_count": 0,
+        "plan_depth": 0
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-6",
+    "description": "Structured output needs a response schema",
+    "input": {
+      "request_id": "mrq_01m4ezb900emrbphjhbhkq4zc8",
+      "task_id": "task_01m4ezb900f0svwjambxn7b04b",
+      "capabilities": [
+        "text_generation",
+        "structured_output"
+      ],
+      "context": {
+        "language": "tr",
+        "messages": [
+          {
+            "role": "system",
+            "provenance": "record.trusted",
+            "content": [
+              {
+                "type": "text",
+                "text": "Profile fields"
+              }
+            ]
+          },
+          {
+            "role": "user",
+            "provenance": "user.direct",
+            "content": [
+              {
+                "type": "text",
+                "text": "Yarin 9'a al"
+              }
+            ]
+          }
+        ],
+        "memory_refs": [
+          "mem_01m4ezb900fnca6vksgj7sn9dg"
+        ]
+      },
+      "latency_budget_ms": 1500,
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_classes": [
+        "one_memory"
+      ],
+      "mode": {
+        "ephemeral": false,
+        "personalise": true
+      },
+      "hints": {
+        "task_kind": "short_command",
+        "expected_output_tokens": 40,
+        "tool_count": 0,
+        "plan_depth": 0
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-6",
+    "description": "Tool calling needs at least one tool",
+    "input": {
+      "request_id": "mrq_01m4ezb900emrbphjhbhkq4zc8",
+      "task_id": "task_01m4ezb900f0svwjambxn7b04b",
+      "capabilities": [
+        "tool_calling"
+      ],
+      "context": {
+        "language": "tr",
+        "messages": [
+          {
+            "role": "system",
+            "provenance": "record.trusted",
+            "content": [
+              {
+                "type": "text",
+                "text": "Profile fields"
+              }
+            ]
+          },
+          {
+            "role": "user",
+            "provenance": "user.direct",
+            "content": [
+              {
+                "type": "text",
+                "text": "Yarin 9'a al"
+              }
+            ]
+          }
+        ],
+        "memory_refs": [
+          "mem_01m4ezb900fnca6vksgj7sn9dg"
+        ]
+      },
+      "response_schema": {
+        "type": "object"
+      },
+      "latency_budget_ms": 1500,
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_classes": [
+        "one_memory"
+      ],
+      "mode": {
+        "ephemeral": false,
+        "personalise": true
+      },
+      "hints": {
+        "task_kind": "short_command",
+        "expected_output_tokens": 40,
+        "tool_count": 0,
+        "plan_depth": 0
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-6",
+    "description": "Tools are One capabilities named under app.suiss",
+    "input": {
+      "request_id": "mrq_01m4ezb900emrbphjhbhkq4zc8",
+      "task_id": "task_01m4ezb900f0svwjambxn7b04b",
+      "capabilities": [
+        "tool_calling"
+      ],
+      "context": {
+        "language": "tr",
+        "messages": [
+          {
+            "role": "system",
+            "provenance": "record.trusted",
+            "content": [
+              {
+                "type": "text",
+                "text": "Profile fields"
+              }
+            ]
+          },
+          {
+            "role": "user",
+            "provenance": "user.direct",
+            "content": [
+              {
+                "type": "text",
+                "text": "Yarin 9'a al"
+              }
+            ]
+          }
+        ],
+        "memory_refs": [
+          "mem_01m4ezb900fnca6vksgj7sn9dg"
+        ]
+      },
+      "response_schema": {
+        "type": "object"
+      },
+      "latency_budget_ms": 1500,
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_classes": [
+        "one_memory"
+      ],
+      "mode": {
+        "ephemeral": false,
+        "personalise": true
+      },
+      "hints": {
+        "task_kind": "short_command",
+        "expected_output_tokens": 40,
+        "tool_count": 0,
+        "plan_depth": 0
+      },
+      "tools": [
+        {
+          "name": "uber.createRide",
+          "version": "2026-10-01",
+          "input_schema": {}
+        }
+      ]
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-6",
+    "description": "A tool-calling request with a One capability",
+    "input": {
+      "request_id": "mrq_01m4ezb900emrbphjhbhkq4zc8",
+      "task_id": "task_01m4ezb900f0svwjambxn7b04b",
+      "capabilities": [
+        "tool_calling",
+        "multi_step_planning"
+      ],
+      "context": {
+        "language": "tr",
+        "messages": [
+          {
+            "role": "system",
+            "provenance": "record.trusted",
+            "content": [
+              {
+                "type": "text",
+                "text": "Profile fields"
+              }
+            ]
+          },
+          {
+            "role": "user",
+            "provenance": "user.direct",
+            "content": [
+              {
+                "type": "text",
+                "text": "Yarin 9'a al"
+              }
+            ]
+          }
+        ],
+        "memory_refs": [
+          "mem_01m4ezb900fnca6vksgj7sn9dg"
+        ]
+      },
+      "latency_budget_ms": 1500,
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_classes": [
+        "one_memory"
+      ],
+      "mode": {
+        "ephemeral": false,
+        "personalise": true
+      },
+      "hints": {
+        "task_kind": "short_command",
+        "expected_output_tokens": 40,
+        "tool_count": 0,
+        "plan_depth": 0
+      },
+      "tools": [
+        {
+          "name": "app.suiss.transport.ride.request",
+          "version": "2026-10-01",
+          "input_schema": {
+            "type": "object"
+          }
+        }
+      ]
+    },
+    "valid": true
+  },
+  {
+    "rule": "MF-26",
+    "description": "No provider credential field exists on a request",
+    "input": {
+      "request_id": "mrq_01m4ezb900emrbphjhbhkq4zc8",
+      "task_id": "task_01m4ezb900f0svwjambxn7b04b",
+      "capabilities": [
+        "text_generation",
+        "structured_output"
+      ],
+      "context": {
+        "language": "tr",
+        "messages": [
+          {
+            "role": "system",
+            "provenance": "record.trusted",
+            "content": [
+              {
+                "type": "text",
+                "text": "Profile fields"
+              }
+            ]
+          },
+          {
+            "role": "user",
+            "provenance": "user.direct",
+            "content": [
+              {
+                "type": "text",
+                "text": "Yarin 9'a al"
+              }
+            ]
+          }
+        ],
+        "memory_refs": [
+          "mem_01m4ezb900fnca6vksgj7sn9dg"
+        ]
+      },
+      "response_schema": {
+        "type": "object"
+      },
+      "latency_budget_ms": 1500,
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_classes": [
+        "one_memory"
+      ],
+      "mode": {
+        "ephemeral": false,
+        "personalise": true
+      },
+      "hints": {
+        "task_kind": "short_command",
+        "expected_output_tokens": 40,
+        "tool_count": 0,
+        "plan_depth": 0
+      },
+      "api_key": "sk-test"
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-26",
+    "description": "No provider or model choice field exists on a request",
+    "input": {
+      "request_id": "mrq_01m4ezb900emrbphjhbhkq4zc8",
+      "task_id": "task_01m4ezb900f0svwjambxn7b04b",
+      "capabilities": [
+        "text_generation",
+        "structured_output"
+      ],
+      "context": {
+        "language": "tr",
+        "messages": [
+          {
+            "role": "system",
+            "provenance": "record.trusted",
+            "content": [
+              {
+                "type": "text",
+                "text": "Profile fields"
+              }
+            ]
+          },
+          {
+            "role": "user",
+            "provenance": "user.direct",
+            "content": [
+              {
+                "type": "text",
+                "text": "Yarin 9'a al"
+              }
+            ]
+          }
+        ],
+        "memory_refs": [
+          "mem_01m4ezb900fnca6vksgj7sn9dg"
+        ]
+      },
+      "response_schema": {
+        "type": "object"
+      },
+      "latency_budget_ms": 1500,
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_classes": [
+        "one_memory"
+      ],
+      "mode": {
+        "ephemeral": false,
+        "personalise": true
+      },
+      "hints": {
+        "task_kind": "short_command",
+        "expected_output_tokens": 40,
+        "tool_count": 0,
+        "plan_depth": 0
+      },
+      "model": "qwen3.5-27b"
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-20",
+    "description": "Special-category data names its domain",
+    "input": {
+      "request_id": "mrq_01m4ezb900emrbphjhbhkq4zc8",
+      "task_id": "task_01m4ezb900f0svwjambxn7b04b",
+      "capabilities": [
+        "text_generation",
+        "structured_output"
+      ],
+      "context": {
+        "language": "tr",
+        "messages": [
+          {
+            "role": "system",
+            "provenance": "record.trusted",
+            "content": [
+              {
+                "type": "text",
+                "text": "Profile fields"
+              }
+            ]
+          },
+          {
+            "role": "user",
+            "provenance": "user.direct",
+            "content": [
+              {
+                "type": "text",
+                "text": "Yarin 9'a al"
+              }
+            ]
+          }
+        ],
+        "memory_refs": [
+          "mem_01m4ezb900fnca6vksgj7sn9dg"
+        ]
+      },
+      "response_schema": {
+        "type": "object"
+      },
+      "latency_budget_ms": 1500,
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_classes": [
+        "one_sensitive"
+      ],
+      "mode": {
+        "ephemeral": false,
+        "personalise": true
+      },
+      "hints": {
+        "task_kind": "short_command",
+        "expected_output_tokens": 40,
+        "tool_count": 0,
+        "plan_depth": 0
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-20",
+    "description": "Special-category data with its domain",
+    "input": {
+      "request_id": "mrq_01m4ezb900emrbphjhbhkq4zc8",
+      "task_id": "task_01m4ezb900f0svwjambxn7b04b",
+      "capabilities": [
+        "text_generation",
+        "structured_output"
+      ],
+      "context": {
+        "language": "tr",
+        "messages": [
+          {
+            "role": "system",
+            "provenance": "record.trusted",
+            "content": [
+              {
+                "type": "text",
+                "text": "Profile fields"
+              }
+            ]
+          },
+          {
+            "role": "user",
+            "provenance": "user.direct",
+            "content": [
+              {
+                "type": "text",
+                "text": "Yarin 9'a al"
+              }
+            ]
+          }
+        ],
+        "memory_refs": [
+          "mem_01m4ezb900fnca6vksgj7sn9dg"
+        ]
+      },
+      "response_schema": {
+        "type": "object"
+      },
+      "latency_budget_ms": 1500,
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": [
+          "health"
+        ]
+      },
+      "retention_classes": [
+        "one_sensitive"
+      ],
+      "mode": {
+        "ephemeral": false,
+        "personalise": true
+      },
+      "hints": {
+        "task_kind": "short_command",
+        "expected_output_tokens": 40,
+        "tool_count": 0,
+        "plan_depth": 0
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "MF-20",
+    "description": "Only special-category data carries a domain",
+    "input": {
+      "request_id": "mrq_01m4ezb900emrbphjhbhkq4zc8",
+      "task_id": "task_01m4ezb900f0svwjambxn7b04b",
+      "capabilities": [
+        "text_generation",
+        "structured_output"
+      ],
+      "context": {
+        "language": "tr",
+        "messages": [
+          {
+            "role": "system",
+            "provenance": "record.trusted",
+            "content": [
+              {
+                "type": "text",
+                "text": "Profile fields"
+              }
+            ]
+          },
+          {
+            "role": "user",
+            "provenance": "user.direct",
+            "content": [
+              {
+                "type": "text",
+                "text": "Yarin 9'a al"
+              }
+            ]
+          }
+        ],
+        "memory_refs": [
+          "mem_01m4ezb900fnca6vksgj7sn9dg"
+        ]
+      },
+      "response_schema": {
+        "type": "object"
+      },
+      "latency_budget_ms": 1500,
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": [
+          "health"
+        ]
+      },
+      "retention_classes": [
+        "one_memory"
+      ],
+      "mode": {
+        "ephemeral": false,
+        "personalise": true
+      },
+      "hints": {
+        "task_kind": "short_command",
+        "expected_output_tokens": 40,
+        "tool_count": 0,
+        "plan_depth": 0
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-20",
+    "description": "Ephemeral mode cannot personalise",
+    "input": {
+      "request_id": "mrq_01m4ezb900emrbphjhbhkq4zc8",
+      "task_id": "task_01m4ezb900f0svwjambxn7b04b",
+      "capabilities": [
+        "text_generation",
+        "structured_output"
+      ],
+      "context": {
+        "language": "tr",
+        "messages": [
+          {
+            "role": "system",
+            "provenance": "record.trusted",
+            "content": [
+              {
+                "type": "text",
+                "text": "Profile fields"
+              }
+            ]
+          },
+          {
+            "role": "user",
+            "provenance": "user.direct",
+            "content": [
+              {
+                "type": "text",
+                "text": "Yarin 9'a al"
+              }
+            ]
+          }
+        ]
+      },
+      "response_schema": {
+        "type": "object"
+      },
+      "latency_budget_ms": 1500,
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_classes": [
+        "one_memory"
+      ],
+      "mode": {
+        "ephemeral": true,
+        "personalise": true
+      },
+      "hints": {
+        "task_kind": "short_command",
+        "expected_output_tokens": 40,
+        "tool_count": 0,
+        "plan_depth": 0
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-20",
+    "description": "Ephemeral mode carries no memory references",
+    "input": {
+      "request_id": "mrq_01m4ezb900emrbphjhbhkq4zc8",
+      "task_id": "task_01m4ezb900f0svwjambxn7b04b",
+      "capabilities": [
+        "text_generation",
+        "structured_output"
+      ],
+      "context": {
+        "language": "tr",
+        "messages": [
+          {
+            "role": "system",
+            "provenance": "record.trusted",
+            "content": [
+              {
+                "type": "text",
+                "text": "Profile fields"
+              }
+            ]
+          },
+          {
+            "role": "user",
+            "provenance": "user.direct",
+            "content": [
+              {
+                "type": "text",
+                "text": "Yarin 9'a al"
+              }
+            ]
+          }
+        ],
+        "memory_refs": [
+          "mem_01m4ezb900fnca6vksgj7sn9dg"
+        ]
+      },
+      "response_schema": {
+        "type": "object"
+      },
+      "latency_budget_ms": 1500,
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_classes": [
+        "one_memory"
+      ],
+      "mode": {
+        "ephemeral": true,
+        "personalise": false
+      },
+      "hints": {
+        "task_kind": "short_command",
+        "expected_output_tokens": 40,
+        "tool_count": 0,
+        "plan_depth": 0
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-6",
+    "description": "Every message carries a provenance label",
+    "input": {
+      "request_id": "mrq_01m4ezb900emrbphjhbhkq4zc8",
+      "task_id": "task_01m4ezb900f0svwjambxn7b04b",
+      "capabilities": [
+        "text_generation",
+        "structured_output"
+      ],
+      "context": {
+        "language": "tr",
+        "messages": [
+          {
+            "role": "system",
+            "provenance": "record.trusted",
+            "content": [
+              {
+                "type": "text",
+                "text": "Profile fields"
+              }
+            ]
+          },
+          {
+            "role": "user",
+            "content": [
+              {
+                "type": "text",
+                "text": "Yarin 9'a al"
+              }
+            ]
+          }
+        ],
+        "memory_refs": [
+          "mem_01m4ezb900fnca6vksgj7sn9dg"
+        ]
+      },
+      "response_schema": {
+        "type": "object"
+      },
+      "latency_budget_ms": 1500,
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_classes": [
+        "one_memory"
+      ],
+      "mode": {
+        "ephemeral": false,
+        "personalise": true
+      },
+      "hints": {
+        "task_kind": "short_command",
+        "expected_output_tokens": 40,
+        "tool_count": 0,
+        "plan_depth": 0
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-50",
+    "description": "Context language is tr or en",
+    "input": {
+      "request_id": "mrq_01m4ezb900emrbphjhbhkq4zc8",
+      "task_id": "task_01m4ezb900f0svwjambxn7b04b",
+      "capabilities": [
+        "text_generation",
+        "structured_output"
+      ],
+      "context": {
+        "language": "de",
+        "messages": [
+          {
+            "role": "system",
+            "provenance": "record.trusted",
+            "content": [
+              {
+                "type": "text",
+                "text": "Profile fields"
+              }
+            ]
+          },
+          {
+            "role": "user",
+            "provenance": "user.direct",
+            "content": [
+              {
+                "type": "text",
+                "text": "Yarin 9'a al"
+              }
+            ]
+          }
+        ],
+        "memory_refs": [
+          "mem_01m4ezb900fnca6vksgj7sn9dg"
+        ]
+      },
+      "response_schema": {
+        "type": "object"
+      },
+      "latency_budget_ms": 1500,
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_classes": [
+        "one_memory"
+      ],
+      "mode": {
+        "ephemeral": false,
+        "personalise": true
+      },
+      "hints": {
+        "task_kind": "short_command",
+        "expected_output_tokens": 40,
+        "tool_count": 0,
+        "plan_depth": 0
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "T-28 (5)",
+    "description": "The request id is a typed mrq identifier",
+    "input": {
+      "request_id": "7f0c1c3e-1111-7aaa-8bbb-123456789abc",
+      "task_id": "task_01m4ezb900f0svwjambxn7b04b",
+      "capabilities": [
+        "text_generation",
+        "structured_output"
+      ],
+      "context": {
+        "language": "tr",
+        "messages": [
+          {
+            "role": "system",
+            "provenance": "record.trusted",
+            "content": [
+              {
+                "type": "text",
+                "text": "Profile fields"
+              }
+            ]
+          },
+          {
+            "role": "user",
+            "provenance": "user.direct",
+            "content": [
+              {
+                "type": "text",
+                "text": "Yarin 9'a al"
+              }
+            ]
+          }
+        ],
+        "memory_refs": [
+          "mem_01m4ezb900fnca6vksgj7sn9dg"
+        ]
+      },
+      "response_schema": {
+        "type": "object"
+      },
+      "latency_budget_ms": 1500,
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_classes": [
+        "one_memory"
+      ],
+      "mode": {
+        "ephemeral": false,
+        "personalise": true
+      },
+      "hints": {
+        "task_kind": "short_command",
+        "expected_output_tokens": 40,
+        "tool_count": 0,
+        "plan_depth": 0
+      }
+    },
+    "valid": false
+  }
+]

@@ -1,0 +1,20 @@
+# M-39, M-40, MD-8 (2), INV-27
+
+[[table]]
+path = "export.cddl"
+rules = ["M-39", "M-40", "M-41", "M-42", "MD-8 (2)", "INV-27", "PV-16", "C-19", "E-36"]
+
+[[vectors]]
+path = "vectors/export-schema.json"
+kind = "behaviour"
+rules = ["M-40", "M-39", "M-6", "M-8", "M-13", "M-25", "C-19", "E-36", "PV-20"]
+
+[[vectors]]
+path = "vectors/round-trip.json"
+kind = "behaviour"
+rules = ["M-40", "M-43", "M-44"]
+
+[[vectors]]
+path = "vectors/unknown-fields.json"
+kind = "behaviour"
+rules = ["M-40", "INV-27"]

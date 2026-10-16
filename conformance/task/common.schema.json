@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/task/common/v1.json",
+  "title": "Task and capability shared definitions",
+  "description": "Aliases to the owning contracts used by the task and capability contracts (ontology identifiers and references, provenance labels, interaction authentication and localized text, intent origin sets) plus the few definitions only these contracts use. Record header, data classes, money, surface classes, risk, reversibility, capability names and ActionRef are referred to at their owners directly.",
+  "$defs": {
+    "task_id": {
+      "$ref": "https://suiss.app/schemas/one/ontology/id/v1.json#/$defs/TaskId"
+    },
+    "capability_id": {
+      "$ref": "https://suiss.app/schemas/one/ontology/id/v1.json#/$defs/CapabilityId"
+    },
+    "interaction_id": {
+      "$ref": "https://suiss.app/schemas/one/ontology/id/v1.json#/$defs/InteractionId"
+    },
+    "device_id": {
+      "$ref": "https://suiss.app/schemas/one/ontology/id/v1.json#/$defs/DeviceId"
+    },
+    "party_ref": {
+      "$ref": "https://suiss.app/schemas/one/ontology/reference/v1.json#/$defs/PartyRef"
+    },
+    "mandate_ref": {
+      "$ref": "https://suiss.app/schemas/one/ontology/reference/v1.json#/$defs/MandateRef"
+    },
+    "trigger_ref": {
+      "$ref": "https://suiss.app/schemas/one/ontology/reference/v1.json#/$defs/TriggerRef"
+    },
+    "exercise_ref": {
+      "$ref": "https://suiss.app/schemas/one/ontology/reference/v1.json#/$defs/ExerciseRef"
+    },
+    "decision_ref": {
+      "$ref": "https://suiss.app/schemas/one/ontology/reference/v1.json#/$defs/DecisionRecordRef"
+    },
+    "instance_ref": {
+      "$ref": "https://suiss.app/schemas/one/ontology/reference/v1.json#/$defs/InstanceRef"
+    },
+    "waitpoint_ref": {
+      "$ref": "https://suiss.app/schemas/one/ontology/reference/v1.json#/$defs/WaitpointRef"
+    },
+    "commitment_ref": {
+      "$ref": "https://suiss.app/schemas/one/ontology/reference/v1.json#/$defs/CommitmentRef"
+    },
+    "checkpoint_ref": {
+      "$ref": "https://suiss.app/schemas/one/ontology/reference/v1.json#/$defs/CheckpointRef"
+    },
+    "execution_report_ref": {
+      "$ref": "https://suiss.app/schemas/one/ontology/reference/v1.json#/$defs/ExecutionReportRef"
+    },
+    "claim_ref": {
+      "$ref": "https://suiss.app/schemas/one/ontology/reference/v1.json#/$defs/ClaimRef"
+    },
+    "provenance_label": {
+      "$ref": "https://suiss.app/schemas/one/provenance/label/v1.json"
+    },
+    "authentication": {
+      "$ref": "https://suiss.app/schemas/one/interaction/common/v1.json#/$defs/authentication"
+    },
+    "origin": {
+      "$ref": "https://suiss.app/schemas/one/intent/origin-set/v1.json#/$defs/origin"
+    },
+    "origin_set": {
+      "$ref": "https://suiss.app/schemas/one/intent/origin-set/v1.json"
+    },
+    "opaque_ref": {
+      "description": "An identifier owned by a provider, merchant or evaluation system, in that system's own form; One never parses it.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255,
+      "pattern": "^[\\x21-\\x7e]+$"
+    },
+    "timestamp": {
+      "$ref": "https://suiss.app/schemas/one/memory/common/v1.json#/$defs/instant"
+    },
+    "snake_name": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]{0,63}$"
+    },
+    "autonomy_behaviour": {
+      "type": "string",
+      "enum": [
+        "act",
+        "act-if-preapproved",
+        "ask",
+        "handoff"
+      ]
+    },
+    "localized_text": {
+      "$ref": "https://suiss.app/schemas/one/interaction/common/v1.json#/$defs/localized"
+    },
+    "sha256_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    }
+  }
+}

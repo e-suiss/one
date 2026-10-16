@@ -1,0 +1,14 @@
+[
+  {
+    "rule": "PV-20",
+    "description": "the sensitive taxonomy has no `normal`",
+    "input": "normal",
+    "valid": false
+  },
+  {
+    "rule": "PV-20",
+    "description": "`attire` is a PV-20 code",
+    "input": "attire",
+    "valid": true
+  }
+]

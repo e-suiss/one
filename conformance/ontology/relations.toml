@@ -1,0 +1,51 @@
+# C-23, C-21, C-2, C-15
+
+schema = "https://suiss.app/schemas/one/ontology/relation/v1.json"
+carries_authority = false
+
+[[relation]]
+name = "derived-from"
+rule = "C-23"
+endpoints = [
+  { source = "MemoryRecord", target = ["Episode", "Observation"] },
+  { source = "Routine", target = ["MemoryRecord"] },
+  { source = "Goal", target = ["MemoryRecord"] },
+]
+
+[[relation]]
+name = "about"
+rule = "C-23"
+endpoints = [
+  { source = "MemoryRecord", target = ["Goal", "Routine", "PartyRef", "ExternalPersonRef", "ExternalRef"] },
+]
+
+[[relation]]
+name = "supersedes"
+rule = "C-23"
+retroactive = false
+endpoints = [
+  { source = "same concept", target = ["same concept"] },
+]
+
+[[relation]]
+name = "serves"
+rule = "C-23"
+endpoints = [
+  { source = "Task", target = ["Goal"] },
+  { source = "Interaction", target = ["Goal"] },
+]
+
+[[relation]]
+name = "concerns"
+rule = "C-23"
+endpoints = [
+  { source = "Interaction", target = ["Task", "MemoryRecord", "Routine", "Goal", "AccessObjectRef", "WorkObjectRef", "RelayObjectRef", "ExecutorObjectRef", "PayObjectRef"] },
+]
+
+[[relation]]
+name = "references"
+rule = "C-23"
+owns_target = false
+endpoints = [
+  { source = "any canonical concept", target = ["AccessObjectRef", "WorkObjectRef", "RelayObjectRef", "ExecutorObjectRef", "PayObjectRef", "ExternalRef", "ExternalPersonRef"] },
+]

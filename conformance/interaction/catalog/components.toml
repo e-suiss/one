@@ -1,0 +1,80 @@
+# X-14, X-61, X-16, X-17, X-18
+
+catalog_version = 1
+free_ui = false
+generated_markup = false
+
+[component.card]
+version = 1
+purpose = "One subject with typed facts and its actions"
+binds = ["amount", "counterparty", "time", "time_range", "place", "note"]
+kinds = ["approval", "choice", "question", "info", "digest_item"]
+surfaces = ["phone", "desktop", "voice:glasses"]
+max_facts = 6
+
+[component.list]
+version = 1
+purpose = "A short ordered list of options or entries"
+binds = ["options", "steps"]
+kinds = ["choice", "digest_item", "info"]
+surfaces = ["phone", "desktop", "voice:glasses"]
+max_items = 10
+
+[component.comparison]
+version = 1
+purpose = "Two to four options side by side on the same attributes"
+binds = ["options"]
+kinds = ["comparison"]
+surfaces = ["phone", "desktop"]
+min_items = 2
+max_items = 4
+max_attributes = 8
+
+[component.approval]
+version = 1
+purpose = "Opens the Access trusted approval surface; never collects the approval itself"
+binds = ["amount", "counterparty", "time", "place"]
+kinds = ["approval"]
+surfaces = ["phone", "desktop", "watch", "voice:car", "voice:glasses"]
+opens_access_surface = true
+collects_secrets = false
+
+[component.form]
+version = 1
+purpose = "Typed fields; never a password, PIN, card number or one-time code"
+binds = ["fields"]
+kinds = ["form"]
+surfaces = ["phone", "desktop"]
+max_fields = 20
+forbidden_field_types = ["password", "pin", "card_number", "one_time_code", "credential"]
+
+[component.timeline]
+version = 1
+purpose = "Steps of a task over time"
+binds = ["steps", "time_range"]
+kinds = ["progress", "receipt", "info"]
+surfaces = ["phone", "desktop"]
+max_items = 100
+
+[component.map]
+version = 1
+purpose = "A place or route; tiles load only after the user opens the map"
+binds = ["place", "options"]
+kinds = ["info", "choice", "comparison", "receipt"]
+surfaces = ["phone", "desktop"]
+load = "on_user_open"
+
+[component.progress]
+version = 1
+purpose = "The live state of one ongoing task"
+binds = ["progress", "steps"]
+kinds = ["progress"]
+surfaces = ["phone", "desktop", "watch", "voice:glasses"]
+
+[component.receipt]
+version = 1
+purpose = "The confirmed outcome, cost and honest undo label of finished work"
+binds = ["outcome", "amount", "counterparty", "time"]
+kinds = ["receipt"]
+surfaces = ["phone", "desktop", "voice:glasses"]
+done_requires_executor_confirmation = true

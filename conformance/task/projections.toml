@@ -1,0 +1,81 @@
+# CP-3, C-6, C-27, CP-24, CP-28, CP-29
+version = 1
+direction = "outbound_only"
+inbound_rule = "A protocol task state is never written into a One task; only One's own events change it"
+
+[[protocol]]
+name = "mcp_tasks"
+spec = "MCP Tasks extension, statuses as in MCP 2025-11-25 and the 2026-07-28 tasks extension"
+states = ["working", "input_required", "completed", "failed", "cancelled"]
+terminal = ["completed", "failed", "cancelled"]
+
+[[protocol]]
+name = "a2a_task"
+spec = "A2A 1.0.0 TaskState"
+states = ["TASK_STATE_SUBMITTED", "TASK_STATE_WORKING", "TASK_STATE_INPUT_REQUIRED", "TASK_STATE_AUTH_REQUIRED", "TASK_STATE_COMPLETED", "TASK_STATE_FAILED", "TASK_STATE_CANCELED", "TASK_STATE_REJECTED"]
+terminal = ["TASK_STATE_COMPLETED", "TASK_STATE_FAILED", "TASK_STATE_CANCELED", "TASK_STATE_REJECTED"]
+never_projected = ["TASK_STATE_UNSPECIFIED"]
+
+[[row]]
+state = "pending"
+mcp_tasks = "working"
+a2a_task = "TASK_STATE_SUBMITTED"
+status_message = "pending"
+
+[[row]]
+state = "running"
+mcp_tasks = "working"
+a2a_task = "TASK_STATE_WORKING"
+status_message = "running"
+
+[[row]]
+state = "waiting_user"
+wait_reason = ["approval", "input", "takeover", "user_absent"]
+mcp_tasks = "input_required"
+a2a_task = "TASK_STATE_INPUT_REQUIRED"
+status_message = "waiting_user"
+caller_answer_accepted = false
+
+[[row]]
+state = "waiting_user"
+wait_reason = ["authentication"]
+mcp_tasks = "input_required"
+a2a_task = "TASK_STATE_AUTH_REQUIRED"
+status_message = "waiting_user"
+caller_answer_accepted = false
+
+[[row]]
+state = "waiting_external"
+mcp_tasks = "working"
+a2a_task = "TASK_STATE_WORKING"
+status_message = "waiting_external"
+
+[[row]]
+state = "paused"
+mcp_tasks = "working"
+a2a_task = "TASK_STATE_WORKING"
+status_message = "paused"
+
+[[row]]
+state = "completed"
+mcp_tasks = "completed"
+a2a_task = "TASK_STATE_COMPLETED"
+status_message = "completed"
+
+[[row]]
+state = "failed"
+mcp_tasks = "failed"
+a2a_task = "TASK_STATE_FAILED"
+status_message = "failed"
+
+[[row]]
+state = "cancelled"
+mcp_tasks = "cancelled"
+a2a_task = "TASK_STATE_CANCELED"
+status_message = "cancelled"
+
+[[intake]]
+case = "submission_refused_before_task_exists"
+mcp_tasks = "none"
+mcp_rule = "JSON-RPC error on the submitting request; no task is created"
+a2a_task = "TASK_STATE_REJECTED"

@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/federation/message/v1.json",
+  "title": "One Federation A2A Message profile",
+  "description": "Profile of the A2A v1.0 Message (HTTP+JSON, camelCase, ProtoJSON enum names) for a typed message. Cross-field rules that JSON Schema cannot state (contextId equals envelope correlationId, body kind equals envelope kind, inReplyTo and handle checks, version monotonicity, expiry) are in the vectors.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["messageId", "contextId", "role", "parts", "metadata", "extensions"],
+  "properties": {
+    "messageId": { "$ref": "https://suiss.app/schemas/one/federation/common/v1.json#/$defs/messageId" },
+    "contextId": {
+      "description": "Equals the envelope correlationId.",
+      "$ref": "https://suiss.app/schemas/one/federation/common/v1.json#/$defs/correlationId"
+    },
+    "taskId": {
+      "description": "A2A Task of the offer chain; absent only on the message that opens the chain.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "role": {
+      "description": "ROLE_USER for the party that opened the chain (A2A client side), ROLE_AGENT for the party serving the Task.",
+      "enum": ["ROLE_USER", "ROLE_AGENT"]
+    },
+    "parts": {
+      "description": "Exactly one body DataPart first, then at most one note TextPart. No file, raw or URL parts.",
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 2,
+      "prefixItems": [{ "$ref": "#/$defs/bodyPart" }],
+      "items": { "$ref": "https://suiss.app/schemas/one/federation/note/v1.json" }
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["https://suiss.app/a2a/one-federation/v1"],
+      "properties": {
+        "https://suiss.app/a2a/one-federation/v1": { "$ref": "https://suiss.app/schemas/one/federation/envelope/v1.json" }
+      }
+    },
+    "extensions": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 1,
+      "items": { "$ref": "https://suiss.app/schemas/one/federation/common/v1.json#/$defs/extensionUri" }
+    }
+  },
+  "$defs": {
+    "bodyPart": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["data", "mediaType", "metadata"],
+      "properties": {
+        "data": { "$ref": "https://suiss.app/schemas/one/federation/body/v1.json" },
+        "mediaType": { "const": "application/json" },
+        "metadata": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["https://suiss.app/a2a/one-federation/v1"],
+          "properties": {
+            "https://suiss.app/a2a/one-federation/v1": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["part"],
+              "properties": { "part": { "const": "body" } }
+            }
+          }
+        }
+      }
+    }
+  }
+}

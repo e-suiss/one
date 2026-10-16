@@ -1,0 +1,135 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/ontology/concept/v1.json",
+  "title": "Canonical record",
+  "description": "A canonical record is exactly one of the nine canonical concepts; no other canonical type exists.",
+  "type": "object",
+  "properties": {
+    "type": {
+      "enum": [
+        "Observation",
+        "Episode",
+        "MemoryRecord",
+        "Goal",
+        "Routine",
+        "Task",
+        "Interaction",
+        "CapabilityDefinition",
+        "SurfaceCapability"
+      ]
+    }
+  },
+  "required": [
+    "type"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "Observation"
+          }
+        }
+      },
+      "then": {
+        "$ref": "https://suiss.app/schemas/one/ontology/observation/v1.json"
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "Episode"
+          }
+        }
+      },
+      "then": {
+        "$ref": "https://suiss.app/schemas/one/ontology/episode/v1.json"
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "MemoryRecord"
+          }
+        }
+      },
+      "then": {
+        "$ref": "https://suiss.app/schemas/one/memory/memory-record/v1.json"
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "Goal"
+          }
+        }
+      },
+      "then": {
+        "$ref": "https://suiss.app/schemas/one/ontology/goal/v1.json"
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "Routine"
+          }
+        }
+      },
+      "then": {
+        "$ref": "https://suiss.app/schemas/one/ontology/routine/v1.json"
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "Task"
+          }
+        }
+      },
+      "then": {
+        "$ref": "https://suiss.app/schemas/one/task/task/v1.json"
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "Interaction"
+          }
+        }
+      },
+      "then": {
+        "$ref": "https://suiss.app/schemas/one/interaction/interaction/v1.json"
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "CapabilityDefinition"
+          }
+        }
+      },
+      "then": {
+        "$ref": "https://suiss.app/schemas/one/capability/definition/v1.json"
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "SurfaceCapability"
+          }
+        }
+      },
+      "then": {
+        "$ref": "https://suiss.app/schemas/one/capability/surface-capability/v1.json"
+      }
+    }
+  ]
+}

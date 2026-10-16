@@ -1,0 +1,34 @@
+[
+  {
+    "rule": "SEC-14 (4)",
+    "description": "every authority-relevant parameter mapped",
+    "input": {
+      "recipient": "untrusted-external",
+      "body": "user",
+      "amount": "trusted"
+    },
+    "valid": true
+  },
+  {
+    "rule": "SEC-14 (4)",
+    "description": "empty map for an intent without parameters",
+    "input": {},
+    "valid": true
+  },
+  {
+    "rule": "SEC-14 (4)",
+    "description": "internal label is not an Access value",
+    "input": {
+      "recipient": "external.email"
+    },
+    "valid": false
+  },
+  {
+    "rule": "SEC-14 (4)",
+    "description": "parameter names are snake_case",
+    "input": {
+      "Recipient": "user"
+    },
+    "valid": false
+  }
+]

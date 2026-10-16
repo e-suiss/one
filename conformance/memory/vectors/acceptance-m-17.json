@@ -1,0 +1,249 @@
+[
+  {
+    "rule": "M-17",
+    "description": "candidate detection runs on the phone without a language model",
+    "input": {
+      "step": "candidate_detection",
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "device_only": false,
+      "user_present": true,
+      "key_permit": "none",
+      "tee_attested": true
+    },
+    "expected": {
+      "location": "device",
+      "uses_language_model": false,
+      "outcome": "run"
+    }
+  },
+  {
+    "rule": "M-17",
+    "description": "structuring runs in the cloud TEE with One's own model",
+    "input": {
+      "step": "structuring",
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "device_only": false,
+      "user_present": true,
+      "key_permit": "none",
+      "tee_attested": true
+    },
+    "expected": {
+      "location": "cloud_tee",
+      "uses_language_model": true,
+      "outcome": "run"
+    }
+  },
+  {
+    "rule": "M-17",
+    "description": "merge runs in the cloud TEE",
+    "input": {
+      "step": "merge",
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "device_only": false,
+      "user_present": true,
+      "key_permit": "none",
+      "tee_attested": true
+    },
+    "expected": {
+      "location": "cloud_tee",
+      "uses_language_model": true,
+      "outcome": "run"
+    }
+  },
+  {
+    "rule": "M-17",
+    "description": "contradiction detection runs in the cloud TEE",
+    "input": {
+      "step": "contradiction_detection",
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "device_only": false,
+      "user_present": true,
+      "key_permit": "none",
+      "tee_attested": true
+    },
+    "expected": {
+      "location": "cloud_tee",
+      "uses_language_model": true,
+      "outcome": "run"
+    }
+  },
+  {
+    "rule": "M-17",
+    "description": "user absent with a valid key permit: consolidation runs",
+    "input": {
+      "step": "structuring",
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "device_only": false,
+      "user_present": false,
+      "key_permit": "valid",
+      "tee_attested": true
+    },
+    "expected": {
+      "location": "cloud_tee",
+      "uses_language_model": true,
+      "outcome": "run"
+    }
+  },
+  {
+    "rule": "PV-65",
+    "description": "user absent without a key permit: consolidation waits",
+    "input": {
+      "step": "structuring",
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "device_only": false,
+      "user_present": false,
+      "key_permit": "none",
+      "tee_attested": true
+    },
+    "expected": {
+      "location": "cloud_tee",
+      "uses_language_model": true,
+      "outcome": "wait"
+    }
+  },
+  {
+    "rule": "PV-65",
+    "description": "user absent with an expired key permit: consolidation waits",
+    "input": {
+      "step": "structuring",
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "device_only": false,
+      "user_present": false,
+      "key_permit": "expired",
+      "tee_attested": true
+    },
+    "expected": {
+      "location": "cloud_tee",
+      "uses_language_model": true,
+      "outcome": "wait"
+    }
+  },
+  {
+    "rule": "M-37",
+    "description": "device-only sensitive class: no language model consolidation",
+    "input": {
+      "step": "structuring",
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": [
+          "health"
+        ]
+      },
+      "device_only": true,
+      "user_present": true,
+      "key_permit": "none",
+      "tee_attested": true
+    },
+    "expected": {
+      "location": "none",
+      "uses_language_model": false,
+      "outcome": "not_run"
+    }
+  },
+  {
+    "rule": "M-37",
+    "description": "device-only sensitive class: on-device candidate detection still runs",
+    "input": {
+      "step": "candidate_detection",
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": [
+          "health"
+        ]
+      },
+      "device_only": true,
+      "user_present": true,
+      "key_permit": "none",
+      "tee_attested": true
+    },
+    "expected": {
+      "location": "device",
+      "uses_language_model": false,
+      "outcome": "run"
+    }
+  },
+  {
+    "rule": "M-17",
+    "description": "no attestation: cloud work does not start",
+    "input": {
+      "step": "structuring",
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "device_only": false,
+      "user_present": true,
+      "key_permit": "none",
+      "tee_attested": false
+    },
+    "expected": {
+      "location": "none",
+      "uses_language_model": false,
+      "outcome": "refused"
+    }
+  },
+  {
+    "rule": "M-17",
+    "description": "candidate detection never calls a language model, even when one is reachable",
+    "input": {
+      "step": "candidate_detection",
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "device_only": false,
+      "user_present": true,
+      "key_permit": "none",
+      "tee_attested": true,
+      "language_model_reachable": true
+    },
+    "expected": {
+      "location": "device",
+      "uses_language_model": false,
+      "outcome": "run"
+    }
+  }
+]

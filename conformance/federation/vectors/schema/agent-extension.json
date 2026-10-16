@@ -1,0 +1,176 @@
+[
+  {
+    "rule": "OO-4",
+    "description": "Agent Card extension declaration",
+    "input": {
+      "uri": "https://suiss.app/a2a/one-federation/v1",
+      "required": true,
+      "params": {
+        "schemaVersions": [
+          "1.0"
+        ],
+        "kinds": [
+          "offer",
+          "counter-offer",
+          "commitment",
+          "rejection",
+          "query",
+          "answer"
+        ],
+        "capabilities": [
+          {
+            "name": "app.suiss.calendar.event.propose",
+            "versions": [
+              "2026-10-12"
+            ]
+          },
+          {
+            "name": "app.suiss.calendar.availability.query",
+            "versions": [
+              "2026-10-12"
+            ]
+          }
+        ]
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "OO-4",
+    "description": "Extension declared as optional",
+    "input": {
+      "uri": "https://suiss.app/a2a/one-federation/v1",
+      "required": false,
+      "params": {
+        "schemaVersions": [
+          "1.0"
+        ],
+        "kinds": [
+          "offer",
+          "counter-offer",
+          "commitment",
+          "rejection",
+          "query",
+          "answer"
+        ],
+        "capabilities": [
+          {
+            "name": "app.suiss.calendar.event.propose",
+            "versions": [
+              "2026-10-12"
+            ]
+          },
+          {
+            "name": "app.suiss.calendar.availability.query",
+            "versions": [
+              "2026-10-12"
+            ]
+          }
+        ]
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "OO-4",
+    "description": "Wrong extension URI",
+    "input": {
+      "uri": "https://suiss.app/a2a/one-federation",
+      "required": true,
+      "params": {
+        "schemaVersions": [
+          "1.0"
+        ],
+        "kinds": [
+          "offer",
+          "counter-offer",
+          "commitment",
+          "rejection",
+          "query",
+          "answer"
+        ],
+        "capabilities": [
+          {
+            "name": "app.suiss.calendar.event.propose",
+            "versions": [
+              "2026-10-12"
+            ]
+          },
+          {
+            "name": "app.suiss.calendar.availability.query",
+            "versions": [
+              "2026-10-12"
+            ]
+          }
+        ]
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "OO-4",
+    "description": "No schema versions",
+    "input": {
+      "uri": "https://suiss.app/a2a/one-federation/v1",
+      "required": true,
+      "params": {
+        "schemaVersions": [],
+        "kinds": [
+          "offer",
+          "counter-offer",
+          "commitment",
+          "rejection",
+          "query",
+          "answer"
+        ],
+        "capabilities": [
+          {
+            "name": "app.suiss.calendar.event.propose",
+            "versions": [
+              "2026-10-12"
+            ]
+          },
+          {
+            "name": "app.suiss.calendar.availability.query",
+            "versions": [
+              "2026-10-12"
+            ]
+          }
+        ]
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "OO-4",
+    "description": "Unknown kind",
+    "input": {
+      "uri": "https://suiss.app/a2a/one-federation/v1",
+      "required": true,
+      "params": {
+        "schemaVersions": [
+          "1.0"
+        ],
+        "kinds": [
+          "offer",
+          "payment"
+        ],
+        "capabilities": [
+          {
+            "name": "app.suiss.calendar.event.propose",
+            "versions": [
+              "2026-10-12"
+            ]
+          },
+          {
+            "name": "app.suiss.calendar.availability.query",
+            "versions": [
+              "2026-10-12"
+            ]
+          }
+        ]
+      }
+    },
+    "valid": false
+  }
+]

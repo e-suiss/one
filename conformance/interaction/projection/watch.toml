@@ -1,0 +1,22 @@
+# X-13, X-19, X-45, A-28
+
+version = 1
+targets = ["watch_app", "complication", "notification"]
+projection = "minimal"
+
+[map]
+title = "subject.title[locale] truncated to 32"
+body = "minimal_projection.sentence[locale]"
+primary = "minimal_projection.yes"
+secondary = "minimal_projection.no"
+haptic = "interruption"
+detail = "deep_link to phone"
+
+[approval]
+within_ceiling = "hold to approve; two-step optional"
+above_ceiling = "redirect"
+single_tap_approves = false
+
+[complication]
+text = "pending approval count or progress fraction, at most 20 characters"
+sensitive = "count only"

@@ -1,0 +1,400 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/memory/memory-record/v1.json",
+  "title": "MemoryRecord",
+  "description": "A typed memory record (the fact table row of M-6). Canonical; never deleted; a change is a new version. A permanently forgotten record keeps only its skeleton. M-6, M-7, M-8, M-9, M-10, M-18, M-24, M-25, M-43, MD-7 (1, 2), INV-14, C-12, C-19, C-20.",
+  "if": {
+    "properties": {
+      "status": {
+        "const": "forgotten"
+      }
+    },
+    "required": [
+      "status"
+    ]
+  },
+  "then": {
+    "$ref": "#/$defs/skeleton"
+  },
+  "else": {
+    "$ref": "#/$defs/live_body",
+    "unevaluatedProperties": false
+  },
+  "$defs": {
+    "skeleton": {
+      "description": "What survives permanent forgetting: identity, status and destruction time; no content, content type or source (M-25; Access OP-73).",
+      "type": "object",
+      "required": [
+        "type",
+        "id",
+        "owner",
+        "version",
+        "status",
+        "recorded_at",
+        "deleted_at",
+        "retention_class"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "MemoryRecord"
+        },
+        "id": {
+          "$ref": "https://suiss.app/schemas/one/memory/common/v1.json#/$defs/memory_record_id"
+        },
+        "owner": {
+          "$ref": "https://suiss.app/schemas/one/memory/common/v1.json#/$defs/party_ref"
+        },
+        "version": {
+          "$ref": "https://suiss.app/schemas/one/memory/common/v1.json#/$defs/version"
+        },
+        "status": {
+          "const": "forgotten"
+        },
+        "recorded_at": {
+          "$ref": "https://suiss.app/schemas/one/memory/common/v1.json#/$defs/instant"
+        },
+        "deleted_at": {
+          "$ref": "https://suiss.app/schemas/one/memory/common/v1.json#/$defs/instant"
+        },
+        "retention_class": {
+          "enum": [
+            "one_memory",
+            "one_sensitive"
+          ]
+        }
+      }
+    },
+    "live_body": {
+      "type": "object",
+      "required": [
+        "type",
+        "id",
+        "status",
+        "content_type",
+        "epistemic_state",
+        "layer",
+        "time_kind",
+        "valid_from",
+        "valid_to",
+        "superseded_at",
+        "source_episodes",
+        "source_kind",
+        "evidence",
+        "trust",
+        "usage_restriction",
+        "statement"
+      ],
+      "properties": {
+        "type": {
+          "const": "MemoryRecord"
+        },
+        "id": {
+          "$ref": "https://suiss.app/schemas/one/memory/common/v1.json#/$defs/memory_record_id"
+        },
+        "owner": true,
+        "domain": true,
+        "data_class": true,
+        "retention_class": true,
+        "provenance": true,
+        "recorded_at": true,
+        "version": true,
+        "deleted_at": true,
+        "produced_by": true,
+        "supersedes": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "https://suiss.app/schemas/one/memory/common/v1.json#/$defs/memory_record_id"
+            }
+          ]
+        },
+        "status": {
+          "enum": [
+            "candidate",
+            "active",
+            "suppressed"
+          ]
+        },
+        "content_type": {
+          "$ref": "https://suiss.app/schemas/one/memory/fields/v1.json#/$defs/content_type"
+        },
+        "epistemic_state": {
+          "$ref": "https://suiss.app/schemas/one/memory/fields/v1.json#/$defs/epistemic_state"
+        },
+        "layer": {
+          "$ref": "https://suiss.app/schemas/one/memory/fields/v1.json#/$defs/layer"
+        },
+        "time_kind": {
+          "$ref": "https://suiss.app/schemas/one/memory/fields/v1.json#/$defs/time_kind"
+        },
+        "valid_from": {
+          "$ref": "https://suiss.app/schemas/one/memory/common/v1.json#/$defs/instant"
+        },
+        "valid_to": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "https://suiss.app/schemas/one/memory/common/v1.json#/$defs/instant"
+            }
+          ]
+        },
+        "expected_end": {
+          "$ref": "https://suiss.app/schemas/one/memory/common/v1.json#/$defs/instant"
+        },
+        "season": {
+          "$ref": "https://suiss.app/schemas/one/memory/fields/v1.json#/$defs/season"
+        },
+        "superseded_at": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "https://suiss.app/schemas/one/memory/common/v1.json#/$defs/instant"
+            }
+          ]
+        },
+        "source_episodes": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "https://suiss.app/schemas/one/memory/common/v1.json#/$defs/episode_id"
+          }
+        },
+        "source_kind": {
+          "$ref": "https://suiss.app/schemas/one/memory/fields/v1.json#/$defs/source_kind"
+        },
+        "evidence": {
+          "$ref": "https://suiss.app/schemas/one/memory/fields/v1.json#/$defs/evidence"
+        },
+        "trust": {
+          "$ref": "https://suiss.app/schemas/one/memory/fields/v1.json#/$defs/trust"
+        },
+        "alternative_explanations": {
+          "type": "array",
+          "items": {
+            "$ref": "https://suiss.app/schemas/one/memory/fields/v1.json#/$defs/alternative_explanation"
+          }
+        },
+        "usage_restriction": {
+          "$ref": "https://suiss.app/schemas/one/memory/fields/v1.json#/$defs/usage_restriction"
+        },
+        "about": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "https://suiss.app/schemas/one/memory/common/v1.json#/$defs/entity_ref"
+          }
+        },
+        "statement": {
+          "$ref": "https://suiss.app/schemas/one/memory/common/v1.json#/$defs/statement"
+        }
+      },
+      "dependentSchemas": {
+        "version": {
+          "if": {
+            "properties": {
+              "version": {
+                "const": 1
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "supersedes": {
+                "type": "null"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "supersedes": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "$comment": "M-8, M-10, M-22, M-18, M-43, SEC-14",
+      "allOf": [
+        {
+          "$ref": "https://suiss.app/schemas/one/memory/common/v1.json#/$defs/record_header"
+        },
+        {
+          "if": {
+            "properties": {
+              "epistemic_state": {
+                "const": "invalidated"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "superseded_at": {
+                "type": "string"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "superseded_at": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "time_kind": {
+                "const": "current"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "expected_end"
+            ]
+          },
+          "else": {
+            "not": {
+              "required": [
+                "expected_end"
+              ]
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "time_kind": {
+                "const": "seasonal"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "season"
+            ]
+          },
+          "else": {
+            "not": {
+              "required": [
+                "season"
+              ]
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "time_kind": {
+                "const": "one_off"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "valid_to": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "layer": {
+                "const": "behaviour_rule"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "source_kind": {
+                "enum": [
+                  "user_statement",
+                  "user_behaviour",
+                  "connected_source"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "epistemic_state": {
+                "enum": [
+                  "observed",
+                  "inferred",
+                  "hypothesis"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "provenance": {
+                "not": {
+                  "enum": [
+                    "user.direct",
+                    "user.memory",
+                    "record.trusted"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "source_kind": {
+                "enum": [
+                  "external_content",
+                  "import"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "provenance": {
+                "not": {
+                  "enum": [
+                    "user.direct",
+                    "record.trusted"
+                  ]
+                }
+              }
+            },
+            "if": {
+              "properties": {
+                "provenance": {
+                  "const": "user.memory"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "epistemic_state": {
+                  "enum": [
+                    "verified",
+                    "invalidated"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

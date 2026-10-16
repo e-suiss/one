@@ -1,0 +1,578 @@
+[
+  {
+    "rule": "C-2",
+    "description": "A Goal is a canonical record",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Goal",
+      "id": "goal_01m5104bygecsv6csk6csk6csk",
+      "derived_from": [
+        "mem_01m5104dx0enasanananananan"
+      ],
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": true
+  },
+  {
+    "rule": "C-2",
+    "description": "A Routine is a canonical record",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Routine",
+      "id": "rtn_01m5104cxreh288h248h248h24",
+      "trigger": {
+        "days": [
+          "mon",
+          "tue",
+          "wed",
+          "thu",
+          "fri"
+        ],
+        "time_window": {
+          "start": "07:30",
+          "end": "09:30"
+        },
+        "context": {
+          "text": "on the way to the office",
+          "lang": "en"
+        }
+      },
+      "behaviour": {
+        "capability": "app.suiss.commerce.coffee.order",
+        "preference": "mem_01m5104ew8esb9cnjpasb5cnjp",
+        "summary": {
+          "text": "Coffee order: iced Americano",
+          "lang": "en"
+        }
+      },
+      "evidence": {
+        "spontaneous": 10,
+        "after_suggestion": 0
+      },
+      "exceptions": [
+        {
+          "text": "holiday",
+          "lang": "en"
+        }
+      ],
+      "first_seen": "2026-07-27T07:40:00Z",
+      "last_seen": "2026-10-19T08:10:00Z",
+      "period": "P1D",
+      "source": "learned",
+      "state": "active",
+      "authority": "NONE",
+      "sensitive": true,
+      "derived_from": [
+        "mem_01m5104dx0enasanananananan"
+      ],
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": true
+  },
+  {
+    "rule": "C-5",
+    "description": "There is no Chat concept",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Chat",
+      "id": "epi_01m5104az8e8ha48h248h248h2",
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-28",
+    "description": "Person is a reference, not a canonical concept",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Person",
+      "id": "goal_01m5104bygecsv6csk6csk6csk",
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-28",
+    "description": "Pending is a view, not a canonical concept",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Pending",
+      "id": "goal_01m5104bygecsv6csk6csk6csk",
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-2",
+    "description": "A record without a concept type is rejected",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "id": "goal_01m5104bygecsv6csk6csk6csk",
+      "derived_from": [
+        "mem_01m5104dx0enasanananananan"
+      ],
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-11",
+    "description": "An Episode is a canonical record",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Episode",
+      "id": "epi_01m5104az8e8ha48h248h248h2",
+      "kind": "conversation",
+      "modes": [
+        "text",
+        "voice"
+      ],
+      "started_at": "2026-10-19T08:10:00Z",
+      "ended_at": "2026-10-19T08:14:00Z",
+      "entries": [
+        {
+          "seq": 0,
+          "at": "2026-10-19T08:10:00Z",
+          "actor": "user",
+          "mode": "voice",
+          "observation": "obs_01m5104a00e48s248h248h248h",
+          "kind": "observation"
+        },
+        {
+          "seq": 1,
+          "at": "2026-10-19T08:10:05Z",
+          "actor": "one",
+          "mode": "text",
+          "kind": "conversation_turn",
+          "content": {
+            "text": "Not ettim: sıcak.",
+            "lang": "tr"
+          }
+        },
+        {
+          "seq": 2,
+          "at": "2026-10-19T08:10:06Z",
+          "actor": "one",
+          "mode": "card",
+          "interaction": "int_01m5104gtrexvvexvqexvqexvq",
+          "kind": "interaction"
+        }
+      ],
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": true
+  },
+  {
+    "rule": "C-10",
+    "description": "An Observation is a canonical record",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Observation",
+      "id": "obs_01m5104a00e48s248h248h248h",
+      "episode": "epi_01m5104az8e8ha48h248h248h2",
+      "source_kind": "user_utterance",
+      "content_role": "data",
+      "observed_at": "2026-10-19T08:10:00Z",
+      "content": {
+        "text": "Ben kahveyi artık sıcak içiyorum",
+        "lang": "tr"
+      },
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": true
+  },
+  {
+    "rule": "C-12",
+    "description": "A MemoryRecord is a canonical record",
+    "input": {
+      "type": "MemoryRecord",
+      "id": "mem_01k742ssrgf71s3svnq2g7yqse",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "domain": {
+        "areas": [
+          "leisure"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "one.inferred",
+      "recorded_at": "2026-10-02T03:00:00Z",
+      "version": 1,
+      "supersedes": null,
+      "status": "active",
+      "deleted_at": null,
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01k742sgz8ezrvb1ad5hsd1p0p"
+        },
+        "model_version": "mdl_01k742sgz8fpttyr5nkb810tbn",
+        "config_version": "consolidation-1"
+      },
+      "content_type": "preference",
+      "epistemic_state": "inferred",
+      "layer": "consolidated_fact",
+      "time_kind": "permanent",
+      "valid_from": "2026-09-01T00:00:00Z",
+      "valid_to": null,
+      "superseded_at": null,
+      "source_episodes": [
+        "epi_01k742sgz8fpbvee16bvnbpem8"
+      ],
+      "source_kind": "user_behaviour",
+      "evidence": {
+        "observation_count": 17,
+        "supporting_count": 14,
+        "first_observed_at": "2026-09-01T08:05:00Z",
+        "last_observed_at": "2026-10-01T08:10:00Z",
+        "contradicting_records": [],
+        "user_confirmed_at": null
+      },
+      "trust": {
+        "value": 0.789381,
+        "formula": "trust/v1",
+        "computed_at": "2026-10-02T03:00:00Z"
+      },
+      "alternative_explanations": [],
+      "usage_restriction": null,
+      "about": [
+        {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        }
+      ],
+      "statement": {
+        "text": "Prefers an Americano in the morning.",
+        "lang": "en"
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "C-1",
+    "description": "A record is checked against the concept its type names",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Observation",
+      "id": "epi_01m5104az8e8ha48h248h248h2",
+      "kind": "conversation",
+      "modes": [
+        "text",
+        "voice"
+      ],
+      "started_at": "2026-10-19T08:10:00Z",
+      "ended_at": "2026-10-19T08:14:00Z",
+      "entries": [
+        {
+          "seq": 0,
+          "at": "2026-10-19T08:10:00Z",
+          "actor": "user",
+          "mode": "voice",
+          "observation": "obs_01m5104a00e48s248h248h248h",
+          "kind": "observation"
+        },
+        {
+          "seq": 1,
+          "at": "2026-10-19T08:10:05Z",
+          "actor": "one",
+          "mode": "text",
+          "kind": "conversation_turn",
+          "content": {
+            "text": "Not ettim: sıcak.",
+            "lang": "tr"
+          }
+        },
+        {
+          "seq": 2,
+          "at": "2026-10-19T08:10:06Z",
+          "actor": "one",
+          "mode": "card",
+          "interaction": "int_01m5104gtrexvvexvqexvqexvq",
+          "kind": "interaction"
+        }
+      ],
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": false
+  }
+]

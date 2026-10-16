@@ -1,0 +1,65 @@
+# X-15, C-6, C-27, MD-6 (4), INV-38
+
+version = 1
+protocol = "AG-UI"
+protocol_version = "1.0"
+status = "adapter"
+run_replaces_task = false
+
+[[event]]
+one = "Interaction created"
+ag_ui = "STATE_DELTA"
+path = "/interactions/{id}"
+
+[[event]]
+one = "Interaction new version"
+ag_ui = "STATE_DELTA"
+path = "/interactions/{id}"
+
+[[event]]
+one = "Interaction set resync"
+ag_ui = "STATE_SNAPSHOT"
+path = "/interactions"
+
+[[event]]
+one = "progress Interaction"
+ag_ui = "ACTIVITY_SNAPSHOT"
+then = "ACTIVITY_DELTA"
+
+[[event]]
+one = "task step started"
+ag_ui = "STEP_STARTED"
+
+[[event]]
+one = "task step finished"
+ag_ui = "STEP_FINISHED"
+
+[[event]]
+one = "sub-agent started"
+ag_ui = "SUBAGENT_STARTED"
+
+[[event]]
+one = "sub-agent finished"
+ag_ui = "SUBAGENT_FINISHED"
+
+[[event]]
+one = "approval, question, choice or form awaiting the user"
+ag_ui = "RUN_FINISHED"
+outcome = "interrupt"
+interrupt_id = "interaction id"
+draft = true
+
+[[event]]
+one = "InteractionResponse"
+ag_ui = "RunAgentInput.resume"
+resume_key = "interaction id"
+
+[[event]]
+one = "One text answer"
+ag_ui = "TEXT_MESSAGE_START"
+then = "TEXT_MESSAGE_CONTENT, TEXT_MESSAGE_END"
+
+[[event]]
+one = "capability call lifecycle"
+ag_ui = "TOOL_CALL_START"
+then = "TOOL_CALL_ARGS, TOOL_CALL_END, TOOL_CALL_RESULT"

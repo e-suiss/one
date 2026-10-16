@@ -1,0 +1,450 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/model/routing-record/v1.json",
+  "title": "Model routing record",
+  "$comment": "MF-22, MF-19, MF-20, MF-21, MF-23, MF-3, PV-16, SEC-27",
+  "type": "object",
+  "required": [
+    "request_id",
+    "recorded_at",
+    "memory_part",
+    "provider_trace_part"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "request_id": {
+      "$ref": "https://suiss.app/schemas/one/model/common/v1.json#/$defs/ModelRequestId"
+    },
+    "recorded_at": {
+      "$ref": "https://suiss.app/schemas/one/model/common/v1.json#/$defs/Timestamp"
+    },
+    "memory_part": {
+      "type": "object",
+      "required": [
+        "retention_class",
+        "data_class",
+        "retention_classes",
+        "gate",
+        "estimate",
+        "fallback",
+        "outcome"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "retention_class": {
+          "const": "one_memory"
+        },
+        "data_class": {
+          "$ref": "https://suiss.app/schemas/one/memory/data-class/v1.json"
+        },
+        "retention_classes": {
+          "$ref": "https://suiss.app/schemas/one/model/common/v1.json#/$defs/ContentRetentionClasses"
+        },
+        "device_only": {
+          "type": "boolean",
+          "default": false
+        },
+        "gate": {
+          "type": "object",
+          "required": [
+            "result",
+            "eliminated"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "result": {
+              "enum": [
+                "passed",
+                "refused",
+                "queued_offline",
+                "waiting_no_model"
+              ]
+            },
+            "eliminated": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "option",
+                  "rule"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "option": {
+                    "type": "object",
+                    "required": [
+                      "model_role"
+                    ],
+                    "additionalProperties": false,
+                    "properties": {
+                      "model_role": {
+                        "$ref": "https://suiss.app/schemas/one/model/common/v1.json#/$defs/ModelRole"
+                      },
+                      "model_version_id": {
+                        "$ref": "https://suiss.app/schemas/one/model/common/v1.json#/$defs/ModelVersionId"
+                      },
+                      "with_adapter": {
+                        "type": "boolean"
+                      }
+                    }
+                  },
+                  "rule": {
+                    "enum": [
+                      "data_class",
+                      "consent",
+                      "grant_budget",
+                      "connectivity",
+                      "region",
+                      "mode",
+                      "unavailable",
+                      "not_released"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "chosen": {
+          "$ref": "https://suiss.app/schemas/one/model/common/v1.json#/$defs/ModelRef"
+        },
+        "estimate": {
+          "description": "Second-stage estimate that the small model suffices; absent when the gate left at most one role",
+          "type": [
+            "object",
+            "null"
+          ],
+          "required": [
+            "small_sufficient",
+            "estimator_version"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "small_sufficient": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "estimator_version": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "fallback": {
+          "enum": [
+            "none",
+            "other_instance",
+            "backup_family",
+            "small_short_answer",
+            "wait"
+          ]
+        },
+        "outcome": {
+          "type": "object",
+          "required": [
+            "signal"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "signal": {
+              "enum": [
+                "pending",
+                "accepted",
+                "corrected",
+                "re_asked",
+                "undone",
+                "task_succeeded",
+                "task_failed"
+              ]
+            },
+            "at": {
+              "$ref": "https://suiss.app/schemas/one/model/common/v1.json#/$defs/Timestamp"
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "signal": {
+                    "const": "pending"
+                  }
+                }
+              },
+              "then": {
+                "not": {
+                  "required": [
+                    "at"
+                  ]
+                }
+              },
+              "else": {
+                "required": [
+                  "at"
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "$ref": "https://suiss.app/schemas/one/model/common/v1.json#/$defs/ContentClasses"
+        },
+        {
+          "if": {
+            "properties": {
+              "gate": {
+                "properties": {
+                  "result": {
+                    "const": "passed"
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "chosen"
+            ]
+          },
+          "else": {
+            "not": {
+              "required": [
+                "chosen"
+              ]
+            },
+            "properties": {
+              "fallback": {
+                "enum": [
+                  "none",
+                  "wait"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "fallback": {
+                "const": "small_short_answer"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "chosen": {
+                "properties": {
+                  "model_role": {
+                    "const": "small_lm"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "fallback": {
+                "const": "wait"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "gate": {
+                "properties": {
+                  "result": {
+                    "const": "waiting_no_model"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "gate": {
+                "properties": {
+                  "result": {
+                    "const": "waiting_no_model"
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "fallback": {
+                "const": "wait"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "provider_trace_part": {
+      "type": "object",
+      "required": [
+        "retention_class",
+        "hops"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "retention_class": {
+          "const": "one_provider_trace"
+        },
+        "hops": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "processor",
+              "region",
+              "data_class"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "processor": {
+                "enum": [
+                  "suiss_model_serving"
+                ]
+              },
+              "region": {
+                "$ref": "https://suiss.app/schemas/one/model/common/v1.json#/$defs/Region"
+              },
+              "sub_processor": {
+                "type": "string",
+                "pattern": "^[a-z0-9][a-z0-9._-]*$"
+              },
+              "attested_tee": {
+                "type": "boolean"
+              },
+              "data_class": {
+                "$ref": "https://suiss.app/schemas/one/memory/data-class/v1.json"
+              }
+            },
+            "allOf": [
+              {
+                "if": {
+                  "properties": {
+                    "data_class": {
+                      "$ref": "https://suiss.app/schemas/one/memory/data-class/v1.json#/$defs/is_sensitive"
+                    }
+                  }
+                },
+                "then": {
+                  "required": [
+                    "attested_tee"
+                  ],
+                  "properties": {
+                    "attested_tee": {
+                      "const": true
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "memory_part": {
+            "properties": {
+              "gate": {
+                "properties": {
+                  "result": {
+                    "const": "passed"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "provider_trace_part": {
+            "properties": {
+              "hops": {
+                "maxItems": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "memory_part": {
+            "properties": {
+              "chosen": {
+                "properties": {
+                  "model_role": {
+                    "enum": [
+                      "short_command_classifier",
+                      "attention",
+                      "risk",
+                      "voice_activity",
+                      "wake_word"
+                    ]
+                  }
+                }
+              }
+            },
+            "required": [
+              "chosen"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "provider_trace_part": {
+            "properties": {
+              "hops": {
+                "maxItems": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "memory_part": {
+            "properties": {
+              "device_only": {
+                "const": true
+              }
+            },
+            "required": [
+              "device_only"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "provider_trace_part": {
+            "properties": {
+              "hops": {
+                "maxItems": 0
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

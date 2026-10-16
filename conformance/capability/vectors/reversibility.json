@@ -1,0 +1,57 @@
+[
+  {
+    "rule": "A-24",
+    "description": "Declared and verified",
+    "input": {
+      "declared": "reversible",
+      "verified": true
+    },
+    "expected": {
+      "effective": "reversible"
+    }
+  },
+  {
+    "rule": "A-24",
+    "description": "Declared but not verified at the gate",
+    "input": {
+      "declared": "reversible",
+      "verified": false
+    },
+    "expected": {
+      "effective": "irreversible"
+    }
+  },
+  {
+    "rule": "A-24",
+    "description": "Compensable not verified",
+    "input": {
+      "declared": "compensable",
+      "verified": false
+    },
+    "expected": {
+      "effective": "irreversible"
+    }
+  },
+  {
+    "rule": "A-24",
+    "description": "Not declared in a third-party package",
+    "input": {
+      "declared": null,
+      "verified": false
+    },
+    "expected": {
+      "effective": "irreversible"
+    }
+  },
+  {
+    "rule": "A-24",
+    "description": "Irreversible stays irreversible",
+    "input": {
+      "declared": "irreversible",
+      "verified": true
+    },
+    "expected": {
+      "effective": "irreversible"
+    }
+  }
+]

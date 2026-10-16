@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/intent/typed-intent/v1.json",
+  "title": "Typed intent",
+  "type": "object",
+  "required": [
+    "task_id",
+    "capability",
+    "inputs",
+    "origin_set",
+    "summary"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "task_id": {
+      "$ref": "https://suiss.app/schemas/one/ontology/id/v1.json#/$defs/TaskId"
+    },
+    "capability": {
+      "$ref": "https://suiss.app/schemas/one/intent/capability-ref/v1.json#/$defs/bound"
+    },
+    "inputs": {
+      "$ref": "#/$defs/inputs"
+    },
+    "origin_set": {
+      "$ref": "https://suiss.app/schemas/one/intent/origin-set/v1.json"
+    },
+    "summary": {
+      "$ref": "#/$defs/summary"
+    }
+  },
+  "if": {
+    "properties": {
+      "inputs": {
+        "maxProperties": 0
+      }
+    },
+    "required": [
+      "inputs"
+    ]
+  },
+  "then": {
+    "properties": {
+      "summary": {
+        "not": {
+          "required": [
+            "worst"
+          ]
+        }
+      }
+    }
+  },
+  "else": {
+    "properties": {
+      "summary": {
+        "required": [
+          "worst"
+        ]
+      }
+    }
+  },
+  "$defs": {
+    "input_name": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]{0,63}$"
+    },
+    "inputs": {
+      "type": "object",
+      "maxProperties": 128,
+      "propertyNames": {
+        "$ref": "#/$defs/input_name"
+      },
+      "additionalProperties": {
+        "$ref": "https://suiss.app/schemas/one/provenance/labelled-value/v1.json"
+      }
+    },
+    "summary": {
+      "type": "object",
+      "required": [
+        "capability",
+        "inputs",
+        "origin_set"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "capability": {
+          "$ref": "https://suiss.app/schemas/one/intent/capability-ref/v1.json#/$defs/proposed"
+        },
+        "inputs": {
+          "type": "object",
+          "maxProperties": 128,
+          "propertyNames": {
+            "$ref": "#/$defs/input_name"
+          },
+          "additionalProperties": {
+            "$ref": "https://suiss.app/schemas/one/provenance/access-mapping/v1.json"
+          }
+        },
+        "worst": {
+          "$ref": "https://suiss.app/schemas/one/provenance/access-mapping/v1.json"
+        },
+        "origin_set": {
+          "$ref": "https://suiss.app/schemas/one/intent/origin-set/v1.json"
+        }
+      }
+    }
+  }
+}

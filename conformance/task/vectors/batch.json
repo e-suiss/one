@@ -1,0 +1,138 @@
+[
+  {
+    "rule": "CP-6",
+    "description": "All ten invitations sent",
+    "input": {
+      "order": [
+        "s1",
+        "s2",
+        "s3"
+      ],
+      "reported": {
+        "s1": "done",
+        "s2": "done",
+        "s3": "done"
+      }
+    },
+    "expected": {
+      "s1": {
+        "status": "done"
+      },
+      "s2": {
+        "status": "done"
+      },
+      "s3": {
+        "status": "done"
+      }
+    }
+  },
+  {
+    "rule": "CP-6",
+    "description": "Third invitation fails: the rest are not run",
+    "input": {
+      "order": [
+        "s1",
+        "s2",
+        "s3",
+        "s4",
+        "s5"
+      ],
+      "reported": {
+        "s1": "done",
+        "s2": "done",
+        "s3": "failed"
+      }
+    },
+    "expected": {
+      "s1": {
+        "status": "done"
+      },
+      "s2": {
+        "status": "done"
+      },
+      "s3": {
+        "status": "failed"
+      },
+      "s4": {
+        "status": "not_run",
+        "reason": "earlier_step_failed"
+      },
+      "s5": {
+        "status": "not_run",
+        "reason": "earlier_step_failed"
+      }
+    }
+  },
+  {
+    "rule": "CP-6",
+    "description": "Second invitation unknown after a crash: the rest are not run",
+    "input": {
+      "order": [
+        "s1",
+        "s2",
+        "s3",
+        "s4"
+      ],
+      "reported": {
+        "s1": "done",
+        "s2": "unknown"
+      }
+    },
+    "expected": {
+      "s1": {
+        "status": "done"
+      },
+      "s2": {
+        "status": "unknown"
+      },
+      "s3": {
+        "status": "not_run",
+        "reason": "earlier_step_unknown"
+      },
+      "s4": {
+        "status": "not_run",
+        "reason": "earlier_step_unknown"
+      }
+    }
+  },
+  {
+    "rule": "CP-6",
+    "description": "First step fails: nothing else runs",
+    "input": {
+      "order": [
+        "s1",
+        "s2"
+      ],
+      "reported": {
+        "s1": "failed"
+      }
+    },
+    "expected": {
+      "s1": {
+        "status": "failed"
+      },
+      "s2": {
+        "status": "not_run",
+        "reason": "earlier_step_failed"
+      }
+    }
+  },
+  {
+    "rule": "CP-6",
+    "description": "A step reported done after an earlier failure is rejected",
+    "input": {
+      "order": [
+        "s1",
+        "s2"
+      ],
+      "reported": {
+        "s1": "failed",
+        "s2": "done"
+      }
+    },
+    "expected": {
+      "rejected": "ran_after_halt",
+      "step": "s2"
+    }
+  }
+]

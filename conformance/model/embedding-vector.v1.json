@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/model/embedding-vector/v1.json",
+  "title": "Stored embedding vector",
+  "$comment": "MF-55, MF-13",
+  "type": "object",
+  "required": ["record_id", "modality", "embedding_model", "values"],
+  "additionalProperties": false,
+  "properties": {
+    "record_id": { "$ref": "https://suiss.app/schemas/one/ontology/id/v1.json#/$defs/AnyId" },
+    "modality": { "enum": ["text", "image", "audio"] },
+    "embedding_model": {
+      "type": "object",
+      "required": ["model_version_id", "name", "version", "dimension"],
+      "additionalProperties": false,
+      "properties": {
+        "model_version_id": { "$ref": "https://suiss.app/schemas/one/model/common/v1.json#/$defs/ModelVersionId" },
+        "name": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$" },
+        "version": { "type": "string", "minLength": 1 },
+        "dimension": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "values": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "number" }
+    }
+  }
+}

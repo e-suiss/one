@@ -1,0 +1,26 @@
+[
+  {
+    "rule": "SEC-14",
+    "description": "unlabelled or invented labels are rejected",
+    "input": "external",
+    "valid": false
+  },
+  {
+    "rule": "SEC-14",
+    "description": "`external.calendar` is the calendar label",
+    "input": "external.calendar",
+    "valid": true
+  },
+  {
+    "rule": "SEC-14",
+    "description": "the retired `external.calendar_invite` label is rejected",
+    "input": "external.calendar_invite",
+    "valid": false
+  },
+  {
+    "rule": "SEC-14",
+    "description": "`external.unknown` labels content of unknown origin",
+    "input": "external.unknown",
+    "valid": true
+  }
+]

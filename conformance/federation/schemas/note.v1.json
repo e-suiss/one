@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/federation/note/v1.json",
+  "title": "One Federation free-text note",
+  "description": "An A2A TextPart carrying a note for a human only. It is a separate type from the typed body: it is labelled untrusted, shown to the person as the other party's note without rendering, never converted into a field value, operation or action, and never given to the planner.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["text", "mediaType", "metadata"],
+  "properties": {
+    "text": {
+      "description": "Plain text. Displayed as literal characters after normalisation to visible text (hidden markup and invisible characters removed).",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000
+    },
+    "mediaType": {
+      "description": "Always plain text; no markup type is accepted.",
+      "const": "text/plain"
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["https://suiss.app/a2a/one-federation/v1"],
+      "properties": {
+        "https://suiss.app/a2a/one-federation/v1": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["part", "trust", "lang"],
+          "properties": {
+            "part": { "const": "note" },
+            "trust": {
+              "description": "Fixed trust label. A receiver handles the note as untrusted external data regardless of sender or relationship level.",
+              "const": "untrusted"
+            },
+            "lang": {
+              "description": "BCP 47 language tag declared by the sender; informational.",
+              "type": "string",
+              "pattern": "^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$"
+            }
+          }
+        }
+      }
+    }
+  }
+}

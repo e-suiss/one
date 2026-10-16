@@ -1,0 +1,48 @@
+# AT-42
+# AT-5, AT-6, AT-8, AT-12, AT-14
+# Relay CH-65, Relay CH-66, Relay CH-68, Relay WF-56, Relay WF-57, Relay PC-46, Relay PC-55
+
+version = 1
+forbidden_classes = ["security"]
+unlisted_output_type = "never_send"
+
+[[row]]
+id = "approval_request"
+relay_class = "action_required"
+interruption_ceiling = "time-sensitive"
+timing_default = "next_break"
+timing_immediate_only_if_urgent = true
+max_defer_required_on_next_break = true
+critical_overlay = true
+rules = ["AT-42", "AT-8", "AT-25", "Relay WF-57", "Relay PC-46"]
+
+[[row]]
+id = "own_work_info"
+relay_class = "transactional"
+interruption_ceiling = "time-sensitive"
+requires_personal_agent = true
+timing_default = "next_break"
+timing_immediate_only_if_urgent = true
+max_defer_required_on_next_break = true
+critical_overlay = true
+rules = ["AT-42", "AT-12", "Relay CH-68"]
+
+[[row]]
+id = "progress_update"
+relay_class = "transactional"
+interruption_ceiling = "passive"
+timing_default = "immediate"
+timing_immediate_only_if_urgent = false
+max_defer_required_on_next_break = false
+critical_overlay = false
+rules = ["AT-42", "AT-14"]
+
+[[row]]
+id = "critical_grant"
+relay_class = "inherit"
+interruption = "critical"
+timing = "immediate"
+overlays = ["approval_request", "own_work_info"]
+requires_access_grant = true
+counts_toward_budget = false
+rules = ["AT-42", "AT-6", "AT-10", "Relay CH-66", "Relay PC-55"]

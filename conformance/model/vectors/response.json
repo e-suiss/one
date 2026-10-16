@@ -1,0 +1,367 @@
+[
+  {
+    "rule": "MF-6",
+    "description": "A successful response names role and version and reports all usage measures",
+    "input": {
+      "request_id": "mrq_01m4ezb900emrbphjhbhkq4zc8",
+      "outcome": "ok",
+      "model": {
+        "model_role": "small_lm",
+        "model_version_id": "mdl_01m4ezb900f9at0tvpg669f8nd",
+        "adapter_id": "adp_01m4ezb900ec79j91f792n0pv6"
+      },
+      "output": {
+        "structured": {
+          "intent": "reschedule",
+          "at": "09:00"
+        }
+      },
+      "usage": {
+        "input_tokens": 812,
+        "output_tokens": 37,
+        "cached_input_tokens": 640,
+        "reasoning_tokens": 0,
+        "latency_ms": 412
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "MF-6",
+    "description": "Usage without reasoning tokens is rejected",
+    "input": {
+      "request_id": "mrq_01m4ezb900emrbphjhbhkq4zc8",
+      "outcome": "ok",
+      "model": {
+        "model_role": "small_lm",
+        "model_version_id": "mdl_01m4ezb900f9at0tvpg669f8nd",
+        "adapter_id": "adp_01m4ezb900ec79j91f792n0pv6"
+      },
+      "output": {
+        "structured": {
+          "intent": "reschedule",
+          "at": "09:00"
+        }
+      },
+      "usage": {
+        "input_tokens": 812,
+        "output_tokens": 37,
+        "cached_input_tokens": 640,
+        "latency_ms": 412
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-6",
+    "description": "Usage without cached tokens is rejected",
+    "input": {
+      "request_id": "mrq_01m4ezb900emrbphjhbhkq4zc8",
+      "outcome": "ok",
+      "model": {
+        "model_role": "small_lm",
+        "model_version_id": "mdl_01m4ezb900f9at0tvpg669f8nd",
+        "adapter_id": "adp_01m4ezb900ec79j91f792n0pv6"
+      },
+      "output": {
+        "structured": {
+          "intent": "reschedule",
+          "at": "09:00"
+        }
+      },
+      "usage": {
+        "input_tokens": 812,
+        "output_tokens": 37,
+        "reasoning_tokens": 0,
+        "latency_ms": 412
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-6",
+    "description": "Usage without latency is rejected",
+    "input": {
+      "request_id": "mrq_01m4ezb900emrbphjhbhkq4zc8",
+      "outcome": "ok",
+      "model": {
+        "model_role": "small_lm",
+        "model_version_id": "mdl_01m4ezb900f9at0tvpg669f8nd",
+        "adapter_id": "adp_01m4ezb900ec79j91f792n0pv6"
+      },
+      "output": {
+        "structured": {
+          "intent": "reschedule",
+          "at": "09:00"
+        }
+      },
+      "usage": {
+        "input_tokens": 812,
+        "output_tokens": 37,
+        "cached_input_tokens": 640,
+        "reasoning_tokens": 0
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-6",
+    "description": "A rate-limited error with a retry hint",
+    "input": {
+      "request_id": "mrq_01m4ezb900emrbphjhbhkq4zc8",
+      "outcome": "error",
+      "error": {
+        "code": "rate_limited",
+        "retry_after_ms": 2000
+      },
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cached_input_tokens": 0,
+        "reasoning_tokens": 0,
+        "latency_ms": 18
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "MF-6",
+    "description": "Refusal is a common error",
+    "input": {
+      "request_id": "mrq_01m4ezb900emrbphjhbhkq4zc8",
+      "outcome": "error",
+      "error": {
+        "code": "refusal"
+      },
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cached_input_tokens": 0,
+        "reasoning_tokens": 0,
+        "latency_ms": 18
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "MF-6",
+    "description": "Context size exceeded may report the limit",
+    "input": {
+      "request_id": "mrq_01m4ezb900emrbphjhbhkq4zc8",
+      "outcome": "error",
+      "error": {
+        "code": "context_size_exceeded",
+        "context_limit_tokens": 32768
+      },
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cached_input_tokens": 0,
+        "reasoning_tokens": 0,
+        "latency_ms": 18
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "MF-6",
+    "description": "Unavailable is a common error",
+    "input": {
+      "request_id": "mrq_01m4ezb900emrbphjhbhkq4zc8",
+      "outcome": "error",
+      "error": {
+        "code": "unavailable"
+      },
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cached_input_tokens": 0,
+        "reasoning_tokens": 0,
+        "latency_ms": 18
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "MF-6",
+    "description": "An error outside the common set is rejected",
+    "input": {
+      "request_id": "mrq_01m4ezb900emrbphjhbhkq4zc8",
+      "outcome": "error",
+      "error": {
+        "code": "timeout"
+      },
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cached_input_tokens": 0,
+        "reasoning_tokens": 0,
+        "latency_ms": 18
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-6",
+    "description": "Only rate_limited carries retry_after_ms",
+    "input": {
+      "request_id": "mrq_01m4ezb900emrbphjhbhkq4zc8",
+      "outcome": "error",
+      "error": {
+        "code": "unavailable",
+        "retry_after_ms": 10
+      },
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cached_input_tokens": 0,
+        "reasoning_tokens": 0,
+        "latency_ms": 18
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-6",
+    "description": "An error response carries no output",
+    "input": {
+      "request_id": "mrq_01m4ezb900emrbphjhbhkq4zc8",
+      "outcome": "error",
+      "error": {
+        "code": "rate_limited",
+        "retry_after_ms": 2000
+      },
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cached_input_tokens": 0,
+        "reasoning_tokens": 0,
+        "latency_ms": 18
+      },
+      "output": {
+        "text": "x"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-6",
+    "description": "An error response still reports usage",
+    "input": {
+      "request_id": "mrq_01m4ezb900emrbphjhbhkq4zc8",
+      "outcome": "error",
+      "error": {
+        "code": "rate_limited",
+        "retry_after_ms": 2000
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-2",
+    "description": "A successful response without the serving model is rejected",
+    "input": {
+      "request_id": "mrq_01m4ezb900emrbphjhbhkq4zc8",
+      "outcome": "ok",
+      "output": {
+        "structured": {
+          "intent": "reschedule",
+          "at": "09:00"
+        }
+      },
+      "usage": {
+        "input_tokens": 812,
+        "output_tokens": 37,
+        "cached_input_tokens": 640,
+        "reasoning_tokens": 0,
+        "latency_ms": 412
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-32",
+    "description": "A personal adapter is attached only to the small model",
+    "input": {
+      "request_id": "mrq_01m4ezb900emrbphjhbhkq4zc8",
+      "outcome": "ok",
+      "model": {
+        "model_role": "large_lm",
+        "model_version_id": "mdl_01m4ezb900f9at0tvpg669f8nd",
+        "adapter_id": "adp_01m4ezb900ec79j91f792n0pv6"
+      },
+      "output": {
+        "structured": {
+          "intent": "reschedule",
+          "at": "09:00"
+        }
+      },
+      "usage": {
+        "input_tokens": 812,
+        "output_tokens": 37,
+        "cached_input_tokens": 640,
+        "reasoning_tokens": 0,
+        "latency_ms": 412
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-23",
+    "description": "A short answer comes from the small model",
+    "input": {
+      "request_id": "mrq_01m4ezb900emrbphjhbhkq4zc8",
+      "outcome": "ok",
+      "model": {
+        "model_role": "large_lm",
+        "model_version_id": "mdl_01m4ezb900f9at0tvpg669f8nd"
+      },
+      "output": {
+        "structured": {
+          "intent": "reschedule",
+          "at": "09:00"
+        }
+      },
+      "usage": {
+        "input_tokens": 812,
+        "output_tokens": 37,
+        "cached_input_tokens": 640,
+        "reasoning_tokens": 0,
+        "latency_ms": 412
+      },
+      "short_answer": true
+    },
+    "valid": false
+  },
+  {
+    "rule": "MF-6",
+    "description": "Tool calls name One capabilities",
+    "input": {
+      "request_id": "mrq_01m4ezb900emrbphjhbhkq4zc8",
+      "outcome": "ok",
+      "model": {
+        "model_role": "small_lm",
+        "model_version_id": "mdl_01m4ezb900f9at0tvpg669f8nd",
+        "adapter_id": "adp_01m4ezb900ec79j91f792n0pv6"
+      },
+      "output": {
+        "tool_calls": [
+          {
+            "name": "app.suiss.transport.ride.request",
+            "arguments": {
+              "to": "office"
+            }
+          }
+        ]
+      },
+      "usage": {
+        "input_tokens": 812,
+        "output_tokens": 37,
+        "cached_input_tokens": 640,
+        "reasoning_tokens": 0,
+        "latency_ms": 412
+      }
+    },
+    "valid": true
+  }
+]

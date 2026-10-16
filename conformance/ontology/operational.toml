@@ -1,0 +1,41 @@
+# C-9, C-21
+
+may_reference_canonical = true
+canonical_meaning_depends_on = false
+canonical_type = false
+
+[[object]]
+name = "Model version record"
+id_type = "ModelVersionId"
+section = "§9"
+
+[[object]]
+name = "Personal adapter version record"
+id_type = "AdapterId"
+section = "§9"
+
+[[object]]
+name = "Key"
+section = "§18"
+
+[[object]]
+name = "Routing record"
+section = "§9"
+
+[[object]]
+name = "Evaluation record"
+section = "§18"
+
+[[object]]
+name = "Processor trace"
+retention_class = "one_provider_trace"
+section = "§17"
+
+[[object]]
+name = "Operational telemetry"
+section = "§18"
+
+[[object]]
+name = "Vector, summary and other derived index entries"
+bound_to_sources = true
+section = "§8"

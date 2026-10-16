@@ -1,0 +1,133 @@
+[
+  {
+    "rule": "C-7, X-12",
+    "description": "A registered extension whose mapping matches the registry resolves to its core kind",
+    "input": {
+      "registry": {
+        "version": 1,
+        "extension": [
+          {
+            "name": "app.suiss.commerce.order_tracking",
+            "version": 1,
+            "maps_to": "progress",
+            "meaning": "Order delivery tracking",
+            "rule": "X-12"
+          }
+        ]
+      },
+      "kind": {
+        "extension": "app.suiss.commerce.order_tracking",
+        "version": 1,
+        "maps_to": "progress"
+      }
+    },
+    "expected": {
+      "valid": true,
+      "core_kind": "progress"
+    }
+  },
+  {
+    "rule": "C-7",
+    "description": "An extension missing from the registry is rejected even when it names a core kind",
+    "input": {
+      "registry": {
+        "version": 1,
+        "extension": [
+          {
+            "name": "app.suiss.commerce.order_tracking",
+            "version": 1,
+            "maps_to": "progress",
+            "meaning": "Order delivery tracking",
+            "rule": "X-12"
+          }
+        ]
+      },
+      "kind": {
+        "extension": "app.suiss.travel.gate_change",
+        "version": 1,
+        "maps_to": "info"
+      }
+    },
+    "expected": {
+      "valid": false,
+      "error": "unregistered_extension"
+    }
+  },
+  {
+    "rule": "C-7",
+    "description": "An extension whose mapping differs from the registry is rejected",
+    "input": {
+      "registry": {
+        "version": 1,
+        "extension": [
+          {
+            "name": "app.suiss.commerce.order_tracking",
+            "version": 1,
+            "maps_to": "progress",
+            "meaning": "Order delivery tracking",
+            "rule": "X-12"
+          }
+        ]
+      },
+      "kind": {
+        "extension": "app.suiss.commerce.order_tracking",
+        "version": 1,
+        "maps_to": "info"
+      }
+    },
+    "expected": {
+      "valid": false,
+      "error": "mapping_mismatch"
+    }
+  },
+  {
+    "rule": "C-7",
+    "description": "An extension version not in the registry is rejected",
+    "input": {
+      "registry": {
+        "version": 1,
+        "extension": [
+          {
+            "name": "app.suiss.commerce.order_tracking",
+            "version": 1,
+            "maps_to": "progress",
+            "meaning": "Order delivery tracking",
+            "rule": "X-12"
+          }
+        ]
+      },
+      "kind": {
+        "extension": "app.suiss.commerce.order_tracking",
+        "version": 2,
+        "maps_to": "progress"
+      }
+    },
+    "expected": {
+      "valid": false,
+      "error": "unregistered_extension"
+    }
+  },
+  {
+    "rule": "C-7, X-12",
+    "description": "A core kind resolves to itself without the registry",
+    "input": {
+      "registry": {
+        "version": 1,
+        "extension": [
+          {
+            "name": "app.suiss.commerce.order_tracking",
+            "version": 1,
+            "maps_to": "progress",
+            "meaning": "Order delivery tracking",
+            "rule": "X-12"
+          }
+        ]
+      },
+      "kind": "receipt"
+    },
+    "expected": {
+      "valid": true,
+      "core_kind": "receipt"
+    }
+  }
+]

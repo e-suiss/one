@@ -1,0 +1,189 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/capability/surface-capability/v1.json",
+  "title": "SurfaceCapability",
+  "description": "A client or device surface's declaration of what it can present and signal. Current signal values live in Relay's device state channel. Which risk a surface may approve is the Access Approval Surface conformance profile's declaration; this record only references it and cannot widen it. Carries the C-19 record header.",
+  "type": "object",
+  "required": [
+    "type",
+    "id",
+    "status",
+    "supersedes",
+    "device_id",
+    "surface_class",
+    "surface_kind",
+    "modalities",
+    "size_budget",
+    "local_actions",
+    "screen_observation",
+    "signals",
+    "approval_surface_profile_ref",
+    "declared_at"
+  ],
+  "properties": {
+    "type": {
+      "const": "SurfaceCapability"
+    },
+    "id": {
+      "$ref": "https://suiss.app/schemas/one/ontology/id/v1.json#/$defs/SurfaceCapabilityId"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "deleted"
+      ]
+    },
+    "supersedes": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "https://suiss.app/schemas/one/ontology/id/v1.json#/$defs/SurfaceCapabilityId"
+        }
+      ]
+    },
+    "device_id": {
+      "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/device_id"
+    },
+    "surface_class": {
+      "$ref": "https://suiss.app/schemas/one/interaction/common/v1.json#/$defs/surface_class"
+    },
+    "surface_kind": {
+      "type": "string",
+      "enum": [
+        "app",
+        "web",
+        "widget",
+        "lock_screen",
+        "control",
+        "menu_bar",
+        "tray",
+        "live_activity",
+        "live_update",
+        "complication",
+        "notification",
+        "browser_extension",
+        "car_voice_template",
+        "glasses_display"
+      ]
+    },
+    "modalities": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "voice",
+          "haptic",
+          "small_visual",
+          "full_visual"
+        ]
+      }
+    },
+    "size_budget": {
+      "type": "object",
+      "additionalProperties": false,
+      "minProperties": 1,
+      "properties": {
+        "max_bytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "max_chars": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "binary_answer_only": {
+          "type": "boolean"
+        }
+      }
+    },
+    "local_actions": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "https://suiss.app/schemas/one/capability/name/v1.json#/$defs/name"
+      }
+    },
+    "screen_observation": {
+      "type": "boolean"
+    },
+    "signals": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "worn",
+          "locked",
+          "camera_active",
+          "driving",
+          "charging",
+          "online"
+        ]
+      }
+    },
+    "approval_surface_profile_ref": {
+      "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/opaque_ref"
+    },
+    "declared_at": {
+      "$ref": "https://suiss.app/schemas/one/task/common/v1.json#/$defs/timestamp"
+    }
+  },
+  "allOf": [
+    {
+      "$ref": "https://suiss.app/schemas/one/memory/common/v1.json#/$defs/record_header"
+    },
+    {
+      "if": {
+        "properties": {
+          "version": {
+            "const": 1
+          }
+        },
+        "required": [
+          "version"
+        ]
+      },
+      "then": {
+        "properties": {
+          "supersedes": {
+            "type": "null"
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "supersedes": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "surface_class": {
+            "const": "voice:car"
+          }
+        },
+        "required": [
+          "surface_class"
+        ]
+      },
+      "then": {
+        "properties": {
+          "modalities": {
+            "items": {
+              "const": "voice"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "unevaluatedProperties": false
+}

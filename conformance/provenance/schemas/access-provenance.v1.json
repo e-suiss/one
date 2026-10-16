@@ -1,0 +1,6 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/provenance/access-provenance/v1.json",
+  "title": "Access IntentEnvelope provenance value",
+  "enum": ["user", "trusted", "untrusted-external"]
+}

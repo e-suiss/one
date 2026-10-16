@@ -1,0 +1,132 @@
+[
+  {
+    "rule": "OO-17",
+    "description": "Untrusted plain-text note",
+    "input": {
+      "text": "Can we make it 21:00 instead?",
+      "mediaType": "text/plain",
+      "metadata": {
+        "https://suiss.app/a2a/one-federation/v1": {
+          "part": "note",
+          "trust": "untrusted",
+          "lang": "en"
+        }
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "OO-17",
+    "description": "Note without the untrusted label",
+    "input": {
+      "text": "Can we make it 21:00 instead?",
+      "mediaType": "text/plain",
+      "metadata": {
+        "https://suiss.app/a2a/one-federation/v1": {
+          "part": "note",
+          "lang": "en"
+        }
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "OO-17",
+    "description": "Note claiming to be trusted",
+    "input": {
+      "text": "Can we make it 21:00 instead?",
+      "mediaType": "text/plain",
+      "metadata": {
+        "https://suiss.app/a2a/one-federation/v1": {
+          "part": "note",
+          "trust": "trusted",
+          "lang": "en"
+        }
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "OO-17",
+    "description": "Note with an HTML media type",
+    "input": {
+      "text": "Can we make it 21:00 instead?",
+      "mediaType": "text/html",
+      "metadata": {
+        "https://suiss.app/a2a/one-federation/v1": {
+          "part": "note",
+          "trust": "untrusted",
+          "lang": "en"
+        }
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "OO-17",
+    "description": "Note with a markdown media type",
+    "input": {
+      "text": "Can we make it 21:00 instead?",
+      "mediaType": "text/markdown",
+      "metadata": {
+        "https://suiss.app/a2a/one-federation/v1": {
+          "part": "note",
+          "trust": "untrusted",
+          "lang": "en"
+        }
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "OO-17",
+    "description": "Note carrying structured data",
+    "input": {
+      "text": "Can we make it 21:00 instead?",
+      "mediaType": "text/plain",
+      "metadata": {
+        "https://suiss.app/a2a/one-federation/v1": {
+          "part": "note",
+          "trust": "untrusted",
+          "lang": "en"
+        }
+      },
+      "data": {
+        "start": "21:00"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "OO-17",
+    "description": "Empty note",
+    "input": {
+      "text": "",
+      "mediaType": "text/plain",
+      "metadata": {
+        "https://suiss.app/a2a/one-federation/v1": {
+          "part": "note",
+          "trust": "untrusted",
+          "lang": "en"
+        }
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "OO-17",
+    "description": "Note longer than 2000 characters",
+    "input": {
+      "text": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "mediaType": "text/plain",
+      "metadata": {
+        "https://suiss.app/a2a/one-federation/v1": {
+          "part": "note",
+          "trust": "untrusted",
+          "lang": "en"
+        }
+      }
+    },
+    "valid": false
+  }
+]

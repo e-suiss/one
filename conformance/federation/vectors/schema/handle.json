@@ -1,0 +1,20 @@
+[
+  {
+    "rule": "OO-5",
+    "description": "Compact handle",
+    "input": "eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIiwia2lkIjoidGVzdC1rMSIsInR5cCI6Im9uZS1mZWRlcmF0aW9uLWhhbmRsZStqd2UifQ..XCRupFmg92o_jZdw.N6XX8BuN1buKFbAiwDo6fFj6itoWHjGJ4tsROGcyl05EtUrZgNUjMw0xsl8G1IfKTa-EMrZIBK0A2_tGpOUUow.jZ8u16lurMRVZaoiA-v5Vw",
+    "valid": true
+  },
+  {
+    "rule": "OO-5",
+    "description": "Signed JWS instead of JWE (three segments)",
+    "input": "eyJhbGciOiJIUzI1NiJ9.eyJ2IjoxfQ.c2lnbmF0dXJlc2lnbmF0dXJlc2ln",
+    "valid": false
+  },
+  {
+    "rule": "OO-5",
+    "description": "JWE with a non-empty encrypted key",
+    "input": "eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIiwia2lkIjoidGVzdC1rMSIsInR5cCI6Im9uZS1mZWRlcmF0aW9uLWhhbmRsZStqd2UifQ.QUJD.XCRupFmg92o_jZdw.N6XX8BuN1buKFbAiwDo6fFj6itoWHjGJ4tsROGcyl05EtUrZgNUjMw0xsl8G1IfKTa-EMrZIBK0A2_tGpOUUow.jZ8u16lurMRVZaoiA-v5Vw",
+    "valid": false
+  }
+]

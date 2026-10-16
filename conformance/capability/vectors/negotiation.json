@@ -1,0 +1,390 @@
+[
+  {
+    "rule": "CP-15",
+    "description": "Highest common version wins",
+    "input": {
+      "local": [
+        {
+          "name": "app.suiss.transport.ride.request",
+          "versions": [
+            "2026-01-10",
+            "2026-06-01",
+            "2026-10-01"
+          ]
+        }
+      ],
+      "remote": [
+        {
+          "name": "app.suiss.transport.ride.request",
+          "versions": [
+            "2026-01-10",
+            "2026-06-01"
+          ]
+        }
+      ]
+    },
+    "expected": [
+      {
+        "name": "app.suiss.transport.ride.request",
+        "version": "2026-06-01"
+      }
+    ]
+  },
+  {
+    "rule": "CP-15",
+    "description": "No common version drops the name",
+    "input": {
+      "local": [
+        {
+          "name": "app.suiss.transport.ride.request",
+          "versions": [
+            "2026-10-01"
+          ]
+        }
+      ],
+      "remote": [
+        {
+          "name": "app.suiss.transport.ride.request",
+          "versions": [
+            "2026-06-01"
+          ]
+        }
+      ]
+    },
+    "expected": []
+  },
+  {
+    "rule": "CP-15",
+    "description": "Only names on both sides survive",
+    "input": {
+      "local": [
+        {
+          "name": "app.suiss.transport.ride.request",
+          "versions": [
+            "2026-10-01"
+          ]
+        },
+        {
+          "name": "app.suiss.commerce.purchase",
+          "versions": [
+            "2026-10-01"
+          ]
+        }
+      ],
+      "remote": [
+        {
+          "name": "app.suiss.commerce.purchase",
+          "versions": [
+            "2026-10-01"
+          ]
+        }
+      ]
+    },
+    "expected": [
+      {
+        "name": "app.suiss.commerce.purchase",
+        "version": "2026-10-01"
+      }
+    ]
+  },
+  {
+    "rule": "CP-15",
+    "description": "Extension kept with its parent",
+    "input": {
+      "local": [
+        {
+          "name": "app.suiss.travel.flight.book",
+          "versions": [
+            "2026-10-01"
+          ]
+        },
+        {
+          "name": "com.example-air.flight.book.seat_upgrade",
+          "versions": [
+            "2026-09-01"
+          ],
+          "extends": "app.suiss.travel.flight.book"
+        }
+      ],
+      "remote": [
+        {
+          "name": "app.suiss.travel.flight.book",
+          "versions": [
+            "2026-10-01"
+          ]
+        },
+        {
+          "name": "com.example-air.flight.book.seat_upgrade",
+          "versions": [
+            "2026-09-01"
+          ],
+          "extends": "app.suiss.travel.flight.book"
+        }
+      ]
+    },
+    "expected": [
+      {
+        "name": "app.suiss.travel.flight.book",
+        "version": "2026-10-01"
+      },
+      {
+        "name": "com.example-air.flight.book.seat_upgrade",
+        "version": "2026-09-01"
+      }
+    ]
+  },
+  {
+    "rule": "CP-15",
+    "description": "Extension without its parent drops",
+    "input": {
+      "local": [
+        {
+          "name": "app.suiss.travel.flight.book",
+          "versions": [
+            "2026-10-01"
+          ]
+        },
+        {
+          "name": "com.example-air.flight.book.seat_upgrade",
+          "versions": [
+            "2026-09-01"
+          ],
+          "extends": "app.suiss.travel.flight.book"
+        }
+      ],
+      "remote": [
+        {
+          "name": "app.suiss.travel.flight.book",
+          "versions": [
+            "2026-06-01"
+          ]
+        },
+        {
+          "name": "com.example-air.flight.book.seat_upgrade",
+          "versions": [
+            "2026-09-01"
+          ],
+          "extends": "app.suiss.travel.flight.book"
+        }
+      ]
+    },
+    "expected": []
+  },
+  {
+    "rule": "CP-15",
+    "description": "Chained extensions prune to a fixpoint",
+    "input": {
+      "local": [
+        {
+          "name": "app.suiss.travel.flight.book",
+          "versions": [
+            "2026-10-01"
+          ]
+        },
+        {
+          "name": "com.example-air.flight.book.seat_upgrade",
+          "versions": [
+            "2026-09-01"
+          ],
+          "extends": "app.suiss.travel.flight.book"
+        },
+        {
+          "name": "com.example-air.flight.book.seat_upgrade.lounge",
+          "versions": [
+            "2026-09-01"
+          ],
+          "extends": "com.example-air.flight.book.seat_upgrade"
+        }
+      ],
+      "remote": [
+        {
+          "name": "com.example-air.flight.book.seat_upgrade",
+          "versions": [
+            "2026-09-01"
+          ],
+          "extends": "app.suiss.travel.flight.book"
+        },
+        {
+          "name": "com.example-air.flight.book.seat_upgrade.lounge",
+          "versions": [
+            "2026-09-01"
+          ],
+          "extends": "com.example-air.flight.book.seat_upgrade"
+        }
+      ]
+    },
+    "expected": []
+  },
+  {
+    "rule": "CP-15",
+    "description": "Multi-parent extension survives with one parent",
+    "input": {
+      "local": [
+        {
+          "name": "app.suiss.transport.ride.request",
+          "versions": [
+            "2026-10-01"
+          ]
+        },
+        {
+          "name": "app.suiss.travel.flight.book",
+          "versions": [
+            "2026-10-01"
+          ]
+        },
+        {
+          "name": "com.example.loyalty.points",
+          "versions": [
+            "2026-09-01"
+          ],
+          "extends": [
+            "app.suiss.transport.ride.request",
+            "app.suiss.travel.flight.book"
+          ]
+        }
+      ],
+      "remote": [
+        {
+          "name": "app.suiss.transport.ride.request",
+          "versions": [
+            "2026-10-01"
+          ]
+        },
+        {
+          "name": "com.example.loyalty.points",
+          "versions": [
+            "2026-09-01"
+          ],
+          "extends": [
+            "app.suiss.transport.ride.request",
+            "app.suiss.travel.flight.book"
+          ]
+        }
+      ]
+    },
+    "expected": [
+      {
+        "name": "app.suiss.transport.ride.request",
+        "version": "2026-10-01"
+      },
+      {
+        "name": "com.example.loyalty.points",
+        "version": "2026-09-01"
+      }
+    ]
+  },
+  {
+    "rule": "CP-15",
+    "description": "Same name with different extends is a meaning conflict and drops",
+    "input": {
+      "local": [
+        {
+          "name": "app.suiss.travel.flight.book",
+          "versions": [
+            "2026-10-01"
+          ]
+        },
+        {
+          "name": "app.suiss.transport.ride.request",
+          "versions": [
+            "2026-10-01"
+          ]
+        },
+        {
+          "name": "com.example.loyalty.points",
+          "versions": [
+            "2026-09-01"
+          ],
+          "extends": "app.suiss.travel.flight.book"
+        }
+      ],
+      "remote": [
+        {
+          "name": "app.suiss.travel.flight.book",
+          "versions": [
+            "2026-10-01"
+          ]
+        },
+        {
+          "name": "app.suiss.transport.ride.request",
+          "versions": [
+            "2026-10-01"
+          ]
+        },
+        {
+          "name": "com.example.loyalty.points",
+          "versions": [
+            "2026-09-01"
+          ],
+          "extends": "app.suiss.transport.ride.request"
+        }
+      ]
+    },
+    "expected": [
+      {
+        "name": "app.suiss.transport.ride.request",
+        "version": "2026-10-01"
+      },
+      {
+        "name": "app.suiss.travel.flight.book",
+        "version": "2026-10-01"
+      }
+    ]
+  },
+  {
+    "rule": "CP-15",
+    "description": "Invalid names are ignored",
+    "input": {
+      "local": [
+        {
+          "name": "app.suiss.one.ada",
+          "versions": [
+            "2026-10-01"
+          ]
+        },
+        {
+          "name": "app.suiss.transport.ride.request",
+          "versions": [
+            "2026-10-01"
+          ]
+        }
+      ],
+      "remote": [
+        {
+          "name": "app.suiss.one.ada",
+          "versions": [
+            "2026-10-01"
+          ]
+        },
+        {
+          "name": "app.suiss.transport.ride.request",
+          "versions": [
+            "2026-10-01"
+          ]
+        }
+      ]
+    },
+    "expected": [
+      {
+        "name": "app.suiss.transport.ride.request",
+        "version": "2026-10-01"
+      }
+    ]
+  },
+  {
+    "rule": "CP-15",
+    "description": "Empty side gives empty result",
+    "input": {
+      "local": [
+        {
+          "name": "app.suiss.transport.ride.request",
+          "versions": [
+            "2026-10-01"
+          ]
+        }
+      ],
+      "remote": []
+    },
+    "expected": []
+  }
+]

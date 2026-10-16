@@ -9,6 +9,7 @@ repository.workspace = true
 publish = false
 
 [dependencies]
+boon = { version = "=0.6.1", default-features = false }
 serde = { workspace = true, features = ["std", "derive"] }
 serde_json = { workspace = true, features = ["std"] }
 toml = { workspace = true, features = ["std", "parse", "serde", "display"] }

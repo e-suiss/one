@@ -1,0 +1,148 @@
+# C-1, C-2, C-3, C-4, C-5, C-7, C-8, C-9, C-10, C-11, C-13, C-14, C-19, C-21, C-23, C-24, C-28, MD-6 (1), F-6, M-1, MF-47
+
+[[schema]]
+path = "schema/id.json"
+id = "https://suiss.app/schemas/one/ontology/id/v1.json"
+rules = ["C-19", "T-28 (5)", "T-31"]
+
+[[schema]]
+path = "schema/reference.json"
+id = "https://suiss.app/schemas/one/ontology/reference/v1.json"
+rules = ["C-4", "C-24", "MD-6 (1)"]
+
+[[schema]]
+path = "schema/observation.json"
+id = "https://suiss.app/schemas/one/ontology/observation/v1.json"
+rules = ["C-10", "C-8"]
+
+[[schema]]
+path = "schema/episode.json"
+id = "https://suiss.app/schemas/one/ontology/episode/v1.json"
+rules = ["C-5", "C-11", "MD-6 (2)"]
+
+[[schema]]
+path = "schema/goal.json"
+id = "https://suiss.app/schemas/one/ontology/goal/v1.json"
+rules = ["C-13", "C-21"]
+
+[[schema]]
+path = "schema/routine.json"
+id = "https://suiss.app/schemas/one/ontology/routine/v1.json"
+rules = ["C-14", "C-21", "AT-27", "AT-29", "AT-31"]
+
+[[schema]]
+path = "schema/relation.json"
+id = "https://suiss.app/schemas/one/ontology/relation/v1.json"
+rules = ["C-23"]
+
+[[schema]]
+path = "schema/personality-profile.json"
+id = "https://suiss.app/schemas/one/ontology/personality-profile/v1.json"
+rules = ["MF-47", "MF-49", "C-12", "C-28"]
+
+[[schema]]
+path = "schema/extension.json"
+id = "https://suiss.app/schemas/one/ontology/extension/v1.json"
+rules = ["C-3", "C-7", "CP-15", "OO-9"]
+
+[[schema]]
+path = "schema/concept.json"
+id = "https://suiss.app/schemas/one/ontology/concept/v1.json"
+rules = ["C-1", "C-2", "F-6"]
+
+[[table]]
+path = "concepts.toml"
+rules = ["C-1", "C-2", "C-10", "C-11", "C-12", "C-13", "C-14", "C-15", "C-16", "C-17", "C-18", "C-19", "MD-6 (1)"]
+
+[[table]]
+path = "relations.toml"
+rules = ["C-23", "C-21"]
+
+[[table]]
+path = "references.toml"
+rules = ["C-4", "C-24"]
+
+[[table]]
+path = "non-canonical.toml"
+rules = ["C-28", "C-22", "F-6"]
+
+[[table]]
+path = "layers.toml"
+rules = ["C-8", "M-1", "F-7 (1)"]
+
+[[table]]
+path = "operational.toml"
+rules = ["C-9"]
+
+[[table]]
+path = "extension-points.toml"
+rules = ["C-7", "C-3"]
+
+[[table]]
+path = "extensions.toml"
+rules = ["C-7"]
+
+[[vectors]]
+path = "vectors/id.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/ontology/id/v1.json"
+rules = ["C-19"]
+
+[[vectors]]
+path = "vectors/reference.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/ontology/reference/v1.json"
+rules = ["C-4", "C-24"]
+
+[[vectors]]
+path = "vectors/observation.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/ontology/observation/v1.json"
+rules = ["C-10", "C-19"]
+
+[[vectors]]
+path = "vectors/episode.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/ontology/episode/v1.json"
+rules = ["C-5", "C-11"]
+
+[[vectors]]
+path = "vectors/goal.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/ontology/goal/v1.json"
+rules = ["C-13", "C-21", "C-19"]
+
+[[vectors]]
+path = "vectors/routine.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/ontology/routine/v1.json"
+rules = ["C-14", "AT-27", "AT-29", "AT-31", "C-21"]
+
+[[vectors]]
+path = "vectors/relation.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/ontology/relation/v1.json"
+rules = ["C-23", "C-2", "C-15", "C-24"]
+
+[[vectors]]
+path = "vectors/personality-profile.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/ontology/personality-profile/v1.json"
+rules = ["MF-47", "MF-49", "C-28"]
+
+[[vectors]]
+path = "vectors/extension.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/ontology/extension/v1.json"
+rules = ["C-7", "C-3"]
+
+[[vectors]]
+path = "vectors/concept.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/ontology/concept/v1.json"
+rules = ["C-2", "C-5", "C-28"]
+
+[[vectors]]
+path = "vectors/layers.json"
+kind = "behaviour"
+rules = ["C-8", "M-1", "C-14", "C-20"]

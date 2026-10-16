@@ -1,0 +1,183 @@
+[
+  {
+    "rule": "SEC-14 (2)",
+    "description": "value without a label opens as untrusted-external",
+    "input": {
+      "op": "open",
+      "encoded": {
+        "value": "ayse@example.com"
+      }
+    },
+    "expected": {
+      "label": "external.unknown",
+      "access_provenance": "untrusted-external"
+    }
+  },
+  {
+    "rule": "SEC-14 (2)",
+    "description": "null label opens as untrusted-external",
+    "input": {
+      "op": "open",
+      "encoded": {
+        "value": "ayse@example.com",
+        "label": null
+      }
+    },
+    "expected": {
+      "label": "external.unknown",
+      "access_provenance": "untrusted-external"
+    }
+  },
+  {
+    "rule": "T-36 (4)",
+    "description": "bare value outside a labelled wrapper opens as untrusted-external",
+    "input": {
+      "op": "open",
+      "encoded": "ayse@example.com"
+    },
+    "expected": {
+      "label": "external.unknown",
+      "access_provenance": "untrusted-external"
+    }
+  },
+  {
+    "rule": "T-36 (4)",
+    "description": "Access wire value in the internal label field is not a label",
+    "input": {
+      "op": "open",
+      "encoded": {
+        "value": 42,
+        "label": "user"
+      }
+    },
+    "expected": {
+      "label": "external.unknown",
+      "access_provenance": "untrusted-external"
+    }
+  },
+  {
+    "rule": "T-36 (4)",
+    "description": "Access wire value trusted is not an internal label",
+    "input": {
+      "op": "open",
+      "encoded": {
+        "value": 42,
+        "label": "trusted"
+      }
+    },
+    "expected": {
+      "label": "external.unknown",
+      "access_provenance": "untrusted-external"
+    }
+  },
+  {
+    "rule": "T-36 (4)",
+    "description": "unknown external sub-label opens as untrusted-external",
+    "input": {
+      "op": "open",
+      "encoded": {
+        "value": 42,
+        "label": "external.fax"
+      }
+    },
+    "expected": {
+      "label": "external.unknown",
+      "access_provenance": "untrusted-external"
+    }
+  },
+  {
+    "rule": "T-36 (4)",
+    "description": "labels are case-sensitive; unknown spelling opens as untrusted-external",
+    "input": {
+      "op": "open",
+      "encoded": {
+        "value": 42,
+        "label": "USER.DIRECT"
+      }
+    },
+    "expected": {
+      "label": "external.unknown",
+      "access_provenance": "untrusted-external"
+    }
+  },
+  {
+    "rule": "T-36 (4)",
+    "description": "non-string label opens as untrusted-external",
+    "input": {
+      "op": "open",
+      "encoded": {
+        "value": 42,
+        "label": [
+          "user.direct"
+        ]
+      }
+    },
+    "expected": {
+      "label": "external.unknown",
+      "access_provenance": "untrusted-external"
+    }
+  },
+  {
+    "rule": "T-36 (4)",
+    "description": "external.mixed without sources is malformed and opens as external.unknown",
+    "input": {
+      "op": "open",
+      "encoded": {
+        "value": 42,
+        "label": "external.mixed"
+      }
+    },
+    "expected": {
+      "label": "external.unknown",
+      "access_provenance": "untrusted-external"
+    }
+  },
+  {
+    "rule": "T-36 (4)",
+    "description": "valid label survives a serialisation round trip",
+    "input": {
+      "op": "open",
+      "encoded": {
+        "value": "Yarın 14:00",
+        "label": "external.calendar"
+      }
+    },
+    "expected": {
+      "label": "external.calendar",
+      "access_provenance": "untrusted-external"
+    }
+  },
+  {
+    "rule": "T-36 (4)",
+    "description": "valid trusted label survives a serialisation round trip",
+    "input": {
+      "op": "open",
+      "encoded": {
+        "value": "48500.00",
+        "label": "record.trusted"
+      }
+    },
+    "expected": {
+      "label": "record.trusted",
+      "access_provenance": "trusted"
+    }
+  },
+  {
+    "rule": "T-36 (4)",
+    "description": "valid label with sources survives a round trip",
+    "input": {
+      "op": "open",
+      "encoded": {
+        "value": "Americano",
+        "label": "user.memory",
+        "sources": [
+          "user.memory"
+        ]
+      }
+    },
+    "expected": {
+      "label": "user.memory",
+      "access_provenance": "user"
+    }
+  }
+]

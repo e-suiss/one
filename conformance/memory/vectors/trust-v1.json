@@ -1,0 +1,455 @@
+[
+  {
+    "rule": "M-13",
+    "description": "explicit user statement, fresh",
+    "input": {
+      "source_kind": "user_statement",
+      "observation_count": 1,
+      "supporting_count": 1,
+      "last_observed_at": "2026-10-16T00:00:00Z",
+      "user_confirmed_at": null,
+      "contradicting_count": 0,
+      "as_of": "2026-10-16T00:00:00Z"
+    },
+    "expected": {
+      "trust": 0.954545
+    }
+  },
+  {
+    "rule": "M-13",
+    "description": "repeated behaviour 14 of 17, fresh",
+    "input": {
+      "source_kind": "user_behaviour",
+      "observation_count": 17,
+      "supporting_count": 14,
+      "last_observed_at": "2026-10-16T00:00:00Z",
+      "user_confirmed_at": null,
+      "contradicting_count": 0,
+      "as_of": "2026-10-16T00:00:00Z"
+    },
+    "expected": {
+      "trust": 0.789474
+    }
+  },
+  {
+    "rule": "M-13",
+    "description": "single behaviour observation, fresh",
+    "input": {
+      "source_kind": "user_behaviour",
+      "observation_count": 1,
+      "supporting_count": 1,
+      "last_observed_at": "2026-10-16T00:00:00Z",
+      "user_confirmed_at": null,
+      "contradicting_count": 0,
+      "as_of": "2026-10-16T00:00:00Z"
+    },
+    "expected": {
+      "trust": 0.666667
+    }
+  },
+  {
+    "rule": "M-13",
+    "description": "single external content item, fresh",
+    "input": {
+      "source_kind": "external_content",
+      "observation_count": 1,
+      "supporting_count": 1,
+      "last_observed_at": "2026-10-16T00:00:00Z",
+      "user_confirmed_at": null,
+      "contradicting_count": 0,
+      "as_of": "2026-10-16T00:00:00Z"
+    },
+    "expected": {
+      "trust": 0.6
+    }
+  },
+  {
+    "rule": "M-13",
+    "description": "single imported item, fresh",
+    "input": {
+      "source_kind": "import",
+      "observation_count": 1,
+      "supporting_count": 1,
+      "last_observed_at": "2026-10-16T00:00:00Z",
+      "user_confirmed_at": null,
+      "contradicting_count": 0,
+      "as_of": "2026-10-16T00:00:00Z"
+    },
+    "expected": {
+      "trust": 0.6
+    }
+  },
+  {
+    "rule": "M-13",
+    "description": "connected source 3 of 3, fresh",
+    "input": {
+      "source_kind": "connected_source",
+      "observation_count": 3,
+      "supporting_count": 3,
+      "last_observed_at": "2026-10-16T00:00:00Z",
+      "user_confirmed_at": null,
+      "contradicting_count": 0,
+      "as_of": "2026-10-16T00:00:00Z"
+    },
+    "expected": {
+      "trust": 0.8
+    }
+  },
+  {
+    "rule": "M-13",
+    "description": "behaviour 50 of 50 hits the behaviour ceiling",
+    "input": {
+      "source_kind": "user_behaviour",
+      "observation_count": 50,
+      "supporting_count": 50,
+      "last_observed_at": "2026-10-16T00:00:00Z",
+      "user_confirmed_at": null,
+      "contradicting_count": 0,
+      "as_of": "2026-10-16T00:00:00Z"
+    },
+    "expected": {
+      "trust": 0.95
+    }
+  },
+  {
+    "rule": "M-13",
+    "description": "external content 10 of 10 stays at the external ceiling",
+    "input": {
+      "source_kind": "external_content",
+      "observation_count": 10,
+      "supporting_count": 10,
+      "last_observed_at": "2026-10-16T00:00:00Z",
+      "user_confirmed_at": null,
+      "contradicting_count": 0,
+      "as_of": "2026-10-16T00:00:00Z"
+    },
+    "expected": {
+      "trust": 0.6
+    }
+  },
+  {
+    "rule": "M-13",
+    "description": "behaviour 14 of 17, last seen 90 days ago",
+    "input": {
+      "source_kind": "user_behaviour",
+      "observation_count": 17,
+      "supporting_count": 14,
+      "last_observed_at": "2026-07-18T00:00:00Z",
+      "user_confirmed_at": null,
+      "contradicting_count": 0,
+      "as_of": "2026-10-16T00:00:00Z"
+    },
+    "expected": {
+      "trust": 0.77738
+    }
+  },
+  {
+    "rule": "M-13",
+    "description": "behaviour 14 of 17, last seen one half-life ago",
+    "input": {
+      "source_kind": "user_behaviour",
+      "observation_count": 17,
+      "supporting_count": 14,
+      "last_observed_at": "2026-04-19T00:00:00Z",
+      "user_confirmed_at": null,
+      "contradicting_count": 0,
+      "as_of": "2026-10-16T00:00:00Z"
+    },
+    "expected": {
+      "trust": 0.761905
+    }
+  },
+  {
+    "rule": "M-13",
+    "description": "user statement one year ago",
+    "input": {
+      "source_kind": "user_statement",
+      "observation_count": 1,
+      "supporting_count": 1,
+      "last_observed_at": "2025-10-16T00:00:00Z",
+      "user_confirmed_at": null,
+      "contradicting_count": 0,
+      "as_of": "2026-10-16T00:00:00Z"
+    },
+    "expected": {
+      "trust": 0.85517
+    }
+  },
+  {
+    "rule": "M-13",
+    "description": "behaviour 3 of 10: weak ratio",
+    "input": {
+      "source_kind": "user_behaviour",
+      "observation_count": 10,
+      "supporting_count": 3,
+      "last_observed_at": "2026-10-16T00:00:00Z",
+      "user_confirmed_at": null,
+      "contradicting_count": 0,
+      "as_of": "2026-10-16T00:00:00Z"
+    },
+    "expected": {
+      "trust": 0.333333
+    }
+  },
+  {
+    "rule": "M-13",
+    "description": "behaviour 0 of 5: evidence against",
+    "input": {
+      "source_kind": "user_behaviour",
+      "observation_count": 5,
+      "supporting_count": 0,
+      "last_observed_at": "2026-10-16T00:00:00Z",
+      "user_confirmed_at": null,
+      "contradicting_count": 0,
+      "as_of": "2026-10-16T00:00:00Z"
+    },
+    "expected": {
+      "trust": 0.142857
+    }
+  },
+  {
+    "rule": "M-13",
+    "description": "one contradicting record caps at 0.5",
+    "input": {
+      "source_kind": "user_statement",
+      "observation_count": 1,
+      "supporting_count": 1,
+      "last_observed_at": "2026-10-16T00:00:00Z",
+      "user_confirmed_at": null,
+      "contradicting_count": 1,
+      "as_of": "2026-10-16T00:00:00Z"
+    },
+    "expected": {
+      "trust": 0.5
+    }
+  },
+  {
+    "rule": "M-13",
+    "description": "two contradicting records cap at 0.25",
+    "input": {
+      "source_kind": "user_behaviour",
+      "observation_count": 17,
+      "supporting_count": 14,
+      "last_observed_at": "2026-10-16T00:00:00Z",
+      "user_confirmed_at": null,
+      "contradicting_count": 2,
+      "as_of": "2026-10-16T00:00:00Z"
+    },
+    "expected": {
+      "trust": 0.25
+    }
+  },
+  {
+    "rule": "M-13",
+    "description": "a contradiction cap above a low value changes nothing",
+    "input": {
+      "source_kind": "user_behaviour",
+      "observation_count": 10,
+      "supporting_count": 3,
+      "last_observed_at": "2026-10-16T00:00:00Z",
+      "user_confirmed_at": null,
+      "contradicting_count": 1,
+      "as_of": "2026-10-16T00:00:00Z"
+    },
+    "expected": {
+      "trust": 0.333333
+    }
+  },
+  {
+    "rule": "M-13",
+    "description": "external content confirmed by the user today lifts the ceiling",
+    "input": {
+      "source_kind": "external_content",
+      "observation_count": 1,
+      "supporting_count": 1,
+      "last_observed_at": "2026-10-10T00:00:00Z",
+      "user_confirmed_at": "2026-10-16T00:00:00Z",
+      "contradicting_count": 0,
+      "as_of": "2026-10-16T00:00:00Z"
+    },
+    "expected": {
+      "trust": 0.955533
+    }
+  },
+  {
+    "rule": "M-13",
+    "description": "behaviour 14 of 17 confirmed 30 days ago",
+    "input": {
+      "source_kind": "user_behaviour",
+      "observation_count": 17,
+      "supporting_count": 14,
+      "last_observed_at": "2026-10-01T00:00:00Z",
+      "user_confirmed_at": "2026-09-16T00:00:00Z",
+      "contradicting_count": 0,
+      "as_of": "2026-10-16T00:00:00Z"
+    },
+    "expected": {
+      "trust": 0.893162
+    }
+  },
+  {
+    "rule": "M-13",
+    "description": "import confirmed by the user, with one contradiction",
+    "input": {
+      "source_kind": "import",
+      "observation_count": 1,
+      "supporting_count": 1,
+      "last_observed_at": "2026-10-16T00:00:00Z",
+      "user_confirmed_at": "2026-10-16T00:00:00Z",
+      "contradicting_count": 1,
+      "as_of": "2026-10-16T00:00:00Z"
+    },
+    "expected": {
+      "trust": 0.5
+    }
+  },
+  {
+    "rule": "M-13",
+    "description": "as_of with sub-day age",
+    "input": {
+      "source_kind": "user_behaviour",
+      "observation_count": 4,
+      "supporting_count": 3,
+      "last_observed_at": "2026-10-15T12:00:00Z",
+      "user_confirmed_at": null,
+      "contradicting_count": 0,
+      "as_of": "2026-10-16T00:00:00Z"
+    },
+    "expected": {
+      "trust": 0.66656
+    }
+  },
+  {
+    "rule": "M-13",
+    "description": "supporting count above observation count is rejected",
+    "input": {
+      "source_kind": "user_behaviour",
+      "observation_count": 3,
+      "supporting_count": 4,
+      "last_observed_at": "2026-10-16T00:00:00Z",
+      "user_confirmed_at": null,
+      "contradicting_count": 0,
+      "as_of": "2026-10-16T00:00:00Z"
+    },
+    "expected": {
+      "error": "invalid_evidence"
+    }
+  },
+  {
+    "rule": "M-13",
+    "description": "evidence later than as_of is rejected",
+    "input": {
+      "source_kind": "user_behaviour",
+      "observation_count": 3,
+      "supporting_count": 2,
+      "last_observed_at": "2026-10-17T00:00:00Z",
+      "user_confirmed_at": null,
+      "contradicting_count": 0,
+      "as_of": "2026-10-16T00:00:00Z"
+    },
+    "expected": {
+      "error": "future_evidence"
+    }
+  },
+  {
+    "rule": "M-13",
+    "description": "confirmation later than as_of is rejected",
+    "input": {
+      "source_kind": "user_behaviour",
+      "observation_count": 3,
+      "supporting_count": 2,
+      "last_observed_at": "2026-10-16T00:00:00Z",
+      "user_confirmed_at": "2026-10-17T00:00:00Z",
+      "contradicting_count": 0,
+      "as_of": "2026-10-16T00:00:00Z"
+    },
+    "expected": {
+      "error": "future_evidence"
+    }
+  },
+  {
+    "rule": "M-13",
+    "description": "a model's verbal confidence is never an input",
+    "input": {
+      "source_kind": "user_behaviour",
+      "observation_count": 17,
+      "supporting_count": 14,
+      "last_observed_at": "2026-10-16T00:00:00Z",
+      "user_confirmed_at": null,
+      "contradicting_count": 0,
+      "as_of": "2026-10-16T00:00:00Z",
+      "model_confidence": 0.99
+    },
+    "expected": {
+      "error": "unknown_input"
+    }
+  },
+  {
+    "rule": "M-13",
+    "description": "the clock is an explicit input",
+    "input": {
+      "source_kind": "user_behaviour",
+      "observation_count": 17,
+      "supporting_count": 14,
+      "last_observed_at": "2026-10-16T00:00:00Z",
+      "user_confirmed_at": null,
+      "contradicting_count": 0
+    },
+    "expected": {
+      "error": "unknown_input"
+    }
+  },
+  {
+    "rule": "M-13",
+    "description": "source weight order: user statement > repeated behaviour > single observation > external content",
+    "input": {
+      "cases": [
+        {
+          "source_kind": "user_statement",
+          "observation_count": 1,
+          "supporting_count": 1,
+          "last_observed_at": "2026-10-16T00:00:00Z",
+          "user_confirmed_at": null,
+          "contradicting_count": 0,
+          "as_of": "2026-10-16T00:00:00Z"
+        },
+        {
+          "source_kind": "user_behaviour",
+          "observation_count": 17,
+          "supporting_count": 14,
+          "last_observed_at": "2026-10-16T00:00:00Z",
+          "user_confirmed_at": null,
+          "contradicting_count": 0,
+          "as_of": "2026-10-16T00:00:00Z"
+        },
+        {
+          "source_kind": "user_behaviour",
+          "observation_count": 1,
+          "supporting_count": 1,
+          "last_observed_at": "2026-10-16T00:00:00Z",
+          "user_confirmed_at": null,
+          "contradicting_count": 0,
+          "as_of": "2026-10-16T00:00:00Z"
+        },
+        {
+          "source_kind": "external_content",
+          "observation_count": 1,
+          "supporting_count": 1,
+          "last_observed_at": "2026-10-16T00:00:00Z",
+          "user_confirmed_at": null,
+          "contradicting_count": 0,
+          "as_of": "2026-10-16T00:00:00Z"
+        }
+      ]
+    },
+    "expected": {
+      "strictly_decreasing": true,
+      "values": [
+        0.954545,
+        0.789474,
+        0.666667,
+        0.6
+      ]
+    }
+  }
+]

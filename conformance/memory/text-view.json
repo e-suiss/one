@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/memory/text-view/v1.json",
+  "title": "MemoryTextView",
+  "description": "The text the model receives: a marked data block generated from canonical records, never written by hand and never placed in the instruction section. Lines are `[<core content type>|<epistemic state>|<trust class>(|contested)(|not_current)] <escaped statement>`; `&`, `<`, `>` become `&amp;`, `&lt;`, `&gt;` and CR/LF become one space, so record text cannot close the block. Only active, non-invalidated records are rendered. M-6, M-2, M-14, M-30, INV-14, MD-7 (2), C-22.",
+  "$defs": {
+    "trust_class": {
+      "description": "The class shown instead of a number (M-14). Thresholds are PD; the class is an input to the view.",
+      "enum": ["you_said", "i_think", "not_sure", "seen_unverified", "imported_unverified"]
+    },
+    "entry": {
+      "type": "object",
+      "required": ["record", "trust_class", "currently_valid"],
+      "additionalProperties": false,
+      "properties": {
+        "record": { "$ref": "https://suiss.app/schemas/one/memory/memory-record/v1.json" },
+        "trust_class": { "$ref": "#/$defs/trust_class" },
+        "currently_valid": { "type": "boolean" }
+      }
+    },
+    "request": {
+      "type": "object",
+      "required": ["entries"],
+      "additionalProperties": false,
+      "properties": {
+        "entries": { "type": "array", "items": { "$ref": "#/$defs/entry" } }
+      }
+    },
+    "view": {
+      "type": "object",
+      "required": ["format", "text", "records"],
+      "additionalProperties": false,
+      "properties": {
+        "format": { "const": "memory-data/v1" },
+        "text": { "type": "string", "pattern": "^<memory-data version=\"1\">\\n(.*\\n)*</memory-data>$" },
+        "records": {
+          "type": "array",
+          "items": { "$ref": "https://suiss.app/schemas/one/memory/common/v1.json#/$defs/memory_record_id" }
+        }
+      }
+    }
+  },
+  "$ref": "#/$defs/view"
+}

@@ -1,17 +1,20 @@
 # T-31, E-3
 
-[[file]]
+[[schema]]
 path = "cloudevent.schema.json"
+id = "https://suiss.app/schemas/one/events/cloudevent/v1.json"
 rules = ["E-3", "T-14", "T-31", "T-40"]
 
-[[file]]
+[[vectors]]
+path = "vectors/cloudevent.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/events/cloudevent/v1.json"
+rules = ["E-3", "T-31", "T-40"]
+
+[[table]]
 path = "webhook-profile.toml"
 rules = ["E-3"]
 
-[[file]]
+[[table]]
 path = "asyncapi.yaml"
 rules = ["T-31", "T-14"]
-
-[[file]]
-path = "vectors/cloudevent.json"
-rules = ["E-3", "T-31", "T-40"]

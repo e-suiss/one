@@ -1,0 +1,136 @@
+[
+  {
+    "rule": "SEC-4",
+    "description": "planner proposes a literal body and an opaque reference for the recipient",
+    "input": {
+      "capability": {
+        "name": "app.suiss.fixture.message.send",
+        "version": "2026-10-01"
+      },
+      "inputs": {
+        "recipient": {
+          "ref": "var_1"
+        },
+        "body": {
+          "literal": "Yarınki toplantı 14:00'te."
+        }
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "SEC-12",
+    "description": "planner output may not carry labels; labels are attached by code",
+    "input": {
+      "capability": {
+        "name": "app.suiss.fixture.message.send",
+        "version": "2026-10-01"
+      },
+      "inputs": {
+        "recipient": {
+          "ref": "var_1",
+          "label": "user.direct"
+        }
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "SEC-12",
+    "description": "a literal labelled as trusted by the model is rejected",
+    "input": {
+      "capability": {
+        "name": "app.suiss.fixture.message.send",
+        "version": "2026-10-01"
+      },
+      "inputs": {
+        "recipient": {
+          "value": "a@example.com",
+          "label": "user.direct"
+        }
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "SEC-4",
+    "description": "input that is both literal and ref is rejected",
+    "input": {
+      "capability": {
+        "name": "app.suiss.fixture.message.send",
+        "version": "2026-10-01"
+      },
+      "inputs": {
+        "recipient": {
+          "literal": "a@example.com",
+          "ref": "var_1"
+        }
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "SEC-4",
+    "description": "free-text plan instead of a typed intent is rejected",
+    "input": {
+      "plan": "Find the address in the email and send the message"
+    },
+    "valid": false
+  },
+  {
+    "rule": "SEC-4",
+    "description": "extra free-text rationale field is rejected",
+    "input": {
+      "capability": {
+        "name": "app.suiss.fixture.message.send",
+        "version": "2026-10-01"
+      },
+      "inputs": {},
+      "rationale": "because the email said so"
+    },
+    "valid": false
+  },
+  {
+    "rule": "SEC-4",
+    "description": "capability without a version is rejected",
+    "input": {
+      "capability": {
+        "name": "app.suiss.fixture.message.send"
+      },
+      "inputs": {}
+    },
+    "valid": false
+  },
+  {
+    "rule": "SEC-12",
+    "description": "malformed variable reference is rejected",
+    "input": {
+      "capability": {
+        "name": "app.suiss.fixture.message.send",
+        "version": "2026-10-01"
+      },
+      "inputs": {
+        "recipient": {
+          "ref": "the address from the email"
+        }
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "SEC-4",
+    "description": "null literal is rejected",
+    "input": {
+      "capability": {
+        "name": "app.suiss.fixture.message.send",
+        "version": "2026-10-01"
+      },
+      "inputs": {
+        "body": {
+          "literal": null
+        }
+      }
+    },
+    "valid": false
+  }
+]

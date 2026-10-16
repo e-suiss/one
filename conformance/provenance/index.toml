@@ -1,0 +1,74 @@
+# SEC-14, SEC-31 (5), MD-14 (2), INV-15, T-36 (1, 3, 4, 5, 7), Access E54
+
+[[schema]]
+path = "schemas/label.v1.json"
+id = "https://suiss.app/schemas/one/provenance/label/v1.json"
+rules = ["SEC-14", "T-36 (1)"]
+
+[[schema]]
+path = "schemas/labelled-value.v1.json"
+id = "https://suiss.app/schemas/one/provenance/labelled-value/v1.json"
+rules = ["SEC-14 (1)", "SEC-14 (2)", "T-36 (4)"]
+
+[[schema]]
+path = "schemas/access-provenance.v1.json"
+id = "https://suiss.app/schemas/one/provenance/access-provenance/v1.json"
+rules = ["SEC-14", "E-10", "Access E54 (1)"]
+
+[[schema]]
+path = "schemas/access-mapping.v1.json"
+id = "https://suiss.app/schemas/one/provenance/access-mapping/v1.json"
+rules = ["SEC-14", "T-36 (5)", "Access E54 (1)"]
+
+[[schema]]
+path = "schemas/access-parameter-provenance.v1.json"
+id = "https://suiss.app/schemas/one/provenance/access-parameter-provenance/v1.json"
+rules = ["SEC-14 (4)", "E-10", "Access E54 (1)"]
+
+[[vectors]]
+path = "vectors/order.json"
+kind = "behaviour"
+rules = ["SEC-14 (1)", "T-36 (1)"]
+
+[[vectors]]
+path = "vectors/join.json"
+kind = "behaviour"
+rules = ["SEC-14 (1)", "SEC-31 (5)", "MD-14 (2)", "INV-15", "T-36 (3)"]
+
+[[vectors]]
+path = "vectors/open.json"
+kind = "behaviour"
+rules = ["SEC-14 (2)", "SEC-31 (5)", "T-36 (4)", "SEC-9"]
+
+[[vectors]]
+path = "vectors/access-mapping.json"
+kind = "behaviour"
+rules = ["SEC-14", "T-36 (5)"]
+
+[[vectors]]
+path = "vectors/transform.json"
+kind = "behaviour"
+rules = ["SEC-14 (1)", "SEC-13 (3)", "SEC-21 (2)", "T-36 (3)", "T-36 (4)"]
+
+[[vectors]]
+path = "vectors/upgrade.json"
+kind = "behaviour"
+rules = ["SEC-14 (3)", "SEC-14 (5)", "SEC-21 (2)", "SEC-7", "SEC-16", "T-36 (3)"]
+
+[[vectors]]
+path = "vectors/labelled-value.schema.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/provenance/labelled-value/v1.json"
+rules = ["SEC-14", "SEC-14 (2)"]
+
+[[vectors]]
+path = "vectors/access-mapping.schema.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/provenance/access-mapping/v1.json"
+rules = ["T-36 (5)"]
+
+[[vectors]]
+path = "vectors/access-parameter-provenance.schema.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/provenance/access-parameter-provenance/v1.json"
+rules = ["SEC-14 (4)"]

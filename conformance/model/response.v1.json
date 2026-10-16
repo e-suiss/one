@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/model/response/v1.json",
+  "title": "Provider-independent model response",
+  "$comment": "MF-6, MF-2, MF-3, MF-23",
+  "type": "object",
+  "required": ["request_id", "outcome", "usage"],
+  "additionalProperties": false,
+  "properties": {
+    "request_id": { "$ref": "https://suiss.app/schemas/one/model/common/v1.json#/$defs/ModelRequestId" },
+    "outcome": { "enum": ["ok", "error"] },
+    "model": { "$ref": "https://suiss.app/schemas/one/model/common/v1.json#/$defs/ModelRef" },
+    "short_answer": {
+      "description": "Set when a small model answered work routed for a large one",
+      "type": "boolean"
+    },
+    "output": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": false,
+      "properties": {
+        "text": { "type": "string" },
+        "structured": {},
+        "tool_calls": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["name", "arguments"],
+            "additionalProperties": false,
+            "properties": {
+              "name": { "$ref": "https://suiss.app/schemas/one/model/common/v1.json#/$defs/CapabilityName" },
+              "arguments": { "type": "object" }
+            }
+          }
+        },
+        "embedding": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "number" }
+        }
+      }
+    },
+    "error": {
+      "type": "object",
+      "required": ["code"],
+      "additionalProperties": false,
+      "properties": {
+        "code": { "$ref": "https://suiss.app/schemas/one/model/common/v1.json#/$defs/ErrorCode" },
+        "retry_after_ms": { "type": "integer", "minimum": 0 },
+        "context_limit_tokens": { "type": "integer", "minimum": 1 }
+      },
+      "allOf": [
+        {
+          "if": { "not": { "properties": { "code": { "const": "rate_limited" } } } },
+          "then": { "not": { "required": ["retry_after_ms"] } }
+        },
+        {
+          "if": { "not": { "properties": { "code": { "const": "context_size_exceeded" } } } },
+          "then": { "not": { "required": ["context_limit_tokens"] } }
+        }
+      ]
+    },
+    "usage": { "$ref": "https://suiss.app/schemas/one/model/common/v1.json#/$defs/Usage" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "outcome": { "const": "ok" } } },
+      "then": { "required": ["model", "output"], "not": { "required": ["error"] } }
+    },
+    {
+      "if": { "properties": { "outcome": { "const": "error" } } },
+      "then": { "required": ["error"], "not": { "required": ["output"] } }
+    },
+    {
+      "if": { "properties": { "short_answer": { "const": true } }, "required": ["short_answer"] },
+      "then": {
+        "required": ["model"],
+        "properties": { "model": { "properties": { "model_role": { "const": "small_lm" } } } }
+      }
+    }
+  ]
+}

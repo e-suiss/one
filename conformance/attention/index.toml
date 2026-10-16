@@ -1,0 +1,50 @@
+# AT-1, AT-4, AT-9, AT-23, AT-24, AT-34, AT-42
+
+[[schema]]
+path = "common.v1.json"
+id = "https://suiss.app/schemas/one/attention/common/v1.json"
+rules = ["AT-1", "AT-5", "AT-9", "AT-42"]
+
+[[schema]]
+path = "decision-record.v1.json"
+id = "https://suiss.app/schemas/one/attention/decision-record/v1.json"
+rules = ["AT-1", "AT-2", "AT-4", "AT-24", "AT-6", "AT-8", "AT-9", "AT-10", "AT-12", "AT-13", "AT-21", "AT-22", "AT-23", "AT-26", "AT-42"]
+
+[[schema]]
+path = "relay-mapping.v1.json"
+id = "https://suiss.app/schemas/one/attention/relay-mapping/v1.json"
+rules = ["AT-42"]
+
+[[schema]]
+path = "output-types.v1.json"
+id = "https://suiss.app/schemas/one/attention/output-types/v1.json"
+rules = ["AT-9", "AT-23", "AT-34", "AT-42"]
+
+[[vectors]]
+path = "vectors/decision-record.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/attention/decision-record/v1.json"
+rules = ["AT-24", "AT-1", "AT-2", "AT-4", "AT-6", "AT-8", "AT-9", "AT-10", "AT-12", "AT-13", "AT-21", "AT-22", "AT-23", "AT-26", "AT-42"]
+
+[[vectors]]
+path = "vectors/decision-head.json"
+kind = "behaviour"
+rules = ["AT-1", "AT-2", "AT-8", "AT-9", "AT-10", "AT-12"]
+
+[[vectors]]
+path = "vectors/calibration.json"
+kind = "behaviour"
+rules = ["AT-1"]
+
+[[vectors]]
+path = "vectors/relay-mapping.json"
+kind = "behaviour"
+rules = ["AT-42", "AT-6", "AT-14", "AT-41", "MF-48"]
+
+[[table]]
+path = "relay-mapping.toml"
+rules = ["AT-42", "AT-5", "AT-6", "AT-8", "AT-12", "AT-14"]
+
+[[table]]
+path = "output-types.toml"
+rules = ["AT-9", "AT-23", "AT-34", "AT-42", "AT-41"]

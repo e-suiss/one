@@ -22,6 +22,8 @@ mod platform;
 mod registry;
 #[path = "one_types.rs"]
 mod types;
+#[path = "one_vectors.rs"]
+mod vectors;
 
 use std::path::{Path, PathBuf};
 
@@ -72,6 +74,10 @@ pub(crate) fn checks() -> Vec<Check> {
         Check {
             name: "no-sibling-rewrite",
             run: boundaries::check_siblings,
+        },
+        Check {
+            name: "conformance-vectors",
+            run: vectors::check,
         },
         Check {
             name: "glossary",

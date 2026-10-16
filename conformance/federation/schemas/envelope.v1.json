@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/federation/envelope/v1.json",
+  "title": "One Federation message envelope",
+  "description": "The extension object carried in A2A `Message.metadata` under the key https://suiss.app/a2a/one-federation/v1. Holds every mandatory field of a typed message.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "kind",
+    "sender",
+    "recipient",
+    "authority",
+    "correlationId",
+    "offerVersion",
+    "sentAt",
+    "expiresAt"
+  ],
+  "properties": {
+    "schemaVersion": { "$ref": "https://suiss.app/schemas/one/federation/common/v1.json#/$defs/schemaVersion" },
+    "kind": { "$ref": "https://suiss.app/schemas/one/federation/common/v1.json#/$defs/kind" },
+    "sender": {
+      "description": "Sending person and agent.",
+      "$ref": "https://suiss.app/schemas/one/federation/common/v1.json#/$defs/party"
+    },
+    "recipient": {
+      "description": "Receiving person and agent.",
+      "$ref": "https://suiss.app/schemas/one/federation/common/v1.json#/$defs/party"
+    },
+    "authority": { "$ref": "https://suiss.app/schemas/one/federation/common/v1.json#/$defs/authorityRef" },
+    "correlationId": { "$ref": "https://suiss.app/schemas/one/federation/common/v1.json#/$defs/correlationId" },
+    "offerVersion": { "$ref": "https://suiss.app/schemas/one/federation/common/v1.json#/$defs/offerVersion" },
+    "sentAt": {
+      "description": "Sender's claim of the sending time. Informational: timeliness is judged on the mailbox enqueue time or, for direct A2A, the receiver's receipt time.",
+      "$ref": "https://suiss.app/schemas/one/federation/common/v1.json#/$defs/timestamp"
+    },
+    "expiresAt": {
+      "description": "Last instant at which the message can be answered. At most 7 days after sentAt. When it passes, the message is recorded as expired, never as accepted or rejected.",
+      "$ref": "https://suiss.app/schemas/one/federation/common/v1.json#/$defs/timestamp"
+    },
+    "inReplyTo": {
+      "description": "The message this one answers, with the suspended-negotiation handle that message carried, echoed unchanged.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["messageId", "offerVersion", "digest", "handle"],
+      "properties": {
+        "messageId": { "$ref": "https://suiss.app/schemas/one/federation/common/v1.json#/$defs/messageId" },
+        "offerVersion": { "$ref": "https://suiss.app/schemas/one/federation/common/v1.json#/$defs/offerVersion" },
+        "digest": { "$ref": "https://suiss.app/schemas/one/federation/common/v1.json#/$defs/digest" },
+        "handle": { "$ref": "https://suiss.app/schemas/one/federation/handle/v1.json#/$defs/compact" }
+      }
+    },
+    "handle": {
+      "description": "Suspended-negotiation handle issued by the sender for the reply it awaits.",
+      "$ref": "https://suiss.app/schemas/one/federation/handle/v1.json#/$defs/compact"
+    },
+    "contact": { "$ref": "https://suiss.app/schemas/one/federation/contact/v1.json" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "kind": { "const": "offer" } } },
+      "then": {
+        "properties": { "offerVersion": { "const": 1 } },
+        "required": ["handle"],
+        "not": { "required": ["inReplyTo"] }
+      }
+    },
+    {
+      "if": { "properties": { "kind": { "const": "counter-offer" } } },
+      "then": {
+        "properties": { "offerVersion": { "minimum": 2 } },
+        "required": ["handle", "inReplyTo"]
+      }
+    },
+    {
+      "if": { "properties": { "kind": { "enum": ["commitment", "rejection"] } } },
+      "then": {
+        "properties": { "offerVersion": { "minimum": 1 } },
+        "required": ["inReplyTo"],
+        "not": { "required": ["handle"] }
+      }
+    },
+    {
+      "if": { "properties": { "kind": { "const": "query" } } },
+      "then": { "required": ["handle"] }
+    },
+    {
+      "if": { "properties": { "kind": { "const": "answer" } } },
+      "then": {
+        "required": ["inReplyTo"],
+        "not": { "required": ["handle"] }
+      }
+    }
+  ]
+}

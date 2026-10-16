@@ -1,0 +1,145 @@
+# C-28, C-22, C-3, F-6
+
+[[entry]]
+concept = "Person"
+lives_in = "PartyRef or ExternalPersonRef"
+kind = "reference"
+section = "§15"
+
+[[entry]]
+concept = "Preference"
+lives_in = "MemoryRecord content type preference"
+kind = "memory content type"
+section = "§8"
+
+[[entry]]
+concept = "Constraint"
+lives_in = "MemoryRecord content type constraint"
+kind = "memory content type"
+section = "§8"
+
+[[entry]]
+concept = "Relationship"
+lives_in = "MemoryRecord content type relationship"
+kind = "memory content type"
+section = "§8"
+
+[[entry]]
+concept = "Context"
+lives_in = "Result of retrieval for a Task"
+kind = "derived"
+section = "§8"
+
+[[entry]]
+concept = "Commitment, shared work, One-to-One agreement"
+lives_in = "Work Commitment (CommitmentRef)"
+kind = "reference"
+section = "§7"
+
+[[entry]]
+concept = "Action"
+lives_in = "CapabilityDefinition action plus Access Exercise (ExerciseRef)"
+kind = "reference"
+section = "§12"
+
+[[entry]]
+concept = "Specialist agent, sub-agent"
+lives_in = "Access agent Instance (InstanceRef)"
+kind = "reference"
+section = "§12"
+
+[[entry]]
+concept = "Presence"
+lives_in = "Relay device state signal"
+kind = "transient signal"
+section = "§14"
+
+[[entry]]
+concept = "Endpoint"
+lives_in = "SurfaceCapability plus Access device record"
+kind = "reference"
+section = "§14"
+
+[[entry]]
+concept = "Model"
+lives_in = "operational.toml"
+kind = "operational object"
+section = "§9"
+
+[[entry]]
+concept = "Activity log"
+lives_in = "View over Access Exercise and DecisionRecord, Work records, Executor reports, memory events"
+kind = "view"
+section = "§14"
+
+[[entry]]
+concept = "Pending"
+lives_in = "View; coordinator attention surface for personal work"
+kind = "view"
+section = "§7"
+
+[[entry]]
+concept = "Daily summary"
+lives_in = "Finite view over Interactions and Tasks"
+kind = "view"
+section = "§11"
+
+[[entry]]
+concept = "Personality profile"
+lives_in = "https://suiss.app/schemas/one/ontology/personality-profile/v1.json"
+kind = "view"
+section = "§9"
+
+[[entry]]
+concept = "Trust"
+lives_in = "Value computed from evidence, shown as a class"
+kind = "derived"
+section = "§8"
+
+[[entry]]
+concept = "Chat history"
+lives_in = "Episode"
+kind = "canonical concept"
+section = "C-11"
+
+[[entry]]
+concept = "Chat message"
+lives_in = "Episode entries"
+kind = "content"
+section = "C-11"
+
+[[entry]]
+concept = "Inference"
+lives_in = "MemoryRecord with epistemic state inferred or hypothesis"
+kind = "memory epistemic state"
+section = "C-8"
+
+[[entry]]
+concept = "Notification"
+lives_in = "Relay delivery of an Interaction (NotificationRef)"
+kind = "reference"
+section = "§7"
+
+[[entry]]
+concept = "Trigger"
+lives_in = "Access Trigger record (TriggerRef)"
+kind = "reference"
+section = "§10"
+
+[[entry]]
+concept = "Relationship level"
+lives_in = "Access Acceptance (AcceptanceRef)"
+kind = "reference"
+section = "§13"
+
+[[entry]]
+concept = "Plan"
+lives_in = "Part of a Task"
+kind = "attribute"
+section = "§12"
+
+[[entry]]
+concept = "User project"
+lives_in = "Partition label in domain"
+kind = "attribute"
+section = "§8"

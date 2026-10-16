@@ -1,0 +1,50 @@
+# OO-5
+
+[format]
+serialization = "JWE compact (RFC 7516)"
+alg = "dir"
+enc = "A256GCM"
+protection = "AEAD (RFC 5116): integrity of header and claims, confidentiality of claims and issuer state"
+typ = "one-federation-handle+jwe"
+key = "256-bit symmetric key held only by the issuing agent; never shared with the peer"
+iv = "96-bit, random per handle"
+schema = "schemas/handle.v1.json"
+
+[lifetime]
+exp_equals = "expiresAt of the suspended message, truncated to whole seconds"
+max_seconds = 604800
+clock = "issuer's clock at verification; no grace period"
+
+[binding]
+claims = ["iss", "sub", "aud", "rcp", "cid", "ver", "knd", "dig"]
+reply_sender_must_equal = ["aud", "rcp"]
+reply_recipient_must_equal = ["iss", "sub"]
+reply_correlation_must_equal = "cid"
+reply_in_reply_to_version_must_equal = "ver"
+reply_in_reply_to_digest_must_equal = "dig"
+
+[single_use]
+enforced_by = "issuer (the side that receives the handle back)"
+spent_set_key = "jti"
+spent_set_retention = "until exp"
+consumed_when = "atomically with acceptance of the reply; a reply refused for any reason does not consume the handle"
+
+[verification_order]
+steps = [
+  "handle-missing",
+  "handle-malformed",
+  "handle-tampered",
+  "handle-expired",
+  "handle-binding-mismatch",
+  "handle-digest-mismatch",
+  "handle-replayed",
+]
+
+[keys]
+rotation_seconds = 86400
+retention = "a retired key verifies until max_seconds after its last issue, then is destroyed"
+
+[test_key]
+kid = "test-k1"
+k = "derived in vectors/handle.json input.issuerKey"
+test_only = true

@@ -1,0 +1,184 @@
+[
+  {
+    "rule": "INV-30",
+    "description": "Confirmed stop carries the Executor report",
+    "input": {
+      "subject": "stop",
+      "certainty": "confirmed",
+      "value": "stopped",
+      "confirmation": {
+        "ref": "ExecutionReportRef",
+        "id": "report-1"
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "INV-30",
+    "description": "Stopped without a confirmation reference is rejected",
+    "input": {
+      "subject": "stop",
+      "certainty": "confirmed",
+      "value": "stopped"
+    },
+    "valid": false
+  },
+  {
+    "rule": "INV-30",
+    "description": "Stop confirmed by an Access record is rejected; only the Executor confirms a stop",
+    "input": {
+      "subject": "stop",
+      "certainty": "confirmed",
+      "value": "stopped",
+      "confirmation": {
+        "ref": "DecisionRecordRef",
+        "id": "report-1"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "INV-30",
+    "description": "Unknown stop carries no value",
+    "input": {
+      "subject": "stop",
+      "certainty": "unknown"
+    },
+    "valid": true
+  },
+  {
+    "rule": "INV-30",
+    "description": "Unknown with a value is rejected",
+    "input": {
+      "subject": "stop",
+      "certainty": "unknown",
+      "value": "stopped"
+    },
+    "valid": false
+  },
+  {
+    "rule": "INV-30",
+    "description": "Unknown with a confirmation is rejected",
+    "input": {
+      "subject": "effect",
+      "certainty": "unknown",
+      "confirmation": {
+        "ref": "ExecutionReportRef",
+        "id": "r"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "INV-30",
+    "description": "Undone only with an Executor confirmation",
+    "input": {
+      "subject": "undo",
+      "certainty": "confirmed",
+      "value": "undone",
+      "confirmation": {
+        "ref": "ClaimRef",
+        "id": "report-1"
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "INV-30",
+    "description": "Undone without confirmation is rejected",
+    "input": {
+      "subject": "undo",
+      "certainty": "confirmed",
+      "value": "undone"
+    },
+    "valid": false
+  },
+  {
+    "rule": "INV-30",
+    "description": "Approved only with an Access approval act",
+    "input": {
+      "subject": "approval",
+      "certainty": "confirmed",
+      "value": "approved",
+      "confirmation": {
+        "ref": "DecisionRecordRef",
+        "id": "aas-1"
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "INV-30",
+    "description": "Approved from a Relay wait result is rejected; a channel answer is never approval",
+    "input": {
+      "subject": "approval",
+      "certainty": "confirmed",
+      "value": "approved",
+      "confirmation": {
+        "ref": "WaitpointRef",
+        "id": "w-1"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "INV-30",
+    "description": "Expired approval from the Relay wait result",
+    "input": {
+      "subject": "approval",
+      "certainty": "confirmed",
+      "value": "expired",
+      "confirmation": {
+        "ref": "WaitpointRef",
+        "id": "w-1"
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "CP-7",
+    "description": "Effect occurred as an Executor claim",
+    "input": {
+      "subject": "effect",
+      "certainty": "confirmed",
+      "value": "occurred",
+      "confirmation": {
+        "ref": "ClaimRef",
+        "id": "claim-1"
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "CP-7",
+    "description": "Effect unknown is first class",
+    "input": {
+      "subject": "effect",
+      "certainty": "unknown"
+    },
+    "valid": true
+  },
+  {
+    "rule": "INV-30",
+    "description": "A value from another subject is rejected",
+    "input": {
+      "subject": "effect",
+      "certainty": "confirmed",
+      "value": "stopped",
+      "confirmation": {
+        "ref": "ExecutionReportRef",
+        "id": "report-1"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "INV-30",
+    "description": "Unknown subject is rejected",
+    "input": {
+      "subject": "revoke",
+      "certainty": "unknown"
+    },
+    "valid": false
+  }
+]

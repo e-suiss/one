@@ -1,0 +1,976 @@
+[
+  {
+    "rule": "OO-5",
+    "description": "Authentic, bound, unexpired, first use",
+    "input": {
+      "issuerKey": {
+        "kid": "test-k1",
+        "k": "FhcCYfaoykwwznqE1LnKa8QeOfLylvLHsLj6lNIf12I",
+        "testOnly": true
+      },
+      "compact": "eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIiwia2lkIjoidGVzdC1rMSIsInR5cCI6Im9uZS1mZWRlcmF0aW9uLWhhbmRsZStqd2UifQ..XCRupFmg92o_jZdw.N6XX8BuN1buKFbAiwDo6fFj6itoWHjGJ4tsROGcyl05EtUrZgNUjMw0xsl8G1IfKTa-EMrZIBK0A2_tGpOUUow.jZ8u16lurMRVZaoiA-v5Vw",
+      "protectedHeader": {
+        "alg": "dir",
+        "enc": "A256GCM",
+        "kid": "test-k1",
+        "typ": "one-federation-handle+jwe"
+      },
+      "aeadVerifies": true,
+      "claims": {
+        "v": 1,
+        "jti": "019a5a3c-8e00-7a00-8a00-000000000101",
+        "iss": "did:web:alice.one.suiss.app:agent",
+        "sub": "did:web:alice.one.suiss.app",
+        "aud": "did:web:bob.one.suiss.app:agent",
+        "rcp": "did:web:bob.one.suiss.app",
+        "cid": "019a5a3c-8e00-7a00-8a00-000000000001",
+        "ver": 1,
+        "knd": "offer",
+        "dig": "sha-256:2M7jnCaWtQePydYi1JDwfuzRshTRS11BCyTYLhsjQCE",
+        "iat": 1793786400,
+        "exp": 1793872800
+      },
+      "context": {
+        "replySender": {
+          "person": "did:web:bob.one.suiss.app",
+          "agent": "did:web:bob.one.suiss.app:agent"
+        },
+        "replyRecipient": {
+          "person": "did:web:alice.one.suiss.app",
+          "agent": "did:web:alice.one.suiss.app:agent"
+        },
+        "correlationId": "019a5a3c-8e00-7a00-8a00-000000000001",
+        "inReplyToDigest": "sha-256:2M7jnCaWtQePydYi1JDwfuzRshTRS11BCyTYLhsjQCE",
+        "inReplyToVersion": 1,
+        "now": 1793786700,
+        "spent": []
+      }
+    },
+    "expected": {
+      "accept": true,
+      "spentAfter": [
+        "019a5a3c-8e00-7a00-8a00-000000000101"
+      ]
+    }
+  },
+  {
+    "rule": "OO-5",
+    "description": "Tampered ciphertext fails AEAD",
+    "input": {
+      "issuerKey": {
+        "kid": "test-k1",
+        "k": "FhcCYfaoykwwznqE1LnKa8QeOfLylvLHsLj6lNIf12I",
+        "testOnly": true
+      },
+      "compact": "eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIiwia2lkIjoidGVzdC1rMSIsInR5cCI6Im9uZS1mZWRlcmF0aW9uLWhhbmRsZStqd2UifQ..XCRupFmg92o_jZdw.N6XX8BuN1buKFbAiwDo6fFj6itoWHjGJ4tsROGcyl05EtUrZgNUjMw0xsl8G1IfKTa-EMrZIBK0A2_tGpOUUow.jZ8u16lurMRVZaoiA-v5Vw",
+      "protectedHeader": {
+        "alg": "dir",
+        "enc": "A256GCM",
+        "kid": "test-k1",
+        "typ": "one-federation-handle+jwe"
+      },
+      "aeadVerifies": false,
+      "claims": null,
+      "context": {
+        "replySender": {
+          "person": "did:web:bob.one.suiss.app",
+          "agent": "did:web:bob.one.suiss.app:agent"
+        },
+        "replyRecipient": {
+          "person": "did:web:alice.one.suiss.app",
+          "agent": "did:web:alice.one.suiss.app:agent"
+        },
+        "correlationId": "019a5a3c-8e00-7a00-8a00-000000000001",
+        "inReplyToDigest": "sha-256:2M7jnCaWtQePydYi1JDwfuzRshTRS11BCyTYLhsjQCE",
+        "inReplyToVersion": 1,
+        "now": 1793786700,
+        "spent": []
+      }
+    },
+    "expected": {
+      "accept": false,
+      "refusal": "handle-tampered"
+    }
+  },
+  {
+    "rule": "OO-5",
+    "description": "Tampered protected header (kid changed) fails AEAD because the header is the AAD",
+    "input": {
+      "issuerKey": {
+        "kid": "test-k1",
+        "k": "FhcCYfaoykwwznqE1LnKa8QeOfLylvLHsLj6lNIf12I",
+        "testOnly": true
+      },
+      "compact": "eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIiwia2lkIjoidGVzdC1rMSIsInR5cCI6Im9uZS1mZWRlcmF0aW9uLWhhbmRsZStqd2UifQ..XCRupFmg92o_jZdw.N6XX8BuN1buKFbAiwDo6fFj6itoWHjGJ4tsROGcyl05EtUrZgNUjMw0xsl8G1IfKTa-EMrZIBK0A2_tGpOUUow.jZ8u16lurMRVZaoiA-v5Vw",
+      "protectedHeader": {
+        "alg": "dir",
+        "enc": "A256GCM",
+        "kid": "test-k2",
+        "typ": "one-federation-handle+jwe"
+      },
+      "aeadVerifies": false,
+      "claims": null,
+      "context": {
+        "replySender": {
+          "person": "did:web:bob.one.suiss.app",
+          "agent": "did:web:bob.one.suiss.app:agent"
+        },
+        "replyRecipient": {
+          "person": "did:web:alice.one.suiss.app",
+          "agent": "did:web:alice.one.suiss.app:agent"
+        },
+        "correlationId": "019a5a3c-8e00-7a00-8a00-000000000001",
+        "inReplyToDigest": "sha-256:2M7jnCaWtQePydYi1JDwfuzRshTRS11BCyTYLhsjQCE",
+        "inReplyToVersion": 1,
+        "now": 1793786700,
+        "spent": []
+      }
+    },
+    "expected": {
+      "accept": false,
+      "refusal": "handle-tampered"
+    }
+  },
+  {
+    "rule": "OO-5",
+    "description": "Unknown key identifier",
+    "input": {
+      "issuerKey": {
+        "kid": "test-k1",
+        "k": "FhcCYfaoykwwznqE1LnKa8QeOfLylvLHsLj6lNIf12I",
+        "testOnly": true
+      },
+      "compact": "eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIiwia2lkIjoidGVzdC1rMSIsInR5cCI6Im9uZS1mZWRlcmF0aW9uLWhhbmRsZStqd2UifQ..XCRupFmg92o_jZdw.N6XX8BuN1buKFbAiwDo6fFj6itoWHjGJ4tsROGcyl05EtUrZgNUjMw0xsl8G1IfKTa-EMrZIBK0A2_tGpOUUow.jZ8u16lurMRVZaoiA-v5Vw",
+      "protectedHeader": {
+        "alg": "dir",
+        "enc": "A256GCM",
+        "kid": "unknown",
+        "typ": "one-federation-handle+jwe"
+      },
+      "aeadVerifies": false,
+      "claims": null,
+      "context": {
+        "replySender": {
+          "person": "did:web:bob.one.suiss.app",
+          "agent": "did:web:bob.one.suiss.app:agent"
+        },
+        "replyRecipient": {
+          "person": "did:web:alice.one.suiss.app",
+          "agent": "did:web:alice.one.suiss.app:agent"
+        },
+        "correlationId": "019a5a3c-8e00-7a00-8a00-000000000001",
+        "inReplyToDigest": "sha-256:2M7jnCaWtQePydYi1JDwfuzRshTRS11BCyTYLhsjQCE",
+        "inReplyToVersion": 1,
+        "now": 1793786700,
+        "spent": []
+      }
+    },
+    "expected": {
+      "accept": false,
+      "refusal": "handle-tampered"
+    }
+  },
+  {
+    "rule": "OO-5",
+    "description": "Header with alg none",
+    "input": {
+      "issuerKey": {
+        "kid": "test-k1",
+        "k": "FhcCYfaoykwwznqE1LnKa8QeOfLylvLHsLj6lNIf12I",
+        "testOnly": true
+      },
+      "compact": "eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIiwia2lkIjoidGVzdC1rMSIsInR5cCI6Im9uZS1mZWRlcmF0aW9uLWhhbmRsZStqd2UifQ..XCRupFmg92o_jZdw.N6XX8BuN1buKFbAiwDo6fFj6itoWHjGJ4tsROGcyl05EtUrZgNUjMw0xsl8G1IfKTa-EMrZIBK0A2_tGpOUUow.jZ8u16lurMRVZaoiA-v5Vw",
+      "protectedHeader": {
+        "alg": "none",
+        "enc": "A256GCM",
+        "kid": "test-k1",
+        "typ": "one-federation-handle+jwe"
+      },
+      "aeadVerifies": false,
+      "claims": null,
+      "context": {
+        "replySender": {
+          "person": "did:web:bob.one.suiss.app",
+          "agent": "did:web:bob.one.suiss.app:agent"
+        },
+        "replyRecipient": {
+          "person": "did:web:alice.one.suiss.app",
+          "agent": "did:web:alice.one.suiss.app:agent"
+        },
+        "correlationId": "019a5a3c-8e00-7a00-8a00-000000000001",
+        "inReplyToDigest": "sha-256:2M7jnCaWtQePydYi1JDwfuzRshTRS11BCyTYLhsjQCE",
+        "inReplyToVersion": 1,
+        "now": 1793786700,
+        "spent": []
+      }
+    },
+    "expected": {
+      "accept": false,
+      "refusal": "handle-malformed"
+    }
+  },
+  {
+    "rule": "OO-5",
+    "description": "Three-segment token",
+    "input": {
+      "issuerKey": {
+        "kid": "test-k1",
+        "k": "FhcCYfaoykwwznqE1LnKa8QeOfLylvLHsLj6lNIf12I",
+        "testOnly": true
+      },
+      "compact": "eyJhbGciOiJIUzI1NiJ9.eyJ2IjoxfQ.c2ln",
+      "protectedHeader": {
+        "alg": "dir",
+        "enc": "A256GCM",
+        "kid": "test-k1",
+        "typ": "one-federation-handle+jwe"
+      },
+      "aeadVerifies": false,
+      "claims": null,
+      "context": {
+        "replySender": {
+          "person": "did:web:bob.one.suiss.app",
+          "agent": "did:web:bob.one.suiss.app:agent"
+        },
+        "replyRecipient": {
+          "person": "did:web:alice.one.suiss.app",
+          "agent": "did:web:alice.one.suiss.app:agent"
+        },
+        "correlationId": "019a5a3c-8e00-7a00-8a00-000000000001",
+        "inReplyToDigest": "sha-256:2M7jnCaWtQePydYi1JDwfuzRshTRS11BCyTYLhsjQCE",
+        "inReplyToVersion": 1,
+        "now": 1793786700,
+        "spent": []
+      }
+    },
+    "expected": {
+      "accept": false,
+      "refusal": "handle-malformed"
+    }
+  },
+  {
+    "rule": "OO-5",
+    "description": "Expired handle",
+    "input": {
+      "issuerKey": {
+        "kid": "test-k1",
+        "k": "FhcCYfaoykwwznqE1LnKa8QeOfLylvLHsLj6lNIf12I",
+        "testOnly": true
+      },
+      "compact": "eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIiwia2lkIjoidGVzdC1rMSIsInR5cCI6Im9uZS1mZWRlcmF0aW9uLWhhbmRsZStqd2UifQ..XCRupFmg92o_jZdw.N6XX8BuN1buKFbAiwDo6fFj6itoWHjGJ4tsROGcyl05EtUrZgNUjMw0xsl8G1IfKTa-EMrZIBK0A2_tGpOUUow.jZ8u16lurMRVZaoiA-v5Vw",
+      "protectedHeader": {
+        "alg": "dir",
+        "enc": "A256GCM",
+        "kid": "test-k1",
+        "typ": "one-federation-handle+jwe"
+      },
+      "aeadVerifies": true,
+      "claims": {
+        "v": 1,
+        "jti": "019a5a3c-8e00-7a00-8a00-000000000101",
+        "iss": "did:web:alice.one.suiss.app:agent",
+        "sub": "did:web:alice.one.suiss.app",
+        "aud": "did:web:bob.one.suiss.app:agent",
+        "rcp": "did:web:bob.one.suiss.app",
+        "cid": "019a5a3c-8e00-7a00-8a00-000000000001",
+        "ver": 1,
+        "knd": "offer",
+        "dig": "sha-256:2M7jnCaWtQePydYi1JDwfuzRshTRS11BCyTYLhsjQCE",
+        "iat": 1793786400,
+        "exp": 1793872800
+      },
+      "context": {
+        "replySender": {
+          "person": "did:web:bob.one.suiss.app",
+          "agent": "did:web:bob.one.suiss.app:agent"
+        },
+        "replyRecipient": {
+          "person": "did:web:alice.one.suiss.app",
+          "agent": "did:web:alice.one.suiss.app:agent"
+        },
+        "correlationId": "019a5a3c-8e00-7a00-8a00-000000000001",
+        "inReplyToDigest": "sha-256:2M7jnCaWtQePydYi1JDwfuzRshTRS11BCyTYLhsjQCE",
+        "inReplyToVersion": 1,
+        "now": 1793872801,
+        "spent": []
+      }
+    },
+    "expected": {
+      "accept": false,
+      "refusal": "handle-expired"
+    }
+  },
+  {
+    "rule": "OO-5",
+    "description": "Handle at its exact expiry second is still valid",
+    "input": {
+      "issuerKey": {
+        "kid": "test-k1",
+        "k": "FhcCYfaoykwwznqE1LnKa8QeOfLylvLHsLj6lNIf12I",
+        "testOnly": true
+      },
+      "compact": "eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIiwia2lkIjoidGVzdC1rMSIsInR5cCI6Im9uZS1mZWRlcmF0aW9uLWhhbmRsZStqd2UifQ..XCRupFmg92o_jZdw.N6XX8BuN1buKFbAiwDo6fFj6itoWHjGJ4tsROGcyl05EtUrZgNUjMw0xsl8G1IfKTa-EMrZIBK0A2_tGpOUUow.jZ8u16lurMRVZaoiA-v5Vw",
+      "protectedHeader": {
+        "alg": "dir",
+        "enc": "A256GCM",
+        "kid": "test-k1",
+        "typ": "one-federation-handle+jwe"
+      },
+      "aeadVerifies": true,
+      "claims": {
+        "v": 1,
+        "jti": "019a5a3c-8e00-7a00-8a00-000000000101",
+        "iss": "did:web:alice.one.suiss.app:agent",
+        "sub": "did:web:alice.one.suiss.app",
+        "aud": "did:web:bob.one.suiss.app:agent",
+        "rcp": "did:web:bob.one.suiss.app",
+        "cid": "019a5a3c-8e00-7a00-8a00-000000000001",
+        "ver": 1,
+        "knd": "offer",
+        "dig": "sha-256:2M7jnCaWtQePydYi1JDwfuzRshTRS11BCyTYLhsjQCE",
+        "iat": 1793786400,
+        "exp": 1793872800
+      },
+      "context": {
+        "replySender": {
+          "person": "did:web:bob.one.suiss.app",
+          "agent": "did:web:bob.one.suiss.app:agent"
+        },
+        "replyRecipient": {
+          "person": "did:web:alice.one.suiss.app",
+          "agent": "did:web:alice.one.suiss.app:agent"
+        },
+        "correlationId": "019a5a3c-8e00-7a00-8a00-000000000001",
+        "inReplyToDigest": "sha-256:2M7jnCaWtQePydYi1JDwfuzRshTRS11BCyTYLhsjQCE",
+        "inReplyToVersion": 1,
+        "now": 1793872800,
+        "spent": []
+      }
+    },
+    "expected": {
+      "accept": true,
+      "spentAfter": [
+        "019a5a3c-8e00-7a00-8a00-000000000101"
+      ]
+    }
+  },
+  {
+    "rule": "OO-5",
+    "description": "Handle whose lifetime exceeds 7 days",
+    "input": {
+      "issuerKey": {
+        "kid": "test-k1",
+        "k": "FhcCYfaoykwwznqE1LnKa8QeOfLylvLHsLj6lNIf12I",
+        "testOnly": true
+      },
+      "compact": "eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIiwia2lkIjoidGVzdC1rMSIsInR5cCI6Im9uZS1mZWRlcmF0aW9uLWhhbmRsZStqd2UifQ..XCRupFmg92o_jZdw.N6XX8BuN1buKFbAiwDo6fFj6itoWHjGJ4tsROGcyl05EtUrZgNUjMw0xsl8G1IfKTa-EMrZIBK0A2_tGpOUUow.jZ8u16lurMRVZaoiA-v5Vw",
+      "protectedHeader": {
+        "alg": "dir",
+        "enc": "A256GCM",
+        "kid": "test-k1",
+        "typ": "one-federation-handle+jwe"
+      },
+      "aeadVerifies": true,
+      "claims": {
+        "v": 1,
+        "jti": "019a5a3c-8e00-7a00-8a00-000000000101",
+        "iss": "did:web:alice.one.suiss.app:agent",
+        "sub": "did:web:alice.one.suiss.app",
+        "aud": "did:web:bob.one.suiss.app:agent",
+        "rcp": "did:web:bob.one.suiss.app",
+        "cid": "019a5a3c-8e00-7a00-8a00-000000000001",
+        "ver": 1,
+        "knd": "offer",
+        "dig": "sha-256:2M7jnCaWtQePydYi1JDwfuzRshTRS11BCyTYLhsjQCE",
+        "iat": 1793786400,
+        "exp": 1794391201
+      },
+      "context": {
+        "replySender": {
+          "person": "did:web:bob.one.suiss.app",
+          "agent": "did:web:bob.one.suiss.app:agent"
+        },
+        "replyRecipient": {
+          "person": "did:web:alice.one.suiss.app",
+          "agent": "did:web:alice.one.suiss.app:agent"
+        },
+        "correlationId": "019a5a3c-8e00-7a00-8a00-000000000001",
+        "inReplyToDigest": "sha-256:2M7jnCaWtQePydYi1JDwfuzRshTRS11BCyTYLhsjQCE",
+        "inReplyToVersion": 1,
+        "now": 1793786700,
+        "spent": []
+      }
+    },
+    "expected": {
+      "accept": false,
+      "refusal": "handle-malformed"
+    }
+  },
+  {
+    "rule": "OO-5",
+    "description": "Handle whose expiry differs from the suspended message expiry",
+    "input": {
+      "issuerKey": {
+        "kid": "test-k1",
+        "k": "FhcCYfaoykwwznqE1LnKa8QeOfLylvLHsLj6lNIf12I",
+        "testOnly": true
+      },
+      "compact": "eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIiwia2lkIjoidGVzdC1rMSIsInR5cCI6Im9uZS1mZWRlcmF0aW9uLWhhbmRsZStqd2UifQ..XCRupFmg92o_jZdw.N6XX8BuN1buKFbAiwDo6fFj6itoWHjGJ4tsROGcyl05EtUrZgNUjMw0xsl8G1IfKTa-EMrZIBK0A2_tGpOUUow.jZ8u16lurMRVZaoiA-v5Vw",
+      "protectedHeader": {
+        "alg": "dir",
+        "enc": "A256GCM",
+        "kid": "test-k1",
+        "typ": "one-federation-handle+jwe"
+      },
+      "aeadVerifies": true,
+      "claims": {
+        "v": 1,
+        "jti": "019a5a3c-8e00-7a00-8a00-000000000101",
+        "iss": "did:web:alice.one.suiss.app:agent",
+        "sub": "did:web:alice.one.suiss.app",
+        "aud": "did:web:bob.one.suiss.app:agent",
+        "rcp": "did:web:bob.one.suiss.app",
+        "cid": "019a5a3c-8e00-7a00-8a00-000000000001",
+        "ver": 1,
+        "knd": "offer",
+        "dig": "sha-256:2M7jnCaWtQePydYi1JDwfuzRshTRS11BCyTYLhsjQCE",
+        "iat": 1793786400,
+        "exp": 1793876400
+      },
+      "context": {
+        "replySender": {
+          "person": "did:web:bob.one.suiss.app",
+          "agent": "did:web:bob.one.suiss.app:agent"
+        },
+        "replyRecipient": {
+          "person": "did:web:alice.one.suiss.app",
+          "agent": "did:web:alice.one.suiss.app:agent"
+        },
+        "correlationId": "019a5a3c-8e00-7a00-8a00-000000000001",
+        "inReplyToDigest": "sha-256:2M7jnCaWtQePydYi1JDwfuzRshTRS11BCyTYLhsjQCE",
+        "inReplyToVersion": 1,
+        "now": 1793786700,
+        "spent": [],
+        "suspendedExpiresAt": 1793872800
+      }
+    },
+    "expected": {
+      "accept": false,
+      "refusal": "handle-malformed"
+    }
+  },
+  {
+    "rule": "OO-5",
+    "description": "Second use of the same handle",
+    "input": {
+      "issuerKey": {
+        "kid": "test-k1",
+        "k": "FhcCYfaoykwwznqE1LnKa8QeOfLylvLHsLj6lNIf12I",
+        "testOnly": true
+      },
+      "compact": "eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIiwia2lkIjoidGVzdC1rMSIsInR5cCI6Im9uZS1mZWRlcmF0aW9uLWhhbmRsZStqd2UifQ..XCRupFmg92o_jZdw.N6XX8BuN1buKFbAiwDo6fFj6itoWHjGJ4tsROGcyl05EtUrZgNUjMw0xsl8G1IfKTa-EMrZIBK0A2_tGpOUUow.jZ8u16lurMRVZaoiA-v5Vw",
+      "protectedHeader": {
+        "alg": "dir",
+        "enc": "A256GCM",
+        "kid": "test-k1",
+        "typ": "one-federation-handle+jwe"
+      },
+      "aeadVerifies": true,
+      "claims": {
+        "v": 1,
+        "jti": "019a5a3c-8e00-7a00-8a00-000000000101",
+        "iss": "did:web:alice.one.suiss.app:agent",
+        "sub": "did:web:alice.one.suiss.app",
+        "aud": "did:web:bob.one.suiss.app:agent",
+        "rcp": "did:web:bob.one.suiss.app",
+        "cid": "019a5a3c-8e00-7a00-8a00-000000000001",
+        "ver": 1,
+        "knd": "offer",
+        "dig": "sha-256:2M7jnCaWtQePydYi1JDwfuzRshTRS11BCyTYLhsjQCE",
+        "iat": 1793786400,
+        "exp": 1793872800
+      },
+      "context": {
+        "replySender": {
+          "person": "did:web:bob.one.suiss.app",
+          "agent": "did:web:bob.one.suiss.app:agent"
+        },
+        "replyRecipient": {
+          "person": "did:web:alice.one.suiss.app",
+          "agent": "did:web:alice.one.suiss.app:agent"
+        },
+        "correlationId": "019a5a3c-8e00-7a00-8a00-000000000001",
+        "inReplyToDigest": "sha-256:2M7jnCaWtQePydYi1JDwfuzRshTRS11BCyTYLhsjQCE",
+        "inReplyToVersion": 1,
+        "now": 1793786700,
+        "spent": [
+          "019a5a3c-8e00-7a00-8a00-000000000101"
+        ]
+      }
+    },
+    "expected": {
+      "accept": false,
+      "refusal": "handle-replayed"
+    }
+  },
+  {
+    "rule": "OO-5",
+    "description": "Second use after a different reply already consumed it (replay of a copied reply)",
+    "input": {
+      "issuerKey": {
+        "kid": "test-k1",
+        "k": "FhcCYfaoykwwznqE1LnKa8QeOfLylvLHsLj6lNIf12I",
+        "testOnly": true
+      },
+      "compact": "eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIiwia2lkIjoidGVzdC1rMSIsInR5cCI6Im9uZS1mZWRlcmF0aW9uLWhhbmRsZStqd2UifQ..XCRupFmg92o_jZdw.N6XX8BuN1buKFbAiwDo6fFj6itoWHjGJ4tsROGcyl05EtUrZgNUjMw0xsl8G1IfKTa-EMrZIBK0A2_tGpOUUow.jZ8u16lurMRVZaoiA-v5Vw",
+      "protectedHeader": {
+        "alg": "dir",
+        "enc": "A256GCM",
+        "kid": "test-k1",
+        "typ": "one-federation-handle+jwe"
+      },
+      "aeadVerifies": true,
+      "claims": {
+        "v": 1,
+        "jti": "019a5a3c-8e00-7a00-8a00-000000000101",
+        "iss": "did:web:alice.one.suiss.app:agent",
+        "sub": "did:web:alice.one.suiss.app",
+        "aud": "did:web:bob.one.suiss.app:agent",
+        "rcp": "did:web:bob.one.suiss.app",
+        "cid": "019a5a3c-8e00-7a00-8a00-000000000001",
+        "ver": 1,
+        "knd": "offer",
+        "dig": "sha-256:2M7jnCaWtQePydYi1JDwfuzRshTRS11BCyTYLhsjQCE",
+        "iat": 1793786400,
+        "exp": 1793872800
+      },
+      "context": {
+        "replySender": {
+          "person": "did:web:bob.one.suiss.app",
+          "agent": "did:web:bob.one.suiss.app:agent"
+        },
+        "replyRecipient": {
+          "person": "did:web:alice.one.suiss.app",
+          "agent": "did:web:alice.one.suiss.app:agent"
+        },
+        "correlationId": "019a5a3c-8e00-7a00-8a00-000000000001",
+        "inReplyToDigest": "sha-256:2M7jnCaWtQePydYi1JDwfuzRshTRS11BCyTYLhsjQCE",
+        "inReplyToVersion": 1,
+        "now": 1793786700,
+        "spent": [
+          "019a5a3c-8e00-7a00-8a00-000000000101"
+        ],
+        "replyMessageId": "019a5a3c-8e00-7a00-8a00-000000000777"
+      }
+    },
+    "expected": {
+      "accept": false,
+      "refusal": "handle-replayed"
+    }
+  },
+  {
+    "rule": "OO-5",
+    "description": "Reply from a different agent than the bound audience",
+    "input": {
+      "issuerKey": {
+        "kid": "test-k1",
+        "k": "FhcCYfaoykwwznqE1LnKa8QeOfLylvLHsLj6lNIf12I",
+        "testOnly": true
+      },
+      "compact": "eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIiwia2lkIjoidGVzdC1rMSIsInR5cCI6Im9uZS1mZWRlcmF0aW9uLWhhbmRsZStqd2UifQ..XCRupFmg92o_jZdw.N6XX8BuN1buKFbAiwDo6fFj6itoWHjGJ4tsROGcyl05EtUrZgNUjMw0xsl8G1IfKTa-EMrZIBK0A2_tGpOUUow.jZ8u16lurMRVZaoiA-v5Vw",
+      "protectedHeader": {
+        "alg": "dir",
+        "enc": "A256GCM",
+        "kid": "test-k1",
+        "typ": "one-federation-handle+jwe"
+      },
+      "aeadVerifies": true,
+      "claims": {
+        "v": 1,
+        "jti": "019a5a3c-8e00-7a00-8a00-000000000101",
+        "iss": "did:web:alice.one.suiss.app:agent",
+        "sub": "did:web:alice.one.suiss.app",
+        "aud": "did:web:bob.one.suiss.app:agent",
+        "rcp": "did:web:bob.one.suiss.app",
+        "cid": "019a5a3c-8e00-7a00-8a00-000000000001",
+        "ver": 1,
+        "knd": "offer",
+        "dig": "sha-256:2M7jnCaWtQePydYi1JDwfuzRshTRS11BCyTYLhsjQCE",
+        "iat": 1793786400,
+        "exp": 1793872800
+      },
+      "context": {
+        "replySender": {
+          "person": "did:web:bob.one.suiss.app",
+          "agent": "did:web:mallory.one.suiss.app:agent"
+        },
+        "replyRecipient": {
+          "person": "did:web:alice.one.suiss.app",
+          "agent": "did:web:alice.one.suiss.app:agent"
+        },
+        "correlationId": "019a5a3c-8e00-7a00-8a00-000000000001",
+        "inReplyToDigest": "sha-256:2M7jnCaWtQePydYi1JDwfuzRshTRS11BCyTYLhsjQCE",
+        "inReplyToVersion": 1,
+        "now": 1793786700,
+        "spent": []
+      }
+    },
+    "expected": {
+      "accept": false,
+      "refusal": "handle-binding-mismatch"
+    }
+  },
+  {
+    "rule": "OO-5",
+    "description": "Reply for a different person than the bound recipient",
+    "input": {
+      "issuerKey": {
+        "kid": "test-k1",
+        "k": "FhcCYfaoykwwznqE1LnKa8QeOfLylvLHsLj6lNIf12I",
+        "testOnly": true
+      },
+      "compact": "eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIiwia2lkIjoidGVzdC1rMSIsInR5cCI6Im9uZS1mZWRlcmF0aW9uLWhhbmRsZStqd2UifQ..XCRupFmg92o_jZdw.N6XX8BuN1buKFbAiwDo6fFj6itoWHjGJ4tsROGcyl05EtUrZgNUjMw0xsl8G1IfKTa-EMrZIBK0A2_tGpOUUow.jZ8u16lurMRVZaoiA-v5Vw",
+      "protectedHeader": {
+        "alg": "dir",
+        "enc": "A256GCM",
+        "kid": "test-k1",
+        "typ": "one-federation-handle+jwe"
+      },
+      "aeadVerifies": true,
+      "claims": {
+        "v": 1,
+        "jti": "019a5a3c-8e00-7a00-8a00-000000000101",
+        "iss": "did:web:alice.one.suiss.app:agent",
+        "sub": "did:web:alice.one.suiss.app",
+        "aud": "did:web:bob.one.suiss.app:agent",
+        "rcp": "did:web:bob.one.suiss.app",
+        "cid": "019a5a3c-8e00-7a00-8a00-000000000001",
+        "ver": 1,
+        "knd": "offer",
+        "dig": "sha-256:2M7jnCaWtQePydYi1JDwfuzRshTRS11BCyTYLhsjQCE",
+        "iat": 1793786400,
+        "exp": 1793872800
+      },
+      "context": {
+        "replySender": {
+          "person": "did:web:mallory.one.suiss.app",
+          "agent": "did:web:mallory.one.suiss.app:agent"
+        },
+        "replyRecipient": {
+          "person": "did:web:alice.one.suiss.app",
+          "agent": "did:web:alice.one.suiss.app:agent"
+        },
+        "correlationId": "019a5a3c-8e00-7a00-8a00-000000000001",
+        "inReplyToDigest": "sha-256:2M7jnCaWtQePydYi1JDwfuzRshTRS11BCyTYLhsjQCE",
+        "inReplyToVersion": 1,
+        "now": 1793786700,
+        "spent": []
+      }
+    },
+    "expected": {
+      "accept": false,
+      "refusal": "handle-binding-mismatch"
+    }
+  },
+  {
+    "rule": "OO-5",
+    "description": "Reply addressed to someone other than the issuer",
+    "input": {
+      "issuerKey": {
+        "kid": "test-k1",
+        "k": "FhcCYfaoykwwznqE1LnKa8QeOfLylvLHsLj6lNIf12I",
+        "testOnly": true
+      },
+      "compact": "eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIiwia2lkIjoidGVzdC1rMSIsInR5cCI6Im9uZS1mZWRlcmF0aW9uLWhhbmRsZStqd2UifQ..XCRupFmg92o_jZdw.N6XX8BuN1buKFbAiwDo6fFj6itoWHjGJ4tsROGcyl05EtUrZgNUjMw0xsl8G1IfKTa-EMrZIBK0A2_tGpOUUow.jZ8u16lurMRVZaoiA-v5Vw",
+      "protectedHeader": {
+        "alg": "dir",
+        "enc": "A256GCM",
+        "kid": "test-k1",
+        "typ": "one-federation-handle+jwe"
+      },
+      "aeadVerifies": true,
+      "claims": {
+        "v": 1,
+        "jti": "019a5a3c-8e00-7a00-8a00-000000000101",
+        "iss": "did:web:alice.one.suiss.app:agent",
+        "sub": "did:web:alice.one.suiss.app",
+        "aud": "did:web:bob.one.suiss.app:agent",
+        "rcp": "did:web:bob.one.suiss.app",
+        "cid": "019a5a3c-8e00-7a00-8a00-000000000001",
+        "ver": 1,
+        "knd": "offer",
+        "dig": "sha-256:2M7jnCaWtQePydYi1JDwfuzRshTRS11BCyTYLhsjQCE",
+        "iat": 1793786400,
+        "exp": 1793872800
+      },
+      "context": {
+        "replySender": {
+          "person": "did:web:bob.one.suiss.app",
+          "agent": "did:web:bob.one.suiss.app:agent"
+        },
+        "replyRecipient": {
+          "person": "did:web:restaurant.example",
+          "agent": "did:web:restaurant.example:agent"
+        },
+        "correlationId": "019a5a3c-8e00-7a00-8a00-000000000001",
+        "inReplyToDigest": "sha-256:2M7jnCaWtQePydYi1JDwfuzRshTRS11BCyTYLhsjQCE",
+        "inReplyToVersion": 1,
+        "now": 1793786700,
+        "spent": []
+      }
+    },
+    "expected": {
+      "accept": false,
+      "refusal": "handle-binding-mismatch"
+    }
+  },
+  {
+    "rule": "OO-5",
+    "description": "Reply in a different chain",
+    "input": {
+      "issuerKey": {
+        "kid": "test-k1",
+        "k": "FhcCYfaoykwwznqE1LnKa8QeOfLylvLHsLj6lNIf12I",
+        "testOnly": true
+      },
+      "compact": "eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIiwia2lkIjoidGVzdC1rMSIsInR5cCI6Im9uZS1mZWRlcmF0aW9uLWhhbmRsZStqd2UifQ..XCRupFmg92o_jZdw.N6XX8BuN1buKFbAiwDo6fFj6itoWHjGJ4tsROGcyl05EtUrZgNUjMw0xsl8G1IfKTa-EMrZIBK0A2_tGpOUUow.jZ8u16lurMRVZaoiA-v5Vw",
+      "protectedHeader": {
+        "alg": "dir",
+        "enc": "A256GCM",
+        "kid": "test-k1",
+        "typ": "one-federation-handle+jwe"
+      },
+      "aeadVerifies": true,
+      "claims": {
+        "v": 1,
+        "jti": "019a5a3c-8e00-7a00-8a00-000000000101",
+        "iss": "did:web:alice.one.suiss.app:agent",
+        "sub": "did:web:alice.one.suiss.app",
+        "aud": "did:web:bob.one.suiss.app:agent",
+        "rcp": "did:web:bob.one.suiss.app",
+        "cid": "019a5a3c-8e00-7a00-8a00-000000000001",
+        "ver": 1,
+        "knd": "offer",
+        "dig": "sha-256:2M7jnCaWtQePydYi1JDwfuzRshTRS11BCyTYLhsjQCE",
+        "iat": 1793786400,
+        "exp": 1793872800
+      },
+      "context": {
+        "replySender": {
+          "person": "did:web:bob.one.suiss.app",
+          "agent": "did:web:bob.one.suiss.app:agent"
+        },
+        "replyRecipient": {
+          "person": "did:web:alice.one.suiss.app",
+          "agent": "did:web:alice.one.suiss.app:agent"
+        },
+        "correlationId": "019a5a3c-8e00-7a00-8a00-000000000999",
+        "inReplyToDigest": "sha-256:2M7jnCaWtQePydYi1JDwfuzRshTRS11BCyTYLhsjQCE",
+        "inReplyToVersion": 1,
+        "now": 1793786700,
+        "spent": []
+      }
+    },
+    "expected": {
+      "accept": false,
+      "refusal": "handle-binding-mismatch"
+    }
+  },
+  {
+    "rule": "OO-5",
+    "description": "Reply naming a different original-message digest",
+    "input": {
+      "issuerKey": {
+        "kid": "test-k1",
+        "k": "FhcCYfaoykwwznqE1LnKa8QeOfLylvLHsLj6lNIf12I",
+        "testOnly": true
+      },
+      "compact": "eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIiwia2lkIjoidGVzdC1rMSIsInR5cCI6Im9uZS1mZWRlcmF0aW9uLWhhbmRsZStqd2UifQ..XCRupFmg92o_jZdw.N6XX8BuN1buKFbAiwDo6fFj6itoWHjGJ4tsROGcyl05EtUrZgNUjMw0xsl8G1IfKTa-EMrZIBK0A2_tGpOUUow.jZ8u16lurMRVZaoiA-v5Vw",
+      "protectedHeader": {
+        "alg": "dir",
+        "enc": "A256GCM",
+        "kid": "test-k1",
+        "typ": "one-federation-handle+jwe"
+      },
+      "aeadVerifies": true,
+      "claims": {
+        "v": 1,
+        "jti": "019a5a3c-8e00-7a00-8a00-000000000101",
+        "iss": "did:web:alice.one.suiss.app:agent",
+        "sub": "did:web:alice.one.suiss.app",
+        "aud": "did:web:bob.one.suiss.app:agent",
+        "rcp": "did:web:bob.one.suiss.app",
+        "cid": "019a5a3c-8e00-7a00-8a00-000000000001",
+        "ver": 1,
+        "knd": "offer",
+        "dig": "sha-256:2M7jnCaWtQePydYi1JDwfuzRshTRS11BCyTYLhsjQCE",
+        "iat": 1793786400,
+        "exp": 1793872800
+      },
+      "context": {
+        "replySender": {
+          "person": "did:web:bob.one.suiss.app",
+          "agent": "did:web:bob.one.suiss.app:agent"
+        },
+        "replyRecipient": {
+          "person": "did:web:alice.one.suiss.app",
+          "agent": "did:web:alice.one.suiss.app:agent"
+        },
+        "correlationId": "019a5a3c-8e00-7a00-8a00-000000000001",
+        "inReplyToDigest": "sha-256:PST_iBBdje4BLKay32706ATe7qXthzcjb43rhEnWDh4",
+        "inReplyToVersion": 1,
+        "now": 1793786700,
+        "spent": []
+      }
+    },
+    "expected": {
+      "accept": false,
+      "refusal": "handle-digest-mismatch"
+    }
+  },
+  {
+    "rule": "OO-5",
+    "description": "Reply naming a different offer version",
+    "input": {
+      "issuerKey": {
+        "kid": "test-k1",
+        "k": "FhcCYfaoykwwznqE1LnKa8QeOfLylvLHsLj6lNIf12I",
+        "testOnly": true
+      },
+      "compact": "eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIiwia2lkIjoidGVzdC1rMSIsInR5cCI6Im9uZS1mZWRlcmF0aW9uLWhhbmRsZStqd2UifQ..XCRupFmg92o_jZdw.N6XX8BuN1buKFbAiwDo6fFj6itoWHjGJ4tsROGcyl05EtUrZgNUjMw0xsl8G1IfKTa-EMrZIBK0A2_tGpOUUow.jZ8u16lurMRVZaoiA-v5Vw",
+      "protectedHeader": {
+        "alg": "dir",
+        "enc": "A256GCM",
+        "kid": "test-k1",
+        "typ": "one-federation-handle+jwe"
+      },
+      "aeadVerifies": true,
+      "claims": {
+        "v": 1,
+        "jti": "019a5a3c-8e00-7a00-8a00-000000000101",
+        "iss": "did:web:alice.one.suiss.app:agent",
+        "sub": "did:web:alice.one.suiss.app",
+        "aud": "did:web:bob.one.suiss.app:agent",
+        "rcp": "did:web:bob.one.suiss.app",
+        "cid": "019a5a3c-8e00-7a00-8a00-000000000001",
+        "ver": 1,
+        "knd": "offer",
+        "dig": "sha-256:2M7jnCaWtQePydYi1JDwfuzRshTRS11BCyTYLhsjQCE",
+        "iat": 1793786400,
+        "exp": 1793872800
+      },
+      "context": {
+        "replySender": {
+          "person": "did:web:bob.one.suiss.app",
+          "agent": "did:web:bob.one.suiss.app:agent"
+        },
+        "replyRecipient": {
+          "person": "did:web:alice.one.suiss.app",
+          "agent": "did:web:alice.one.suiss.app:agent"
+        },
+        "correlationId": "019a5a3c-8e00-7a00-8a00-000000000001",
+        "inReplyToDigest": "sha-256:2M7jnCaWtQePydYi1JDwfuzRshTRS11BCyTYLhsjQCE",
+        "inReplyToVersion": 2,
+        "now": 1793786700,
+        "spent": []
+      }
+    },
+    "expected": {
+      "accept": false,
+      "refusal": "handle-binding-mismatch"
+    }
+  },
+  {
+    "rule": "OO-5",
+    "description": "A reply refused for a later reason does not consume the handle",
+    "input": {
+      "issuerKey": {
+        "kid": "test-k1",
+        "k": "FhcCYfaoykwwznqE1LnKa8QeOfLylvLHsLj6lNIf12I",
+        "testOnly": true
+      },
+      "compact": "eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIiwia2lkIjoidGVzdC1rMSIsInR5cCI6Im9uZS1mZWRlcmF0aW9uLWhhbmRsZStqd2UifQ..XCRupFmg92o_jZdw.N6XX8BuN1buKFbAiwDo6fFj6itoWHjGJ4tsROGcyl05EtUrZgNUjMw0xsl8G1IfKTa-EMrZIBK0A2_tGpOUUow.jZ8u16lurMRVZaoiA-v5Vw",
+      "protectedHeader": {
+        "alg": "dir",
+        "enc": "A256GCM",
+        "kid": "test-k1",
+        "typ": "one-federation-handle+jwe"
+      },
+      "aeadVerifies": true,
+      "claims": {
+        "v": 1,
+        "jti": "019a5a3c-8e00-7a00-8a00-000000000101",
+        "iss": "did:web:alice.one.suiss.app:agent",
+        "sub": "did:web:alice.one.suiss.app",
+        "aud": "did:web:bob.one.suiss.app:agent",
+        "rcp": "did:web:bob.one.suiss.app",
+        "cid": "019a5a3c-8e00-7a00-8a00-000000000001",
+        "ver": 1,
+        "knd": "offer",
+        "dig": "sha-256:2M7jnCaWtQePydYi1JDwfuzRshTRS11BCyTYLhsjQCE",
+        "iat": 1793786400,
+        "exp": 1793872800
+      },
+      "context": {
+        "replySender": {
+          "person": "did:web:bob.one.suiss.app",
+          "agent": "did:web:bob.one.suiss.app:agent"
+        },
+        "replyRecipient": {
+          "person": "did:web:alice.one.suiss.app",
+          "agent": "did:web:alice.one.suiss.app:agent"
+        },
+        "correlationId": "019a5a3c-8e00-7a00-8a00-000000000001",
+        "inReplyToDigest": "sha-256:2M7jnCaWtQePydYi1JDwfuzRshTRS11BCyTYLhsjQCE",
+        "inReplyToVersion": 1,
+        "now": 1793786700,
+        "spent": [],
+        "downstreamRefusal": "version-not-monotonic"
+      }
+    },
+    "expected": {
+      "accept": false,
+      "refusal": "version-not-monotonic",
+      "spentAfter": []
+    }
+  },
+  {
+    "rule": "OO-5",
+    "description": "Reply without the handle echoed",
+    "input": {
+      "issuerKey": {
+        "kid": "test-k1",
+        "k": "FhcCYfaoykwwznqE1LnKa8QeOfLylvLHsLj6lNIf12I",
+        "testOnly": true
+      },
+      "compact": "eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIiwia2lkIjoidGVzdC1rMSIsInR5cCI6Im9uZS1mZWRlcmF0aW9uLWhhbmRsZStqd2UifQ..XCRupFmg92o_jZdw.N6XX8BuN1buKFbAiwDo6fFj6itoWHjGJ4tsROGcyl05EtUrZgNUjMw0xsl8G1IfKTa-EMrZIBK0A2_tGpOUUow.jZ8u16lurMRVZaoiA-v5Vw",
+      "protectedHeader": {
+        "alg": "dir",
+        "enc": "A256GCM",
+        "kid": "test-k1",
+        "typ": "one-federation-handle+jwe"
+      },
+      "aeadVerifies": false,
+      "claims": null,
+      "context": {
+        "replySender": {
+          "person": "did:web:bob.one.suiss.app",
+          "agent": "did:web:bob.one.suiss.app:agent"
+        },
+        "replyRecipient": {
+          "person": "did:web:alice.one.suiss.app",
+          "agent": "did:web:alice.one.suiss.app:agent"
+        },
+        "correlationId": "019a5a3c-8e00-7a00-8a00-000000000001",
+        "inReplyToDigest": "sha-256:2M7jnCaWtQePydYi1JDwfuzRshTRS11BCyTYLhsjQCE",
+        "inReplyToVersion": 1,
+        "now": 1793786700,
+        "spent": []
+      }
+    },
+    "expected": {
+      "accept": false,
+      "refusal": "handle-missing"
+    }
+  }
+]

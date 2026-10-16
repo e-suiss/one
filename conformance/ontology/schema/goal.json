@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/ontology/goal/v1.json",
+  "title": "Goal",
+  "description": "A state the user wants to reach, tracked by an identity that stays stable across versions of the goal memory records about it. Content and epistemic state come from those records. Not authority.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "https://suiss.app/schemas/one/memory/common/v1.json#/$defs/record_header"
+    }
+  ],
+  "properties": {
+    "type": {
+      "const": "Goal"
+    },
+    "id": {
+      "$ref": "https://suiss.app/schemas/one/ontology/id/v1.json#/$defs/GoalId"
+    },
+    "derived_from": {
+      "description": "Evidence: goal memory records",
+      "type": "array",
+      "items": {
+        "$ref": "https://suiss.app/schemas/one/ontology/id/v1.json#/$defs/MemoryRecordId"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "extensions": {
+      "description": "Typed extension fields (C-7): reverse-DNS name under app.suiss mapped to this concept in the extension registry",
+      "type": "object",
+      "propertyNames": {
+        "$ref": "https://suiss.app/schemas/one/ontology/extension/v1.json#/$defs/suiss_name"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "version": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "value": true
+        },
+        "required": [
+          "version",
+          "value"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "status": {
+      "const": "active"
+    },
+    "supersedes": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "https://suiss.app/schemas/one/ontology/id/v1.json#/$defs/GoalId"
+        }
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "id",
+    "status",
+    "derived_from"
+  ],
+  "unevaluatedProperties": false
+}

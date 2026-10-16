@@ -1,0 +1,80 @@
+[
+  {
+    "rule": "CP-4",
+    "description": "Only the Mandate sets a step budget",
+    "input": {
+      "mandate": 20,
+      "requested": null
+    },
+    "expected": {
+      "effective": 20
+    }
+  },
+  {
+    "rule": "CP-4",
+    "description": "Task request narrower than the Mandate",
+    "input": {
+      "mandate": 20,
+      "requested": 8
+    },
+    "expected": {
+      "effective": 8
+    }
+  },
+  {
+    "rule": "CP-4",
+    "description": "Mandate narrower than the request",
+    "input": {
+      "mandate": 5,
+      "requested": 8
+    },
+    "expected": {
+      "effective": 5
+    }
+  },
+  {
+    "rule": "CP-4",
+    "description": "No Mandate step budget; the request applies",
+    "input": {
+      "mandate": null,
+      "requested": 8
+    },
+    "expected": {
+      "effective": 8
+    }
+  },
+  {
+    "rule": "CP-4",
+    "description": "Amount: request narrower",
+    "input": {
+      "mandate": 50000,
+      "requested": 30000
+    },
+    "expected": {
+      "effective": 30000
+    }
+  },
+  {
+    "rule": "CP-4",
+    "description": "Amount: Mandate narrower",
+    "input": {
+      "mandate": 30000,
+      "requested": 50000
+    },
+    "expected": {
+      "effective": 30000
+    }
+  },
+  {
+    "rule": "CP-36",
+    "description": "Neither side sets a budget: the task cannot start",
+    "input": {
+      "mandate": null,
+      "requested": null
+    },
+    "expected": {
+      "effective": null,
+      "rejected": "no_budget"
+    }
+  }
+]

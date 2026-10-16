@@ -1,0 +1,211 @@
+[
+  {
+    "rule": "SEC-14",
+    "description": "user.direct maps to Access provenance user",
+    "input": {
+      "op": "map",
+      "label": "user.direct"
+    },
+    "expected": {
+      "provenance": "user"
+    }
+  },
+  {
+    "rule": "SEC-14",
+    "description": "user.memory maps to Access provenance user",
+    "input": {
+      "op": "map",
+      "label": "user.memory"
+    },
+    "expected": {
+      "provenance": "user"
+    }
+  },
+  {
+    "rule": "SEC-14",
+    "description": "record.trusted maps to Access provenance trusted",
+    "input": {
+      "op": "map",
+      "label": "record.trusted"
+    },
+    "expected": {
+      "provenance": "trusted"
+    }
+  },
+  {
+    "rule": "SEC-14",
+    "description": "one.inferred maps to Access provenance untrusted-external",
+    "input": {
+      "op": "map",
+      "label": "one.inferred"
+    },
+    "expected": {
+      "provenance": "untrusted-external"
+    }
+  },
+  {
+    "rule": "SEC-14",
+    "description": "external.web maps to Access provenance untrusted-external",
+    "input": {
+      "op": "map",
+      "label": "external.web"
+    },
+    "expected": {
+      "provenance": "untrusted-external"
+    }
+  },
+  {
+    "rule": "SEC-14",
+    "description": "external.email maps to Access provenance untrusted-external",
+    "input": {
+      "op": "map",
+      "label": "external.email"
+    },
+    "expected": {
+      "provenance": "untrusted-external"
+    }
+  },
+  {
+    "rule": "SEC-14",
+    "description": "external.calendar maps to Access provenance untrusted-external",
+    "input": {
+      "op": "map",
+      "label": "external.calendar"
+    },
+    "expected": {
+      "provenance": "untrusted-external"
+    }
+  },
+  {
+    "rule": "SEC-14",
+    "description": "external.document maps to Access provenance untrusted-external",
+    "input": {
+      "op": "map",
+      "label": "external.document"
+    },
+    "expected": {
+      "provenance": "untrusted-external"
+    }
+  },
+  {
+    "rule": "SEC-14",
+    "description": "external.screen maps to Access provenance untrusted-external",
+    "input": {
+      "op": "map",
+      "label": "external.screen"
+    },
+    "expected": {
+      "provenance": "untrusted-external"
+    }
+  },
+  {
+    "rule": "SEC-14",
+    "description": "external.media maps to Access provenance untrusted-external",
+    "input": {
+      "op": "map",
+      "label": "external.media"
+    },
+    "expected": {
+      "provenance": "untrusted-external"
+    }
+  },
+  {
+    "rule": "SEC-14",
+    "description": "external.message maps to Access provenance untrusted-external",
+    "input": {
+      "op": "map",
+      "label": "external.message"
+    },
+    "expected": {
+      "provenance": "untrusted-external"
+    }
+  },
+  {
+    "rule": "SEC-14",
+    "description": "external.one maps to Access provenance untrusted-external",
+    "input": {
+      "op": "map",
+      "label": "external.one"
+    },
+    "expected": {
+      "provenance": "untrusted-external"
+    }
+  },
+  {
+    "rule": "SEC-14",
+    "description": "external.agent maps to Access provenance untrusted-external",
+    "input": {
+      "op": "map",
+      "label": "external.agent"
+    },
+    "expected": {
+      "provenance": "untrusted-external"
+    }
+  },
+  {
+    "rule": "SEC-14",
+    "description": "external.tool_description maps to Access provenance untrusted-external",
+    "input": {
+      "op": "map",
+      "label": "external.tool_description"
+    },
+    "expected": {
+      "provenance": "untrusted-external"
+    }
+  },
+  {
+    "rule": "SEC-14",
+    "description": "external.tool_output maps to Access provenance untrusted-external",
+    "input": {
+      "op": "map",
+      "label": "external.tool_output"
+    },
+    "expected": {
+      "provenance": "untrusted-external"
+    }
+  },
+  {
+    "rule": "SEC-14",
+    "description": "external.import maps to Access provenance untrusted-external",
+    "input": {
+      "op": "map",
+      "label": "external.import"
+    },
+    "expected": {
+      "provenance": "untrusted-external"
+    }
+  },
+  {
+    "rule": "SEC-14",
+    "description": "external.app maps to Access provenance untrusted-external",
+    "input": {
+      "op": "map",
+      "label": "external.app"
+    },
+    "expected": {
+      "provenance": "untrusted-external"
+    }
+  },
+  {
+    "rule": "T-36 (5)",
+    "description": "external.unknown maps to Access provenance untrusted-external",
+    "input": {
+      "op": "map",
+      "label": "external.unknown"
+    },
+    "expected": {
+      "provenance": "untrusted-external"
+    }
+  },
+  {
+    "rule": "T-36 (5)",
+    "description": "external.mixed maps to Access provenance untrusted-external",
+    "input": {
+      "op": "map",
+      "label": "external.mixed"
+    },
+    "expected": {
+      "provenance": "untrusted-external"
+    }
+  }
+]

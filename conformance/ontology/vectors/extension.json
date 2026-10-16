@@ -1,0 +1,190 @@
+[
+  {
+    "rule": "C-7",
+    "description": "New content type mapped to a core category",
+    "input": {
+      "point": "memory_content_type",
+      "name": "app.suiss.memory.allergy",
+      "version": 1,
+      "maps_to": "constraint"
+    },
+    "valid": true
+  },
+  {
+    "rule": "C-7",
+    "description": "Unmapped extension value is rejected",
+    "input": {
+      "point": "memory_content_type",
+      "name": "app.suiss.memory.allergy",
+      "version": 1
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-7",
+    "description": "Mapping to a non-core category is rejected",
+    "input": {
+      "point": "memory_content_type",
+      "name": "app.suiss.memory.allergy",
+      "version": 1,
+      "maps_to": "allergy"
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-7",
+    "description": "Extension name outside the Suiss root is rejected",
+    "input": {
+      "point": "memory_content_type",
+      "name": "com.example.allergy",
+      "version": 1,
+      "maps_to": "constraint"
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-7",
+    "description": "Bare name without namespace is rejected",
+    "input": {
+      "point": "memory_content_type",
+      "name": "allergy",
+      "version": 1,
+      "maps_to": "constraint"
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-7",
+    "description": "The handle subdomain is not an extension namespace",
+    "input": {
+      "point": "memory_content_type",
+      "name": "app.suiss.one.allergy",
+      "version": 1,
+      "maps_to": "constraint"
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-7",
+    "description": "Version is mandatory",
+    "input": {
+      "point": "memory_content_type",
+      "name": "app.suiss.memory.allergy",
+      "maps_to": "constraint"
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-7",
+    "description": "Interaction kind extension mapped to a core kind",
+    "input": {
+      "point": "interaction_kind",
+      "name": "app.suiss.interaction.seat_map",
+      "version": 1,
+      "maps_to": "choice"
+    },
+    "valid": true
+  },
+  {
+    "rule": "C-7",
+    "description": "Interaction kind mapped to a memory category is rejected",
+    "input": {
+      "point": "interaction_kind",
+      "name": "app.suiss.interaction.seat_map",
+      "version": 1,
+      "maps_to": "preference"
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-3",
+    "description": "Typed field extension on a canonical concept",
+    "input": {
+      "point": "typed_field",
+      "name": "app.suiss.routine.weather_gate",
+      "version": 2,
+      "maps_to": "Routine",
+      "value_schema": "https://suiss.app/schemas/one/ext/routine-weather-gate/v2.json"
+    },
+    "valid": true
+  },
+  {
+    "rule": "C-3",
+    "description": "A typed field cannot introduce a new concept",
+    "input": {
+      "point": "typed_field",
+      "name": "app.suiss.chat.thread",
+      "version": 1,
+      "maps_to": "Chat",
+      "value_schema": "https://suiss.app/schemas/one/ext/chat-thread/v1.json"
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-7",
+    "description": "Suiss capability extends its parent",
+    "input": {
+      "point": "capability_name",
+      "name": "app.suiss.transport.ride.request",
+      "version": "2026-10-01",
+      "extends": "app.suiss.transport.ride"
+    },
+    "valid": true
+  },
+  {
+    "rule": "C-7",
+    "description": "Third-party capability in its own namespace extends a Suiss capability",
+    "input": {
+      "point": "capability_name",
+      "name": "com.example.transport.ride.request-premium",
+      "version": "2026-10-01",
+      "extends": "app.suiss.transport.ride.request"
+    },
+    "valid": true
+  },
+  {
+    "rule": "C-7",
+    "description": "Capability without a parent is unmapped",
+    "input": {
+      "point": "capability_name",
+      "name": "com.example.ride",
+      "version": "2026-10-01"
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-7",
+    "description": "Capability uses extends, not maps_to",
+    "input": {
+      "point": "capability_name",
+      "name": "app.suiss.transport.ride.request",
+      "version": "2026-10-01",
+      "extends": "app.suiss.transport.ride",
+      "maps_to": "transport"
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-7",
+    "description": "Unknown extension point is rejected",
+    "input": {
+      "point": "concept",
+      "name": "app.suiss.person",
+      "version": 1,
+      "maps_to": "MemoryRecord"
+    },
+    "valid": false
+  },
+  {
+    "rule": "C-7",
+    "description": "Product roots are not extension namespaces",
+    "input": {
+      "point": "typed_field",
+      "name": "app.suiss.access.grant_copy",
+      "version": 1,
+      "maps_to": "Goal",
+      "value_schema": "https://suiss.app/schemas/one/ext/grant-copy/v1.json"
+    },
+    "valid": false
+  }
+]

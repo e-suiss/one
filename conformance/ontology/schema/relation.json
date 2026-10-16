@@ -1,0 +1,803 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/ontology/relation/v1.json",
+  "title": "Canonical relation",
+  "description": "One of the six canonical relations as an edge from a canonical record. No relation carries authority. supersedes is not retroactive: it has no effective time of its own and the target stays as an invalid version.",
+  "$defs": {
+    "canonical": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "Observation",
+            "Episode",
+            "MemoryRecord",
+            "Goal",
+            "Routine",
+            "Task",
+            "Interaction",
+            "CapabilityDefinition",
+            "SurfaceCapability"
+          ]
+        },
+        "id": true
+      },
+      "required": [
+        "type",
+        "id"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "Observation"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "id": {
+                "$ref": "https://suiss.app/schemas/one/ontology/id/v1.json#/$defs/ObservationId"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "Episode"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "id": {
+                "$ref": "https://suiss.app/schemas/one/ontology/id/v1.json#/$defs/EpisodeId"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "MemoryRecord"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "id": {
+                "$ref": "https://suiss.app/schemas/one/ontology/id/v1.json#/$defs/MemoryRecordId"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "Goal"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "id": {
+                "$ref": "https://suiss.app/schemas/one/ontology/id/v1.json#/$defs/GoalId"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "Routine"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "id": {
+                "$ref": "https://suiss.app/schemas/one/ontology/id/v1.json#/$defs/RoutineId"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "Task"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "id": {
+                "$ref": "https://suiss.app/schemas/one/ontology/id/v1.json#/$defs/TaskId"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "Interaction"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "id": {
+                "$ref": "https://suiss.app/schemas/one/ontology/id/v1.json#/$defs/InteractionId"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "CapabilityDefinition"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "id": {
+                "$ref": "https://suiss.app/schemas/one/ontology/id/v1.json#/$defs/CapabilityId"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "SurfaceCapability"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "id": {
+                "$ref": "https://suiss.app/schemas/one/ontology/id/v1.json#/$defs/SurfaceCapabilityId"
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "type": "object",
+  "properties": {
+    "relation": {
+      "enum": [
+        "derived-from",
+        "about",
+        "supersedes",
+        "serves",
+        "concerns",
+        "references"
+      ]
+    },
+    "source": {
+      "$ref": "#/$defs/canonical"
+    },
+    "target": true,
+    "recorded_at": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]{1,9})?Z$"
+    }
+  },
+  "required": [
+    "relation",
+    "source",
+    "target",
+    "recorded_at"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "relation": {
+            "const": "derived-from"
+          }
+        }
+      },
+      "then": {
+        "allOf": [
+          {
+            "properties": {
+              "source": {
+                "properties": {
+                  "type": {
+                    "enum": [
+                      "MemoryRecord",
+                      "Routine",
+                      "Goal"
+                    ]
+                  }
+                },
+                "required": [
+                  "type"
+                ]
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "source": {
+                  "properties": {
+                    "type": {
+                      "enum": [
+                        "MemoryRecord"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "target": {
+                  "$ref": "#/$defs/canonical",
+                  "properties": {
+                    "type": {
+                      "enum": [
+                        "Episode",
+                        "Observation"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "source": {
+                  "properties": {
+                    "type": {
+                      "enum": [
+                        "Routine",
+                        "Goal"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "target": {
+                  "$ref": "#/$defs/canonical",
+                  "properties": {
+                    "type": {
+                      "enum": [
+                        "MemoryRecord"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "relation": {
+            "const": "about"
+          }
+        }
+      },
+      "then": {
+        "allOf": [
+          {
+            "properties": {
+              "source": {
+                "properties": {
+                  "type": {
+                    "enum": [
+                      "MemoryRecord"
+                    ]
+                  }
+                },
+                "required": [
+                  "type"
+                ]
+              }
+            }
+          },
+          {
+            "properties": {
+              "target": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/canonical",
+                    "properties": {
+                      "type": {
+                        "enum": [
+                          "Goal",
+                          "Routine"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "$ref": "https://suiss.app/schemas/one/ontology/reference/v1.json#/$defs/PersonRef"
+                  },
+                  {
+                    "$ref": "https://suiss.app/schemas/one/ontology/reference/v1.json#/$defs/ExternalRef"
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "relation": {
+            "const": "supersedes"
+          }
+        }
+      },
+      "then": {
+        "allOf": [
+          {
+            "properties": {
+              "target": {
+                "$ref": "#/$defs/canonical"
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "source": {
+                  "properties": {
+                    "type": {
+                      "enum": [
+                        "Observation"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "target": {
+                  "properties": {
+                    "type": {
+                      "enum": [
+                        "Observation"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "source": {
+                  "properties": {
+                    "type": {
+                      "enum": [
+                        "Episode"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "target": {
+                  "properties": {
+                    "type": {
+                      "enum": [
+                        "Episode"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "source": {
+                  "properties": {
+                    "type": {
+                      "enum": [
+                        "MemoryRecord"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "target": {
+                  "properties": {
+                    "type": {
+                      "enum": [
+                        "MemoryRecord"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "source": {
+                  "properties": {
+                    "type": {
+                      "enum": [
+                        "Goal"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "target": {
+                  "properties": {
+                    "type": {
+                      "enum": [
+                        "Goal"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "source": {
+                  "properties": {
+                    "type": {
+                      "enum": [
+                        "Routine"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "target": {
+                  "properties": {
+                    "type": {
+                      "enum": [
+                        "Routine"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "source": {
+                  "properties": {
+                    "type": {
+                      "enum": [
+                        "Task"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "target": {
+                  "properties": {
+                    "type": {
+                      "enum": [
+                        "Task"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "source": {
+                  "properties": {
+                    "type": {
+                      "enum": [
+                        "Interaction"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "target": {
+                  "properties": {
+                    "type": {
+                      "enum": [
+                        "Interaction"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "source": {
+                  "properties": {
+                    "type": {
+                      "enum": [
+                        "CapabilityDefinition"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "target": {
+                  "properties": {
+                    "type": {
+                      "enum": [
+                        "CapabilityDefinition"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "source": {
+                  "properties": {
+                    "type": {
+                      "enum": [
+                        "SurfaceCapability"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "target": {
+                  "properties": {
+                    "type": {
+                      "enum": [
+                        "SurfaceCapability"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ]
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "relation": {
+            "const": "serves"
+          }
+        }
+      },
+      "then": {
+        "allOf": [
+          {
+            "properties": {
+              "source": {
+                "properties": {
+                  "type": {
+                    "enum": [
+                      "Task",
+                      "Interaction"
+                    ]
+                  }
+                },
+                "required": [
+                  "type"
+                ]
+              }
+            }
+          },
+          {
+            "properties": {
+              "target": {
+                "$ref": "#/$defs/canonical",
+                "properties": {
+                  "type": {
+                    "enum": [
+                      "Goal"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "relation": {
+            "const": "concerns"
+          }
+        }
+      },
+      "then": {
+        "allOf": [
+          {
+            "properties": {
+              "source": {
+                "properties": {
+                  "type": {
+                    "enum": [
+                      "Interaction"
+                    ]
+                  }
+                },
+                "required": [
+                  "type"
+                ]
+              }
+            }
+          },
+          {
+            "properties": {
+              "target": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/canonical",
+                    "properties": {
+                      "type": {
+                        "enum": [
+                          "Task",
+                          "MemoryRecord",
+                          "Routine",
+                          "Goal"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "$ref": "https://suiss.app/schemas/one/ontology/reference/v1.json#/$defs/ProductRef"
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "relation": {
+            "const": "references"
+          }
+        }
+      },
+      "then": {
+        "allOf": [
+          {
+            "properties": {
+              "target": {
+                "$ref": "https://suiss.app/schemas/one/ontology/reference/v1.json#/$defs/AnyRef"
+              }
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "additionalProperties": false
+}

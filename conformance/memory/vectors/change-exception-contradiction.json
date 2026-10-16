@@ -1,0 +1,1074 @@
+[
+  {
+    "rule": "M-20",
+    "description": "tr: preference changed with `artık`",
+    "input": {
+      "existing": {
+        "statement": {
+          "text": "Kahveyi soğuk içer.",
+          "lang": "tr"
+        },
+        "content_type": "preference",
+        "time_kind": "permanent",
+        "source_kind": "user_statement"
+      },
+      "new": {
+        "statement": {
+          "text": "Ben kahveyi artık sıcak içiyorum.",
+          "lang": "tr"
+        },
+        "source_kind": "user_statement"
+      }
+    },
+    "expected": {
+      "class": "change",
+      "effect": {
+        "new_record": {
+          "status": "active",
+          "epistemic_state": "stated",
+          "supersedes": "existing"
+        },
+        "existing_record": {
+          "epistemic_state": "invalidated",
+          "superseded_at": "set"
+        },
+        "deleted": false
+      }
+    }
+  },
+  {
+    "rule": "M-20",
+    "description": "tr: diet changed",
+    "input": {
+      "existing": {
+        "statement": {
+          "text": "Vejetaryen.",
+          "lang": "tr"
+        },
+        "content_type": "constraint",
+        "time_kind": "permanent",
+        "source_kind": "user_statement"
+      },
+      "new": {
+        "statement": {
+          "text": "Artık balık da yiyorum, pesketaryenim.",
+          "lang": "tr"
+        },
+        "source_kind": "user_statement"
+      }
+    },
+    "expected": {
+      "class": "change",
+      "effect": {
+        "new_record": {
+          "status": "active",
+          "epistemic_state": "stated",
+          "supersedes": "existing"
+        },
+        "existing_record": {
+          "epistemic_state": "invalidated",
+          "superseded_at": "set"
+        },
+        "deleted": false
+      }
+    }
+  },
+  {
+    "rule": "M-20",
+    "description": "tr: manager changed from a date on",
+    "input": {
+      "existing": {
+        "statement": {
+          "text": "Yöneticisi Deniz Aksoy.",
+          "lang": "tr"
+        },
+        "content_type": "relationship",
+        "time_kind": "permanent",
+        "source_kind": "user_statement"
+      },
+      "new": {
+        "statement": {
+          "text": "Ekim'den beri yöneticim Selin Er.",
+          "lang": "tr"
+        },
+        "source_kind": "user_statement"
+      }
+    },
+    "expected": {
+      "class": "change",
+      "effect": {
+        "new_record": {
+          "status": "active",
+          "epistemic_state": "stated",
+          "supersedes": "existing"
+        },
+        "existing_record": {
+          "epistemic_state": "invalidated",
+          "superseded_at": "set"
+        },
+        "deleted": false
+      }
+    }
+  },
+  {
+    "rule": "M-20",
+    "description": "tr: moved city",
+    "input": {
+      "existing": {
+        "statement": {
+          "text": "Ankara'da yaşıyor.",
+          "lang": "tr"
+        },
+        "content_type": "personal_fact",
+        "time_kind": "permanent",
+        "source_kind": "user_statement"
+      },
+      "new": {
+        "statement": {
+          "text": "Geçen ay İzmir'e taşındım.",
+          "lang": "tr"
+        },
+        "source_kind": "user_statement"
+      }
+    },
+    "expected": {
+      "class": "change",
+      "effect": {
+        "new_record": {
+          "status": "active",
+          "epistemic_state": "stated",
+          "supersedes": "existing"
+        },
+        "existing_record": {
+          "epistemic_state": "invalidated",
+          "superseded_at": "set"
+        },
+        "deleted": false
+      }
+    }
+  },
+  {
+    "rule": "M-20",
+    "description": "tr: stopped a routine",
+    "input": {
+      "existing": {
+        "statement": {
+          "text": "Her sabah koşar.",
+          "lang": "tr"
+        },
+        "content_type": "routine",
+        "time_kind": "permanent",
+        "source_kind": "user_behaviour"
+      },
+      "new": {
+        "statement": {
+          "text": "Sabah koşusunu bıraktım, akşam yüzüyorum.",
+          "lang": "tr"
+        },
+        "source_kind": "user_statement"
+      }
+    },
+    "expected": {
+      "class": "change",
+      "effect": {
+        "new_record": {
+          "status": "active",
+          "epistemic_state": "stated",
+          "supersedes": "existing"
+        },
+        "existing_record": {
+          "epistemic_state": "invalidated",
+          "superseded_at": "set"
+        },
+        "deleted": false
+      }
+    }
+  },
+  {
+    "rule": "M-20",
+    "description": "tr: today only",
+    "input": {
+      "existing": {
+        "statement": {
+          "text": "Kahveyi soğuk içer.",
+          "lang": "tr"
+        },
+        "content_type": "preference",
+        "time_kind": "permanent",
+        "source_kind": "user_statement"
+      },
+      "new": {
+        "statement": {
+          "text": "Bugün sıcak olsun.",
+          "lang": "tr"
+        },
+        "source_kind": "user_statement"
+      }
+    },
+    "expected": {
+      "class": "exception",
+      "effect": {
+        "new_record": {
+          "status": "active",
+          "time_kind": "one_off",
+          "layer": "event",
+          "supersedes": null
+        },
+        "existing_record": "unchanged",
+        "deleted": false
+      }
+    }
+  },
+  {
+    "rule": "M-20",
+    "description": "tr: this one time",
+    "input": {
+      "existing": {
+        "statement": {
+          "text": "Sabah toplantısı istemez.",
+          "lang": "tr"
+        },
+        "content_type": "constraint",
+        "time_kind": "permanent",
+        "source_kind": "user_statement"
+      },
+      "new": {
+        "statement": {
+          "text": "Bu seferlik sabah 9'a koyabilirsin.",
+          "lang": "tr"
+        },
+        "source_kind": "user_statement"
+      }
+    },
+    "expected": {
+      "class": "exception",
+      "effect": {
+        "new_record": {
+          "status": "active",
+          "time_kind": "one_off",
+          "layer": "event",
+          "supersedes": null
+        },
+        "existing_record": "unchanged",
+        "deleted": false
+      }
+    }
+  },
+  {
+    "rule": "M-20",
+    "description": "tr: this flight only",
+    "input": {
+      "existing": {
+        "statement": {
+          "text": "Uçakta pencere kenarı ister.",
+          "lang": "tr"
+        },
+        "content_type": "preference",
+        "time_kind": "permanent",
+        "source_kind": "user_statement"
+      },
+      "new": {
+        "statement": {
+          "text": "Bu uçuşta koridor ver, erken ineceğim.",
+          "lang": "tr"
+        },
+        "source_kind": "user_statement"
+      }
+    },
+    "expected": {
+      "class": "exception",
+      "effect": {
+        "new_record": {
+          "status": "active",
+          "time_kind": "one_off",
+          "layer": "event",
+          "supersedes": null
+        },
+        "existing_record": "unchanged",
+        "deleted": false
+      }
+    }
+  },
+  {
+    "rule": "M-20",
+    "description": "tr: tonight only",
+    "input": {
+      "existing": {
+        "statement": {
+          "text": "Hafta içi fast food yemez.",
+          "lang": "tr"
+        },
+        "content_type": "constraint",
+        "time_kind": "permanent",
+        "source_kind": "user_statement"
+      },
+      "new": {
+        "statement": {
+          "text": "Bu akşamlık pizza söyleyelim.",
+          "lang": "tr"
+        },
+        "source_kind": "user_statement"
+      }
+    },
+    "expected": {
+      "class": "exception",
+      "effect": {
+        "new_record": {
+          "status": "active",
+          "time_kind": "one_off",
+          "layer": "event",
+          "supersedes": null
+        },
+        "existing_record": "unchanged",
+        "deleted": false
+      }
+    }
+  },
+  {
+    "rule": "M-20",
+    "description": "tr: calendar and user disagree on location",
+    "input": {
+      "existing": {
+        "statement": {
+          "text": "Bu hafta Ankara'da.",
+          "lang": "tr"
+        },
+        "content_type": "event",
+        "time_kind": "one_off",
+        "source_kind": "connected_source"
+      },
+      "new": {
+        "statement": {
+          "text": "İzmir'deyim.",
+          "lang": "tr"
+        },
+        "source_kind": "user_statement"
+      }
+    },
+    "expected": {
+      "class": "contradiction",
+      "effect": {
+        "new_record": {
+          "status": "active",
+          "contested": true
+        },
+        "existing_record": {
+          "contested": true,
+          "epistemic_state": "unchanged"
+        },
+        "deleted": false,
+        "retrieval": "both_marked"
+      }
+    }
+  },
+  {
+    "rule": "M-20",
+    "description": "tr: two sources disagree on a flight time",
+    "input": {
+      "existing": {
+        "statement": {
+          "text": "Uçuş 14:30'da kalkıyor.",
+          "lang": "tr"
+        },
+        "content_type": "event",
+        "time_kind": "one_off",
+        "source_kind": "external_content"
+      },
+      "new": {
+        "statement": {
+          "text": "Uçuş 16:05'te kalkıyor.",
+          "lang": "tr"
+        },
+        "source_kind": "connected_source"
+      }
+    },
+    "expected": {
+      "class": "contradiction",
+      "effect": {
+        "new_record": {
+          "status": "active",
+          "contested": true
+        },
+        "existing_record": {
+          "contested": true,
+          "epistemic_state": "unchanged"
+        },
+        "deleted": false,
+        "retrieval": "both_marked"
+      }
+    }
+  },
+  {
+    "rule": "M-20",
+    "description": "tr: directory disagrees with what the user said, no change marker",
+    "input": {
+      "existing": {
+        "statement": {
+          "text": "Yöneticisi Deniz Aksoy.",
+          "lang": "tr"
+        },
+        "content_type": "relationship",
+        "time_kind": "permanent",
+        "source_kind": "user_statement"
+      },
+      "new": {
+        "statement": {
+          "text": "Yöneticisi: Selin Er.",
+          "lang": "tr"
+        },
+        "source_kind": "connected_source"
+      }
+    },
+    "expected": {
+      "class": "contradiction",
+      "effect": {
+        "new_record": {
+          "status": "active",
+          "contested": true
+        },
+        "existing_record": {
+          "contested": true,
+          "epistemic_state": "unchanged"
+        },
+        "deleted": false,
+        "retrieval": "both_marked"
+      }
+    }
+  },
+  {
+    "rule": "M-20",
+    "description": "tr: reaffirmation",
+    "input": {
+      "existing": {
+        "statement": {
+          "text": "Kahveyi soğuk içer.",
+          "lang": "tr"
+        },
+        "content_type": "preference",
+        "time_kind": "permanent",
+        "source_kind": "user_statement"
+      },
+      "new": {
+        "statement": {
+          "text": "Evet, hâlâ soğuk içiyorum.",
+          "lang": "tr"
+        },
+        "source_kind": "user_statement"
+      }
+    },
+    "expected": {
+      "class": "consistent",
+      "effect": {
+        "new_record": null,
+        "existing_record": {
+          "evidence": "new_episode_added"
+        },
+        "deleted": false
+      }
+    }
+  },
+  {
+    "rule": "M-20",
+    "description": "tr: seasonal habit holds",
+    "input": {
+      "existing": {
+        "statement": {
+          "text": "Kışın çay içer.",
+          "lang": "tr"
+        },
+        "content_type": "preference",
+        "time_kind": "seasonal",
+        "source_kind": "user_statement"
+      },
+      "new": {
+        "statement": {
+          "text": "Bu kış da çay içeceğim.",
+          "lang": "tr"
+        },
+        "source_kind": "user_statement"
+      }
+    },
+    "expected": {
+      "class": "consistent",
+      "effect": {
+        "new_record": null,
+        "existing_record": {
+          "evidence": "new_episode_added"
+        },
+        "deleted": false
+      }
+    }
+  },
+  {
+    "rule": "M-20",
+    "description": "en: preference changed with `now`",
+    "input": {
+      "existing": {
+        "statement": {
+          "text": "Drinks coffee iced.",
+          "lang": "en"
+        },
+        "content_type": "preference",
+        "time_kind": "permanent",
+        "source_kind": "user_statement"
+      },
+      "new": {
+        "statement": {
+          "text": "I drink my coffee hot now.",
+          "lang": "en"
+        },
+        "source_kind": "user_statement"
+      }
+    },
+    "expected": {
+      "class": "change",
+      "effect": {
+        "new_record": {
+          "status": "active",
+          "epistemic_state": "stated",
+          "supersedes": "existing"
+        },
+        "existing_record": {
+          "epistemic_state": "invalidated",
+          "superseded_at": "set"
+        },
+        "deleted": false
+      }
+    }
+  },
+  {
+    "rule": "M-20",
+    "description": "en: no longer eats meat",
+    "input": {
+      "existing": {
+        "statement": {
+          "text": "Likes steak.",
+          "lang": "en"
+        },
+        "content_type": "preference",
+        "time_kind": "permanent",
+        "source_kind": "user_statement"
+      },
+      "new": {
+        "statement": {
+          "text": "I don't eat meat anymore.",
+          "lang": "en"
+        },
+        "source_kind": "user_statement"
+      }
+    },
+    "expected": {
+      "class": "change",
+      "effect": {
+        "new_record": {
+          "status": "active",
+          "epistemic_state": "stated",
+          "supersedes": "existing"
+        },
+        "existing_record": {
+          "epistemic_state": "invalidated",
+          "superseded_at": "set"
+        },
+        "deleted": false
+      }
+    }
+  },
+  {
+    "rule": "M-20",
+    "description": "en: moved city",
+    "input": {
+      "existing": {
+        "statement": {
+          "text": "Lives in Porto.",
+          "lang": "en"
+        },
+        "content_type": "personal_fact",
+        "time_kind": "permanent",
+        "source_kind": "user_statement"
+      },
+      "new": {
+        "statement": {
+          "text": "I moved to Lisbon last month.",
+          "lang": "en"
+        },
+        "source_kind": "user_statement"
+      }
+    },
+    "expected": {
+      "class": "change",
+      "effect": {
+        "new_record": {
+          "status": "active",
+          "epistemic_state": "stated",
+          "supersedes": "existing"
+        },
+        "existing_record": {
+          "epistemic_state": "invalidated",
+          "superseded_at": "set"
+        },
+        "deleted": false
+      }
+    }
+  },
+  {
+    "rule": "M-20",
+    "description": "en: new manager since a date",
+    "input": {
+      "existing": {
+        "statement": {
+          "text": "Manager is Tom Reed.",
+          "lang": "en"
+        },
+        "content_type": "relationship",
+        "time_kind": "permanent",
+        "source_kind": "user_statement"
+      },
+      "new": {
+        "statement": {
+          "text": "Since October my manager is Priya Shah.",
+          "lang": "en"
+        },
+        "source_kind": "user_statement"
+      }
+    },
+    "expected": {
+      "class": "change",
+      "effect": {
+        "new_record": {
+          "status": "active",
+          "epistemic_state": "stated",
+          "supersedes": "existing"
+        },
+        "existing_record": {
+          "epistemic_state": "invalidated",
+          "superseded_at": "set"
+        },
+        "deleted": false
+      }
+    }
+  },
+  {
+    "rule": "M-20",
+    "description": "en: goal dropped",
+    "input": {
+      "existing": {
+        "statement": {
+          "text": "Training for a marathon.",
+          "lang": "en"
+        },
+        "content_type": "goal",
+        "time_kind": "current",
+        "source_kind": "user_statement"
+      },
+      "new": {
+        "statement": {
+          "text": "I've given up on the marathon.",
+          "lang": "en"
+        },
+        "source_kind": "user_statement"
+      }
+    },
+    "expected": {
+      "class": "change",
+      "effect": {
+        "new_record": {
+          "status": "active",
+          "epistemic_state": "stated",
+          "supersedes": "existing"
+        },
+        "existing_record": {
+          "epistemic_state": "invalidated",
+          "superseded_at": "set"
+        },
+        "deleted": false
+      }
+    }
+  },
+  {
+    "rule": "M-20",
+    "description": "en: today only",
+    "input": {
+      "existing": {
+        "statement": {
+          "text": "Drinks coffee iced.",
+          "lang": "en"
+        },
+        "content_type": "preference",
+        "time_kind": "permanent",
+        "source_kind": "user_statement"
+      },
+      "new": {
+        "statement": {
+          "text": "Make it hot today.",
+          "lang": "en"
+        },
+        "source_kind": "user_statement"
+      }
+    },
+    "expected": {
+      "class": "exception",
+      "effect": {
+        "new_record": {
+          "status": "active",
+          "time_kind": "one_off",
+          "layer": "event",
+          "supersedes": null
+        },
+        "existing_record": "unchanged",
+        "deleted": false
+      }
+    }
+  },
+  {
+    "rule": "M-20",
+    "description": "en: just this once",
+    "input": {
+      "existing": {
+        "statement": {
+          "text": "Prefers a window seat.",
+          "lang": "en"
+        },
+        "content_type": "preference",
+        "time_kind": "permanent",
+        "source_kind": "user_statement"
+      },
+      "new": {
+        "statement": {
+          "text": "Just this once, book an aisle seat.",
+          "lang": "en"
+        },
+        "source_kind": "user_statement"
+      }
+    },
+    "expected": {
+      "class": "exception",
+      "effect": {
+        "new_record": {
+          "status": "active",
+          "time_kind": "one_off",
+          "layer": "event",
+          "supersedes": null
+        },
+        "existing_record": "unchanged",
+        "deleted": false
+      }
+    }
+  },
+  {
+    "rule": "M-20",
+    "description": "en: for tonight",
+    "input": {
+      "existing": {
+        "statement": {
+          "text": "Avoids fast food on weekdays.",
+          "lang": "en"
+        },
+        "content_type": "constraint",
+        "time_kind": "permanent",
+        "source_kind": "user_statement"
+      },
+      "new": {
+        "statement": {
+          "text": "For tonight only, order pizza.",
+          "lang": "en"
+        },
+        "source_kind": "user_statement"
+      }
+    },
+    "expected": {
+      "class": "exception",
+      "effect": {
+        "new_record": {
+          "status": "active",
+          "time_kind": "one_off",
+          "layer": "event",
+          "supersedes": null
+        },
+        "existing_record": "unchanged",
+        "deleted": false
+      }
+    }
+  },
+  {
+    "rule": "M-20",
+    "description": "en: this meeting only",
+    "input": {
+      "existing": {
+        "statement": {
+          "text": "No meetings before 10.",
+          "lang": "en"
+        },
+        "content_type": "constraint",
+        "time_kind": "permanent",
+        "source_kind": "user_statement"
+      },
+      "new": {
+        "statement": {
+          "text": "This one can be at 9, it's urgent.",
+          "lang": "en"
+        },
+        "source_kind": "user_statement"
+      }
+    },
+    "expected": {
+      "class": "exception",
+      "effect": {
+        "new_record": {
+          "status": "active",
+          "time_kind": "one_off",
+          "layer": "event",
+          "supersedes": null
+        },
+        "existing_record": "unchanged",
+        "deleted": false
+      }
+    }
+  },
+  {
+    "rule": "M-20",
+    "description": "en: calendar and user disagree on location",
+    "input": {
+      "existing": {
+        "statement": {
+          "text": "In Berlin this week.",
+          "lang": "en"
+        },
+        "content_type": "event",
+        "time_kind": "one_off",
+        "source_kind": "connected_source"
+      },
+      "new": {
+        "statement": {
+          "text": "I'm in Munich.",
+          "lang": "en"
+        },
+        "source_kind": "user_statement"
+      }
+    },
+    "expected": {
+      "class": "contradiction",
+      "effect": {
+        "new_record": {
+          "status": "active",
+          "contested": true
+        },
+        "existing_record": {
+          "contested": true,
+          "epistemic_state": "unchanged"
+        },
+        "deleted": false,
+        "retrieval": "both_marked"
+      }
+    }
+  },
+  {
+    "rule": "M-20",
+    "description": "en: email and airline disagree on a flight time",
+    "input": {
+      "existing": {
+        "statement": {
+          "text": "Flight departs 14:30.",
+          "lang": "en"
+        },
+        "content_type": "event",
+        "time_kind": "one_off",
+        "source_kind": "external_content"
+      },
+      "new": {
+        "statement": {
+          "text": "Flight departs 16:05.",
+          "lang": "en"
+        },
+        "source_kind": "connected_source"
+      }
+    },
+    "expected": {
+      "class": "contradiction",
+      "effect": {
+        "new_record": {
+          "status": "active",
+          "contested": true
+        },
+        "existing_record": {
+          "contested": true,
+          "epistemic_state": "unchanged"
+        },
+        "deleted": false,
+        "retrieval": "both_marked"
+      }
+    }
+  },
+  {
+    "rule": "M-20",
+    "description": "en: directory disagrees with what the user said, no change marker",
+    "input": {
+      "existing": {
+        "statement": {
+          "text": "Manager is Tom Reed.",
+          "lang": "en"
+        },
+        "content_type": "relationship",
+        "time_kind": "permanent",
+        "source_kind": "user_statement"
+      },
+      "new": {
+        "statement": {
+          "text": "Manager: Priya Shah.",
+          "lang": "en"
+        },
+        "source_kind": "connected_source"
+      }
+    },
+    "expected": {
+      "class": "contradiction",
+      "effect": {
+        "new_record": {
+          "status": "active",
+          "contested": true
+        },
+        "existing_record": {
+          "contested": true,
+          "epistemic_state": "unchanged"
+        },
+        "deleted": false,
+        "retrieval": "both_marked"
+      }
+    }
+  },
+  {
+    "rule": "M-20",
+    "description": "en: reaffirmation",
+    "input": {
+      "existing": {
+        "statement": {
+          "text": "Drinks coffee iced.",
+          "lang": "en"
+        },
+        "content_type": "preference",
+        "time_kind": "permanent",
+        "source_kind": "user_statement"
+      },
+      "new": {
+        "statement": {
+          "text": "Yes, still iced.",
+          "lang": "en"
+        },
+        "source_kind": "user_statement"
+      }
+    },
+    "expected": {
+      "class": "consistent",
+      "effect": {
+        "new_record": null,
+        "existing_record": {
+          "evidence": "new_episode_added"
+        },
+        "deleted": false
+      }
+    }
+  },
+  {
+    "rule": "M-20",
+    "description": "en: as usual",
+    "input": {
+      "existing": {
+        "statement": {
+          "text": "Prefers a window seat.",
+          "lang": "en"
+        },
+        "content_type": "preference",
+        "time_kind": "permanent",
+        "source_kind": "user_statement"
+      },
+      "new": {
+        "statement": {
+          "text": "As usual, window seat please.",
+          "lang": "en"
+        },
+        "source_kind": "user_statement"
+      }
+    },
+    "expected": {
+      "class": "consistent",
+      "effect": {
+        "new_record": null,
+        "existing_record": {
+          "evidence": "new_episode_added"
+        },
+        "deleted": false
+      }
+    }
+  },
+  {
+    "rule": "M-4",
+    "description": "tr+en: stated in Turkish, changed in English",
+    "input": {
+      "existing": {
+        "statement": {
+          "text": "Kahveyi soğuk içer.",
+          "lang": "tr"
+        },
+        "content_type": "preference",
+        "time_kind": "permanent",
+        "source_kind": "user_statement"
+      },
+      "new": {
+        "statement": {
+          "text": "I drink my coffee hot now.",
+          "lang": "en"
+        },
+        "source_kind": "user_statement"
+      }
+    },
+    "expected": {
+      "class": "change",
+      "effect": {
+        "new_record": {
+          "status": "active",
+          "epistemic_state": "stated",
+          "supersedes": "existing"
+        },
+        "existing_record": {
+          "epistemic_state": "invalidated",
+          "superseded_at": "set"
+        },
+        "deleted": false
+      }
+    }
+  },
+  {
+    "rule": "M-4",
+    "description": "tr+en: stated in English, exception in Turkish",
+    "input": {
+      "existing": {
+        "statement": {
+          "text": "Drinks coffee iced.",
+          "lang": "en"
+        },
+        "content_type": "preference",
+        "time_kind": "permanent",
+        "source_kind": "user_statement"
+      },
+      "new": {
+        "statement": {
+          "text": "Bugün sıcak olsun.",
+          "lang": "tr"
+        },
+        "source_kind": "user_statement"
+      }
+    },
+    "expected": {
+      "class": "exception",
+      "effect": {
+        "new_record": {
+          "status": "active",
+          "time_kind": "one_off",
+          "layer": "event",
+          "supersedes": null
+        },
+        "existing_record": "unchanged",
+        "deleted": false
+      }
+    }
+  }
+]
