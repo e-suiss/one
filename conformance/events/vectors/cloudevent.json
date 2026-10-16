@@ -1,0 +1,147 @@
+[
+  {
+    "rule": "E-3",
+    "description": "minimal valid event",
+    "input": {
+      "specversion": "1.0",
+      "id": "evt_01jac0x4f8ns6t7q2d5y9k3m8r",
+      "source": "https://suiss.app/one",
+      "type": "app.suiss.one.task.state_changed.v1",
+      "time": "2026-10-16T08:30:00.000Z",
+      "datacontenttype": "application/json",
+      "dataschema": "https://suiss.app/schemas/one/task/task/v1.json",
+      "tenant": "tnt_01jac0x4f8ns6t7q2d5y9k3m8r",
+      "data": {}
+    },
+    "valid": true
+  },
+  {
+    "rule": "T-40",
+    "description": "traceparent extension is carried",
+    "input": {
+      "specversion": "1.0",
+      "id": "evt_01jac0x4f8ns6t7q2d5y9k3m8r",
+      "source": "https://suiss.app/one",
+      "type": "app.suiss.one.task.state_changed.v1",
+      "time": "2026-10-16T08:30:00.000Z",
+      "datacontenttype": "application/json",
+      "dataschema": "https://suiss.app/schemas/one/task/task/v1.json",
+      "tenant": "tnt_01jac0x4f8ns6t7q2d5y9k3m8r",
+      "data": {},
+      "traceparent": "00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01"
+    },
+    "valid": true
+  },
+  {
+    "rule": "E-3",
+    "description": "type outside the One namespace is rejected",
+    "input": {
+      "specversion": "1.0",
+      "id": "evt_01jac0x4f8ns6t7q2d5y9k3m8r",
+      "source": "https://suiss.app/one",
+      "type": "com.example.thing",
+      "time": "2026-10-16T08:30:00.000Z",
+      "datacontenttype": "application/json",
+      "dataschema": "https://suiss.app/schemas/one/task/task/v1.json",
+      "tenant": "tnt_01jac0x4f8ns6t7q2d5y9k3m8r",
+      "data": {}
+    },
+    "valid": false
+  },
+  {
+    "rule": "E-3",
+    "description": "type without a version suffix is rejected",
+    "input": {
+      "specversion": "1.0",
+      "id": "evt_01jac0x4f8ns6t7q2d5y9k3m8r",
+      "source": "https://suiss.app/one",
+      "type": "app.suiss.one.task.state_changed",
+      "time": "2026-10-16T08:30:00.000Z",
+      "datacontenttype": "application/json",
+      "dataschema": "https://suiss.app/schemas/one/task/task/v1.json",
+      "tenant": "tnt_01jac0x4f8ns6t7q2d5y9k3m8r",
+      "data": {}
+    },
+    "valid": false
+  },
+  {
+    "rule": "E-3",
+    "description": "missing tenant is rejected",
+    "input": {
+      "specversion": "1.0",
+      "id": "evt_01jac0x4f8ns6t7q2d5y9k3m8r",
+      "source": "https://suiss.app/one",
+      "type": "app.suiss.one.task.state_changed.v1",
+      "time": "2026-10-16T08:30:00.000Z",
+      "datacontenttype": "application/json",
+      "dataschema": "https://suiss.app/schemas/one/task/task/v1.json",
+      "data": {}
+    },
+    "valid": false
+  },
+  {
+    "rule": "T-31",
+    "description": "non-UTC time is rejected",
+    "input": {
+      "specversion": "1.0",
+      "id": "evt_01jac0x4f8ns6t7q2d5y9k3m8r",
+      "source": "https://suiss.app/one",
+      "type": "app.suiss.one.task.state_changed.v1",
+      "time": "2026-10-16T11:30:00+03:00",
+      "datacontenttype": "application/json",
+      "dataschema": "https://suiss.app/schemas/one/task/task/v1.json",
+      "tenant": "tnt_01jac0x4f8ns6t7q2d5y9k3m8r",
+      "data": {}
+    },
+    "valid": false
+  },
+  {
+    "rule": "E-3",
+    "description": "unknown top-level attribute is rejected",
+    "input": {
+      "specversion": "1.0",
+      "id": "evt_01jac0x4f8ns6t7q2d5y9k3m8r",
+      "source": "https://suiss.app/one",
+      "type": "app.suiss.one.task.state_changed.v1",
+      "time": "2026-10-16T08:30:00.000Z",
+      "datacontenttype": "application/json",
+      "dataschema": "https://suiss.app/schemas/one/task/task/v1.json",
+      "tenant": "tnt_01jac0x4f8ns6t7q2d5y9k3m8r",
+      "data": {},
+      "extra": "x"
+    },
+    "valid": false
+  },
+  {
+    "rule": "E-3",
+    "description": "content in a non-JSON content type is rejected",
+    "input": {
+      "specversion": "1.0",
+      "id": "evt_01jac0x4f8ns6t7q2d5y9k3m8r",
+      "source": "https://suiss.app/one",
+      "type": "app.suiss.one.task.state_changed.v1",
+      "time": "2026-10-16T08:30:00.000Z",
+      "datacontenttype": "text/plain",
+      "dataschema": "https://suiss.app/schemas/one/task/task/v1.json",
+      "tenant": "tnt_01jac0x4f8ns6t7q2d5y9k3m8r",
+      "data": {}
+    },
+    "valid": false
+  },
+  {
+    "rule": "T-31",
+    "description": "identifier that is not an opaque prefixed id is rejected",
+    "input": {
+      "specversion": "1.0",
+      "id": "1234",
+      "source": "https://suiss.app/one",
+      "type": "app.suiss.one.task.state_changed.v1",
+      "time": "2026-10-16T08:30:00.000Z",
+      "datacontenttype": "application/json",
+      "dataschema": "https://suiss.app/schemas/one/task/task/v1.json",
+      "tenant": "tnt_01jac0x4f8ns6t7q2d5y9k3m8r",
+      "data": {}
+    },
+    "valid": false
+  }
+]

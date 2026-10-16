@@ -1,0 +1,15 @@
+# T-31, T-14 (2)
+asyncapi: 3.0.0
+info:
+  title: One events
+  version: 1.0.0
+  description: Cross-product events One publishes and consumes, as CloudEvents under the Suiss webhook profile.
+defaultContentType: application/cloudevents+json
+channels: {}
+operations: {}
+components:
+  schemas:
+    CloudEvent:
+      schemaFormat: application/schema+json;version=draft-2020-12
+      schema:
+        $ref: ./cloudevent.schema.json

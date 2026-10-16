@@ -28,8 +28,11 @@ const DIRECTIVES: &[&str] = &[
 ];
 
 fn is_spec_id(token: &str) -> bool {
-    let token = token
-        .trim()
+    let raw = token.trim();
+    let sibling = ["Access ", "Relay ", "Work "]
+        .iter()
+        .any(|p| raw.starts_with(p));
+    let token = raw
         .trim_start_matches("Access ")
         .trim_start_matches("Relay ")
         .trim_start_matches("Work ")
@@ -52,6 +55,15 @@ fn is_spec_id(token: &str) -> bool {
                     .all(|c| c.is_ascii_digit() || matches!(c, ',' | ' ' | '–' | '-'))
         })
     });
+    if sibling
+        && let Some(split) = head.find(|c: char| c.is_ascii_digit())
+        && let (family, number) = head.split_at(split)
+        && !family.is_empty()
+        && family.chars().all(|c| c.is_ascii_uppercase())
+        && number.chars().all(|c| c.is_ascii_digit())
+    {
+        return tail_ok;
+    }
     let mut parts = head.rsplitn(2, '-');
     let number = parts.next().unwrap_or_default();
     let family = parts.next().unwrap_or_default();
@@ -297,6 +309,7 @@ mod tests {
             "Access OP-72",
             "§17.10",
             "T-45, Access OP-72",
+            "Access TN-136, Access E42 (4), E-3",
         ] {
             assert!(is_id_list(ok), "{ok}");
         }

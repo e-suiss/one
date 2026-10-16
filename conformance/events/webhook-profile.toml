@@ -1,0 +1,16 @@
+# Access TN-136, Access E42 (4), E-3
+headers = ["webhook-id", "webhook-timestamp", "webhook-signature"]
+default_signature = "v1a"
+signatures = ["v1a", "v1"]
+webhook_id = "cloudevent.id"
+delivery = "at-least-once"
+content_type = "application/cloudevents+json"
+
+[[signature]]
+id = "v1a"
+algorithm = "Ed25519"
+
+[[signature]]
+id = "v1"
+algorithm = "HMAC-SHA256"
+compatibility_only = true

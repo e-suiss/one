@@ -1,0 +1,43 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "One API",
+    "description": "The One client and developer API.",
+    "license": {
+      "name": "LicenseRef-Suiss-Proprietary",
+      "identifier": "LicenseRef-Suiss-Proprietary"
+    },
+    "version": "1"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Problem": {
+        "type": "object",
+        "description": "An RFC 9457 problem response.",
+        "required": [
+          "type",
+          "title",
+          "status",
+          "code"
+        ],
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 0
+          },
+          "title": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

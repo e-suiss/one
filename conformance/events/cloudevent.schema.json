@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/events/cloudevent/v1.json",
+  "title": "One CloudEvent",
+  "description": "A CloudEvents 1.0 structured-mode JSON envelope under the Suiss webhook profile (E-3, T-14 (2), Access E42 (4), Access TN-136).",
+  "type": "object",
+  "required": ["specversion", "id", "source", "type", "time", "datacontenttype", "dataschema", "tenant", "data"],
+  "additionalProperties": false,
+  "properties": {
+    "specversion": { "const": "1.0" },
+    "id": { "type": "string", "pattern": "^evt_[0-9a-hjkmnp-tv-z]{26}$" },
+    "source": { "type": "string", "pattern": "^https://suiss\\.app/one(/[a-z0-9_-]+)*$" },
+    "type": { "type": "string", "pattern": "^app\\.suiss\\.one\\.[a-z0-9_]+(\\.[a-z0-9_]+)*\\.v[1-9][0-9]*$" },
+    "subject": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "time": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]{1,9})?Z$" },
+    "datacontenttype": { "const": "application/json" },
+    "dataschema": { "type": "string", "pattern": "^https://suiss\\.app/schemas/one/" },
+    "tenant": { "type": "string", "minLength": 1, "maxLength": 64 },
+    "traceparent": { "type": "string", "pattern": "^00-[0-9a-f]{32}-[0-9a-f]{16}-[0-9a-f]{2}$" },
+    "data": { "type": "object" }
+  }
+}
