@@ -74,12 +74,23 @@ class Section:
 
 
 @dataclass(frozen=True, slots=True)
+class Gate:
+    """The no-regression gate on paired bootstrap deltas of candidate minus baseline."""
+
+    metric_delta_tolerance: float
+    confidence: float
+    resamples: int
+    seed: int
+
+
+@dataclass(frozen=True, slots=True)
 class EvalSet:
     """A validated evaluation set definition."""
 
     name: str
     version: str
     languages: tuple[str, ...]
+    gate: Gate
     sections: tuple[Section, ...]
 
     @property
@@ -88,7 +99,10 @@ class EvalSet:
         return tuple(s for s in self.sections if s.status is SectionStatus.BUILT)
 
 
-_SET_KEYS = frozenset({"name", "version", "languages", "contains_user_data", "section"})
+_SET_KEYS = frozenset({"name", "version", "languages", "contains_user_data", "gate", "section"})
+_GATE_KEYS = frozenset({"metric_delta_tolerance", "confidence", "resamples", "seed"})
+_MIN_CONFIDENCE = 0.5
+_MIN_RESAMPLES = 1000
 _SECTION_KEYS = frozenset({"id", "title", "status", "sources", "manifests"})
 
 
@@ -112,6 +126,44 @@ def _parse_section(table: dict[str, object], where: str) -> Section:
     return Section(section_id, req_str(table, "title", sub), status, sources, manifests)
 
 
+def _number(table: dict[str, object], key: str, where: str) -> float:
+    value = table.get(key)
+    if isinstance(value, bool) or not isinstance(value, (int, float)):
+        msg = f"{where}: '{key}' must be a number"
+        raise EvalSetError(msg)
+    return float(value)
+
+
+def _integer(table: dict[str, object], key: str, where: str) -> int:
+    value = table.get(key)
+    if isinstance(value, bool) or not isinstance(value, int):
+        msg = f"{where}: '{key}' must be an integer"
+        raise EvalSetError(msg)
+    return value
+
+
+def _parse_gate(data: dict[str, object], where: str) -> Gate:
+    table = data.get("gate")
+    if not isinstance(table, dict):
+        msg = f"{where}: a [gate] table is required"
+        raise EvalSetError(msg)
+    sub = f"{where} [gate]"
+    check_keys(table, _GATE_KEYS, sub)
+    gate = Gate(
+        metric_delta_tolerance=_number(table, "metric_delta_tolerance", sub),
+        confidence=_number(table, "confidence", sub),
+        resamples=_integer(table, "resamples", sub),
+        seed=_integer(table, "seed", sub),
+    )
+    if not 0.0 <= gate.metric_delta_tolerance < 1.0 or not _MIN_CONFIDENCE < gate.confidence < 1.0:
+        msg = f"{sub}: tolerance must be in [0, 1) and confidence in (0.5, 1)"
+        raise EvalSetError(msg)
+    if gate.resamples < _MIN_RESAMPLES:
+        msg = f"{sub}: at least 1000 bootstrap resamples are required"
+        raise EvalSetError(msg)
+    return gate
+
+
 def load_eval_set(path: Path) -> EvalSet:
     """Load and validate an evaluation set definition."""
     where = str(path)
@@ -130,6 +182,7 @@ def load_eval_set(path: Path) -> EvalSet:
             name=req_match(req_str(data, "name", where), IDENTIFIER, "name", where),
             version=req_match(req_str(data, "version", where), SEMVER, "version", where),
             languages=req_languages(data, "languages", where),
+            gate=_parse_gate(data, where),
             sections=sections,
         )
 

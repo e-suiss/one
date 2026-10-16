@@ -18,8 +18,8 @@ status = "allowed"
 
 [[component]]
 name = "EmbeddingGemma 2"
-license = "unverified"
-status = "unverified"
+license = "Apache-2.0"
+status = "allowed"
 
 [[component]]
 name = "Llama"
@@ -49,10 +49,90 @@ status = "eval_simulation_only"
 
 [[component]]
 name = "UserLM"
-license = "unverified"
+license = "MIT"
 status = "eval_simulation_only"
 
 [[component]]
 name = "Suiss synthetic"
 license = "LicenseRef-Suiss-Proprietary"
 status = "allowed"
+
+[[component]]
+name = "XQuAD"
+license = "CC-BY-SA-4.0"
+status = "eval_simulation_only"
+
+[[component]]
+name = "MKQA"
+license = "CC-BY-3.0"
+status = "eval_simulation_only"
+
+[[component]]
+name = "EXAMS"
+license = "CC-BY-SA-4.0"
+status = "eval_simulation_only"
+
+[[component]]
+name = "Belebele"
+license = "CC-BY-SA-4.0"
+status = "eval_simulation_only"
+
+[[component]]
+name = "XCOPA"
+license = "CC-BY-4.0"
+status = "eval_simulation_only"
+
+[[component]]
+name = "GECTurk"
+license = "Apache-2.0"
+status = "eval_simulation_only"
+
+[[component]]
+name = "OffensEval-2020-TR"
+license = "CC-BY-2.0"
+status = "eval_simulation_only"
+
+[[component]]
+name = "XNLI"
+license = "CC-BY-NC-4.0"
+status = "forbidden"
+
+[[component]]
+name = "XL-Sum"
+license = "CC-BY-NC-SA-4.0"
+status = "forbidden"
+
+[[component]]
+name = "WikiLingua"
+license = "CC-BY-NC-SA-3.0"
+status = "forbidden"
+
+[[component]]
+name = "WMT16"
+license = "unverified"
+status = "unverified"
+
+[[component]]
+name = "MLSUM"
+license = "unverified"
+status = "unverified"
+
+[[component]]
+name = "NLI-TR"
+license = "unverified"
+status = "unverified"
+
+[[component]]
+name = "STSb-TR"
+license = "unverified"
+status = "unverified"
+
+[[component]]
+name = "TQuAD"
+license = "unverified"
+status = "unverified"
+
+[[component]]
+name = "TurkBench"
+license = "unverified"
+status = "unverified"

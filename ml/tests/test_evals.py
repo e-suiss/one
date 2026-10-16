@@ -45,7 +45,15 @@ def test_mf_51_repository_set_is_unbuilt_skeleton(ml_root: Path) -> None:
     assert eval_set.languages == ("tr", "en")
     assert tuple(s.id for s in eval_set.sections) == REQUIRED_SECTIONS
     assert all(s.status is SectionStatus.NOT_BUILT for s in eval_set.sections)
-    assert eval_set.sections[0].sources == ("Cetvel", "TurkBench subset")
+    assert eval_set.sections[0].sources == (
+        "XQuAD",
+        "MKQA",
+        "EXAMS",
+        "Belebele",
+        "XCOPA",
+        "GECTurk",
+        "OffensEval-2020-TR",
+    )
 
 
 def test_mf_51_repository_published_registry_is_consistent(ml_root: Path) -> None:

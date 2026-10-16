@@ -5,10 +5,16 @@ version = "0.1.0"
 languages = ["tr", "en"]
 contains_user_data = false
 
+[gate]
+metric_delta_tolerance = 0.01
+confidence = 0.95
+resamples = 10000
+seed = 0
+
 [[section]]
 id = "general"
 title = "General TR/EN"
-sources = ["Cetvel", "TurkBench subset"]
+sources = ["XQuAD", "MKQA", "EXAMS", "Belebele", "XCOPA", "GECTurk", "OffensEval-2020-TR"]
 status = "not_built"
 
 [[section]]

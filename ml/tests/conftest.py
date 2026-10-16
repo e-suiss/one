@@ -20,8 +20,8 @@ type DatasetFactory = Callable[..., tuple[Path, Path]]
 def _value(value: object) -> str:
     if isinstance(value, bool):
         return "true" if value else "false"
-    if isinstance(value, int):
-        return str(value)
+    if isinstance(value, int | float):
+        return repr(value)
     if isinstance(value, str):
         return json.dumps(value, ensure_ascii=False)
     if isinstance(value, list):

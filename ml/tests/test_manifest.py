@@ -203,13 +203,16 @@ def test_mf_45_license_gate_matches_spec(licenses: dict[str, LicenseEntry]) -> N
         "OPPU": ("none", LicenseStatus.FORBIDDEN),
         "OSim": ("unverified", LicenseStatus.EVAL_SIMULATION_ONLY),
         "Ditto": ("unverified", LicenseStatus.EVAL_SIMULATION_ONLY),
-        "UserLM": ("unverified", LicenseStatus.EVAL_SIMULATION_ONLY),
-        "EmbeddingGemma 2": ("unverified", LicenseStatus.UNVERIFIED),
+        "UserLM": ("MIT", LicenseStatus.EVAL_SIMULATION_ONLY),
+        "EmbeddingGemma 2": ("Apache-2.0", LicenseStatus.ALLOWED),
     }
     for name, (license_id, status) in expected.items():
         assert (licenses[name].license, licenses[name].status) == (license_id, status)
     assert licenses["Llama"].status is LicenseStatus.FLAGGED
     assert licenses["Llama"].condition == "user_count"
+
+
+SIM_LICENSES = {"OSim": "unverified", "Ditto": "unverified", "UserLM": "MIT"}
 
 
 def _gate(manifest_data: Doc, tmp_path: Path, write_toml: Writer, **fields: object) -> Path:
@@ -224,7 +227,7 @@ def test_mf_54_simulation_source_in_train_manifest_is_rejected(
     licenses: dict[str, LicenseEntry],
     source: str,
 ) -> None:
-    path = _gate(manifest_data, tmp_path, write_toml, source=source, license="unverified")
+    path = _gate(manifest_data, tmp_path, write_toml, source=source, license=SIM_LICENSES[source])
     with pytest.raises(ManifestError, match="cannot be used to train"):
         check_license(load_manifest(path), licenses)
 
@@ -240,7 +243,12 @@ def test_mf_54_simulation_source_is_allowed_outside_training(
     usage: str,
 ) -> None:
     path = _gate(
-        manifest_data, tmp_path, write_toml, source=source, license="unverified", usage=usage
+        manifest_data,
+        tmp_path,
+        write_toml,
+        source=source,
+        license=SIM_LICENSES[source],
+        usage=usage,
     )
     check_license(load_manifest(path), licenses)
 
@@ -248,7 +256,7 @@ def test_mf_54_simulation_source_is_allowed_outside_training(
 @pytest.mark.parametrize("usage", ["train", "eval_only", "simulation_only"])
 @pytest.mark.parametrize(
     ("source", "license_id"),
-    [("LaMP", "CC-BY-NC-SA-4.0"), ("OPPU", "none"), ("EmbeddingGemma 2", "unverified")],
+    [("LaMP", "CC-BY-NC-SA-4.0"), ("OPPU", "none")],
 )
 def test_mf_45_forbidden_or_unverified_source_is_rejected(
     tmp_path: Path,
@@ -264,6 +272,27 @@ def test_mf_45_forbidden_or_unverified_source_is_rejected(
     )
     with pytest.raises(ManifestError, match=r"forbidden|unverified"):
         check_license(load_manifest(path), licenses)
+
+
+@pytest.mark.parametrize("usage", ["train", "eval_only", "simulation_only"])
+def test_mf_45_unverified_component_is_rejected_for_any_use(
+    tmp_path: Path,
+    write_toml: Writer,
+    manifest_data: Doc,
+    licenses: dict[str, LicenseEntry],
+    usage: str,
+) -> None:
+    gate = {
+        **licenses,
+        "Pending": LicenseEntry(
+            name="Pending", license="unverified", status=LicenseStatus.UNVERIFIED, condition=None
+        ),
+    }
+    path = _gate(
+        manifest_data, tmp_path, write_toml, source="Pending", license="unverified", usage=usage
+    )
+    with pytest.raises(ManifestError, match="unverified"):
+        check_license(load_manifest(path), gate)
 
 
 def test_mf_45_flagged_llama_cannot_train(
@@ -292,7 +321,7 @@ def test_mf_45_declared_license_must_match_gate(
         check_license(load_manifest(path), licenses)
 
 
-@pytest.mark.parametrize("generator", ["UserLM", "LaMP", "EmbeddingGemma 2", "Unknown"])
+@pytest.mark.parametrize("generator", ["UserLM", "LaMP", "OSim", "Unknown"])
 def test_mf_45_synthetic_generator_is_gated_for_training(
     tmp_path: Path,
     write_toml: Writer,
