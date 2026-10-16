@@ -462,26 +462,24 @@ pub fn derive_events(history: &[TaskEvent]) -> Result<Derived, Rejection> {
     Ok(fold.derived())
 }
 
-/// What a user's "stop" does in each state (INV-32, OD-63).
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub enum StopCommand {
-    /// Running: record `pause_requested`; the task is paused only when the Executor confirms.
-    RequestPause,
-    /// Pending or waiting: record `task_cancelled` with cause `user`.
-    Cancel,
-    /// Already paused: nothing to stop.
-    AlreadyPaused,
-    /// Terminal: nothing to stop.
-    AlreadyOver,
-}
+wire_enum!(
+    /// What a user's "stop" does in each state (INV-32, OD-63, OD-64).
+    StopCommand {
+        /// Running: record `pause_requested`; the task is paused only when the Executor confirms.
+        RequestPause = "request_pause",
+        /// Pending, waiting or paused: record `task_cancelled` with cause `user`.
+        Cancel = "cancel",
+        /// Terminal: nothing to stop.
+        AlreadyOver = "already_over",
+    }
+);
 
 /// The event a "stop" writes in `state`; "stop" is never refused (INV-32).
 #[must_use]
 pub const fn stop_command(state: TaskState) -> StopCommand {
     match state {
         Running => StopCommand::RequestPause,
-        Pending | WaitingUser | WaitingExternal => StopCommand::Cancel,
-        Paused => StopCommand::AlreadyPaused,
+        Pending | WaitingUser | WaitingExternal | Paused => StopCommand::Cancel,
         Completed | Failed | Cancelled => StopCommand::AlreadyOver,
     }
 }

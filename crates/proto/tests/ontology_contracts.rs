@@ -19,7 +19,7 @@ use one_proto::ontology::episode::Episode;
 use one_proto::ontology::extension::ExtensionDeclaration;
 use one_proto::ontology::goal::Goal;
 use one_proto::ontology::layers::{
-    ConfirmationEvidence, Conversion, LayerError, OntologyLayer, confirm, conversions, correct,
+    ConfirmationEvidence, Conversion, LayerError, OntologyLayer, confirm, conversion, correct,
     infer, layer_of, record_observed, remember_explicit, suggest,
 };
 use one_proto::ontology::observation::Observation;
@@ -246,17 +246,42 @@ fn c_8_layer_conversion_vectors() {
     for v in &all {
         let from = serde_json::from_value::<OntologyLayer>(v["input"]["from"].clone());
         let to = serde_json::from_value::<OntologyLayer>(v["input"]["to"].clone());
-        let found: Vec<Conversion> = match (from, to) {
-            (Ok(f), Ok(t)) => conversions(f, t),
-            _ => Vec::new(),
+        let asked = v["input"]["user_asked"].as_bool().unwrap();
+        let found = match (from, to) {
+            (Ok(f), Ok(t)) => conversion(f, t, asked),
+            _ => None,
         };
-        let actual = found.first().map_or(
+        let actual = found.map_or(
             json!("rejected"),
             |c| json!({ "function": serde_json::to_value(c).unwrap() }),
         );
         assert_eq!(actual, v["expected"], "{}", v["description"]);
     }
-    assert_eq!(all.len(), 11);
+    assert_eq!(all.len(), 12);
+}
+
+#[test]
+fn m_15_user_asked_flags_match_layers_toml() {
+    let text = std::fs::read_to_string(format!(
+        "{}/../../conformance/ontology/layers.toml",
+        env!("CARGO_MANIFEST_DIR")
+    ))
+    .unwrap();
+    for block in text.split("[[conversion]]").skip(1) {
+        let field = |key: &str| {
+            block
+                .lines()
+                .find_map(|l| l.strip_prefix(&format!("{key} = ")))
+                .map(|v| v.trim_matches('"').to_owned())
+        };
+        let name = field("name").unwrap();
+        let c: Conversion = serde_json::from_value(json!(name)).unwrap();
+        assert_eq!(
+            c.user_asked(),
+            field("user_asked").map(|v| v == "true"),
+            "{name}"
+        );
+    }
 }
 
 #[test]

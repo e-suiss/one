@@ -11,6 +11,7 @@ byte_unit = "utf8_canonical_json"
 sentence_max_chars = 120
 label_max_chars = 12
 answers = 2
+passive_answers = 1
 deep_link = true
 
 [rule.undeclared_target]

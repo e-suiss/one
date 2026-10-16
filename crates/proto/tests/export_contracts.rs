@@ -11,6 +11,7 @@
 use std::path::Path;
 
 use one_proto::memory::export::{ExportDocument, import};
+use one_proto::ontology::PartyRef;
 use serde_json::{Value, json};
 
 fn vectors(rel: &str) -> Vec<Value> {
@@ -102,11 +103,15 @@ fn m_40_turkish_text_is_kept_byte_for_byte() {
 fn inv_27_unknown_fields_are_skipped() {
     let all = vectors("export/vectors/unknown-fields.json");
     for v in &all {
+        let owner = &v["input"]["document"]["owner"];
+        if owner.as_object().is_some_and(|o| o.len() > 2) {
+            assert!(serde_json::from_value::<PartyRef>(owner.clone()).is_err());
+        }
         let actual = match decode(&v["input"]["document"]) {
             Some(doc) => json!({ "valid": true, "read": serde_json::to_value(&doc).unwrap() }),
             None => json!({ "valid": false }),
         };
         assert_eq!(actual, v["expected"], "{}", v["description"]);
     }
-    assert_eq!(all.len(), 3);
+    assert_eq!(all.len(), 4);
 }

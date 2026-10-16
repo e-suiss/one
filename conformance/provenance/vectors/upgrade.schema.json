@@ -1,0 +1,106 @@
+[
+  {
+    "rule": "SEC-14 (3)",
+    "description": "user confirmation on the trusted surface for memory",
+    "input": {
+      "op": "upgrade",
+      "label": "external.email",
+      "via": "user_confirmation",
+      "surface": "trusted_surface",
+      "shown": true,
+      "target": "memory"
+    },
+    "valid": true
+  },
+  {
+    "rule": "SEC-14 (3)",
+    "description": "critic continue with no surface for a task input",
+    "input": {
+      "op": "upgrade",
+      "label": "external.email",
+      "via": "critic_continue",
+      "surface": "none",
+      "shown": false,
+      "target": "task_input"
+    },
+    "valid": true
+  },
+  {
+    "rule": "SEC-14 (3)",
+    "description": "unknown evidence kind is rejected",
+    "input": {
+      "op": "upgrade",
+      "label": "external.email",
+      "via": "user_said_so",
+      "surface": "trusted_surface",
+      "shown": true,
+      "target": "memory"
+    },
+    "valid": false
+  },
+  {
+    "rule": "SEC-14 (3)",
+    "description": "unknown surface is rejected",
+    "input": {
+      "op": "upgrade",
+      "label": "external.email",
+      "via": "user_confirmation",
+      "surface": "email_link",
+      "shown": true,
+      "target": "memory"
+    },
+    "valid": false
+  },
+  {
+    "rule": "SEC-14 (3)",
+    "description": "unknown target is rejected",
+    "input": {
+      "op": "upgrade",
+      "label": "external.email",
+      "via": "user_confirmation",
+      "surface": "trusted_surface",
+      "shown": true,
+      "target": "planner"
+    },
+    "valid": false
+  },
+  {
+    "rule": "SEC-14 (3)",
+    "description": "missing shown is rejected",
+    "input": {
+      "op": "upgrade",
+      "label": "external.email",
+      "via": "user_confirmation",
+      "surface": "trusted_surface",
+      "target": "memory"
+    },
+    "valid": false
+  },
+  {
+    "rule": "SEC-14 (3)",
+    "description": "extra field is rejected",
+    "input": {
+      "op": "upgrade",
+      "label": "external.email",
+      "via": "user_confirmation",
+      "surface": "trusted_surface",
+      "shown": true,
+      "target": "memory",
+      "reason": "the model is sure"
+    },
+    "valid": false
+  },
+  {
+    "rule": "SEC-14 (3)",
+    "description": "an already trusted label is not an upgrade input",
+    "input": {
+      "op": "upgrade",
+      "label": "user.direct",
+      "via": "user_confirmation",
+      "surface": "trusted_surface",
+      "shown": true,
+      "target": "memory"
+    },
+    "valid": false
+  }
+]

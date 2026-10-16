@@ -8,7 +8,7 @@
   "required": ["text", "mediaType", "metadata"],
   "properties": {
     "text": {
-      "description": "Plain text. Displayed as literal characters after normalisation to visible text (hidden markup and invisible characters removed).",
+      "description": "Plain text. Displayed as literal characters after normalisation to visible text: the invisible characters listed in note-filter.toml (controls except tab and line feed, format and bidi characters, fillers, variation selectors and tags) are removed; markup is never rendered.",
       "type": "string",
       "minLength": 1,
       "maxLength": 2000

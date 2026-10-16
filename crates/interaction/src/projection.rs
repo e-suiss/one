@@ -9,7 +9,9 @@ use one_proto::data_class::DataKind;
 use one_proto::ontology::{OwnerId, Target};
 use serde::Serialize;
 
-use crate::budget::{ORDER, ProjectionOutcome, Rule, SENSITIVE_VOICE_TARGETS, TargetBudget};
+use crate::budget::{
+    MINIMAL, ORDER, ProjectionOutcome, Rule, SENSITIVE_VOICE_TARGETS, TargetBudget,
+};
 use crate::common::{CoreKind, Locale, MandateFit, chars};
 use crate::interaction::{Interaction, Visuals};
 use crate::json_size::Json;
@@ -227,9 +229,9 @@ pub fn fits_budget(
     let shown_actions = if !presence {
         i.actions.len()
     } else if b.passive_only == Some(true) {
-        1
+        limit(Some(MINIMAL.passive_answers), None).unwrap_or(1)
     } else {
-        2
+        limit(Some(MINIMAL.answers), None).unwrap_or(2)
     };
     let mut ok = within(i.subject.title.max_chars(), title_max)
         && within(i.minimal_projection.sentence.max_chars(), body_max)

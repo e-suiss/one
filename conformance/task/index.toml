@@ -13,7 +13,7 @@ rules = ["CP-1", "CP-2", "CP-3", "CP-4", "CP-9", "CP-12", "CP-43", "C-15", "C-19
 [[schema]]
 path = "event.schema.json"
 id = "https://suiss.app/schemas/one/task/event/v1.json"
-rules = ["CP-3", "CP-42", "CP-44", "CP-11", "INV-30"]
+rules = ["CP-3", "CP-42", "CP-44", "CP-11", "INV-30", "INV-32"]
 
 [[schema]]
 path = "step-result.schema.json"
@@ -46,7 +46,7 @@ rules = ["INV-30", "CP-7"]
 [[vectors]]
 path = "vectors/state-derivation.json"
 kind = "behaviour"
-rules = ["CP-3", "CP-42", "CP-44", "CP-11", "INV-30"]
+rules = ["CP-3", "CP-42", "CP-44", "CP-11", "INV-30", "INV-32"]
 
 [[vectors]]
 path = "vectors/projection.json"

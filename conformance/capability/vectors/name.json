@@ -213,6 +213,33 @@
   },
   {
     "rule": "CP-15",
+    "description": "Longer than 128 characters",
+    "input": "app.suiss.transport.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.cccccccccccccccccccccccccccccccc.dddddddddddddddddddddddddddddddd",
+    "expected": {
+      "valid": false,
+      "error": "too_long"
+    }
+  },
+  {
+    "rule": "CP-15",
+    "description": "Length is checked after case: a long upper-case name is not lowercase",
+    "input": "app.suiss.Transport.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.cccccccccccccccccccccccccccccccc.dddddddddddddddddddddddddddddddd",
+    "expected": {
+      "valid": false,
+      "error": "not_lowercase"
+    }
+  },
+  {
+    "rule": "CP-15",
+    "description": "Length is checked before segments: a long name with a bad segment is too long",
+    "input": "app.suiss.transport.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.cccccccccccccccccccccccccccccccc.dddddddddddddddddddddddddddddddd.ride-share",
+    "expected": {
+      "valid": false,
+      "error": "too_long"
+    }
+  },
+  {
+    "rule": "CP-15",
     "description": "Dated version",
     "input": "2026-10-16",
     "expected": {

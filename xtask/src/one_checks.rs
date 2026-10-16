@@ -1,4 +1,4 @@
-//! Checks specific to One: clock and randomness ports, comment policy, claims language, catalogs, data inventory, platform policy, model files, migrations, the Python boundary, sibling-product code and commit trailers.
+//! Checks specific to One: clock and randomness ports, comment policy, trusted-label callers, claims language, catalogs, data inventory, platform policy, model files, migrations, the Python boundary, sibling-product code and commit trailers.
 
 #[path = "one_boundaries.rs"]
 mod boundaries;
@@ -12,6 +12,8 @@ pub(crate) mod commits;
 mod glossary;
 #[path = "one_inventory.rs"]
 mod inventory;
+#[path = "one_labels.rs"]
+mod labels;
 #[path = "one_migrations.rs"]
 mod migrations;
 #[path = "one_models.rs"]
@@ -86,6 +88,10 @@ pub(crate) fn checks() -> Vec<Check> {
         Check {
             name: "typed-ids",
             run: types::check,
+        },
+        Check {
+            name: "trusted-label-callers",
+            run: labels::check,
         },
         Check {
             name: "model-registry",

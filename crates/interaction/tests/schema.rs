@@ -157,3 +157,13 @@ fn x_3_surface_classes_match_surface_classes_toml() {
         assert_eq!(table["mode"][mode]["projection"], projection);
     }
 }
+
+#[test]
+fn x_22_response_check_order_matches_approval_act_statement_toml() {
+    let table = common::toml("projection/approval-act-statement.toml");
+    assert_eq!(
+        table["processing"]["check_order"],
+        serde_json::to_value(one_interaction::processing::CHECK_ORDER).unwrap()
+    );
+    assert_eq!(table["processing"]["first_failing_check_decides"], true);
+}

@@ -34,7 +34,10 @@
         "lang": "tr"
       },
       "device_clock": "2026-10-05T09:00:00Z",
-      "reconnect_at": "2026-10-05T18:00:00Z"
+      "reconnect_at": "2026-10-05T18:00:00Z",
+      "queued": {
+        "kind": "explicit_remember"
+      }
     },
     "expected": {
       "device_queue": [

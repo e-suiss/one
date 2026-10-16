@@ -41,6 +41,20 @@ pub enum ResponseOutcome {
     NotAContribution,
 }
 
+/// The fixed order of the response checks; the first failing check decides (`projection/approval-act-statement.toml`).
+pub const CHECK_ORDER: [&str; 10] = [
+    "signature",
+    "interaction",
+    "owner",
+    "nonce",
+    "replay",
+    "action",
+    "stop",
+    "version",
+    "expiry",
+    "ceiling_and_evidence",
+];
+
 /// Access request state after a response that is not a contribution.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize)]
 pub enum AccessState {

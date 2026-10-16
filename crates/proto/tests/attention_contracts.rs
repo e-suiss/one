@@ -87,7 +87,7 @@ fn at_1_decision_head_vectors() {
             .map(|l| serde_json::from_value::<Interruption>(l.clone()).unwrap());
         assert_eq!(decision.interruption, level, "{what}");
     }
-    assert_eq!(all.len(), 13);
+    assert_eq!(all.len(), 17);
 }
 
 #[test]

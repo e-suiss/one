@@ -208,17 +208,18 @@ fn oo_15_kind_table_matches_a2a_mapping_toml() {
         };
         assert_eq!(op, k.work_operation);
         let result = get_str(row, "work_result").unwrap();
-        let want = if result.starts_with("unchanged; Epistemic") {
+        let want = if result == "work_state" {
             ResultSelector::Unchanged
-        } else if result == "unchanged; wait satisfied" {
-            ResultSelector::Is(WorkResult::InformationWaitSatisfied)
         } else {
             ResultSelector::Is(
                 [
+                    WorkResult::None,
                     WorkResult::Requested,
                     WorkResult::Countered,
                     WorkResult::Promised,
                     WorkResult::Declined,
+                    WorkResult::Expired,
+                    WorkResult::InformationWaitSatisfied,
                 ]
                 .into_iter()
                 .find(|r| result_name(*r) == result)
@@ -476,8 +477,6 @@ fn oo_17_note_vectors() {
     assert_eq!(all.len(), 7);
 }
 
-const MISSING_HANDLE_VECTOR: &str = "Reply without the handle echoed";
-
 #[test]
 fn oo_5_handle_vectors() {
     let all = vectors("federation/vectors/handle.json");
@@ -488,7 +487,7 @@ fn oo_5_handle_vectors() {
         let e = &v["expected"];
         let header = serde_json::from_value::<ProtectedHeader>(i["protectedHeader"].clone()).ok();
         let claims = (!i["claims"].is_null()).then(|| from::<HandleClaims>(&i["claims"]));
-        let compact = (what != MISSING_HANDLE_VECTOR).then(|| i["compact"].as_str().unwrap());
+        let compact = i["compact"].as_str();
         let opened = OpenedHandle {
             compact,
             header: header.as_ref(),
@@ -633,5 +632,28 @@ fn oo_17_note_has_no_path_into_typed_content() {
     assert_eq!(
         format!("{:?}", message.note().unwrap()),
         "Note([untrusted])"
+    );
+}
+
+#[test]
+fn oo_17_note_filter_matches_note_filter_toml() {
+    let code = |v: &str| {
+        let hex = v.strip_prefix("U+").unwrap();
+        char::from_u32(u32::from_str_radix(hex, 16).unwrap()).unwrap()
+    };
+    let rows: Vec<(char, char)> = toml_tables("federation/note-filter.toml", "range")
+        .iter()
+        .map(|r| {
+            (
+                code(get_str(r, "from").unwrap()),
+                code(get_str(r, "to").unwrap()),
+            )
+        })
+        .collect();
+    assert_eq!(rows, one_proto::federation::message::INVISIBLE);
+    let text: String = rows.iter().flat_map(|(a, b)| [*a, *b]).collect();
+    assert_eq!(
+        one_proto::federation::message::visible_text(&format!("a{text}\t\nb")),
+        "a\t\nb"
     );
 }

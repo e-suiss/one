@@ -13,7 +13,9 @@
       }
     ],
     "expected": {
-      "state": "pending"
+      "state": "pending",
+      "stop": "cancel",
+      "stopping": false
     }
   },
   {
@@ -47,7 +49,9 @@
       }
     ],
     "expected": {
-      "state": "running"
+      "state": "running",
+      "stop": "request_pause",
+      "stopping": false
     }
   },
   {
@@ -112,7 +116,9 @@
       }
     ],
     "expected": {
-      "state": "completed"
+      "state": "completed",
+      "stop": "already_over",
+      "stopping": false
     }
   },
   {
@@ -217,7 +223,9 @@
       }
     ],
     "expected": {
-      "state": "cancelled"
+      "state": "cancelled",
+      "stop": "already_over",
+      "stopping": false
     }
   },
   {
@@ -291,7 +299,9 @@
       }
     ],
     "expected": {
-      "state": "waiting_user"
+      "state": "waiting_user",
+      "stop": "cancel",
+      "stopping": false
     }
   },
   {
@@ -353,7 +363,9 @@
       }
     ],
     "expected": {
-      "state": "running"
+      "state": "running",
+      "stop": "request_pause",
+      "stopping": false
     }
   },
   {
@@ -411,7 +423,9 @@
       }
     ],
     "expected": {
-      "state": "failed"
+      "state": "failed",
+      "stop": "already_over",
+      "stopping": false
     }
   },
   {
@@ -458,7 +472,9 @@
       }
     ],
     "expected": {
-      "state": "waiting_external"
+      "state": "waiting_external",
+      "stop": "cancel",
+      "stopping": false
     }
   },
   {
@@ -520,7 +536,9 @@
       }
     ],
     "expected": {
-      "state": "running"
+      "state": "running",
+      "stop": "request_pause",
+      "stopping": false
     }
   },
   {
@@ -578,7 +596,9 @@
       }
     ],
     "expected": {
-      "state": "failed"
+      "state": "failed",
+      "stop": "already_over",
+      "stopping": false
     }
   },
   {
@@ -633,7 +653,9 @@
       }
     ],
     "expected": {
-      "state": "cancelled"
+      "state": "cancelled",
+      "stop": "already_over",
+      "stopping": false
     }
   },
   {
@@ -688,7 +710,9 @@
       }
     ],
     "expected": {
-      "state": "cancelled"
+      "state": "cancelled",
+      "stop": "already_over",
+      "stopping": false
     }
   },
   {
@@ -980,7 +1004,9 @@
       }
     ],
     "expected": {
-      "state": "running"
+      "state": "running",
+      "stop": "request_pause",
+      "stopping": true
     }
   },
   {
@@ -1032,7 +1058,9 @@
       }
     ],
     "expected": {
-      "state": "paused"
+      "state": "paused",
+      "stop": "cancel",
+      "stopping": false
     }
   },
   {
@@ -1250,7 +1278,9 @@
       }
     ],
     "expected": {
-      "state": "running"
+      "state": "running",
+      "stop": "request_pause",
+      "stopping": false
     }
   },
   {
@@ -1372,7 +1402,198 @@
       }
     ],
     "expected": {
-      "state": "cancelled"
+      "state": "cancelled",
+      "stop": "already_over",
+      "stopping": false
+    }
+  },
+  {
+    "rule": "INV-32",
+    "description": "Stop while paused cancels: the stop command is cancel",
+    "input": [
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 1,
+        "at": "2026-10-16T09:00:00Z",
+        "kind": "task_created",
+        "source": "one",
+        "plan_version": 1
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 2,
+        "at": "2026-10-16T09:00:01Z",
+        "kind": "step_started",
+        "source": "executor",
+        "step_id": "s1",
+        "effectful": true,
+        "decision_ref": {
+          "ref": "DecisionRecordRef",
+          "id": "dec-1"
+        },
+        "exercise_ref": {
+          "ref": "ExerciseRef",
+          "id": "ex-1"
+        }
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 3,
+        "at": "2026-10-16T09:00:02Z",
+        "kind": "pause_requested",
+        "source": "user"
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 4,
+        "at": "2026-10-16T09:00:03Z",
+        "kind": "pause_confirmed",
+        "source": "executor",
+        "execution_report_ref": {
+          "ref": "ExecutionReportRef",
+          "id": "rep-1"
+        }
+      }
+    ],
+    "expected": {
+      "state": "paused",
+      "stop": "cancel",
+      "stopping": false
+    }
+  },
+  {
+    "rule": "INV-32",
+    "description": "Stop while paused never writes a second pause request",
+    "input": [
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 1,
+        "at": "2026-10-16T09:00:00Z",
+        "kind": "task_created",
+        "source": "one",
+        "plan_version": 1
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 2,
+        "at": "2026-10-16T09:00:01Z",
+        "kind": "step_started",
+        "source": "executor",
+        "step_id": "s1",
+        "effectful": true,
+        "decision_ref": {
+          "ref": "DecisionRecordRef",
+          "id": "dec-1"
+        },
+        "exercise_ref": {
+          "ref": "ExerciseRef",
+          "id": "ex-1"
+        }
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 3,
+        "at": "2026-10-16T09:00:02Z",
+        "kind": "pause_requested",
+        "source": "user"
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 4,
+        "at": "2026-10-16T09:00:03Z",
+        "kind": "pause_confirmed",
+        "source": "executor",
+        "execution_report_ref": {
+          "ref": "ExecutionReportRef",
+          "id": "rep-1"
+        }
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 5,
+        "at": "2026-10-16T09:00:04Z",
+        "kind": "pause_requested",
+        "source": "user"
+      }
+    ],
+    "expected": {
+      "rejected": {
+        "code": "illegal_transition",
+        "seq": 5
+      }
+    }
+  },
+  {
+    "rule": "INV-32",
+    "description": "Stop while paused writes task_cancelled with cause user: cancelled",
+    "input": [
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 1,
+        "at": "2026-10-16T09:00:00Z",
+        "kind": "task_created",
+        "source": "one",
+        "plan_version": 1
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 2,
+        "at": "2026-10-16T09:00:01Z",
+        "kind": "step_started",
+        "source": "executor",
+        "step_id": "s1",
+        "effectful": true,
+        "decision_ref": {
+          "ref": "DecisionRecordRef",
+          "id": "dec-1"
+        },
+        "exercise_ref": {
+          "ref": "ExerciseRef",
+          "id": "ex-1"
+        }
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 3,
+        "at": "2026-10-16T09:00:02Z",
+        "kind": "pause_requested",
+        "source": "user"
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 4,
+        "at": "2026-10-16T09:00:03Z",
+        "kind": "pause_confirmed",
+        "source": "executor",
+        "execution_report_ref": {
+          "ref": "ExecutionReportRef",
+          "id": "rep-1"
+        }
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 5,
+        "at": "2026-10-16T09:00:04Z",
+        "kind": "checkpoint_recorded",
+        "source": "executor",
+        "checkpoint_ref": {
+          "ref": "CheckpointRef",
+          "id": "ck-1"
+        }
+      },
+      {
+        "task_id": "task_01k7n51z01e40r200000000000",
+        "seq": 6,
+        "at": "2026-10-16T09:00:05Z",
+        "kind": "task_cancelled",
+        "source": "user",
+        "cause": "user"
+      }
+    ],
+    "expected": {
+      "state": "cancelled",
+      "stop": "already_over",
+      "stopping": false
     }
   },
   {
@@ -1576,7 +1797,9 @@
       }
     ],
     "expected": {
-      "state": "failed"
+      "state": "failed",
+      "stop": "already_over",
+      "stopping": false
     }
   },
   {
@@ -1839,7 +2062,9 @@
       }
     ],
     "expected": {
-      "state": "cancelled"
+      "state": "cancelled",
+      "stop": "already_over",
+      "stopping": false
     }
   },
   {
@@ -1943,7 +2168,9 @@
       }
     ],
     "expected": {
-      "state": "waiting_user"
+      "state": "waiting_user",
+      "stop": "cancel",
+      "stopping": false
     }
   },
   {
@@ -2244,7 +2471,9 @@
       }
     ],
     "expected": {
-      "state": "waiting_user"
+      "state": "waiting_user",
+      "stop": "cancel",
+      "stopping": false
     }
   },
   {
@@ -2403,7 +2632,9 @@
       }
     ],
     "expected": {
-      "state": "completed"
+      "state": "completed",
+      "stop": "already_over",
+      "stopping": false
     }
   },
   {

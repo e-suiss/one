@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/provenance/upgrade/v1.json",
+  "title": "Label upgrade request",
+  "description": "A reason offered to change a value's label. Only a user confirmation of the shown value on the trusted surface lifts it to a user label; independent second evidence lifts external.* to one.inferred for memory; every other reason leaves the label unchanged.",
+  "type": "object",
+  "required": ["op", "label", "via", "surface", "shown", "target"],
+  "additionalProperties": false,
+  "properties": {
+    "op": { "const": "upgrade" },
+    "label": { "$ref": "https://suiss.app/schemas/one/provenance/label/v1.json#/$defs/untrusted" },
+    "via": { "$ref": "#/$defs/via" },
+    "surface": { "$ref": "#/$defs/surface" },
+    "shown": { "type": "boolean" },
+    "target": { "$ref": "#/$defs/target" }
+  },
+  "$defs": {
+    "via": {
+      "enum": ["user_confirmation", "access_approval", "model_output", "summarise", "critic_continue", "second_independent_evidence", "same_source_second_copy"]
+    },
+    "surface": {
+      "enum": ["trusted_surface", "chat", "channel_reply", "notification_action", "none"]
+    },
+    "target": {
+      "enum": ["memory", "task_input"]
+    }
+  }
+}

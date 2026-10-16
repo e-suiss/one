@@ -2677,5 +2677,287 @@
         "surface": "watch"
       }
     }
+  },
+  {
+    "rule": "X-21, C-26, A-30",
+    "description": "Only an accepted response consumes the nonce: after a watch answer that is not a contribution and an unknown action, the phone approval is accepted",
+    "input": {
+      "interaction": {
+        "type": "Interaction",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_SSSSSSSS000000000001"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "retention_class": "one_memory",
+        "recorded_at": "2026-10-16T09:00:00Z",
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "one",
+          "instance": {
+            "ref": "InstanceRef",
+            "id": "ins_SSSSSSSS000000000001"
+          },
+          "model_version": "mdl_01m4a5btkneayawh9ym9pwjqpt",
+          "config_version": "interaction-1"
+        },
+        "id": "int_01m613f347ez599hafz0435mnd",
+        "version": 1,
+        "kind": "approval",
+        "subject": {
+          "title": {
+            "tr": "Kahve siparişi",
+            "en": "Coffee order"
+          },
+          "ref": {
+            "ref": "DecisionRecordRef",
+            "id": "req_SSSSSSSS000000000001"
+          },
+          "concerns": [
+            {
+              "ref": "RecordRef",
+              "id": "task_01m5r8g42bekmsnz4xp5vstwka"
+            }
+          ]
+        },
+        "details": {
+          "amount": {
+            "value": "180.00",
+            "currency": "TRY"
+          },
+          "counterparty": {
+            "display": "Kahve Durağı Moda"
+          }
+        },
+        "risk": "CT1",
+        "reversibility": "compensable",
+        "data_class": {
+          "kinds": [
+            "financial"
+          ],
+          "sensitive": []
+        },
+        "sensitive": false,
+        "provenance": "record.trusted",
+        "field_provenance": {
+          "amount": "record.trusted",
+          "counterparty": "record.trusted"
+        },
+        "why_now": {
+          "reason": {
+            "tr": "Sabah kahveni sen istedin.",
+            "en": "You asked for your morning coffee."
+          },
+          "evidence": []
+        },
+        "interruption": "active",
+        "timing": {
+          "delivery": "next_break",
+          "max_defer": "PT30M",
+          "surface_policy": {
+            "steps": [
+              {
+                "surfaces": [
+                  {
+                    "device_id": "dev_01m51cchyafy58sy4av9ycqtvw"
+                  }
+                ],
+                "escalate_after": "PT5M"
+              },
+              {
+                "surfaces": [
+                  {
+                    "device_id": "dev_01m41v363cfhpb4vze2qv57qr5"
+                  },
+                  {
+                    "channel": "push"
+                  }
+                ],
+                "escalate_after": "PT10M"
+              }
+            ]
+          }
+        },
+        "minimal_projection": {
+          "sentence": {
+            "tr": "180 TL kahve siparişini onaylıyor musun?",
+            "en": "Do you approve the 180 TL coffee order?"
+          },
+          "yes": {
+            "action": "approve",
+            "label": {
+              "tr": "Evet",
+              "en": "Yes"
+            }
+          },
+          "no": {
+            "action": "decline",
+            "label": {
+              "tr": "Hayır",
+              "en": "No"
+            }
+          }
+        },
+        "surface_budgets": {
+          "table": "https://suiss.app/schemas/one/interaction/surface-budgets/v1.json"
+        },
+        "actions": [
+          {
+            "id": "approve",
+            "effect": "approve",
+            "label": {
+              "tr": "Onayla",
+              "en": "Approve"
+            }
+          },
+          {
+            "id": "decline",
+            "effect": "decline",
+            "label": {
+              "tr": "Reddet",
+              "en": "Decline"
+            }
+          }
+        ],
+        "answer_nonce": "n1-AbCdEfGhIjKlMnOpQrStUv",
+        "min_assurance": {
+          "surface_classes": [
+            "phone",
+            "desktop",
+            "watch",
+            "voice:car",
+            "voice:glasses"
+          ],
+          "authentication": "device_unlock"
+        },
+        "deep_link": "https://suiss.app/one/i/int_01m613f347ez599hafz0435mnd",
+        "expires_at": "2026-10-16T09:30:00Z",
+        "mandate_fit": "within",
+        "presentation": {
+          "catalog_version": 1,
+          "components": [
+            {
+              "component": "approval",
+              "version": 1,
+              "binds": [
+                "amount",
+                "counterparty"
+              ]
+            }
+          ]
+        }
+      },
+      "state": {
+        "now": "2026-10-16T09:05:01Z",
+        "signature_valid": true,
+        "current_version": 1
+      },
+      "responses": [
+        {
+          "interaction_id": "int_01m613f347ez599hafz0435mnd",
+          "interaction_version": 1,
+          "action": "approve",
+          "responder": {
+            "party": {
+              "ref": "PartyRef",
+              "id": "pty_SSSSSSSS000000000001"
+            },
+            "instance": {
+              "ref": "InstanceRef",
+              "id": "ins_SSSSSSSS000000000001"
+            }
+          },
+          "nonce": "n1-AbCdEfGhIjKlMnOpQrStUv",
+          "device_id": "dev_01m51cchyafy58sy4av9ycqtvw",
+          "surface_class": "watch",
+          "evidence": {
+            "authentication": "device_unlock",
+            "user_verification": "wrist_detect",
+            "presence_gesture": "tap"
+          },
+          "responded_at": "2026-10-16T09:05:00Z",
+          "signature": {
+            "alg": "ES256",
+            "kid": "kbd_SSSSSSSS000000000001",
+            "cose_sign1": "0oRDoQEmoFhAQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ"
+          }
+        },
+        {
+          "interaction_id": "int_01m613f347ez599hafz0435mnd",
+          "interaction_version": 1,
+          "action": "approve_all",
+          "responder": {
+            "party": {
+              "ref": "PartyRef",
+              "id": "pty_SSSSSSSS000000000001"
+            },
+            "instance": {
+              "ref": "InstanceRef",
+              "id": "ins_SSSSSSSS000000000001"
+            }
+          },
+          "nonce": "n1-AbCdEfGhIjKlMnOpQrStUv",
+          "device_id": "dev_01m51cchyafy58sy4av9ycqtvw",
+          "surface_class": "watch",
+          "evidence": {
+            "authentication": "device_unlock",
+            "user_verification": "wrist_detect",
+            "presence_gesture": "hold"
+          },
+          "responded_at": "2026-10-16T09:05:00Z",
+          "signature": {
+            "alg": "ES256",
+            "kid": "kbd_SSSSSSSS000000000001",
+            "cose_sign1": "0oRDoQEmoFhAQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ"
+          }
+        },
+        {
+          "interaction_id": "int_01m613f347ez599hafz0435mnd",
+          "interaction_version": 1,
+          "action": "approve",
+          "responder": {
+            "party": {
+              "ref": "PartyRef",
+              "id": "pty_SSSSSSSS000000000001"
+            },
+            "instance": {
+              "ref": "InstanceRef",
+              "id": "ins_SSSSSSSS000000000001"
+            }
+          },
+          "nonce": "n1-AbCdEfGhIjKlMnOpQrStUv",
+          "device_id": "dev_01m41v363cfhpb4vze2qv57qr5",
+          "surface_class": "phone",
+          "evidence": {
+            "authentication": "device_unlock",
+            "user_verification": "biometric",
+            "presence_gesture": "tap"
+          },
+          "responded_at": "2026-10-16T09:06:00Z",
+          "signature": {
+            "alg": "ES256",
+            "kid": "kbd_SSSSSSSS000000000002",
+            "cose_sign1": "0oRDoQEmoFhAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP"
+          }
+        }
+      ]
+    },
+    "expected": {
+      "valid": true,
+      "outcomes": [
+        "not_a_contribution",
+        "rejected_unknown_action",
+        "accepted"
+      ],
+      "approvals_created": 1,
+      "other_copies": "closed"
+    }
   }
 ]

@@ -179,5 +179,43 @@
       "label": "user.memory",
       "access_provenance": "user"
     }
+  },
+  {
+    "rule": "T-36 (4)",
+    "description": "a trusted label listing an external source is malformed and opens as external.unknown",
+    "input": {
+      "op": "open",
+      "encoded": {
+        "value": "Americano",
+        "label": "user.direct",
+        "sources": [
+          "external.web"
+        ]
+      }
+    },
+    "expected": {
+      "label": "external.unknown",
+      "access_provenance": "untrusted-external"
+    }
+  },
+  {
+    "rule": "T-36 (4)",
+    "description": "external.mixed with a trusted source is malformed and opens as external.unknown",
+    "input": {
+      "op": "open",
+      "encoded": {
+        "value": "x",
+        "label": "external.mixed",
+        "sources": [
+          "external.email",
+          "external.web",
+          "user.direct"
+        ]
+      }
+    },
+    "expected": {
+      "label": "external.unknown",
+      "access_provenance": "untrusted-external"
+    }
   }
 ]

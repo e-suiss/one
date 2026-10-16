@@ -1,10 +1,13 @@
 //! The single place a label improves: the user's explicit confirmation of a shown value on a trusted surface lifts it to a user label, and independent second evidence lifts `external.*` only to `one.inferred` (SEC-14 (3, 5), SEC-21 (2), SEC-7, SEC-16, T-36 (3)).
 
+use serde::{Deserialize, Serialize};
+
 use crate::label::{Label, LabelKind, TrustedLabel, UntrustedLabel};
 use crate::value::{Trusted, Untrusted};
 
-/// Where the user acted.
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+/// Where the user acted (`upgrade/v1` `surface`).
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
 pub enum Surface {
     /// One's trusted confirmation surface.
     TrustedSurface,
@@ -18,8 +21,9 @@ pub enum Surface {
     None,
 }
 
-/// What the confirmed value becomes.
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+/// What the confirmed value becomes (`upgrade/v1` `target`).
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
 pub enum Target {
     /// A memory record: the confirmed value becomes `user.memory`.
     Memory,
@@ -49,6 +53,42 @@ pub enum Evidence {
     SecondIndependentEvidence,
     /// A second copy from the same source.
     SameSourceSecondCopy,
+}
+
+/// The kind of evidence offered (`upgrade/v1` `via`).
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum Via {
+    /// The user acted on a surface.
+    UserConfirmation,
+    /// Access approved the intent.
+    AccessApproval,
+    /// A model said the value is trusted.
+    ModelOutput,
+    /// The value was summarised.
+    Summarise,
+    /// The critic model said to continue.
+    CriticContinue,
+    /// A second piece of evidence from a different, independent source.
+    SecondIndependentEvidence,
+    /// A second copy from the same source.
+    SameSourceSecondCopy,
+}
+
+impl Evidence {
+    /// The evidence of an `upgrade/v1` request; `surface` and `shown` matter only for a user confirmation.
+    #[must_use]
+    pub const fn new(via: Via, surface: Surface, shown: bool) -> Self {
+        match via {
+            Via::UserConfirmation => Self::UserConfirmation { surface, shown },
+            Via::AccessApproval => Self::AccessApproval,
+            Via::ModelOutput => Self::ModelOutput,
+            Via::Summarise => Self::Summarise,
+            Via::CriticContinue => Self::CriticContinue,
+            Via::SecondIndependentEvidence => Self::SecondIndependentEvidence,
+            Via::SameSourceSecondCopy => Self::SameSourceSecondCopy,
+        }
+    }
 }
 
 /// The label after the evidence; anything but an explicit confirmation of the shown value on the trusted surface leaves it unchanged, and second evidence reaches only `one.inferred`.

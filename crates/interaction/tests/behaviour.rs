@@ -11,16 +11,12 @@
 mod common;
 
 use one_interaction::common::Timestamp;
+use one_interaction::projection::live_update_chip;
 use one_interaction::{
     Interaction, InteractionResponse, Kind, KindRegistry, ResponseOutcome, ResponseProcessor,
     SurfaceClass, SurfaceTarget, project,
 };
 use serde_json::{Map, Value, json};
-
-fn registry_from_resolution_vectors() -> KindRegistry {
-    let v = &common::vectors("vectors/kind-resolution.json")[0];
-    serde_json::from_value(v["input"]["registry"].clone()).unwrap()
-}
 
 #[test]
 fn x_12_kind_resolution_vectors() {
@@ -40,10 +36,10 @@ fn x_12_kind_resolution_vectors() {
 
 #[test]
 fn x_13_budget_vectors() {
-    let registry = registry_from_resolution_vectors();
     let vectors = common::vectors("vectors/budgets.json");
     for v in &vectors {
         let input = &v["input"];
+        let registry: KindRegistry = serde_json::from_value(input["registry"].clone()).unwrap();
         let i: Interaction = serde_json::from_value(input["interaction"].clone()).unwrap();
         one_interaction::validate_interaction(&i).unwrap();
         let kind = registry.resolve(&i.kind).unwrap();
@@ -53,6 +49,17 @@ fn x_13_budget_vectors() {
             serde_json::from_value(input["declared_targets"].clone()).unwrap();
         let mut actual = serde_json::to_value(project(&i, kind, class, target, &declared)).unwrap();
         actual["valid"] = Value::Bool(true);
+        if target == SurfaceTarget::LiveUpdate && actual["projection"] == "full" {
+            let max = usize::try_from(target.budget().chip_max_chars.unwrap()).unwrap();
+            let chip = live_update_chip(&i, max);
+            assert_eq!(
+                v["expected"]["chip"].as_str(),
+                chip.as_deref(),
+                "{}",
+                v["description"]
+            );
+            actual["chip"] = json!(chip);
+        }
         assert!(
             common::subset(&v["expected"], &actual),
             "{}: expected {} got {actual}",
@@ -60,7 +67,7 @@ fn x_13_budget_vectors() {
             v["expected"]
         );
     }
-    assert_eq!(vectors.len(), 25);
+    assert_eq!(vectors.len(), 26);
 }
 
 fn merge(into: &mut Map<String, Value>, key: &str, value: Value) {
@@ -112,5 +119,5 @@ fn x_22_response_processing_vectors() {
             v["expected"]
         );
     }
-    assert_eq!(vectors.len(), 12);
+    assert_eq!(vectors.len(), 13);
 }

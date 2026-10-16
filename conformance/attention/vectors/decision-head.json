@@ -255,5 +255,85 @@
       "chosen_arm": "interrupt_now",
       "interruption": "critical"
     }
+  },
+  {
+    "rule": "AT-1",
+    "description": "A critical Grant notifies regardless of a probability below the lower threshold",
+    "input": {
+      "value_probability": 0.02,
+      "thresholds": {
+        "lower": 0.3,
+        "upper": 0.7
+      },
+      "urgent": false,
+      "cloud_available": true,
+      "type_muted": false,
+      "budget_remaining": 3,
+      "critical_grant": true
+    },
+    "expected": {
+      "route": "notify",
+      "chosen_arm": "interrupt_now",
+      "interruption": "critical"
+    }
+  },
+  {
+    "rule": "AT-1",
+    "description": "A critical Grant notifies regardless of an uncertain probability with the cloud unreachable",
+    "input": {
+      "value_probability": 0.5,
+      "thresholds": {
+        "lower": 0.3,
+        "upper": 0.7
+      },
+      "urgent": false,
+      "cloud_available": false,
+      "type_muted": false,
+      "budget_remaining": 3,
+      "critical_grant": true
+    },
+    "expected": {
+      "route": "notify",
+      "chosen_arm": "interrupt_now",
+      "interruption": "critical"
+    }
+  },
+  {
+    "rule": "AT-1",
+    "description": "Below the lower threshold no arm is chosen, even when urgent",
+    "input": {
+      "value_probability": 0.1,
+      "thresholds": {
+        "lower": 0.3,
+        "upper": 0.7
+      },
+      "urgent": true,
+      "cloud_available": true,
+      "type_muted": false,
+      "budget_remaining": 3,
+      "critical_grant": false
+    },
+    "expected": {
+      "route": "no_notification"
+    }
+  },
+  {
+    "rule": "AT-1",
+    "description": "Below the lower threshold no arm is chosen, even with the cloud unreachable",
+    "input": {
+      "value_probability": 0.1,
+      "thresholds": {
+        "lower": 0.3,
+        "upper": 0.7
+      },
+      "urgent": false,
+      "cloud_available": false,
+      "type_muted": false,
+      "budget_remaining": 3,
+      "critical_grant": false
+    },
+    "expected": {
+      "route": "no_notification"
+    }
   }
 ]

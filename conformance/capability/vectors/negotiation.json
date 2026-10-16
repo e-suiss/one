@@ -217,6 +217,109 @@
   },
   {
     "rule": "CP-15",
+    "description": "Third-party names that only extend each other drop: no chain reaches a kept Suiss name",
+    "input": {
+      "local": [
+        {
+          "name": "com.example.a.b",
+          "versions": [
+            "2026-01-01"
+          ],
+          "extends": "com.example.c.d"
+        },
+        {
+          "name": "com.example.c.d",
+          "versions": [
+            "2026-01-01"
+          ],
+          "extends": "com.example.a.b"
+        }
+      ],
+      "remote": [
+        {
+          "name": "com.example.a.b",
+          "versions": [
+            "2026-01-01"
+          ],
+          "extends": "com.example.c.d"
+        },
+        {
+          "name": "com.example.c.d",
+          "versions": [
+            "2026-01-01"
+          ],
+          "extends": "com.example.a.b"
+        }
+      ]
+    },
+    "expected": []
+  },
+  {
+    "rule": "CP-15",
+    "description": "A third-party chain is kept when it reaches a kept Suiss name",
+    "input": {
+      "local": [
+        {
+          "name": "app.suiss.travel.flight.book",
+          "versions": [
+            "2026-10-01"
+          ]
+        },
+        {
+          "name": "com.example-air.flight.book.seat_upgrade",
+          "versions": [
+            "2026-09-01"
+          ],
+          "extends": "app.suiss.travel.flight.book"
+        },
+        {
+          "name": "com.example-air.flight.book.seat_upgrade.lounge",
+          "versions": [
+            "2026-09-01"
+          ],
+          "extends": "com.example-air.flight.book.seat_upgrade"
+        }
+      ],
+      "remote": [
+        {
+          "name": "app.suiss.travel.flight.book",
+          "versions": [
+            "2026-10-01"
+          ]
+        },
+        {
+          "name": "com.example-air.flight.book.seat_upgrade",
+          "versions": [
+            "2026-09-01"
+          ],
+          "extends": "app.suiss.travel.flight.book"
+        },
+        {
+          "name": "com.example-air.flight.book.seat_upgrade.lounge",
+          "versions": [
+            "2026-09-01"
+          ],
+          "extends": "com.example-air.flight.book.seat_upgrade"
+        }
+      ]
+    },
+    "expected": [
+      {
+        "name": "app.suiss.travel.flight.book",
+        "version": "2026-10-01"
+      },
+      {
+        "name": "com.example-air.flight.book.seat_upgrade",
+        "version": "2026-09-01"
+      },
+      {
+        "name": "com.example-air.flight.book.seat_upgrade.lounge",
+        "version": "2026-09-01"
+      }
+    ]
+  },
+  {
+    "rule": "CP-15",
     "description": "Multi-parent extension survives with one parent",
     "input": {
       "local": [

@@ -83,6 +83,26 @@ impl Conversion {
     }
 }
 
+impl Conversion {
+    /// Whether the conversion needs the user's explicit request to remember: `Some(true)` for `remember_explicit`, `Some(false)` for `record_observed`, `None` when the request does not matter.
+    #[must_use]
+    pub const fn user_asked(self) -> Option<bool> {
+        match self {
+            Self::RememberExplicit => Some(true),
+            Self::RecordObserved => Some(false),
+            Self::Infer | Self::Confirm | Self::Correct | Self::Suggest => None,
+        }
+    }
+}
+
+/// The one conversion from `from` to `to` given whether the user explicitly asked to remember; `None` means rejected.
+#[must_use]
+pub fn conversion(from: OntologyLayer, to: OntologyLayer, user_asked: bool) -> Option<Conversion> {
+    conversions(from, to)
+        .into_iter()
+        .find(|c| c.user_asked().is_none_or(|asked| asked == user_asked))
+}
+
 /// The conversions from one layer to another, in contract order; empty means rejected.
 #[must_use]
 pub fn conversions(from: OntologyLayer, to: OntologyLayer) -> Vec<Conversion> {

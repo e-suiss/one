@@ -4,8 +4,10 @@ use alloc::collections::BTreeMap;
 use alloc::string::String;
 use alloc::vec::Vec;
 use core::fmt;
+use core::marker::PhantomData;
 
-use serde::de::{MapAccess, SeqAccess, Visitor};
+use serde::de::value::{MapAccessDeserializer, MapDeserializer, SeqDeserializer};
+use serde::de::{self, IntoDeserializer, MapAccess, SeqAccess, Visitor};
 use serde::ser::SerializeMap;
 use serde::{Deserialize, Deserializer, Serialize, Serializer};
 
@@ -139,5 +141,94 @@ impl<'de> Visitor<'de> for ValueVisitor {
 impl<'de> Deserialize<'de> for JsonValue {
     fn deserialize<D: Deserializer<'de>>(deserializer: D) -> Result<Self, D::Error> {
         deserializer.deserialize_any(ValueVisitor)
+    }
+}
+
+/// Reads a typed value back out of a [`JsonValue`].
+#[derive(Debug)]
+pub struct JsonDeserializer<E> {
+    value: JsonValue,
+    error: PhantomData<E>,
+}
+
+impl<E> JsonDeserializer<E> {
+    /// A deserializer over `value`.
+    #[must_use]
+    pub const fn new(value: JsonValue) -> Self {
+        Self {
+            value,
+            error: PhantomData,
+        }
+    }
+}
+
+impl<E: de::Error> IntoDeserializer<'_, E> for JsonValue {
+    type Deserializer = JsonDeserializer<E>;
+
+    fn into_deserializer(self) -> JsonDeserializer<E> {
+        JsonDeserializer::new(self)
+    }
+}
+
+impl<'de, E: de::Error> Deserializer<'de> for JsonDeserializer<E> {
+    type Error = E;
+
+    fn deserialize_any<V: Visitor<'de>>(self, visitor: V) -> Result<V::Value, E> {
+        match self.value {
+            JsonValue::Null => visitor.visit_unit(),
+            JsonValue::Bool(b) => visitor.visit_bool(b),
+            JsonValue::Unsigned(n) => visitor.visit_u64(n),
+            JsonValue::Signed(n) => visitor.visit_i64(n),
+            JsonValue::Float(n) => visitor.visit_f64(n),
+            JsonValue::String(s) => visitor.visit_string(s),
+            JsonValue::Array(items) => {
+                let mut seq = SeqDeserializer::new(items.into_iter());
+                let out = visitor.visit_seq(&mut seq)?;
+                seq.end()?;
+                Ok(out)
+            }
+            JsonValue::Object(map) => {
+                let mut access = MapDeserializer::new(map.into_iter());
+                let out = visitor.visit_map(&mut access)?;
+                access.end()?;
+                Ok(out)
+            }
+        }
+    }
+
+    fn deserialize_option<V: Visitor<'de>>(self, visitor: V) -> Result<V::Value, E> {
+        match self.value {
+            JsonValue::Null => visitor.visit_none(),
+            other => visitor.visit_some(Self::new(other)),
+        }
+    }
+
+    fn deserialize_newtype_struct<V: Visitor<'de>>(
+        self,
+        _name: &'static str,
+        visitor: V,
+    ) -> Result<V::Value, E> {
+        visitor.visit_newtype_struct(self)
+    }
+
+    fn deserialize_enum<V: Visitor<'de>>(
+        self,
+        _name: &'static str,
+        _variants: &'static [&'static str],
+        visitor: V,
+    ) -> Result<V::Value, E> {
+        match self.value {
+            JsonValue::String(s) => visitor.visit_enum(s.into_deserializer()),
+            JsonValue::Object(map) => visitor.visit_enum(MapAccessDeserializer::new(
+                MapDeserializer::new(map.into_iter()),
+            )),
+            _ => Err(E::custom("expected an enum")),
+        }
+    }
+
+    serde::forward_to_deserialize_any! {
+        bool i8 i16 i32 i64 i128 u8 u16 u32 u64 u128 f32 f64 char str string
+        bytes byte_buf unit unit_struct seq tuple tuple_struct map struct
+        identifier ignored_any
     }
 }

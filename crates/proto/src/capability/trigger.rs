@@ -185,27 +185,29 @@ pub struct Trigger {
     pub mandate: BoundMandate,
 }
 
-/// What happens when an accepted trigger fires; the decision is taken again at that moment (A-15).
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub enum TriggerRun {
-    /// One asks Access for a continuation decision and acts on ALLOW.
-    DecidesOnFire,
-    /// One prepares and asks the user.
-    AsksOnFire,
-    /// One prepares and hands the work to the user.
-    HandsOffOnFire,
-}
+wire_enum!(
+    /// What happens when an accepted trigger fires; the decision is taken again at that moment (A-15).
+    TriggerRun {
+        /// One asks Access for a continuation decision and acts on ALLOW.
+        DecidesOnFire = "decides_on_fire",
+        /// One prepares and asks the user.
+        AsksOnFire = "asks_on_fire",
+        /// One prepares and hands the work to the user.
+        HandsOffOnFire = "hands_off_on_fire",
+    }
+);
 
-/// Why a trigger is wider than its Mandate.
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub enum TriggerRejection {
-    /// It ends after the Mandate.
-    EndsAfterMandate,
-    /// Its amount or count exceeds the Mandate, or it lacks a limit the Mandate sets.
-    BudgetExceedsMandate,
-    /// Its amount is in another currency than the Mandate's.
-    CurrencyMismatch,
-}
+wire_enum!(
+    /// Why a trigger is wider than its Mandate.
+    TriggerRejection {
+        /// It ends after the Mandate.
+        EndsAfterMandate = "ends_after_mandate",
+        /// Its amount is in another currency than the Mandate's.
+        CurrencyMismatch = "currency_mismatch",
+        /// Its amount or count exceeds the Mandate, or it lacks a limit the Mandate sets.
+        BudgetExceedsMandate = "budget_exceeds_mandate",
+    }
+);
 
 /// Checks that a trigger stays inside its Mandate and says how it runs when it fires.
 ///

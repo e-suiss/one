@@ -1,0 +1,36 @@
+# A-14, A-15
+version = 1
+schema = "https://suiss.app/schemas/one/capability/trigger/v1.json"
+order = "The end date first, then the amount, then the count; the first failing check is the result"
+
+[[check]]
+code = "ends_after_mandate"
+rule = "The trigger ends after the bound Mandate ends"
+
+[[check]]
+code = "currency_mismatch"
+rule = "The Mandate sets an amount and the trigger's amount is in another currency"
+
+[[check]]
+code = "budget_exceeds_mandate"
+rule = "The trigger's amount or count exceeds the Mandate's, or the Mandate sets an amount or count and the trigger sets none; an unbounded trigger under a bounding Mandate is wider than the Mandate"
+
+[[run]]
+behaviour = "act"
+runs = "decides_on_fire"
+rule = "One asks Access for a continuation decision when the trigger fires and acts on ALLOW"
+
+[[run]]
+behaviour = "act-if-preapproved"
+runs = "decides_on_fire"
+rule = "One asks Access for a continuation decision when the trigger fires; the pre-approval origin is checked at that moment"
+
+[[run]]
+behaviour = "ask"
+runs = "asks_on_fire"
+rule = "One prepares the action and asks the user when the trigger fires"
+
+[[run]]
+behaviour = "handoff"
+runs = "hands_off_on_fire"
+rule = "One prepares the action and hands it to the user when the trigger fires"

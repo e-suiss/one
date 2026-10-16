@@ -21,6 +21,7 @@
       }
     },
     "values": {
+      "description": "Exactly embedding_model.dimension numbers; JSON Schema cannot compare the two, so a reader checks the length against the dimension and rejects a mismatch (vectors/embedding-dimension.json).",
       "type": "array",
       "minItems": 1,
       "items": { "type": "number" }

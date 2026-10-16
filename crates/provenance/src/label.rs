@@ -268,7 +268,7 @@ impl Label {
         })
     }
 
-    /// Builds a label from its wire string and optional `sources`; `None` for a malformed pair (labelled-value/v1).
+    /// Builds a label from its wire string and optional `sources`; `None` for a malformed pair: `external.mixed` needs two or more `external.*` sources and nothing else, any other label may list only itself (labelled-value/v1).
     #[must_use]
     pub fn from_wire(kind: LabelKind, sources: Option<&[Source]>) -> Option<Self> {
         if let Some(list) = sources
@@ -276,22 +276,20 @@ impl Label {
         {
             return None;
         }
-        let trail = sources.unwrap_or(&[]).iter().map(|s| s.label());
+        let list = sources.unwrap_or(&[]);
         match kind {
             LabelKind::Mixed => {
-                let externals = sources
-                    .unwrap_or(&[])
-                    .iter()
-                    .filter(|s| matches!(s, Source::External(_)))
-                    .count();
-                if externals < 2 {
+                let externals = list.iter().all(|s| matches!(s, Source::External(_)));
+                if list.len() < 2 || !externals {
                     return None;
                 }
-                Self::join_all(trail.collect::<Vec<_>>().iter())
+                Self::join_all(list.iter().map(|s| s.label()).collect::<Vec<_>>().iter())
             }
             other => {
-                let declared = other.single()?;
-                Some(trail.fold(declared, |acc, next| acc.join(&next)))
+                if !list.iter().all(|s| s.kind() == other) {
+                    return None;
+                }
+                other.single()
             }
         }
     }

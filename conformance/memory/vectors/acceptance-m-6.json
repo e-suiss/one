@@ -102,6 +102,7 @@
     "input": {
       "operation": "relationship_edge_change",
       "edge": "mem_01k742v1srfrz815ksqrjd1t3n",
+      "edge_version": 1,
       "predicate": "has_manager",
       "old_object": "contacts:synthetic-ayse-yilmaz",
       "new_object": "contacts:synthetic-can-kaya",

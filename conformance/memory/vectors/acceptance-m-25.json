@@ -635,7 +635,10 @@
       "confirmation": "in_app",
       "records": {
         "mem_01k742v0tges7ahv74rwr6c2dw": {
-          "retention_class": "one_memory"
+          "retention_class": "one_memory",
+          "areas": [
+            "health"
+          ]
         }
       },
       "derivatives": [
@@ -730,7 +733,10 @@
       "confirmation": "access_trusted_surface_strong_auth",
       "records": {
         "mem_01k742v0tges7ahv74rwr6c2dw": {
-          "retention_class": "one_memory"
+          "retention_class": "one_memory",
+          "areas": [
+            "health"
+          ]
         }
       },
       "derivatives": [
@@ -810,6 +816,10 @@
     },
     "expected": {
       "outcome": "forgotten",
+      "shredded_record_keys": [
+        "mem_01k742v0tges7ahv74rwr6c2dw",
+        "mem_01k742v1srfrz815ksqrjd1t3n"
+      ],
       "class_dek_shredded": false
     }
   },
@@ -913,19 +923,31 @@
     "description": "the forgotten record's id stays resolvable as a skeleton",
     "input": {
       "operation": "read",
-      "record": "mem_01k742v0tges7ahv74rwr6c2dw",
-      "after": "forgotten"
+      "stored": {
+        "type": "MemoryRecord",
+        "id": "mem_01k742v0tges7ahv74rwr6c2dw",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        },
+        "version": 1,
+        "status": "forgotten",
+        "recorded_at": "2026-10-02T03:00:00Z",
+        "deleted_at": "2026-10-10T12:00:00Z",
+        "retention_class": "one_memory"
+      }
     },
     "expected": {
       "status": "forgotten",
+      "id": "mem_01k742v0tges7ahv74rwr6c2dw",
       "fields": [
+        "deleted_at",
         "id",
         "owner",
-        "version",
-        "status",
         "recorded_at",
-        "deleted_at",
-        "retention_class"
+        "retention_class",
+        "status",
+        "version"
       ]
     }
   }

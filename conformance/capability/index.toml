@@ -89,5 +89,9 @@ path = "taxonomy.toml"
 rules = ["CP-15", "CP-16", "CP-28", "CP-29", "CP-37", "A-49"]
 
 [[table]]
+path = "trigger-bounds.toml"
+rules = ["A-14", "A-15"]
+
+[[table]]
 path = "projections.toml"
 rules = ["CP-15", "C-6", "C-27", "CP-12", "CP-13", "CP-21", "CP-24", "CP-28", "A-36"]

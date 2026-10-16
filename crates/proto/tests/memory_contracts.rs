@@ -214,7 +214,7 @@ fn m6_actual(input: &Value) -> Value {
             let edge = MemoryRecordId::parse(input["edge"].as_str().unwrap()).unwrap();
             let change = change_edge(
                 edge,
-                NonZeroU32::MIN,
+                from(&input["edge_version"]),
                 from(&input["changed_at"]),
                 from(&input["learned_at"]),
             );
@@ -308,7 +308,18 @@ fn m_25_acceptance_vectors() {
             let state: DeviceState = from(&input["device_state"]);
             to(&device_reconnect(state))
         } else {
-            json!({ "status": "forgotten", "fields": MemorySkeleton::FIELDS })
+            assert_eq!(input["operation"], "read");
+            let MemoryRecord::Forgotten(skeleton) = from::<MemoryRecord>(&input["stored"]) else {
+                panic!("{}: not a skeleton", v["description"]);
+            };
+            let mut stored = to(&skeleton);
+            let fields = stored.as_object_mut().unwrap();
+            fields.remove("type");
+            json!({
+                "status": fields["status"],
+                "id": fields["id"],
+                "fields": fields.keys().collect::<Vec<_>>(),
+            })
         };
         assert_subset(&v["expected"], &actual, v["description"].as_str().unwrap());
     }
@@ -348,7 +359,8 @@ fn m36_actual(input: &Value) -> Value {
         let cache: CachedVersion = from(&input["device_cache"]);
         json!({ "device_cache": to(&resolve_cache(server, cache)), "server": to(&server) })
     } else if input.get("device_offline").is_some() {
-        json!({ "device_queue": to(&device_queue(QueuedKind::ExplicitRemember)), "on_reconnect": to(&remember_on_reconnect()) })
+        let kind: QueuedKind = from(&input["queued"]["kind"]);
+        json!({ "device_queue": to(&device_queue(kind)), "on_reconnect": to(&remember_on_reconnect()) })
     } else if input.get("device_saw").is_some() {
         to(&replay_correction(
             from(&input["device_saw"]),
@@ -365,6 +377,7 @@ fn m36_actual(input: &Value) -> Value {
         let local: Vec<SensitiveClass> = from(&input["device_only_classes"]);
         to(&cloud_placement(&class, &local))
     } else {
+        assert!(input["cache"]["contents"].is_array());
         to(&DEVICE_CACHE)
     }
 }

@@ -128,7 +128,8 @@ kind = "query"
 sender_role = "any"
 work_state = "any open"
 work_operation = "open information wait"
-work_result = "unchanged; Epistemic information wait addressed to the recipient"
+work_result = "work_state"
+work_result_rule = "the result is the Work state the message arrived in; Work opens an Epistemic information wait addressed to the recipient"
 task_state_after = "TASK_STATE_INPUT_REQUIRED"
 rules = ["OO-15"]
 
@@ -137,7 +138,7 @@ kind = "answer"
 sender_role = "addressee of the query"
 work_state = "open information wait"
 work_operation = "claim satisfying the information wait"
-work_result = "unchanged; wait satisfied"
+work_result = "information-wait-satisfied"
 task_state_after = "previous state of the Task"
 rules = ["OO-15", "OO-21"]
 

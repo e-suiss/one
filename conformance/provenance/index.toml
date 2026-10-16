@@ -21,6 +21,11 @@ id = "https://suiss.app/schemas/one/provenance/access-mapping/v1.json"
 rules = ["SEC-14", "T-36 (5)", "Access E54 (1)"]
 
 [[schema]]
+path = "schemas/upgrade.v1.json"
+id = "https://suiss.app/schemas/one/provenance/upgrade/v1.json"
+rules = ["SEC-14 (3)", "SEC-14 (5)", "SEC-21 (2)", "T-36 (3)"]
+
+[[schema]]
 path = "schemas/access-parameter-provenance.v1.json"
 id = "https://suiss.app/schemas/one/provenance/access-parameter-provenance/v1.json"
 rules = ["SEC-14 (4)", "E-10", "Access E54 (1)"]
@@ -54,6 +59,12 @@ rules = ["SEC-14 (1)", "SEC-13 (3)", "SEC-21 (2)", "T-36 (3)", "T-36 (4)"]
 path = "vectors/upgrade.json"
 kind = "behaviour"
 rules = ["SEC-14 (3)", "SEC-14 (5)", "SEC-21 (2)", "SEC-7", "SEC-16", "T-36 (3)"]
+
+[[vectors]]
+path = "vectors/upgrade.schema.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/provenance/upgrade/v1.json"
+rules = ["SEC-14 (3)", "T-36 (3)"]
 
 [[vectors]]
 path = "vectors/labelled-value.schema.json"

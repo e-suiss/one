@@ -164,6 +164,10 @@ path = "handle.toml"
 rules = ["OO-5"]
 
 [[table]]
+path = "note-filter.toml"
+rules = ["OO-17"]
+
+[[table]]
 path = "a2a-conformance.toml"
 rules = ["OO-3", "OO-4", "OO-29"]
 

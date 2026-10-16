@@ -10,7 +10,7 @@ rich_approval_card = false
 user_dismissed = "never re-posted for the same task"
 
 [map]
-short_critical_text = "chip text from details.progress.step_label or fraction, at most 7 characters"
+short_critical_text = "details.progress.step_label when it is at most 7 characters; a longer label falls back to the percentage of details.progress.fraction rounded down, as 40%; no chip when neither fits"
 content_title = "subject.title[locale]"
 content_text = "minimal_projection.sentence[locale]"
 progress = "details.progress.fraction"

@@ -3,6 +3,10 @@
     "rule": "X-13, X-6",
     "description": "A progress item whose Live Activity attributes and content state exceed 4 KB is sent as its minimal projection",
     "input": {
+      "registry": {
+        "version": 1,
+        "extension": []
+      },
       "interaction": {
         "type": "Interaction",
         "owner": {
@@ -387,6 +391,10 @@
     "rule": "X-13, X-6",
     "description": "A progress item within 4 KB is sent to the Live Activity in full",
     "input": {
+      "registry": {
+        "version": 1,
+        "extension": []
+      },
       "interaction": {
         "type": "Interaction",
         "owner": {
@@ -543,6 +551,10 @@
     "rule": "X-6, X-4",
     "description": "An approval is never a Live Activity",
     "input": {
+      "registry": {
+        "version": 1,
+        "extension": []
+      },
       "interaction": {
         "type": "Interaction",
         "owner": {
@@ -732,8 +744,12 @@
   },
   {
     "rule": "X-13, X-6",
-    "description": "A progress item on an Android Live Update is sent in full with a chip of at most 7 characters and no custom view",
+    "description": "A progress item on an Android Live Update is sent in full; its step label exceeds 7 characters, so the chip falls back to the percentage",
     "input": {
+      "registry": {
+        "version": 1,
+        "extension": []
+      },
       "interaction": {
         "type": "Interaction",
         "owner": {
@@ -882,13 +898,178 @@
     "expected": {
       "valid": true,
       "projection": "full",
-      "reason": "fits"
+      "reason": "fits",
+      "chip": "40%"
+    }
+  },
+  {
+    "rule": "X-13, X-6",
+    "description": "A progress item on an Android Live Update with a step label of at most 7 characters uses the label as its chip",
+    "input": {
+      "registry": {
+        "version": 1,
+        "extension": []
+      },
+      "interaction": {
+        "type": "Interaction",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_SSSSSSSS000000000001"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "retention_class": "one_memory",
+        "recorded_at": "2026-10-16T09:00:00Z",
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "one",
+          "instance": {
+            "ref": "InstanceRef",
+            "id": "ins_SSSSSSSS000000000001"
+          },
+          "model_version": "mdl_01m4a5btkneayawh9ym9pwjqpt",
+          "config_version": "interaction-1"
+        },
+        "id": "int_01m4xsfjxbfx9v4f6nz4r491n2",
+        "version": 1,
+        "kind": "progress",
+        "subject": {
+          "title": {
+            "tr": "Kahve siparişi",
+            "en": "Coffee order"
+          },
+          "ref": {
+            "ref": "RecordRef",
+            "id": "task_01m5r8g42bekmsnz4xp5vstwka"
+          }
+        },
+        "details": {
+          "progress": {
+            "phase": "in_progress",
+            "fraction": 0.4,
+            "step_label": "Yolda"
+          },
+          "steps": [
+            {
+              "label": "Sipariş verildi",
+              "status": "done"
+            },
+            {
+              "label": "Yolda",
+              "status": "active"
+            },
+            {
+              "label": "Teslim",
+              "status": "pending"
+            }
+          ]
+        },
+        "risk": "CT0",
+        "reversibility": "reversible",
+        "data_class": {
+          "kinds": [
+            "general"
+          ],
+          "sensitive": []
+        },
+        "sensitive": false,
+        "provenance": "record.trusted",
+        "why_now": {
+          "reason": {
+            "tr": "Sabah kahveni sen istedin.",
+            "en": "You asked for your morning coffee."
+          },
+          "evidence": []
+        },
+        "interruption": "passive",
+        "timing": {
+          "delivery": "immediate"
+        },
+        "minimal_projection": {
+          "sentence": {
+            "tr": "Kahve siparişin hazırlanıyor.",
+            "en": "Your coffee order is being prepared."
+          },
+          "yes": {
+            "action": "open",
+            "label": {
+              "tr": "Aç",
+              "en": "Open"
+            }
+          },
+          "no": {
+            "action": "stop",
+            "label": {
+              "tr": "Dur",
+              "en": "Stop"
+            }
+          }
+        },
+        "surface_budgets": {
+          "table": "https://suiss.app/schemas/one/interaction/surface-budgets/v1.json"
+        },
+        "actions": [
+          {
+            "id": "open",
+            "effect": "open",
+            "label": {
+              "tr": "Aç",
+              "en": "Open"
+            }
+          },
+          {
+            "id": "stop",
+            "effect": "stop",
+            "label": {
+              "tr": "Dur",
+              "en": "Stop"
+            }
+          }
+        ],
+        "answer_nonce": "n1-AbCdEfGhIjKlMnOpQrStUv",
+        "min_assurance": {
+          "surface_classes": [
+            "phone",
+            "desktop",
+            "watch",
+            "voice:car",
+            "voice:glasses"
+          ],
+          "authentication": "device_unlock"
+        },
+        "deep_link": "https://suiss.app/one/i/int_01m4xsfjxbfx9v4f6nz4r491n6",
+        "expires_at": "2026-10-16T09:30:00Z"
+      },
+      "surface_class": "phone",
+      "target": "live_update",
+      "declared_targets": [
+        "workspace",
+        "notification",
+        "live_update",
+        "widget"
+      ]
+    },
+    "expected": {
+      "valid": true,
+      "projection": "full",
+      "reason": "fits",
+      "chip": "Yolda"
     }
   },
   {
     "rule": "X-6",
     "description": "An approval on an Android Live Update gets no rich approval card",
     "input": {
+      "registry": {
+        "version": 1,
+        "extension": []
+      },
       "interaction": {
         "type": "Interaction",
         "owner": {
@@ -1080,6 +1261,10 @@
     "rule": "X-10",
     "description": "A Live Activity is not sent to a phone that did not declare it",
     "input": {
+      "registry": {
+        "version": 1,
+        "extension": []
+      },
       "interaction": {
         "type": "Interaction",
         "owner": {
@@ -1235,6 +1420,10 @@
     "rule": "X-13, X-45",
     "description": "A low-risk approval on the watch is its minimal projection",
     "input": {
+      "registry": {
+        "version": 1,
+        "extension": []
+      },
       "interaction": {
         "type": "Interaction",
         "owner": {
@@ -1425,6 +1614,10 @@
     "rule": "X-19, A-28",
     "description": "An irreversible CT2 approval on the watch is redirected to the phone",
     "input": {
+      "registry": {
+        "version": 1,
+        "extension": []
+      },
       "interaction": {
         "type": "Interaction",
         "owner": {
@@ -1577,6 +1770,10 @@
     "rule": "X-19, X-36",
     "description": "An irreversible CT2 approval in the car is redirected to the phone",
     "input": {
+      "registry": {
+        "version": 1,
+        "extension": []
+      },
       "interaction": {
         "type": "Interaction",
         "owner": {
@@ -1727,6 +1924,10 @@
     "rule": "X-19, X-46",
     "description": "An irreversible CT2 approval on glasses is redirected to the phone",
     "input": {
+      "registry": {
+        "version": 1,
+        "extension": []
+      },
       "interaction": {
         "type": "Interaction",
         "owner": {
@@ -1878,6 +2079,10 @@
     "rule": "X-19",
     "description": "An irreversible CT2 approval in the phone workspace is shown in full",
     "input": {
+      "registry": {
+        "version": 1,
+        "extension": []
+      },
       "interaction": {
         "type": "Interaction",
         "owner": {
@@ -2031,6 +2236,10 @@
     "rule": "X-20, AT-13",
     "description": "A sensitive item in the car is spoken only as the neutral sentence",
     "input": {
+      "registry": {
+        "version": 1,
+        "extension": []
+      },
       "interaction": {
         "type": "Interaction",
         "owner": {
@@ -2170,6 +2379,10 @@
     "rule": "X-20, AT-13",
     "description": "A sensitive item on glasses voice is spoken only as the neutral sentence",
     "input": {
+      "registry": {
+        "version": 1,
+        "extension": []
+      },
       "interaction": {
         "type": "Interaction",
         "owner": {
@@ -2310,6 +2523,10 @@
     "rule": "X-36",
     "description": "A comparison in the car becomes the minimal projection with a deep link to the phone",
     "input": {
+      "registry": {
+        "version": 1,
+        "extension": []
+      },
       "interaction": {
         "type": "Interaction",
         "owner": {
@@ -2499,6 +2716,10 @@
     "rule": "X-36, X-13",
     "description": "A choice of three short options in the car is spoken in full",
     "input": {
+      "registry": {
+        "version": 1,
+        "extension": []
+      },
       "interaction": {
         "type": "Interaction",
         "owner": {
@@ -2672,6 +2893,10 @@
     "rule": "X-36, X-13",
     "description": "A choice of five options in the car exceeds the three spoken options",
     "input": {
+      "registry": {
+        "version": 1,
+        "extension": []
+      },
       "interaction": {
         "type": "Interaction",
         "owner": {
@@ -2853,6 +3078,10 @@
     "rule": "X-46, X-13",
     "description": "A choice of three options fits the glasses list",
     "input": {
+      "registry": {
+        "version": 1,
+        "extension": []
+      },
       "interaction": {
         "type": "Interaction",
         "owner": {
@@ -3027,6 +3256,10 @@
     "rule": "X-46, X-13",
     "description": "A choice of five options exceeds the three-item glasses list",
     "input": {
+      "registry": {
+        "version": 1,
+        "extension": []
+      },
       "interaction": {
         "type": "Interaction",
         "owner": {
@@ -3209,6 +3442,10 @@
     "rule": "X-46",
     "description": "A comparison is not shown on glasses",
     "input": {
+      "registry": {
+        "version": 1,
+        "extension": []
+      },
       "interaction": {
         "type": "Interaction",
         "owner": {
@@ -3399,6 +3636,10 @@
     "rule": "X-45",
     "description": "A form on the watch is its minimal projection with a deep link to the phone",
     "input": {
+      "registry": {
+        "version": 1,
+        "extension": []
+      },
       "interaction": {
         "type": "Interaction",
         "owner": {
@@ -3562,6 +3803,10 @@
     "rule": "X-13",
     "description": "A notification always carries the minimal projection",
     "input": {
+      "registry": {
+        "version": 1,
+        "extension": []
+      },
       "interaction": {
         "type": "Interaction",
         "owner": {
@@ -3702,6 +3947,10 @@
     "rule": "X-7",
     "description": "A progress item is never a new notification",
     "input": {
+      "registry": {
+        "version": 1,
+        "extension": []
+      },
       "interaction": {
         "type": "Interaction",
         "owner": {
@@ -3857,6 +4106,10 @@
     "rule": "X-13",
     "description": "A comparison in the phone workspace is shown in full",
     "input": {
+      "registry": {
+        "version": 1,
+        "extension": []
+      },
       "interaction": {
         "type": "Interaction",
         "owner": {
@@ -4049,6 +4302,10 @@
     "rule": "X-13",
     "description": "A progress item on the watch complication is minimal",
     "input": {
+      "registry": {
+        "version": 1,
+        "extension": []
+      },
       "interaction": {
         "type": "Interaction",
         "owner": {
@@ -4203,6 +4460,18 @@
     "rule": "C-7, X-13",
     "description": "A mapped extension follows the budget of its core kind",
     "input": {
+      "registry": {
+        "version": 1,
+        "extension": [
+          {
+            "name": "app.suiss.commerce.order_tracking",
+            "version": 1,
+            "maps_to": "progress",
+            "meaning": "Order delivery tracking",
+            "rule": "X-12"
+          }
+        ]
+      },
       "interaction": {
         "type": "Interaction",
         "owner": {

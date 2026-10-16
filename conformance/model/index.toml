@@ -60,6 +60,11 @@ schema = "https://suiss.app/schemas/one/model/embedding-vector/v1.json"
 rules = ["MF-55"]
 
 [[vectors]]
+path = "vectors/embedding-dimension.json"
+kind = "behaviour"
+rules = ["MF-55"]
+
+[[vectors]]
 path = "vectors/routing-record.json"
 kind = "schema"
 schema = "https://suiss.app/schemas/one/model/routing-record/v1.json"

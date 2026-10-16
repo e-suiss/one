@@ -36,6 +36,8 @@ rule = "C-8"
 name = "remember_explicit"
 from = "observation"
 to = "memory"
+user_asked = true
+when = "the user explicitly asked One to remember this utterance"
 yields = { epistemic_state = "stated", lifecycle = "active" }
 rule = "M-15"
 
@@ -50,6 +52,8 @@ rule = "M-15"
 name = "record_observed"
 from = "observation"
 to = "memory"
+user_asked = false
+when = "One observed it without an explicit request to remember; a trusted label is never set"
 yields = { epistemic_state = "observed", lifecycle = ["active", "candidate"] }
 rule = "M-15"
 

@@ -127,6 +127,21 @@ event = "step_outcome_reported"
 in = ["pending", "running", "waiting_user", "waiting_external", "paused", "completed", "failed", "cancelled"]
 guard = "step_started_before"
 
+[[stop]]
+in = ["running"]
+command = "request_pause"
+writes = "pause_requested"
+
+[[stop]]
+in = ["pending", "waiting_user", "waiting_external", "paused"]
+command = "cancel"
+writes = "task_cancelled"
+cause = "user"
+
+[[stop]]
+in = ["completed", "failed", "cancelled"]
+command = "already_over"
+
 [[guard]]
 name = "first_event"
 rule = "The event is the first of the history and carries seq 1"

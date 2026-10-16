@@ -132,5 +132,69 @@
       }
     },
     "valid": false
+  },
+  {
+    "rule": "SEC-4",
+    "description": "variable reference var_0 is canonical",
+    "input": {
+      "capability": {
+        "name": "app.suiss.fixture.message.send",
+        "version": "2026-10-01"
+      },
+      "inputs": {
+        "recipient": {
+          "ref": "var_0"
+        }
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "SEC-4",
+    "description": "variable reference with six digits is canonical",
+    "input": {
+      "capability": {
+        "name": "app.suiss.fixture.message.send",
+        "version": "2026-10-01"
+      },
+      "inputs": {
+        "recipient": {
+          "ref": "var_999999"
+        }
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "SEC-4",
+    "description": "variable reference with a leading zero is rejected",
+    "input": {
+      "capability": {
+        "name": "app.suiss.fixture.message.send",
+        "version": "2026-10-01"
+      },
+      "inputs": {
+        "recipient": {
+          "ref": "var_01"
+        }
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "SEC-4",
+    "description": "variable reference with seven digits is rejected",
+    "input": {
+      "capability": {
+        "name": "app.suiss.fixture.message.send",
+        "version": "2026-10-01"
+      },
+      "inputs": {
+        "recipient": {
+          "ref": "var_1000000"
+        }
+      }
+    },
+    "valid": false
   }
 ]

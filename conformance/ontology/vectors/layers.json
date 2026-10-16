@@ -1,10 +1,11 @@
 [
   {
     "rule": "C-8",
-    "description": "Explicit remember turns an utterance into a stated memory record",
+    "description": "Explicit remember: the user asked, so an utterance becomes a stated memory record",
     "input": {
       "from": "observation",
-      "to": "memory"
+      "to": "memory",
+      "user_asked": true
     },
     "expected": {
       "function": "remember_explicit"
@@ -12,10 +13,23 @@
   },
   {
     "rule": "C-8",
+    "description": "Without an explicit request an observation becomes an observed memory record",
+    "input": {
+      "from": "observation",
+      "to": "memory",
+      "user_asked": false
+    },
+    "expected": {
+      "function": "record_observed"
+    }
+  },
+  {
+    "rule": "C-8",
     "description": "Background inference yields an inferred or hypothesis record",
     "input": {
       "from": "observation",
-      "to": "inference"
+      "to": "inference",
+      "user_asked": false
     },
     "expected": {
       "function": "infer"
@@ -26,7 +40,8 @@
     "description": "Inference becomes durable memory only by confirmation",
     "input": {
       "from": "inference",
-      "to": "memory"
+      "to": "memory",
+      "user_asked": false
     },
     "expected": {
       "function": "confirm"
@@ -37,7 +52,8 @@
     "description": "Correction is a new version that supersedes",
     "input": {
       "from": "memory",
-      "to": "memory"
+      "to": "memory",
+      "user_asked": false
     },
     "expected": {
       "function": "correct"
@@ -48,7 +64,8 @@
     "description": "Routine to action passes through a suggestion Interaction",
     "input": {
       "from": "memory",
-      "to": "interaction"
+      "to": "interaction",
+      "user_asked": false
     },
     "expected": {
       "function": "suggest"
@@ -59,7 +76,8 @@
     "description": "No path from memory to authority",
     "input": {
       "from": "memory",
-      "to": "authority"
+      "to": "authority",
+      "user_asked": false
     },
     "expected": "rejected"
   },
@@ -68,7 +86,8 @@
     "description": "No path from inference to authority",
     "input": {
       "from": "inference",
-      "to": "authority"
+      "to": "authority",
+      "user_asked": false
     },
     "expected": "rejected"
   },
@@ -77,7 +96,8 @@
     "description": "No path from observation to authority",
     "input": {
       "from": "observation",
-      "to": "authority"
+      "to": "authority",
+      "user_asked": false
     },
     "expected": "rejected"
   },
@@ -86,7 +106,8 @@
     "description": "An approval Interaction is not authority; Access decides",
     "input": {
       "from": "interaction",
-      "to": "authority"
+      "to": "authority",
+      "user_asked": false
     },
     "expected": "rejected"
   },
@@ -95,7 +116,8 @@
     "description": "Observation never jumps to authority through memory in one step",
     "input": {
       "from": "observation",
-      "to": "memory+authority"
+      "to": "memory+authority",
+      "user_asked": false
     },
     "expected": "rejected"
   },
@@ -104,7 +126,8 @@
     "description": "Unlisted conversions are rejected",
     "input": {
       "from": "inference",
-      "to": "observation"
+      "to": "observation",
+      "user_asked": false
     },
     "expected": "rejected"
   }

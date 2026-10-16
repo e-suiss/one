@@ -21,19 +21,42 @@
       }
     }
   },
-  "if": {
-    "properties": { "label": { "const": "external.mixed" } },
-    "required": ["label"]
-  },
-  "then": {
-    "required": ["sources"],
-    "properties": {
-      "sources": {
-        "contains": {
-          "$ref": "https://suiss.app/schemas/one/provenance/label/v1.json#/$defs/external_source"
-        },
-        "minContains": 2
+  "description": "sources lists where an external.mixed value came from: two or more external sources and nothing else. Any other label may list only itself as its single source.",
+  "allOf": [
+    {
+      "if": {
+        "properties": { "label": { "const": "external.mixed" } },
+        "required": ["label"]
+      },
+      "then": {
+        "required": ["sources"],
+        "properties": {
+          "sources": {
+            "minItems": 2,
+            "items": {
+              "$ref": "https://suiss.app/schemas/one/provenance/label/v1.json#/$defs/external_source"
+            }
+          }
+        }
       }
-    }
-  }
+    },
+    { "if": { "properties": { "label": { "const": "user.direct" } } }, "then": { "properties": { "sources": { "maxItems": 1, "items": { "const": "user.direct" } } } } },
+    { "if": { "properties": { "label": { "const": "user.memory" } } }, "then": { "properties": { "sources": { "maxItems": 1, "items": { "const": "user.memory" } } } } },
+    { "if": { "properties": { "label": { "const": "record.trusted" } } }, "then": { "properties": { "sources": { "maxItems": 1, "items": { "const": "record.trusted" } } } } },
+    { "if": { "properties": { "label": { "const": "one.inferred" } } }, "then": { "properties": { "sources": { "maxItems": 1, "items": { "const": "one.inferred" } } } } },
+    { "if": { "properties": { "label": { "const": "external.web" } } }, "then": { "properties": { "sources": { "maxItems": 1, "items": { "const": "external.web" } } } } },
+    { "if": { "properties": { "label": { "const": "external.email" } } }, "then": { "properties": { "sources": { "maxItems": 1, "items": { "const": "external.email" } } } } },
+    { "if": { "properties": { "label": { "const": "external.calendar" } } }, "then": { "properties": { "sources": { "maxItems": 1, "items": { "const": "external.calendar" } } } } },
+    { "if": { "properties": { "label": { "const": "external.document" } } }, "then": { "properties": { "sources": { "maxItems": 1, "items": { "const": "external.document" } } } } },
+    { "if": { "properties": { "label": { "const": "external.screen" } } }, "then": { "properties": { "sources": { "maxItems": 1, "items": { "const": "external.screen" } } } } },
+    { "if": { "properties": { "label": { "const": "external.media" } } }, "then": { "properties": { "sources": { "maxItems": 1, "items": { "const": "external.media" } } } } },
+    { "if": { "properties": { "label": { "const": "external.message" } } }, "then": { "properties": { "sources": { "maxItems": 1, "items": { "const": "external.message" } } } } },
+    { "if": { "properties": { "label": { "const": "external.one" } } }, "then": { "properties": { "sources": { "maxItems": 1, "items": { "const": "external.one" } } } } },
+    { "if": { "properties": { "label": { "const": "external.agent" } } }, "then": { "properties": { "sources": { "maxItems": 1, "items": { "const": "external.agent" } } } } },
+    { "if": { "properties": { "label": { "const": "external.tool_description" } } }, "then": { "properties": { "sources": { "maxItems": 1, "items": { "const": "external.tool_description" } } } } },
+    { "if": { "properties": { "label": { "const": "external.tool_output" } } }, "then": { "properties": { "sources": { "maxItems": 1, "items": { "const": "external.tool_output" } } } } },
+    { "if": { "properties": { "label": { "const": "external.import" } } }, "then": { "properties": { "sources": { "maxItems": 1, "items": { "const": "external.import" } } } } },
+    { "if": { "properties": { "label": { "const": "external.app" } } }, "then": { "properties": { "sources": { "maxItems": 1, "items": { "const": "external.app" } } } } },
+    { "if": { "properties": { "label": { "const": "external.unknown" } } }, "then": { "properties": { "sources": { "maxItems": 1, "items": { "const": "external.unknown" } } } } }
+  ]
 }

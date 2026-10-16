@@ -22,7 +22,8 @@ utterance = "minimal_projection.sentence[locale]"
 answers = "binary voice"
 
 [full]
-when = "kind in target kinds, spoken text within 200 characters, at most 3 spoken options"
+when = "kind in target kinds, spoken length within 200 characters, at most 3 spoken options"
+spoken_length = "Unicode code points of subject.title[locale], plus for a choice with options each option title and 2 per option, otherwise minimal_projection.sentence[locale] and 2; the larger of the tr and en counts"
 utterance = "subject.title + typed details read by kind template"
 
 [sensitive]

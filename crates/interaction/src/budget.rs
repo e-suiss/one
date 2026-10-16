@@ -121,6 +121,8 @@ pub struct MinimalBudget {
     pub label_max_chars: u32,
     /// Number of answers.
     pub answers: u32,
+    /// Number of answers on a passive target: only the primary one.
+    pub passive_answers: u32,
     /// A deep link is always carried.
     pub deep_link: bool,
 }
@@ -130,6 +132,7 @@ pub const MINIMAL: MinimalBudget = MinimalBudget {
     sentence_max_chars: 120,
     label_max_chars: 12,
     answers: 2,
+    passive_answers: 1,
     deep_link: true,
 };
 

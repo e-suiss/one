@@ -14,7 +14,7 @@ use std::cmp::Ordering;
 
 use common::{description, expected_label, kind, label, labels, load};
 use one_provenance::confirm::{
-    Evidence, SecondEvidence, ShownConfirmation, Surface, Target, corroborate, upgrade_label,
+    Evidence, SecondEvidence, ShownConfirmation, Surface, Target, Via, corroborate, upgrade_label,
 };
 use one_provenance::{
     AccessMapping, AccessProvenance, ExternalSource, Label, Labelled, Opened, ParameterName,
@@ -118,7 +118,7 @@ fn t_36_open_vectors() {
             assert_eq!(opened.label(), Label::UNKNOWN, "{}", description(v));
         }
     }
-    assert_eq!(vectors.len(), 12);
+    assert_eq!(vectors.len(), 14);
 }
 
 #[test]
@@ -170,25 +170,9 @@ fn sec_14_transform_vectors() {
 }
 
 fn evidence(input: &Value) -> Evidence {
-    let surface = match input["surface"].as_str().unwrap() {
-        "trusted_surface" => Surface::TrustedSurface,
-        "chat" => Surface::Chat,
-        "channel_reply" => Surface::ChannelReply,
-        "notification_action" => Surface::NotificationAction,
-        "none" => Surface::None,
-        other => unreachable!("unknown surface {other}"),
-    };
-    let shown = input["shown"].as_bool().unwrap();
-    match input["via"].as_str().unwrap() {
-        "user_confirmation" => Evidence::UserConfirmation { surface, shown },
-        "access_approval" => Evidence::AccessApproval,
-        "model_output" => Evidence::ModelOutput,
-        "summarise" => Evidence::Summarise,
-        "critic_continue" => Evidence::CriticContinue,
-        "second_independent_evidence" => Evidence::SecondIndependentEvidence,
-        "same_source_second_copy" => Evidence::SameSourceSecondCopy,
-        other => unreachable!("unknown via {other}"),
-    }
+    let via: Via = serde_json::from_value(input["via"].clone()).unwrap();
+    let surface: Surface = serde_json::from_value(input["surface"].clone()).unwrap();
+    Evidence::new(via, surface, input["shown"].as_bool().unwrap())
 }
 
 fn typed_upgrade(input: &Value, target: Target) -> Label {
@@ -229,11 +213,7 @@ fn sec_14_upgrade_vectors() {
     for v in &vectors {
         let input = &v["input"];
         assert_eq!(input["op"], "upgrade");
-        let target = match input["target"].as_str().unwrap() {
-            "memory" => Target::Memory,
-            "task_input" => Target::TaskInput,
-            other => unreachable!("unknown target {other}"),
-        };
+        let target: Target = serde_json::from_value(input["target"].clone()).unwrap();
         let expected = expected_label(&v["expected"]);
         let pure = upgrade_label(&label(input), evidence(input), target);
         assert_eq!(pure, expected, "{}", description(v));

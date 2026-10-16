@@ -2470,7 +2470,7 @@
   },
   {
     "rule": "CP-16",
-    "description": "Missing data_class is rejected",
+    "description": "Missing data_access is rejected",
     "input": {
       "type": "CapabilityDefinition",
       "id": "cap_01k7n51z03ec1r600000000000",

@@ -167,6 +167,9 @@ macro_rules! opaque_ref {
                 }
             }
         )*
+
+        /// The `ref` value of every `{ref, id}` reference to another product.
+        pub const OPAQUE_REFS: &[&str] = &[$(stringify!($name)),*];
     };
 }
 

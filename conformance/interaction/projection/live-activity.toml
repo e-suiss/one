@@ -5,7 +5,7 @@ platform = "ios"
 kinds = ["progress"]
 budget_target = "live_activity"
 measure = "utf8 length of canonical JSON of { attributes, content_state }, per locale; the larger locale decides"
-canonical_json = "sorted keys, no insignificant whitespace, UTF-8"
+canonical_json = "RFC 8785: sorted keys, no insignificant whitespace, UTF-8 without escaping non-ASCII, numbers in ECMAScript shortest form"
 over_budget = "minimal"
 start = "relay push-to-start"
 updates = "relay push update"
@@ -14,7 +14,7 @@ dismissal_cancels_task = false
 [attributes]
 interaction_id = "id"
 task = "subject.ref.id"
-kind = "kind"
+kind = "kind as on the wire: a core kind string, or an extension kind object { extension, version, maps_to }"
 
 [content_state.full]
 version = "version"

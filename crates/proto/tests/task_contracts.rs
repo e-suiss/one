@@ -14,9 +14,9 @@ use one_proto::money::Currency;
 use one_proto::money::Decimal;
 use one_proto::money::Money;
 use one_proto::task::{
-    BatchRejection, BudgetRejection, HistoryEntry, Outcome, RejectCode, Reported, StepId,
-    StepResult, StopCommand, Task, TaskEvent, TaskState, WaitReason, batch, derive,
-    effective_amount, effective_steps, project, refused_submission, stop_command,
+    BatchRejection, BudgetRejection, HistoryEntry, Outcome, Reported, StepId, StepResult, Task,
+    TaskEvent, TaskState, WaitReason, batch, derive, effective_amount, effective_steps, project,
+    refused_submission, stop_command,
 };
 use serde::Serialize;
 use serde::de::DeserializeOwned;
@@ -110,6 +110,16 @@ fn cp_3_state_derivation_vectors() {
                 state.as_str().unwrap(),
                 "{description}"
             );
+            assert_eq!(
+                stop_command(derived.state).as_str(),
+                expected["stop"].as_str().unwrap(),
+                "{description}"
+            );
+            assert_eq!(
+                Some(derived.stopping),
+                expected["stopping"].as_bool(),
+                "{description}"
+            );
         } else {
             let rejected = &expected["rejected"];
             let r = derived
@@ -128,55 +138,7 @@ fn cp_3_state_derivation_vectors() {
             );
         }
     }
-    assert_eq!(all.len(), 47);
-}
-
-#[test]
-fn cp_3_pause_request_shows_stopping_until_the_executor_confirms() {
-    let all = load("vectors/state-derivation.json");
-    let requested = all
-        .iter()
-        .find(|v| v["description"] == "Pause requested only: still running and shown as stopping")
-        .unwrap();
-    let derived = derive(&history(&requested["input"])).unwrap();
-    assert_eq!(
-        (derived.state, derived.stopping),
-        (TaskState::Running, true)
-    );
-}
-
-#[test]
-fn inv_30_paused_written_by_anyone_but_the_executor_is_schema_invalid() {
-    let all = load("vectors/state-derivation.json");
-    let forged = all
-        .iter()
-        .find(|v| v["description"] == "Paused written by One instead of the Executor is rejected")
-        .unwrap();
-    let last = forged["input"].as_array().unwrap().last().unwrap().clone();
-    assert!(serde_json::from_value::<TaskEvent>(last).is_err());
-    assert_eq!(
-        derive(&history(&forged["input"])).unwrap_err().code,
-        RejectCode::SchemaInvalid
-    );
-}
-
-#[test]
-fn inv_32_stop_cancels_in_pending_and_waiting_and_pauses_while_running() {
-    assert_eq!(stop_command(TaskState::Pending), StopCommand::Cancel);
-    assert_eq!(stop_command(TaskState::WaitingUser), StopCommand::Cancel);
-    assert_eq!(
-        stop_command(TaskState::WaitingExternal),
-        StopCommand::Cancel
-    );
-    assert_eq!(stop_command(TaskState::Running), StopCommand::RequestPause);
-    assert_eq!(stop_command(TaskState::Paused), StopCommand::AlreadyPaused);
-    for s in [
-        TaskState::Completed,
-        TaskState::Failed,
-        TaskState::Cancelled,
-    ] {
-        assert_eq!(stop_command(s), StopCommand::AlreadyOver);
-    }
+    assert_eq!(all.len(), 50);
 }
 
 #[test]
@@ -288,12 +250,12 @@ fn cp_4_budget_vectors() {
         let description = v["description"].as_str().unwrap();
         let input = &v["input"];
         let expected = &v["expected"];
-        let amount = description.starts_with("Amount");
-        let got: Result<u64, BudgetRejection> = if amount {
+        let got: Result<u64, BudgetRejection> = if input["dimension"] == "amount" {
             let m = try_money(&input["mandate"]);
             let r = try_money(&input["requested"]);
             effective_amount(m.as_ref(), r.as_ref()).map(|e| e.value.as_str().parse().unwrap())
         } else {
+            assert_eq!(input["dimension"], "steps", "{description}");
             let n = |x: &Value| {
                 x.as_u64()
                     .map(|n| NonZeroU32::new(u32::try_from(n).unwrap()).unwrap())

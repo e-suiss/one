@@ -68,3 +68,8 @@ key = "SHA-256 of the signed response payload"
 replay = "same result returned; no new approval"
 same_nonce_other_payload = "rejected: already_answered"
 first_valid_wins = true
+nonce_consumed = "only by an accepted response; a rejected response or one that is not a contribution leaves the nonce open for the next answer"
+
+[processing]
+check_order = ["signature", "interaction", "owner", "nonce", "replay", "action", "stop", "version", "expiry", "ceiling_and_evidence"]
+first_failing_check_decides = true

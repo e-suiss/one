@@ -126,6 +126,21 @@ fn mf_55_embedding_vector_schema_vectors() {
 }
 
 #[test]
+fn mf_55_embedding_values_length_equals_the_dimension() {
+    let all = vectors("model/vectors/embedding-dimension.json");
+    for v in &all {
+        let e: EmbeddingVector = serde_json::from_value(v["input"].clone()).unwrap();
+        assert_eq!(
+            e.validate().is_ok(),
+            v["expected"]["valid"].as_bool().unwrap(),
+            "{}",
+            v["description"]
+        );
+    }
+    assert_eq!(all.len(), 4);
+}
+
+#[test]
 fn mf_55_vectors_of_different_embedding_models_never_mix() {
     let all = vectors("model/vectors/embedding-vector.json");
     let a: EmbeddingVector = serde_json::from_value(all[0]["input"].clone()).unwrap();

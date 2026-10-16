@@ -11,7 +11,8 @@
 use std::collections::BTreeSet;
 
 use one_proto::task::{
-    EventBody, EventKind, STAYS, TRANSITIONS, TaskEvent, TaskState, derive_events,
+    EventBody, EventKind, STAYS, StopCommand, TRANSITIONS, TaskEvent, TaskState, derive_events,
+    stop_command,
 };
 use serde_json::{Value, json};
 
@@ -101,6 +102,45 @@ fn cp_3_transition_and_stay_rows_match_state_machine_toml() {
         })
         .collect();
     assert_eq!(stays, rows("stay"));
+}
+
+#[test]
+fn inv_32_stop_rows_match_state_machine_toml_and_are_never_refused() {
+    let text = table();
+    let mut covered = Vec::new();
+    let (transitions, stays) = (rows("transition"), rows("stay"));
+    for block in text.split("[[").skip(1) {
+        let Some(("stop", body)) = block.split_once("]]") else {
+            continue;
+        };
+        let field = |key: &str| {
+            body.lines()
+                .find_map(|l| l.strip_prefix(&format!("{key} = ")).map(str::to_owned))
+        };
+        let states = list(&field("in").unwrap());
+        let command = StopCommand::from_wire(&unquote(&field("command").unwrap())).unwrap();
+        let writes = field("writes").map(|w| unquote(&w));
+        for state in &states {
+            let s = TaskState::from_wire(state).unwrap();
+            assert_eq!(stop_command(s), command, "{state}");
+            match (&writes, command) {
+                (None, StopCommand::AlreadyOver) => assert!(s.is_terminal()),
+                (Some(event), StopCommand::RequestPause | StopCommand::Cancel) => assert!(
+                    transitions
+                        .iter()
+                        .chain(&stays)
+                        .any(|r| &r.event == event && r.from.contains(state)),
+                    "{state}: {event}"
+                ),
+                other => panic!("{state}: {other:?}"),
+            }
+            covered.push(s);
+        }
+    }
+    covered.sort();
+    let mut all = TaskState::ALL.to_vec();
+    all.sort();
+    assert_eq!(covered, all);
 }
 
 #[test]

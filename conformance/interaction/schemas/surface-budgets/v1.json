@@ -18,11 +18,15 @@
     "minimal": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["sentence_max_chars", "label_max_chars", "answers", "deep_link"],
+      "required": ["sentence_max_chars", "label_max_chars", "answers", "passive_answers", "deep_link"],
       "properties": {
         "sentence_max_chars": { "const": 120 },
         "label_max_chars": { "const": 12 },
         "answers": { "const": 2 },
+        "passive_answers": {
+          "description": "On a target with passive_only, the minimal projection writes only its primary answer, so it fits max_actions = 1.",
+          "const": 1
+        },
         "deep_link": { "const": true }
       }
     },

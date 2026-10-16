@@ -10,9 +10,9 @@
 
 use one_proto::capability::{
     AutonomyRule, CATEGORIES, CapabilityDefinition, CapabilityName, CapabilityVersion, Declaration,
-    NameKind, PurchaseInput, RESERVED_SEGMENTS, SurfaceCapability, TAXONOMY, Trigger,
-    TriggerRejection, TriggerRun, TypedSchema, check_trigger_bounds, effective_reversibility,
-    is_forbidden_field_name, is_safe_property_name, negotiate,
+    MAX_NAME_LENGTH, NameError, NameKind, PurchaseInput, RESERVED_SEGMENTS, SurfaceCapability,
+    TAXONOMY, Trigger, TriggerRejection, TriggerRun, TypedSchema, check_trigger_bounds,
+    effective_reversibility, is_forbidden_field_name, is_safe_property_name, negotiate,
 };
 use one_proto::interaction_types::Reversibility;
 use one_proto::ontology::JsonObject;
@@ -133,7 +133,7 @@ fn cp_15_name_vectors() {
             }
         }
     }
-    assert_eq!(all.len(), 23);
+    assert_eq!(all.len(), 26);
 }
 
 fn offer(side: &Value) -> Vec<Declaration> {
@@ -156,16 +156,7 @@ fn cp_15_negotiation_vectors() {
             "{description}"
         );
     }
-    assert_eq!(all.len(), 10);
-}
-
-#[test]
-fn cp_15_extension_cycle_without_a_suiss_parent_is_dropped() {
-    let cycle = json!([
-        {"name": "com.example.a.b", "versions": ["2026-01-01"], "extends": "com.example.c.d"},
-        {"name": "com.example.c.d", "versions": ["2026-01-01"], "extends": "com.example.a.b"}
-    ]);
-    assert_eq!(negotiate(&offer(&cycle), &offer(&cycle)), Vec::new());
+    assert_eq!(all.len(), 12);
 }
 
 #[test]
@@ -197,24 +188,34 @@ fn a_14_trigger_bounds_vectors() {
         match check_trigger_bounds(&trigger) {
             Ok(run) => {
                 assert_eq!(expected["accepted"], true, "{description}");
-                let run = match run {
-                    TriggerRun::DecidesOnFire => "decides_on_fire",
-                    TriggerRun::AsksOnFire => "asks_on_fire",
-                    TriggerRun::HandsOffOnFire => "hands_off_on_fire",
-                };
-                assert_eq!(expected["runs"], run, "{description}");
+                assert_eq!(expected["runs"], run.as_str(), "{description}");
             }
-            Err(e) => {
-                let code = match e {
-                    TriggerRejection::EndsAfterMandate => "ends_after_mandate",
-                    TriggerRejection::BudgetExceedsMandate => "budget_exceeds_mandate",
-                    TriggerRejection::CurrencyMismatch => "currency_mismatch",
-                };
-                assert_eq!(expected["rejected"], code, "{description}");
-            }
+            Err(e) => assert_eq!(expected["rejected"], e.as_str(), "{description}"),
         }
     }
-    assert_eq!(all.len(), 6);
+    assert_eq!(all.len(), 10);
+}
+
+#[test]
+fn a_15_trigger_outcomes_match_trigger_bounds_toml() {
+    let text = read("trigger-bounds.toml");
+    let codes: Vec<&str> = TriggerRejection::ALL.iter().map(|c| c.as_str()).collect();
+    assert_eq!(codes, toml_values(&text, "check", "code"));
+    let runs = toml_values(&text, "run", "runs");
+    for (behaviour, runs) in toml_values(&text, "run", "behaviour").iter().zip(&runs) {
+        let mut trigger: Value = load("vectors/trigger-bounds.json")[0]["input"].clone();
+        trigger["mandate"]["behaviour"] = json!(behaviour);
+        let trigger: Trigger = serde_json::from_value(trigger).unwrap();
+        assert_eq!(
+            check_trigger_bounds(&trigger).unwrap().as_str(),
+            runs,
+            "{behaviour}"
+        );
+    }
+    let mut named: Vec<&str> = runs.iter().map(String::as_str).collect();
+    named.dedup();
+    let all: Vec<&str> = TriggerRun::ALL.iter().map(|r| r.as_str()).collect();
+    assert_eq!(named, all);
 }
 
 #[test]
@@ -294,6 +295,25 @@ fn cp_15_taxonomy_matches_taxonomy_toml_and_parses() {
         assert_eq!(parsed.kind(), NameKind::Suiss);
         assert!(CATEGORIES.contains(&parsed.category().unwrap()), "{name}");
     }
+}
+
+#[test]
+fn cp_15_name_errors_match_naming_toml() {
+    let text = read("naming.toml");
+    let field = |key: &str| {
+        text.lines()
+            .find_map(|l| l.strip_prefix(&format!("{key} = ")))
+            .unwrap()
+            .to_owned()
+    };
+    let listed: Vec<String> = field("codes")
+        .trim_matches(['[', ']'])
+        .split(", ")
+        .map(|c| c.trim_matches('"').to_owned())
+        .collect();
+    let codes: Vec<&str> = NameError::ALL.iter().map(|e| e.code()).collect();
+    assert_eq!(codes, listed);
+    assert_eq!(field("max_length"), MAX_NAME_LENGTH.to_string());
 }
 
 #[test]

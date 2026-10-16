@@ -943,13 +943,8 @@
         "k": "FhcCYfaoykwwznqE1LnKa8QeOfLylvLHsLj6lNIf12I",
         "testOnly": true
       },
-      "compact": "eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIiwia2lkIjoidGVzdC1rMSIsInR5cCI6Im9uZS1mZWRlcmF0aW9uLWhhbmRsZStqd2UifQ..XCRupFmg92o_jZdw.N6XX8BuN1buKFbAiwDo6fFj6itoWHjGJ4tsROGcyl05EtUrZgNUjMw0xsl8G1IfKTa-EMrZIBK0A2_tGpOUUow.jZ8u16lurMRVZaoiA-v5Vw",
-      "protectedHeader": {
-        "alg": "dir",
-        "enc": "A256GCM",
-        "kid": "test-k1",
-        "typ": "one-federation-handle+jwe"
-      },
+      "compact": null,
+      "protectedHeader": null,
       "aeadVerifies": false,
       "claims": null,
       "context": {

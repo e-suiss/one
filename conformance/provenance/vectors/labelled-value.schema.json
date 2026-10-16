@@ -125,5 +125,82 @@
       "trusted": true
     },
     "valid": false
+  },
+  {
+    "rule": "SEC-14",
+    "description": "a trusted value listing an external source is rejected",
+    "input": {
+      "value": "x",
+      "label": "user.direct",
+      "sources": [
+        "external.web"
+      ]
+    },
+    "valid": false
+  },
+  {
+    "rule": "SEC-14",
+    "description": "an external value listing another external source is rejected",
+    "input": {
+      "value": "x",
+      "label": "external.email",
+      "sources": [
+        "external.web"
+      ]
+    },
+    "valid": false
+  },
+  {
+    "rule": "SEC-14",
+    "description": "a non-mixed value listing itself and another source is rejected",
+    "input": {
+      "value": "x",
+      "label": "user.memory",
+      "sources": [
+        "user.memory",
+        "user.direct"
+      ]
+    },
+    "valid": false
+  },
+  {
+    "rule": "SEC-14",
+    "description": "one.inferred listing itself is valid",
+    "input": {
+      "value": "x",
+      "label": "one.inferred",
+      "sources": [
+        "one.inferred"
+      ]
+    },
+    "valid": true
+  },
+  {
+    "rule": "SEC-14",
+    "description": "external.mixed with a trusted source beside two external sources is rejected",
+    "input": {
+      "value": "x",
+      "label": "external.mixed",
+      "sources": [
+        "external.email",
+        "external.web",
+        "user.direct"
+      ]
+    },
+    "valid": false
+  },
+  {
+    "rule": "SEC-14",
+    "description": "external.mixed with one.inferred beside two external sources is rejected",
+    "input": {
+      "value": "x",
+      "label": "external.mixed",
+      "sources": [
+        "external.email",
+        "external.web",
+        "one.inferred"
+      ]
+    },
+    "valid": false
   }
 ]

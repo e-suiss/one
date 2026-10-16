@@ -14,9 +14,12 @@ use super::text_view::TrustClass;
 use crate::id::{AdapterId, MemoryRecordId, TaskId};
 use crate::ontology::episode::{Episode, SkeletonRetention};
 use crate::ontology::header::Statement;
+use crate::ontology::json::JsonDeserializer;
 use crate::ontology::json::JsonValue;
 use crate::ontology::provenance::ProvenanceLabel;
-use crate::ontology::reference::PartyRef;
+use crate::ontology::reference::{
+    ExternalPersonRef, ExternalRef, OPAQUE_REFS, PartyRef, RecordRef,
+};
 use crate::ontology::time::Instant;
 use crate::ontology::validate::ContractViolation;
 
@@ -163,8 +166,9 @@ pub struct AdapterExport {
     pub note: Statement,
 }
 
-/// An export package (M-39, M-40).
+/// An export package (M-39, M-40); its reader skips unknown fields everywhere, inside references too, while canonical references elsewhere stay strict.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[serde(remote = "Self")]
 pub struct ExportDocument {
     /// `app.suiss.one.export`.
     pub format: ExportFormat,
@@ -197,6 +201,47 @@ pub struct ExportDocument {
     pub adapter: Option<AdapterExport>,
     /// Human-readable view.
     pub text_view: String,
+}
+
+fn known_ref_fields(tag: &str) -> Option<&'static [&'static str]> {
+    if OPAQUE_REFS.contains(&tag) || tag == RecordRef::REF {
+        Some(&["ref", "id"])
+    } else if tag == ExternalRef::REF || tag == ExternalPersonRef::REF {
+        Some(&["ref", "system", "locator", "account"])
+    } else {
+        None
+    }
+}
+
+fn skip_unknown_ref_fields(value: &mut JsonValue) {
+    match value {
+        JsonValue::Array(items) => items.iter_mut().for_each(skip_unknown_ref_fields),
+        JsonValue::Object(map) => {
+            if let Some(keep) = map
+                .get("ref")
+                .and_then(JsonValue::as_str)
+                .and_then(known_ref_fields)
+            {
+                map.retain(|k, _| keep.contains(&k.as_str()));
+            }
+            map.values_mut().for_each(skip_unknown_ref_fields);
+        }
+        _ => {}
+    }
+}
+
+impl Serialize for ExportDocument {
+    fn serialize<S: serde::Serializer>(&self, serializer: S) -> Result<S::Ok, S::Error> {
+        Self::serialize(self, serializer)
+    }
+}
+
+impl<'de> Deserialize<'de> for ExportDocument {
+    fn deserialize<D: serde::Deserializer<'de>>(deserializer: D) -> Result<Self, D::Error> {
+        let mut value = JsonValue::deserialize(deserializer)?;
+        skip_unknown_ref_fields(&mut value);
+        Self::deserialize(JsonDeserializer::<D::Error>::new(value))
+    }
 }
 
 impl MemorySection {

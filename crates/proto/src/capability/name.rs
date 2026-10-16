@@ -43,6 +43,18 @@ pub enum NameError {
 }
 
 impl NameError {
+    /// Every error in `naming.toml` order.
+    pub const ALL: [Self; 8] = [
+        Self::NotLowercase,
+        Self::TooLong,
+        Self::BadRoot,
+        Self::BadSegment,
+        Self::TooFewSegments,
+        Self::TooManySegments,
+        Self::ReservedSegment,
+        Self::HandleNamespace,
+    ];
+
     /// The contract code.
     #[must_use]
     pub const fn code(self) -> &'static str {
