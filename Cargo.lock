@@ -621,6 +621,8 @@ name = "one-interaction"
 version = "0.0.0"
 dependencies = [
  "one-proto",
+ "serde",
+ "serde_json",
 ]
 
 [[package]]
@@ -633,12 +635,18 @@ dependencies = [
 [[package]]
 name = "one-proto"
 version = "0.0.0"
+dependencies = [
+ "serde",
+ "serde_json",
+]
 
 [[package]]
 name = "one-provenance"
 version = "0.0.0"
 dependencies = [
  "one-proto",
+ "serde",
+ "serde_json",
 ]
 
 [[package]]

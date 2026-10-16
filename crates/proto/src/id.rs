@@ -86,6 +86,31 @@ pub fn parse_base32(text: &str) -> Result<[u8; 16], IdError> {
     Ok(value.to_be_bytes())
 }
 
+/// A typed identifier that parses its `prefix_base32` text.
+pub trait TypedId: Sized {
+    /// Parses the text form.
+    ///
+    /// # Errors
+    /// Rejects another prefix, a malformed body or a non-v7 UUID.
+    fn parse_text(text: &str) -> Result<Self, IdError>;
+}
+
+/// Reads a typed identifier from a string, validating it through the type's parser.
+#[doc(hidden)]
+pub struct IdVisitor<T>(pub core::marker::PhantomData<T>);
+
+impl<T: TypedId> serde::de::Visitor<'_> for IdVisitor<T> {
+    type Value = T;
+
+    fn expecting(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        f.write_str("a typed identifier")
+    }
+
+    fn visit_str<E: serde::de::Error>(self, v: &str) -> Result<T, E> {
+        T::parse_text(v).map_err(|e| E::custom(format_args!("identifier {v:?}: {e:?}")))
+    }
+}
+
 /// Declares a typed identifier with its wire prefix.
 #[macro_export]
 macro_rules! typed_id {
@@ -141,6 +166,24 @@ macro_rules! typed_id {
                 core::fmt::Display::fmt(self, f)
             }
         }
+
+        impl serde::Serialize for $name {
+            fn serialize<S: serde::Serializer>(&self, serializer: S) -> Result<S::Ok, S::Error> {
+                serializer.collect_str(self)
+            }
+        }
+
+        impl<'de> serde::Deserialize<'de> for $name {
+            fn deserialize<D: serde::Deserializer<'de>>(deserializer: D) -> Result<Self, D::Error> {
+                deserializer.deserialize_str($crate::id::IdVisitor(core::marker::PhantomData))
+            }
+        }
+
+        impl $crate::id::TypedId for $name {
+            fn parse_text(text: &str) -> Result<Self, $crate::id::IdError> {
+                Self::parse(text)
+            }
+        }
     };
 }
 
@@ -188,6 +231,47 @@ typed_id!(
     /// An API request, returned in the `Request-Id` header.
     RequestId,
     "req"
+);
+
+typed_id!(
+    /// An observation.
+    ObservationId,
+    "obs"
+);
+typed_id!(
+    /// A goal.
+    GoalId,
+    "goal"
+);
+typed_id!(
+    /// A routine.
+    RoutineId,
+    "rtn"
+);
+typed_id!(
+    /// A surface capability.
+    SurfaceCapabilityId,
+    "srf"
+);
+typed_id!(
+    /// A cross-product event.
+    EventId,
+    "evt"
+);
+typed_id!(
+    /// A user project inside a life area.
+    ProjectId,
+    "prj"
+);
+typed_id!(
+    /// A model request.
+    ModelRequestId,
+    "mrq"
+);
+typed_id!(
+    /// An attention decision record.
+    AttentionDecisionId,
+    "atd"
 );
 
 #[cfg(test)]

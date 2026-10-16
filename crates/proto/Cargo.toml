@@ -8,5 +8,11 @@ license.workspace = true
 repository.workspace = true
 publish = false
 
+[dependencies]
+serde = { workspace = true, features = ["derive", "alloc"] }
+
+[dev-dependencies]
+serde_json = { workspace = true, features = ["std"] }
+
 [lints]
 workspace = true
