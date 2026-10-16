@@ -1,4 +1,4 @@
-//! The OpenAPI document of the client and developer API, generated from code and committed under `conformance/openapi/` (T-31, Access OP-65).
+//! The `OpenAPI` document of the client and developer API, generated from code and committed under `conformance/openapi/` (T-31, Access OP-65).
 
 use utoipa::OpenApi as _;
 
@@ -15,7 +15,7 @@ use crate::Problem;
 )]
 struct Api;
 
-/// The OpenAPI document as pretty JSON with a trailing newline.
+/// The `OpenAPI` document as pretty JSON with a trailing newline.
 ///
 /// # Errors
 /// Returns the serialisation error.

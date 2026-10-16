@@ -1,4 +1,4 @@
-//! The committed OpenAPI document equals the one generated from code; `just gen` rewrites it (T-31).
+//! The committed `OpenAPI` document equals the one generated from code; `just gen` rewrites it (T-31).
 
 #![allow(clippy::unwrap_used, reason = "T-38")]
 
