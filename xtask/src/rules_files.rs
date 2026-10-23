@@ -7,10 +7,13 @@ use std::path::{Path, PathBuf};
 /// local-only docs, third-party code and package caches.
 const SKIP_DIRS: &[&str] = &["target", ".git", "docs", "node_modules", "vendor"];
 
+/// The `e-suiss/one-open` submodule, which keeps its own rules.
+const SUBMODULE: &str = "conformance/open";
+
 /// Hidden directories that hold repository configuration and are scanned.
 const SCANNED_HIDDEN_DIRS: &[&str] = &[".github", ".cargo", ".githooks", ".semgrep", ".config"];
 
-/// Lists every file under `root` (sorted), skipping [`SKIP_DIRS`] and hidden
+/// Lists every file under `root` (sorted), skipping [`SKIP_DIRS`], [`SUBMODULE`] and hidden
 /// directories other than [`SCANNED_HIDDEN_DIRS`].
 pub(crate) fn walk(root: &Path) -> Result<Vec<PathBuf>, String> {
     let mut out = Vec::new();
@@ -33,6 +36,9 @@ fn walk_into(root: &Path, dir: &Path, out: &mut Vec<PathBuf>) -> Result<(), Stri
             let skipped = SKIP_DIRS.contains(&name.as_str())
                 || (name.starts_with('.') && !SCANNED_HIDDEN_DIRS.contains(&name.as_str()));
             if skipped && (at_root || !matches!(name.as_str(), "docs" | "vendor")) {
+                continue;
+            }
+            if rel(root, &path) == SUBMODULE {
                 continue;
             }
             walk_into(root, &path, out)?;

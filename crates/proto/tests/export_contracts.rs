@@ -35,7 +35,7 @@ fn decode(document: &Value) -> Option<ExportDocument> {
 
 #[test]
 fn m_40_export_schema_vectors() {
-    let all = vectors("export/vectors/export-schema.json");
+    let all = vectors("open/export/vectors/export-schema.json");
     for v in &all {
         assert_eq!(v["input"]["cddl"], json!("export.cddl"));
         let valid = decode(&v["input"]["document"]).is_some();
@@ -51,7 +51,7 @@ fn m_40_export_schema_vectors() {
 
 #[test]
 fn m_40_round_trip_vectors() {
-    let all = vectors("export/vectors/round-trip.json");
+    let all = vectors("open/export/vectors/round-trip.json");
     for v in &all {
         let doc = decode(&v["input"]["document"]).unwrap_or_else(|| panic!("{}", v["description"]));
         if v["expected"].get("imported").is_some() {
@@ -88,7 +88,7 @@ fn non_ascii_strings(v: &Value, out: &mut Vec<String>) {
 
 #[test]
 fn m_40_turkish_text_is_kept_byte_for_byte() {
-    let v = &vectors("export/vectors/round-trip.json")[2];
+    let v = &vectors("open/export/vectors/round-trip.json")[2];
     let doc = decode(&v["input"]["document"]).unwrap();
     let encoded = serde_json::to_string(&doc).unwrap();
     let mut texts = Vec::new();
@@ -101,7 +101,7 @@ fn m_40_turkish_text_is_kept_byte_for_byte() {
 
 #[test]
 fn inv_27_unknown_fields_are_skipped() {
-    let all = vectors("export/vectors/unknown-fields.json");
+    let all = vectors("open/export/vectors/unknown-fields.json");
     for v in &all {
         let owner = &v["input"]["document"]["owner"];
         if owner.as_object().is_some_and(|o| o.len() > 2) {

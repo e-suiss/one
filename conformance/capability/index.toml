@@ -1,12 +1,12 @@
 # CP-5, CP-12, CP-13, CP-15, CP-16, CP-19, CP-21, CP-23, CP-25, CP-28, C-6, C-17, C-18, C-27, A-1, A-13, A-14, A-18, A-24, A-26, A-28, A-42, A-49, OO-9
 
 [[schema]]
-path = "name.schema.json"
+path = "../open/capability/name.schema.json"
 id = "https://suiss.app/schemas/one/capability/name/v1.json"
 rules = ["CP-15", "C-7", "OO-9"]
 
 [[schema]]
-path = "definition.schema.json"
+path = "../open/capability/definition.schema.json"
 id = "https://suiss.app/schemas/one/capability/definition/v1.json"
 rules = ["CP-16", "CP-23", "CP-5", "CP-19", "C-17", "A-24", "A-26", "A-28", "Access E45", "Access E47", "Access E49"]
 
@@ -31,20 +31,25 @@ id = "https://suiss.app/schemas/one/capability/commerce-purchase-input/v1.json"
 rules = ["A-49", "A-31", "A-34", "CP-23"]
 
 [[vectors]]
-path = "vectors/name.json"
+path = "../open/capability/vectors/name.json"
 kind = "behaviour"
 rules = ["CP-15", "OO-9"]
 
 [[vectors]]
-path = "vectors/negotiation.json"
+path = "../open/capability/vectors/negotiation.json"
 kind = "behaviour"
 rules = ["CP-15"]
 
 [[vectors]]
-path = "vectors/definition.json"
+path = "../open/capability/vectors/definition.json"
 kind = "schema"
 schema = "https://suiss.app/schemas/one/capability/definition/v1.json"
 rules = ["CP-16", "CP-23", "CP-5", "CP-15", "CP-19", "A-24", "A-26", "A-28"]
+
+[[vectors]]
+path = "../open/capability/vectors/projection.json"
+kind = "behaviour"
+rules = ["C-27"]
 
 [[vectors]]
 path = "vectors/reversibility.json"
@@ -86,7 +91,7 @@ schema = "https://suiss.app/schemas/one/capability/commerce-purchase-input/v1.js
 rules = ["A-49", "A-31", "A-34"]
 
 [[table]]
-path = "naming.toml"
+path = "../open/capability/naming.toml"
 rules = ["CP-15", "C-7", "CP-25", "OO-9"]
 
 [[table]]

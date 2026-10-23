@@ -1,7 +1,7 @@
 # SEC-2, SEC-4, SEC-12, SEC-13, SEC-19, SEC-21 (1), SEC-31 (3), MD-4 (1), INV-10, CP-5, T-31, T-36 (2, 6)
 
 [[schema]]
-path = "schemas/origin-set.v1.json"
+path = "../open/schemas/intent/origin-set.json"
 id = "https://suiss.app/schemas/one/intent/origin-set/v1.json"
 rules = ["SEC-19", "CP-35", "Access E54 (4)"]
 

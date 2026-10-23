@@ -51,8 +51,9 @@ secrets:
 asyncapi-breaking base="origin/main":
     cargo xtask asyncapi-breaking {{base}}
 
-open-sync:
-    XTASK_ONLINE=1 cargo xtask check open-sync
+open-submodule:
+    git submodule update --init
+    cargo xtask check open-submodule
 
 commits base head:
     cargo xtask commits {{base}} {{head}}

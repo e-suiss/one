@@ -1,7 +1,0 @@
-{
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://suiss.app/schemas/one/federation/handle-claims/v1.json",
-  "title": "One Federation handle claims",
-  "description": "The `claims` part of the suspended-negotiation handle, as defined in the handle schema.",
-  "$ref": "https://suiss.app/schemas/one/federation/handle/v1.json#/$defs/claims"
-}

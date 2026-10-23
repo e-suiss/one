@@ -28,6 +28,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+          submodules: true
       - uses: ./.github/actions/setup
         with:
           cache-key: lint
@@ -48,6 +49,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+          submodules: true
       - uses: ./.github/actions/setup
         with:
           cache-key: test
@@ -150,6 +152,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+          submodules: true
       - uses: ./.github/actions/setup
         with:
           cache-key: core-bindings
@@ -191,6 +194,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+          submodules: true
       - uses: ./.github/actions/setup
         with:
           cache-key: core-swift
@@ -271,6 +275,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+          submodules: true
           fetch-depth: 0
       - uses: ./.github/actions/setup
         with:
@@ -323,10 +328,8 @@ jobs:
             exit 0
           fi
           cargo xtask asyncapi-breaking "$BASE"
-      - name: Contract copies equal the pinned one-open commit
-        env:
-          XTASK_ONLINE: "1"
-        run: cargo xtask check open-sync
+      - name: One-open submodule at its pinned commit and no copies of its files
+        run: cargo xtask check open-submodule
 
   ml:
     name: ml

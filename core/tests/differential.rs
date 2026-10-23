@@ -224,11 +224,11 @@ fn interaction(run: &mut Run) {
 }
 
 fn capability(run: &mut Run) {
-    run.vectors("capability/vectors/name.json", 26, |run, name, v| {
+    run.vectors("open/capability/vectors/name.json", 26, |run, name, v| {
         let expected = &v["expected"];
         if expected["kind"] == "version" {
             let out = run.case(
-                "capability/vectors/name.json",
+                "open/capability/vectors/name.json",
                 name.clone(),
                 "capability.parse_version",
                 &v["input"],
@@ -237,7 +237,7 @@ fn capability(run: &mut Run) {
             return;
         }
         let out = run.case(
-            "capability/vectors/name.json",
+            "open/capability/vectors/name.json",
             name.clone(),
             "capability.parse_name",
             &v["input"],
@@ -249,15 +249,19 @@ fn capability(run: &mut Run) {
             "{name}"
         );
     });
-    run.vectors("capability/vectors/negotiation.json", 12, |run, name, v| {
-        let out = run.case(
-            "capability/vectors/negotiation.json",
-            name.clone(),
-            "capability.negotiate",
-            &v["input"],
-        );
-        assert_eq!(out["ok"], v["expected"], "{name}");
-    });
+    run.vectors(
+        "open/capability/vectors/negotiation.json",
+        12,
+        |run, name, v| {
+            let out = run.case(
+                "open/capability/vectors/negotiation.json",
+                name.clone(),
+                "capability.negotiate",
+                &v["input"],
+            );
+            assert_eq!(out["ok"], v["expected"], "{name}");
+        },
+    );
 }
 
 fn memory(run: &mut Run) {

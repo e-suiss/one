@@ -132,7 +132,7 @@ fn vectors(rel: &str) -> Vec<Value> {
 #[test]
 fn t_36_a2a_one_messages_follow_the_federation_vectors() {
     let mut seen = (0, 0);
-    for v in vectors("federation/vectors/schema/message.json") {
+    for v in vectors("open/federation/vectors/schema/message.json") {
         let bytes = serde_json::to_vec(&v["input"]).unwrap();
         let result = a2a::parse_one_message(&bytes, &Limits::DEFAULT);
         if v["valid"].as_bool().unwrap() {
@@ -149,7 +149,7 @@ fn t_36_a2a_one_messages_follow_the_federation_vectors() {
 #[test]
 fn t_36_a2a_one_tasks_follow_the_federation_vectors() {
     let mut seen = (0, 0);
-    for v in vectors("federation/vectors/schema/task.json") {
+    for v in vectors("open/federation/vectors/schema/task.json") {
         let bytes = serde_json::to_vec(&v["input"]).unwrap();
         let result = a2a::parse_one_task(&bytes, &Limits::DEFAULT);
         if v["valid"].as_bool().unwrap() {

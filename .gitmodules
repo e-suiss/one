@@ -1,0 +1,3 @@
+[submodule "conformance/open"]
+	path = conformance/open
+	url = https://github.com/e-suiss/one-open

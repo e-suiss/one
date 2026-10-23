@@ -6,6 +6,7 @@ One is proprietary. Only Suiss team members contribute, and maintainers push sig
 
 ```sh
 git clone git@github.com:e-suiss/one.git && cd one
+git submodule update --init           # the open contracts from e-suiss/one-open
 git config core.hooksPath .githooks   # formatting and secret scan before each commit
 just deps                             # PostgreSQL + pgvector, object store, monitoring
 just test                             # the same tests CI runs on every push
@@ -13,6 +14,8 @@ just check                            # the same checks CI runs on every push
 ```
 
 `just dev` starts the full environment with local Access, Relay and Work. It refuses to start while a sibling image in `deploy/compat.toml` is not published: there is no fallback mode and nothing is faked. The model server needs an NVIDIA GPU (`just dev-model` on a GPU host). Tool versions are pinned in `rust-toolchain.toml`, `.node-version`, `ml/.python-version`, `apps/apple/versions.toml` and `apps/android/versions.toml`.
+
+The open contracts (capability names and definitions, the federation extension, the export format and the schemas they share) live in the `e-suiss/one-open` submodule at `conformance/open`, pinned at one commit. One keeps no copies of them: a change goes to one-open first, then the pin moves (`git -C conformance/open checkout <commit>` and commit the gitlink). `just check` fails when the submodule is missing or off its pin, or when a file under `conformance/` is a copy of one of its files.
 
 There is no development mode: security and privacy checks are never disabled locally.
 

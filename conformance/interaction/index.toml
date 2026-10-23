@@ -1,7 +1,7 @@
 # X-12, X-22, C-25, C-26, T-31
 
 [[schema]]
-path = "schemas/common/v1.json"
+path = "../open/schemas/interaction/common.json"
 id = "https://suiss.app/schemas/one/interaction/common/v1.json"
 rules = ["X-3", "X-12", "X-20", "C-7", "C-23", "C-25", "AT-5", "AT-13", "T-31"]
 

@@ -61,7 +61,7 @@ Rust (cloud services and a shared client core), PostgreSQL with pgvector, encryp
 | `core/` | `one-core`, the client core shared by every surface |
 | `apps/`, `packages/` | Native surfaces and TypeScript packages |
 | `ml/` | Machine learning, evaluation and simulation (Python) |
-| `conformance/` | Rule catalog, data inventory, platform allowlists, schemas and vectors |
+| `conformance/` | Rule catalog, data inventory, platform allowlists, schemas and vectors; `conformance/open` is the `e-suiss/one-open` submodule with the open contracts |
 | `deploy/` | Local environment, images and the compatibility table |
 | `fuzz/`, `load/`, `xtask/` | Fuzz targets, the open-loop load generator, repository checks |
 

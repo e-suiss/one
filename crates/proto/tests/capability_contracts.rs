@@ -67,9 +67,25 @@ fn schema_vectors<T: DeserializeOwned + Serialize>(path: &str) -> (usize, usize)
 #[test]
 fn cp_16_definition_schema_vectors() {
     assert_eq!(
-        schema_vectors::<CapabilityDefinition>("vectors/definition.json"),
-        (6, 40)
+        schema_vectors::<CapabilityDefinition>("../open/capability/vectors/definition.json"),
+        (7, 41)
     );
+}
+
+#[test]
+fn c_27_projections_are_named_after_the_capability() {
+    let all = load("../open/capability/vectors/projection.json");
+    for v in &all {
+        let description = v["description"].as_str().unwrap();
+        assert!(!v["valid"].as_bool().unwrap(), "{description}");
+        let e = serde_json::from_value::<CapabilityDefinition>(v["input"].clone()).unwrap_err();
+        assert!(
+            e.to_string()
+                .contains("an MCP tool or A2A skill is the capability name"),
+            "{description}: {e}"
+        );
+    }
+    assert_eq!(all.len(), 3);
 }
 
 #[test]
@@ -103,7 +119,7 @@ fn a_49_purchase_input_schema_vectors() {
 
 #[test]
 fn cp_15_name_vectors() {
-    let all = load("vectors/name.json");
+    let all = load("../open/capability/vectors/name.json");
     for v in &all {
         let description = v["description"].as_str().unwrap();
         let input = v["input"].as_str().unwrap();
@@ -152,7 +168,7 @@ fn offer(side: &Value) -> Vec<Declaration> {
 
 #[test]
 fn cp_15_negotiation_vectors() {
-    let all = load("vectors/negotiation.json");
+    let all = load("../open/capability/vectors/negotiation.json");
     for v in &all {
         let description = v["description"].as_str().unwrap();
         let kept = negotiate(&offer(&v["input"]["local"]), &offer(&v["input"]["remote"]));
@@ -305,7 +321,7 @@ fn cp_15_taxonomy_matches_taxonomy_toml_and_parses() {
 
 #[test]
 fn cp_15_name_errors_match_naming_toml() {
-    let text = read("naming.toml");
+    let text = read("../open/capability/naming.toml");
     let field = |key: &str| {
         text.lines()
             .find_map(|l| l.strip_prefix(&format!("{key} = ")))
@@ -324,7 +340,7 @@ fn cp_15_name_errors_match_naming_toml() {
 
 #[test]
 fn cp_15_reserved_segments_match_naming_toml() {
-    let text = read("naming.toml");
+    let text = read("../open/capability/naming.toml");
     assert_eq!(
         RESERVED_SEGMENTS,
         toml_values(&text, "reserved_segment", "segment").as_slice()
@@ -551,7 +567,7 @@ fn hints_definition(definitions: &[Value], input: &Value) -> CapabilityDefinitio
 
 #[test]
 fn c_27_mcp_tool_hints_vectors() {
-    let definitions = load("vectors/definition.json");
+    let definitions = load("../open/capability/vectors/definition.json");
     let hint_keys: Vec<String> = target_keys("mcp_tool")
         .into_iter()
         .filter(|k| k.ends_with("_hint"))

@@ -1,27 +1,27 @@
 # M-6, M-7, M-8, M-9, M-10, M-13, M-20, MD-7 (1, 2), INV-14, C-19, PV-16, PV-20
 
 [[schema]]
-path = "common.json"
+path = "../open/schemas/memory/common.json"
 id = "https://suiss.app/schemas/one/memory/common/v1.json"
 rules = ["C-19", "C-12", "C-24", "M-28", "M-29", "T-28"]
 
 [[schema]]
-path = "retention-class.json"
+path = "../open/schemas/memory/retention-class.json"
 id = "https://suiss.app/schemas/one/memory/retention-class/v1.json"
 rules = ["PV-16", "C-19", "M-38"]
 
 [[schema]]
-path = "sensitive-class.json"
+path = "../open/schemas/memory/sensitive-class.json"
 id = "https://suiss.app/schemas/one/memory/sensitive-class/v1.json"
 rules = ["PV-20"]
 
 [[schema]]
-path = "data-class.json"
+path = "../open/schemas/memory/data-class.json"
 id = "https://suiss.app/schemas/one/memory/data-class/v1.json"
 rules = ["C-19", "M-7", "PV-20"]
 
 [[schema]]
-path = "life-area.json"
+path = "../open/schemas/memory/life-area.json"
 id = "https://suiss.app/schemas/one/memory/life-area/v1.json"
 rules = ["M-28"]
 

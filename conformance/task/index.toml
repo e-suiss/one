@@ -1,7 +1,7 @@
 # CP-1, CP-2, CP-3, CP-4, CP-5, CP-6, CP-7, CP-9, CP-11, CP-36, CP-42, CP-43, CP-44, CP-45, C-6, C-15, C-19, C-20, C-27, INV-30, INV-32, SEC-14, SEC-19
 
 [[schema]]
-path = "common.schema.json"
+path = "../open/schemas/task/common.json"
 id = "https://suiss.app/schemas/one/task/common/v1.json"
 rules = ["C-19", "C-24", "SEC-14", "M-28", "A-1", "A-24", "Access E45", "Access E47"]
 

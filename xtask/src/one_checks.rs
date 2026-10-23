@@ -90,7 +90,7 @@ pub(crate) fn checks() -> Vec<Check> {
             run: events::check,
         },
         Check {
-            name: "open-sync",
+            name: "open-submodule",
             run: open::check,
         },
         Check {

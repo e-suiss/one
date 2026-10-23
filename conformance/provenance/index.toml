@@ -1,7 +1,7 @@
 # SEC-14, SEC-31 (5), MD-14 (2), INV-15, T-36 (1, 3, 4, 5, 7), Access E54
 
 [[schema]]
-path = "schemas/label.v1.json"
+path = "../open/schemas/provenance/label.json"
 id = "https://suiss.app/schemas/one/provenance/label/v1.json"
 rules = ["SEC-14", "T-36 (1)"]
 

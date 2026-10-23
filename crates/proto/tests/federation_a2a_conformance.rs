@@ -27,13 +27,13 @@ use serde::de::DeserializeOwned;
 use serde_json::{Value, json};
 use support::{TomlRow, TomlValue, conformance, get, get_str, toml_tables, toml_value, vectors};
 
-const CHECKLIST: &str = "federation/a2a-conformance.toml";
-const MAPPING: &str = "federation/a2a-mapping.toml";
-const MESSAGES: &str = "federation/vectors/schema/message.json";
-const TASKS: &str = "federation/vectors/schema/task.json";
-const AGENT_EXTENSIONS: &str = "federation/vectors/schema/agent-extension.json";
-const ENVELOPES: &str = "federation/vectors/schema/envelope.json";
-const OFFER_VERSIONS: &str = "federation/vectors/offer-version.json";
+const CHECKLIST: &str = "open/federation/a2a-conformance.toml";
+const MAPPING: &str = "open/federation/a2a-mapping.toml";
+const MESSAGES: &str = "open/federation/vectors/schema/message.json";
+const TASKS: &str = "open/federation/vectors/schema/task.json";
+const AGENT_EXTENSIONS: &str = "open/federation/vectors/schema/agent-extension.json";
+const ENVELOPES: &str = "open/federation/vectors/schema/envelope.json";
+const OFFER_VERSIONS: &str = "open/federation/vectors/offer-version.json";
 
 fn section(rel: &str, name: &str) -> Vec<(String, TomlValue)> {
     let text = std::fs::read_to_string(conformance(rel)).unwrap();
@@ -75,7 +75,7 @@ struct Run {
 
 impl Run {
     fn vectors(&mut self, rel: &str) -> Vec<Value> {
-        let local = rel.strip_prefix("federation/").unwrap();
+        let local = rel.strip_prefix("open/federation/").unwrap();
         self.consulted.insert(local.to_owned());
         vectors(rel)
     }
@@ -222,8 +222,10 @@ fn a2a_4(run: &mut Run) {
         Some("schemas/agent-extension.v1.json")
     );
     let schema: Value = serde_json::from_str(
-        &std::fs::read_to_string(conformance("federation/schemas/agent-extension.v1.json"))
-            .unwrap(),
+        &std::fs::read_to_string(conformance(
+            "open/federation/schemas/agent-extension.v1.json",
+        ))
+        .unwrap(),
     )
     .unwrap();
     let mut schema_params: Vec<&String> = schema["properties"]["params"]["properties"]
@@ -563,7 +565,7 @@ fn oo_4_every_a2a_checklist_row_has_an_assertion() {
         if let Some(TomlValue::List(listed)) = get(row, "vectors") {
             for rel in listed {
                 assert!(
-                    conformance(&format!("federation/{rel}")).is_file(),
+                    conformance(&format!("open/federation/{rel}")).is_file(),
                     "{id}: {rel}"
                 );
                 assert!(run.consulted.contains(rel), "{id} does not run {rel}");

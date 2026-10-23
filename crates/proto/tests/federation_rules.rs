@@ -114,7 +114,7 @@ const ALL_STATES: [WorkState; 7] = [
 
 #[test]
 fn oo_15_kind_mapping_vectors() {
-    let all = vectors("federation/vectors/kind-mapping.json");
+    let all = vectors("open/federation/vectors/kind-mapping.json");
     for v in &all {
         let i = &v["input"];
         let e = &v["expected"];
@@ -176,7 +176,7 @@ fn oo_15_kind_mapping_vectors() {
 
 #[test]
 fn oo_15_kind_table_matches_a2a_mapping_toml() {
-    let rows = toml_tables("federation/a2a-mapping.toml", "kind");
+    let rows = toml_tables("open/federation/a2a-mapping.toml", "kind");
     assert_eq!(rows.len(), KIND_TABLE.len());
     for (row, k) in rows.iter().zip(KIND_TABLE) {
         assert_eq!(wire(&k.kind), json!(get_str(row, "kind").unwrap()));
@@ -233,7 +233,7 @@ fn oo_15_kind_table_matches_a2a_mapping_toml() {
             None => assert_eq!(task, "previous state of the Task"),
         }
     }
-    let expiry = toml_tables("federation/a2a-mapping.toml", "expiry");
+    let expiry = toml_tables("open/federation/a2a-mapping.toml", "expiry");
     let e = expire_unanswered(
         &Instant::parse("2026-11-05T10:00:00Z").unwrap(),
         &Instant::parse("2026-11-05T10:00:01Z").unwrap(),
@@ -271,7 +271,7 @@ fn offers(kind: Kind) -> bool {
 
 #[test]
 fn oo_16_offer_version_vectors() {
-    let all = vectors("federation/vectors/offer-version.json");
+    let all = vectors("open/federation/vectors/offer-version.json");
     for v in &all {
         let what = v["description"].as_str().unwrap();
         let i = &v["input"];
@@ -336,7 +336,7 @@ fn oo_16_offer_version_vectors() {
 
 #[test]
 fn oo_16_expiry_vectors() {
-    let all = vectors("federation/vectors/expiry.json");
+    let all = vectors("open/federation/vectors/expiry.json");
     for v in &all {
         let what = v["description"].as_str().unwrap();
         let i = &v["input"];
@@ -406,7 +406,7 @@ fn work_state_for(message: &Message) -> WorkState {
 
 #[test]
 fn oo_17_note_vectors() {
-    let all = vectors("federation/vectors/note.json");
+    let all = vectors("open/federation/vectors/note.json");
     for v in &all {
         let what = v["description"].as_str().unwrap();
         let i = &v["input"];
@@ -479,7 +479,7 @@ fn oo_17_note_vectors() {
 
 #[test]
 fn oo_5_handle_vectors() {
-    let all = vectors("federation/vectors/handle.json");
+    let all = vectors("open/federation/vectors/handle.json");
     for v in &all {
         let what = v["description"].as_str().unwrap();
         let i = &v["input"];
@@ -621,7 +621,7 @@ fn oo_7_relay_no_content_vectors() {
 
 #[test]
 fn oo_17_note_has_no_path_into_typed_content() {
-    let all = vectors("federation/vectors/note.json");
+    let all = vectors("open/federation/vectors/note.json");
     let message: Message = from(&all[1]["input"]["message"]);
     let typed = wire(&message.typed_content());
     assert_eq!(
@@ -641,7 +641,7 @@ fn oo_17_note_filter_matches_note_filter_toml() {
         let hex = v.strip_prefix("U+").unwrap();
         char::from_u32(u32::from_str_radix(hex, 16).unwrap()).unwrap()
     };
-    let rows: Vec<(char, char)> = toml_tables("federation/note-filter.toml", "range")
+    let rows: Vec<(char, char)> = toml_tables("open/federation/note-filter.toml", "range")
         .iter()
         .map(|r| {
             (

@@ -1,4 +1,4 @@
-//! The capability registry entry: one primary action, undo for reversible, compensate for compensable, no undeclared reversibility, safe schemas and a strong approval ceiling for irreversible or high-tier actions (CP-16, CP-19, CP-23, A-24, A-26, A-28).
+//! The capability registry entry: one primary action, undo for reversible, compensate for compensable, no undeclared reversibility, safe schemas, a strong approval ceiling for irreversible or high-tier actions, and projections named after the capability with UCP only for commerce (CP-16, CP-19, CP-23, A-24, A-26, A-28, C-27).
 
 use alloc::vec::Vec;
 use core::num::NonZeroU32;
@@ -281,6 +281,10 @@ pub enum RegistryRejection {
     ExamplesIncomplete,
     /// No provider.
     NoProvider,
+    /// An MCP tool name or A2A skill id other than the capability name.
+    ProjectionNameMismatch,
+    /// A UCP projection on a capability outside the commerce category.
+    UcpOutsideCommerce,
 }
 
 impl RegistryRejection {
@@ -296,6 +300,8 @@ impl RegistryRejection {
             Self::ThirdPartyWithoutExtends => "a third-party name extends a parent",
             Self::ExamplesIncomplete => "examples in Turkish and English",
             Self::NoProvider => "at least one provider",
+            Self::ProjectionNameMismatch => "an MCP tool or A2A skill is the capability name",
+            Self::UcpOutsideCommerce => "a UCP projection only on a commerce capability",
         }
     }
 }
@@ -347,6 +353,17 @@ pub fn check_registry_entry(definition: &CapabilityDefinition) -> Result<(), Reg
     }
     if definition.providers.is_empty() {
         return Err(RegistryRejection::NoProvider);
+    }
+    let projections = &definition.projections;
+    if [&projections.mcp_tool, &projections.a2a_skill]
+        .into_iter()
+        .flatten()
+        .any(|n| *n != definition.name)
+    {
+        return Err(RegistryRejection::ProjectionNameMismatch);
+    }
+    if projections.ucp.is_some() && definition.name.category() != Some("commerce") {
+        return Err(RegistryRejection::UcpOutsideCommerce);
     }
     Ok(())
 }

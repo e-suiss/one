@@ -1,74 +1,16 @@
-//! `open-sync`: `conformance/open.lock` pins the `e-suiss/one-open` commit whose schemas and vectors One carries; offline every mapped copy exists, and with `XTASK_ONLINE=1` every copy is byte-equal to the file at the pinned commit (T-26 (2), T-31).
+//! `open-submodule`: `conformance/open` is the `e-suiss/one-open` submodule, initialized at the commit its gitlink pins, and no file elsewhere under `conformance/` is a copy of one of its files (T-26 (2), T-31).
 
-use std::collections::{BTreeMap, BTreeSet};
+use std::collections::BTreeMap;
 use std::path::Path;
 use std::process::Command;
-
-use serde::Deserialize;
 
 use super::v;
 use crate::Violation;
 
-const LOCK: &str = "conformance/open.lock";
+const SUBMODULE: &str = "conformance/open";
 const REPOSITORY: &str = "https://github.com/e-suiss/one-open";
-const CACHE: &str = "target/xtask-open-sync";
 
-#[derive(Debug, Deserialize)]
-#[serde(deny_unknown_fields)]
-pub(crate) struct Lock {
-    pub(crate) repository: String,
-    pub(crate) commit: String,
-    pub(crate) files: BTreeMap<String, String>,
-}
-
-fn online() -> bool {
-    std::env::var("XTASK_ONLINE").is_ok_and(|v| v == "1")
-}
-
-fn clean(path: &str) -> bool {
-    !path.is_empty()
-        && !path.starts_with('/')
-        && !path.contains('\\')
-        && path
-            .split('/')
-            .all(|p| !p.is_empty() && p != "." && p != "..")
-}
-
-/// Rules on the lock file alone; `file_exists` answers for repository-relative paths.
-pub(crate) fn well_formed(lock: &Lock, file_exists: &dyn Fn(&str) -> bool) -> Vec<String> {
-    let mut out = Vec::new();
-    if lock.repository != REPOSITORY {
-        out.push(format!("`repository` must be `{REPOSITORY}`"));
-    }
-    if lock.commit.len() != 40
-        || !lock
-            .commit
-            .chars()
-            .all(|c| c.is_ascii_digit() || ('a'..='f').contains(&c))
-    {
-        out.push("`commit` must be a full lowercase commit SHA".to_owned());
-    }
-    if lock.files.is_empty() {
-        out.push("`files` maps nothing".to_owned());
-    }
-    let mut targets = BTreeSet::new();
-    for (open, one) in &lock.files {
-        if !clean(open) {
-            out.push(format!("`{open}` is not a clean relative path"));
-        }
-        if !clean(one) || !one.starts_with("conformance/") {
-            out.push(format!("`{one}` must be a clean path under conformance/"));
-        } else if !file_exists(one) {
-            out.push(format!("`{one}` does not exist"));
-        }
-        if !targets.insert(one.as_str()) {
-            out.push(format!("`{one}` is the copy of more than one file"));
-        }
-    }
-    out
-}
-
-fn git(dir: &Path, args: &[&str]) -> Result<Vec<u8>, String> {
+fn git(dir: &Path, args: &[&str]) -> Result<String, String> {
     let output = Command::new("git")
         .args(args)
         .current_dir(dir)
@@ -76,7 +18,7 @@ fn git(dir: &Path, args: &[&str]) -> Result<Vec<u8>, String> {
         .output()
         .map_err(|e| format!("git: {e}"))?;
     if output.status.success() {
-        Ok(output.stdout)
+        Ok(String::from_utf8_lossy(&output.stdout).into_owned())
     } else {
         Err(format!(
             "git {}: {}",
@@ -86,62 +28,126 @@ fn git(dir: &Path, args: &[&str]) -> Result<Vec<u8>, String> {
     }
 }
 
-fn fetch(root: &Path, lock: &Lock) -> Result<std::path::PathBuf, String> {
-    let dir = root.join(CACHE);
-    if !dir.join(".git").is_dir() {
-        std::fs::create_dir_all(&dir).map_err(|e| format!("{CACHE}: {e}"))?;
-        git(&dir, &["init", "--quiet"])?;
+/// The commit a `git ls-files --stage` line pins when it is the gitlink of [`SUBMODULE`].
+pub(crate) fn gitlink(stage: &str) -> Option<&str> {
+    let line = stage
+        .lines()
+        .find(|l| l.ends_with(&format!("\t{SUBMODULE}")))?;
+    let mut fields = line.split_whitespace();
+    (fields.next()? == "160000").then_some(())?;
+    let commit = fields.next()?;
+    (commit.len() == 40 && commit.chars().all(|c| c.is_ascii_hexdigit())).then_some(commit)
+}
+
+/// Rules on `.gitmodules` alone.
+pub(crate) fn declared(gitmodules: &str) -> Vec<String> {
+    let mut path = false;
+    let mut url = false;
+    let mut out = Vec::new();
+    for section in gitmodules.split('[').skip(1) {
+        let field = |key: &str| {
+            section.lines().find_map(|l| {
+                let (k, value) = l.split_once('=')?;
+                (k.trim() == key).then(|| value.trim().to_owned())
+            })
+        };
+        if field("path").as_deref() == Some(SUBMODULE) {
+            path = true;
+            url = field("url").as_deref() == Some(REPOSITORY);
+        } else if let Some(other) = field("path") {
+            out.push(format!("`{other}` is not a known submodule"));
+        }
     }
-    let object = format!("{}^{{commit}}", lock.commit);
-    if git(&dir, &["cat-file", "-e", &object]).is_err() {
-        git(
-            &dir,
-            &[
-                "fetch",
-                "--quiet",
-                "--depth",
-                "1",
-                "--no-tags",
-                &lock.repository,
-                &lock.commit,
-            ],
-        )?;
+    if !path {
+        out.push(format!("`{SUBMODULE}` is not declared"));
+    } else if !url {
+        out.push(format!("`{SUBMODULE}` must point at `{REPOSITORY}`"));
     }
-    Ok(dir)
+    out
+}
+
+fn lines(text: &str) -> impl Iterator<Item = &str> {
+    text.lines().filter(|l| !l.is_empty())
 }
 
 pub(crate) fn check(root: &Path) -> Result<Vec<Violation>, String> {
-    let text = std::fs::read_to_string(root.join(LOCK)).map_err(|e| format!("{LOCK}: {e}"))?;
-    let lock: Lock = toml::from_str(&text).map_err(|e| format!("{LOCK}: {e}"))?;
-    let mut out: Vec<Violation> = well_formed(&lock, &|p| root.join(p).is_file())
+    let gitmodules = std::fs::read_to_string(root.join(".gitmodules")).unwrap_or_default();
+    let mut out: Vec<Violation> = declared(&gitmodules)
         .into_iter()
-        .map(|m| v("T-26", LOCK, m))
+        .map(|m| v("T-26", ".gitmodules", m))
         .collect();
-    if !out.is_empty() || !online() {
+    let stage = git(root, &["ls-files", "--stage", "--", SUBMODULE])?;
+    let Some(pinned) = gitlink(&stage) else {
+        out.push(v(
+            "T-26",
+            SUBMODULE,
+            "is not a submodule gitlink".to_owned(),
+        ));
         return Ok(out);
+    };
+    let dir = root.join(SUBMODULE);
+    let head = if dir.join(".git").exists() {
+        git(&dir, &["rev-parse", "HEAD"]).ok()
+    } else {
+        None
+    };
+    let Some(head) = head else {
+        out.push(v(
+            "T-26",
+            SUBMODULE,
+            "is not initialized; run `git submodule update --init`".to_owned(),
+        ));
+        return Ok(out);
+    };
+    if head.trim() != pinned {
+        out.push(v(
+            "T-26",
+            SUBMODULE,
+            format!(
+                "is checked out at {} but pinned at {pinned}; run `git submodule update`",
+                head.trim()
+            ),
+        ));
     }
-    let dir = fetch(root, &lock)?;
-    for (open, one) in &lock.files {
-        let Ok(upstream) = git(
-            &dir,
-            &["cat-file", "blob", &format!("{}:{open}", lock.commit)],
-        ) else {
-            out.push(v(
-                "T-26",
-                LOCK,
-                format!("`{open}` is not in one-open at {}", lock.commit),
-            ));
+    let mut open: BTreeMap<u64, Vec<(String, Vec<u8>)>> = BTreeMap::new();
+    for rel in lines(&git(&dir, &["ls-files"])?) {
+        let path = dir.join(rel);
+        if !path.is_file() {
+            continue;
+        }
+        let bytes = std::fs::read(&path).map_err(|e| format!("{}: {e}", path.display()))?;
+        open.entry(u64::try_from(bytes.len()).unwrap_or(u64::MAX))
+            .or_default()
+            .push((rel.to_owned(), bytes));
+    }
+    let ours = git(
+        root,
+        &[
+            "ls-files",
+            "--cached",
+            "--others",
+            "--exclude-standard",
+            "--",
+            "conformance",
+        ],
+    )?;
+    for rel in lines(&ours) {
+        if rel == SUBMODULE || rel.starts_with(&format!("{SUBMODULE}/")) {
+            continue;
+        }
+        let path = root.join(rel);
+        let Ok(meta) = std::fs::metadata(&path) else {
             continue;
         };
-        let local = std::fs::read(root.join(one)).map_err(|e| format!("{one}: {e}"))?;
-        if local != upstream {
+        let Some(same_size) = open.get(&meta.len()) else {
+            continue;
+        };
+        let bytes = std::fs::read(&path).map_err(|e| format!("{rel}: {e}"))?;
+        if let Some((copy_of, _)) = same_size.iter().find(|(_, b)| *b == bytes) {
             out.push(v(
                 "T-26",
-                one.clone(),
-                format!(
-                    "differs from one-open `{open}` at {}; change one-open first, then move the pin",
-                    lock.commit
-                ),
+                rel,
+                format!("is a copy of one-open `{copy_of}`; refer to `{SUBMODULE}/{copy_of}`"),
             ));
         }
     }
@@ -152,43 +158,29 @@ pub(crate) fn check(root: &Path) -> Result<Vec<Violation>, String> {
 mod tests {
     use super::*;
 
-    fn lock(files: &[(&str, &str)]) -> Lock {
-        Lock {
-            repository: REPOSITORY.to_owned(),
-            commit: "090216d73cf2d8e1c5fa944006721a6b78d8f2f0".to_owned(),
-            files: files
-                .iter()
-                .map(|(a, b)| ((*a).to_owned(), (*b).to_owned()))
-                .collect(),
-        }
-    }
-
     #[test]
-    fn t_26_a_pinned_lock_with_existing_copies_passes() {
-        let l = lock(&[(
-            "capability/name.schema.json",
-            "conformance/capability/name.schema.json",
-        )]);
-        assert_eq!(well_formed(&l, &|_| true), Vec::<String>::new());
-    }
-
-    #[test]
-    fn t_26_short_sha_escaping_paths_and_shared_copies_fail() {
-        let mut l = lock(&[
-            ("../x", "conformance/a.json"),
-            ("b.json", "conformance/a.json"),
-            ("c.json", "crates/c.json"),
-        ]);
-        l.commit = "090216d".to_owned();
-        let errors = well_formed(&l, &|_| false);
-        assert!(
-            errors
-                .iter()
-                .any(|e| e.contains("full lowercase commit SHA"))
+    fn t_26_the_gitlink_pins_a_full_commit() {
+        let sha = "e7c00ec0ffc47f1e7ed5591396609fcbb90a3000";
+        assert_eq!(
+            gitlink(&format!("160000 {sha} 0\tconformance/open\n")),
+            Some(sha)
         );
-        assert!(errors.iter().any(|e| e.contains("`../x` is not a clean")));
-        assert!(errors.iter().any(|e| e.contains("more than one file")));
-        assert!(errors.iter().any(|e| e.contains("under conformance/")));
-        assert!(errors.iter().any(|e| e.contains("does not exist")));
+        assert_eq!(
+            gitlink(&format!("100644 {sha} 0\tconformance/open\n")),
+            None
+        );
+        assert_eq!(gitlink("160000 e7c00ec 0\tconformance/open\n"), None);
+        assert_eq!(gitlink(""), None);
+    }
+
+    #[test]
+    fn t_26_only_the_one_open_submodule_is_declared() {
+        let good = "[submodule \"conformance/open\"]\n\tpath = conformance/open\n\turl = https://github.com/e-suiss/one-open\n";
+        assert_eq!(declared(good), Vec::<String>::new());
+        assert!(declared("")[0].contains("is not declared"));
+        let fork = good.replace("e-suiss/one-open", "someone/one-open");
+        assert!(declared(&fork)[0].contains("must point at"));
+        let extra = format!("{good}[submodule \"x\"]\n\tpath = x\n\turl = https://example.com/x\n");
+        assert!(declared(&extra)[0].contains("`x` is not a known submodule"));
     }
 }
