@@ -306,3 +306,19 @@ fn inv_30_paused_needs_a_request_and_the_executor_confirmation() {
         .collect();
     assert!(derive_events(&skipped).is_err());
 }
+
+#[test]
+fn cp_3_a_resolved_wait_lets_the_next_wait_open() {
+    let a = alphabet();
+    let events: Vec<TaskEvent> = [0, 1, 5, 8, 6]
+        .iter()
+        .enumerate()
+        .map(|(i, &k)| event(&a[k], i as u64 + 1))
+        .collect();
+    let derived = derive_events(&events).unwrap();
+    assert_eq!(derived.state, TaskState::WaitingUser);
+    assert_eq!(
+        derived.wait_reason.map(one_proto::task::WaitReason::as_str),
+        Some("authentication")
+    );
+}
