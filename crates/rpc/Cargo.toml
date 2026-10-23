@@ -1,0 +1,27 @@
+[package]
+name = "one-rpc"
+description = "Internal RPC: ConnectRPC/Protobuf types and service bindings generated from conformance/rpc, and their mapping to the canonical model types (T-31)."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish = false
+
+[dependencies]
+one-proto.workspace = true
+thiserror.workspace = true
+serde = { workspace = true, features = ["alloc"] }
+serde_json = { workspace = true, features = ["alloc"] }
+buffa = { workspace = true, features = ["std"] }
+connectrpc = { workspace = true }
+
+[dev-dependencies]
+serde = { workspace = true, features = ["derive", "std"] }
+serde_json = { workspace = true, features = ["std"] }
+buffa-codegen = { workspace = true }
+connectrpc-codegen = { workspace = true }
+protox = { workspace = true }
+
+[lints]
+workspace = true

@@ -13,6 +13,7 @@ const SKIP_PREFIXES: &[&str] = &[
     "docs/",
     "conformance/catalog/",
     "core/bindings/uniffi/generated/",
+    "crates/rpc/src/gen/",
 ];
 const SKIP_SUFFIXES: &[&str] = &[".lock", "package-lock.json", ".min.js"];
 const DIRECTIVES: &[&str] = &[
@@ -305,8 +306,9 @@ mod tests {
     use super::*;
 
     #[test]
-    fn t_42_generated_uniffi_bindings_are_not_scanned() {
+    fn t_42_generated_code_is_not_scanned() {
         assert!(kind("core/bindings/uniffi/generated/swift/OneCore.swift").is_none());
+        assert!(kind("crates/rpc/src/gen/one.serving.v1.rs").is_none());
         assert!(kind("core/bindings/uniffi/tests/swift/main.swift").is_some());
     }
 

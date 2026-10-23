@@ -11,7 +11,9 @@ feature-depth = 1
 unmaintained = "all"
 unsound = "all"
 yanked = "deny"
-ignore = []
+ignore = [
+    { id = "RUSTSEC-2026-0374", reason = "basic-toml is unmaintained with no successor release; build-time only through uniffi_bindgen and askama, watched in conformance/catalog/watchlist.toml" },
+]
 
 [licenses]
 allow = [

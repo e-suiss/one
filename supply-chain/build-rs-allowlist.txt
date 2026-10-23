@@ -14,6 +14,7 @@ icu_normalizer_data
 icu_properties_data
 libc
 num-traits
+prettyplease
 proc-macro2
 proc-macro2-diagnostics
 quote
@@ -26,6 +27,8 @@ serde_json
 thiserror
 uncased
 valuable
+wasm-bindgen
+wasm-bindgen-shared
 wit-bindgen
 zerocopy
 zmij

@@ -121,6 +121,7 @@ serve:
 
 gen:
     ONE_UPDATE_OPENAPI=1 cargo test --locked -q -p one-http --test openapi
+    ONE_UPDATE_RPC=1 cargo test --locked -q -p one-rpc --test generated
     just bindings
 
 bindings:

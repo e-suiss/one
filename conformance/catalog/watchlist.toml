@@ -75,3 +75,8 @@ checked = "2026-10-10"
 rule = "PV-63"
 topic = "Watched legislation"
 checked = "2026-10-10"
+
+[[watch]]
+rule = "T-39"
+topic = "RUSTSEC-2026-0374 basic-toml via uniffi and askama"
+checked = "2026-10-23"
