@@ -1,0 +1,232 @@
+[
+  {
+    "rule": "C-27",
+    "description": "CT1 compensable entry with a browser provider",
+    "input": {
+      "base": "Complete ride request entry"
+    },
+    "expected": {
+      "read_only_hint": false,
+      "destructive_hint": false,
+      "idempotent_hint": false,
+      "open_world_hint": true
+    }
+  },
+  {
+    "rule": "C-27",
+    "description": "Irreversible entry is destructive",
+    "input": {
+      "base": "Irreversible action limited to phone and desktop with passkey"
+    },
+    "expected": {
+      "read_only_hint": false,
+      "destructive_hint": true,
+      "idempotent_hint": false,
+      "open_world_hint": true
+    }
+  },
+  {
+    "rule": "C-27",
+    "description": "CT0 that writes nothing through an API is read-only and closed-world",
+    "input": {
+      "base": "Complete ride request entry",
+      "consequence_tier": "CT0",
+      "writes": null,
+      "reversibility": "reversible",
+      "path_types": [
+        "api"
+      ]
+    },
+    "expected": {
+      "read_only_hint": true,
+      "destructive_hint": false,
+      "idempotent_hint": false,
+      "open_world_hint": false
+    }
+  },
+  {
+    "rule": "C-27",
+    "description": "CT0 that writes data is not read-only",
+    "input": {
+      "base": "Complete ride request entry",
+      "consequence_tier": "CT0",
+      "writes": {
+        "kinds": [
+          "financial"
+        ],
+        "sensitive": []
+      },
+      "reversibility": "reversible",
+      "path_types": [
+        "api"
+      ]
+    },
+    "expected": {
+      "read_only_hint": false,
+      "destructive_hint": false,
+      "idempotent_hint": false,
+      "open_world_hint": false
+    }
+  },
+  {
+    "rule": "C-27",
+    "description": "CT1 that writes nothing is not read-only",
+    "input": {
+      "base": "Complete ride request entry",
+      "consequence_tier": "CT1",
+      "writes": null,
+      "reversibility": "reversible",
+      "path_types": [
+        "api"
+      ]
+    },
+    "expected": {
+      "read_only_hint": false,
+      "destructive_hint": false,
+      "idempotent_hint": false,
+      "open_world_hint": false
+    }
+  },
+  {
+    "rule": "C-27",
+    "description": "CT2 that writes nothing is not read-only",
+    "input": {
+      "base": "Complete ride request entry",
+      "consequence_tier": "CT2",
+      "writes": null,
+      "reversibility": "compensable",
+      "path_types": [
+        "api"
+      ]
+    },
+    "expected": {
+      "read_only_hint": false,
+      "destructive_hint": false,
+      "idempotent_hint": false,
+      "open_world_hint": false
+    }
+  },
+  {
+    "rule": "C-27",
+    "description": "CT3 irreversible is destructive and not read-only",
+    "input": {
+      "base": "Complete ride request entry",
+      "consequence_tier": "CT3",
+      "writes": {
+        "kinds": [
+          "financial"
+        ],
+        "sensitive": []
+      },
+      "reversibility": "irreversible",
+      "path_types": [
+        "api"
+      ]
+    },
+    "expected": {
+      "read_only_hint": false,
+      "destructive_hint": true,
+      "idempotent_hint": false,
+      "open_world_hint": false
+    }
+  },
+  {
+    "rule": "C-27",
+    "description": "Reversible is not destructive",
+    "input": {
+      "base": "Complete ride request entry",
+      "reversibility": "reversible"
+    },
+    "expected": {
+      "read_only_hint": false,
+      "destructive_hint": false,
+      "idempotent_hint": false,
+      "open_world_hint": true
+    }
+  },
+  {
+    "rule": "C-27",
+    "description": "Compensable is not destructive",
+    "input": {
+      "base": "Complete ride request entry",
+      "reversibility": "compensable"
+    },
+    "expected": {
+      "read_only_hint": false,
+      "destructive_hint": false,
+      "idempotent_hint": false,
+      "open_world_hint": true
+    }
+  },
+  {
+    "rule": "C-27",
+    "description": "MCP, OS intent and commerce protocol paths are not open-world",
+    "input": {
+      "base": "Complete ride request entry",
+      "path_types": [
+        "mcp",
+        "os_intent",
+        "commerce_protocol"
+      ]
+    },
+    "expected": {
+      "read_only_hint": false,
+      "destructive_hint": false,
+      "idempotent_hint": false,
+      "open_world_hint": false
+    }
+  },
+  {
+    "rule": "C-27",
+    "description": "A single browser path is open-world",
+    "input": {
+      "base": "Complete ride request entry",
+      "path_types": [
+        "browser"
+      ]
+    },
+    "expected": {
+      "read_only_hint": false,
+      "destructive_hint": false,
+      "idempotent_hint": false,
+      "open_world_hint": true
+    }
+  },
+  {
+    "rule": "C-27",
+    "description": "A browser path after other paths is open-world",
+    "input": {
+      "base": "Complete ride request entry",
+      "path_types": [
+        "api",
+        "mcp",
+        "browser"
+      ]
+    },
+    "expected": {
+      "read_only_hint": false,
+      "destructive_hint": false,
+      "idempotent_hint": false,
+      "open_world_hint": true
+    }
+  },
+  {
+    "rule": "C-27",
+    "description": "Read-only and open-world together",
+    "input": {
+      "base": "Complete ride request entry",
+      "consequence_tier": "CT0",
+      "writes": null,
+      "reversibility": "reversible",
+      "path_types": [
+        "browser"
+      ]
+    },
+    "expected": {
+      "read_only_hint": true,
+      "destructive_hint": false,
+      "idempotent_hint": false,
+      "open_world_hint": true
+    }
+  }
+]

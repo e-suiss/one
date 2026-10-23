@@ -8,10 +8,15 @@
     reason = "T-38"
 )]
 
+#[allow(dead_code, reason = "T-38")]
+#[path = "federation_support/mod.rs"]
+mod support;
+
 use one_proto::capability::{
-    AutonomyRule, CATEGORIES, CapabilityDefinition, CapabilityName, CapabilityVersion, Declaration,
-    MAX_NAME_LENGTH, NameError, NameKind, PurchaseInput, RESERVED_SEGMENTS, SurfaceCapability,
-    TAXONOMY, Trigger, TriggerRejection, TriggerRun, TypedSchema, check_trigger_bounds,
+    AndroidAppFunction, AppleAppSchema, AutonomyRule, CATEGORIES, CapabilityDefinition,
+    CapabilityName, CapabilityVersion, Declaration, MAX_NAME_LENGTH, NameError, NameKind,
+    Projections, PurchaseInput, RESERVED_SEGMENTS, SurfaceCapability, TAXONOMY, ThirdPartyName,
+    Trigger, TriggerRejection, TriggerRun, TypedSchema, check_trigger_bounds,
     effective_reversibility, is_forbidden_field_name, is_safe_property_name, negotiate,
 };
 use one_proto::interaction_types::Reversibility;
@@ -19,6 +24,7 @@ use one_proto::ontology::JsonObject;
 use serde::Serialize;
 use serde::de::DeserializeOwned;
 use serde_json::{Value, json};
+use support::{TomlValue, get_bool, get_str, toml_tables};
 
 fn read(path: &str) -> String {
     let full = format!(
@@ -333,4 +339,248 @@ fn a_42_category_wide_or_wildcard_capability_is_not_a_name() {
     assert!(CapabilityName::parse("app.suiss.commerce").is_err());
     assert!(CapabilityName::parse("app.suiss.commerce.*").is_err());
     assert!(CapabilityName::parse("*").is_err());
+}
+
+fn projection_targets() -> Vec<String> {
+    read("projections.toml")
+        .lines()
+        .filter_map(|l| l.strip_prefix("[target.")?.strip_suffix(']'))
+        .map(str::to_owned)
+        .collect()
+}
+
+fn target_keys(target: &str) -> Vec<String> {
+    let header = format!("[target.{target}]");
+    read("projections.toml")
+        .lines()
+        .skip_while(|l| *l != header)
+        .skip(1)
+        .take_while(|l| !l.starts_with('['))
+        .filter_map(|l| l.split_once(" = ").map(|(k, _)| k.to_owned()))
+        .collect()
+}
+
+fn is_mcp_tool_name(name: &str) -> bool {
+    (1..=128).contains(&name.len())
+        && name
+            .bytes()
+            .all(|b| b.is_ascii_alphanumeric() || matches!(b, b'_' | b'-' | b'.'))
+}
+
+fn projections(value: &Value) -> Projections {
+    serde_json::from_value(value.clone()).unwrap_or_else(|e| panic!("{value}: {e}"))
+}
+
+#[test]
+fn cp_15_projection_targets_are_the_projection_fields() {
+    let name = "app.suiss.assistant.task.submit";
+    let full = Projections {
+        mcp_tool: Some(CapabilityName::parse(name).unwrap()),
+        a2a_skill: Some(CapabilityName::parse(name).unwrap()),
+        apple_app_schema: Some(AppleAppSchema::parse(".mail.createDraft").unwrap()),
+        android_app_function: Some(AndroidAppFunction::parse(name).unwrap()),
+        ucp: Some(serde_json::from_value(json!("dev.ucp.shopping.checkout")).unwrap()),
+    };
+    let mut fields: Vec<String> = serde_json::to_value(&full)
+        .unwrap()
+        .as_object()
+        .unwrap()
+        .keys()
+        .cloned()
+        .collect();
+    let mut targets = projection_targets();
+    fields.sort();
+    targets.sort();
+    assert_eq!(fields, targets);
+    let text = read("projections.toml");
+    assert!(text.contains("direction = \"outbound_only\""));
+}
+
+#[test]
+fn cp_15_projection_rows_map_registry_capabilities_to_well_formed_targets() {
+    let rows = toml_tables("capability/projections.toml", "row");
+    assert_eq!(rows.len(), 13);
+    let mut seen = Vec::new();
+    for row in &rows {
+        let name = get_str(row, "capability").unwrap();
+        assert!(!seen.contains(&name), "{name} mapped twice");
+        seen.push(name);
+        let parsed = CapabilityName::parse(name).unwrap_or_else(|e| panic!("{name}: {e}"));
+        assert_eq!(parsed.kind(), NameKind::Suiss, "{name}");
+        assert!(TAXONOMY.contains(&name), "{name} is not in the registry");
+        let mut targets = 0;
+        for (key, value) in row {
+            match (key.as_str(), value) {
+                ("capability", _) => {}
+                ("apple_app_schema", TomlValue::Str(schema)) => {
+                    targets += 1;
+                    assert!(AppleAppSchema::parse(schema).is_ok(), "{name}: {schema}");
+                    let p = projections(&json!({ "apple_app_schema": schema }));
+                    assert_eq!(p.apple_app_schema.unwrap().as_str(), schema);
+                }
+                ("ucp", TomlValue::Str(ucp)) => {
+                    targets += 1;
+                    assert_eq!(parsed.category(), Some("commerce"), "{name}: {ucp}");
+                    let third: ThirdPartyName = serde_json::from_value(json!(ucp))
+                        .unwrap_or_else(|e| panic!("{name}: {ucp}: {e}"));
+                    let segments: Vec<&str> = third.name().segments().collect();
+                    assert_eq!(segments[..3], ["dev", "ucp", "shopping"], "{ucp}");
+                    assert_eq!(segments.len(), 4, "{ucp}");
+                    assert_eq!(projections(&json!({ "ucp": ucp })).ucp, Some(third));
+                }
+                ("mcp_tool_exposed" | "a2a_skill_exposed", TomlValue::Bool(true)) => {
+                    targets += 1;
+                    let field = key.trim_end_matches("_exposed");
+                    assert!(is_mcp_tool_name(name), "{name}");
+                    let p = serde_json::to_value(projections(&json!({ field: name }))).unwrap();
+                    assert_eq!(p[field], json!(name));
+                    assert!(AndroidAppFunction::parse(name).is_ok(), "{name}");
+                }
+                other => panic!("{name}: unknown projection {other:?}"),
+            }
+        }
+        assert!(targets > 0, "{name} projects nowhere");
+    }
+    for name in [
+        "app.suiss.assistant.task.submit",
+        "app.suiss.assistant.task.status",
+    ] {
+        let row = rows
+            .iter()
+            .find(|r| get_str(r, "capability") == Some(name))
+            .unwrap();
+        assert_eq!(get_bool(row, "mcp_tool_exposed"), Some(true), "{name}");
+        assert_eq!(get_bool(row, "a2a_skill_exposed"), Some(true), "{name}");
+    }
+}
+
+#[test]
+fn cp_15_projection_targets_reject_malformed_names() {
+    for bad in [
+        "mail.createDraft",
+        ".Mail.createDraft",
+        ".mail.",
+        ".mail",
+        ".mail.create-draft",
+    ] {
+        assert!(AppleAppSchema::parse(bad).is_err(), "{bad}");
+        assert!(serde_json::from_value::<Projections>(json!({ "apple_app_schema": bad })).is_err());
+    }
+    for bad in [
+        "app.suiss.commerce.purchase",
+        "ucp",
+        "dev.ucp",
+        "Dev.ucp.shopping.checkout",
+    ] {
+        assert!(
+            serde_json::from_value::<Projections>(json!({ "ucp": bad })).is_err(),
+            "{bad}"
+        );
+    }
+    for bad in ["", "App.Suiss.x.y", "tool name"] {
+        assert!(
+            serde_json::from_value::<Projections>(json!({ "mcp_tool": bad })).is_err(),
+            "{bad}"
+        );
+    }
+    assert!(serde_json::from_value::<Projections>(json!({ "openai_function": "x" })).is_err());
+    assert!(AndroidAppFunction::parse("").is_err());
+    let long = "a".repeat(129);
+    assert!(!is_mcp_tool_name(&long));
+    for name in TAXONOMY {
+        assert!(is_mcp_tool_name(name), "{name}");
+    }
+}
+
+fn hints_definition(definitions: &[Value], input: &Value) -> CapabilityDefinition {
+    let base = input["base"].as_str().unwrap();
+    let mut def = definitions
+        .iter()
+        .find(|v| v["valid"] == json!(true) && v["description"] == json!(base))
+        .unwrap_or_else(|| panic!("{base}"))["input"]
+        .clone();
+    if let Some(tier) = input.get("consequence_tier") {
+        def["authority"]["consequence_tier"] = tier.clone();
+    }
+    if let Some(writes) = input.get("writes") {
+        def["data_access"]["writes"] = writes.clone();
+    }
+    if let Some(reversibility) = input.get("reversibility") {
+        def["reversibility"] = reversibility.clone();
+    }
+    let primary = def["actions"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .find(|a| a["role"] == "primary")
+        .unwrap()
+        .clone();
+    let second = match def["reversibility"].as_str().unwrap() {
+        "reversible" => Some("undo"),
+        "compensable" => Some("compensate"),
+        _ => None,
+    };
+    def["actions"] = std::iter::once(primary.clone())
+        .chain(second.map(|role| {
+            let mut a = primary.clone();
+            a["role"] = json!(role);
+            a["action_ref"]["name"] = json!(role);
+            a
+        }))
+        .collect();
+    if second.is_none()
+        || matches!(
+            def["authority"]["consequence_tier"].as_str(),
+            Some("CT2" | "CT3")
+        )
+    {
+        def["surface"]["approval_ceiling"] =
+            json!({ "surface_classes": ["phone", "desktop"], "min_assurance": "passkey" });
+    }
+    if let Some(paths) = input.get("path_types") {
+        def["providers"] = paths
+            .as_array()
+            .unwrap()
+            .iter()
+            .enumerate()
+            .map(|(i, p)| json!({ "provider_ref": format!("provider:p{i}"), "path_type": p }))
+            .collect();
+    }
+    serde_json::from_value(def).unwrap()
+}
+
+#[test]
+fn c_27_mcp_tool_hints_vectors() {
+    let definitions = load("vectors/definition.json");
+    let hint_keys: Vec<String> = target_keys("mcp_tool")
+        .into_iter()
+        .filter(|k| k.ends_with("_hint"))
+        .collect();
+    assert_eq!(
+        hint_keys,
+        [
+            "read_only_hint",
+            "destructive_hint",
+            "idempotent_hint",
+            "open_world_hint"
+        ]
+    );
+    let all = load("vectors/mcp-tool-hints.json");
+    for v in &all {
+        let description = v["description"].as_str().unwrap();
+        let hints = hints_definition(&definitions, &v["input"]).mcp_tool_hints();
+        let got = json!({
+            "read_only_hint": hints.read_only,
+            "destructive_hint": hints.destructive,
+            "idempotent_hint": hints.idempotent,
+            "open_world_hint": hints.open_world,
+        });
+        let mut expected_keys: Vec<&String> = v["expected"].as_object().unwrap().keys().collect();
+        expected_keys.sort();
+        let mut table_keys: Vec<&String> = hint_keys.iter().collect();
+        table_keys.sort();
+        assert_eq!(expected_keys, table_keys, "{description}");
+        assert_eq!(got, v["expected"], "{description}");
+    }
+    assert_eq!(all.len(), 13);
 }

@@ -52,6 +52,11 @@ kind = "behaviour"
 rules = ["A-24", "CP-19"]
 
 [[vectors]]
+path = "vectors/mcp-tool-hints.json"
+kind = "behaviour"
+rules = ["C-27", "CP-15"]
+
+[[vectors]]
 path = "vectors/surface-capability.json"
 kind = "schema"
 schema = "https://suiss.app/schemas/one/capability/surface-capability/v1.json"

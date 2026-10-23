@@ -8,11 +8,16 @@
     reason = "T-38"
 )]
 
+#[allow(dead_code, reason = "T-38")]
+#[path = "federation_support/mod.rs"]
+mod support;
+
 use std::path::Path;
 
 use one_proto::memory::fields::{EpistemicState, LiveStatus};
 use one_proto::memory::record::LiveMemoryRecord;
 use one_proto::memory::record::MemoryRecord;
+use one_proto::model::RoutingRecord;
 use one_proto::ontology::concept::{AnyId, Concept};
 use one_proto::ontology::concept::{CanonicalId, CanonicalNode};
 use one_proto::ontology::episode::Episode;
@@ -30,10 +35,11 @@ use one_proto::ontology::relation::RelationEdge;
 use one_proto::ontology::routine::Routine;
 use one_proto::ontology::time::Instant;
 use one_proto::ontology::validate::ContractViolation;
-use one_proto::{InteractionId, MemoryRecordId};
+use one_proto::{AdapterId, InteractionId, MemoryRecordId, ModelVersionId};
 use serde::Serialize;
 use serde::de::DeserializeOwned;
 use serde_json::{Value, json};
+use support::{TomlValue, conformance, get_bool, get_str, toml_tables, toml_value};
 
 fn vectors(rel: &str) -> Vec<Value> {
     let path = Path::new(env!("CARGO_MANIFEST_DIR"))
@@ -369,4 +375,272 @@ fn c_14_suggestion_is_an_approval_interaction() {
         suggest(interaction, obs, at),
         Err(LayerError::NotSuggestible)
     );
+}
+
+fn root_keys(rel: &str) -> Vec<(String, TomlValue)> {
+    std::fs::read_to_string(conformance(rel))
+        .unwrap()
+        .lines()
+        .map(str::trim)
+        .take_while(|l| !l.starts_with('['))
+        .filter(|l| !l.is_empty() && !l.starts_with('#'))
+        .map(|l| {
+            let (k, v) = l.split_once('=').unwrap();
+            (k.trim().to_owned(), toml_value(v))
+        })
+        .collect()
+}
+
+fn rust_sources(root: &Path, out: &mut Vec<std::path::PathBuf>) {
+    if root.is_file() {
+        out.push(root.to_owned());
+        return;
+    }
+    for entry in std::fs::read_dir(root).unwrap() {
+        let path = entry.unwrap().path();
+        if path.is_dir() {
+            rust_sources(&path, out);
+        } else if path.extension().is_some_and(|e| e == "rs") {
+            out.push(path);
+        }
+    }
+}
+
+fn area_sources(area: &str) -> Vec<std::path::PathBuf> {
+    let crates = Path::new(env!("CARGO_MANIFEST_DIR")).join("..");
+    let roots: Vec<std::path::PathBuf> = match area {
+        "ontology" | "memory" | "task" | "capability" | "model" => vec![
+            crates.join(format!("proto/src/{area}.rs")),
+            crates.join(format!("proto/src/{area}")),
+        ],
+        "interaction" => vec![
+            crates.join("interaction/src"),
+            crates.join("proto/src/interaction_types.rs"),
+        ],
+        other => panic!("canonical area `{other}` has no source mapping"),
+    };
+    let mut out = Vec::new();
+    for root in &roots {
+        assert!(root.exists(), "{}", root.display());
+        rust_sources(root, &mut out);
+    }
+    out
+}
+
+fn code_lines(path: &Path) -> Vec<String> {
+    std::fs::read_to_string(path)
+        .unwrap()
+        .lines()
+        .map(str::trim)
+        .filter(|l| !l.starts_with("//"))
+        .map(str::to_owned)
+        .collect()
+}
+
+fn names_operational_module(line: &str) -> bool {
+    let ident = |c: char| c.is_ascii_alphanumeric() || c == '_';
+    line.match_indices("model").any(|(at, _)| {
+        let before = line[..at].chars().next_back();
+        let after = &line[at + "model".len()..];
+        before.is_none_or(|c| !ident(c))
+            && (after.starts_with("::")
+                || (line[..at].ends_with("::") && after.chars().next().is_none_or(|c| !ident(c))))
+    })
+}
+
+fn defines(lines: &[String], name: &str) -> bool {
+    lines.iter().any(|l| {
+        [
+            format!("pub struct {name} "),
+            format!("pub struct {name}("),
+            format!("pub enum {name} "),
+        ]
+        .iter()
+        .any(|d| l.starts_with(d.as_str()))
+    })
+}
+
+#[test]
+fn c_9_operational_table_declares_no_canonical_meaning() {
+    let rel = "ontology/operational.toml";
+    let flags = root_keys(rel);
+    assert_eq!(
+        flags,
+        vec![
+            ("may_reference_canonical".to_owned(), TomlValue::Bool(true)),
+            (
+                "canonical_meaning_depends_on".to_owned(),
+                TomlValue::Bool(false)
+            ),
+            ("canonical_type".to_owned(), TomlValue::Bool(false)),
+        ]
+    );
+    let objects = toml_tables(rel, "object");
+    let names: Vec<&str> = objects
+        .iter()
+        .map(|o| get_str(o, "name").unwrap())
+        .collect();
+    for required in [
+        "Model version record",
+        "Personal adapter version record",
+        "Key",
+        "Routing record",
+        "Evaluation record",
+        "Processor trace",
+        "Operational telemetry",
+    ] {
+        assert!(names.contains(&required), "{required}");
+    }
+    let concepts = toml_tables("ontology/concepts.toml", "concept");
+    let operational = toml_tables("ontology/concepts.toml", "operational_prefix");
+    let concept_names: Vec<&str> = concepts
+        .iter()
+        .map(|c| get_str(c, "name").unwrap())
+        .collect();
+    for name in &names {
+        assert!(!concept_names.contains(name), "{name}");
+    }
+    let mut with_ids = 0;
+    for object in &objects {
+        let Some(id_type) = get_str(object, "id_type") else {
+            continue;
+        };
+        with_ids += 1;
+        assert!(
+            concepts
+                .iter()
+                .all(|c| get_str(c, "id_type") != Some(id_type)),
+            "{id_type} is a canonical concept id"
+        );
+        let row = operational
+            .iter()
+            .find(|p| get_str(p, "id_type") == Some(id_type))
+            .unwrap_or_else(|| panic!("{id_type} is not an operational prefix"));
+        assert_eq!(get_str(row, "rule"), Some("C-9"), "{id_type}");
+        let prefix = get_str(row, "id_prefix").unwrap();
+        let body = "01k7n51z06er38c00000000000";
+        let (rust_prefix, parses) = match id_type {
+            "ModelVersionId" => (
+                ModelVersionId::PREFIX,
+                ModelVersionId::parse(&format!("{prefix}_{body}")).is_ok(),
+            ),
+            "AdapterId" => (
+                AdapterId::PREFIX,
+                AdapterId::parse(&format!("{prefix}_{body}")).is_ok(),
+            ),
+            other => panic!("operational id `{other}` has no typed identifier"),
+        };
+        assert_eq!(rust_prefix, prefix, "{id_type}");
+        assert!(parses, "{id_type}");
+    }
+    assert_eq!(with_ids, 2);
+    let non_canonical = toml_tables("ontology/non-canonical.toml", "entry");
+    let model = non_canonical
+        .iter()
+        .find(|e| get_str(e, "concept") == Some("Model"))
+        .unwrap();
+    assert_eq!(get_str(model, "lives_in"), Some("operational.toml"));
+    assert_eq!(get_str(model, "kind"), Some("operational object"));
+}
+
+#[test]
+fn c_9_canonical_modules_never_reach_operational_objects() {
+    assert!(names_operational_module(
+        "use crate::model::roles::ModelRef;"
+    ));
+    assert!(names_operational_module("use one_proto::model;"));
+    assert!(names_operational_module(
+        "use crate::{id::TaskId, model::RoutingRecord};"
+    ));
+    assert!(!names_operational_module(
+        "pub model_version: Option<ModelVersionId>,"
+    ));
+    assert!(!names_operational_module(
+        "let base_model = x.base_model::<T>();"
+    ));
+
+    let lib = code_lines(&Path::new(env!("CARGO_MANIFEST_DIR")).join("src/lib.rs"));
+    assert!(
+        lib.iter()
+            .all(|l| !(l.starts_with("pub use") && names_operational_module(l))),
+        "the crate root re-exports an operational type"
+    );
+
+    let mut areas: Vec<String> = toml_tables("ontology/concepts.toml", "concept")
+        .iter()
+        .map(|c| get_str(c, "area").unwrap().to_owned())
+        .collect();
+    areas.sort();
+    areas.dedup();
+    assert_eq!(
+        areas,
+        ["capability", "interaction", "memory", "ontology", "task"]
+    );
+
+    let operational: Vec<Vec<String>> = area_sources("model")
+        .iter()
+        .map(|p| code_lines(p))
+        .collect();
+    let rust_types = [
+        ("Model version record", "RegistryEntry"),
+        ("Routing record", "RoutingRecord"),
+        ("Processor trace", "ProviderTracePart"),
+    ];
+    let objects = toml_tables("ontology/operational.toml", "object");
+    for (object, rust) in rust_types {
+        assert!(
+            objects.iter().any(|o| get_str(o, "name") == Some(object)),
+            "{object}"
+        );
+        assert!(operational.iter().any(|f| defines(f, rust)), "{rust}");
+    }
+
+    let mut wrong = Vec::new();
+    let mut files = 0;
+    for area in &areas {
+        for path in area_sources(area) {
+            files += 1;
+            let lines = code_lines(&path);
+            for line in lines.iter().filter(|l| names_operational_module(l)) {
+                wrong.push(format!("{}: {line}", path.display()));
+            }
+            for (_, rust) in rust_types {
+                if defines(&lines, rust) || lines.iter().any(|l| l.contains(rust)) {
+                    wrong.push(format!("{}: {rust}", path.display()));
+                }
+            }
+        }
+    }
+    assert!(files > 40, "{files}");
+    assert!(wrong.is_empty(), "{}", wrong.join("\n"));
+}
+
+#[test]
+fn c_9_processor_trace_keeps_its_own_retention_class() {
+    let rel = "ontology/operational.toml";
+    let trace = toml_tables(rel, "object")
+        .into_iter()
+        .find(|o| get_str(o, "name") == Some("Processor trace"))
+        .unwrap();
+    let class = get_str(&trace, "retention_class").unwrap();
+    let mut seen = 0;
+    for v in vectors("model/vectors/routing-record.json") {
+        if v["valid"] != json!(true) {
+            continue;
+        }
+        let record: RoutingRecord = serde_json::from_value(v["input"].clone()).unwrap();
+        let (memory, provider_trace) = (
+            serde_json::to_value(&record.memory_part).unwrap(),
+            serde_json::to_value(&record.provider_trace_part).unwrap(),
+        );
+        assert_eq!(provider_trace["retention_class"], json!(class));
+        assert_ne!(memory["retention_class"], json!(class));
+        seen += 1;
+    }
+    assert!(seen > 0);
+    let derived = toml_tables(rel, "object")
+        .into_iter()
+        .find(|o| get_str(o, "name").is_some_and(|n| n.contains("derived index")))
+        .unwrap();
+    assert_eq!(get_bool(&derived, "bound_to_sources"), Some(true));
 }
