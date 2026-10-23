@@ -65,9 +65,9 @@ pub struct ScopedRecord {
     pub areas: Vec<LifeArea>,
 }
 
-/// The key of a derivative that is not a memory record (`summary:1`, `vec:2`).
+/// The name of a derivative that is not a memory record (`summary:1`, `vec:2`).
 #[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord, Hash, Serialize, Deserialize)]
-pub struct DerivativeKey(pub String);
+pub struct DerivativeName(pub String);
 
 /// A derivative: a memory record such as a consolidated fact, or another artefact.
 #[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord, Hash, Serialize, Deserialize)]
@@ -76,7 +76,7 @@ pub enum DerivativeId {
     /// A memory record.
     Record(MemoryRecordId),
     /// Another artefact.
-    Other(DerivativeKey),
+    Other(DerivativeName),
 }
 
 /// The kind of a derivative.

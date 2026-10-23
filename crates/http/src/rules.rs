@@ -46,8 +46,14 @@ pub async fn request_id(State(sources): State<Sources>, request: Request, next: 
 }
 
 /// A validated `Idempotency-Key`: an RFC 8941 string of 1 to 255 visible ASCII characters.
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Clone, PartialEq, Eq)]
 pub struct IdempotencyKey(String);
+
+impl core::fmt::Debug for IdempotencyKey {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        f.write_str("IdempotencyKey([masked])")
+    }
+}
 
 impl IdempotencyKey {
     /// Parses the header value.

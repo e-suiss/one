@@ -708,7 +708,7 @@ pub struct Message {
 }
 
 /// What the planner and Work may see of a message: the typed content only, never the note (OO-17).
-#[derive(Clone, Copy, Debug, PartialEq, Serialize)]
+#[derive(Clone, Copy, PartialEq, Serialize)]
 pub struct TypedContent<'a> {
     /// The kind.
     pub kind: Kind,
@@ -767,5 +767,14 @@ impl Message {
             return Err(Refusal::KindMismatch);
         }
         Ok(())
+    }
+}
+
+impl core::fmt::Debug for TypedContent<'_> {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        f.debug_struct("TypedContent")
+            .field("kind", &self.kind)
+            .field("body", &"[masked]")
+            .finish()
     }
 }

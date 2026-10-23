@@ -128,7 +128,7 @@ pub const MAX_HANDLE_LIFETIME_SECONDS: u64 = 604_800;
 pub const MAX_STATE_MEMBERS: usize = 16;
 
 /// What the issuer holds after opening an echoed handle at the crypto boundary.
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, PartialEq)]
 pub struct OpenedHandle<'a> {
     /// The handle text echoed in `inReplyTo.handle`, if any.
     pub compact: Option<&'a str>,
@@ -252,4 +252,15 @@ pub fn verify_handle<S: SpentHandles + ?Sized>(
         jti: claims.jti.clone(),
         exp: claims.exp,
     })
+}
+
+impl core::fmt::Debug for OpenedHandle<'_> {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        f.debug_struct("OpenedHandle")
+            .field("compact", &self.compact.map(|_| "[masked]"))
+            .field("header", &self.header.map(|_| "[masked]"))
+            .field("aead_verified", &self.aead_verified)
+            .field("claims", &self.claims.map(|_| "[masked]"))
+            .finish()
+    }
 }

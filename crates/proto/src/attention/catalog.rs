@@ -62,9 +62,9 @@ pub enum MuteScope {
 
 /// The name of an output type under `app.suiss.one.output`.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
-pub struct OutputTypeKey(&'static str);
+pub struct OutputTypeName(&'static str);
 
-impl OutputTypeKey {
+impl OutputTypeName {
     /// The name.
     #[must_use]
     pub const fn as_str(self) -> &'static str {
@@ -72,7 +72,7 @@ impl OutputTypeKey {
     }
 }
 
-impl core::fmt::Display for OutputTypeKey {
+impl core::fmt::Display for OutputTypeName {
     fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
         f.write_str(self.0)
     }
@@ -82,7 +82,7 @@ impl core::fmt::Display for OutputTypeKey {
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub struct OutputType {
     /// The type name.
-    pub id: OutputTypeKey,
+    pub id: OutputTypeName,
     /// The display title.
     pub title: &'static str,
     /// How it reaches the user.
@@ -111,7 +111,7 @@ const fn relay(
     budget_exempt: bool,
 ) -> OutputType {
     OutputType {
-        id: OutputTypeKey(name),
+        id: OutputTypeName(name),
         title,
         delivery: Delivery::Relay,
         row: Some(row),
@@ -124,7 +124,7 @@ const fn relay(
 
 const fn in_app(name: &'static str, title: &'static str) -> OutputType {
     OutputType {
-        id: OutputTypeKey(name),
+        id: OutputTypeName(name),
         title,
         delivery: Delivery::InApp,
         row: None,
