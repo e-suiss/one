@@ -5,6 +5,7 @@ use alloc::vec::Vec;
 use core::fmt;
 
 use one_proto::money::Money;
+use one_proto::ontology::validate::ContractViolation;
 use one_proto::ontology::{Instant, JsonValue, UiLang};
 use serde::de::Error as _;
 use serde::ser::SerializeStruct;
@@ -14,7 +15,7 @@ use super::text::{
     FieldName, chars_within, checked_text, decode, has_unique, is_ecma_space, is_uri_text,
     map_at_most,
 };
-use crate::label::{ExternalSource, LabelKind, UntrustedLabel};
+use crate::label::{ExternalSource, Label, LabelKind, MixedSources, Source, UntrustedLabel};
 use crate::value::Untrusted;
 
 /// The most fields one output carries.
@@ -374,60 +375,99 @@ impl<'de> Deserialize<'de> for TypedField {
     }
 }
 
-/// An `external.*` label, `external.mixed` included; quarantine output never carries any other (SEC-13 (3)).
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
-#[serde(try_from = "LabelKind", into = "LabelKind")]
-pub struct ExternalLabel(LabelKind);
+/// An `external.*` label; `external.mixed` carries its two or more sources, and quarantine output never carries any other label (SEC-13 (3), labelled-value/v1).
+#[derive(Debug, Clone, PartialEq, Eq, Hash)]
+pub struct ExternalLabel(UntrustedLabel);
 
 impl ExternalLabel {
     /// The label of one external source.
     #[must_use]
     pub const fn source(source: ExternalSource) -> Self {
-        Self(LabelKind::External(source))
+        Self(UntrustedLabel::External(source))
     }
 
-    /// `external.mixed`.
-    pub const MIXED: Self = Self(LabelKind::Mixed);
-
-    /// Checks a label string; `None` unless it is `external.*`.
+    /// `external.mixed` with its sources.
     #[must_use]
-    pub const fn new(kind: LabelKind) -> Option<Self> {
-        match kind {
-            LabelKind::External(_) | LabelKind::Mixed => Some(Self(kind)),
-            LabelKind::Trusted(_) | LabelKind::OneInferred => None,
+    pub const fn mixed(sources: MixedSources) -> Self {
+        Self(UntrustedLabel::Mixed(sources))
+    }
+
+    /// Checks an untrusted label; `None` for `one.inferred`.
+    #[must_use]
+    pub fn new(label: UntrustedLabel) -> Option<Self> {
+        match label {
+            UntrustedLabel::OneInferred => None,
+            external => Some(Self(external)),
         }
     }
 
     /// The label string.
     #[must_use]
-    pub const fn kind(self) -> LabelKind {
+    pub const fn kind(&self) -> LabelKind {
+        self.0.kind()
+    }
+
+    /// The internal label.
+    #[must_use]
+    pub const fn untrusted(&self) -> &UntrustedLabel {
+        &self.0
+    }
+
+    /// Unwraps the internal label.
+    #[must_use]
+    pub fn into_untrusted(self) -> UntrustedLabel {
         self.0
     }
+}
 
-    /// The internal label; a sourceless `external.mixed` opens as `external.unknown` (SEC-14 (2)).
-    #[must_use]
-    pub const fn untrusted(self) -> UntrustedLabel {
-        match self.0 {
-            LabelKind::External(source) => UntrustedLabel::External(source),
-            _ => UntrustedLabel::External(ExternalSource::Unknown),
-        }
+/// The `sources` list sent beside a label; present exactly for `external.mixed`.
+pub(super) type WireSources = Option<Vec<Source>>;
+
+/// The wire pair of an untrusted label: its string and, for `external.mixed` only, its sources.
+pub(super) fn untrusted_to_wire(label: &UntrustedLabel) -> (LabelKind, WireSources) {
+    let sources = match label {
+        UntrustedLabel::Mixed(mixed) => Some(
+            mixed
+                .as_slice()
+                .iter()
+                .copied()
+                .map(Source::External)
+                .collect(),
+        ),
+        UntrustedLabel::OneInferred | UntrustedLabel::External(_) => None,
+    };
+    (label.kind(), sources)
+}
+
+/// Reads an untrusted label from its wire pair; `None` for a trusted label, a bare `external.mixed`, `sources` beside any other label, or sources that are not two or more distinct `external.*` labels.
+pub(super) fn untrusted_from_wire(
+    kind: LabelKind,
+    sources: Option<&[Source]>,
+) -> Option<UntrustedLabel> {
+    if sources.is_some() != (kind == LabelKind::Mixed) {
+        return None;
+    }
+    match Label::from_wire(kind, sources)? {
+        Label::Untrusted(label) => Some(label),
+        Label::Trusted(_) => None,
     }
 }
 
-impl TryFrom<LabelKind> for ExternalLabel {
-    type Error = one_proto::ontology::validate::ContractViolation;
-
-    fn try_from(kind: LabelKind) -> Result<Self, Self::Error> {
-        Self::new(kind).ok_or(one_proto::ontology::validate::ContractViolation(
-            "external label",
-        ))
-    }
+/// Reads an `external.*` label from its wire pair, under the rules of [`untrusted_from_wire`].
+pub(super) fn external_from_wire(
+    kind: LabelKind,
+    sources: Option<&[Source]>,
+) -> Result<ExternalLabel, ContractViolation> {
+    untrusted_from_wire(kind, sources)
+        .and_then(ExternalLabel::new)
+        .ok_or(ContractViolation("external label with its sources"))
 }
 
-impl From<ExternalLabel> for LabelKind {
-    fn from(label: ExternalLabel) -> Self {
-        label.0
-    }
+/// Deserializes a present `sources` list; `null` is not a list.
+pub(super) fn present_sources<'de, D: Deserializer<'de>>(
+    deserializer: D,
+) -> Result<WireSources, D::Error> {
+    Vec::<Source>::deserialize(deserializer).map(Some)
 }
 
 /// The display summary the quarantine model may write.
@@ -457,18 +497,21 @@ impl QuarantineModelOutput {
     #[must_use]
     pub fn label(self, label: ExternalLabel) -> QuarantineOutput {
         QuarantineOutput {
-            label,
             fields: self
                 .fields
                 .into_iter()
-                .map(|(name, field)| (name, LabelledField { field, label }))
+                .map(|(name, field)| {
+                    let label = label.clone();
+                    (name, LabelledField { field, label })
+                })
                 .collect(),
             display_summary: self.display_summary.map(|s| DisplaySummary {
                 text: s.text,
                 lang: s.lang,
-                label,
+                label: label.clone(),
                 display_only: DisplayOnly,
             }),
+            label,
         }
     }
 }
@@ -486,19 +529,20 @@ impl LabelledField {
     /// The field as an untrusted value, for binding to a planner variable (T-36 (2)).
     #[must_use]
     pub fn into_untrusted(self) -> Untrusted<TypedField> {
-        match self.label.untrusted() {
-            UntrustedLabel::External(source) => Untrusted::external(self.field, source),
-            _ => Untrusted::unknown(self.field),
-        }
+        Untrusted::with_label(self.field, self.label.into_untrusted())
     }
 }
 
 impl Serialize for LabelledField {
     fn serialize<S: Serializer>(&self, serializer: S) -> Result<S::Ok, S::Error> {
-        let mut s = serializer.serialize_struct("LabelledField", 3)?;
+        let (kind, sources) = untrusted_to_wire(self.label.untrusted());
+        let mut s = serializer.serialize_struct("LabelledField", 4)?;
         s.serialize_field("kind", &self.field.kind())?;
         self.field.serialize_value(&mut s)?;
-        s.serialize_field("label", &self.label)?;
+        s.serialize_field("label", &kind)?;
+        if let Some(sources) = &sources {
+            s.serialize_field("sources", sources)?;
+        }
         s.end()
     }
 }
@@ -508,7 +552,9 @@ impl Serialize for LabelledField {
 struct WireLabelledField {
     kind: FieldKind,
     value: JsonValue,
-    label: ExternalLabel,
+    label: LabelKind,
+    #[serde(default, deserialize_with = "present_sources")]
+    sources: WireSources,
 }
 
 impl<'de> Deserialize<'de> for LabelledField {
@@ -516,7 +562,8 @@ impl<'de> Deserialize<'de> for LabelledField {
         let wire = WireLabelledField::deserialize(deserializer)?;
         Ok(Self {
             field: TypedField::from_parts(wire.kind, wire.value).map_err(D::Error::custom)?,
-            label: wire.label,
+            label: external_from_wire(wire.label, wire.sources.as_deref())
+                .map_err(D::Error::custom)?,
         })
     }
 }
@@ -543,7 +590,7 @@ impl<'de> Deserialize<'de> for DisplayOnly {
 
 /// The labelled display summary; shown to the user, never given to the planner (SEC-13 (1), T-36 (6)).
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
-#[serde(deny_unknown_fields)]
+#[serde(try_from = "WireDisplaySummary", into = "WireDisplaySummary")]
 pub struct DisplaySummary {
     /// The text.
     pub text: SummaryText,
@@ -555,18 +602,97 @@ pub struct DisplaySummary {
     pub display_only: DisplayOnly,
 }
 
+#[derive(Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+struct WireDisplaySummary {
+    text: SummaryText,
+    lang: UiLang,
+    label: LabelKind,
+    #[serde(
+        default,
+        deserialize_with = "present_sources",
+        skip_serializing_if = "Option::is_none"
+    )]
+    sources: WireSources,
+    display_only: DisplayOnly,
+}
+
+impl TryFrom<WireDisplaySummary> for DisplaySummary {
+    type Error = ContractViolation;
+
+    fn try_from(wire: WireDisplaySummary) -> Result<Self, Self::Error> {
+        Ok(Self {
+            text: wire.text,
+            lang: wire.lang,
+            label: external_from_wire(wire.label, wire.sources.as_deref())?,
+            display_only: wire.display_only,
+        })
+    }
+}
+
+impl From<DisplaySummary> for WireDisplaySummary {
+    fn from(summary: DisplaySummary) -> Self {
+        let (label, sources) = untrusted_to_wire(summary.label.untrusted());
+        Self {
+            text: summary.text,
+            lang: summary.lang,
+            label,
+            sources,
+            display_only: summary.display_only,
+        }
+    }
+}
+
 /// The labelled quarantine output (`quarantine-output/v1`).
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
-#[serde(deny_unknown_fields)]
+#[serde(try_from = "WireOutput", into = "WireOutput")]
 pub struct QuarantineOutput {
     /// The input's label.
     pub label: ExternalLabel,
     /// The labelled fields by name.
-    #[serde(deserialize_with = "map_at_most::<_, _, _, MAX_FIELDS>")]
     pub fields: BTreeMap<FieldName, LabelledField>,
     /// The optional display summary.
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub display_summary: Option<DisplaySummary>,
+}
+
+#[derive(Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+struct WireOutput {
+    label: LabelKind,
+    #[serde(
+        default,
+        deserialize_with = "present_sources",
+        skip_serializing_if = "Option::is_none"
+    )]
+    sources: WireSources,
+    #[serde(deserialize_with = "map_at_most::<_, _, _, MAX_FIELDS>")]
+    fields: BTreeMap<FieldName, LabelledField>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    display_summary: Option<DisplaySummary>,
+}
+
+impl TryFrom<WireOutput> for QuarantineOutput {
+    type Error = ContractViolation;
+
+    fn try_from(wire: WireOutput) -> Result<Self, Self::Error> {
+        Ok(Self {
+            label: external_from_wire(wire.label, wire.sources.as_deref())?,
+            fields: wire.fields,
+            display_summary: wire.display_summary,
+        })
+    }
+}
+
+impl From<QuarantineOutput> for WireOutput {
+    fn from(output: QuarantineOutput) -> Self {
+        let (label, sources) = untrusted_to_wire(output.label.untrusted());
+        Self {
+            label,
+            sources,
+            fields: output.fields,
+            display_summary: output.display_summary,
+        }
+    }
 }
 
 impl QuarantineOutput {

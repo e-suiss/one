@@ -327,7 +327,7 @@ fn sec_14_intent_acceptance_label_summary() {
         );
         checked += 1;
     }
-    assert_eq!(vectors.len(), 12);
+    assert_eq!(vectors.len(), 13);
     assert_eq!(checked, 5);
 }
 

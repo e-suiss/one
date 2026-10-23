@@ -29,7 +29,7 @@ fn check<T: Serialize + DeserializeOwned>(rel: &str) -> usize {
 
 #[test]
 fn sec_4_typed_intent_schema_vectors() {
-    assert_eq!(check::<TypedIntent>("vectors/typed-intent.schema.json"), 17);
+    assert_eq!(check::<TypedIntent>("vectors/typed-intent.schema.json"), 20);
 }
 
 #[test]
@@ -52,7 +52,7 @@ fn sec_13_quarantine_model_output_schema_vectors() {
 fn t_36_quarantine_output_schema_vectors() {
     assert_eq!(
         check::<QuarantineOutput>("vectors/quarantine-output.schema.json"),
-        10
+        18
     );
 }
 
@@ -60,7 +60,7 @@ fn t_36_quarantine_output_schema_vectors() {
 fn sec_12_model_context_schema_vectors() {
     assert_eq!(
         check::<ModelContext>("vectors/model-context.schema.json"),
-        17
+        27
     );
 }
 
@@ -102,6 +102,9 @@ fn sec_19_origins_are_https_hosts_without_path() {
         "https://mail.example.com",
         "https://a.b",
         "https://xn--bcher-kva.example:8443",
+        "https://mail.example.com:1",
+        "https://mail.example.com:444",
+        "https://mail.example.com:65535",
     ] {
         assert!(Origin::new(ok).is_some(), "{ok}");
     }
@@ -113,6 +116,10 @@ fn sec_19_origins_are_https_hosts_without_path() {
         "https://mail.example.com/path?q=1",
         "https://user@mail.example.com",
         "https://mail.example.com:0443",
+        "https://mail.example.com:443",
+        "https://mail.example.com:65536",
+        "https://mail.example.com:99999",
+        "https://mail.example.com:",
         "https://mail.example.com:123456",
         "https://-a.example.com",
         "https://a..example.com",

@@ -1,4 +1,4 @@
-//! The per-task read and write origin set: `https` origins only, lower-case host, no path or query, at most 64 per list, compared as sets (SEC-19, Access E54 (4)).
+//! The per-task read and write origin set: canonical `https` origins only, lower-case host, no default port, no path or query, at most 64 per list, compared as sets (SEC-19, Access E54 (4)).
 
 use alloc::string::String;
 use alloc::vec::Vec;
@@ -27,6 +27,7 @@ fn is_port(port: &str) -> bool {
     (1..=5).contains(&port.len())
         && !port.starts_with('0')
         && port.bytes().all(|b| b.is_ascii_digit())
+        && port.parse::<u16>().is_ok_and(|n| n != 443)
 }
 
 fn is_origin(text: &str) -> bool {
@@ -42,7 +43,7 @@ fn is_origin(text: &str) -> bool {
 }
 
 checked_text!(
-    /// An `https` origin: scheme, lower-case host of two or more labels and an optional port, nothing else.
+    /// An `https` origin in canonical form: scheme, lower-case host of two or more labels and an optional port from 1 to 65535 other than the default 443, nothing else.
     plain Origin,
     "https origin",
     is_origin

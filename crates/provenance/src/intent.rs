@@ -16,9 +16,10 @@ pub use capability::{
 pub use context::{
     Constraint, Control, Extraction, MemoryData, MemoryText, ModelContext, PlannerControl,
     PlannerData, PlannerModelContext, QuarantineControl, QuarantineModelContext, RecordSource,
-    RecordTrustedMark, Request, RequestText, Scalar, Scope, StepLimit, SummaryLang, TaskControl,
-    TextPlain, TrustedRecord, UntrustedData, UntrustedDataMarking, UntrustedText, UserDirectMark,
-    UserEpistemicState, UserMemoryMark, VariableData, VariableKind,
+    RecordTrustedMark, Request, RequestText, Scalar, Scope, StepLimit, SummaryLang,
+    SummaryLangMismatch, TaskControl, TextPlain, TrustedRecord, UntrustedData,
+    UntrustedDataMarking, UntrustedText, UserDirectMark, UserEpistemicState, UserMemoryMark,
+    VariableData, VariableKind,
 };
 pub use model_output::{BindError, InputLabels, IntentModelOutput, Literal, ProposedInputs};
 pub use origin::{MAX_ORIGINS, Origin, OriginSet, Origins};

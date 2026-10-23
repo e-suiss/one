@@ -911,5 +911,179 @@
       }
     },
     "valid": false
+  },
+  {
+    "rule": "SEC-19",
+    "description": "the default port :443 is rejected; origins are written normalised",
+    "input": {
+      "task_id": "task_01m43k40v4f7zsqnydqk8x21v3",
+      "capability": {
+        "name": "app.suiss.fixture.message.send",
+        "version": "2026-10-01",
+        "input_schema": {
+          "id": "https://suiss.app/schemas/one/intent/fixture/message-send-input/v1.json",
+          "digest": "sha256:9208e7e569f2c65a5fce5f035c6b2c9fa8c22b5d95c46ac91472d2cd7d081a11"
+        }
+      },
+      "inputs": {
+        "recipient": {
+          "value": "ayse@example.com",
+          "label": "external.email"
+        },
+        "body": {
+          "value": "Yarınki toplantı 14:00'te, görüşmek üzere.",
+          "label": "user.direct"
+        }
+      },
+      "origin_set": {
+        "read": [],
+        "write": [
+          "https://mail.example.com:443"
+        ]
+      },
+      "summary": {
+        "capability": {
+          "name": "app.suiss.fixture.message.send",
+          "version": "2026-10-01"
+        },
+        "inputs": {
+          "recipient": {
+            "label": "external.email",
+            "provenance": "untrusted-external"
+          },
+          "body": {
+            "label": "user.direct",
+            "provenance": "user"
+          }
+        },
+        "origin_set": {
+          "read": [],
+          "write": [
+            "https://mail.example.com:443"
+          ]
+        },
+        "worst": {
+          "label": "external.email",
+          "provenance": "untrusted-external"
+        }
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "SEC-19",
+    "description": "a port above 65535 is rejected",
+    "input": {
+      "task_id": "task_01m43k40v4f7zsqnydqk8x21v3",
+      "capability": {
+        "name": "app.suiss.fixture.message.send",
+        "version": "2026-10-01",
+        "input_schema": {
+          "id": "https://suiss.app/schemas/one/intent/fixture/message-send-input/v1.json",
+          "digest": "sha256:9208e7e569f2c65a5fce5f035c6b2c9fa8c22b5d95c46ac91472d2cd7d081a11"
+        }
+      },
+      "inputs": {
+        "recipient": {
+          "value": "ayse@example.com",
+          "label": "external.email"
+        },
+        "body": {
+          "value": "Yarınki toplantı 14:00'te, görüşmek üzere.",
+          "label": "user.direct"
+        }
+      },
+      "origin_set": {
+        "read": [],
+        "write": [
+          "https://mail.example.com:65536"
+        ]
+      },
+      "summary": {
+        "capability": {
+          "name": "app.suiss.fixture.message.send",
+          "version": "2026-10-01"
+        },
+        "inputs": {
+          "recipient": {
+            "label": "external.email",
+            "provenance": "untrusted-external"
+          },
+          "body": {
+            "label": "user.direct",
+            "provenance": "user"
+          }
+        },
+        "origin_set": {
+          "read": [],
+          "write": [
+            "https://mail.example.com:65536"
+          ]
+        },
+        "worst": {
+          "label": "external.email",
+          "provenance": "untrusted-external"
+        }
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "SEC-19",
+    "description": "the highest port 65535 is accepted",
+    "input": {
+      "task_id": "task_01m43k40v4f7zsqnydqk8x21v3",
+      "capability": {
+        "name": "app.suiss.fixture.message.send",
+        "version": "2026-10-01",
+        "input_schema": {
+          "id": "https://suiss.app/schemas/one/intent/fixture/message-send-input/v1.json",
+          "digest": "sha256:9208e7e569f2c65a5fce5f035c6b2c9fa8c22b5d95c46ac91472d2cd7d081a11"
+        }
+      },
+      "inputs": {
+        "recipient": {
+          "value": "ayse@example.com",
+          "label": "external.email"
+        },
+        "body": {
+          "value": "Yarınki toplantı 14:00'te, görüşmek üzere.",
+          "label": "user.direct"
+        }
+      },
+      "origin_set": {
+        "read": [],
+        "write": [
+          "https://mail.example.com:65535"
+        ]
+      },
+      "summary": {
+        "capability": {
+          "name": "app.suiss.fixture.message.send",
+          "version": "2026-10-01"
+        },
+        "inputs": {
+          "recipient": {
+            "label": "external.email",
+            "provenance": "untrusted-external"
+          },
+          "body": {
+            "label": "user.direct",
+            "provenance": "user"
+          }
+        },
+        "origin_set": {
+          "read": [],
+          "write": [
+            "https://mail.example.com:65535"
+          ]
+        },
+        "worst": {
+          "label": "external.email",
+          "provenance": "untrusted-external"
+        }
+      }
+    },
+    "valid": true
   }
 ]

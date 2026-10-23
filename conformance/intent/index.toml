@@ -90,3 +90,12 @@ path = "vectors/fixture-message-send-input.schema.json"
 kind = "schema"
 schema = "https://suiss.app/schemas/one/intent/fixture/message-send-input/v1.json"
 rules = ["CP-5"]
+
+[[vectors]]
+path = "vectors/quarantine-labelling.json"
+kind = "behaviour"
+rules = ["SEC-13 (1)", "SEC-13 (3)"]
+
+[[table]]
+path = "acceptance.toml"
+rules = ["SEC-4", "SEC-14 (4)", "CP-5"]

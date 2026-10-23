@@ -730,5 +730,66 @@
       "accepted": false,
       "reason": "summary_mismatch"
     }
+  },
+  {
+    "rule": "CP-5",
+    "description": "inputs that fail the capability input schema and a summary that does not match them are rejected for the input schema; it is checked first",
+    "input": {
+      "task_id": "task_01m43k40v4f7zsqnydqk8x21v3",
+      "capability": {
+        "name": "app.suiss.fixture.message.send",
+        "version": "2026-10-01",
+        "input_schema": {
+          "id": "https://suiss.app/schemas/one/intent/fixture/message-send-input/v1.json",
+          "digest": "sha256:9208e7e569f2c65a5fce5f035c6b2c9fa8c22b5d95c46ac91472d2cd7d081a11"
+        }
+      },
+      "inputs": {
+        "recipient": {
+          "value": "Ayşe Yılmaz",
+          "label": "external.email"
+        },
+        "body": {
+          "value": "Yarınki toplantı 14:00'te, görüşmek üzere.",
+          "label": "user.direct"
+        }
+      },
+      "origin_set": {
+        "read": [],
+        "write": [
+          "https://mail.example.com"
+        ]
+      },
+      "summary": {
+        "capability": {
+          "name": "app.suiss.fixture.message.send",
+          "version": "2026-10-01"
+        },
+        "inputs": {
+          "recipient": {
+            "label": "external.email",
+            "provenance": "untrusted-external"
+          },
+          "body": {
+            "label": "external.email",
+            "provenance": "untrusted-external"
+          }
+        },
+        "origin_set": {
+          "read": [],
+          "write": [
+            "https://mail.example.com"
+          ]
+        },
+        "worst": {
+          "label": "external.email",
+          "provenance": "untrusted-external"
+        }
+      }
+    },
+    "expected": {
+      "accepted": false,
+      "reason": "input_schema"
+    }
   }
 ]

@@ -1,4 +1,4 @@
-//! The typed intent: task, bound capability, labelled inputs, origin set and the structured summary Access reads, and its acceptance in contract order: envelope, input schema `$id`, digest, input schema, then the summary against the inputs (SEC-4, SEC-14 (1, 2, 4), SEC-19, CP-5).
+//! The typed intent: task, bound capability, labelled inputs, origin set and the structured summary Access reads, and its acceptance in the `acceptance.toml` check order: envelope, input schema `$id`, digest, input schema, then the summary against the inputs (SEC-4, SEC-14 (1, 2, 4), SEC-19, CP-5).
 
 use alloc::collections::BTreeMap;
 use core::fmt;
@@ -310,6 +310,15 @@ pub enum Rejection {
 }
 
 impl Rejection {
+    /// Every check in the order [`TypedIntent::accept`] runs it; the first that fails decides (`acceptance.toml` `check_order`).
+    pub const CHECK_ORDER: [Self; 5] = [
+        Self::EnvelopeSchema,
+        Self::UnknownInputSchema,
+        Self::InputSchemaDigest,
+        Self::InputSchema,
+        Self::SummaryMismatch,
+    ];
+
     /// The wire code.
     #[must_use]
     pub const fn code(self) -> &'static str {

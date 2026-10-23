@@ -7,6 +7,7 @@ use core::fmt;
 use one_proto::capability::CapabilityRef;
 use one_proto::memory::fields::{ContentType, EpistemicState};
 use one_proto::money::Money;
+use one_proto::ontology::validate::ContractViolation;
 use one_proto::ontology::{AccessObjectRef, Instant, JsonValue, UiLang, WorkObjectRef};
 use one_proto::{MemoryRecordId, TaskId};
 use serde::de::Error as _;
@@ -14,11 +15,14 @@ use serde::{Deserialize, Deserializer, Serialize};
 
 use super::capability::SchemaId;
 use super::origin::OriginSet;
-use super::quarantine::{ExternalLabel, QuarantineModelOutput, QuarantineOutput};
+use super::quarantine::{
+    ExternalLabel, QuarantineModelOutput, QuarantineOutput, WireSources, external_from_wire,
+    present_sources, untrusted_from_wire, untrusted_to_wire,
+};
 use super::text::{
     FieldName, at_most, chars_within, checked_text, map_at_most, unique_at_most, wire_const,
 };
-use crate::label::{LabelKind, TrustedLabel};
+use crate::label::{LabelKind, TrustedLabel, UntrustedLabel};
 
 fn is_request_text(text: &str) -> bool {
     chars_within(text, 1, 8000)
@@ -293,17 +297,56 @@ pub enum VariableKind {
     ChoiceList,
 }
 
-/// An opaque variable reference with its kind and label; never its value (T-36 (2)).
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
-#[serde(deny_unknown_fields)]
+/// An opaque variable reference with its kind and untrusted label; never its value, and a trusted value never travels by reference (T-36 (2)).
+#[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize)]
+#[serde(try_from = "WireVariable", into = "WireVariable")]
 pub struct VariableData {
     /// The reference.
-    #[serde(rename = "ref")]
     pub var: crate::planner::VarRef,
     /// The value kind.
     pub kind: VariableKind,
-    /// The value's label.
-    pub label: LabelKind,
+    /// The value's label: `one.inferred` or `external.*`, `external.mixed` with its sources.
+    pub label: UntrustedLabel,
+}
+
+#[derive(Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+struct WireVariable {
+    #[serde(rename = "ref")]
+    var: crate::planner::VarRef,
+    kind: VariableKind,
+    label: LabelKind,
+    #[serde(
+        default,
+        deserialize_with = "present_sources",
+        skip_serializing_if = "Option::is_none"
+    )]
+    sources: WireSources,
+}
+
+impl TryFrom<WireVariable> for VariableData {
+    type Error = ContractViolation;
+
+    fn try_from(wire: WireVariable) -> Result<Self, Self::Error> {
+        Ok(Self {
+            var: wire.var,
+            kind: wire.kind,
+            label: untrusted_from_wire(wire.label, wire.sources.as_deref())
+                .ok_or(ContractViolation("untrusted label with its sources"))?,
+        })
+    }
+}
+
+impl From<VariableData> for WireVariable {
+    fn from(data: VariableData) -> Self {
+        let (label, sources) = untrusted_to_wire(&data.label);
+        Self {
+            var: data.var,
+            kind: data.kind,
+            label,
+            sources,
+        }
+    }
 }
 
 /// One data part of a planner context; read external content has no variant here (SEC-12).
@@ -356,13 +399,23 @@ pub enum SummaryLang {
     None,
 }
 
+/// The quarantine output has a display summary although `summary_lang` is `none`, or none although it names a language.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+pub struct SummaryLangMismatch;
+
+impl fmt::Display for SummaryLangMismatch {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        f.write_str("display summary present exactly when summary_lang is not none")
+    }
+}
+
 /// The extraction the quarantine model performs.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct Extraction {
     /// The `$id` of the extraction schema.
     pub schema_id: SchemaId,
-    /// The summary language.
+    /// The summary language; `none` exactly when the output carries no display summary.
     pub summary_lang: SummaryLang,
 }
 
@@ -376,7 +429,7 @@ pub struct QuarantineControl {
 
 /// One piece of read external content, marked as data and labelled `external.*`.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
-#[serde(deny_unknown_fields)]
+#[serde(try_from = "WireUntrustedData", into = "WireUntrustedData")]
 pub struct UntrustedData {
     /// Always `untrusted_data`.
     pub marking: UntrustedDataMarking,
@@ -386,6 +439,47 @@ pub struct UntrustedData {
     pub media_type: TextPlain,
     /// The content.
     pub text: UntrustedText,
+}
+
+#[derive(Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+struct WireUntrustedData {
+    marking: UntrustedDataMarking,
+    label: LabelKind,
+    #[serde(
+        default,
+        deserialize_with = "present_sources",
+        skip_serializing_if = "Option::is_none"
+    )]
+    sources: WireSources,
+    media_type: TextPlain,
+    text: UntrustedText,
+}
+
+impl TryFrom<WireUntrustedData> for UntrustedData {
+    type Error = ContractViolation;
+
+    fn try_from(wire: WireUntrustedData) -> Result<Self, Self::Error> {
+        Ok(Self {
+            marking: wire.marking,
+            label: external_from_wire(wire.label, wire.sources.as_deref())?,
+            media_type: wire.media_type,
+            text: wire.text,
+        })
+    }
+}
+
+impl From<UntrustedData> for WireUntrustedData {
+    fn from(data: UntrustedData) -> Self {
+        let (label, sources) = untrusted_to_wire(data.label.untrusted());
+        Self {
+            marking: data.marking,
+            label,
+            sources,
+            media_type: data.media_type,
+            text: data.text,
+        }
+    }
 }
 
 /// What the quarantine model reads: the extraction and exactly one untrusted content part (SEC-13 (1)).
@@ -416,9 +510,18 @@ impl QuarantineModelContext {
     }
 
     /// Labels the model's output with the content's label (SEC-13 (3)).
-    #[must_use]
-    pub fn label_output(&self, output: QuarantineModelOutput) -> QuarantineOutput {
-        output.label(self.content().label)
+    ///
+    /// # Errors
+    /// [`SummaryLangMismatch`] when the output carries a display summary and `summary_lang` is `none`, or carries none and `summary_lang` names a language.
+    pub fn label_output(
+        &self,
+        output: QuarantineModelOutput,
+    ) -> Result<QuarantineOutput, SummaryLangMismatch> {
+        let asked = self.control.extraction.summary_lang != SummaryLang::None;
+        if asked != output.display_summary.is_some() {
+            return Err(SummaryLangMismatch);
+        }
+        Ok(output.label(self.content().label.clone()))
     }
 }
 

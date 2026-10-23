@@ -146,5 +146,296 @@
       }
     },
     "valid": false
+  },
+  {
+    "rule": "SEC-13 (3)",
+    "description": "external.mixed output carries its sources on the output, every field and the summary",
+    "input": {
+      "label": "external.mixed",
+      "fields": {
+        "meeting_at": {
+          "kind": "date_time",
+          "value": "2026-10-20T11:00:00Z",
+          "label": "external.mixed",
+          "sources": [
+            "external.calendar",
+            "external.email"
+          ]
+        },
+        "organiser": {
+          "kind": "name",
+          "value": "Ayşe Yılmaz",
+          "label": "external.mixed",
+          "sources": [
+            "external.calendar",
+            "external.email"
+          ]
+        }
+      },
+      "display_summary": {
+        "text": "Ayşe 20 Ekim'de saat 14:00 için toplantı daveti gönderdi.",
+        "lang": "tr",
+        "label": "external.mixed",
+        "display_only": true,
+        "sources": [
+          "external.calendar",
+          "external.email"
+        ]
+      },
+      "sources": [
+        "external.calendar",
+        "external.email"
+      ]
+    },
+    "valid": true
+  },
+  {
+    "rule": "SEC-13 (3)",
+    "description": "bare external.mixed without sources is rejected",
+    "input": {
+      "label": "external.mixed",
+      "fields": {
+        "meeting_at": {
+          "kind": "date_time",
+          "value": "2026-10-20T11:00:00Z",
+          "label": "external.mixed"
+        },
+        "organiser": {
+          "kind": "name",
+          "value": "Ayşe Yılmaz",
+          "label": "external.mixed"
+        }
+      },
+      "display_summary": {
+        "text": "Ayşe 20 Ekim'de saat 14:00 için toplantı daveti gönderdi.",
+        "lang": "tr",
+        "label": "external.mixed",
+        "display_only": true
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "SEC-13 (3)",
+    "description": "a field labelled external.mixed without sources is rejected",
+    "input": {
+      "label": "external.mixed",
+      "fields": {
+        "meeting_at": {
+          "kind": "date_time",
+          "value": "2026-10-20T11:00:00Z",
+          "label": "external.mixed"
+        },
+        "organiser": {
+          "kind": "name",
+          "value": "Ayşe Yılmaz",
+          "label": "external.mixed"
+        }
+      },
+      "display_summary": {
+        "text": "Ayşe 20 Ekim'de saat 14:00 için toplantı daveti gönderdi.",
+        "lang": "tr",
+        "label": "external.mixed",
+        "display_only": true,
+        "sources": [
+          "external.calendar",
+          "external.email"
+        ]
+      },
+      "sources": [
+        "external.calendar",
+        "external.email"
+      ]
+    },
+    "valid": false
+  },
+  {
+    "rule": "SEC-13 (3)",
+    "description": "a summary labelled external.mixed without sources is rejected",
+    "input": {
+      "label": "external.mixed",
+      "fields": {
+        "meeting_at": {
+          "kind": "date_time",
+          "value": "2026-10-20T11:00:00Z",
+          "label": "external.mixed",
+          "sources": [
+            "external.calendar",
+            "external.email"
+          ]
+        },
+        "organiser": {
+          "kind": "name",
+          "value": "Ayşe Yılmaz",
+          "label": "external.mixed",
+          "sources": [
+            "external.calendar",
+            "external.email"
+          ]
+        }
+      },
+      "display_summary": {
+        "text": "Ayşe 20 Ekim'de saat 14:00 için toplantı daveti gönderdi.",
+        "lang": "tr",
+        "label": "external.mixed",
+        "display_only": true
+      },
+      "sources": [
+        "external.calendar",
+        "external.email"
+      ]
+    },
+    "valid": false
+  },
+  {
+    "rule": "SEC-13 (3)",
+    "description": "external.mixed with a single source is rejected",
+    "input": {
+      "label": "external.mixed",
+      "fields": {
+        "meeting_at": {
+          "kind": "date_time",
+          "value": "2026-10-20T11:00:00Z",
+          "label": "external.mixed",
+          "sources": [
+            "external.email"
+          ]
+        },
+        "organiser": {
+          "kind": "name",
+          "value": "Ayşe Yılmaz",
+          "label": "external.mixed",
+          "sources": [
+            "external.email"
+          ]
+        }
+      },
+      "display_summary": {
+        "text": "Ayşe 20 Ekim'de saat 14:00 için toplantı daveti gönderdi.",
+        "lang": "tr",
+        "label": "external.mixed",
+        "display_only": true,
+        "sources": [
+          "external.email"
+        ]
+      },
+      "sources": [
+        "external.email"
+      ]
+    },
+    "valid": false
+  },
+  {
+    "rule": "SEC-13 (3)",
+    "description": "external.mixed with a trusted source is rejected",
+    "input": {
+      "label": "external.mixed",
+      "fields": {
+        "meeting_at": {
+          "kind": "date_time",
+          "value": "2026-10-20T11:00:00Z",
+          "label": "external.mixed",
+          "sources": [
+            "external.email",
+            "user.direct"
+          ]
+        },
+        "organiser": {
+          "kind": "name",
+          "value": "Ayşe Yılmaz",
+          "label": "external.mixed",
+          "sources": [
+            "external.email",
+            "user.direct"
+          ]
+        }
+      },
+      "display_summary": {
+        "text": "Ayşe 20 Ekim'de saat 14:00 için toplantı daveti gönderdi.",
+        "lang": "tr",
+        "label": "external.mixed",
+        "display_only": true,
+        "sources": [
+          "external.email",
+          "user.direct"
+        ]
+      },
+      "sources": [
+        "external.email",
+        "user.direct"
+      ]
+    },
+    "valid": false
+  },
+  {
+    "rule": "SEC-13 (3)",
+    "description": "external.mixed sources that repeat an entry are rejected",
+    "input": {
+      "label": "external.mixed",
+      "fields": {
+        "meeting_at": {
+          "kind": "date_time",
+          "value": "2026-10-20T11:00:00Z",
+          "label": "external.mixed",
+          "sources": [
+            "external.email",
+            "external.email"
+          ]
+        },
+        "organiser": {
+          "kind": "name",
+          "value": "Ayşe Yılmaz",
+          "label": "external.mixed",
+          "sources": [
+            "external.email",
+            "external.email"
+          ]
+        }
+      },
+      "display_summary": {
+        "text": "Ayşe 20 Ekim'de saat 14:00 için toplantı daveti gönderdi.",
+        "lang": "tr",
+        "label": "external.mixed",
+        "display_only": true,
+        "sources": [
+          "external.email",
+          "external.email"
+        ]
+      },
+      "sources": [
+        "external.email",
+        "external.email"
+      ]
+    },
+    "valid": false
+  },
+  {
+    "rule": "SEC-13 (3)",
+    "description": "sources beside a single external label are rejected",
+    "input": {
+      "label": "external.calendar",
+      "fields": {
+        "meeting_at": {
+          "kind": "date_time",
+          "value": "2026-10-20T11:00:00Z",
+          "label": "external.calendar"
+        },
+        "organiser": {
+          "kind": "name",
+          "value": "Ayşe Yılmaz",
+          "label": "external.calendar"
+        }
+      },
+      "display_summary": {
+        "text": "Ayşe 20 Ekim'de saat 14:00 için toplantı daveti gönderdi.",
+        "lang": "tr",
+        "label": "external.calendar",
+        "display_only": true
+      },
+      "sources": [
+        "external.calendar"
+      ]
+    },
+    "valid": false
   }
 ]

@@ -221,8 +221,16 @@
         "text": {
           "type": "string",
           "maxLength": 200000
+        },
+        "sources": {
+          "$ref": "https://suiss.app/schemas/one/intent/quarantine-output/v1.json#/$defs/sources"
         }
-      }
+      },
+      "allOf": [
+        {
+          "$ref": "https://suiss.app/schemas/one/intent/quarantine-output/v1.json#/$defs/mixed_sources"
+        }
+      ]
     },
     "memory_data": {
       "type": "object",
@@ -349,9 +357,18 @@
           ]
         },
         "label": {
-          "$ref": "https://suiss.app/schemas/one/provenance/label/v1.json"
+          "$ref": "https://suiss.app/schemas/one/provenance/label/v1.json#/$defs/untrusted"
+        },
+        "sources": {
+          "$ref": "https://suiss.app/schemas/one/intent/quarantine-output/v1.json#/$defs/sources"
         }
-      }
+      },
+      "allOf": [
+        {
+          "$ref": "https://suiss.app/schemas/one/intent/quarantine-output/v1.json#/$defs/mixed_sources"
+        }
+      ],
+      "description": "An opaque reference to an untrusted value; a trusted value never travels by reference"
     },
     "planner_context": {
       "type": "object",

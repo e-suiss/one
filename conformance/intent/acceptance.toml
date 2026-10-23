@@ -1,0 +1,8 @@
+# SEC-4, SEC-14 (4), CP-5
+version = 1
+schema = "https://suiss.app/schemas/one/intent/typed-intent/v1.json"
+vectors = "vectors/intent-acceptance.json"
+
+[acceptance]
+check_order = ["envelope_schema", "unknown_input_schema", "input_schema_digest", "input_schema", "summary_mismatch"]
+first_failing_check_decides = true
