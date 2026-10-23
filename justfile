@@ -48,6 +48,12 @@ semgrep:
 secrets:
     gitleaks git --redact --no-banner --exit-code 1 --config .gitleaks.toml .
 
+asyncapi-breaking base="origin/main":
+    cargo xtask asyncapi-breaking {{base}}
+
+open-sync:
+    XTASK_ONLINE=1 cargo xtask check open-sync
+
 commits base head:
     cargo xtask commits {{base}} {{head}}
 

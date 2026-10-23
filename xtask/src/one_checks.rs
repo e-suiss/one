@@ -8,6 +8,8 @@ mod claims;
 pub(crate) mod comments;
 #[path = "one_commits.rs"]
 pub(crate) mod commits;
+#[path = "one_events.rs"]
+pub(crate) mod events;
 #[path = "one_glossary.rs"]
 mod glossary;
 #[path = "one_inventory.rs"]
@@ -18,6 +20,8 @@ mod labels;
 mod migrations;
 #[path = "one_models.rs"]
 mod models;
+#[path = "one_open.rs"]
+mod open;
 #[path = "one_platform.rs"]
 mod platform;
 #[path = "one_registry.rs"]
@@ -80,6 +84,14 @@ pub(crate) fn checks() -> Vec<Check> {
         Check {
             name: "conformance-vectors",
             run: vectors::check,
+        },
+        Check {
+            name: "events-catalog",
+            run: events::check,
+        },
+        Check {
+            name: "open-sync",
+            run: open::check,
         },
         Check {
             name: "glossary",

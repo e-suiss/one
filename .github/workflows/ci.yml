@@ -312,6 +312,21 @@ jobs:
           fi
           git show "$BASE:conformance/openapi/one.v1.json" > "$RUNNER_TEMP/base.json"
           "$RUNNER_TEMP/oasdiff" breaking "$RUNNER_TEMP/base.json" conformance/openapi/one.v1.json --fail-on ERR
+      - name: AsyncAPI catalog and CloudEvent vectors
+        run: cargo xtask check events-catalog
+      - name: No breaking event catalog change without a new major version
+        env:
+          BASE: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}
+        run: |
+          if [[ -z "$BASE" || "$BASE" =~ ^0+$ ]] || ! git cat-file -e "$BASE:conformance/events/asyncapi.yaml" 2>/dev/null; then
+            echo "::notice::no earlier AsyncAPI catalog to compare"
+            exit 0
+          fi
+          cargo xtask asyncapi-breaking "$BASE"
+      - name: Contract copies equal the pinned one-open commit
+        env:
+          XTASK_ONLINE: "1"
+        run: cargo xtask check open-sync
 
   ml:
     name: ml

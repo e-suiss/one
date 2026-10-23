@@ -88,6 +88,7 @@ fn usage() -> ExitCode {
     eprintln!("  catalog             regenerate conformance/catalog from the local spec (T-55)");
     eprintln!("  coverage            print the rule coverage report (T-38 (1))");
     eprintln!("  commits BASE HEAD   check commit trailers on BASE..HEAD (T-44 (3))");
+    eprintln!("  asyncapi-breaking BASE  fail on breaking event catalog changes since BASE (T-31)");
     eprintln!("  sibling-refs [--update]  check the sibling rows §7.11 cites (E-38, local spec)");
     eprintln!("  watchlist           fail when a WATCH entry is overdue for review (X-59)");
     eprintln!("  dev-preflight       refuse `just dev` until sibling images are pinned (T-42)");
@@ -115,6 +116,10 @@ fn main() -> ExitCode {
         Some("dev-preflight") => devtools::dev_preflight(&root),
         Some("sarif-gate") => match args.get(1) {
             Some(dir) => devtools::sarif_gate(Path::new(dir)),
+            None => return usage(),
+        },
+        Some("asyncapi-breaking") => match args.get(1) {
+            Some(base) => one_checks::events::breaking(&root, base),
             None => return usage(),
         },
         Some("commits") => match (args.get(1), args.get(2)) {

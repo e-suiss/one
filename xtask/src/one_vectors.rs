@@ -17,6 +17,17 @@ pub(crate) struct Index {
     pub(crate) vectors: Vec<VectorEntry>,
     #[serde(default)]
     pub(crate) table: Vec<TableEntry>,
+    #[serde(default)]
+    pub(crate) event: Vec<EventEntry>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub(crate) struct EventEntry {
+    #[serde(rename = "type")]
+    pub(crate) kind: String,
+    pub(crate) schema: String,
+    pub(crate) rules: Vec<String>,
 }
 
 #[derive(Debug, Deserialize)]
@@ -52,12 +63,12 @@ pub(crate) struct SchemaVector {
     pub(crate) valid: bool,
 }
 
-fn read_json(path: &Path) -> Result<serde_json::Value, String> {
+pub(crate) fn read_json(path: &Path) -> Result<serde_json::Value, String> {
     let text = std::fs::read_to_string(path).map_err(|e| format!("{}: {e}", path.display()))?;
     serde_json::from_str(&text).map_err(|e| format!("{}: {e}", path.display()))
 }
 
-fn indexes(root: &Path) -> Result<Vec<(String, Index)>, String> {
+pub(crate) fn indexes(root: &Path) -> Result<Vec<(String, Index)>, String> {
     let dir = root.join("conformance");
     let mut out = Vec::new();
     for entry in std::fs::read_dir(&dir).map_err(|e| format!("{}: {e}", dir.display()))? {
@@ -96,12 +107,21 @@ fn catalog_ids(root: &Path) -> Result<std::collections::BTreeSet<String>, String
         .collect())
 }
 
-pub(crate) fn check(root: &Path) -> Result<Vec<Violation>, String> {
-    let mut out = Vec::new();
-    let all = indexes(root)?;
+/// Every indexed schema under `conformance/`, compiled.
+pub(crate) struct Compiled {
+    pub(crate) schemas: boon::Schemas,
+    pub(crate) by_id: BTreeMap<String, boon::SchemaIndex>,
+    pub(crate) paths: BTreeMap<String, String>,
+}
+
+pub(crate) fn compile(
+    root: &Path,
+    all: &[(String, Index)],
+    out: &mut Vec<Violation>,
+) -> Result<Compiled, String> {
     let mut compiler = boon::Compiler::new();
     let mut ids: BTreeMap<String, String> = BTreeMap::new();
-    for (folder, index) in &all {
+    for (folder, index) in all {
         for s in &index.schema {
             let rel = format!("conformance/{folder}/{}", s.path);
             let json = read_json(&root.join(&rel))?;
@@ -130,6 +150,17 @@ pub(crate) fn check(root: &Path) -> Result<Vec<Violation>, String> {
             )),
         }
     }
+    Ok(Compiled {
+        schemas,
+        by_id,
+        paths: ids,
+    })
+}
+
+pub(crate) fn check(root: &Path) -> Result<Vec<Violation>, String> {
+    let mut out = Vec::new();
+    let all = indexes(root)?;
+    let Compiled { schemas, by_id, .. } = compile(root, &all, &mut out)?;
     let known = catalog_ids(root)?;
     for (folder, index) in &all {
         let cited = index
@@ -137,7 +168,8 @@ pub(crate) fn check(root: &Path) -> Result<Vec<Violation>, String> {
             .iter()
             .flat_map(|s| s.rules.iter())
             .chain(index.vectors.iter().flat_map(|e| e.rules.iter()))
-            .chain(index.table.iter().flat_map(|t| t.rules.iter()));
+            .chain(index.table.iter().flat_map(|t| t.rules.iter()))
+            .chain(index.event.iter().flat_map(|e| e.rules.iter()));
         for rule in cited {
             let base = rule.split(" (").next().unwrap_or(rule);
             let sibling = ["Access ", "Relay ", "Work ", "Pay "]
