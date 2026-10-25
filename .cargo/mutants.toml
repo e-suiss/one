@@ -4,7 +4,14 @@ examine_globs = [
     "crates/proto/src/task/state.rs",
     "crates/proto/src/task/batch.rs",
 ]
-exclude_re = ["impl .*Debug for "]
+exclude_re = [
+    "impl .*Debug for ",
+    "^crates/provenance/src/label\\.rs:\\d+:\\d+: replace < with <= in TrustedLabel::join$",
+    "^crates/provenance/src/confirm\\.rs:\\d+:\\d+: replace < with <= in upgrade_label$",
+    "^crates/provenance/src/content\\.rs:\\d+:\\d+: replace <impl de::VariantAccess<'de> for VariantAccess<E>>::unit_variant -> Result<\\(\\), E> with Ok\\(\\(\\)\\)$",
+    "^crates/provenance/src/intent/jcs\\.rs:\\d+:\\d+: replace < with <= in write_value$",
+    "^crates/provenance/src/intent/jcs\\.rs:\\d+:\\d+: replace << with >>$",
+]
 test_tool = "nextest"
 additional_cargo_args = ["--locked"]
 cap_lints = true

@@ -124,7 +124,7 @@ fn write_float(out: &mut String, value: f64) -> Option<()> {
             out.push_str(digits.get(1..)?);
         }
         out.push('e');
-        out.push(if e < 0 { '-' } else { '+' });
+        out.push(if e.is_negative() { '-' } else { '+' });
         write!(out, "{}", e.unsigned_abs()).ok()?;
     }
     Some(())

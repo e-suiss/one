@@ -13,7 +13,8 @@ use one_provenance::intent::jcs::canonicalize;
 use one_provenance::intent::{
     CountryCode, Date, Email, FieldKind, FieldName, IntentInputs, MAX_FIELDS, MAX_INPUTS,
     MemoryText, OptionCode, Origin, Origins, Phone, PostalCode, ProposedInputs, Rejection,
-    RequestText, SafeInteger, SchemaId, StepLimit, SummaryText, TypedField, UntrustedText, Url,
+    RequestText, SafeInteger, SchemaId, StepLimit, SummaryLangMismatch, SummaryText, TypedField,
+    UntrustedText, Url,
 };
 use one_provenance::{
     AccessProvenance, ExternalSource, Label, LabelKind, Labelled, Opened, ParameterName,
@@ -289,6 +290,14 @@ fn sec_4_rejection_displays_its_code() {
     for r in Rejection::CHECK_ORDER {
         assert_eq!(r.to_string(), r.code());
     }
+}
+
+#[test]
+fn sec_13_summary_lang_mismatch_displays_its_rule() {
+    assert_eq!(
+        SummaryLangMismatch.to_string(),
+        "display summary present exactly when summary_lang is not none"
+    );
 }
 
 #[test]
