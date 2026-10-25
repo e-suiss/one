@@ -13,8 +13,8 @@
 mod common;
 
 use common::{assert_label, tight};
-use one_parse::ParseError;
 use one_parse::cbor::{self, CborValue};
+use one_parse::{Limits, ParseError};
 use one_provenance::ExternalSource;
 
 fn parse(bytes: &[u8]) -> Result<CborValue, ParseError> {
@@ -198,4 +198,102 @@ fn sec_13_cbor_too_many_items_is_rejected() {
     let mut many = vec![0x98, 0x41];
     many.extend(vec![0x00; 65]);
     assert_eq!(parse(&many), Err(ParseError::TooManyItems));
+}
+
+fn heap(v: &CborValue) -> usize {
+    match v {
+        CborValue::Bytes(b) => b.capacity(),
+        CborValue::Text(s) => s.capacity(),
+        CborValue::Array(items) => {
+            items.capacity() * size_of::<CborValue>() + items.iter().map(heap).sum::<usize>()
+        }
+        CborValue::Map(entries) => {
+            entries.capacity() * size_of::<(CborValue, CborValue)>()
+                + entries
+                    .iter()
+                    .map(|(k, v)| heap(k) + heap(v))
+                    .sum::<usize>()
+        }
+        CborValue::Tag(_, inner) => size_of::<CborValue>() + heap(inner),
+        _ => 0,
+    }
+}
+
+fn head(major: u8, n: usize) -> Vec<u8> {
+    let m = major << 5;
+    let b = u64::try_from(n).unwrap().to_be_bytes();
+    match n {
+        0..=0x17 => vec![m | b[7]],
+        0x18..=0xff => vec![m | 0x18, b[7]],
+        0x100..=0xffff => vec![m | 0x19, b[6], b[7]],
+        _ => [&[m | 0x1a][..], &b[4..]].concat(),
+    }
+}
+
+fn adversarial() -> Vec<Vec<u8>> {
+    let items = Limits::DEFAULT.max_items;
+    let mut out = Vec::new();
+    for prefix in [0x81_u8, 0xc1, 0xa1] {
+        let mut deep = Vec::new();
+        for _ in 0..Limits::DEFAULT.max_depth {
+            deep.push(prefix);
+            if prefix == 0xa1 {
+                deep.push(0x00);
+            }
+        }
+        deep.push(0x00);
+        out.push(deep);
+    }
+    for element in [&[0x80_u8][..], &[0xa0], &[0xc1, 0x00], &[0x40], &[0x60]] {
+        let mut wide = head(4, (items - 1) / element.len());
+        for _ in 0..(items - 1) / element.len() {
+            wide.extend_from_slice(element);
+        }
+        out.push(wide);
+    }
+    let entries = (items - 1) / 2;
+    let mut map = head(5, entries);
+    for k in 0..entries {
+        map.extend(head(0, k));
+        map.push(0x80);
+    }
+    out.push(map);
+    let mut strings = head(4, 3);
+    for major in [2, 3, 2] {
+        strings.extend(head(major, Limits::DEFAULT.max_string));
+        strings.extend(vec![b'a'; Limits::DEFAULT.max_string]);
+    }
+    out.push(strings);
+    let mut chunks = vec![0x5f];
+    for _ in 0..items {
+        chunks.extend([0x41, 0x00]);
+    }
+    chunks.push(0xff);
+    out.push(chunks);
+    out
+}
+
+#[test]
+fn sec_13_cbor_decoded_heap_stays_within_the_allocation_budget() {
+    let mut decoded = 0;
+    for bytes in adversarial() {
+        assert!(bytes.len() <= Limits::DEFAULT.max_bytes);
+        let Ok(v) = cbor::parse(&bytes, &Limits::DEFAULT, ExternalSource::Unknown) else {
+            continue;
+        };
+        decoded += 1;
+        let used = heap(v.expose());
+        assert!(used <= Limits::DEFAULT.max_total, "{used}");
+        for max_total in [used / 2, used.saturating_sub(1)] {
+            let limits = Limits {
+                max_total,
+                ..Limits::DEFAULT
+            };
+            assert_eq!(
+                cbor::parse(&bytes, &limits, ExternalSource::Unknown).unwrap_err(),
+                ParseError::BudgetExceeded
+            );
+        }
+    }
+    assert_eq!(decoded, 10);
 }
