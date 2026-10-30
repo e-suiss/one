@@ -22,3 +22,7 @@ regexes = ['''local-only-not-a-secret''', '''ci-only-not-a-secret''']
 [[allowlists]]
 description = "Leak scanner fixtures"
 paths = ['''^crates/telemetry/src/leak\.rs$''', '''^crates/telemetry/tests/''']
+
+[[allowlists]]
+description = "Published conformance test vectors"
+paths = ['''^conformance/[a-z-]+/vectors/''']
