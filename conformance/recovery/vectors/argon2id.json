@@ -1,0 +1,143 @@
+[
+  {
+    "rule": "PV-12",
+    "description": "RFC 9106 section 5.3 Argon2id test vector",
+    "input": {
+      "password": "0101010101010101010101010101010101010101010101010101010101010101",
+      "salt": "02020202020202020202020202020202",
+      "secret": "0303030303030303",
+      "associated_data": "040404040404040404040404",
+      "params": {
+        "variant": "argon2id",
+        "version": 19,
+        "memory_kib": 32,
+        "iterations": 3,
+        "lanes": 4,
+        "tag_length": 32
+      }
+    },
+    "expected": {
+      "tag": "0d640df58d78766c08c037a34a8b53c9d01ef0452d75b65eb52520e96b01e659"
+    }
+  },
+  {
+    "rule": "PV-12",
+    "description": "PIN `123456` is stretched on the device with Argon2id; the tag splits into the access key and the encryption key seed",
+    "input": {
+      "pin": "123456",
+      "salt": "a4e2d9b5db27d15401702f31ae82bff8",
+      "params": {
+        "variant": "argon2id",
+        "version": 19,
+        "memory_kib": 65536,
+        "iterations": 3,
+        "lanes": 4,
+        "tag_length": 64
+      }
+    },
+    "expected": {
+      "tag": "9f1915f66abc16d0d491e94fdf1509c90f22ed0dfdff38769fa8970294cba2470e7f7a707fee6004b7b1937c5dfd86babf69f35024c7932aca865703b9a16859",
+      "access_key": "9f1915f66abc16d0d491e94fdf1509c90f22ed0dfdff38769fa8970294cba247",
+      "encryption_key_seed": "0e7f7a707fee6004b7b1937c5dfd86babf69f35024c7932aca865703b9a16859"
+    }
+  },
+  {
+    "rule": "PV-12",
+    "description": "PIN `000000` is stretched on the device with Argon2id; the tag splits into the access key and the encryption key seed",
+    "input": {
+      "pin": "000000",
+      "salt": "a4e2d9b5db27d15401702f31ae82bff8",
+      "params": {
+        "variant": "argon2id",
+        "version": 19,
+        "memory_kib": 65536,
+        "iterations": 3,
+        "lanes": 4,
+        "tag_length": 64
+      }
+    },
+    "expected": {
+      "tag": "be0546f6bb15d70f397f16fde86f7b87b9affd893f70c2749236dcb95bacedebf9e8060ff60cac542a85e9272696180d72286d596df53c28cffeb06a1f14086e",
+      "access_key": "be0546f6bb15d70f397f16fde86f7b87b9affd893f70c2749236dcb95bacedeb",
+      "encryption_key_seed": "f9e8060ff60cac542a85e9272696180d72286d596df53c28cffeb06a1f14086e"
+    }
+  },
+  {
+    "rule": "PV-12",
+    "description": "PIN `4815162342` is stretched on the device with Argon2id; the tag splits into the access key and the encryption key seed",
+    "input": {
+      "pin": "4815162342",
+      "salt": "a4e2d9b5db27d15401702f31ae82bff8",
+      "params": {
+        "variant": "argon2id",
+        "version": 19,
+        "memory_kib": 65536,
+        "iterations": 3,
+        "lanes": 4,
+        "tag_length": 64
+      }
+    },
+    "expected": {
+      "tag": "7fb2455537218b10d1a8357af22233504b661583ef714c4ca98c738c0e4aa418466a85d674530cf900130bf8ed6f8d514afc7033073f7c6790fe550280a5dfcd",
+      "access_key": "7fb2455537218b10d1a8357af22233504b661583ef714c4ca98c738c0e4aa418",
+      "encryption_key_seed": "466a85d674530cf900130bf8ed6f8d514afc7033073f7c6790fe550280a5dfcd"
+    }
+  },
+  {
+    "rule": "PV-12",
+    "description": "the same PIN under another user's salt gives another tag",
+    "input": {
+      "pin": "123456",
+      "salt": "3261f7e7d341be095ad92b568ec867c6",
+      "params": {
+        "variant": "argon2id",
+        "version": 19,
+        "memory_kib": 65536,
+        "iterations": 3,
+        "lanes": 4,
+        "tag_length": 64
+      }
+    },
+    "expected": {
+      "tag": "6bbde46c4616c9e6049cf68f34eeda6db48a374e5e5aef5adea2fa8911eef970e1feca85cf2b9e53cde2bb773878612b0dea18c3525b44fab34f175fdf4227ae"
+    }
+  },
+  {
+    "rule": "PV-12",
+    "description": "a PIN shorter than six digits is rejected before stretching",
+    "input": {
+      "pin": "12345",
+      "salt": "a4e2d9b5db27d15401702f31ae82bff8",
+      "params": {
+        "variant": "argon2id",
+        "version": 19,
+        "memory_kib": 65536,
+        "iterations": 3,
+        "lanes": 4,
+        "tag_length": 64
+      }
+    },
+    "expected": {
+      "error": "pin_too_short"
+    }
+  },
+  {
+    "rule": "PV-12",
+    "description": "the parameters are fixed; weaker memory cost is rejected",
+    "input": {
+      "pin": "123456",
+      "salt": "a4e2d9b5db27d15401702f31ae82bff8",
+      "params": {
+        "variant": "argon2id",
+        "version": 19,
+        "memory_kib": 19456,
+        "iterations": 3,
+        "lanes": 4,
+        "tag_length": 64
+      }
+    },
+    "expected": {
+      "error": "params"
+    }
+  }
+]

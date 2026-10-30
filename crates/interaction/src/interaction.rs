@@ -3,6 +3,7 @@
 use alloc::collections::BTreeMap;
 use alloc::string::String;
 use alloc::vec::Vec;
+use core::num::NonZeroU32;
 
 use one_proto::data_class::{DataClass, Domain, RetentionClass};
 use one_proto::ontology::{
@@ -605,6 +606,8 @@ pub struct Interaction {
     pub recorded_at: Instant,
     /// Version.
     pub version: u32,
+    /// Privacy promise version the record was collected under (PV-19).
+    pub promise_version: NonZeroU32,
     /// Deleted at, null unless deleted.
     pub deleted_at: Option<Instant>,
     /// Producer.

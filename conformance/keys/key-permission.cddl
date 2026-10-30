@@ -1,0 +1,50 @@
+; PV-65, PV-61, A-13, T-27 (7), Access E59, Access E31
+
+key-permission-sign1 = #6.18([
+  protected: bstr .cbor key-permission-protected,
+  unprotected: key-permission-unprotected,
+  payload: bstr .cbor key-permission,
+  signature: bstr .size 64,
+])
+
+key-permission-protected = {
+  1: -7,
+}
+
+key-permission-unprotected = {
+  4: bstr .size (1..64),
+}
+
+key-permission = read-only-permission / state-changing-permission
+
+read-only-permission = {
+  permission-common,
+  purpose: read-only-purpose,
+}
+
+state-changing-permission = {
+  permission-common,
+  purpose: state-changing-purpose,
+  mandate_ref: opaque-ref,
+}
+
+permission-common = (
+  permission_id: uuid,
+  classes: [+ one-class],
+  not_before: epoch-seconds,
+  expires_at: epoch-seconds,
+  tee_measurement: bstr .size 48,
+  job_key_digest: bstr .size 32,
+)
+
+read-only-purpose = "personal_training" / "consolidation" / "reembedding"
+
+state-changing-purpose = "trigger" / "one_to_one_reply" / "subject_request" / "mls_membership"
+
+one-class = "one_memory" / "one_model" / "one_observation" / "one_sensitive" / "one_provider_trace" / "one_browser_profile" / "one_training_lineage"
+
+uuid = #6.37(bstr .size 16)
+
+epoch-seconds = uint
+
+opaque-ref = tstr .size (1..255)

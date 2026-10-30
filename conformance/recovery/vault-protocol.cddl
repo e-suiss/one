@@ -1,0 +1,84 @@
+; PV-12, PV-14, PV-15, PV-61, Access E52 (2)
+
+vault-message = register / recover-1 / recover-2 / recover-3 / delete / vault-response
+
+register = {
+  op: "register",
+  realm: realm-id,
+  user: realm-user,
+  version: bstr .size 16,
+  salt: bstr .size 16,
+  oprf_key_share: bstr .size 32,
+  unlock_key_commitment: bstr .size 32,
+  masked_secret_share: bstr .size 33,
+  secret_share_mac: bstr .size 32,
+  policy: guess-policy,
+}
+
+guess-policy = {
+  max_guesses: 3..10,
+}
+
+recover-1 = {
+  op: "recover1",
+  realm: realm-id,
+  user: realm-user,
+}
+
+recover-2 = {
+  op: "recover2",
+  realm: realm-id,
+  user: realm-user,
+  version: bstr .size 16,
+  blinded_element: bstr .size 32,
+}
+
+recover-3 = {
+  op: "recover3",
+  realm: realm-id,
+  user: realm-user,
+  version: bstr .size 16,
+  unlock_key_tag: bstr .size 16,
+}
+
+delete = {
+  op: "delete",
+  realm: realm-id,
+  user: realm-user,
+}
+
+vault-response = recover-1-ok / recover-2-ok / recover-3-ok / registered / deleted / vault-error
+
+registered = { status: "registered" }
+
+deleted = { status: "deleted" }
+
+recover-1-ok = {
+  status: "ok",
+  version: bstr .size 16,
+  salt: bstr .size 16,
+  guesses_remaining: 0..10,
+}
+
+recover-2-ok = {
+  status: "ok",
+  evaluated_element: bstr .size 32,
+  unlock_key_commitment: bstr .size 32,
+  guesses_remaining: 0..10,
+}
+
+recover-3-ok = {
+  status: "ok",
+  masked_secret_share: bstr .size 33,
+  secret_share_mac: bstr .size 32,
+}
+
+vault-error = {
+  status: "not_registered" / "version_mismatch" / "bad_unlock_key_tag" / "no_guesses" / "wait",
+  ? guesses_remaining: 0..10,
+  ? retry_after: uint,
+}
+
+realm-id = bstr .size 16
+
+realm-user = bstr .size 32

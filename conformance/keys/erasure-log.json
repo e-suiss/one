@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/keys/erasure-log/v1.json",
+  "title": "ErasureLogEntry",
+  "description": "The content-free erasure record One sends to Access when a key is destroyed: a pseudonymous subject, the destroyed key id, the class and the copies still open. It carries no content, record identifier or key material. M-25, PV-15, PV-9, OP-4, Access E66 (2).",
+  "type": "object",
+  "required": ["erasure_id", "subject", "scope", "class", "erased_at", "open_copies"],
+  "additionalProperties": false,
+  "properties": {
+    "erasure_id": { "$ref": "#/$defs/uuid" },
+    "subject": {
+      "description": "Pseudonymous subject id agreed with Access; never the PartyRef.",
+      "type": "string",
+      "pattern": "^[\\x21-\\x7e]{1,255}$"
+    },
+    "scope": { "enum": ["record", "class", "kek_copy", "recovery_vault"] },
+    "record_key_id": { "$ref": "#/$defs/uuid" },
+    "dek_id": { "$ref": "#/$defs/uuid" },
+    "kek_id": { "type": "string", "minLength": 1, "maxLength": 64 },
+    "class": { "$ref": "https://suiss.app/schemas/one/memory/retention-class/v1.json" },
+    "erased_at": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]{1,9})?Z$"
+    },
+    "open_copies": {
+      "description": "Copies not yet destroyed (an offline device, a recovery contact's share, an unreachable vault realm). The entry closes when the list is empty.",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "required": ["holder", "ref"],
+        "additionalProperties": false,
+        "properties": {
+          "holder": { "enum": ["device", "recovery_contact", "vault_realm"] },
+          "ref": { "type": "string", "pattern": "^[\\x21-\\x7e]{1,255}$" }
+        }
+      }
+    }
+  },
+  "allOf": [
+    { "if": { "properties": { "scope": { "const": "record" } } }, "then": { "required": ["record_key_id"], "not": { "anyOf": [{ "required": ["dek_id"] }, { "required": ["kek_id"] }] } } },
+    { "if": { "properties": { "scope": { "const": "class" } } }, "then": { "required": ["dek_id"], "not": { "anyOf": [{ "required": ["record_key_id"] }, { "required": ["kek_id"] }] } } },
+    { "if": { "properties": { "scope": { "enum": ["kek_copy", "recovery_vault"] } } }, "then": { "required": ["kek_id"], "not": { "anyOf": [{ "required": ["record_key_id"] }, { "required": ["dek_id"] }] } } }
+  ],
+  "$defs": {
+    "uuid": {
+      "description": "UUIDv7 in lowercase canonical form.",
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    }
+  }
+}

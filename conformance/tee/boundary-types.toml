@@ -1,0 +1,41 @@
+# T-27 (3), T-6, SEC-27
+version = 1
+
+[[type]]
+name = "one_tee::Sealed<T>"
+holds = "ciphertext and nonce, record key id, AAD context"
+serialize = true
+clone = true
+display = false
+debug = "fields"
+crosses_tee = true
+
+[[type]]
+name = "one_tee::Unsealed<T>"
+holds = "decrypted personal content"
+constructor = "pub(crate), only under crates/tee/src/frame"
+serialize = false
+clone = false
+display = false
+debug = "[unsealed]"
+zeroize_on_drop = true
+send = true
+crosses_tee = false
+
+[[type]]
+name = "one_provenance::Opened<T>"
+holds = "a labelled value received over the wire"
+crosses_tee = true
+note = "unchanged; not a TEE boundary type"
+
+[[rule]]
+id = "unsealed-constructor"
+meaning = "`Unsealed::new` appears only under crates/tee/src/frame."
+
+[[rule]]
+id = "unsealed-not-on-outside-ports"
+meaning = "No port that runs outside the TEE (outbox sender, operations endpoints, one-cli) takes an `Unsealed` value."
+
+[[rule]]
+id = "unsealed-compile-fail"
+meaning = "Serializing, formatting with `{}`, handing to the outbox port and constructing outside `tee` fail to compile."

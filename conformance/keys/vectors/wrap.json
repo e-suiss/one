@@ -1,0 +1,97 @@
+[
+  {
+    "rule": "OP-4",
+    "description": "RFC 3394 section 4.6: 256-bit key data under a 256-bit KEK",
+    "input": {
+      "op": "wrap",
+      "alg": "A256KW",
+      "kek": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f",
+      "key": "00112233445566778899aabbccddeeff000102030405060708090a0b0c0d0e0f"
+    },
+    "expected": {
+      "wrapped": "28c9f404c4b810f4cbccb35cfb87f8263f5786e2d80ed326cbc7f0e71a99f43bfb988b9b7a02dd21"
+    }
+  },
+  {
+    "rule": "OP-4",
+    "description": "class DEK wrapped to the user's KEK, stored with the KEK id",
+    "input": {
+      "op": "wrap",
+      "alg": "A256KW",
+      "kek_id": "kek_test_1",
+      "kek": "6326808008cde5008cc72da00b9ade23f3bcdcb6192326ad66f09b89b1ac8133",
+      "key": "86b4f758f00462d941b9c2bed77546a319580e161bf02f4c13e62aa084dd4fd1",
+      "class": "one_memory"
+    },
+    "expected": {
+      "wrapped": "ede197848a8a602f90cc666c4ff56976830f982b71919a1fc8d29e42ca2963a5307d8c633748bf52",
+      "kek_id": "kek_test_1"
+    }
+  },
+  {
+    "rule": "OP-4",
+    "description": "record key wrapped to its class DEK",
+    "input": {
+      "op": "wrap",
+      "alg": "A256KW",
+      "dek_id": "0192f0a0-0000-7000-8000-000000000001",
+      "kek": "86b4f758f00462d941b9c2bed77546a319580e161bf02f4c13e62aa084dd4fd1",
+      "key": "355a5a2c09fa7e363371cc22240342afe0443c5e5a45b34cde4d537275d1625a"
+    },
+    "expected": {
+      "wrapped": "1c3db686526a94b15491a1569132870950ebb5f4a4fcc51abc4339f69ce5ee0f4f0feef3181c65db"
+    }
+  },
+  {
+    "rule": "OP-4",
+    "description": "unwrap returns the record key",
+    "input": {
+      "op": "unwrap",
+      "alg": "A256KW",
+      "kek": "86b4f758f00462d941b9c2bed77546a319580e161bf02f4c13e62aa084dd4fd1",
+      "wrapped": "1c3db686526a94b15491a1569132870950ebb5f4a4fcc51abc4339f69ce5ee0f4f0feef3181c65db"
+    },
+    "expected": {
+      "key": "355a5a2c09fa7e363371cc22240342afe0443c5e5a45b34cde4d537275d1625a"
+    }
+  },
+  {
+    "rule": "OP-4",
+    "description": "unwrap under another class DEK fails the integrity check",
+    "input": {
+      "op": "unwrap",
+      "alg": "A256KW",
+      "kek": "5042c46ab651ed7e36ad907cc11219773d5266607b22125d954a39eca6026c4e",
+      "wrapped": "1c3db686526a94b15491a1569132870950ebb5f4a4fcc51abc4339f69ce5ee0f4f0feef3181c65db"
+    },
+    "expected": {
+      "error": "integrity"
+    }
+  },
+  {
+    "rule": "OP-4",
+    "description": "a modified wrapped key fails the integrity check",
+    "input": {
+      "op": "unwrap",
+      "alg": "A256KW",
+      "kek": "86b4f758f00462d941b9c2bed77546a319580e161bf02f4c13e62aa084dd4fd1",
+      "wrapped": "1d3db686526a94b15491a1569132870950ebb5f4a4fcc51abc4339f69ce5ee0f4f0feef3181c65db"
+    },
+    "expected": {
+      "error": "integrity"
+    }
+  },
+  {
+    "rule": "OP-4",
+    "description": "only 256-bit keys are wrapped",
+    "input": {
+      "op": "wrap",
+      "alg": "A256KW",
+      "kek": "86b4f758f00462d941b9c2bed77546a319580e161bf02f4c13e62aa084dd4fd1",
+      "key": "355a5a2c09fa7e363371cc22240342af"
+    },
+    "expected": {
+      "error": "key_length"
+    }
+  }
+]

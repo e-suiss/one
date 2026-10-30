@@ -1,0 +1,10 @@
+# OP-4 (2), OP-5, T-32 (4), T-32 (8), PV-6, SEC-30
+
+[[table]]
+path = "plain-columns.toml"
+rules = ["OP-4 (2)", "OP-5", "T-32 (4)", "T-32 (8)", "PV-6", "PV-19", "SEC-30"]
+
+[[vectors]]
+path = "vectors/plain-columns.json"
+kind = "behaviour"
+rules = ["OP-4 (2)", "T-32 (4)", "T-32 (8)", "T-27 (7)", "PV-19", "SEC-30"]

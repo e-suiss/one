@@ -23,6 +23,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-19T08:10:00Z",
       "version": 1,
+      "promise_version": 1,
       "status": "active",
       "produced_by": {
         "actor": "one",
@@ -67,6 +68,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-19T08:10:00Z",
       "version": 1,
+      "promise_version": 1,
       "status": "active",
       "produced_by": {
         "actor": "one",
@@ -319,6 +321,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-19T08:10:00Z",
       "version": 1,
+      "promise_version": 1,
       "status": "active",
       "produced_by": {
         "actor": "one",
@@ -396,6 +399,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-19T08:10:00Z",
       "version": 1,
+      "promise_version": 1,
       "status": "active",
       "produced_by": {
         "actor": "one",
@@ -447,6 +451,7 @@
       "provenance": "one.inferred",
       "recorded_at": "2026-10-02T03:00:00Z",
       "version": 1,
+      "promise_version": 1,
       "supersedes": null,
       "status": "active",
       "deleted_at": null,
@@ -522,6 +527,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-19T08:10:00Z",
       "version": 1,
+      "promise_version": 1,
       "status": "active",
       "produced_by": {
         "actor": "one",

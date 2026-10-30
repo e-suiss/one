@@ -1,0 +1,190 @@
+[
+  {
+    "rule": "M-25",
+    "description": "record shred names the record key id and the class",
+    "input": {
+      "erasure_id": "0192f0a0-0000-7000-8000-0000000000e1",
+      "subject": "sub-test-1",
+      "scope": "record",
+      "record_key_id": "0192f0a0-0000-7000-8000-0000000000a1",
+      "class": "one_memory",
+      "erased_at": "2026-11-02T10:00:00Z",
+      "open_copies": []
+    },
+    "valid": true
+  },
+  {
+    "rule": "PV-15",
+    "description": "an offline device keeps the entry open",
+    "input": {
+      "erasure_id": "0192f0a0-0000-7000-8000-0000000000e1",
+      "subject": "sub-test-1",
+      "scope": "record",
+      "record_key_id": "0192f0a0-0000-7000-8000-0000000000a1",
+      "class": "one_memory",
+      "erased_at": "2026-11-02T10:00:00Z",
+      "open_copies": [
+        {
+          "holder": "device",
+          "ref": "dev-test-1"
+        }
+      ]
+    },
+    "valid": true
+  },
+  {
+    "rule": "PV-15",
+    "description": "class shred names the class DEK",
+    "input": {
+      "erasure_id": "0192f0a0-0000-7000-8000-0000000000e1",
+      "subject": "sub-test-1",
+      "scope": "class",
+      "class": "one_sensitive",
+      "erased_at": "2026-11-02T10:00:00Z",
+      "open_copies": [],
+      "dek_id": "0192f0a0-0000-7000-8000-000000000002"
+    },
+    "valid": true
+  },
+  {
+    "rule": "PV-15",
+    "description": "recovery vault shred names the KEK and the realms still open",
+    "input": {
+      "erasure_id": "0192f0a0-0000-7000-8000-0000000000e1",
+      "subject": "sub-test-1",
+      "scope": "recovery_vault",
+      "class": "one_memory",
+      "erased_at": "2026-11-02T10:00:00Z",
+      "open_copies": [
+        {
+          "holder": "vault_realm",
+          "ref": "realm-c"
+        }
+      ],
+      "kek_id": "kek_test_1"
+    },
+    "valid": true
+  },
+  {
+    "rule": "M-25",
+    "description": "a record shred without the record key id is rejected",
+    "input": {
+      "erasure_id": "0192f0a0-0000-7000-8000-0000000000e1",
+      "subject": "sub-test-1",
+      "scope": "record",
+      "class": "one_memory",
+      "erased_at": "2026-11-02T10:00:00Z",
+      "open_copies": []
+    },
+    "valid": false
+  },
+  {
+    "rule": "M-25",
+    "description": "a record shred cannot also name a class DEK",
+    "input": {
+      "erasure_id": "0192f0a0-0000-7000-8000-0000000000e1",
+      "subject": "sub-test-1",
+      "scope": "record",
+      "record_key_id": "0192f0a0-0000-7000-8000-0000000000a1",
+      "class": "one_memory",
+      "erased_at": "2026-11-02T10:00:00Z",
+      "open_copies": [],
+      "dek_id": "0192f0a0-0000-7000-8000-000000000002"
+    },
+    "valid": false
+  },
+  {
+    "rule": "M-25",
+    "description": "the entry carries no record identifier",
+    "input": {
+      "erasure_id": "0192f0a0-0000-7000-8000-0000000000e1",
+      "subject": "sub-test-1",
+      "scope": "record",
+      "record_key_id": "0192f0a0-0000-7000-8000-0000000000a1",
+      "class": "one_memory",
+      "erased_at": "2026-11-02T10:00:00Z",
+      "open_copies": [],
+      "record": "mem_01k742vmbgez2rfct5dmnr31vp"
+    },
+    "valid": false
+  },
+  {
+    "rule": "M-25",
+    "description": "the entry carries no content or key material",
+    "input": {
+      "erasure_id": "0192f0a0-0000-7000-8000-0000000000e1",
+      "subject": "sub-test-1",
+      "scope": "record",
+      "record_key_id": "0192f0a0-0000-7000-8000-0000000000a1",
+      "class": "one_memory",
+      "erased_at": "2026-11-02T10:00:00Z",
+      "open_copies": [],
+      "wrapped_record_key": "AAEC"
+    },
+    "valid": false
+  },
+  {
+    "rule": "PV-16",
+    "description": "an unknown class is rejected",
+    "input": {
+      "erasure_id": "0192f0a0-0000-7000-8000-0000000000e1",
+      "subject": "sub-test-1",
+      "scope": "record",
+      "record_key_id": "0192f0a0-0000-7000-8000-0000000000a1",
+      "class": "pay_ledger",
+      "erased_at": "2026-11-02T10:00:00Z",
+      "open_copies": []
+    },
+    "valid": false
+  },
+  {
+    "rule": "M-25",
+    "description": "the key id is a UUIDv7",
+    "input": {
+      "erasure_id": "0192f0a0-0000-7000-8000-0000000000e1",
+      "subject": "sub-test-1",
+      "scope": "record",
+      "record_key_id": "0192f0a0-0000-4000-8000-0000000000a1",
+      "class": "one_memory",
+      "erased_at": "2026-11-02T10:00:00Z",
+      "open_copies": []
+    },
+    "valid": false
+  },
+  {
+    "rule": "PV-15",
+    "description": "open copies are closed holder kinds",
+    "input": {
+      "erasure_id": "0192f0a0-0000-7000-8000-0000000000e1",
+      "subject": "sub-test-1",
+      "scope": "record",
+      "record_key_id": "0192f0a0-0000-7000-8000-0000000000a1",
+      "class": "one_memory",
+      "erased_at": "2026-11-02T10:00:00Z",
+      "open_copies": [
+        {
+          "holder": "operator",
+          "ref": "x"
+        }
+      ]
+    },
+    "valid": false
+  },
+  {
+    "rule": "M-25",
+    "description": "the subject is pseudonymous, not a PartyRef object",
+    "input": {
+      "erasure_id": "0192f0a0-0000-7000-8000-0000000000e1",
+      "subject": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "scope": "record",
+      "record_key_id": "0192f0a0-0000-7000-8000-0000000000a1",
+      "class": "one_memory",
+      "erased_at": "2026-11-02T10:00:00Z",
+      "open_copies": []
+    },
+    "valid": false
+  }
+]

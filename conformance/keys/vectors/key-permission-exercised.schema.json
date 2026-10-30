@@ -1,0 +1,194 @@
+[
+  {
+    "rule": "PV-65",
+    "description": "exercised permission of a read-only job",
+    "input": {
+      "permission_id": "01a199c5-3280-7a7f-8846-123ee27da88a",
+      "instance": {
+        "ref": "InstanceRef",
+        "id": "ins-test-device-1"
+      },
+      "purpose": "personal_training",
+      "classes": [
+        "one_memory",
+        "one_model"
+      ],
+      "not_before": "2026-11-02T01:00:00Z",
+      "expires_at": "2026-11-03T01:00:00Z",
+      "tee_measurement": "17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d",
+      "job_key_digest": "e95dd9f0bbcb874dc9e0c812d1da4860c21cf795f9b2ad04f1bed180b020af78",
+      "body_digest": "d5022e12ead76867dc9acdd5ec71b3536ffc42bbed9a5a510cc61ebd69a2ee74",
+      "cose_sign1": "0oRDoQEmoQRSa2ItdGVzdC1pbnN0YW5jZS0xWO2nZ2NsYXNzZXOCam9uZV9tZW1vcnlpb25lX21vZGVsZ3B1cnBvc2VxcGVyc29uYWxfdHJhaW5pbmdqZXhwaXJlc19hdBpq6TIQam5vdF9iZWZvcmUaaufgkG1wZXJtaXNzaW9uX2lk2CVQAaGZxTKAen-IRhI-4n2oim5qb2Jfa2V5X2RpZ2VzdFgg6V3Z8LvLh03J4MgS0dpIYMIc95X5sq0E8b7RgLAgr3hvdGVlX21lYXN1cmVtZW50WDAX3XFgiksM_kII9pR1AG76kzG0IySS_b6Pr_cCvUGJurLcKDpnhyi-dRUvY8Z7pw1YQHd_UW2ukapSoAeoTsOKTI83tTuVEDotoO7S3UzVsbG4Kn2_MlIOWk3dsWFcME-zgn8xojZ0J_hwAg37rWPIfvs"
+    },
+    "valid": true
+  },
+  {
+    "rule": "PV-65",
+    "description": "a state-changing job names its Mandate",
+    "input": {
+      "permission_id": "01a199c5-3280-7a7f-8846-123ee27da88a",
+      "instance": {
+        "ref": "InstanceRef",
+        "id": "ins-test-device-1"
+      },
+      "purpose": "trigger",
+      "classes": [
+        "one_memory"
+      ],
+      "not_before": "2026-11-02T01:00:00Z",
+      "expires_at": "2026-11-03T01:00:00Z",
+      "tee_measurement": "17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d",
+      "job_key_digest": "e95dd9f0bbcb874dc9e0c812d1da4860c21cf795f9b2ad04f1bed180b020af78",
+      "body_digest": "d5022e12ead76867dc9acdd5ec71b3536ffc42bbed9a5a510cc61ebd69a2ee74",
+      "cose_sign1": "0oRDoQEmoQRSa2ItdGVzdC1pbnN0YW5jZS0xWO2nZ2NsYXNzZXOCam9uZV9tZW1vcnlpb25lX21vZGVsZ3B1cnBvc2VxcGVyc29uYWxfdHJhaW5pbmdqZXhwaXJlc19hdBpq6TIQam5vdF9iZWZvcmUaaufgkG1wZXJtaXNzaW9uX2lk2CVQAaGZxTKAen-IRhI-4n2oim5qb2Jfa2V5X2RpZ2VzdFgg6V3Z8LvLh03J4MgS0dpIYMIc95X5sq0E8b7RgLAgr3hvdGVlX21lYXN1cmVtZW50WDAX3XFgiksM_kII9pR1AG76kzG0IySS_b6Pr_cCvUGJurLcKDpnhyi-dRUvY8Z7pw1YQHd_UW2ukapSoAeoTsOKTI83tTuVEDotoO7S3UzVsbG4Kn2_MlIOWk3dsWFcME-zgn8xojZ0J_hwAg37rWPIfvs",
+      "mandate": {
+        "ref": "MandateRef",
+        "id": "mnd-test-0001"
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "PV-65",
+    "description": "a state-changing job without a Mandate is rejected",
+    "input": {
+      "permission_id": "01a199c5-3280-7a7f-8846-123ee27da88a",
+      "instance": {
+        "ref": "InstanceRef",
+        "id": "ins-test-device-1"
+      },
+      "purpose": "one_to_one_reply",
+      "classes": [
+        "one_memory",
+        "one_model"
+      ],
+      "not_before": "2026-11-02T01:00:00Z",
+      "expires_at": "2026-11-03T01:00:00Z",
+      "tee_measurement": "17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d",
+      "job_key_digest": "e95dd9f0bbcb874dc9e0c812d1da4860c21cf795f9b2ad04f1bed180b020af78",
+      "body_digest": "d5022e12ead76867dc9acdd5ec71b3536ffc42bbed9a5a510cc61ebd69a2ee74",
+      "cose_sign1": "0oRDoQEmoQRSa2ItdGVzdC1pbnN0YW5jZS0xWO2nZ2NsYXNzZXOCam9uZV9tZW1vcnlpb25lX21vZGVsZ3B1cnBvc2VxcGVyc29uYWxfdHJhaW5pbmdqZXhwaXJlc19hdBpq6TIQam5vdF9iZWZvcmUaaufgkG1wZXJtaXNzaW9uX2lk2CVQAaGZxTKAen-IRhI-4n2oim5qb2Jfa2V5X2RpZ2VzdFgg6V3Z8LvLh03J4MgS0dpIYMIc95X5sq0E8b7RgLAgr3hvdGVlX21lYXN1cmVtZW50WDAX3XFgiksM_kII9pR1AG76kzG0IySS_b6Pr_cCvUGJurLcKDpnhyi-dRUvY8Z7pw1YQHd_UW2ukapSoAeoTsOKTI83tTuVEDotoO7S3UzVsbG4Kn2_MlIOWk3dsWFcME-zgn8xojZ0J_hwAg37rWPIfvs"
+    },
+    "valid": false
+  },
+  {
+    "rule": "PV-65",
+    "description": "a read-only job carries no Mandate",
+    "input": {
+      "permission_id": "01a199c5-3280-7a7f-8846-123ee27da88a",
+      "instance": {
+        "ref": "InstanceRef",
+        "id": "ins-test-device-1"
+      },
+      "purpose": "personal_training",
+      "classes": [
+        "one_memory",
+        "one_model"
+      ],
+      "not_before": "2026-11-02T01:00:00Z",
+      "expires_at": "2026-11-03T01:00:00Z",
+      "tee_measurement": "17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d",
+      "job_key_digest": "e95dd9f0bbcb874dc9e0c812d1da4860c21cf795f9b2ad04f1bed180b020af78",
+      "body_digest": "d5022e12ead76867dc9acdd5ec71b3536ffc42bbed9a5a510cc61ebd69a2ee74",
+      "cose_sign1": "0oRDoQEmoQRSa2ItdGVzdC1pbnN0YW5jZS0xWO2nZ2NsYXNzZXOCam9uZV9tZW1vcnlpb25lX21vZGVsZ3B1cnBvc2VxcGVyc29uYWxfdHJhaW5pbmdqZXhwaXJlc19hdBpq6TIQam5vdF9iZWZvcmUaaufgkG1wZXJtaXNzaW9uX2lk2CVQAaGZxTKAen-IRhI-4n2oim5qb2Jfa2V5X2RpZ2VzdFgg6V3Z8LvLh03J4MgS0dpIYMIc95X5sq0E8b7RgLAgr3hvdGVlX21lYXN1cmVtZW50WDAX3XFgiksM_kII9pR1AG76kzG0IySS_b6Pr_cCvUGJurLcKDpnhyi-dRUvY8Z7pw1YQHd_UW2ukapSoAeoTsOKTI83tTuVEDotoO7S3UzVsbG4Kn2_MlIOWk3dsWFcME-zgn8xojZ0J_hwAg37rWPIfvs",
+      "mandate": {
+        "ref": "MandateRef",
+        "id": "mnd-test-0001"
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "PV-65",
+    "description": "an unknown purpose is rejected",
+    "input": {
+      "permission_id": "01a199c5-3280-7a7f-8846-123ee27da88a",
+      "instance": {
+        "ref": "InstanceRef",
+        "id": "ins-test-device-1"
+      },
+      "purpose": "analytics",
+      "classes": [
+        "one_memory",
+        "one_model"
+      ],
+      "not_before": "2026-11-02T01:00:00Z",
+      "expires_at": "2026-11-03T01:00:00Z",
+      "tee_measurement": "17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d",
+      "job_key_digest": "e95dd9f0bbcb874dc9e0c812d1da4860c21cf795f9b2ad04f1bed180b020af78",
+      "body_digest": "d5022e12ead76867dc9acdd5ec71b3536ffc42bbed9a5a510cc61ebd69a2ee74",
+      "cose_sign1": "0oRDoQEmoQRSa2ItdGVzdC1pbnN0YW5jZS0xWO2nZ2NsYXNzZXOCam9uZV9tZW1vcnlpb25lX21vZGVsZ3B1cnBvc2VxcGVyc29uYWxfdHJhaW5pbmdqZXhwaXJlc19hdBpq6TIQam5vdF9iZWZvcmUaaufgkG1wZXJtaXNzaW9uX2lk2CVQAaGZxTKAen-IRhI-4n2oim5qb2Jfa2V5X2RpZ2VzdFgg6V3Z8LvLh03J4MgS0dpIYMIc95X5sq0E8b7RgLAgr3hvdGVlX21lYXN1cmVtZW50WDAX3XFgiksM_kII9pR1AG76kzG0IySS_b6Pr_cCvUGJurLcKDpnhyi-dRUvY8Z7pw1YQHd_UW2ukapSoAeoTsOKTI83tTuVEDotoO7S3UzVsbG4Kn2_MlIOWk3dsWFcME-zgn8xojZ0J_hwAg37rWPIfvs"
+    },
+    "valid": false
+  },
+  {
+    "rule": "PV-65",
+    "description": "the measurement is a SHA-384 digest",
+    "input": {
+      "permission_id": "01a199c5-3280-7a7f-8846-123ee27da88a",
+      "instance": {
+        "ref": "InstanceRef",
+        "id": "ins-test-device-1"
+      },
+      "purpose": "personal_training",
+      "classes": [
+        "one_memory",
+        "one_model"
+      ],
+      "not_before": "2026-11-02T01:00:00Z",
+      "expires_at": "2026-11-03T01:00:00Z",
+      "tee_measurement": "0000000000000000000000000000000000000000000000000000000000000000",
+      "job_key_digest": "e95dd9f0bbcb874dc9e0c812d1da4860c21cf795f9b2ad04f1bed180b020af78",
+      "body_digest": "d5022e12ead76867dc9acdd5ec71b3536ffc42bbed9a5a510cc61ebd69a2ee74",
+      "cose_sign1": "0oRDoQEmoQRSa2ItdGVzdC1pbnN0YW5jZS0xWO2nZ2NsYXNzZXOCam9uZV9tZW1vcnlpb25lX21vZGVsZ3B1cnBvc2VxcGVyc29uYWxfdHJhaW5pbmdqZXhwaXJlc19hdBpq6TIQam5vdF9iZWZvcmUaaufgkG1wZXJtaXNzaW9uX2lk2CVQAaGZxTKAen-IRhI-4n2oim5qb2Jfa2V5X2RpZ2VzdFgg6V3Z8LvLh03J4MgS0dpIYMIc95X5sq0E8b7RgLAgr3hvdGVlX21lYXN1cmVtZW50WDAX3XFgiksM_kII9pR1AG76kzG0IySS_b6Pr_cCvUGJurLcKDpnhyi-dRUvY8Z7pw1YQHd_UW2ukapSoAeoTsOKTI83tTuVEDotoO7S3UzVsbG4Kn2_MlIOWk3dsWFcME-zgn8xojZ0J_hwAg37rWPIfvs"
+    },
+    "valid": false
+  },
+  {
+    "rule": "PV-65",
+    "description": "the record carries no DEK",
+    "input": {
+      "permission_id": "01a199c5-3280-7a7f-8846-123ee27da88a",
+      "instance": {
+        "ref": "InstanceRef",
+        "id": "ins-test-device-1"
+      },
+      "purpose": "personal_training",
+      "classes": [
+        "one_memory",
+        "one_model"
+      ],
+      "not_before": "2026-11-02T01:00:00Z",
+      "expires_at": "2026-11-03T01:00:00Z",
+      "tee_measurement": "17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d",
+      "job_key_digest": "e95dd9f0bbcb874dc9e0c812d1da4860c21cf795f9b2ad04f1bed180b020af78",
+      "body_digest": "d5022e12ead76867dc9acdd5ec71b3536ffc42bbed9a5a510cc61ebd69a2ee74",
+      "cose_sign1": "0oRDoQEmoQRSa2ItdGVzdC1pbnN0YW5jZS0xWO2nZ2NsYXNzZXOCam9uZV9tZW1vcnlpb25lX21vZGVsZ3B1cnBvc2VxcGVyc29uYWxfdHJhaW5pbmdqZXhwaXJlc19hdBpq6TIQam5vdF9iZWZvcmUaaufgkG1wZXJtaXNzaW9uX2lk2CVQAaGZxTKAen-IRhI-4n2oim5qb2Jfa2V5X2RpZ2VzdFgg6V3Z8LvLh03J4MgS0dpIYMIc95X5sq0E8b7RgLAgr3hvdGVlX21lYXN1cmVtZW50WDAX3XFgiksM_kII9pR1AG76kzG0IySS_b6Pr_cCvUGJurLcKDpnhyi-dRUvY8Z7pw1YQHd_UW2ukapSoAeoTsOKTI83tTuVEDotoO7S3UzVsbG4Kn2_MlIOWk3dsWFcME-zgn8xojZ0J_hwAg37rWPIfvs",
+      "dek": "AAEC"
+    },
+    "valid": false
+  },
+  {
+    "rule": "PV-65",
+    "description": "repeated classes are rejected",
+    "input": {
+      "permission_id": "01a199c5-3280-7a7f-8846-123ee27da88a",
+      "instance": {
+        "ref": "InstanceRef",
+        "id": "ins-test-device-1"
+      },
+      "purpose": "personal_training",
+      "classes": [
+        "one_memory",
+        "one_memory"
+      ],
+      "not_before": "2026-11-02T01:00:00Z",
+      "expires_at": "2026-11-03T01:00:00Z",
+      "tee_measurement": "17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d",
+      "job_key_digest": "e95dd9f0bbcb874dc9e0c812d1da4860c21cf795f9b2ad04f1bed180b020af78",
+      "body_digest": "d5022e12ead76867dc9acdd5ec71b3536ffc42bbed9a5a510cc61ebd69a2ee74",
+      "cose_sign1": "0oRDoQEmoQRSa2ItdGVzdC1pbnN0YW5jZS0xWO2nZ2NsYXNzZXOCam9uZV9tZW1vcnlpb25lX21vZGVsZ3B1cnBvc2VxcGVyc29uYWxfdHJhaW5pbmdqZXhwaXJlc19hdBpq6TIQam5vdF9iZWZvcmUaaufgkG1wZXJtaXNzaW9uX2lk2CVQAaGZxTKAen-IRhI-4n2oim5qb2Jfa2V5X2RpZ2VzdFgg6V3Z8LvLh03J4MgS0dpIYMIc95X5sq0E8b7RgLAgr3hvdGVlX21lYXN1cmVtZW50WDAX3XFgiksM_kII9pR1AG76kzG0IySS_b6Pr_cCvUGJurLcKDpnhyi-dRUvY8Z7pw1YQHd_UW2ukapSoAeoTsOKTI83tTuVEDotoO7S3UzVsbG4Kn2_MlIOWk3dsWFcME-zgn8xojZ0J_hwAg37rWPIfvs"
+    },
+    "valid": false
+  }
+]

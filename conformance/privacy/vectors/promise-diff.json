@@ -1,0 +1,751 @@
+[
+  {
+    "rule": "PV-19",
+    "description": "same tuples are equal",
+    "input": {
+      "old": [
+        {
+          "category": "memory",
+          "purpose": "serve_requests",
+          "location": "attested_tee",
+          "accessor": "one",
+          "consent": "not_required"
+        },
+        {
+          "category": "sensitive",
+          "purpose": "serve_requests",
+          "location": "attested_tee",
+          "accessor": "one",
+          "consent": "explicit"
+        },
+        {
+          "category": "operational_metadata",
+          "purpose": "operations",
+          "location": "encrypted_store",
+          "accessor": "suiss_operator",
+          "consent": "not_required"
+        }
+      ],
+      "new": [
+        {
+          "category": "memory",
+          "purpose": "serve_requests",
+          "location": "attested_tee",
+          "accessor": "one",
+          "consent": "not_required"
+        },
+        {
+          "category": "sensitive",
+          "purpose": "serve_requests",
+          "location": "attested_tee",
+          "accessor": "one",
+          "consent": "explicit"
+        },
+        {
+          "category": "operational_metadata",
+          "purpose": "operations",
+          "location": "encrypted_store",
+          "accessor": "suiss_operator",
+          "consent": "not_required"
+        }
+      ],
+      "text_changed": false
+    },
+    "expected": {
+      "classification": "equal",
+      "notice_required": false,
+      "reconsent_flag_required": false
+    }
+  },
+  {
+    "rule": "PV-19",
+    "description": "tuple order does not matter",
+    "input": {
+      "old": [
+        {
+          "category": "memory",
+          "purpose": "serve_requests",
+          "location": "attested_tee",
+          "accessor": "one",
+          "consent": "not_required"
+        },
+        {
+          "category": "sensitive",
+          "purpose": "serve_requests",
+          "location": "attested_tee",
+          "accessor": "one",
+          "consent": "explicit"
+        },
+        {
+          "category": "operational_metadata",
+          "purpose": "operations",
+          "location": "encrypted_store",
+          "accessor": "suiss_operator",
+          "consent": "not_required"
+        }
+      ],
+      "new": [
+        {
+          "category": "operational_metadata",
+          "purpose": "operations",
+          "location": "encrypted_store",
+          "accessor": "suiss_operator",
+          "consent": "not_required"
+        },
+        {
+          "category": "sensitive",
+          "purpose": "serve_requests",
+          "location": "attested_tee",
+          "accessor": "one",
+          "consent": "explicit"
+        },
+        {
+          "category": "memory",
+          "purpose": "serve_requests",
+          "location": "attested_tee",
+          "accessor": "one",
+          "consent": "not_required"
+        }
+      ],
+      "text_changed": false
+    },
+    "expected": {
+      "classification": "equal",
+      "notice_required": false,
+      "reconsent_flag_required": false
+    }
+  },
+  {
+    "rule": "PV-19",
+    "description": "text changes alone are not a widening",
+    "input": {
+      "old": [
+        {
+          "category": "memory",
+          "purpose": "serve_requests",
+          "location": "attested_tee",
+          "accessor": "one",
+          "consent": "not_required"
+        },
+        {
+          "category": "sensitive",
+          "purpose": "serve_requests",
+          "location": "attested_tee",
+          "accessor": "one",
+          "consent": "explicit"
+        },
+        {
+          "category": "operational_metadata",
+          "purpose": "operations",
+          "location": "encrypted_store",
+          "accessor": "suiss_operator",
+          "consent": "not_required"
+        }
+      ],
+      "new": [
+        {
+          "category": "memory",
+          "purpose": "serve_requests",
+          "location": "attested_tee",
+          "accessor": "one",
+          "consent": "not_required"
+        },
+        {
+          "category": "sensitive",
+          "purpose": "serve_requests",
+          "location": "attested_tee",
+          "accessor": "one",
+          "consent": "explicit"
+        },
+        {
+          "category": "operational_metadata",
+          "purpose": "operations",
+          "location": "encrypted_store",
+          "accessor": "suiss_operator",
+          "consent": "not_required"
+        }
+      ],
+      "text_changed": true
+    },
+    "expected": {
+      "classification": "equal",
+      "notice_required": false,
+      "reconsent_flag_required": false
+    }
+  },
+  {
+    "rule": "PV-19",
+    "description": "removing a tuple narrows",
+    "input": {
+      "old": [
+        {
+          "category": "memory",
+          "purpose": "serve_requests",
+          "location": "attested_tee",
+          "accessor": "one",
+          "consent": "not_required"
+        },
+        {
+          "category": "sensitive",
+          "purpose": "serve_requests",
+          "location": "attested_tee",
+          "accessor": "one",
+          "consent": "explicit"
+        },
+        {
+          "category": "operational_metadata",
+          "purpose": "operations",
+          "location": "encrypted_store",
+          "accessor": "suiss_operator",
+          "consent": "not_required"
+        }
+      ],
+      "new": [
+        {
+          "category": "memory",
+          "purpose": "serve_requests",
+          "location": "attested_tee",
+          "accessor": "one",
+          "consent": "not_required"
+        },
+        {
+          "category": "sensitive",
+          "purpose": "serve_requests",
+          "location": "attested_tee",
+          "accessor": "one",
+          "consent": "explicit"
+        }
+      ],
+      "text_changed": false
+    },
+    "expected": {
+      "classification": "narrowing",
+      "notice_required": false,
+      "reconsent_flag_required": false
+    }
+  },
+  {
+    "rule": "PV-19",
+    "description": "a new purpose on existing data widens",
+    "input": {
+      "old": [
+        {
+          "category": "memory",
+          "purpose": "serve_requests",
+          "location": "attested_tee",
+          "accessor": "one",
+          "consent": "not_required"
+        },
+        {
+          "category": "sensitive",
+          "purpose": "serve_requests",
+          "location": "attested_tee",
+          "accessor": "one",
+          "consent": "explicit"
+        },
+        {
+          "category": "operational_metadata",
+          "purpose": "operations",
+          "location": "encrypted_store",
+          "accessor": "suiss_operator",
+          "consent": "not_required"
+        }
+      ],
+      "new": [
+        {
+          "category": "memory",
+          "purpose": "serve_requests",
+          "location": "attested_tee",
+          "accessor": "one",
+          "consent": "not_required"
+        },
+        {
+          "category": "sensitive",
+          "purpose": "serve_requests",
+          "location": "attested_tee",
+          "accessor": "one",
+          "consent": "explicit"
+        },
+        {
+          "category": "operational_metadata",
+          "purpose": "operations",
+          "location": "encrypted_store",
+          "accessor": "suiss_operator",
+          "consent": "not_required"
+        },
+        {
+          "category": "memory",
+          "purpose": "personal_training",
+          "location": "attested_tee",
+          "accessor": "one",
+          "consent": "not_required"
+        }
+      ],
+      "text_changed": false
+    },
+    "expected": {
+      "classification": "widening",
+      "notice_required": true,
+      "reconsent_flag_required": true
+    }
+  },
+  {
+    "rule": "PV-19",
+    "description": "a new location widens",
+    "input": {
+      "old": [
+        {
+          "category": "memory",
+          "purpose": "serve_requests",
+          "location": "attested_tee",
+          "accessor": "one",
+          "consent": "not_required"
+        },
+        {
+          "category": "sensitive",
+          "purpose": "serve_requests",
+          "location": "attested_tee",
+          "accessor": "one",
+          "consent": "explicit"
+        },
+        {
+          "category": "operational_metadata",
+          "purpose": "operations",
+          "location": "encrypted_store",
+          "accessor": "suiss_operator",
+          "consent": "not_required"
+        }
+      ],
+      "new": [
+        {
+          "category": "memory",
+          "purpose": "serve_requests",
+          "location": "attested_tee",
+          "accessor": "one",
+          "consent": "not_required"
+        },
+        {
+          "category": "sensitive",
+          "purpose": "serve_requests",
+          "location": "attested_tee",
+          "accessor": "one",
+          "consent": "explicit"
+        },
+        {
+          "category": "operational_metadata",
+          "purpose": "operations",
+          "location": "encrypted_store",
+          "accessor": "suiss_operator",
+          "consent": "not_required"
+        },
+        {
+          "category": "memory",
+          "purpose": "serve_requests",
+          "location": "executor_microvm",
+          "accessor": "one",
+          "consent": "not_required"
+        }
+      ],
+      "text_changed": false
+    },
+    "expected": {
+      "classification": "widening",
+      "notice_required": true,
+      "reconsent_flag_required": true
+    }
+  },
+  {
+    "rule": "PV-19",
+    "description": "a new accessor widens",
+    "input": {
+      "old": [
+        {
+          "category": "memory",
+          "purpose": "serve_requests",
+          "location": "attested_tee",
+          "accessor": "one",
+          "consent": "not_required"
+        },
+        {
+          "category": "sensitive",
+          "purpose": "serve_requests",
+          "location": "attested_tee",
+          "accessor": "one",
+          "consent": "explicit"
+        },
+        {
+          "category": "operational_metadata",
+          "purpose": "operations",
+          "location": "encrypted_store",
+          "accessor": "suiss_operator",
+          "consent": "not_required"
+        }
+      ],
+      "new": [
+        {
+          "category": "memory",
+          "purpose": "serve_requests",
+          "location": "attested_tee",
+          "accessor": "one",
+          "consent": "not_required"
+        },
+        {
+          "category": "sensitive",
+          "purpose": "serve_requests",
+          "location": "attested_tee",
+          "accessor": "one",
+          "consent": "explicit"
+        },
+        {
+          "category": "operational_metadata",
+          "purpose": "operations",
+          "location": "encrypted_store",
+          "accessor": "suiss_operator",
+          "consent": "not_required"
+        },
+        {
+          "category": "memory",
+          "purpose": "serve_requests",
+          "location": "attested_tee",
+          "accessor": "executor",
+          "consent": "not_required"
+        }
+      ],
+      "text_changed": false
+    },
+    "expected": {
+      "classification": "widening",
+      "notice_required": true,
+      "reconsent_flag_required": true
+    }
+  },
+  {
+    "rule": "PV-19",
+    "description": "a new category widens",
+    "input": {
+      "old": [
+        {
+          "category": "memory",
+          "purpose": "serve_requests",
+          "location": "attested_tee",
+          "accessor": "one",
+          "consent": "not_required"
+        },
+        {
+          "category": "sensitive",
+          "purpose": "serve_requests",
+          "location": "attested_tee",
+          "accessor": "one",
+          "consent": "explicit"
+        },
+        {
+          "category": "operational_metadata",
+          "purpose": "operations",
+          "location": "encrypted_store",
+          "accessor": "suiss_operator",
+          "consent": "not_required"
+        }
+      ],
+      "new": [
+        {
+          "category": "memory",
+          "purpose": "serve_requests",
+          "location": "attested_tee",
+          "accessor": "one",
+          "consent": "not_required"
+        },
+        {
+          "category": "sensitive",
+          "purpose": "serve_requests",
+          "location": "attested_tee",
+          "accessor": "one",
+          "consent": "explicit"
+        },
+        {
+          "category": "operational_metadata",
+          "purpose": "operations",
+          "location": "encrypted_store",
+          "accessor": "suiss_operator",
+          "consent": "not_required"
+        },
+        {
+          "category": "observations",
+          "purpose": "serve_requests",
+          "location": "user_device",
+          "accessor": "one",
+          "consent": "explicit"
+        }
+      ],
+      "text_changed": false
+    },
+    "expected": {
+      "classification": "widening",
+      "notice_required": true,
+      "reconsent_flag_required": true
+    }
+  },
+  {
+    "rule": "PV-19",
+    "description": "dropping the consent requirement of a tuple widens",
+    "input": {
+      "old": [
+        {
+          "category": "memory",
+          "purpose": "serve_requests",
+          "location": "attested_tee",
+          "accessor": "one",
+          "consent": "not_required"
+        },
+        {
+          "category": "sensitive",
+          "purpose": "serve_requests",
+          "location": "attested_tee",
+          "accessor": "one",
+          "consent": "explicit"
+        },
+        {
+          "category": "operational_metadata",
+          "purpose": "operations",
+          "location": "encrypted_store",
+          "accessor": "suiss_operator",
+          "consent": "not_required"
+        }
+      ],
+      "new": [
+        {
+          "category": "memory",
+          "purpose": "serve_requests",
+          "location": "attested_tee",
+          "accessor": "one",
+          "consent": "not_required"
+        },
+        {
+          "category": "sensitive",
+          "purpose": "serve_requests",
+          "location": "attested_tee",
+          "accessor": "one",
+          "consent": "not_required"
+        },
+        {
+          "category": "operational_metadata",
+          "purpose": "operations",
+          "location": "encrypted_store",
+          "accessor": "suiss_operator",
+          "consent": "not_required"
+        }
+      ],
+      "text_changed": false
+    },
+    "expected": {
+      "classification": "widening",
+      "notice_required": true,
+      "reconsent_flag_required": true
+    }
+  },
+  {
+    "rule": "PV-19",
+    "description": "adding a consent requirement to a tuple narrows",
+    "input": {
+      "old": [
+        {
+          "category": "memory",
+          "purpose": "serve_requests",
+          "location": "attested_tee",
+          "accessor": "one",
+          "consent": "not_required"
+        },
+        {
+          "category": "sensitive",
+          "purpose": "serve_requests",
+          "location": "attested_tee",
+          "accessor": "one",
+          "consent": "explicit"
+        },
+        {
+          "category": "operational_metadata",
+          "purpose": "operations",
+          "location": "encrypted_store",
+          "accessor": "suiss_operator",
+          "consent": "not_required"
+        }
+      ],
+      "new": [
+        {
+          "category": "memory",
+          "purpose": "serve_requests",
+          "location": "attested_tee",
+          "accessor": "one",
+          "consent": "explicit"
+        },
+        {
+          "category": "sensitive",
+          "purpose": "serve_requests",
+          "location": "attested_tee",
+          "accessor": "one",
+          "consent": "explicit"
+        },
+        {
+          "category": "operational_metadata",
+          "purpose": "operations",
+          "location": "encrypted_store",
+          "accessor": "suiss_operator",
+          "consent": "not_required"
+        }
+      ],
+      "text_changed": false
+    },
+    "expected": {
+      "classification": "narrowing",
+      "notice_required": false,
+      "reconsent_flag_required": false
+    }
+  },
+  {
+    "rule": "PV-19",
+    "description": "a change that removes one tuple and adds another is a widening",
+    "input": {
+      "old": [
+        {
+          "category": "memory",
+          "purpose": "serve_requests",
+          "location": "attested_tee",
+          "accessor": "one",
+          "consent": "not_required"
+        },
+        {
+          "category": "sensitive",
+          "purpose": "serve_requests",
+          "location": "attested_tee",
+          "accessor": "one",
+          "consent": "explicit"
+        },
+        {
+          "category": "operational_metadata",
+          "purpose": "operations",
+          "location": "encrypted_store",
+          "accessor": "suiss_operator",
+          "consent": "not_required"
+        }
+      ],
+      "new": [
+        {
+          "category": "memory",
+          "purpose": "serve_requests",
+          "location": "attested_tee",
+          "accessor": "one",
+          "consent": "not_required"
+        },
+        {
+          "category": "sensitive",
+          "purpose": "serve_requests",
+          "location": "attested_tee",
+          "accessor": "one",
+          "consent": "explicit"
+        },
+        {
+          "category": "operational_metadata",
+          "purpose": "operations",
+          "location": "attested_tee",
+          "accessor": "suiss_operator",
+          "consent": "not_required"
+        }
+      ],
+      "text_changed": false
+    },
+    "expected": {
+      "classification": "widening",
+      "notice_required": true,
+      "reconsent_flag_required": true
+    }
+  },
+  {
+    "rule": "PV-19",
+    "description": "a widening version without a notice date or re-consent flag is rejected",
+    "input": {
+      "classification": "widening",
+      "change": {
+        "from_version": 1,
+        "classification": "widening"
+      }
+    },
+    "expected": {
+      "accept": false,
+      "reason": "widening_without_notice"
+    }
+  },
+  {
+    "rule": "PV-19",
+    "description": "the notice of a widening is given before it takes effect",
+    "input": {
+      "classification": "widening",
+      "effective_at": "2027-02-01T00:00:00Z",
+      "change": {
+        "from_version": 1,
+        "classification": "widening",
+        "notice_at": "2027-02-01T00:00:00Z",
+        "reconsent": true
+      }
+    },
+    "expected": {
+      "accept": false,
+      "reason": "notice_not_before_effect"
+    }
+  },
+  {
+    "rule": "PV-19",
+    "description": "the declared classification must match the computed one",
+    "input": {
+      "classification": "widening",
+      "change": {
+        "from_version": 1,
+        "classification": "narrowing"
+      }
+    },
+    "expected": {
+      "accept": false,
+      "reason": "classification_mismatch"
+    }
+  },
+  {
+    "rule": "INV-26",
+    "description": "a record stays under the promise version it was collected under after a new version takes effect",
+    "input": {
+      "record": {
+        "promise_version": 1
+      },
+      "current_version": 2,
+      "job_purpose": "personal_training",
+      "v1_allows": false,
+      "v2_allows": true
+    },
+    "expected": {
+      "allowed": false
+    }
+  },
+  {
+    "rule": "INV-26",
+    "description": "a record collected under the new version follows the new version",
+    "input": {
+      "record": {
+        "promise_version": 2
+      },
+      "current_version": 2,
+      "job_purpose": "personal_training",
+      "v1_allows": false,
+      "v2_allows": true
+    },
+    "expected": {
+      "allowed": true
+    }
+  },
+  {
+    "rule": "PV-19",
+    "description": "the digest is the SHA-256 of the JCS form without `digest`",
+    "input": {
+      "promise": "promise/v1.json"
+    },
+    "expected": {
+      "digest": "sha-256:c7d6bd852b587b6e7a1a90e31768193df176ce091fb47b49543dc07b664757e2"
+    }
+  }
+]

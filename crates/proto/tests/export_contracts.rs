@@ -46,7 +46,7 @@ fn m_40_export_schema_vectors() {
             v["description"]
         );
     }
-    assert_eq!(all.len(), 18);
+    assert_eq!(all.len(), 19);
 }
 
 #[test]

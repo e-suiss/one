@@ -1,0 +1,785 @@
+[
+  {
+    "rule": "SEC-27",
+    "description": "SEV-SNP report chained to the AMD ARK, measurement in the public log, current TCB, report_data binding the node key",
+    "input": {
+      "evidence": {
+        "eat_profile": "tag:suiss.app,2026:one/tee/eat/v1",
+        "iat": "2026-11-02T01:00:00Z",
+        "platform": "amd-sev-snp",
+        "measurement": "17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d",
+        "tcb": {
+          "bootloader": 9,
+          "tee": 0,
+          "snp": 23,
+          "microcode": 72
+        },
+        "report_data": "740abf4ba6227dbcb352354a40feee995b223e9648020c116bec7f55b72b54380000000000000000000000000000000000000000000000000000000000000000",
+        "dbgstat": "disabled-since-boot",
+        "chain_root": "amd-ark-genoa",
+        "raw_report": "pending"
+      },
+      "policy": {
+        "profile": "release",
+        "now": "2026-11-02T01:00:30Z",
+        "max_age_seconds": 300,
+        "min_tcb": {
+          "bootloader": 9,
+          "tee": 0,
+          "snp": 23,
+          "microcode": 72
+        },
+        "log": [
+          "17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d"
+        ],
+        "expected_report_data": "740abf4ba6227dbcb352354a40feee995b223e9648020c116bec7f55b72b54380000000000000000000000000000000000000000000000000000000000000000"
+      }
+    },
+    "expected": {
+      "verified": true
+    }
+  },
+  {
+    "rule": "SEC-27",
+    "description": "TDX quote chained to the Intel SGX Root CA",
+    "input": {
+      "evidence": {
+        "eat_profile": "tag:suiss.app,2026:one/tee/eat/v1",
+        "iat": "2026-11-02T01:00:00Z",
+        "platform": "intel-tdx",
+        "measurement": "17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d",
+        "tcb": {
+          "tee_tcb_svn": "0b010700000000000000000000000000",
+          "mrseam": "b2f3189530e1053e154d48299938847cac41f3d8933d46e00d17a0c5a19924b8f26f52ad4cb010bdd90c35f193fd98c7",
+          "rtmr": [
+            "8476d0e730e9a939af313467bb6ed47b821bcc8f48318641e5833fb8c639042d2b6059f362fc107b763ea729721e7eb7",
+            "ed2d7627118e7e9da3f50d4c4e51241386e8856e52b11830158e424fa69db2ebed394345681b29f8fc4f7fc3b007e1df",
+            "9b2d1a7f81b265dd27a7e9dab88d220c5e70145e1f484fe90607afeb41db4f1607cec64660229b51cd4619b01cde57ea",
+            "d1d59369a2391358d5bc303282ee7983ea008a9b0537473425b56be6362a0feaddf31298111f541dc1ea1e23f4e171f3"
+          ]
+        },
+        "report_data": "740abf4ba6227dbcb352354a40feee995b223e9648020c116bec7f55b72b54380000000000000000000000000000000000000000000000000000000000000000",
+        "dbgstat": "disabled-since-boot",
+        "chain_root": "intel-sgx-root-ca",
+        "raw_report": "pending"
+      },
+      "policy": {
+        "profile": "release",
+        "now": "2026-11-02T01:00:30Z",
+        "max_age_seconds": 300,
+        "min_tcb": {
+          "tee_tcb_svn": "0b010700000000000000000000000000"
+        },
+        "log": [
+          "17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d"
+        ],
+        "expected_report_data": "740abf4ba6227dbcb352354a40feee995b223e9648020c116bec7f55b72b54380000000000000000000000000000000000000000000000000000000000000000"
+      }
+    },
+    "expected": {
+      "verified": true
+    }
+  },
+  {
+    "rule": "SEC-27",
+    "description": "SEV-SNP CPU with an H100 in CC mode",
+    "input": {
+      "evidence": {
+        "eat_profile": "tag:suiss.app,2026:one/tee/eat/v1",
+        "iat": "2026-11-02T01:00:00Z",
+        "platform": "amd-sev-snp",
+        "measurement": "17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d",
+        "tcb": {
+          "bootloader": 9,
+          "tee": 0,
+          "snp": 23,
+          "microcode": 72
+        },
+        "report_data": "740abf4ba6227dbcb352354a40feee995b223e9648020c116bec7f55b72b54380000000000000000000000000000000000000000000000000000000000000000",
+        "dbgstat": "disabled-since-boot",
+        "chain_root": "amd-ark-genoa",
+        "raw_report": "pending",
+        "gpus": [
+          {
+            "vendor": "nvidia",
+            "model": "h100",
+            "cc_mode": "on",
+            "measurement": "27388a6d7a58e4108bb78c5ab748002d6809fff42c7d1ff3ba0a8cf115538a4ae5470700f3cef804ba3e1c647375c124",
+            "nonce": "323ae0844c433c1e49375a32e196bbb6cb868b80ee2c4dfca52219f0412a8ced",
+            "chain_root": "nvidia-device-identity-ca",
+            "raw_report": "pending"
+          }
+        ]
+      },
+      "policy": {
+        "profile": "release",
+        "now": "2026-11-02T01:00:30Z",
+        "max_age_seconds": 300,
+        "min_tcb": {
+          "bootloader": 9,
+          "tee": 0,
+          "snp": 23,
+          "microcode": 72
+        },
+        "log": [
+          "17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d"
+        ],
+        "expected_report_data": "740abf4ba6227dbcb352354a40feee995b223e9648020c116bec7f55b72b54380000000000000000000000000000000000000000000000000000000000000000",
+        "gpu_log": [
+          "27388a6d7a58e4108bb78c5ab748002d6809fff42c7d1ff3ba0a8cf115538a4ae5470700f3cef804ba3e1c647375c124"
+        ],
+        "gpu_models": [
+          "h100",
+          "h200"
+        ]
+      }
+    },
+    "expected": {
+      "verified": true
+    }
+  },
+  {
+    "rule": "SEC-27",
+    "description": "H200 in CC mode is admitted",
+    "input": {
+      "evidence": {
+        "eat_profile": "tag:suiss.app,2026:one/tee/eat/v1",
+        "iat": "2026-11-02T01:00:00Z",
+        "platform": "amd-sev-snp",
+        "measurement": "17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d",
+        "tcb": {
+          "bootloader": 9,
+          "tee": 0,
+          "snp": 23,
+          "microcode": 72
+        },
+        "report_data": "740abf4ba6227dbcb352354a40feee995b223e9648020c116bec7f55b72b54380000000000000000000000000000000000000000000000000000000000000000",
+        "dbgstat": "disabled-since-boot",
+        "chain_root": "amd-ark-genoa",
+        "raw_report": "pending",
+        "gpus": [
+          {
+            "vendor": "nvidia",
+            "model": "h200",
+            "cc_mode": "on",
+            "measurement": "27388a6d7a58e4108bb78c5ab748002d6809fff42c7d1ff3ba0a8cf115538a4ae5470700f3cef804ba3e1c647375c124",
+            "nonce": "323ae0844c433c1e49375a32e196bbb6cb868b80ee2c4dfca52219f0412a8ced",
+            "chain_root": "nvidia-device-identity-ca",
+            "raw_report": "pending"
+          }
+        ]
+      },
+      "policy": {
+        "profile": "release",
+        "now": "2026-11-02T01:00:30Z",
+        "max_age_seconds": 300,
+        "min_tcb": {
+          "bootloader": 9,
+          "tee": 0,
+          "snp": 23,
+          "microcode": 72
+        },
+        "log": [
+          "17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d"
+        ],
+        "expected_report_data": "740abf4ba6227dbcb352354a40feee995b223e9648020c116bec7f55b72b54380000000000000000000000000000000000000000000000000000000000000000",
+        "gpu_log": [
+          "27388a6d7a58e4108bb78c5ab748002d6809fff42c7d1ff3ba0a8cf115538a4ae5470700f3cef804ba3e1c647375c124"
+        ],
+        "gpu_models": [
+          "h100",
+          "h200"
+        ]
+      }
+    },
+    "expected": {
+      "verified": true
+    }
+  },
+  {
+    "rule": "SEC-27",
+    "description": "a GPU outside the admitted models (Blackwell until its TEE-I/O and HBM protection are verified) is rejected",
+    "input": {
+      "evidence": {
+        "eat_profile": "tag:suiss.app,2026:one/tee/eat/v1",
+        "iat": "2026-11-02T01:00:00Z",
+        "platform": "amd-sev-snp",
+        "measurement": "17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d",
+        "tcb": {
+          "bootloader": 9,
+          "tee": 0,
+          "snp": 23,
+          "microcode": 72
+        },
+        "report_data": "740abf4ba6227dbcb352354a40feee995b223e9648020c116bec7f55b72b54380000000000000000000000000000000000000000000000000000000000000000",
+        "dbgstat": "disabled-since-boot",
+        "chain_root": "amd-ark-genoa",
+        "raw_report": "pending",
+        "gpus": [
+          {
+            "vendor": "nvidia",
+            "model": "b200",
+            "cc_mode": "on",
+            "measurement": "27388a6d7a58e4108bb78c5ab748002d6809fff42c7d1ff3ba0a8cf115538a4ae5470700f3cef804ba3e1c647375c124",
+            "nonce": "323ae0844c433c1e49375a32e196bbb6cb868b80ee2c4dfca52219f0412a8ced",
+            "chain_root": "nvidia-device-identity-ca",
+            "raw_report": "pending"
+          }
+        ]
+      },
+      "policy": {
+        "profile": "release",
+        "now": "2026-11-02T01:00:30Z",
+        "max_age_seconds": 300,
+        "min_tcb": {
+          "bootloader": 9,
+          "tee": 0,
+          "snp": 23,
+          "microcode": 72
+        },
+        "log": [
+          "17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d"
+        ],
+        "expected_report_data": "740abf4ba6227dbcb352354a40feee995b223e9648020c116bec7f55b72b54380000000000000000000000000000000000000000000000000000000000000000",
+        "gpu_log": [
+          "27388a6d7a58e4108bb78c5ab748002d6809fff42c7d1ff3ba0a8cf115538a4ae5470700f3cef804ba3e1c647375c124"
+        ],
+        "gpu_models": [
+          "h100",
+          "h200"
+        ]
+      }
+    },
+    "expected": {
+      "verified": false,
+      "reason": "gpu_model_not_admitted"
+    }
+  },
+  {
+    "rule": "SEC-27",
+    "description": "a GPU with CC mode off is rejected",
+    "input": {
+      "evidence": {
+        "eat_profile": "tag:suiss.app,2026:one/tee/eat/v1",
+        "iat": "2026-11-02T01:00:00Z",
+        "platform": "amd-sev-snp",
+        "measurement": "17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d",
+        "tcb": {
+          "bootloader": 9,
+          "tee": 0,
+          "snp": 23,
+          "microcode": 72
+        },
+        "report_data": "740abf4ba6227dbcb352354a40feee995b223e9648020c116bec7f55b72b54380000000000000000000000000000000000000000000000000000000000000000",
+        "dbgstat": "disabled-since-boot",
+        "chain_root": "amd-ark-genoa",
+        "raw_report": "pending",
+        "gpus": [
+          {
+            "vendor": "nvidia",
+            "model": "h100",
+            "cc_mode": "off",
+            "measurement": "27388a6d7a58e4108bb78c5ab748002d6809fff42c7d1ff3ba0a8cf115538a4ae5470700f3cef804ba3e1c647375c124",
+            "nonce": "323ae0844c433c1e49375a32e196bbb6cb868b80ee2c4dfca52219f0412a8ced",
+            "chain_root": "nvidia-device-identity-ca",
+            "raw_report": "pending"
+          }
+        ]
+      },
+      "policy": {
+        "profile": "release",
+        "now": "2026-11-02T01:00:30Z",
+        "max_age_seconds": 300,
+        "min_tcb": {
+          "bootloader": 9,
+          "tee": 0,
+          "snp": 23,
+          "microcode": 72
+        },
+        "log": [
+          "17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d"
+        ],
+        "expected_report_data": "740abf4ba6227dbcb352354a40feee995b223e9648020c116bec7f55b72b54380000000000000000000000000000000000000000000000000000000000000000",
+        "gpu_log": [
+          "27388a6d7a58e4108bb78c5ab748002d6809fff42c7d1ff3ba0a8cf115538a4ae5470700f3cef804ba3e1c647375c124"
+        ],
+        "gpu_models": [
+          "h100",
+          "h200"
+        ]
+      }
+    },
+    "expected": {
+      "verified": false,
+      "reason": "gpu_cc_off"
+    }
+  },
+  {
+    "rule": "SEC-27",
+    "description": "a GPU measurement missing from the log is rejected",
+    "input": {
+      "evidence": {
+        "eat_profile": "tag:suiss.app,2026:one/tee/eat/v1",
+        "iat": "2026-11-02T01:00:00Z",
+        "platform": "amd-sev-snp",
+        "measurement": "17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d",
+        "tcb": {
+          "bootloader": 9,
+          "tee": 0,
+          "snp": 23,
+          "microcode": 72
+        },
+        "report_data": "740abf4ba6227dbcb352354a40feee995b223e9648020c116bec7f55b72b54380000000000000000000000000000000000000000000000000000000000000000",
+        "dbgstat": "disabled-since-boot",
+        "chain_root": "amd-ark-genoa",
+        "raw_report": "pending",
+        "gpus": [
+          {
+            "vendor": "nvidia",
+            "model": "h100",
+            "cc_mode": "on",
+            "measurement": "95658c59d310efc61a9dc850eac65cdd6e62cca627421a4cce7f99a60ab8ee01e719e7edc9771d8e1648edaac0f8094f",
+            "nonce": "323ae0844c433c1e49375a32e196bbb6cb868b80ee2c4dfca52219f0412a8ced",
+            "chain_root": "nvidia-device-identity-ca",
+            "raw_report": "pending"
+          }
+        ]
+      },
+      "policy": {
+        "profile": "release",
+        "now": "2026-11-02T01:00:30Z",
+        "max_age_seconds": 300,
+        "min_tcb": {
+          "bootloader": 9,
+          "tee": 0,
+          "snp": 23,
+          "microcode": 72
+        },
+        "log": [
+          "17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d"
+        ],
+        "expected_report_data": "740abf4ba6227dbcb352354a40feee995b223e9648020c116bec7f55b72b54380000000000000000000000000000000000000000000000000000000000000000",
+        "gpu_log": [
+          "27388a6d7a58e4108bb78c5ab748002d6809fff42c7d1ff3ba0a8cf115538a4ae5470700f3cef804ba3e1c647375c124"
+        ],
+        "gpu_models": [
+          "h100",
+          "h200"
+        ]
+      }
+    },
+    "expected": {
+      "verified": false,
+      "reason": "gpu_measurement_not_in_log"
+    }
+  },
+  {
+    "rule": "SEC-27",
+    "description": "a chain to an unknown root is rejected",
+    "input": {
+      "evidence": {
+        "eat_profile": "tag:suiss.app,2026:one/tee/eat/v1",
+        "iat": "2026-11-02T01:00:00Z",
+        "platform": "amd-sev-snp",
+        "measurement": "17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d",
+        "tcb": {
+          "bootloader": 9,
+          "tee": 0,
+          "snp": 23,
+          "microcode": 72
+        },
+        "report_data": "740abf4ba6227dbcb352354a40feee995b223e9648020c116bec7f55b72b54380000000000000000000000000000000000000000000000000000000000000000",
+        "dbgstat": "disabled-since-boot",
+        "chain_root": "self-signed",
+        "raw_report": "pending"
+      },
+      "policy": {
+        "profile": "release",
+        "now": "2026-11-02T01:00:30Z",
+        "max_age_seconds": 300,
+        "min_tcb": {
+          "bootloader": 9,
+          "tee": 0,
+          "snp": 23,
+          "microcode": 72
+        },
+        "log": [
+          "17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d"
+        ],
+        "expected_report_data": "740abf4ba6227dbcb352354a40feee995b223e9648020c116bec7f55b72b54380000000000000000000000000000000000000000000000000000000000000000"
+      }
+    },
+    "expected": {
+      "verified": false,
+      "reason": "unknown_root"
+    }
+  },
+  {
+    "rule": "SEC-27",
+    "description": "a cloud attestation service is not a root",
+    "input": {
+      "evidence": {
+        "eat_profile": "tag:suiss.app,2026:one/tee/eat/v1",
+        "iat": "2026-11-02T01:00:00Z",
+        "platform": "amd-sev-snp",
+        "measurement": "17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d",
+        "tcb": {
+          "bootloader": 9,
+          "tee": 0,
+          "snp": 23,
+          "microcode": 72
+        },
+        "report_data": "740abf4ba6227dbcb352354a40feee995b223e9648020c116bec7f55b72b54380000000000000000000000000000000000000000000000000000000000000000",
+        "dbgstat": "disabled-since-boot",
+        "chain_root": "cloud-attestation-service",
+        "raw_report": "pending"
+      },
+      "policy": {
+        "profile": "release",
+        "now": "2026-11-02T01:00:30Z",
+        "max_age_seconds": 300,
+        "min_tcb": {
+          "bootloader": 9,
+          "tee": 0,
+          "snp": 23,
+          "microcode": 72
+        },
+        "log": [
+          "17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d"
+        ],
+        "expected_report_data": "740abf4ba6227dbcb352354a40feee995b223e9648020c116bec7f55b72b54380000000000000000000000000000000000000000000000000000000000000000"
+      }
+    },
+    "expected": {
+      "verified": false,
+      "reason": "unknown_root"
+    }
+  },
+  {
+    "rule": "T-27 (10)",
+    "description": "the simulator root is refused in a release build",
+    "input": {
+      "evidence": {
+        "eat_profile": "tag:suiss.app,2026:one/tee/eat/v1",
+        "iat": "2026-11-02T01:00:00Z",
+        "platform": "amd-sev-snp",
+        "measurement": "17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d",
+        "tcb": {
+          "bootloader": 9,
+          "tee": 0,
+          "snp": 23,
+          "microcode": 72
+        },
+        "report_data": "740abf4ba6227dbcb352354a40feee995b223e9648020c116bec7f55b72b54380000000000000000000000000000000000000000000000000000000000000000",
+        "dbgstat": "disabled-since-boot",
+        "chain_root": "one-tee-simulator",
+        "raw_report": "pending"
+      },
+      "policy": {
+        "profile": "release",
+        "now": "2026-11-02T01:00:30Z",
+        "max_age_seconds": 300,
+        "min_tcb": {
+          "bootloader": 9,
+          "tee": 0,
+          "snp": 23,
+          "microcode": 72
+        },
+        "log": [
+          "17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d"
+        ],
+        "expected_report_data": "740abf4ba6227dbcb352354a40feee995b223e9648020c116bec7f55b72b54380000000000000000000000000000000000000000000000000000000000000000"
+      }
+    },
+    "expected": {
+      "verified": false,
+      "reason": "dev_root_in_release"
+    }
+  },
+  {
+    "rule": "T-27 (10)",
+    "description": "the simulator root verifies only in the dev profile",
+    "input": {
+      "evidence": {
+        "eat_profile": "tag:suiss.app,2026:one/tee/eat/v1",
+        "iat": "2026-11-02T01:00:00Z",
+        "platform": "amd-sev-snp",
+        "measurement": "17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d",
+        "tcb": {
+          "bootloader": 9,
+          "tee": 0,
+          "snp": 23,
+          "microcode": 72
+        },
+        "report_data": "740abf4ba6227dbcb352354a40feee995b223e9648020c116bec7f55b72b54380000000000000000000000000000000000000000000000000000000000000000",
+        "dbgstat": "disabled-since-boot",
+        "chain_root": "one-tee-simulator",
+        "raw_report": "pending"
+      },
+      "policy": {
+        "profile": "dev",
+        "now": "2026-11-02T01:00:30Z",
+        "max_age_seconds": 300,
+        "min_tcb": {
+          "bootloader": 9,
+          "tee": 0,
+          "snp": 23,
+          "microcode": 72
+        },
+        "log": [
+          "17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d"
+        ],
+        "expected_report_data": "740abf4ba6227dbcb352354a40feee995b223e9648020c116bec7f55b72b54380000000000000000000000000000000000000000000000000000000000000000"
+      }
+    },
+    "expected": {
+      "verified": true
+    }
+  },
+  {
+    "rule": "T-57",
+    "description": "a measurement that is not in the public log is rejected",
+    "input": {
+      "evidence": {
+        "eat_profile": "tag:suiss.app,2026:one/tee/eat/v1",
+        "iat": "2026-11-02T01:00:00Z",
+        "platform": "amd-sev-snp",
+        "measurement": "19ac43f245016bca6aa9d1688d3408540fe008f40f9563eaab3fef387da1cd8a4620cf18f12c727650eefbc7fd83c758",
+        "tcb": {
+          "bootloader": 9,
+          "tee": 0,
+          "snp": 23,
+          "microcode": 72
+        },
+        "report_data": "740abf4ba6227dbcb352354a40feee995b223e9648020c116bec7f55b72b54380000000000000000000000000000000000000000000000000000000000000000",
+        "dbgstat": "disabled-since-boot",
+        "chain_root": "amd-ark-genoa",
+        "raw_report": "pending"
+      },
+      "policy": {
+        "profile": "release",
+        "now": "2026-11-02T01:00:30Z",
+        "max_age_seconds": 300,
+        "min_tcb": {
+          "bootloader": 9,
+          "tee": 0,
+          "snp": 23,
+          "microcode": 72
+        },
+        "log": [
+          "17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d"
+        ],
+        "expected_report_data": "740abf4ba6227dbcb352354a40feee995b223e9648020c116bec7f55b72b54380000000000000000000000000000000000000000000000000000000000000000"
+      }
+    },
+    "expected": {
+      "verified": false,
+      "reason": "measurement_not_in_log"
+    }
+  },
+  {
+    "rule": "SEC-27",
+    "description": "a TCB below the minimum is rejected",
+    "input": {
+      "evidence": {
+        "eat_profile": "tag:suiss.app,2026:one/tee/eat/v1",
+        "iat": "2026-11-02T01:00:00Z",
+        "platform": "amd-sev-snp",
+        "measurement": "17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d",
+        "tcb": {
+          "bootloader": 9,
+          "tee": 0,
+          "snp": 22,
+          "microcode": 72
+        },
+        "report_data": "740abf4ba6227dbcb352354a40feee995b223e9648020c116bec7f55b72b54380000000000000000000000000000000000000000000000000000000000000000",
+        "dbgstat": "disabled-since-boot",
+        "chain_root": "amd-ark-genoa",
+        "raw_report": "pending"
+      },
+      "policy": {
+        "profile": "release",
+        "now": "2026-11-02T01:00:30Z",
+        "max_age_seconds": 300,
+        "min_tcb": {
+          "bootloader": 9,
+          "tee": 0,
+          "snp": 23,
+          "microcode": 72
+        },
+        "log": [
+          "17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d"
+        ],
+        "expected_report_data": "740abf4ba6227dbcb352354a40feee995b223e9648020c116bec7f55b72b54380000000000000000000000000000000000000000000000000000000000000000"
+      }
+    },
+    "expected": {
+      "verified": false,
+      "reason": "tcb_below_minimum"
+    }
+  },
+  {
+    "rule": "SEC-27",
+    "description": "report_data that does not carry the node key digest is rejected",
+    "input": {
+      "evidence": {
+        "eat_profile": "tag:suiss.app,2026:one/tee/eat/v1",
+        "iat": "2026-11-02T01:00:00Z",
+        "platform": "amd-sev-snp",
+        "measurement": "17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d",
+        "tcb": {
+          "bootloader": 9,
+          "tee": 0,
+          "snp": 23,
+          "microcode": 72
+        },
+        "report_data": "e9e3da6bff1c746f5ce2e2962117597523bfc4235d81aa52debacb61fa680c44a64b356fa931b6cd19e74f2850283ce646fc6ac8f5930eadf52d9c79ed1ef890",
+        "dbgstat": "disabled-since-boot",
+        "chain_root": "amd-ark-genoa",
+        "raw_report": "pending"
+      },
+      "policy": {
+        "profile": "release",
+        "now": "2026-11-02T01:00:30Z",
+        "max_age_seconds": 300,
+        "min_tcb": {
+          "bootloader": 9,
+          "tee": 0,
+          "snp": 23,
+          "microcode": 72
+        },
+        "log": [
+          "17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d"
+        ],
+        "expected_report_data": "740abf4ba6227dbcb352354a40feee995b223e9648020c116bec7f55b72b54380000000000000000000000000000000000000000000000000000000000000000"
+      }
+    },
+    "expected": {
+      "verified": false,
+      "reason": "report_data_mismatch"
+    }
+  },
+  {
+    "rule": "SEC-27",
+    "description": "a debuggable guest is rejected",
+    "input": {
+      "evidence": {
+        "eat_profile": "tag:suiss.app,2026:one/tee/eat/v1",
+        "iat": "2026-11-02T01:00:00Z",
+        "platform": "amd-sev-snp",
+        "measurement": "17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d",
+        "tcb": {
+          "bootloader": 9,
+          "tee": 0,
+          "snp": 23,
+          "microcode": 72
+        },
+        "report_data": "740abf4ba6227dbcb352354a40feee995b223e9648020c116bec7f55b72b54380000000000000000000000000000000000000000000000000000000000000000",
+        "dbgstat": "enabled",
+        "chain_root": "amd-ark-genoa",
+        "raw_report": "pending"
+      },
+      "policy": {
+        "profile": "release",
+        "now": "2026-11-02T01:00:30Z",
+        "max_age_seconds": 300,
+        "min_tcb": {
+          "bootloader": 9,
+          "tee": 0,
+          "snp": 23,
+          "microcode": 72
+        },
+        "log": [
+          "17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d"
+        ],
+        "expected_report_data": "740abf4ba6227dbcb352354a40feee995b223e9648020c116bec7f55b72b54380000000000000000000000000000000000000000000000000000000000000000"
+      }
+    },
+    "expected": {
+      "verified": false,
+      "reason": "debug_enabled"
+    }
+  },
+  {
+    "rule": "SEC-27",
+    "description": "evidence older than the freshness bound is rejected",
+    "input": {
+      "evidence": {
+        "eat_profile": "tag:suiss.app,2026:one/tee/eat/v1",
+        "iat": "2026-11-02T01:00:00Z",
+        "platform": "amd-sev-snp",
+        "measurement": "17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d",
+        "tcb": {
+          "bootloader": 9,
+          "tee": 0,
+          "snp": 23,
+          "microcode": 72
+        },
+        "report_data": "740abf4ba6227dbcb352354a40feee995b223e9648020c116bec7f55b72b54380000000000000000000000000000000000000000000000000000000000000000",
+        "dbgstat": "disabled-since-boot",
+        "chain_root": "amd-ark-genoa",
+        "raw_report": "pending"
+      },
+      "policy": {
+        "profile": "release",
+        "now": "2026-11-02T01:05:01Z",
+        "max_age_seconds": 300,
+        "min_tcb": {
+          "bootloader": 9,
+          "tee": 0,
+          "snp": 23,
+          "microcode": 72
+        },
+        "log": [
+          "17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d"
+        ],
+        "expected_report_data": "740abf4ba6227dbcb352354a40feee995b223e9648020c116bec7f55b72b54380000000000000000000000000000000000000000000000000000000000000000"
+      }
+    },
+    "expected": {
+      "verified": false,
+      "reason": "stale"
+    }
+  },
+  {
+    "rule": "SEC-27",
+    "description": "a platform outside SEV-SNP and TDX is rejected",
+    "input": {
+      "evidence": {
+        "eat_profile": "tag:suiss.app,2026:one/tee/eat/v1",
+        "iat": "2026-11-02T01:00:00Z",
+        "platform": "aws-nitro",
+        "measurement": "17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d",
+        "tcb": {
+          "bootloader": 9,
+          "tee": 0,
+          "snp": 23,
+          "microcode": 72
+        },
+        "report_data": "740abf4ba6227dbcb352354a40feee995b223e9648020c116bec7f55b72b54380000000000000000000000000000000000000000000000000000000000000000",
+        "dbgstat": "disabled-since-boot",
+        "chain_root": "amd-ark-genoa",
+        "raw_report": "pending"
+      },
+      "policy": {
+        "profile": "release",
+        "now": "2026-11-02T01:00:30Z",
+        "max_age_seconds": 300,
+        "min_tcb": {
+          "bootloader": 9,
+          "tee": 0,
+          "snp": 23,
+          "microcode": 72
+        },
+        "log": [
+          "17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d"
+        ],
+        "expected_report_data": "740abf4ba6227dbcb352354a40feee995b223e9648020c116bec7f55b72b54380000000000000000000000000000000000000000000000000000000000000000"
+      }
+    },
+    "expected": {
+      "verified": false,
+      "reason": "unknown_platform"
+    }
+  }
+]

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/keys/key-permission-withdrawn/v1.json",
+  "title": "KeyPermissionWithdrawn",
+  "description": "Payload of a key permission withdrawal: the user withdrew it, its Mandate fell, or its class was shredded. The TEE job stops at its next resume point and zeroizes its key copies. PV-65 (2, 3), Access E59, Access E31.",
+  "type": "object",
+  "required": ["permission_id", "reason", "withdrawn_at"],
+  "additionalProperties": false,
+  "properties": {
+    "permission_id": { "$ref": "https://suiss.app/schemas/one/keys/erasure-log/v1.json#/$defs/uuid" },
+    "reason": { "enum": ["user_withdrew", "mandate_inactive", "class_shredded", "device_removed"] },
+    "withdrawn_at": { "$ref": "https://suiss.app/schemas/one/keys/key-permission-exercised/v1.json#/$defs/instant" }
+  }
+}

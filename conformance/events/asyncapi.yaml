@@ -1,15 +1,52 @@
-# T-31, T-14 (2)
+# T-31, T-14 (2), PV-65
 asyncapi: 3.0.0
 info:
   title: One events
-  version: 1.0.0
+  version: 1.1.0
   description: Cross-product events One publishes and consumes, as CloudEvents under the Suiss webhook profile.
 defaultContentType: application/cloudevents+json
-channels: {}
-operations: {}
+channels:
+  accessKeyPermissions:
+    address: access/key-permissions
+    description: Content-free key permission records One sends to Access (Access E59).
+    messages:
+      keyPermissionExercised:
+        $ref: '#/components/messages/keyPermissionExercised'
+      keyPermissionWithdrawn:
+        $ref: '#/components/messages/keyPermissionWithdrawn'
+operations:
+  sendKeyPermissionExercised:
+    action: send
+    channel:
+      $ref: '#/channels/accessKeyPermissions'
+    messages:
+      - $ref: '#/channels/accessKeyPermissions/messages/keyPermissionExercised'
+  sendKeyPermissionWithdrawn:
+    action: send
+    channel:
+      $ref: '#/channels/accessKeyPermissions'
+    messages:
+      - $ref: '#/channels/accessKeyPermissions/messages/keyPermissionWithdrawn'
 components:
   schemas:
     CloudEvent:
       schemaFormat: application/schema+json;version=draft-2020-12
       schema:
         $ref: ./cloudevent.schema.json
+  messages:
+    keyPermissionExercised:
+      name: app.suiss.one.key_permission.exercised.v1
+      title: Key permission exercised
+      summary: The device Instance granted a TEE job a time-bound, purpose-bound key permission.
+      payload:
+        schemaFormat: application/schema+json;version=draft-2020-12
+        schema:
+          $ref: ../keys/key-permission-exercised.v1.json
+    keyPermissionWithdrawn:
+      name: app.suiss.one.key_permission.withdrawn.v1
+      title: Key permission withdrawn
+      summary: A key permission fell before its end; the TEE job stops at its next resume point.
+      payload:
+        schemaFormat: application/schema+json;version=draft-2020-12
+        schema:
+          $ref: ../keys/key-permission-withdrawn.v1.json

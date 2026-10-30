@@ -1,0 +1,39 @@
+# PV-11 (4), SEC-27
+version = 1
+specification = "RFC 9458"
+request_media_type = "message/ohttp-req"
+response_media_type = "message/ohttp-res"
+key_config_media_type = "application/ohttp-keys"
+encapsulated_content = "message/bhttp"
+
+[key_config]
+kem_id = 32
+kem = "DHKEM(X25519, HKDF-SHA256)"
+public_key_length = 32
+key_id_rotation = "a new key_id per gateway key; an old key is served until every client cache has expired"
+
+[[key_config.symmetric]]
+kdf_id = 1
+kdf = "HKDF-SHA256"
+aead_id = 2
+aead = "AES-256-GCM"
+
+[relay]
+operator = "a non-Suiss operator under contract"
+url = "pending"
+sees = ["client IP address", "encapsulated request size and time"]
+never_sees = ["request content", "account identifier", "anonymous token value"]
+
+[gateway]
+operator = "Suiss, in front of the attested TEE nodes"
+url = "pending"
+sees = ["anonymous token", "HPKE-sealed request to an attested node"]
+never_sees = ["client IP address", "request content"]
+
+[[rule]]
+id = "relay-not-suiss"
+meaning = "The relay and the gateway have different operators."
+
+[[rule]]
+id = "inner-hpke-to-node"
+meaning = "Inside OHTTP the request is sealed again to the attested node key, so the gateway cannot read it."

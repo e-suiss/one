@@ -1,0 +1,107 @@
+[
+  {
+    "rule": "PV-17",
+    "description": "destroy time is the start event time plus the class duration",
+    "input": {
+      "class": "one_provider_trace",
+      "start_event": "record_written",
+      "start_at": "2026-11-02T10:00:00Z",
+      "duration": "P30D",
+      "duration_source": "synthetic duration for the vector, not an Access value"
+    },
+    "expected": {
+      "destroy_at": "2026-12-02T10:00:00Z",
+      "method": "soft_delete_and_crypto_shred"
+    }
+  },
+  {
+    "rule": "PV-17",
+    "description": "the hourly sweep destroys an expired observation within one hour",
+    "input": {
+      "class": "one_observation",
+      "start_event": "captured",
+      "start_at": "2026-11-02T10:20:00Z",
+      "duration": "P3D",
+      "duration_source": "synthetic duration for the vector, not an Access value",
+      "sweep": "hourly"
+    },
+    "expected": {
+      "destroy_at": "2026-11-05T10:20:00Z",
+      "destroy_by": "2026-11-05T11:20:00Z"
+    }
+  },
+  {
+    "rule": "PV-16",
+    "description": "consent withdrawal on a sensitive class shreds at once",
+    "input": {
+      "class": "one_sensitive",
+      "start_event": "consent_withdrawn",
+      "start_at": "2026-11-02T10:00:00Z",
+      "duration": "PT0S",
+      "duration_source": "synthetic duration for the vector, not an Access value"
+    },
+    "expected": {
+      "destroy_at": "2026-11-02T10:00:00Z"
+    }
+  },
+  {
+    "rule": "PV-17",
+    "description": "a duration in years adds calendar years",
+    "input": {
+      "class": "one_training_lineage",
+      "start_event": "record_written",
+      "start_at": "2026-11-02T10:00:00Z",
+      "duration": "P3Y",
+      "duration_source": "synthetic duration for the vector, not an Access value"
+    },
+    "expected": {
+      "destroy_at": "2029-11-02T10:00:00Z"
+    }
+  },
+  {
+    "rule": "PV-16",
+    "description": "a class without an Access entry is a configuration error, not a default",
+    "input": {
+      "class": "one_memory",
+      "start_event": "unknown",
+      "duration": null
+    },
+    "expected": {
+      "error": "no_appendix_c_entry"
+    }
+  },
+  {
+    "rule": "OP-7",
+    "description": "a value One holds itself is refused: durations come only from the pinned Access file",
+    "input": {
+      "class": "one_memory",
+      "duration_source": "local"
+    },
+    "expected": {
+      "error": "local_duration"
+    }
+  },
+  {
+    "rule": "OP-7",
+    "description": "a different Access file digest than the pinned one fails",
+    "input": {
+      "pinned_sha256": "pending",
+      "file_sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "expected": {
+      "error": "pin_mismatch"
+    }
+  },
+  {
+    "rule": "PV-17",
+    "description": "the destroy job runs at least every six months for every class",
+    "input": {
+      "class": "one_memory",
+      "last_sweep_at": "2026-05-01T00:00:00Z",
+      "now": "2026-11-02T00:00:00Z"
+    },
+    "expected": {
+      "sweep_overdue": true
+    }
+  }
+]

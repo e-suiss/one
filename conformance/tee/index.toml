@@ -1,0 +1,32 @@
+# PV-11, SEC-27, T-6, T-27 (3), T-27 (10), T-57
+
+[[table]]
+path = "attestation-evidence.cddl"
+rules = ["PV-11", "SEC-27", "T-6", "T-57"]
+
+[[table]]
+path = "trust-roots.toml"
+rules = ["PV-11", "SEC-27", "T-27 (10)", "T-57"]
+
+[[table]]
+path = "ohttp.toml"
+rules = ["PV-11", "SEC-27"]
+
+[[table]]
+path = "boundary-types.toml"
+rules = ["T-27 (3)", "T-6", "SEC-27"]
+
+[[vectors]]
+path = "vectors/attestation.json"
+kind = "behaviour"
+rules = ["PV-11", "SEC-27", "T-27 (10)", "T-57"]
+
+[[vectors]]
+path = "vectors/hpke.json"
+kind = "behaviour"
+rules = ["SEC-27", "PV-11"]
+
+[[vectors]]
+path = "vectors/privacy-pass.json"
+kind = "behaviour"
+rules = ["SEC-27", "PV-11"]

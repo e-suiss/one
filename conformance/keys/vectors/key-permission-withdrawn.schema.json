@@ -1,0 +1,22 @@
+[
+  {
+    "rule": "PV-65",
+    "description": "user withdrawal",
+    "input": {
+      "permission_id": "01a199c5-3280-7a7f-8846-123ee27da88a",
+      "reason": "user_withdrew",
+      "withdrawn_at": "2026-11-02T08:00:00Z"
+    },
+    "valid": true
+  },
+  {
+    "rule": "PV-65",
+    "description": "unknown reason is rejected",
+    "input": {
+      "permission_id": "01a199c5-3280-7a7f-8846-123ee27da88a",
+      "reason": "operator",
+      "withdrawn_at": "2026-11-02T08:00:00Z"
+    },
+    "valid": false
+  }
+]

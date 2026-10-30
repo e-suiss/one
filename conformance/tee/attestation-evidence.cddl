@@ -1,0 +1,40 @@
+; PV-11, SEC-27, T-6, T-57, T-27 (10)
+
+one-tee-evidence = {
+  eat_profile: "tag:suiss.app,2026:one/tee/eat/v1",
+  iat: uint,
+  platform: cpu-platform,
+  measurement: bstr .size 48,
+  tcb: snp-tcb / tdx-tcb,
+  report_data: bstr .size 64,
+  dbgstat: "disabled-since-boot" / "disabled-permanently",
+  chain: [+ bstr],
+  raw_report: bstr,
+  ? gpus: [+ gpu-evidence],
+}
+
+cpu-platform = "amd-sev-snp" / "intel-tdx"
+
+snp-tcb = {
+  bootloader: uint .size 1,
+  tee: uint .size 1,
+  snp: uint .size 1,
+  microcode: uint .size 1,
+  ? fmc: uint .size 1,
+}
+
+tdx-tcb = {
+  tee_tcb_svn: bstr .size 16,
+  mrseam: bstr .size 48,
+  rtmr: [4*4 bstr .size 48],
+}
+
+gpu-evidence = {
+  vendor: "nvidia",
+  model: "h100" / "h200",
+  cc_mode: "on",
+  measurement: bstr .size 48,
+  nonce: bstr .size 32,
+  chain: [+ bstr],
+  raw_report: bstr,
+}

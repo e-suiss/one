@@ -1,0 +1,74 @@
+[
+  {
+    "rule": "PV-12",
+    "description": "OPRF mode 0x00 with the ristretto255-SHA512 suite of RFC 9497; byte vectors are the RFC 9497 Appendix A.1.1 vectors, imported verbatim with the recovery crate",
+    "input": {
+      "suite": "ristretto255-SHA512",
+      "mode": "0x00",
+      "context_string": "OPRFV1-\\x00-ristretto255-SHA512",
+      "source": "RFC 9497 Appendix A.1.1",
+      "bytes": "pending"
+    },
+    "expected": {
+      "bytes": "pending"
+    }
+  },
+  {
+    "rule": "PV-12",
+    "description": "the client blinds the access key, never the PIN: the realm sees only the blinded element",
+    "input": {
+      "op": "blind",
+      "input": "access_key (Argon2id tag bytes 0..32)"
+    },
+    "expected": {
+      "sent": "blinded_element",
+      "realm_sees_pin": false
+    }
+  },
+  {
+    "rule": "PV-12",
+    "description": "each realm evaluates with its own OPRF key share; the client combines threshold evaluations with Lagrange coefficients at x = 0",
+    "input": {
+      "op": "combine",
+      "threshold": 2,
+      "realms": [
+        "a",
+        "b",
+        "c"
+      ],
+      "answered": [
+        "a",
+        "c"
+      ]
+    },
+    "expected": {
+      "combined": true,
+      "field": "ristretto255 scalars"
+    }
+  },
+  {
+    "rule": "PV-12",
+    "description": "an evaluated element that is the identity is rejected",
+    "input": {
+      "op": "finalize",
+      "evaluated_element": "identity"
+    },
+    "expected": {
+      "error": "invalid_element"
+    }
+  },
+  {
+    "rule": "PV-12",
+    "description": "one answer below the threshold does not finalize",
+    "input": {
+      "op": "combine",
+      "threshold": 2,
+      "answered": [
+        "b"
+      ]
+    },
+    "expected": {
+      "error": "below_threshold"
+    }
+  }
+]

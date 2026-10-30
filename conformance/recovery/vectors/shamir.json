@@ -1,0 +1,234 @@
+[
+  {
+    "rule": "PV-12",
+    "description": "2-of-3 split over GF(2^8) (polynomial 0x11b), one polynomial per byte, x = 1..3",
+    "input": {
+      "op": "split",
+      "field": "GF(2^8)/0x11b",
+      "secret": "be3c987f78e75871a835931531f8e1a280d87ba78eef4e64d52edf3728a0cad0",
+      "threshold": 2,
+      "xs": [
+        1,
+        2,
+        3
+      ],
+      "coefficients": [
+        "7cd059ce9a6ef5a0e5c913c77b0742b0ad5adc20cc67ef91a57159e04b63674e"
+      ]
+    },
+    "expected": {
+      "shares": [
+        {
+          "x": 1,
+          "y": "c2ecc1b1e289add14dfc80d24affa3122d82a7874288a1f5705f86d763c3ad9e"
+        },
+        {
+          "x": 2,
+          "y": "46872af8573ba92a79bcb580c7f665d9c16cd8e70d218b5d84cc6decbe66044c"
+        },
+        {
+          "x": 3,
+          "y": "3a577336cd555c8a9c75a647bcf127696c3604c7c14664cc21bd340cf5056302"
+        }
+      ]
+    }
+  },
+  {
+    "rule": "PV-12",
+    "description": "any two shares (1, 2) recover the secret",
+    "input": {
+      "op": "combine",
+      "shares": [
+        {
+          "x": 1,
+          "y": "c2ecc1b1e289add14dfc80d24affa3122d82a7874288a1f5705f86d763c3ad9e"
+        },
+        {
+          "x": 2,
+          "y": "46872af8573ba92a79bcb580c7f665d9c16cd8e70d218b5d84cc6decbe66044c"
+        }
+      ]
+    },
+    "expected": {
+      "secret": "be3c987f78e75871a835931531f8e1a280d87ba78eef4e64d52edf3728a0cad0"
+    }
+  },
+  {
+    "rule": "PV-12",
+    "description": "any two shares (1, 3) recover the secret",
+    "input": {
+      "op": "combine",
+      "shares": [
+        {
+          "x": 1,
+          "y": "c2ecc1b1e289add14dfc80d24affa3122d82a7874288a1f5705f86d763c3ad9e"
+        },
+        {
+          "x": 3,
+          "y": "3a577336cd555c8a9c75a647bcf127696c3604c7c14664cc21bd340cf5056302"
+        }
+      ]
+    },
+    "expected": {
+      "secret": "be3c987f78e75871a835931531f8e1a280d87ba78eef4e64d52edf3728a0cad0"
+    }
+  },
+  {
+    "rule": "PV-12",
+    "description": "any two shares (2, 3) recover the secret",
+    "input": {
+      "op": "combine",
+      "shares": [
+        {
+          "x": 2,
+          "y": "46872af8573ba92a79bcb580c7f665d9c16cd8e70d218b5d84cc6decbe66044c"
+        },
+        {
+          "x": 3,
+          "y": "3a577336cd555c8a9c75a647bcf127696c3604c7c14664cc21bd340cf5056302"
+        }
+      ]
+    },
+    "expected": {
+      "secret": "be3c987f78e75871a835931531f8e1a280d87ba78eef4e64d52edf3728a0cad0"
+    }
+  },
+  {
+    "rule": "PV-12",
+    "description": "one share alone reveals nothing: combining it yields its own bytes, not the secret",
+    "input": {
+      "op": "combine",
+      "threshold": 2,
+      "shares": [
+        {
+          "x": 1,
+          "y": "c2ecc1b1e289add14dfc80d24affa3122d82a7874288a1f5705f86d763c3ad9e"
+        }
+      ]
+    },
+    "expected": {
+      "error": "below_threshold"
+    }
+  },
+  {
+    "rule": "PV-12",
+    "description": "recovery contact 2-of-2: share 1 to the contact, share 2 opened by Access recovery; both are needed",
+    "input": {
+      "op": "split",
+      "field": "GF(2^8)/0x11b",
+      "secret": "be3c987f78e75871a835931531f8e1a280d87ba78eef4e64d52edf3728a0cad0",
+      "threshold": 2,
+      "xs": [
+        1,
+        2
+      ],
+      "coefficients": [
+        "493de28310d611dff79085a1921897fcea53269b8f18ae877fd0a9f66cd22093"
+      ],
+      "holders": {
+        "1": "recovery_contact",
+        "2": "account_share"
+      }
+    },
+    "expected": {
+      "shares": [
+        {
+          "x": 1,
+          "y": "f7017afc683149ae5fa516b4a3e0765e6a8b5d3c01f7e0e3aafe76c14472ea43"
+        },
+        {
+          "x": 2,
+          "y": "2c46476258507ad45d0e824c0ec8d4414f7e378a8bdf09712b9596c0f01f8aed"
+        }
+      ]
+    }
+  },
+  {
+    "rule": "PV-12",
+    "description": "k-of-n contacts plus the account share: 3-of-5 with x = 5 the account share",
+    "input": {
+      "op": "split",
+      "field": "GF(2^8)/0x11b",
+      "secret": "be3c987f78e75871a835931531f8e1a280d87ba78eef4e64d52edf3728a0cad0",
+      "threshold": 3,
+      "xs": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "coefficients": [
+        "52618acf59492064116fe2c55a60cea96c9d0ff2758d5eccf85fe0d077e46992",
+        "4e08189f481260296a408fb2897291a417dcdcbb11a0a6e91427cf84113fca03"
+      ],
+      "holders": {
+        "1": "recovery_contact",
+        "2": "recovery_contact",
+        "3": "recovery_contact",
+        "4": "recovery_contact",
+        "5": "account_share"
+      }
+    },
+    "expected": {
+      "shares": [
+        {
+          "x": 1,
+          "y": "a2550a2f69bc183cd31afe62e2eabeaffb99a8eeeac2b6413956f0634e7b6941"
+        },
+        {
+          "x": 2,
+          "y": "39def7b0f13d831d39f0467a97eb144d04a4388220585c6e6e0c15aa828f1de3"
+        },
+        {
+          "x": 3,
+          "y": "25b765e0e066c35042df2b0d44f94b407fe5ebcb4475a44b82743afee454be72"
+        },
+        {
+          "x": 4,
+          "y": "61231d5debe3825c16fe1ef90a02279e40f528074a03a36b430f36c2e4c0619e"
+        },
+        {
+          "x": 5,
+          "y": "7d4a8f0dfab8c2116dd1738ed91078933bb4fb4e2e2e5b4eaf771996821bc20f"
+        }
+      ]
+    }
+  },
+  {
+    "rule": "PV-12",
+    "description": "x = 0 is never a share coordinate",
+    "input": {
+      "op": "split",
+      "secret": "be3c987f78e75871a835931531f8e1a280d87ba78eef4e64d52edf3728a0cad0",
+      "threshold": 2,
+      "xs": [
+        0,
+        1
+      ]
+    },
+    "expected": {
+      "error": "x_zero"
+    }
+  },
+  {
+    "rule": "PV-12",
+    "description": "repeated x coordinates are rejected on combine",
+    "input": {
+      "op": "combine",
+      "shares": [
+        {
+          "x": 1,
+          "y": "c2ecc1b1e289add14dfc80d24affa3122d82a7874288a1f5705f86d763c3ad9e"
+        },
+        {
+          "x": 1,
+          "y": "c2ecc1b1e289add14dfc80d24affa3122d82a7874288a1f5705f86d763c3ad9e"
+        }
+      ]
+    },
+    "expected": {
+      "error": "duplicate_x"
+    }
+  }
+]

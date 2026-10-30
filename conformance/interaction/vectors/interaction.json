@@ -30,6 +30,7 @@
       },
       "id": "int_01m613f347ez599hafz0435mnd",
       "version": 1,
+      "promise_version": 1,
       "kind": "approval",
       "subject": {
         "title": {
@@ -207,6 +208,7 @@
       },
       "id": "int_01m4yhptxafc0a9x76pt9z33md",
       "version": 1,
+      "promise_version": 1,
       "kind": "choice",
       "subject": {
         "title": {
@@ -369,6 +371,7 @@
       },
       "id": "int_01m5qhyzf0fw7b50naj4hyfqrj",
       "version": 1,
+      "promise_version": 1,
       "kind": "question",
       "subject": {
         "title": {
@@ -494,6 +497,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -620,6 +624,7 @@
       },
       "id": "int_01m4xsfjxbfx9v4f6nz4r491n6",
       "version": 1,
+      "promise_version": 1,
       "kind": "progress",
       "subject": {
         "title": {
@@ -761,6 +766,7 @@
       },
       "id": "int_01m5fpac9je618cpwntqz6j3j1",
       "version": 1,
+      "promise_version": 1,
       "kind": "receipt",
       "subject": {
         "title": {
@@ -903,6 +909,7 @@
       },
       "id": "int_01m62r7cjjez6v7pdy7z5e33fx",
       "version": 1,
+      "promise_version": 1,
       "kind": "comparison",
       "subject": {
         "title": {
@@ -1081,6 +1088,7 @@
       },
       "id": "int_01m62m2hkve50s3x5g4pegzee7",
       "version": 1,
+      "promise_version": 1,
       "kind": "form",
       "subject": {
         "title": {
@@ -1231,6 +1239,7 @@
       },
       "id": "int_01m5q7mas8fseahg0ykdqj89ct",
       "version": 1,
+      "promise_version": 1,
       "kind": "digest_item",
       "subject": {
         "title": {
@@ -1355,6 +1364,7 @@
       },
       "id": "int_01m613f347ez599hafz0435mnd",
       "version": 1,
+      "promise_version": 1,
       "kind": "approval",
       "subject": {
         "title": {
@@ -1531,6 +1541,7 @@
       },
       "id": "int_01m4yhptxafc0a9x76pt9z33md",
       "version": 1,
+      "promise_version": 1,
       "kind": "choice",
       "subject": {
         "title": {
@@ -1692,6 +1703,7 @@
       },
       "id": "int_01m5qhyzf0fw7b50naj4hyfqrj",
       "version": 1,
+      "promise_version": 1,
       "kind": "question",
       "subject": {
         "title": {
@@ -1816,6 +1828,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -1941,6 +1954,7 @@
       },
       "id": "int_01m4xsfjxbfx9v4f6nz4r491n6",
       "version": 1,
+      "promise_version": 1,
       "kind": "progress",
       "subject": {
         "title": {
@@ -2081,6 +2095,7 @@
       },
       "id": "int_01m5fpac9je618cpwntqz6j3j1",
       "version": 1,
+      "promise_version": 1,
       "kind": "receipt",
       "subject": {
         "title": {
@@ -2222,6 +2237,7 @@
       },
       "id": "int_01m62r7cjjez6v7pdy7z5e33fx",
       "version": 1,
+      "promise_version": 1,
       "kind": "comparison",
       "subject": {
         "title": {
@@ -2399,6 +2415,7 @@
       },
       "id": "int_01m62m2hkve50s3x5g4pegzee7",
       "version": 1,
+      "promise_version": 1,
       "kind": "form",
       "subject": {
         "title": {
@@ -2548,6 +2565,7 @@
       },
       "id": "int_01m5q7mas8fseahg0ykdqj89ct",
       "version": 1,
+      "promise_version": 1,
       "kind": "digest_item",
       "subject": {
         "title": {
@@ -2671,6 +2689,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -2796,6 +2815,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -2922,6 +2942,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -3048,6 +3069,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -3174,6 +3196,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -3300,6 +3323,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -3433,6 +3457,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "reminder",
       "subject": {
         "title": {
@@ -3559,6 +3584,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "Info",
       "subject": {
         "title": {
@@ -3685,6 +3711,7 @@
       },
       "id": "int_01m4xsfjxbfx9v4f6nz4r491n6",
       "version": 1,
+      "promise_version": 1,
       "kind": {
         "extension": "app.suiss.commerce.order_tracking",
         "version": 1,
@@ -3830,6 +3857,7 @@
       },
       "id": "int_01m4xsfjxbfx9v4f6nz4r491n6",
       "version": 1,
+      "promise_version": 1,
       "kind": {
         "extension": "app.suiss.commerce.order_tracking",
         "version": 1
@@ -3974,6 +4002,7 @@
       },
       "id": "int_01m4xsfjxbfx9v4f6nz4r491n6",
       "version": 1,
+      "promise_version": 1,
       "kind": {
         "extension": "app.suiss.commerce.order_tracking",
         "version": 1,
@@ -4119,6 +4148,7 @@
       },
       "id": "int_01m4xsfjxbfx9v4f6nz4r491n6",
       "version": 1,
+      "promise_version": 1,
       "kind": {
         "extension": "app.suiss.commerce.order_tracking",
         "maps_to": "progress"
@@ -4263,6 +4293,7 @@
       },
       "id": "int_01m4xsfjxbfx9v4f6nz4r491n6",
       "version": 1,
+      "promise_version": 1,
       "kind": {
         "extension": "com.example.order_tracking",
         "version": 1,
@@ -4408,6 +4439,7 @@
       },
       "id": "int_01m4xsfjxbfx9v4f6nz4r491n6",
       "version": 1,
+      "promise_version": 1,
       "kind": {
         "extension": "app.suiss.one.order_tracking",
         "version": 1,
@@ -4553,6 +4585,7 @@
       },
       "id": "int_01m4xsfjxbfx9v4f6nz4r491n6",
       "version": 1,
+      "promise_version": 1,
       "kind": {
         "extension": "app.suiss.tracking",
         "version": 1,
@@ -4698,6 +4731,7 @@
       },
       "id": "int_01m613f347ez599hafz0435mnd",
       "version": 1,
+      "promise_version": 1,
       "kind": {
         "extension": "app.suiss.commerce.reorder_approval",
         "version": 1,
@@ -4878,6 +4912,7 @@
       },
       "id": "int_01m613f347ez599hafz0435mnd",
       "version": 1,
+      "promise_version": 1,
       "kind": {
         "extension": "app.suiss.commerce.reorder_approval",
         "version": 1,
@@ -5058,6 +5093,7 @@
         "config_version": "interaction-1"
       },
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -5274,7 +5310,8 @@
         "authentication": "device_unlock"
       },
       "deep_link": "https://suiss.app/one/i/int_01m52aa7n1etf8ane4bq5r9h1v",
-      "expires_at": "2026-10-16T09:30:00Z"
+      "expires_at": "2026-10-16T09:30:00Z",
+      "promise_version": 1
     },
     "valid": false
   },
@@ -5309,6 +5346,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "subject": {
         "title": {
           "tr": "Uçuş iptali",
@@ -5434,6 +5472,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "details": {
         "time": "2026-10-16T11:10:00Z",
@@ -5550,6 +5589,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -5670,6 +5710,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -5795,6 +5836,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -5920,6 +5962,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -6040,6 +6083,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -6165,6 +6209,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -6290,6 +6335,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -6409,6 +6455,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -6534,6 +6581,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -6738,6 +6786,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -6861,6 +6910,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -7069,6 +7119,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -7185,6 +7236,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -7310,6 +7362,7 @@
       },
       "id": "itr_01jb8x3k4m5000000000000005",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -7436,6 +7489,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 0,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -7562,6 +7616,7 @@
       },
       "id": "int_01m4xsfjxbfx9v4f6nz4r491n6",
       "version": 4,
+      "promise_version": 1,
       "kind": "progress",
       "subject": {
         "title": {
@@ -7703,6 +7758,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -7830,6 +7886,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -7965,6 +8022,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -8103,6 +8161,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -8286,6 +8345,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -8413,6 +8473,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -8543,6 +8604,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -8673,6 +8735,7 @@
       },
       "id": "int_01m4yhptxafc0a9x76pt9z33md",
       "version": 1,
+      "promise_version": 1,
       "kind": "choice",
       "subject": {
         "title": {
@@ -8842,6 +8905,7 @@
       },
       "id": "int_01m4yhptxafc0a9x76pt9z33md",
       "version": 1,
+      "promise_version": 1,
       "kind": "choice",
       "subject": {
         "title": {
@@ -9012,6 +9076,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -9146,6 +9211,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -9280,6 +9346,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -9398,6 +9465,7 @@
       },
       "id": "int_01m4yhptxafc0a9x76pt9z33md",
       "version": 1,
+      "promise_version": 1,
       "kind": "choice",
       "subject": {
         "title": {
@@ -9541,6 +9609,7 @@
       },
       "id": "int_01m4yhptxafc0a9x76pt9z33md",
       "version": 1,
+      "promise_version": 1,
       "kind": "choice",
       "subject": {
         "title": {
@@ -9693,6 +9762,7 @@
       },
       "id": "int_01m62r7cjjez6v7pdy7z5e33fx",
       "version": 1,
+      "promise_version": 1,
       "kind": "comparison",
       "subject": {
         "title": {
@@ -9917,6 +9987,7 @@
       },
       "id": "int_01m5qhyzf0fw7b50naj4hyfqrj",
       "version": 1,
+      "promise_version": 1,
       "kind": "question",
       "subject": {
         "title": {
@@ -10040,6 +10111,7 @@
       },
       "id": "int_01m62m2hkve50s3x5g4pegzee7",
       "version": 1,
+      "promise_version": 1,
       "kind": "form",
       "subject": {
         "title": {
@@ -10199,6 +10271,7 @@
       },
       "id": "int_01m62m2hkve50s3x5g4pegzee7",
       "version": 1,
+      "promise_version": 1,
       "kind": "form",
       "subject": {
         "title": {
@@ -10328,6 +10401,7 @@
       },
       "id": "int_01m4xsfjxbfx9v4f6nz4r491n6",
       "version": 1,
+      "promise_version": 1,
       "kind": "progress",
       "subject": {
         "title": {
@@ -10469,6 +10543,7 @@
       },
       "id": "int_01m4xsfjxbfx9v4f6nz4r491n6",
       "version": 1,
+      "promise_version": 1,
       "kind": "progress",
       "subject": {
         "title": {
@@ -10610,6 +10685,7 @@
       },
       "id": "int_01m5q7mas8fseahg0ykdqj89ct",
       "version": 1,
+      "promise_version": 1,
       "kind": "digest_item",
       "subject": {
         "title": {
@@ -10734,6 +10810,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -10860,6 +10937,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -10986,6 +11064,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -11116,6 +11195,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -11246,6 +11326,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -11372,6 +11453,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -11499,6 +11581,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -11626,6 +11709,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -11752,6 +11836,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -11879,6 +11964,7 @@
       },
       "id": "int_01m613f347ez599hafz0435mnd",
       "version": 1,
+      "promise_version": 1,
       "kind": "approval",
       "subject": {
         "title": {
@@ -12055,6 +12141,7 @@
       },
       "id": "int_01m613f347ez599hafz0435mnd",
       "version": 1,
+      "promise_version": 1,
       "kind": "approval",
       "subject": {
         "title": {
@@ -12209,6 +12296,7 @@
       },
       "id": "int_01m613f347ez599hafz0435mnd",
       "version": 1,
+      "promise_version": 1,
       "kind": "approval",
       "subject": {
         "title": {
@@ -12382,6 +12470,7 @@
       },
       "id": "int_01m61rjc37ej3ver53fv5vbbsk",
       "version": 1,
+      "promise_version": 1,
       "kind": "approval",
       "subject": {
         "title": {
@@ -12522,6 +12611,7 @@
       },
       "id": "int_01m61rjc37ej3ver53fv5vbbsk",
       "version": 1,
+      "promise_version": 1,
       "kind": "approval",
       "subject": {
         "title": {
@@ -12661,6 +12751,7 @@
       },
       "id": "int_01m613f347ez599hafz0435mnd",
       "version": 1,
+      "promise_version": 1,
       "kind": "approval",
       "subject": {
         "title": {
@@ -12838,6 +12929,7 @@
       },
       "id": "int_01m613f347ez599hafz0435mnd",
       "version": 1,
+      "promise_version": 1,
       "kind": "approval",
       "subject": {
         "title": {
@@ -13012,6 +13104,7 @@
       },
       "id": "int_01m61rjc37ej3ver53fv5vbbsk",
       "version": 1,
+      "promise_version": 1,
       "kind": "approval",
       "subject": {
         "title": {
@@ -13151,6 +13244,7 @@
       },
       "id": "int_01m61rjc37ej3ver53fv5vbbsk",
       "version": 1,
+      "promise_version": 1,
       "kind": "approval",
       "subject": {
         "title": {
@@ -13291,6 +13385,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -13418,6 +13513,7 @@
       },
       "id": "int_01m613f347ez599hafz0435mnd",
       "version": 1,
+      "promise_version": 1,
       "kind": "approval",
       "subject": {
         "title": {
@@ -13595,6 +13691,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -13721,6 +13818,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -13847,6 +13945,7 @@
       },
       "id": "int_01m61rjc37ej3ver53fv5vbbsk",
       "version": 1,
+      "promise_version": 1,
       "kind": "approval",
       "subject": {
         "title": {
@@ -13994,6 +14093,7 @@
       },
       "id": "int_01m5fpac9je618cpwntqz6j3j1",
       "version": 1,
+      "promise_version": 1,
       "kind": "receipt",
       "subject": {
         "title": {
@@ -14144,6 +14244,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -14278,6 +14379,7 @@
       },
       "id": "int_01m5fpac9je618cpwntqz6j3j1",
       "version": 1,
+      "promise_version": 1,
       "kind": "receipt",
       "subject": {
         "title": {
@@ -14420,6 +14522,7 @@
       },
       "id": "int_01m5fpac9je618cpwntqz6j3j1",
       "version": 1,
+      "promise_version": 1,
       "kind": "receipt",
       "subject": {
         "title": {
@@ -14562,6 +14665,7 @@
       },
       "id": "int_01m5fpac9je618cpwntqz6j3j1",
       "version": 1,
+      "promise_version": 1,
       "kind": "receipt",
       "subject": {
         "title": {
@@ -14704,6 +14808,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -14832,6 +14937,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -14960,6 +15066,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -15086,6 +15193,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -15212,6 +15320,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -15338,6 +15447,7 @@
       },
       "id": "int_01m4yhptxafc0a9x76pt9z33md",
       "version": 1,
+      "promise_version": 1,
       "kind": "choice",
       "subject": {
         "title": {
@@ -15500,6 +15610,7 @@
       },
       "id": "int_01m4yhptxafc0a9x76pt9z33md",
       "version": 1,
+      "promise_version": 1,
       "kind": "choice",
       "subject": {
         "title": {
@@ -15663,6 +15774,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -15788,6 +15900,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -15914,6 +16027,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -16040,6 +16154,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -16174,6 +16289,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -16305,6 +16421,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -16436,6 +16553,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -16559,6 +16677,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -16685,6 +16804,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -16811,6 +16931,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -16940,6 +17061,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -17065,6 +17187,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -17191,6 +17314,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -17314,6 +17438,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -17440,6 +17565,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -17568,6 +17694,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -17696,6 +17823,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 2,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -17822,6 +17950,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -17948,6 +18077,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -18074,6 +18204,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {

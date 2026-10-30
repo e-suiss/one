@@ -1,0 +1,41 @@
+# PV-12, PV-13, PV-14, PV-15, PV-61, Access E52 (2)
+
+[[schema]]
+path = "recovery-method.json"
+id = "https://suiss.app/schemas/one/recovery/recovery-method/v1.json"
+rules = ["PV-12", "PV-13", "PV-14", "Access E52 (2)"]
+
+[[table]]
+path = "vault-protocol.cddl"
+rules = ["PV-12", "PV-14", "PV-15", "PV-61"]
+
+[[vectors]]
+path = "vectors/recovery-method.schema.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/recovery/recovery-method/v1.json"
+rules = ["PV-12", "PV-14"]
+
+[[vectors]]
+path = "vectors/argon2id.json"
+kind = "behaviour"
+rules = ["PV-12"]
+
+[[vectors]]
+path = "vectors/oprf.json"
+kind = "behaviour"
+rules = ["PV-12"]
+
+[[vectors]]
+path = "vectors/shamir.json"
+kind = "behaviour"
+rules = ["PV-12"]
+
+[[vectors]]
+path = "vectors/vault.json"
+kind = "behaviour"
+rules = ["PV-12", "PV-14", "PV-15", "PV-61"]
+
+[[vectors]]
+path = "vectors/attempts.json"
+kind = "behaviour"
+rules = ["PV-12", "PV-13", "PV-14"]

@@ -1,0 +1,84 @@
+[
+  {
+    "rule": "PV-5",
+    "description": "Secure Enclave copy: the KEK is sealed with HPKE DHKEM(P-256, HKDF-SHA256), HKDF-SHA256, AES-256-GCM to the device-bound key",
+    "input": {
+      "op": "wrap_device",
+      "holder": "secure_enclave",
+      "kek_id": "kek_test_1",
+      "kek": "6326808008cde5008cc72da00b9ade23f3bcdcb6192326ad66f09b89b1ac8133",
+      "hpke": {
+        "kem_id": 16,
+        "kdf_id": 1,
+        "aead_id": 2,
+        "mode": 0,
+        "skEm": "b105feadaf28bea036827a4f0f74127f9cf87c20ab1e92283f2472ef92a84820",
+        "skRm": "d921fab1b3b3bcb6f0d91ec464abd118c0d1a3bf5bdc7739dc23bc4a9035054f",
+        "pkRm": "04262b0ca12e6f251afd5099a92b538ca26c89d93f00408beb071b3f21feeb19b39314b2c2e00b4d215d27465629d75ca37982e496b595dcc1ae04ca39cc16601b",
+        "info": "6f6e652f6b656b2f6465766963652f7631006b656b5f746573745f31",
+        "aad": ""
+      }
+    },
+    "expected": {
+      "pkEm": "043e68b814fb395cfe7672c32353719cffe552c55cc146909244bb8e1d410c72a8ae312e330a66c5d8a561bb5e1894dd56c5eb0379664fc07595fb2c34725d655d",
+      "shared_secret": "baf42e2e6031ec18bd8b9de8725ab261e86587741c518e089c95b6621fab2fca",
+      "key": "b5b57c68db522cfd2289f1d1e5008c423cd7536a61ac554dcfb1d727b56ee33b",
+      "base_nonce": "8030fcc961905ad5d1ddf647",
+      "ct": "82832ebb03fae786d16fe83765750d321a2739d210931fd38bb933d977298ff549b36b2c4c8449ac5fea826ca00a8500"
+    }
+  },
+  {
+    "rule": "PV-5",
+    "description": "StrongBox or TPM copy: the KEK is wrapped with AES-256 Key Wrap under the device-bound AES key",
+    "input": {
+      "op": "wrap_device",
+      "holder": "strongbox",
+      "kek_id": "kek_test_1",
+      "kek": "6326808008cde5008cc72da00b9ade23f3bcdcb6192326ad66f09b89b1ac8133",
+      "device_key": "ffcfca5262bc73b1fe998b9457c0e929fbc805e793da90bd9bb110547fb59293"
+    },
+    "expected": {
+      "wrapped": "f7db1454625fedcdc3eff088a787842f616f28ea8f450634461814833fed38226dde3beb7a544dd5"
+    }
+  },
+  {
+    "rule": "PV-5",
+    "description": "passkey copy: the WebAuthn PRF output is stretched with HKDF-SHA256 into the wrapping key, then AES-256 Key Wrap",
+    "input": {
+      "op": "wrap_passkey",
+      "kek_id": "kek_test_1",
+      "kek": "6326808008cde5008cc72da00b9ade23f3bcdcb6192326ad66f09b89b1ac8133",
+      "prf_eval_first": "57267ff3bed84f2c8d84b39f1a1cb4ab7a858668cc3c86c02b544f21f1b80272",
+      "prf_output": "df72b3dbeac1ea12dbd706a3318bc579c25e89cac6dd2b9c7714f6d8137b5ebc",
+      "hkdf_salt": "",
+      "hkdf_info": "6f6e652f6b656b2f706173736b65792f7631006b656b5f746573745f31"
+    },
+    "expected": {
+      "wrapping_key": "17b1a3d3fe16eaf0992390fb5b8e5416925214bb345b9d2e7fa4eeea2ca67826",
+      "wrapped": "980a8ee92891880df13645007b870a96d7965ee7bb837f7cd00409c59a314f1d41a335ae85b375e2"
+    }
+  },
+  {
+    "rule": "PV-5",
+    "description": "the PRF evaluation input is fixed so every login with the passkey yields the same wrapping key",
+    "input": {
+      "op": "prf_input"
+    },
+    "expected": {
+      "prf_eval_first": "57267ff3bed84f2c8d84b39f1a1cb4ab7a858668cc3c86c02b544f21f1b80272",
+      "derivation": "SHA-256(\"one/kek/passkey/v1\")"
+    }
+  },
+  {
+    "rule": "PV-5",
+    "description": "a KEK copy is never wrapped by an operator-held key",
+    "input": {
+      "op": "wrap_device",
+      "holder": "operator_hsm",
+      "kek_id": "kek_test_1"
+    },
+    "expected": {
+      "error": "holder_not_allowed"
+    }
+  }
+]

@@ -1,0 +1,225 @@
+[
+  {
+    "rule": "OP-4",
+    "description": "`content` part key is HKDF-SHA256 of the record key and the part is one AES-256-GCM message",
+    "input": {
+      "op": "seal_part",
+      "record_key": "355a5a2c09fa7e363371cc22240342afe0443c5e5a45b34cde4d537275d1625a",
+      "owner": "pty_01k742sgz8ea9tc04vraj0cqss",
+      "record": "mem_01k742vmbgez2rfct5dmnr31vp",
+      "class": "one_memory",
+      "part": "content",
+      "part_version": 1,
+      "hkdf_salt": "",
+      "hkdf_info": "6f6e652f7265636f72642f76312f7061727400636f6e74656e740031",
+      "nonce": "c9041ee7ab18b6ec93de18b1",
+      "context": "6f6e652f7265636f72642f7631007074795f30316b37343273677a38656139746330347672616a3063717373006d656d5f30316b373432766d6267657a327266637435646d6e7233317670006f6e655f6d656d6f727900636f6e74656e74",
+      "plaintext": "7b2274657874223a225072656665727320616e20416d65726963616e6f20696e20746865206d6f726e696e672e222c226c616e67223a22656e227d"
+    },
+    "expected": {
+      "part_key": "7d54460ddd74a18d660983297cd194eeddcea6c3f03a95178a24bbb3fea8c40f",
+      "aad": "6163636573732f616561642f7631006f6e652f7265636f72642f7631007074795f30316b37343273677a38656139746330347672616a3063717373006d656d5f30316b373432766d6267657a327266637435646d6e7233317670006f6e655f6d656d6f727900636f6e74656e74",
+      "ciphertext": "aeb26abbdf01e02009acbfc19f2a7c77a5f145c95a2f523048de915d4df3190e61342cc57bcb469d7c8554052a4a53a7cab419b8a7acede0533e2aa7b307e9dab7e7e76a70002afbf9e6a7"
+    }
+  },
+  {
+    "rule": "OP-4",
+    "description": "`summary` part key is HKDF-SHA256 of the record key and the part is one AES-256-GCM message",
+    "input": {
+      "op": "seal_part",
+      "record_key": "355a5a2c09fa7e363371cc22240342afe0443c5e5a45b34cde4d537275d1625a",
+      "owner": "pty_01k742sgz8ea9tc04vraj0cqss",
+      "record": "mem_01k742vmbgez2rfct5dmnr31vp",
+      "class": "one_memory",
+      "part": "summary",
+      "part_version": 1,
+      "hkdf_salt": "",
+      "hkdf_info": "6f6e652f7265636f72642f76312f706172740073756d6d6172790031",
+      "nonce": "19a40adbcd5623fc74650b3f",
+      "context": "6f6e652f7265636f72642f7631007074795f30316b37343273677a38656139746330347672616a3063717373006d656d5f30316b373432766d6267657a327266637435646d6e7233317670006f6e655f6d656d6f72790073756d6d617279",
+      "plaintext": "4d6f726e696e6720636f6666656520707265666572656e63652e"
+    },
+    "expected": {
+      "part_key": "ac74bba7a7bee230620247fb8f467986bdbef6d099a2aaf3dc982eca77f712e5",
+      "aad": "6163636573732f616561642f7631006f6e652f7265636f72642f7631007074795f30316b37343273677a38656139746330347672616a3063717373006d656d5f30316b373432766d6267657a327266637435646d6e7233317670006f6e655f6d656d6f72790073756d6d617279",
+      "ciphertext": "5a85ceee1bf19a386b9fc86b53a63089c4046078ea3314d61c43c595700aa80ccd5606df726ce3c3b584"
+    }
+  },
+  {
+    "rule": "OP-4",
+    "description": "`embedding` part key is HKDF-SHA256 of the record key and the part is one AES-256-GCM message",
+    "input": {
+      "op": "seal_part",
+      "record_key": "355a5a2c09fa7e363371cc22240342afe0443c5e5a45b34cde4d537275d1625a",
+      "owner": "pty_01k742sgz8ea9tc04vraj0cqss",
+      "record": "mem_01k742vmbgez2rfct5dmnr31vp",
+      "class": "one_memory",
+      "part": "embedding",
+      "part_version": 1,
+      "hkdf_salt": "",
+      "hkdf_info": "6f6e652f7265636f72642f76312f7061727400656d62656464696e670031",
+      "nonce": "190d8f51b419349845b9c918",
+      "context": "6f6e652f7265636f72642f7631007074795f30316b37343273677a38656139746330347672616a3063717373006d656d5f30316b373432766d6267657a327266637435646d6e7233317670006f6e655f6d656d6f727900656d62656464696e67",
+      "plaintext": "3df5c28fbcf5c28f3ecccccd3d8f5c29"
+    },
+    "expected": {
+      "part_key": "770a4584efb1536614f90a770a8d273e2481274c5ea7fc4d1b6a334ad77bcee9",
+      "aad": "6163636573732f616561642f7631006f6e652f7265636f72642f7631007074795f30316b37343273677a38656139746330347672616a3063717373006d656d5f30316b373432766d6267657a327266637435646d6e7233317670006f6e655f6d656d6f727900656d62656464696e67",
+      "ciphertext": "c47acc2a1f49247d971635eb30a07de3d28482e4809106ee59ec1b067a667ff1"
+    }
+  },
+  {
+    "rule": "OP-4",
+    "description": "`text_view` part key is HKDF-SHA256 of the record key and the part is one AES-256-GCM message",
+    "input": {
+      "op": "seal_part",
+      "record_key": "355a5a2c09fa7e363371cc22240342afe0443c5e5a45b34cde4d537275d1625a",
+      "owner": "pty_01k742sgz8ea9tc04vraj0cqss",
+      "record": "mem_01k742vmbgez2rfct5dmnr31vp",
+      "class": "one_memory",
+      "part": "text_view",
+      "part_version": 1,
+      "hkdf_salt": "",
+      "hkdf_info": "6f6e652f7265636f72642f76312f7061727400746578745f766965770031",
+      "nonce": "cd6c405d450291a89bf0c057",
+      "context": "6f6e652f7265636f72642f7631007074795f30316b37343273677a38656139746330347672616a3063717373006d656d5f30316b373432766d6267657a327266637435646d6e7233317670006f6e655f6d656d6f727900746578745f76696577",
+      "plaintext": "5072656665727320616e20416d65726963616e6f20696e20746865206d6f726e696e672e"
+    },
+    "expected": {
+      "part_key": "a3915f95acca832cbfb95433c89385b99658b3e0c65394eca93e14509218f1e3",
+      "aad": "6163636573732f616561642f7631006f6e652f7265636f72642f7631007074795f30316b37343273677a38656139746330347672616a3063717373006d656d5f30316b373432766d6267657a327266637435646d6e7233317670006f6e655f6d656d6f727900746578745f76696577",
+      "ciphertext": "dd6d4356551e47555298d506876bf50b823ade5fea2d53506da47525d6d4ad94b26aa89b1d6b36ee279126867ce77022d545729a"
+    }
+  },
+  {
+    "rule": "OP-4",
+    "description": "a new part version derives a different part key",
+    "input": {
+      "op": "derive_part_key",
+      "record_key": "355a5a2c09fa7e363371cc22240342afe0443c5e5a45b34cde4d537275d1625a",
+      "part": "content",
+      "part_version": 2,
+      "hkdf_info": "6f6e652f7265636f72642f76312f7061727400636f6e74656e740032"
+    },
+    "expected": {
+      "part_key": "52dd779c225e496d06fb0b17ef101b3f71d01d1c3fa17fcdca95e68a44dec106"
+    }
+  },
+  {
+    "rule": "OP-4",
+    "description": "a part moved to another record does not open: the context names owner, record, class and part",
+    "input": {
+      "op": "open_part",
+      "part_key": "7d54460ddd74a18d660983297cd194eeddcea6c3f03a95178a24bbb3fea8c40f",
+      "nonce": "c9041ee7ab18b6ec93de18b1",
+      "aad": "6163636573732f616561642f7631006f6e652f7265636f72642f7631007074795f30316b37343273677a38656139746330347672616a3063717373006d656d5f30316b373432766e617266367a72623774633932677332617376006f6e655f6d656d6f727900636f6e74656e74",
+      "ciphertext": "aeb26abbdf01e02009acbfc19f2a7c77a5f145c95a2f523048de915d4df3190e61342cc57bcb469d7c8554052a4a53a7cab419b8a7acede0533e2aa7b307e9dab7e7e76a70002afbf9e6a7"
+    },
+    "expected": {
+      "error": "open"
+    }
+  },
+  {
+    "rule": "OP-4",
+    "description": "another record's key does not open the part",
+    "input": {
+      "op": "open_part",
+      "part_key": "06cea7a196979356f73c93f017d2cc31f17d825d25b922fe67f05a84e0e36ef1",
+      "nonce": "c9041ee7ab18b6ec93de18b1",
+      "aad": "6163636573732f616561642f7631006f6e652f7265636f72642f7631007074795f30316b37343273677a38656139746330347672616a3063717373006d656d5f30316b373432766d6267657a327266637435646d6e7233317670006f6e655f6d656d6f727900636f6e74656e74",
+      "ciphertext": "aeb26abbdf01e02009acbfc19f2a7c77a5f145c95a2f523048de915d4df3190e61342cc57bcb469d7c8554052a4a53a7cab419b8a7acede0533e2aa7b307e9dab7e7e76a70002afbf9e6a7"
+    },
+    "expected": {
+      "error": "open"
+    }
+  },
+  {
+    "rule": "M-25",
+    "description": "forgetting one record destroys its wrapped record key; none of its parts open and the other records of the class still do",
+    "input": {
+      "op": "shred_record",
+      "class": "one_memory",
+      "records": [
+        {
+          "record": "mem_01k742vmbgez2rfct5dmnr31vp",
+          "record_key_id": "0192f0a0-0000-7000-8000-0000000000a1",
+          "parts": [
+            "content",
+            "summary",
+            "embedding",
+            "text_view"
+          ]
+        },
+        {
+          "record": "mem_01k742vnarf6zrb7tc92gs2asv",
+          "record_key_id": "0192f0a0-0000-7000-8000-0000000000a2",
+          "parts": [
+            "content"
+          ]
+        }
+      ],
+      "shred": "mem_01k742vmbgez2rfct5dmnr31vp"
+    },
+    "expected": {
+      "readable": {
+        "mem_01k742vmbgez2rfct5dmnr31vp": [],
+        "mem_01k742vnarf6zrb7tc92gs2asv": [
+          "content"
+        ]
+      },
+      "erasure_log": {
+        "record_key_id": "0192f0a0-0000-7000-8000-0000000000a1",
+        "class": "one_memory",
+        "scope": "record"
+      }
+    }
+  },
+  {
+    "rule": "OP-4",
+    "description": "shredding the class DEK makes every record of the class unreadable and leaves other classes",
+    "input": {
+      "op": "shred_class",
+      "class": "one_sensitive",
+      "records": [
+        {
+          "record": "mem_01k742vmbgez2rfct5dmnr31vp",
+          "class": "one_memory"
+        },
+        {
+          "record": "mem_01k742vnarf6zrb7tc92gs2asv",
+          "class": "one_sensitive"
+        }
+      ]
+    },
+    "expected": {
+      "readable": {
+        "mem_01k742vmbgez2rfct5dmnr31vp": true,
+        "mem_01k742vnarf6zrb7tc92gs2asv": false
+      },
+      "erasure_log": {
+        "dek_id": "0192f0a0-0000-7000-8000-000000000002",
+        "class": "one_sensitive",
+        "scope": "class"
+      }
+    }
+  },
+  {
+    "rule": "OP-5",
+    "description": "derived parts live under the source record key: rebuilding an index after a forget does not bring the record back",
+    "input": {
+      "op": "rebuild_index",
+      "forgotten": [
+        "mem_01k742vmbgez2rfct5dmnr31vp"
+      ],
+      "sources": [
+        "mem_01k742vmbgez2rfct5dmnr31vp",
+        "mem_01k742vnarf6zrb7tc92gs2asv"
+      ]
+    },
+    "expected": {
+      "indexed": [
+        "mem_01k742vnarf6zrb7tc92gs2asv"
+      ]
+    }
+  }
+]

@@ -110,7 +110,7 @@ rules = ["C-5", "C-11"]
 path = "vectors/goal.json"
 kind = "schema"
 schema = "https://suiss.app/schemas/one/ontology/goal/v1.json"
-rules = ["C-13", "C-21", "C-19"]
+rules = ["C-13", "C-21", "C-19", "PV-19"]
 
 [[vectors]]
 path = "vectors/routine.json"

@@ -1,0 +1,439 @@
+[
+  {
+    "rule": "PV-12",
+    "description": "PIN vault path with the default limit",
+    "input": {
+      "method_id": "0192f0a0-0000-7000-8000-0000000000f1",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "kind": "pin_vault",
+      "kek_id": "kek_test_1",
+      "access_method": "rm-test-1",
+      "status": "active",
+      "created_at": "2026-11-02T10:00:00Z",
+      "last_verified_at": null,
+      "pin_vault": {
+        "realms": [
+          "realm-a",
+          "realm-b",
+          "realm-c"
+        ],
+        "threshold": 2,
+        "max_guesses": 10,
+        "pin_digits": 6
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "PV-12",
+    "description": "PIN vault with the limit lowered to 3",
+    "input": {
+      "method_id": "0192f0a0-0000-7000-8000-0000000000f1",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "kind": "pin_vault",
+      "kek_id": "kek_test_1",
+      "access_method": "rm-test-1",
+      "status": "active",
+      "created_at": "2026-11-02T10:00:00Z",
+      "last_verified_at": null,
+      "pin_vault": {
+        "realms": [
+          "realm-a",
+          "realm-b",
+          "realm-c"
+        ],
+        "threshold": 2,
+        "max_guesses": 3,
+        "pin_digits": 6
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "PV-12",
+    "description": "a limit below 3 is rejected",
+    "input": {
+      "method_id": "0192f0a0-0000-7000-8000-0000000000f1",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "kind": "pin_vault",
+      "kek_id": "kek_test_1",
+      "access_method": "rm-test-1",
+      "status": "active",
+      "created_at": "2026-11-02T10:00:00Z",
+      "last_verified_at": null,
+      "pin_vault": {
+        "realms": [
+          "realm-a",
+          "realm-b",
+          "realm-c"
+        ],
+        "threshold": 2,
+        "max_guesses": 2,
+        "pin_digits": 6
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "PV-12",
+    "description": "a limit above 10 is rejected",
+    "input": {
+      "method_id": "0192f0a0-0000-7000-8000-0000000000f1",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "kind": "pin_vault",
+      "kek_id": "kek_test_1",
+      "access_method": "rm-test-1",
+      "status": "active",
+      "created_at": "2026-11-02T10:00:00Z",
+      "last_verified_at": null,
+      "pin_vault": {
+        "realms": [
+          "realm-a",
+          "realm-b",
+          "realm-c"
+        ],
+        "threshold": 2,
+        "max_guesses": 11,
+        "pin_digits": 6
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "PV-12",
+    "description": "a PIN shorter than six digits is rejected",
+    "input": {
+      "method_id": "0192f0a0-0000-7000-8000-0000000000f1",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "kind": "pin_vault",
+      "kek_id": "kek_test_1",
+      "access_method": "rm-test-1",
+      "status": "active",
+      "created_at": "2026-11-02T10:00:00Z",
+      "last_verified_at": null,
+      "pin_vault": {
+        "realms": [
+          "realm-a",
+          "realm-b",
+          "realm-c"
+        ],
+        "threshold": 2,
+        "max_guesses": 10,
+        "pin_digits": 5
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "PV-12",
+    "description": "the vault spans exactly three realms",
+    "input": {
+      "method_id": "0192f0a0-0000-7000-8000-0000000000f1",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "kind": "pin_vault",
+      "kek_id": "kek_test_1",
+      "access_method": "rm-test-1",
+      "status": "active",
+      "created_at": "2026-11-02T10:00:00Z",
+      "last_verified_at": null,
+      "pin_vault": {
+        "realms": [
+          "realm-a",
+          "realm-b"
+        ],
+        "threshold": 2,
+        "max_guesses": 10,
+        "pin_digits": 6
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "PV-12",
+    "description": "the vault threshold is 2",
+    "input": {
+      "method_id": "0192f0a0-0000-7000-8000-0000000000f1",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "kind": "pin_vault",
+      "kek_id": "kek_test_1",
+      "access_method": "rm-test-1",
+      "status": "active",
+      "created_at": "2026-11-02T10:00:00Z",
+      "last_verified_at": null,
+      "pin_vault": {
+        "realms": [
+          "realm-a",
+          "realm-b",
+          "realm-c"
+        ],
+        "threshold": 3,
+        "max_guesses": 10,
+        "pin_digits": 6
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "PV-12",
+    "description": "recovery contact 2-of-2 with the account share",
+    "input": {
+      "method_id": "0192f0a0-0000-7000-8000-0000000000f1",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "kind": "recovery_contact",
+      "kek_id": "kek_test_1",
+      "access_method": "rm-test-1",
+      "status": "active",
+      "created_at": "2026-11-02T10:00:00Z",
+      "last_verified_at": null,
+      "recovery_contact": {
+        "contacts": [
+          {
+            "ref": "PartyRef",
+            "id": "pty_contact_1"
+          }
+        ],
+        "threshold": 2,
+        "account_share": true
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "PV-12",
+    "description": "a recovery contact path without the account share is rejected: one person would open it alone",
+    "input": {
+      "method_id": "0192f0a0-0000-7000-8000-0000000000f1",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "kind": "recovery_contact",
+      "kek_id": "kek_test_1",
+      "access_method": "rm-test-1",
+      "status": "active",
+      "created_at": "2026-11-02T10:00:00Z",
+      "last_verified_at": null,
+      "recovery_contact": {
+        "contacts": [
+          {
+            "ref": "PartyRef",
+            "id": "pty_contact_1"
+          }
+        ],
+        "threshold": 2,
+        "account_share": false
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "PV-12",
+    "description": "a single-contact threshold of 1 is rejected",
+    "input": {
+      "method_id": "0192f0a0-0000-7000-8000-0000000000f1",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "kind": "recovery_contact",
+      "kek_id": "kek_test_1",
+      "access_method": "rm-test-1",
+      "status": "active",
+      "created_at": "2026-11-02T10:00:00Z",
+      "last_verified_at": null,
+      "recovery_contact": {
+        "contacts": [
+          {
+            "ref": "PartyRef",
+            "id": "pty_contact_1"
+          }
+        ],
+        "threshold": 1,
+        "account_share": true
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "PV-12",
+    "description": "recovery key path",
+    "input": {
+      "method_id": "0192f0a0-0000-7000-8000-0000000000f1",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "kind": "recovery_key",
+      "kek_id": "kek_test_1",
+      "access_method": "rm-test-1",
+      "status": "active",
+      "created_at": "2026-11-02T10:00:00Z",
+      "last_verified_at": null,
+      "recovery_key": {
+        "bits": 256
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "PV-12",
+    "description": "second device path",
+    "input": {
+      "method_id": "0192f0a0-0000-7000-8000-0000000000f1",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "kind": "second_device",
+      "kek_id": "kek_test_1",
+      "access_method": "rm-test-1",
+      "status": "active",
+      "created_at": "2026-11-02T10:00:00Z",
+      "last_verified_at": null,
+      "second_device": {
+        "device": "dev_01k742sgz8ea9tc04vraj0cqss"
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "PV-14",
+    "description": "an exhausted vault is unusable",
+    "input": {
+      "method_id": "0192f0a0-0000-7000-8000-0000000000f1",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "kind": "pin_vault",
+      "kek_id": "kek_test_1",
+      "access_method": "rm-test-1",
+      "status": "unusable",
+      "created_at": "2026-11-02T10:00:00Z",
+      "last_verified_at": null,
+      "pin_vault": {
+        "realms": [
+          "realm-a",
+          "realm-b",
+          "realm-c"
+        ],
+        "threshold": 2,
+        "max_guesses": 10,
+        "pin_digits": 6
+      }
+    },
+    "valid": true
+  },
+  {
+    "rule": "PV-12",
+    "description": "an unknown path kind is rejected",
+    "input": {
+      "method_id": "0192f0a0-0000-7000-8000-0000000000f1",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "kind": "security_questions",
+      "kek_id": "kek_test_1",
+      "access_method": "rm-test-1",
+      "status": "active",
+      "created_at": "2026-11-02T10:00:00Z",
+      "last_verified_at": null,
+      "pin_vault": {
+        "realms": [
+          "realm-a",
+          "realm-b",
+          "realm-c"
+        ],
+        "threshold": 2,
+        "max_guesses": 10,
+        "pin_digits": 6
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "PV-12",
+    "description": "parameters of another kind are rejected",
+    "input": {
+      "method_id": "0192f0a0-0000-7000-8000-0000000000f1",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "kind": "pin_vault",
+      "kek_id": "kek_test_1",
+      "access_method": "rm-test-1",
+      "status": "active",
+      "created_at": "2026-11-02T10:00:00Z",
+      "last_verified_at": null,
+      "pin_vault": {
+        "realms": [
+          "realm-a",
+          "realm-b",
+          "realm-c"
+        ],
+        "threshold": 2,
+        "max_guesses": 10,
+        "pin_digits": 6
+      },
+      "recovery_key": {
+        "bits": 256
+      }
+    },
+    "valid": false
+  },
+  {
+    "rule": "PV-12",
+    "description": "the path carries no key material",
+    "input": {
+      "method_id": "0192f0a0-0000-7000-8000-0000000000f1",
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+      },
+      "kind": "pin_vault",
+      "kek_id": "kek_test_1",
+      "access_method": "rm-test-1",
+      "status": "active",
+      "created_at": "2026-11-02T10:00:00Z",
+      "last_verified_at": null,
+      "pin_vault": {
+        "realms": [
+          "realm-a",
+          "realm-b",
+          "realm-c"
+        ],
+        "threshold": 2,
+        "max_guesses": 10,
+        "pin_digits": 6
+      },
+      "wrapped_kek": "AAEC"
+    },
+    "valid": false
+  }
+]

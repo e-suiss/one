@@ -1,0 +1,458 @@
+[
+  {
+    "rule": "PV-65",
+    "description": "valid permission body: deterministic CBOR bytes, signed by the device Instance as COSE_Sign1 (ES256)",
+    "input": {
+      "op": "encode",
+      "body_diag": "{\"classes\": [\"one_memory\", \"one_model\"], \"purpose\": \"personal_training\", \"expires_at\": 1793667600, \"not_before\": 1793581200, \"permission_id\": 37(h'01a199c532807a7f8846123ee27da88a'), \"job_key_digest\": h'e95dd9f0bbcb874dc9e0c812d1da4860c21cf795f9b2ad04f1bed180b020af78', \"tee_measurement\": h'17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d'}",
+      "signer_public_key": "04e633f19030cbf67a2a205026063e87911cdfae7a3721174c519ae758ddb10e9f58ec9ffb161c90f4b8869b1986cdb95da1209d9bc7829488188a2957353a37b0",
+      "kid": "6b622d746573742d696e7374616e63652d31"
+    },
+    "expected": {
+      "body": "a767636c6173736573826a6f6e655f6d656d6f7279696f6e655f6d6f64656c67707572706f736571706572736f6e616c5f747261696e696e676a657870697265735f61741a6ae932106a6e6f745f6265666f72651a6ae7e0906d7065726d697373696f6e5f6964d8255001a199c532807a7f8846123ee27da88a6e6a6f625f6b65795f6469676573745820e95dd9f0bbcb874dc9e0c812d1da4860c21cf795f9b2ad04f1bed180b020af786f7465655f6d6561737572656d656e74583017dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d",
+      "body_digest": "d5022e12ead76867dc9acdd5ec71b3536ffc42bbed9a5a510cc61ebd69a2ee74",
+      "protected": "a10126",
+      "sig_structure": "846a5369676e61747572653143a101264058eda767636c6173736573826a6f6e655f6d656d6f7279696f6e655f6d6f64656c67707572706f736571706572736f6e616c5f747261696e696e676a657870697265735f61741a6ae932106a6e6f745f6265666f72651a6ae7e0906d7065726d697373696f6e5f6964d8255001a199c532807a7f8846123ee27da88a6e6a6f625f6b65795f6469676573745820e95dd9f0bbcb874dc9e0c812d1da4860c21cf795f9b2ad04f1bed180b020af786f7465655f6d6561737572656d656e74583017dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d",
+      "signature": "777f516dae91aa52a007a84ec38a4c8f37b53b95103a2da0eed2dd4cd5b1b1b82a7dbf32520e5a4dddb1615c304fb3827f31a2367427f870020dfbad63c87efb",
+      "cose_sign1": "d28443a10126a104526b622d746573742d696e7374616e63652d3158eda767636c6173736573826a6f6e655f6d656d6f7279696f6e655f6d6f64656c67707572706f736571706572736f6e616c5f747261696e696e676a657870697265735f61741a6ae932106a6e6f745f6265666f72651a6ae7e0906d7065726d697373696f6e5f6964d8255001a199c532807a7f8846123ee27da88a6e6a6f625f6b65795f6469676573745820e95dd9f0bbcb874dc9e0c812d1da4860c21cf795f9b2ad04f1bed180b020af786f7465655f6d6561737572656d656e74583017dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d5840777f516dae91aa52a007a84ec38a4c8f37b53b95103a2da0eed2dd4cd5b1b1b82a7dbf32520e5a4dddb1615c304fb3827f31a2367427f870020dfbad63c87efb",
+      "signature_check": "verify only: ECDSA signatures are not reproducible"
+    }
+  },
+  {
+    "rule": "PV-65",
+    "description": "state-changing job body carries its Mandate reference",
+    "input": {
+      "op": "encode",
+      "body_diag": "{\"classes\": [\"one_memory\"], \"purpose\": \"one_to_one_reply\", \"expires_at\": 1793667600, \"not_before\": 1793581200, \"mandate_ref\": \"mnd-test-0001\", \"permission_id\": 37(h'01a199c532807a7f8846123ee27da88a'), \"job_key_digest\": h'e95dd9f0bbcb874dc9e0c812d1da4860c21cf795f9b2ad04f1bed180b020af78', \"tee_measurement\": h'17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d'}"
+    },
+    "expected": {
+      "body": "a867636c6173736573816a6f6e655f6d656d6f727967707572706f7365706f6e655f746f5f6f6e655f7265706c796a657870697265735f61741a6ae932106a6e6f745f6265666f72651a6ae7e0906b6d616e646174655f7265666d6d6e642d746573742d303030316d7065726d697373696f6e5f6964d8255001a199c532807a7f8846123ee27da88a6e6a6f625f6b65795f6469676573745820e95dd9f0bbcb874dc9e0c812d1da4860c21cf795f9b2ad04f1bed180b020af786f7465655f6d6561737572656d656e74583017dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d",
+      "body_digest": "f01b6287353ac2cdc57a619b6588d2e9005d5bf16d93c4472bdcc7dcbfd3d799"
+    }
+  },
+  {
+    "rule": "PV-65",
+    "description": "a valid permission opens the job inside its window",
+    "input": {
+      "op": "admit",
+      "body_diag": "{\"classes\": [\"one_memory\", \"one_model\"], \"purpose\": \"personal_training\", \"expires_at\": 1793667600, \"not_before\": 1793581200, \"permission_id\": 37(h'01a199c532807a7f8846123ee27da88a'), \"job_key_digest\": h'e95dd9f0bbcb874dc9e0c812d1da4860c21cf795f9b2ad04f1bed180b020af78', \"tee_measurement\": h'17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d'}",
+      "state": {
+        "now": 1793584800,
+        "attested_measurement": "17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d",
+        "attested_job_key_digest": "e95dd9f0bbcb874dc9e0c812d1da4860c21cf795f9b2ad04f1bed180b020af78",
+        "withdrawn": false,
+        "mandate": null,
+        "shredded_classes": [],
+        "signature": "valid"
+      }
+    },
+    "expected": {
+      "admit": true
+    }
+  },
+  {
+    "rule": "PV-65",
+    "description": "a window of more than 24 hours is rejected",
+    "input": {
+      "op": "admit",
+      "body_diag": "{\"classes\": [\"one_memory\", \"one_model\"], \"purpose\": \"personal_training\", \"expires_at\": 1793667601, \"not_before\": 1793581200, \"permission_id\": 37(h'01a199c532807a7f8846123ee27da88a'), \"job_key_digest\": h'e95dd9f0bbcb874dc9e0c812d1da4860c21cf795f9b2ad04f1bed180b020af78', \"tee_measurement\": h'17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d'}",
+      "state": {
+        "now": 1793584800,
+        "attested_measurement": "17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d",
+        "attested_job_key_digest": "e95dd9f0bbcb874dc9e0c812d1da4860c21cf795f9b2ad04f1bed180b020af78",
+        "withdrawn": false,
+        "mandate": null,
+        "shredded_classes": [],
+        "signature": "valid"
+      }
+    },
+    "expected": {
+      "admit": false,
+      "reason": "window_too_long"
+    }
+  },
+  {
+    "rule": "PV-65",
+    "description": "exactly 24 hours is accepted",
+    "input": {
+      "op": "admit",
+      "body_diag": "{\"classes\": [\"one_memory\", \"one_model\"], \"purpose\": \"personal_training\", \"expires_at\": 1793667600, \"not_before\": 1793581200, \"permission_id\": 37(h'01a199c532807a7f8846123ee27da88a'), \"job_key_digest\": h'e95dd9f0bbcb874dc9e0c812d1da4860c21cf795f9b2ad04f1bed180b020af78', \"tee_measurement\": h'17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d'}",
+      "state": {
+        "now": 1793584800,
+        "attested_measurement": "17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d",
+        "attested_job_key_digest": "e95dd9f0bbcb874dc9e0c812d1da4860c21cf795f9b2ad04f1bed180b020af78",
+        "withdrawn": false,
+        "mandate": null,
+        "shredded_classes": [],
+        "signature": "valid"
+      }
+    },
+    "expected": {
+      "admit": true
+    }
+  },
+  {
+    "rule": "PV-65",
+    "description": "a window that ends before it starts is rejected",
+    "input": {
+      "op": "admit",
+      "body_diag": "{\"classes\": [\"one_memory\", \"one_model\"], \"purpose\": \"personal_training\", \"expires_at\": 1793581200, \"not_before\": 1793581200, \"permission_id\": 37(h'01a199c532807a7f8846123ee27da88a'), \"job_key_digest\": h'e95dd9f0bbcb874dc9e0c812d1da4860c21cf795f9b2ad04f1bed180b020af78', \"tee_measurement\": h'17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d'}",
+      "state": {
+        "now": 1793584800,
+        "attested_measurement": "17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d",
+        "attested_job_key_digest": "e95dd9f0bbcb874dc9e0c812d1da4860c21cf795f9b2ad04f1bed180b020af78",
+        "withdrawn": false,
+        "mandate": null,
+        "shredded_classes": [],
+        "signature": "valid"
+      }
+    },
+    "expected": {
+      "admit": false,
+      "reason": "window_empty"
+    }
+  },
+  {
+    "rule": "PV-65",
+    "description": "an unknown purpose is rejected",
+    "input": {
+      "op": "admit",
+      "body_diag": "{\"classes\": [\"one_memory\", \"one_model\"], \"purpose\": \"analytics\", \"expires_at\": 1793667600, \"not_before\": 1793581200, \"permission_id\": 37(h'01a199c532807a7f8846123ee27da88a'), \"job_key_digest\": h'e95dd9f0bbcb874dc9e0c812d1da4860c21cf795f9b2ad04f1bed180b020af78', \"tee_measurement\": h'17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d'}",
+      "state": {
+        "now": 1793584800,
+        "attested_measurement": "17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d",
+        "attested_job_key_digest": "e95dd9f0bbcb874dc9e0c812d1da4860c21cf795f9b2ad04f1bed180b020af78",
+        "withdrawn": false,
+        "mandate": null,
+        "shredded_classes": [],
+        "signature": "valid"
+      }
+    },
+    "expected": {
+      "admit": false,
+      "reason": "unknown_purpose"
+    }
+  },
+  {
+    "rule": "PV-65",
+    "description": "a class outside the One classes is rejected",
+    "input": {
+      "op": "admit",
+      "body_diag": "{\"classes\": [\"one_memory\", \"pay_ledger\"], \"purpose\": \"personal_training\", \"expires_at\": 1793667600, \"not_before\": 1793581200, \"permission_id\": 37(h'01a199c532807a7f8846123ee27da88a'), \"job_key_digest\": h'e95dd9f0bbcb874dc9e0c812d1da4860c21cf795f9b2ad04f1bed180b020af78', \"tee_measurement\": h'17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d'}",
+      "state": {
+        "now": 1793584800,
+        "attested_measurement": "17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d",
+        "attested_job_key_digest": "e95dd9f0bbcb874dc9e0c812d1da4860c21cf795f9b2ad04f1bed180b020af78",
+        "withdrawn": false,
+        "mandate": null,
+        "shredded_classes": [],
+        "signature": "valid"
+      }
+    },
+    "expected": {
+      "admit": false,
+      "reason": "unknown_class"
+    }
+  },
+  {
+    "rule": "PV-65",
+    "description": "classes must be sorted and unique in the deterministic body",
+    "input": {
+      "op": "decode",
+      "body_diag": "{\"classes\": [\"one_model\", \"one_memory\"], \"purpose\": \"personal_training\", \"expires_at\": 1793667600, \"not_before\": 1793581200, \"permission_id\": 37(h'01a199c532807a7f8846123ee27da88a'), \"job_key_digest\": h'e95dd9f0bbcb874dc9e0c812d1da4860c21cf795f9b2ad04f1bed180b020af78', \"tee_measurement\": h'17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d'}"
+    },
+    "expected": {
+      "admit": false,
+      "reason": "not_deterministic"
+    }
+  },
+  {
+    "rule": "PV-65",
+    "description": "a state-changing job without a Mandate reference is rejected",
+    "input": {
+      "op": "admit",
+      "body_diag": "{\"classes\": [\"one_memory\"], \"purpose\": \"trigger\", \"expires_at\": 1793667600, \"not_before\": 1793581200, \"permission_id\": 37(h'01a199c532807a7f8846123ee27da88a'), \"job_key_digest\": h'e95dd9f0bbcb874dc9e0c812d1da4860c21cf795f9b2ad04f1bed180b020af78', \"tee_measurement\": h'17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d'}",
+      "state": {
+        "now": 1793584800,
+        "attested_measurement": "17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d",
+        "attested_job_key_digest": "e95dd9f0bbcb874dc9e0c812d1da4860c21cf795f9b2ad04f1bed180b020af78",
+        "withdrawn": false,
+        "mandate": null,
+        "shredded_classes": [],
+        "signature": "valid"
+      }
+    },
+    "expected": {
+      "admit": false,
+      "reason": "mandate_required"
+    }
+  },
+  {
+    "rule": "PV-65",
+    "description": "a state-changing job with a live Mandate is admitted",
+    "input": {
+      "op": "admit",
+      "body_diag": "{\"classes\": [\"one_memory\"], \"purpose\": \"one_to_one_reply\", \"expires_at\": 1793667600, \"not_before\": 1793581200, \"mandate_ref\": \"mnd-test-0001\", \"permission_id\": 37(h'01a199c532807a7f8846123ee27da88a'), \"job_key_digest\": h'e95dd9f0bbcb874dc9e0c812d1da4860c21cf795f9b2ad04f1bed180b020af78', \"tee_measurement\": h'17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d'}",
+      "state": {
+        "now": 1793584800,
+        "attested_measurement": "17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d",
+        "attested_job_key_digest": "e95dd9f0bbcb874dc9e0c812d1da4860c21cf795f9b2ad04f1bed180b020af78",
+        "withdrawn": false,
+        "mandate": "active",
+        "shredded_classes": [],
+        "signature": "valid"
+      }
+    },
+    "expected": {
+      "admit": true
+    }
+  },
+  {
+    "rule": "PV-65",
+    "description": "the permission falls when its Mandate is revoked",
+    "input": {
+      "op": "admit",
+      "body_diag": "{\"classes\": [\"one_memory\"], \"purpose\": \"one_to_one_reply\", \"expires_at\": 1793667600, \"not_before\": 1793581200, \"mandate_ref\": \"mnd-test-0001\", \"permission_id\": 37(h'01a199c532807a7f8846123ee27da88a'), \"job_key_digest\": h'e95dd9f0bbcb874dc9e0c812d1da4860c21cf795f9b2ad04f1bed180b020af78', \"tee_measurement\": h'17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d'}",
+      "state": {
+        "now": 1793584800,
+        "attested_measurement": "17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d",
+        "attested_job_key_digest": "e95dd9f0bbcb874dc9e0c812d1da4860c21cf795f9b2ad04f1bed180b020af78",
+        "withdrawn": false,
+        "mandate": "revoked",
+        "shredded_classes": [],
+        "signature": "valid"
+      }
+    },
+    "expected": {
+      "admit": false,
+      "reason": "mandate_inactive"
+    }
+  },
+  {
+    "rule": "PV-65",
+    "description": "the permission falls when its Mandate is narrowed below the job",
+    "input": {
+      "op": "admit",
+      "body_diag": "{\"classes\": [\"one_memory\"], \"purpose\": \"one_to_one_reply\", \"expires_at\": 1793667600, \"not_before\": 1793581200, \"mandate_ref\": \"mnd-test-0001\", \"permission_id\": 37(h'01a199c532807a7f8846123ee27da88a'), \"job_key_digest\": h'e95dd9f0bbcb874dc9e0c812d1da4860c21cf795f9b2ad04f1bed180b020af78', \"tee_measurement\": h'17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d'}",
+      "state": {
+        "now": 1793584800,
+        "attested_measurement": "17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d",
+        "attested_job_key_digest": "e95dd9f0bbcb874dc9e0c812d1da4860c21cf795f9b2ad04f1bed180b020af78",
+        "withdrawn": false,
+        "mandate": "narrowed",
+        "shredded_classes": [],
+        "signature": "valid"
+      }
+    },
+    "expected": {
+      "admit": false,
+      "reason": "mandate_inactive"
+    }
+  },
+  {
+    "rule": "PV-65",
+    "description": "the permission falls when its Mandate expires",
+    "input": {
+      "op": "admit",
+      "body_diag": "{\"classes\": [\"one_memory\"], \"purpose\": \"one_to_one_reply\", \"expires_at\": 1793667600, \"not_before\": 1793581200, \"mandate_ref\": \"mnd-test-0001\", \"permission_id\": 37(h'01a199c532807a7f8846123ee27da88a'), \"job_key_digest\": h'e95dd9f0bbcb874dc9e0c812d1da4860c21cf795f9b2ad04f1bed180b020af78', \"tee_measurement\": h'17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d'}",
+      "state": {
+        "now": 1793584800,
+        "attested_measurement": "17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d",
+        "attested_job_key_digest": "e95dd9f0bbcb874dc9e0c812d1da4860c21cf795f9b2ad04f1bed180b020af78",
+        "withdrawn": false,
+        "mandate": "expired",
+        "shredded_classes": [],
+        "signature": "valid"
+      }
+    },
+    "expected": {
+      "admit": false,
+      "reason": "mandate_inactive"
+    }
+  },
+  {
+    "rule": "PV-65",
+    "description": "a read-only job may carry no Mandate reference",
+    "input": {
+      "op": "admit",
+      "body_diag": "{\"classes\": [\"one_memory\"], \"purpose\": \"reembedding\", \"expires_at\": 1793667600, \"not_before\": 1793581200, \"permission_id\": 37(h'01a199c532807a7f8846123ee27da88a'), \"job_key_digest\": h'e95dd9f0bbcb874dc9e0c812d1da4860c21cf795f9b2ad04f1bed180b020af78', \"tee_measurement\": h'17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d'}",
+      "state": {
+        "now": 1793584800,
+        "attested_measurement": "17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d",
+        "attested_job_key_digest": "e95dd9f0bbcb874dc9e0c812d1da4860c21cf795f9b2ad04f1bed180b020af78",
+        "withdrawn": false,
+        "mandate": null,
+        "shredded_classes": [],
+        "signature": "valid"
+      }
+    },
+    "expected": {
+      "admit": true
+    }
+  },
+  {
+    "rule": "PV-65",
+    "description": "the permission is bound to one exact TEE measurement: another image measurement does not open it",
+    "input": {
+      "op": "admit",
+      "body_diag": "{\"classes\": [\"one_memory\", \"one_model\"], \"purpose\": \"personal_training\", \"expires_at\": 1793667600, \"not_before\": 1793581200, \"permission_id\": 37(h'01a199c532807a7f8846123ee27da88a'), \"job_key_digest\": h'e95dd9f0bbcb874dc9e0c812d1da4860c21cf795f9b2ad04f1bed180b020af78', \"tee_measurement\": h'17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d'}",
+      "state": {
+        "now": 1793584800,
+        "attested_measurement": "b1447c504b3a20e3074993c8134bf9d8b7c73076d99f6205ba154d7b7c290080f41df450bc83320fb9db675841d54533",
+        "attested_job_key_digest": "e95dd9f0bbcb874dc9e0c812d1da4860c21cf795f9b2ad04f1bed180b020af78",
+        "withdrawn": false,
+        "mandate": null,
+        "shredded_classes": [],
+        "signature": "valid"
+      }
+    },
+    "expected": {
+      "admit": false,
+      "reason": "measurement_mismatch"
+    }
+  },
+  {
+    "rule": "PV-65",
+    "description": "the attested job key must be the key the permission names",
+    "input": {
+      "op": "admit",
+      "body_diag": "{\"classes\": [\"one_memory\", \"one_model\"], \"purpose\": \"personal_training\", \"expires_at\": 1793667600, \"not_before\": 1793581200, \"permission_id\": 37(h'01a199c532807a7f8846123ee27da88a'), \"job_key_digest\": h'e95dd9f0bbcb874dc9e0c812d1da4860c21cf795f9b2ad04f1bed180b020af78', \"tee_measurement\": h'17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d'}",
+      "state": {
+        "now": 1793584800,
+        "attested_measurement": "17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d",
+        "attested_job_key_digest": "d9298a10d1b0735837dc4bd85dac641b0f3cef27a47e5d53a54f2f3f5b2fcffa",
+        "withdrawn": false,
+        "mandate": null,
+        "shredded_classes": [],
+        "signature": "valid"
+      }
+    },
+    "expected": {
+      "admit": false,
+      "reason": "job_key_mismatch"
+    }
+  },
+  {
+    "rule": "PV-65",
+    "description": "a permission is not used before its window",
+    "input": {
+      "op": "admit",
+      "body_diag": "{\"classes\": [\"one_memory\", \"one_model\"], \"purpose\": \"personal_training\", \"expires_at\": 1793667600, \"not_before\": 1793581200, \"permission_id\": 37(h'01a199c532807a7f8846123ee27da88a'), \"job_key_digest\": h'e95dd9f0bbcb874dc9e0c812d1da4860c21cf795f9b2ad04f1bed180b020af78', \"tee_measurement\": h'17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d'}",
+      "state": {
+        "now": 1793581199,
+        "attested_measurement": "17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d",
+        "attested_job_key_digest": "e95dd9f0bbcb874dc9e0c812d1da4860c21cf795f9b2ad04f1bed180b020af78",
+        "withdrawn": false,
+        "mandate": null,
+        "shredded_classes": [],
+        "signature": "valid"
+      }
+    },
+    "expected": {
+      "admit": false,
+      "reason": "not_yet_valid"
+    }
+  },
+  {
+    "rule": "PV-65",
+    "description": "an expired permission is rejected and the job key and DEK copies are zeroized",
+    "input": {
+      "op": "admit",
+      "body_diag": "{\"classes\": [\"one_memory\", \"one_model\"], \"purpose\": \"personal_training\", \"expires_at\": 1793667600, \"not_before\": 1793581200, \"permission_id\": 37(h'01a199c532807a7f8846123ee27da88a'), \"job_key_digest\": h'e95dd9f0bbcb874dc9e0c812d1da4860c21cf795f9b2ad04f1bed180b020af78', \"tee_measurement\": h'17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d'}",
+      "state": {
+        "now": 1793667600,
+        "attested_measurement": "17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d",
+        "attested_job_key_digest": "e95dd9f0bbcb874dc9e0c812d1da4860c21cf795f9b2ad04f1bed180b020af78",
+        "withdrawn": false,
+        "mandate": null,
+        "shredded_classes": [],
+        "signature": "valid"
+      }
+    },
+    "expected": {
+      "admit": false,
+      "reason": "expired",
+      "zeroize": true
+    }
+  },
+  {
+    "rule": "PV-65",
+    "description": "after withdrawal a running job does not continue past its next resume point",
+    "input": {
+      "op": "resume",
+      "body_diag": "{\"classes\": [\"one_memory\", \"one_model\"], \"purpose\": \"personal_training\", \"expires_at\": 1793667600, \"not_before\": 1793581200, \"permission_id\": 37(h'01a199c532807a7f8846123ee27da88a'), \"job_key_digest\": h'e95dd9f0bbcb874dc9e0c812d1da4860c21cf795f9b2ad04f1bed180b020af78', \"tee_measurement\": h'17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d'}",
+      "state": {
+        "now": 1793584800,
+        "attested_measurement": "17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d",
+        "attested_job_key_digest": "e95dd9f0bbcb874dc9e0c812d1da4860c21cf795f9b2ad04f1bed180b020af78",
+        "withdrawn": true,
+        "mandate": null,
+        "shredded_classes": [],
+        "signature": "valid"
+      }
+    },
+    "expected": {
+      "admit": false,
+      "reason": "withdrawn",
+      "zeroize": true
+    }
+  },
+  {
+    "rule": "PV-65",
+    "description": "a shredded class is not opened even inside the window",
+    "input": {
+      "op": "admit",
+      "body_diag": "{\"classes\": [\"one_memory\", \"one_model\"], \"purpose\": \"personal_training\", \"expires_at\": 1793667600, \"not_before\": 1793581200, \"permission_id\": 37(h'01a199c532807a7f8846123ee27da88a'), \"job_key_digest\": h'e95dd9f0bbcb874dc9e0c812d1da4860c21cf795f9b2ad04f1bed180b020af78', \"tee_measurement\": h'17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d'}",
+      "state": {
+        "now": 1793584800,
+        "attested_measurement": "17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d",
+        "attested_job_key_digest": "e95dd9f0bbcb874dc9e0c812d1da4860c21cf795f9b2ad04f1bed180b020af78",
+        "withdrawn": false,
+        "mandate": null,
+        "shredded_classes": [
+          "one_model"
+        ],
+        "signature": "valid"
+      }
+    },
+    "expected": {
+      "admit": false,
+      "reason": "class_shredded",
+      "zeroize": true
+    }
+  },
+  {
+    "rule": "PV-65",
+    "description": "a body whose signature does not verify under the device Instance key is rejected",
+    "input": {
+      "op": "admit",
+      "body_diag": "{\"classes\": [\"one_memory\", \"one_model\"], \"purpose\": \"personal_training\", \"expires_at\": 1793667600, \"not_before\": 1793581200, \"permission_id\": 37(h'01a199c532807a7f8846123ee27da88a'), \"job_key_digest\": h'e95dd9f0bbcb874dc9e0c812d1da4860c21cf795f9b2ad04f1bed180b020af78', \"tee_measurement\": h'17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d'}",
+      "state": {
+        "now": 1793584800,
+        "attested_measurement": "17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d",
+        "attested_job_key_digest": "e95dd9f0bbcb874dc9e0c812d1da4860c21cf795f9b2ad04f1bed180b020af78",
+        "withdrawn": false,
+        "mandate": null,
+        "shredded_classes": [],
+        "signature": "invalid"
+      }
+    },
+    "expected": {
+      "admit": false,
+      "reason": "signature"
+    }
+  },
+  {
+    "rule": "PV-65",
+    "description": "the job queue row carries only the permission id",
+    "input": {
+      "op": "job_row",
+      "body_diag": "{\"classes\": [\"one_memory\", \"one_model\"], \"purpose\": \"personal_training\", \"expires_at\": 1793667600, \"not_before\": 1793581200, \"permission_id\": 37(h'01a199c532807a7f8846123ee27da88a'), \"job_key_digest\": h'e95dd9f0bbcb874dc9e0c812d1da4860c21cf795f9b2ad04f1bed180b020af78', \"tee_measurement\": h'17dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d'}"
+    },
+    "expected": {
+      "plain": {
+        "permission_id": "01a199c5-3280-7a7f-8846-123ee27da88a"
+      }
+    }
+  }
+]

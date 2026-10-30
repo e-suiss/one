@@ -1,0 +1,10 @@
+# PV-16, PV-17, OP-7
+
+[[table]]
+path = "binding.toml"
+rules = ["PV-16", "PV-17", "OP-7"]
+
+[[vectors]]
+path = "vectors/expiry.json"
+kind = "behaviour"
+rules = ["PV-16", "PV-17", "OP-7"]

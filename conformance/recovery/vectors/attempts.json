@@ -1,0 +1,278 @@
+[
+  {
+    "rule": "PV-12",
+    "description": "default limit is 10; the 10th failed guess destroys the record",
+    "input": {
+      "policy": {
+        "max_guesses": 10
+      },
+      "attempts": [
+        "fail",
+        "fail",
+        "fail",
+        "fail",
+        "fail",
+        "fail",
+        "fail",
+        "fail",
+        "fail",
+        "fail"
+      ]
+    },
+    "expected": {
+      "guesses_remaining": 0,
+      "deleted": true
+    }
+  },
+  {
+    "rule": "PV-12",
+    "description": "nine failures leave one guess",
+    "input": {
+      "policy": {
+        "max_guesses": 10
+      },
+      "attempts": [
+        "fail",
+        "fail",
+        "fail",
+        "fail",
+        "fail",
+        "fail",
+        "fail",
+        "fail",
+        "fail"
+      ]
+    },
+    "expected": {
+      "guesses_remaining": 1,
+      "deleted": false
+    }
+  },
+  {
+    "rule": "PV-12",
+    "description": "the user lowers the limit to 3",
+    "input": {
+      "op": "set_limit",
+      "current": 10,
+      "requested": 3
+    },
+    "expected": {
+      "accepted": true,
+      "max_guesses": 3
+    }
+  },
+  {
+    "rule": "PV-12",
+    "description": "a limit of 2 is rejected: 3 is the floor",
+    "input": {
+      "op": "set_limit",
+      "current": 10,
+      "requested": 2
+    },
+    "expected": {
+      "accepted": false,
+      "reason": "below_floor"
+    }
+  },
+  {
+    "rule": "PV-12",
+    "description": "a limit of 0 is rejected",
+    "input": {
+      "op": "set_limit",
+      "current": 10,
+      "requested": 0
+    },
+    "expected": {
+      "accepted": false,
+      "reason": "below_floor"
+    }
+  },
+  {
+    "rule": "PV-12",
+    "description": "raising the limit is rejected",
+    "input": {
+      "op": "set_limit",
+      "current": 5,
+      "requested": 6
+    },
+    "expected": {
+      "accepted": false,
+      "reason": "raise_not_allowed"
+    }
+  },
+  {
+    "rule": "PV-12",
+    "description": "raising above the default of 10 is rejected",
+    "input": {
+      "op": "set_limit",
+      "current": 10,
+      "requested": 11
+    },
+    "expected": {
+      "accepted": false,
+      "reason": "raise_not_allowed"
+    }
+  },
+  {
+    "rule": "PV-12",
+    "description": "with the limit at 3 the third failure destroys the record before any wait applies",
+    "input": {
+      "policy": {
+        "max_guesses": 3
+      },
+      "attempts": [
+        "fail",
+        "fail",
+        "fail"
+      ]
+    },
+    "expected": {
+      "guesses_remaining": 0,
+      "deleted": true,
+      "waits": []
+    }
+  },
+  {
+    "rule": "PV-12",
+    "description": "waits start after the fifth failure and grow from one minute to 24 hours",
+    "input": {
+      "policy": {
+        "max_guesses": 10
+      },
+      "attempts": [
+        "fail",
+        "fail",
+        "fail",
+        "fail",
+        "fail",
+        "fail",
+        "fail",
+        "fail",
+        "fail"
+      ]
+    },
+    "expected": {
+      "waits_after_failure": {
+        "5": 60,
+        "6": 600,
+        "7": 3600,
+        "8": 21600,
+        "9": 86400
+      }
+    }
+  },
+  {
+    "rule": "PV-12",
+    "description": "a guess inside the wait is refused and not counted",
+    "input": {
+      "policy": {
+        "max_guesses": 10
+      },
+      "attempts": [
+        "fail",
+        "fail",
+        "fail",
+        "fail",
+        "fail"
+      ],
+      "next_guess_after_seconds": 30
+    },
+    "expected": {
+      "status": "wait",
+      "retry_after": 30,
+      "guesses_remaining": 5
+    }
+  },
+  {
+    "rule": "PV-12",
+    "description": "a successful recovery resets the counter",
+    "input": {
+      "policy": {
+        "max_guesses": 10
+      },
+      "attempts": [
+        "fail",
+        "fail",
+        "fail",
+        "ok"
+      ]
+    },
+    "expected": {
+      "guesses_remaining": 10,
+      "deleted": false
+    }
+  },
+  {
+    "rule": "PV-12",
+    "description": "one guess counts on each of the threshold realms it reaches",
+    "input": {
+      "policy": {
+        "max_guesses": 10
+      },
+      "threshold": 2,
+      "attempts": [
+        {
+          "result": "fail",
+          "realms": [
+            "a",
+            "b"
+          ]
+        }
+      ]
+    },
+    "expected": {
+      "guesses_used": {
+        "a": 1,
+        "b": 1,
+        "c": 0
+      }
+    }
+  },
+  {
+    "rule": "PV-12",
+    "description": "the effective count is the lowest remaining across realms",
+    "input": {
+      "policy": {
+        "max_guesses": 10
+      },
+      "guesses_used": {
+        "a": 3,
+        "b": 5,
+        "c": 0
+      }
+    },
+    "expected": {
+      "guesses_remaining": 5
+    }
+  },
+  {
+    "rule": "PV-12",
+    "description": "a realm that reaches the limit deletes its record and the client deletes the others",
+    "input": {
+      "policy": {
+        "max_guesses": 10
+      },
+      "guesses_used": {
+        "a": 9,
+        "b": 7,
+        "c": 2
+      },
+      "attempts": [
+        {
+          "result": "fail",
+          "realms": [
+            "a",
+            "c"
+          ]
+        }
+      ]
+    },
+    "expected": {
+      "deleted": [
+        "a",
+        "b",
+        "c"
+      ]
+    }
+  }
+]

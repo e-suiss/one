@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/recovery/recovery-method/v1.json",
+  "title": "RecoveryMethod",
+  "description": "One KEK recovery path. Each path is a separate wrapping of the same KEK and is registered in Access as a recovery_method with an assurance label. PV-12, PV-13, PV-14, PV-15, Access E52 (2).",
+  "type": "object",
+  "required": ["method_id", "owner", "kind", "kek_id", "access_method", "status", "created_at", "last_verified_at"],
+  "properties": {
+    "method_id": { "$ref": "https://suiss.app/schemas/one/keys/erasure-log/v1.json#/$defs/uuid" },
+    "owner": { "$ref": "https://suiss.app/schemas/one/ontology/reference/v1.json#/$defs/PartyRef" },
+    "kind": {
+      "oneOf": [
+        { "const": "pin_vault", "description": "Recovery PIN with the threshold vault. Access assurance class: requested from Access TN-H2." },
+        { "const": "recovery_key", "description": "Recovery key the user keeps. Access class: saved recovery code (TN-H2)." },
+        { "const": "recovery_contact", "description": "Trusted person holding one share. Access class: recovery contact (TN-H2)." },
+        { "const": "second_device", "description": "Another registered device transfers the KEK. Access assurance class: requested from Access TN-H2." }
+      ]
+    },
+    "kek_id": { "type": "string", "minLength": 1, "maxLength": 64 },
+    "access_method": {
+      "description": "The Access recovery_method record this path is registered as.",
+      "$ref": "https://suiss.app/schemas/one/ontology/reference/v1.json#/$defs/opaque_id"
+    },
+    "status": { "enum": ["active", "unusable", "removed"] },
+    "created_at": { "$ref": "#/$defs/instant" },
+    "last_verified_at": { "oneOf": [{ "type": "null" }, { "$ref": "#/$defs/instant" }] },
+    "pin_vault": {
+      "type": "object",
+      "required": ["realms", "threshold", "max_guesses", "pin_digits"],
+      "additionalProperties": false,
+      "properties": {
+        "realms": { "type": "array", "minItems": 3, "maxItems": 3, "uniqueItems": true, "items": { "type": "string", "pattern": "^[a-z0-9-]{1,64}$" } },
+        "threshold": { "const": 2 },
+        "max_guesses": { "type": "integer", "minimum": 3, "maximum": 10 },
+        "pin_digits": { "type": "integer", "minimum": 6, "maximum": 64 }
+      }
+    },
+    "recovery_contact": {
+      "type": "object",
+      "required": ["contacts", "threshold", "account_share"],
+      "additionalProperties": false,
+      "properties": {
+        "contacts": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "https://suiss.app/schemas/one/ontology/reference/v1.json#/$defs/PartyRef" }
+        },
+        "threshold": { "type": "integer", "minimum": 2 },
+        "account_share": { "const": true, "description": "The share Access recovery opens; neither the contacts nor Suiss open the path alone." }
+      }
+    },
+    "second_device": {
+      "type": "object",
+      "required": ["device"],
+      "additionalProperties": false,
+      "properties": { "device": { "$ref": "https://suiss.app/schemas/one/ontology/id/v1.json#/$defs/DeviceId" } }
+    },
+    "recovery_key": {
+      "type": "object",
+      "required": ["bits"],
+      "additionalProperties": false,
+      "properties": { "bits": { "const": 256 } }
+    }
+  },
+  "additionalProperties": false,
+  "allOf": [
+    { "if": { "properties": { "kind": { "const": "pin_vault" } } }, "then": { "required": ["pin_vault"], "not": { "anyOf": [{ "required": ["recovery_contact"] }, { "required": ["second_device"] }, { "required": ["recovery_key"] }] } } },
+    { "if": { "properties": { "kind": { "const": "recovery_contact" } } }, "then": { "required": ["recovery_contact"], "not": { "anyOf": [{ "required": ["pin_vault"] }, { "required": ["second_device"] }, { "required": ["recovery_key"] }] } } },
+    { "if": { "properties": { "kind": { "const": "second_device" } } }, "then": { "required": ["second_device"], "not": { "anyOf": [{ "required": ["pin_vault"] }, { "required": ["recovery_contact"] }, { "required": ["recovery_key"] }] } } },
+    { "if": { "properties": { "kind": { "const": "recovery_key" } } }, "then": { "required": ["recovery_key"], "not": { "anyOf": [{ "required": ["pin_vault"] }, { "required": ["recovery_contact"] }, { "required": ["second_device"] }] } } }
+  ],
+  "$defs": {
+    "instant": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]{1,9})?Z$" }
+  }
+}

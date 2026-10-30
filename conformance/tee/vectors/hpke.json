@@ -1,0 +1,109 @@
+[
+  {
+    "rule": "SEC-27",
+    "description": "request to an attested node: HPKE base mode DHKEM(X25519, HKDF-SHA256), HKDF-SHA256, AES-256-GCM; info binds the node key digest that the report carries",
+    "input": {
+      "hpke": {
+        "kem_id": 32,
+        "kdf_id": 1,
+        "aead_id": 2,
+        "mode": 0,
+        "skEm": "8490b74f6fb5b738fe8bda470a719aac65a2ddbf3cb74ba7e0ec968e5595f388",
+        "skRm": "c69013d690dc6e34d1dfd809662b20efc2691f7b9dccc1a4d67f5603d70a099d",
+        "pkRm": "b5b821d1eb3df6c6076107161901b0280dcb35467d981e48bbfe18311ca10856",
+        "info": "6f6e652f7465652f726571756573742f763100740abf4ba6227dbcb352354a40feee995b223e9648020c116bec7f55b72b5438",
+        "aad": "",
+        "pt": "7b226f70223a227265747269657665222c226b223a387d"
+      },
+      "node_key_digest": "740abf4ba6227dbcb352354a40feee995b223e9648020c116bec7f55b72b5438",
+      "report_data": "740abf4ba6227dbcb352354a40feee995b223e9648020c116bec7f55b72b54380000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "expected": {
+      "pkEm": "8e0edac47290afad98a881170b8c9d25e87902cdfae67a2150e7378c95872b09",
+      "shared_secret": "2300d488145d6a5c8517fedb652734a2a7ffa0506b6953aae4d51558404d2990",
+      "key": "6f1c2f7c2b0bbf66151a9a9ffcd06c1d83a89225617dae8b6e2e5b27cdac4dbe",
+      "base_nonce": "d968f33d3e6b7a5d3f106f93",
+      "exporter_secret": "ba4774c72cb8839c953aea5452c0149ecd2a7ccd1e7b797f81e40618f0013fcd",
+      "ct": "1001563eee2dbca7730d4c26172b7c10aacfc927e435fcd939315b800e3dba33edc8393ee70196",
+      "exports": [
+        {
+          "exporter_context": "6f6e652f7465652f726573706f6e73652f7631",
+          "L": 32,
+          "exported_value": "38bad3a8e11bb0db000c52deb3a907dc0081040cbaea21f9ef760b48742262a9"
+        }
+      ]
+    }
+  },
+  {
+    "rule": "SEC-27",
+    "description": "the route is bound as AEAD additional data",
+    "input": {
+      "hpke": {
+        "kem_id": 32,
+        "kdf_id": 1,
+        "aead_id": 2,
+        "mode": 0,
+        "skEm": "61f57d86da53ed90af6a7c71062b69cdee31ef95cb0e4cf69c6e59e764b064d7",
+        "skRm": "c69013d690dc6e34d1dfd809662b20efc2691f7b9dccc1a4d67f5603d70a099d",
+        "pkRm": "b5b821d1eb3df6c6076107161901b0280dcb35467d981e48bbfe18311ca10856",
+        "info": "6f6e652f7465652f726571756573742f763100740abf4ba6227dbcb352354a40feee995b223e9648020c116bec7f55b72b5438",
+        "aad": "6f6e652f7465652f726f7574652f7631007265747269657665",
+        "pt": "7b226f70223a227265747269657665222c226b223a387d"
+      }
+    },
+    "expected": {
+      "pkEm": "770a6876d14942ff02d8142ea80fc2e868a2d9e5deffce1a04c9cbc1e04a4d7e",
+      "shared_secret": "f55fc19f0d0101e09bd73a9f3c0025c9398c7caa3917405aeb4e6acc45ad99be",
+      "key": "fc7bf672bd274253fa8bed3ec9862f7b3fe6f27c70f792cfc958669e6030fb55",
+      "base_nonce": "d871804c461913ad59e9f2d4",
+      "ct": "08d37bddb1cc4c16221fb7f5fa47ba47972c44424f466413b1bdecbcae8e707d819071b01076e1"
+    }
+  },
+  {
+    "rule": "SEC-27",
+    "description": "the response key is the HPKE export `one/tee/response/v1`; the response is one AES-256-GCM message bound to the request encapsulation",
+    "input": {
+      "response_key": "38bad3a8e11bb0db000c52deb3a907dc0081040cbaea21f9ef760b48742262a9",
+      "nonce": "797898a994970a5c92d21772",
+      "aad": "6f6e652f7465652f726573706f6e73652f7631008e0edac47290afad98a881170b8c9d25e87902cdfae67a2150e7378c95872b09",
+      "pt": "7b227265636f726473223a327d"
+    },
+    "expected": {
+      "ct": "b09645b765571a9a2c424014c605ad5a5314ffa1129dac1106a8f3b315"
+    }
+  },
+  {
+    "rule": "SEC-27",
+    "description": "report_data is the SHA-256 of the node public key followed by 32 zero bytes",
+    "input": {
+      "node_public_key": "b5b821d1eb3df6c6076107161901b0280dcb35467d981e48bbfe18311ca10856"
+    },
+    "expected": {
+      "report_data": "740abf4ba6227dbcb352354a40feee995b223e9648020c116bec7f55b72b54380000000000000000000000000000000000000000000000000000000000000000"
+    }
+  },
+  {
+    "rule": "SEC-27",
+    "description": "the client refuses to encrypt to a key whose digest is not in the verified report",
+    "input": {
+      "node_public_key": "b5b821d1eb3df6c6076107161901b0280dcb35467d981e48bbfe18311ca10856",
+      "report_data": "d9298a10d1b0735837dc4bd85dac641b0f3cef27a47e5d53a54f2f3f5b2fcffa0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "expected": {
+      "send": false,
+      "reason": "report_data_mismatch"
+    }
+  },
+  {
+    "rule": "SEC-27",
+    "description": "the client refuses to encrypt before attestation is verified",
+    "input": {
+      "node_public_key": "b5b821d1eb3df6c6076107161901b0280dcb35467d981e48bbfe18311ca10856",
+      "attestation": "unverified"
+    },
+    "expected": {
+      "send": false,
+      "reason": "not_attested"
+    }
+  }
+]

@@ -23,6 +23,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-19T08:10:00Z",
       "version": 1,
+      "promise_version": 1,
       "status": "active",
       "produced_by": {
         "actor": "one",
@@ -67,6 +68,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-19T08:10:00Z",
       "version": 1,
+      "promise_version": 1,
       "status": "active",
       "produced_by": {
         "actor": "one",
@@ -109,6 +111,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-19T08:10:00Z",
       "version": 1,
+      "promise_version": 1,
       "status": "active",
       "produced_by": {
         "actor": "one",
@@ -154,6 +157,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-19T08:10:00Z",
       "version": 1,
+      "promise_version": 1,
       "status": "active",
       "produced_by": {
         "actor": "one",
@@ -199,6 +203,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-19T08:10:00Z",
       "version": 1,
+      "promise_version": 1,
       "status": "active",
       "produced_by": {
         "actor": "one",
@@ -247,6 +252,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-19T08:10:00Z",
       "version": 1,
+      "promise_version": 1,
       "status": "active",
       "produced_by": {
         "actor": "one",
@@ -259,6 +265,140 @@
       },
       "type": "Goal",
       "id": "mdl_01m5104ht0f248h248h248h248",
+      "derived_from": [
+        "mem_01m5104dx0enasanananananan"
+      ],
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "PV-19",
+    "description": "Goal without the privacy promise version it was collected under is rejected",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Goal",
+      "id": "goal_01m5104bygecsv6csk6csk6csk",
+      "derived_from": [
+        "mem_01m5104dx0enasanananananan"
+      ],
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "PV-19",
+    "description": "Privacy promise version 0 is rejected",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "promise_version": 0,
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Goal",
+      "id": "goal_01m5104bygecsv6csk6csk6csk",
+      "derived_from": [
+        "mem_01m5104dx0enasanananananan"
+      ],
+      "supersedes": null,
+      "deleted_at": null
+    },
+    "valid": false
+  },
+  {
+    "rule": "PV-19",
+    "description": "Privacy promise version is an integer, not a text version",
+    "input": {
+      "owner": {
+        "ref": "PartyRef",
+        "id": "pty_01m5104a00e48s248h248h248h"
+      },
+      "domain": {
+        "areas": [
+          "general"
+        ],
+        "project": null
+      },
+      "data_class": {
+        "kinds": [
+          "personal"
+        ],
+        "sensitive": []
+      },
+      "retention_class": "one_memory",
+      "provenance": "user.direct",
+      "recorded_at": "2026-10-19T08:10:00Z",
+      "version": 1,
+      "promise_version": "1.0.0",
+      "status": "active",
+      "produced_by": {
+        "actor": "one",
+        "instance": {
+          "ref": "InstanceRef",
+          "id": "ins_01m5104a00e48s248h248h248h"
+        },
+        "model_version": "mdl_01m5104ht0f248h248h248h248",
+        "config_version": "one-2026.10.1"
+      },
+      "type": "Goal",
+      "id": "goal_01m5104bygecsv6csk6csk6csk",
       "derived_from": [
         "mem_01m5104dx0enasanananananan"
       ],

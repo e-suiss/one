@@ -1,0 +1,21 @@
+# PV-19, INV-26, PV-6, Access E60
+
+[[schema]]
+path = "promise.schema.json"
+id = "https://suiss.app/schemas/one/privacy/promise/v1.json"
+rules = ["PV-19", "INV-26", "PV-6", "Access E60"]
+
+[[table]]
+path = "promise/v1.json"
+rules = ["PV-19", "PV-4", "PV-5", "PV-6", "PV-11", "PV-16", "PV-20", "PV-65"]
+
+[[vectors]]
+path = "vectors/promise.schema.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/privacy/promise/v1.json"
+rules = ["PV-19"]
+
+[[vectors]]
+path = "vectors/promise-diff.json"
+kind = "behaviour"
+rules = ["PV-19", "INV-26"]

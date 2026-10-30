@@ -1,0 +1,59 @@
+; OP-4, OP-5, PV-5, PV-15, M-25, T-32 (6), Access E52, Access E66
+
+kek-copy = {
+  kek_id: kek-id,
+  owner: opaque-ref,
+  holder: kek-holder,
+  wrap: kek-wrap,
+}
+
+kek-holder = "secure_enclave" / "strongbox" / "tpm" / "passkey" / "recovery"
+
+kek-wrap = hpke-p256-wrap / aes-key-wrap
+
+hpke-p256-wrap = {
+  alg: "HPKE-P256-SHA256-A256GCM",
+  enc: bstr .size 65,
+  ct: bstr .size 48,
+  device_key_id: bstr .size (1..64),
+}
+
+aes-key-wrap = {
+  alg: "A256KW",
+  wrapped: bstr .size 40,
+  ? device_key_id: bstr .size (1..64),
+}
+
+class-dek = {
+  dek_id: uuid,
+  owner: opaque-ref,
+  class: one-class,
+  kek_id: kek-id,
+  wrapped: bstr .size 40,
+}
+
+record-key = {
+  record_key_id: uuid,
+  record: tstr,
+  class: one-class,
+  dek_id: uuid,
+  wrapped_record_key: bstr .size 40,
+}
+
+sealed-part = {
+  record_key_id: uuid,
+  part: record-part,
+  part_version: uint .ge 1,
+  nonce: bstr .size 12,
+  ciphertext: bstr,
+}
+
+record-part = "content" / "summary" / "embedding" / "text_view" / "object"
+
+kek-id = tstr .size (1..64)
+
+one-class = "one_memory" / "one_model" / "one_observation" / "one_sensitive" / "one_provider_trace" / "one_browser_profile" / "one_training_lineage"
+
+uuid = #6.37(bstr .size 16)
+
+opaque-ref = tstr .size (1..255)

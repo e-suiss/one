@@ -1,0 +1,209 @@
+{
+  "version": 1,
+  "url": "https://suiss.app/one/privacy/promise/v1",
+  "effective_at": "2026-12-07T00:00:00Z",
+  "tuples": [
+    {
+      "category": "memory",
+      "purpose": "serve_requests",
+      "location": "attested_tee",
+      "accessor": "one",
+      "consent": "not_required"
+    },
+    {
+      "category": "memory",
+      "purpose": "serve_requests",
+      "location": "user_device",
+      "accessor": "one",
+      "consent": "not_required"
+    },
+    {
+      "category": "memory",
+      "purpose": "consolidation",
+      "location": "attested_tee",
+      "accessor": "one",
+      "consent": "not_required"
+    },
+    {
+      "category": "memory",
+      "purpose": "reembedding",
+      "location": "attested_tee",
+      "accessor": "one",
+      "consent": "not_required"
+    },
+    {
+      "category": "memory",
+      "purpose": "personal_training",
+      "location": "attested_tee",
+      "accessor": "one",
+      "consent": "not_required"
+    },
+    {
+      "category": "memory",
+      "purpose": "triggers",
+      "location": "attested_tee",
+      "accessor": "one",
+      "consent": "not_required"
+    },
+    {
+      "category": "memory",
+      "purpose": "one_to_one_reply",
+      "location": "attested_tee",
+      "accessor": "one",
+      "consent": "not_required"
+    },
+    {
+      "category": "memory",
+      "purpose": "subject_request",
+      "location": "attested_tee",
+      "accessor": "one",
+      "consent": "not_required"
+    },
+    {
+      "category": "episodes",
+      "purpose": "serve_requests",
+      "location": "attested_tee",
+      "accessor": "one",
+      "consent": "not_required"
+    },
+    {
+      "category": "episodes",
+      "purpose": "consolidation",
+      "location": "attested_tee",
+      "accessor": "one",
+      "consent": "not_required"
+    },
+    {
+      "category": "personality",
+      "purpose": "serve_requests",
+      "location": "attested_tee",
+      "accessor": "one",
+      "consent": "not_required"
+    },
+    {
+      "category": "personality",
+      "purpose": "serve_requests",
+      "location": "user_device",
+      "accessor": "one",
+      "consent": "not_required"
+    },
+    {
+      "category": "personal_models",
+      "purpose": "personal_training",
+      "location": "attested_tee",
+      "accessor": "one",
+      "consent": "not_required"
+    },
+    {
+      "category": "personal_models",
+      "purpose": "serve_requests",
+      "location": "attested_tee",
+      "accessor": "one",
+      "consent": "not_required"
+    },
+    {
+      "category": "personal_models",
+      "purpose": "serve_requests",
+      "location": "user_device",
+      "accessor": "one",
+      "consent": "not_required"
+    },
+    {
+      "category": "task_plans",
+      "purpose": "serve_requests",
+      "location": "attested_tee",
+      "accessor": "one",
+      "consent": "not_required"
+    },
+    {
+      "category": "task_plans",
+      "purpose": "browser_tasks",
+      "location": "executor_microvm",
+      "accessor": "executor",
+      "consent": "not_required"
+    },
+    {
+      "category": "browser_profile",
+      "purpose": "browser_tasks",
+      "location": "executor_microvm",
+      "accessor": "executor",
+      "consent": "not_required"
+    },
+    {
+      "category": "observations",
+      "purpose": "serve_requests",
+      "location": "user_device",
+      "accessor": "one",
+      "consent": "explicit"
+    },
+    {
+      "category": "observations",
+      "purpose": "serve_requests",
+      "location": "attested_tee",
+      "accessor": "one",
+      "consent": "explicit"
+    },
+    {
+      "category": "sensitive",
+      "purpose": "serve_requests",
+      "location": "attested_tee",
+      "accessor": "one",
+      "consent": "explicit"
+    },
+    {
+      "category": "sensitive",
+      "purpose": "serve_requests",
+      "location": "user_device",
+      "accessor": "one",
+      "consent": "explicit"
+    },
+    {
+      "category": "provider_trace",
+      "purpose": "routing_trace",
+      "location": "encrypted_store",
+      "accessor": "one",
+      "consent": "not_required"
+    },
+    {
+      "category": "export_package",
+      "purpose": "export",
+      "location": "attested_tee",
+      "accessor": "one",
+      "consent": "not_required"
+    },
+    {
+      "category": "export_package",
+      "purpose": "export",
+      "location": "user_device",
+      "accessor": "user",
+      "consent": "not_required"
+    },
+    {
+      "category": "operational_metadata",
+      "purpose": "operations",
+      "location": "encrypted_store",
+      "accessor": "suiss_operator",
+      "consent": "not_required"
+    }
+  ],
+  "text": {
+    "tr": [
+      "Hafızan, bölümlerin, davranış profilin, kişisel modellerin ve görev planların senin anahtarınla şifreli alanında durur.",
+      "Bulutta bu veriler yalnız attest edilmiş gizli hesaplama ortamında ve yalnız istek ya da iş başına çözülür.",
+      "Sen yokken çalışan işler yalnız verdiğin süreli ve amaca bağlı anahtar izniyle çalışır; izni istediğin an geri çekersin.",
+      "Ham ses, ekran, kamera ve konum izi ile hassas sınıflar varsayılan kapalıdır; yalnız açık rızanla açılır.",
+      "Suiss yalnız şunları görebilir: hesap kimliği, kayıt sayısı ve boyutu, erişim zamanı ve sıklığı, erişilen saklama sınıfı ve bölge.",
+      "Bu vaadin yeni bir sürümü yalnız yeni veriye uygulanır; topladığımız veri toplandığı andaki vaatte kalır."
+    ],
+    "en": [
+      "Your memory, episodes, behaviour profile, personal models and task plans are kept in your encrypted space under your key.",
+      "In the cloud this data is decrypted only inside an attested confidential computing environment, per request or per job.",
+      "Jobs that run while you are away use only the time-bound, purpose-bound key permission you gave; you can withdraw it at any time.",
+      "Raw voice, screen, camera and location traces and the sensitive classes are off by default and turn on only with your explicit consent.",
+      "Suiss can see only: your account identifier, the number and size of your records, access times and frequency, the retention class accessed, and the region.",
+      "A new version of this promise applies only to new data; data we collected stays under the promise in force when it was collected."
+    ]
+  },
+  "change": null,
+  "digest": "sha-256:c7d6bd852b587b6e7a1a90e31768193df176ce091fb47b49543dc07b664757e2"
+}

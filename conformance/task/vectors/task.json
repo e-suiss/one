@@ -26,6 +26,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-16T09:00:00Z",
       "version": 1,
+      "promise_version": 1,
       "supersedes": null,
       "status": "active",
       "produced_by": {
@@ -140,6 +141,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-16T09:00:00Z",
       "version": 1,
+      "promise_version": 1,
       "supersedes": null,
       "status": "active",
       "produced_by": {
@@ -251,6 +253,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-16T09:00:00Z",
       "version": 1,
+      "promise_version": 1,
       "supersedes": null,
       "status": "active",
       "produced_by": {
@@ -366,6 +369,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-16T09:00:00Z",
       "version": 1,
+      "promise_version": 1,
       "supersedes": null,
       "status": "active",
       "produced_by": {
@@ -477,6 +481,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-16T09:00:00Z",
       "version": 1,
+      "promise_version": 1,
       "supersedes": null,
       "status": "active",
       "produced_by": {
@@ -559,6 +564,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-16T09:00:00Z",
       "version": 1,
+      "promise_version": 1,
       "supersedes": null,
       "status": "active",
       "produced_by": {
@@ -670,6 +676,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-16T09:00:00Z",
       "version": 1,
+      "promise_version": 1,
       "supersedes": null,
       "status": "active",
       "produced_by": {
@@ -777,6 +784,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-16T09:00:00Z",
       "version": 1,
+      "promise_version": 1,
       "supersedes": null,
       "status": "active",
       "produced_by": {
@@ -891,6 +899,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-16T09:00:00Z",
       "version": 1,
+      "promise_version": 1,
       "supersedes": null,
       "status": "active",
       "produced_by": {
@@ -999,6 +1008,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-16T09:00:00Z",
       "version": 1,
+      "promise_version": 1,
       "supersedes": null,
       "status": "active",
       "produced_by": {
@@ -1114,6 +1124,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-16T09:00:00Z",
       "version": 1,
+      "promise_version": 1,
       "supersedes": null,
       "status": "active",
       "produced_by": {
@@ -1208,6 +1219,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-16T09:00:00Z",
       "version": 1,
+      "promise_version": 1,
       "supersedes": null,
       "status": "active",
       "produced_by": {
@@ -1322,6 +1334,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-16T09:00:00Z",
       "version": 1,
+      "promise_version": 1,
       "supersedes": null,
       "status": "active",
       "produced_by": {
@@ -1438,6 +1451,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-16T09:00:00Z",
       "version": 1,
+      "promise_version": 1,
       "supersedes": null,
       "status": "active",
       "produced_by": {
@@ -1554,6 +1568,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-16T09:00:00Z",
       "version": 1,
+      "promise_version": 1,
       "supersedes": null,
       "status": "active",
       "produced_by": {
@@ -1669,6 +1684,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-16T09:00:00Z",
       "version": 1,
+      "promise_version": 1,
       "supersedes": null,
       "status": "active",
       "produced_by": {
@@ -1784,6 +1800,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-16T09:00:00Z",
       "version": 1,
+      "promise_version": 1,
       "supersedes": null,
       "status": "active",
       "produced_by": {
@@ -1903,6 +1920,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-16T09:00:00Z",
       "version": 1,
+      "promise_version": 1,
       "supersedes": null,
       "status": "active",
       "produced_by": {
@@ -2021,6 +2039,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-16T09:00:00Z",
       "version": 1,
+      "promise_version": 1,
       "supersedes": null,
       "status": "active",
       "produced_by": {
@@ -2143,6 +2162,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-16T09:00:00Z",
       "version": 1,
+      "promise_version": 1,
       "supersedes": null,
       "status": "active",
       "produced_by": {
@@ -2253,6 +2273,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-16T09:00:00Z",
       "version": 1,
+      "promise_version": 1,
       "supersedes": null,
       "status": "active",
       "produced_by": {
@@ -2362,6 +2383,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-16T09:00:00Z",
       "version": 1,
+      "promise_version": 1,
       "supersedes": null,
       "status": "active",
       "produced_by": {
@@ -2476,6 +2498,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-16T09:00:00Z",
       "version": 1,
+      "promise_version": 1,
       "supersedes": null,
       "status": "active",
       "produced_by": {
@@ -2603,6 +2626,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-16T09:00:00Z",
       "version": 1,
+      "promise_version": 1,
       "supersedes": null,
       "status": "active",
       "produced_by": {
@@ -2734,6 +2758,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-16T09:00:00Z",
       "version": 1,
+      "promise_version": 1,
       "supersedes": null,
       "status": "active",
       "produced_by": {
@@ -2866,6 +2891,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-16T09:00:00Z",
       "version": 1,
+      "promise_version": 1,
       "supersedes": null,
       "status": "active",
       "produced_by": {
@@ -2993,6 +3019,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-16T09:00:00Z",
       "version": 1,
+      "promise_version": 1,
       "supersedes": null,
       "status": "active",
       "produced_by": {
@@ -3107,6 +3134,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-16T09:00:00Z",
       "version": 1,
+      "promise_version": 1,
       "supersedes": null,
       "status": "active",
       "produced_by": {
@@ -3222,6 +3250,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-16T09:00:00Z",
       "version": 1,
+      "promise_version": 1,
       "supersedes": null,
       "status": "active",
       "produced_by": {
@@ -3308,6 +3337,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-16T09:00:00Z",
       "version": 1,
+      "promise_version": 1,
       "supersedes": null,
       "status": "active",
       "produced_by": {
@@ -3428,6 +3458,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-16T09:00:00Z",
       "version": 1,
+      "promise_version": 1,
       "supersedes": null,
       "status": "active",
       "produced_by": {
@@ -3556,6 +3587,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-16T09:00:00Z",
       "version": 1,
+      "promise_version": 1,
       "supersedes": null,
       "status": "active",
       "produced_by": {
@@ -3671,6 +3703,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-16T09:00:00Z",
       "version": 2,
+      "promise_version": 1,
       "supersedes": null,
       "status": "active",
       "produced_by": {
@@ -3786,6 +3819,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-16T09:00:00Z",
       "version": 2,
+      "promise_version": 1,
       "supersedes": "task_01k7n51z01e40r200000000001",
       "status": "active",
       "produced_by": {
@@ -3901,6 +3935,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-16T09:00:00Z",
       "version": 1,
+      "promise_version": 1,
       "supersedes": null,
       "status": "deleted",
       "produced_by": {
@@ -4015,6 +4050,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-16T09:00:00Z",
       "version": 1,
+      "promise_version": 1,
       "supersedes": null,
       "status": "active",
       "produced_by": {
@@ -4124,6 +4160,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-16T09:00:00Z",
       "version": 1,
+      "promise_version": 1,
       "supersedes": null,
       "status": "active",
       "produced_by": {
@@ -4244,6 +4281,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-16T09:00:00Z",
       "version": 1,
+      "promise_version": 1,
       "supersedes": null,
       "status": "active",
       "produced_by": {

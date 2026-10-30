@@ -472,6 +472,8 @@ checked_record!(
         pub recorded_at: Instant,
         /// The record version.
         pub version: NonZeroU32,
+        /// The privacy promise version the record was collected under (PV-19).
+        pub promise_version: NonZeroU32,
         /// The version this one supersedes.
         #[serde(deserialize_with = "Option::deserialize")]
         pub supersedes: Option<TaskId>,

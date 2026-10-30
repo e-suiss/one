@@ -141,7 +141,7 @@ fn c_11_episode_vectors() {
 
 #[test]
 fn c_13_goal_vectors() {
-    assert_eq!(strict("ontology/vectors/goal.json", Goal::validate), (1, 5));
+    assert_eq!(strict("ontology/vectors/goal.json", Goal::validate), (1, 8));
 }
 
 #[test]

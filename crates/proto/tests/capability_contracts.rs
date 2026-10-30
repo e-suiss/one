@@ -68,7 +68,7 @@ fn schema_vectors<T: DeserializeOwned + Serialize>(path: &str) -> (usize, usize)
 fn cp_16_definition_schema_vectors() {
     assert_eq!(
         schema_vectors::<CapabilityDefinition>("../open/capability/vectors/definition.json"),
-        (7, 41)
+        (7, 43)
     );
 }
 

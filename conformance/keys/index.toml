@@ -1,0 +1,67 @@
+# OP-4, OP-5, PV-5, PV-15, PV-65, M-25, Access E52, Access E59, Access E66
+
+[[schema]]
+path = "erasure-log.json"
+id = "https://suiss.app/schemas/one/keys/erasure-log/v1.json"
+rules = ["M-25", "PV-15", "PV-9", "OP-4", "Access E66 (2)"]
+
+[[schema]]
+path = "key-permission-exercised.v1.json"
+id = "https://suiss.app/schemas/one/keys/key-permission-exercised/v1.json"
+rules = ["PV-65", "Access E59"]
+
+[[schema]]
+path = "key-permission-withdrawn.v1.json"
+id = "https://suiss.app/schemas/one/keys/key-permission-withdrawn/v1.json"
+rules = ["PV-65", "Access E59", "Access E31"]
+
+[[table]]
+path = "hierarchy.cddl"
+rules = ["OP-4", "OP-5", "PV-5", "M-25", "T-32 (6)", "Access E52", "Access E66"]
+
+[[table]]
+path = "key-permission.cddl"
+rules = ["PV-65", "PV-61", "A-13", "T-27 (7)", "Access E59"]
+
+[[vectors]]
+path = "vectors/wrap.json"
+kind = "behaviour"
+rules = ["OP-4", "PV-5"]
+
+[[vectors]]
+path = "vectors/record-key.json"
+kind = "behaviour"
+rules = ["OP-4", "OP-5", "M-25", "PV-15"]
+
+[[vectors]]
+path = "vectors/kek-device.json"
+kind = "behaviour"
+rules = ["PV-5", "PV-61"]
+
+[[vectors]]
+path = "vectors/key-permission.json"
+kind = "behaviour"
+rules = ["PV-65", "A-13", "T-27 (7)", "Access E59", "Access E31"]
+
+[[vectors]]
+path = "vectors/permission-wrap.json"
+kind = "behaviour"
+rules = ["PV-65", "PV-61"]
+
+[[vectors]]
+path = "vectors/erasure-log.schema.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/keys/erasure-log/v1.json"
+rules = ["M-25", "PV-15", "PV-16"]
+
+[[vectors]]
+path = "vectors/key-permission-exercised.schema.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/keys/key-permission-exercised/v1.json"
+rules = ["PV-65"]
+
+[[vectors]]
+path = "vectors/key-permission-withdrawn.schema.json"
+kind = "schema"
+schema = "https://suiss.app/schemas/one/keys/key-permission-withdrawn/v1.json"
+rules = ["PV-65"]

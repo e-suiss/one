@@ -1,0 +1,253 @@
+# OP-4 (2), OP-5, T-32 (4), T-32 (8), PV-6, SEC-30
+version = 1
+encrypted_type = "bytea"
+
+[[column]]
+name = "owner"
+sql_type = "text"
+kind = "identity"
+basis = "PV-6"
+meaning = "account identifier (PartyRef id), the scope prefix of every key"
+
+[[column]]
+name = "id"
+sql_type = "uuid"
+kind = "identity"
+basis = "OP-4 (2)"
+meaning = "opaque UUIDv7 row id; its time part equals what recorded_at shows"
+
+[[column]]
+name = "retention_class"
+sql_type = "text"
+kind = "class"
+basis = "PV-6"
+meaning = "retention class accessed"
+values = ["one_memory", "one_model", "one_observation", "one_sensitive", "one_provider_trace", "one_browser_profile", "one_training_lineage"]
+
+[[column]]
+name = "region"
+sql_type = "text"
+kind = "class"
+basis = "PV-6"
+meaning = "region"
+
+[[column]]
+name = "recorded_at"
+sql_type = "timestamptz"
+kind = "time"
+basis = "PV-6"
+meaning = "write time"
+
+[[column]]
+name = "deleted_at"
+sql_type = "timestamptz"
+kind = "time"
+basis = "OP-4 (2)"
+meaning = "soft delete"
+
+[[column]]
+name = "version"
+sql_type = "integer"
+kind = "version"
+basis = "OP-4 (2)"
+meaning = "record version"
+
+[[column]]
+name = "supersedes"
+sql_type = "uuid"
+kind = "version"
+basis = "OP-4 (2)"
+meaning = "previous version row"
+
+[[column]]
+name = "status"
+sql_type = "text"
+kind = "status"
+basis = "OP-4 (2)"
+meaning = "general row status only; the memory lifecycle stays encrypted"
+values = ["active", "superseded", "deleted"]
+
+[[column]]
+name = "record_key_id"
+sql_type = "uuid"
+kind = "crypto"
+basis = "OP-4 (2)"
+meaning = "record key id, for shred"
+
+[[column]]
+name = "wrapped_record_key"
+sql_type = "bytea"
+kind = "crypto"
+basis = "OP-4 (2)"
+meaning = "record key wrapped to the class DEK (AES-256 Key Wrap, 40 bytes)"
+
+[[column]]
+name = "dek_id"
+sql_type = "uuid"
+kind = "crypto"
+basis = "OP-4 (2)"
+meaning = "class DEK id"
+
+[[column]]
+name = "kek_id"
+sql_type = "text"
+kind = "crypto"
+basis = "OP-4 (2)"
+meaning = "KEK id the DEK is wrapped to"
+
+[[column]]
+name = "ciphertext"
+sql_type = "bytea"
+kind = "crypto"
+basis = "PV-6"
+meaning = "nonce and AES-256-GCM ciphertext of the encrypted fields"
+
+[[column]]
+name = "ciphertext_len"
+sql_type = "integer"
+kind = "crypto"
+basis = "PV-6"
+meaning = "record size"
+
+[[column]]
+name = "promise_version"
+sql_type = "integer"
+kind = "crypto"
+basis = "PV-19"
+meaning = "privacy promise version the record was collected under"
+
+[[column]]
+name = "source_id"
+sql_type = "uuid"
+kind = "derived"
+basis = "OP-5"
+meaning = "source row of a derived part"
+
+[[column]]
+name = "source_version"
+sql_type = "integer"
+kind = "derived"
+basis = "OP-5"
+meaning = "source version of a derived part"
+
+[[column]]
+name = "embedding_model"
+sql_type = "text"
+kind = "derived"
+basis = "OP-5"
+meaning = "model that produced a vector part"
+
+[[column]]
+name = "embedding_model_version"
+sql_type = "text"
+kind = "derived"
+basis = "OP-5"
+meaning = "version of that model"
+
+[[column]]
+name = "index_part_no"
+sql_type = "integer"
+kind = "derived"
+basis = "OP-5"
+meaning = "encrypted index part number"
+
+[[column]]
+name = "job_id"
+sql_type = "uuid"
+kind = "queue"
+basis = "T-27 (7)"
+meaning = "job row id"
+
+[[column]]
+name = "job_kind"
+sql_type = "text"
+kind = "queue"
+basis = "T-27 (7)"
+meaning = "job kind"
+values = ["consolidation", "personal_training", "reembedding", "export"]
+
+[[column]]
+name = "state"
+sql_type = "text"
+kind = "queue"
+basis = "T-27 (7)"
+meaning = "job state"
+
+[[column]]
+name = "attempts"
+sql_type = "integer"
+kind = "queue"
+basis = "T-27 (7)"
+meaning = "attempt count"
+
+[[column]]
+name = "run_after"
+sql_type = "timestamptz"
+kind = "queue"
+basis = "T-27 (7)"
+meaning = "earliest run time"
+
+[[column]]
+name = "lease_until"
+sql_type = "timestamptz"
+kind = "queue"
+basis = "T-27 (7)"
+meaning = "lease end"
+
+[[column]]
+name = "permission_id"
+sql_type = "uuid"
+kind = "queue"
+basis = "PV-65"
+meaning = "key permission the job runs under"
+
+[[column]]
+name = "idempotency_key"
+sql_type = "bytea"
+kind = "queue"
+basis = "T-27 (6)"
+meaning = "SHA-256 of the idempotency key"
+
+[[column]]
+name = "event_type"
+sql_type = "text"
+kind = "queue"
+basis = "OP-3"
+meaning = "outbox CloudEvent type"
+
+[[encrypted_only]]
+name = "domain"
+basis = "OP-4 (1)"
+
+[[encrypted_only]]
+name = "data_class"
+basis = "OP-4 (1)"
+
+[[encrypted_only]]
+name = "provenance"
+basis = "OP-4 (1)"
+
+[[encrypted_only]]
+name = "produced_by"
+basis = "OP-4 (1)"
+
+[[known_leak]]
+name = "one_sensitive retention class"
+basis = "PV-6"
+meaning = "Seeing rows of the one_sensitive class shows that the user turned on a sensitive area; PV-6 allows the class to be visible."
+
+[[rule]]
+id = "unlisted-plain-column"
+meaning = "A column not listed here is encrypted and must be bytea."
+
+[[rule]]
+id = "listed-type"
+meaning = "A listed column has exactly its listed SQL type and, where values are listed, a CHECK over them."
+
+[[rule]]
+id = "encrypted-only"
+meaning = "An encrypted-only name never appears as a plain column; it lives inside the ciphertext."
+
+[[rule]]
+id = "closed"
+meaning = "The list is not extended (OP-5); SEC-30 is generated from this file in Turkish and English."

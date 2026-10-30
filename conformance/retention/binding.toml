@@ -1,0 +1,40 @@
+# PV-16, PV-17, OP-7
+version = 1
+
+[access_appendix_c]
+section = "C.3.7"
+publisher = "Access"
+format = "versioned machine-readable data file of Access Appendix C"
+version = "pending"
+sha256 = "pending"
+status = "requested from Access"
+
+[[class]]
+name = "one_memory"
+
+[[class]]
+name = "one_model"
+
+[[class]]
+name = "one_observation"
+sweep = "hourly"
+
+[[class]]
+name = "one_sensitive"
+
+[[class]]
+name = "one_provider_trace"
+
+[[class]]
+name = "one_browser_profile"
+
+[[class]]
+name = "one_training_lineage"
+
+[[rule]]
+id = "no-local-durations"
+meaning = "One holds no duration value; every duration and start event is read from the pinned Access file."
+
+[[rule]]
+id = "pin-exact"
+meaning = "The Access file is pinned by version and SHA-256; a mismatch fails the build."

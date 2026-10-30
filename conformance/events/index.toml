@@ -9,7 +9,7 @@ rules = ["E-3", "T-14", "T-31", "T-40"]
 path = "vectors/cloudevent.json"
 kind = "schema"
 schema = "https://suiss.app/schemas/one/events/cloudevent/v1.json"
-rules = ["E-3", "T-31", "T-40"]
+rules = ["E-3", "T-31", "T-40", "PV-65"]
 
 [[table]]
 path = "webhook-profile.toml"
@@ -18,3 +18,13 @@ rules = ["E-3"]
 [[table]]
 path = "asyncapi.yaml"
 rules = ["T-31", "T-14"]
+
+[[event]]
+type = "app.suiss.one.key_permission.exercised.v1"
+schema = "https://suiss.app/schemas/one/keys/key-permission-exercised/v1.json"
+rules = ["PV-65", "Access E59"]
+
+[[event]]
+type = "app.suiss.one.key_permission.withdrawn.v1"
+schema = "https://suiss.app/schemas/one/keys/key-permission-withdrawn/v1.json"
+rules = ["PV-65", "Access E59", "Access E31"]

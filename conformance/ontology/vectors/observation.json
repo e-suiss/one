@@ -23,6 +23,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-19T08:10:00Z",
       "version": 1,
+      "promise_version": 1,
       "status": "active",
       "produced_by": {
         "actor": "one",
@@ -72,6 +73,7 @@
       "provenance": "external.email",
       "recorded_at": "2026-10-19T08:10:00Z",
       "version": 1,
+      "promise_version": 1,
       "status": "active",
       "produced_by": {
         "actor": "one",
@@ -132,6 +134,7 @@
       "retention_class": "one_memory",
       "recorded_at": "2026-10-19T08:10:00Z",
       "version": 1,
+      "promise_version": 1,
       "status": "active",
       "produced_by": {
         "actor": "one",
@@ -181,6 +184,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-19T08:10:00Z",
       "version": 1,
+      "promise_version": 1,
       "status": "active",
       "produced_by": {
         "actor": "one",
@@ -230,6 +234,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-19T08:10:00Z",
       "version": 1,
+      "promise_version": 1,
       "status": "active",
       "produced_by": {
         "actor": "one",
@@ -278,6 +283,7 @@
       "provenance": "external.email",
       "recorded_at": "2026-10-19T08:10:00Z",
       "version": 1,
+      "promise_version": 1,
       "status": "active",
       "produced_by": {
         "actor": "one",
@@ -343,6 +349,7 @@
       "provenance": "external.email",
       "recorded_at": "2026-10-19T08:10:00Z",
       "version": 1,
+      "promise_version": 1,
       "status": "active",
       "produced_by": {
         "actor": "one",
@@ -392,6 +399,7 @@
       "provenance": "external.email",
       "recorded_at": "2026-10-19T08:10:00Z",
       "version": 1,
+      "promise_version": 1,
       "status": "active",
       "produced_by": {
         "actor": "one",
@@ -452,6 +460,7 @@
       "provenance": "external.email",
       "recorded_at": "2026-10-19T08:10:00Z",
       "version": 1,
+      "promise_version": 1,
       "status": "active",
       "produced_by": {
         "actor": "one",
@@ -509,6 +518,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-19T08:10:00Z",
       "version": 1,
+      "promise_version": 1,
       "status": "active",
       "produced_by": {
         "actor": "one",
@@ -562,6 +572,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-19T08:10:00Z",
       "version": 1,
+      "promise_version": 1,
       "status": "active",
       "produced_by": {
         "actor": "one",
@@ -614,6 +625,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-19T08:10:00Z",
       "version": 1,
+      "promise_version": 1,
       "status": "active",
       "produced_by": {
         "actor": "one",
@@ -668,6 +680,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-19T08:10:00Z",
       "version": 1,
+      "promise_version": 1,
       "status": "active",
       "produced_by": {
         "actor": "one",
@@ -722,6 +735,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-19T08:10:00Z",
       "version": 1,
+      "promise_version": 1,
       "status": "active",
       "produced_by": {
         "actor": "one",
@@ -776,6 +790,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-19T08:10:00Z",
       "version": 1,
+      "promise_version": 1,
       "status": "active",
       "produced_by": {
         "actor": "one",
@@ -829,6 +844,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-19T08:10:00Z",
       "version": 1,
+      "promise_version": 1,
       "status": "active",
       "produced_by": {
         "actor": "one",
@@ -877,6 +893,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-19T08:10:00Z",
       "version": 1,
+      "promise_version": 1,
       "status": "active",
       "produced_by": {
         "actor": "one",
@@ -926,6 +943,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-19T08:10:00Z",
       "version": 1,
+      "promise_version": 1,
       "status": "active",
       "produced_by": {
         "actor": "one",
@@ -977,6 +995,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-19T08:10:00Z",
       "version": 1,
+      "promise_version": 1,
       "status": "active",
       "produced_by": {
         "actor": "one",
@@ -1033,6 +1052,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-19T08:10:00Z",
       "version": 1,
+      "promise_version": 1,
       "status": "active",
       "produced_by": {
         "actor": "one",
@@ -1084,6 +1104,7 @@
       "provenance": "user.direct",
       "recorded_at": "2026-10-19T08:10:00Z",
       "version": 1,
+      "promise_version": 1,
       "status": "active",
       "produced_by": {
         "actor": "one",

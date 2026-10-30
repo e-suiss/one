@@ -108,6 +108,8 @@ pub struct RecordHeader {
     pub recorded_at: Instant,
     /// Version, from 1.
     pub version: NonZeroU32,
+    /// Privacy promise version in force when the record was collected, from 1 (PV-19).
+    pub promise_version: NonZeroU32,
     /// When the record was forgotten; `null` while live.
     pub deleted_at: Option<Instant>,
     /// Producer.

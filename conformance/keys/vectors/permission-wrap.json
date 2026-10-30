@@ -1,0 +1,101 @@
+[
+  {
+    "rule": "PV-65",
+    "description": "`one_memory` DEK sealed with HPKE to the TEE job key; info is the SHA-256 of the permission body, aad the class name",
+    "input": {
+      "op": "seal_dek",
+      "class": "one_memory",
+      "dek": "86b4f758f00462d941b9c2bed77546a319580e161bf02f4c13e62aa084dd4fd1",
+      "permission_body": "a767636c6173736573826a6f6e655f6d656d6f7279696f6e655f6d6f64656c67707572706f736571706572736f6e616c5f747261696e696e676a657870697265735f61741a6ae932106a6e6f745f6265666f72651a6ae7e0906d7065726d697373696f6e5f6964d8255001a199c532807a7f8846123ee27da88a6e6a6f625f6b65795f6469676573745820e95dd9f0bbcb874dc9e0c812d1da4860c21cf795f9b2ad04f1bed180b020af786f7465655f6d6561737572656d656e74583017dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d",
+      "hpke": {
+        "kem_id": 32,
+        "kdf_id": 1,
+        "aead_id": 2,
+        "mode": 0,
+        "skEm": "263cfc751f99dc05db2c7c040c04f404e60c8fa39cf3485591764fb1d6658018",
+        "skRm": "9e81bd9efa804667862852a8a369e205208082996877aecbdeba20c024724580",
+        "pkRm": "9d323541fa6ae4c9427cb3d8c497299a3434b6d573bd2518a10163ad5d9e0911",
+        "info": "d5022e12ead76867dc9acdd5ec71b3536ffc42bbed9a5a510cc61ebd69a2ee74",
+        "aad": "6f6e655f6d656d6f7279"
+      }
+    },
+    "expected": {
+      "pkEm": "e0d61cb10bf3262c249aa0b62a4c2c07f193d19ced80b5e2a103f524201de568",
+      "shared_secret": "7c8ef83887938771af4c0bf7cd86caf56d6d3124304a46c1ac6ffc7f5af62963",
+      "key": "c1106eb3d5ed466cbb984ecdca514eaa1dbbc8753570bf0b3dc343c4564a4e1e",
+      "base_nonce": "e572e7fe375971a3f97984f7",
+      "ct": "feb310a6a3a008d2c53698ce285fda8ba41bae26cbadca951836973efc0108da0e9f5ddb4ca27eb856ff5b00d621e0f5"
+    }
+  },
+  {
+    "rule": "PV-65",
+    "description": "`one_model` DEK sealed with HPKE to the TEE job key; info is the SHA-256 of the permission body, aad the class name",
+    "input": {
+      "op": "seal_dek",
+      "class": "one_model",
+      "dek": "5042c46ab651ed7e36ad907cc11219773d5266607b22125d954a39eca6026c4e",
+      "permission_body": "a767636c6173736573826a6f6e655f6d656d6f7279696f6e655f6d6f64656c67707572706f736571706572736f6e616c5f747261696e696e676a657870697265735f61741a6ae932106a6e6f745f6265666f72651a6ae7e0906d7065726d697373696f6e5f6964d8255001a199c532807a7f8846123ee27da88a6e6a6f625f6b65795f6469676573745820e95dd9f0bbcb874dc9e0c812d1da4860c21cf795f9b2ad04f1bed180b020af786f7465655f6d6561737572656d656e74583017dd71608a4b0cfe4208f69475006efa9331b4232492fdbe8faff702bd4189bab2dc283a678728be75152f63c67ba70d",
+      "hpke": {
+        "kem_id": 32,
+        "kdf_id": 1,
+        "aead_id": 2,
+        "mode": 0,
+        "skEm": "6ac735d8d20329da488b0a31dadabe3b4e2c54bc925239ab62ed4b17d2e47946",
+        "skRm": "9e81bd9efa804667862852a8a369e205208082996877aecbdeba20c024724580",
+        "pkRm": "9d323541fa6ae4c9427cb3d8c497299a3434b6d573bd2518a10163ad5d9e0911",
+        "info": "d5022e12ead76867dc9acdd5ec71b3536ffc42bbed9a5a510cc61ebd69a2ee74",
+        "aad": "6f6e655f6d6f64656c"
+      }
+    },
+    "expected": {
+      "pkEm": "b7e912f6ee9956eb4c679c7129dcea58ae2860294a8561b3a0229e2542aee926",
+      "shared_secret": "b4761953b7d3010411c01ab600e93bc7c88916a9e54e6a5096fed7e6c439411f",
+      "key": "898ca7fbe0096041171f0ccd85fb7f4b0f875ff2d2d95e7837e5dd4a08a4c436",
+      "base_nonce": "eb1a3f293741cd657c9a3caf",
+      "ct": "21736582574659d7d4ee69c076c9148de9a9dac44055cc2e5d3da52b241963673e70b16d069c12b5c0ae74a29b40c2f9"
+    }
+  },
+  {
+    "rule": "PV-65",
+    "description": "the sealed DEK does not open under the digest of a different permission body",
+    "input": {
+      "op": "open_dek",
+      "class": "one_memory",
+      "enc": "e0d61cb10bf3262c249aa0b62a4c2c07f193d19ced80b5e2a103f524201de568",
+      "ct": "feb310a6a3a008d2c53698ce285fda8ba41bae26cbadca951836973efc0108da0e9f5ddb4ca27eb856ff5b00d621e0f5",
+      "skRm": "9e81bd9efa804667862852a8a369e205208082996877aecbdeba20c024724580",
+      "info": "84c1b937dbd04b892d06d909f1ed6435626f455513b1c3c67bcf96b9ca257ed0",
+      "aad": "6f6e655f6d656d6f7279"
+    },
+    "expected": {
+      "error": "open"
+    }
+  },
+  {
+    "rule": "PV-65",
+    "description": "the sealed DEK does not open under another class label",
+    "input": {
+      "op": "open_dek",
+      "class": "one_model",
+      "enc": "e0d61cb10bf3262c249aa0b62a4c2c07f193d19ced80b5e2a103f524201de568",
+      "ct": "feb310a6a3a008d2c53698ce285fda8ba41bae26cbadca951836973efc0108da0e9f5ddb4ca27eb856ff5b00d621e0f5",
+      "skRm": "9e81bd9efa804667862852a8a369e205208082996877aecbdeba20c024724580",
+      "info": "d5022e12ead76867dc9acdd5ec71b3536ffc42bbed9a5a510cc61ebd69a2ee74",
+      "aad": "6f6e655f6d6f64656c"
+    },
+    "expected": {
+      "error": "open"
+    }
+  },
+  {
+    "rule": "PV-65",
+    "description": "a DEK is sealed only to an attested job key, never to a fleet key held outside the TEE",
+    "input": {
+      "op": "seal_dek",
+      "recipient": "fleet_key"
+    },
+    "expected": {
+      "error": "recipient_not_attested"
+    }
+  }
+]

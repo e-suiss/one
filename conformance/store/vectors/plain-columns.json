@@ -1,0 +1,228 @@
+[
+  {
+    "rule": "T-32 (4)",
+    "description": "a listed column with its listed type is accepted",
+    "input": {
+      "table": "memory_record",
+      "column": "recorded_at",
+      "sql_type": "timestamptz"
+    },
+    "expected": {
+      "accepted": true
+    }
+  },
+  {
+    "rule": "T-32 (4)",
+    "description": "an encrypted column not in the list is bytea",
+    "input": {
+      "table": "memory_record",
+      "column": "statement_ct",
+      "sql_type": "bytea"
+    },
+    "expected": {
+      "accepted": true,
+      "plain": false
+    }
+  },
+  {
+    "rule": "T-32 (4)",
+    "description": "a plain column not in the list is rejected",
+    "input": {
+      "table": "memory_record",
+      "column": "statement",
+      "sql_type": "text"
+    },
+    "expected": {
+      "accepted": false,
+      "reason": "unlisted_plain_column"
+    }
+  },
+  {
+    "rule": "T-32 (4)",
+    "description": "an unlisted encrypted column that is not bytea is rejected",
+    "input": {
+      "table": "memory_record",
+      "column": "trust_ct",
+      "sql_type": "jsonb"
+    },
+    "expected": {
+      "accepted": false,
+      "reason": "unlisted_plain_column"
+    }
+  },
+  {
+    "rule": "OP-4 (2)",
+    "description": "domain in plain text is rejected",
+    "input": {
+      "table": "memory_record",
+      "column": "domain",
+      "sql_type": "text"
+    },
+    "expected": {
+      "accepted": false,
+      "reason": "encrypted_only"
+    }
+  },
+  {
+    "rule": "OP-4 (2)",
+    "description": "data_class in plain text is rejected",
+    "input": {
+      "table": "memory_record",
+      "column": "data_class",
+      "sql_type": "text[]"
+    },
+    "expected": {
+      "accepted": false,
+      "reason": "encrypted_only"
+    }
+  },
+  {
+    "rule": "OP-4 (2)",
+    "description": "provenance as a plain column is rejected",
+    "input": {
+      "table": "memory_record",
+      "column": "provenance",
+      "sql_type": "text"
+    },
+    "expected": {
+      "accepted": false,
+      "reason": "encrypted_only"
+    }
+  },
+  {
+    "rule": "OP-4 (2)",
+    "description": "an encrypted-only name is rejected even as bytea: it lives inside the ciphertext",
+    "input": {
+      "table": "memory_record",
+      "column": "produced_by",
+      "sql_type": "bytea"
+    },
+    "expected": {
+      "accepted": false,
+      "reason": "encrypted_only"
+    }
+  },
+  {
+    "rule": "T-32 (4)",
+    "description": "a listed column with another type is rejected",
+    "input": {
+      "table": "memory_record",
+      "column": "version",
+      "sql_type": "text"
+    },
+    "expected": {
+      "accepted": false,
+      "reason": "listed_type"
+    }
+  },
+  {
+    "rule": "OP-4 (2)",
+    "description": "status allows only active, superseded and deleted",
+    "input": {
+      "table": "memory_record",
+      "column": "status",
+      "sql_type": "text",
+      "check": [
+        "active",
+        "superseded",
+        "deleted",
+        "suppressed"
+      ]
+    },
+    "expected": {
+      "accepted": false,
+      "reason": "listed_values"
+    }
+  },
+  {
+    "rule": "OP-4 (2)",
+    "description": "status with its listed CHECK is accepted",
+    "input": {
+      "table": "memory_record",
+      "column": "status",
+      "sql_type": "text",
+      "check": [
+        "active",
+        "superseded",
+        "deleted"
+      ]
+    },
+    "expected": {
+      "accepted": true
+    }
+  },
+  {
+    "rule": "T-27 (7)",
+    "description": "job_kind outside the closed list is rejected",
+    "input": {
+      "table": "job",
+      "column": "job_kind",
+      "sql_type": "text",
+      "check": [
+        "consolidation",
+        "personal_training",
+        "reembedding",
+        "export",
+        "analytics"
+      ]
+    },
+    "expected": {
+      "accepted": false,
+      "reason": "listed_values"
+    }
+  },
+  {
+    "rule": "PV-19",
+    "description": "promise_version is plain so the scheduler outside the TEE can keep old data out of a new purpose",
+    "input": {
+      "table": "memory_record",
+      "column": "promise_version",
+      "sql_type": "integer"
+    },
+    "expected": {
+      "accepted": true
+    }
+  },
+  {
+    "rule": "T-32 (8)",
+    "description": "the post-migration schema equals the list: a migration that adds an unlisted text column fails",
+    "input": {
+      "migrated_columns": [
+        [
+          "memory_record",
+          "owner",
+          "text"
+        ],
+        [
+          "memory_record",
+          "note",
+          "text"
+        ]
+      ]
+    },
+    "expected": {
+      "accepted": false,
+      "violations": [
+        [
+          "memory_record",
+          "note",
+          "unlisted_plain_column"
+        ]
+      ]
+    }
+  },
+  {
+    "rule": "SEC-30",
+    "description": "the published table lists every plain column with its basis",
+    "input": {
+      "generate": "sec-30"
+    },
+    "expected": {
+      "rows": 30,
+      "languages": [
+        "tr",
+        "en"
+      ]
+    }
+  }
+]

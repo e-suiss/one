@@ -1,0 +1,187 @@
+[
+  {
+    "rule": "PV-12",
+    "description": "registration writes one record to each of three realms on three hosts; threshold 2",
+    "input": {
+      "op": "register",
+      "realms": {
+        "a": {
+          "host": "sev-snp pool",
+          "operator": "Suiss host 1"
+        },
+        "b": {
+          "host": "tdx pool",
+          "operator": "Suiss host 2"
+        },
+        "c": {
+          "host": "third host",
+          "operator": "third operator"
+        }
+      },
+      "threshold": 2
+    },
+    "expected": {
+      "registered": [
+        "a",
+        "b",
+        "c"
+      ],
+      "protects": "recovery key that wraps the KEK"
+    }
+  },
+  {
+    "rule": "PV-12",
+    "description": "recovery with all three realms reachable succeeds with any two",
+    "input": {
+      "op": "recover",
+      "reachable": [
+        "a",
+        "b",
+        "c"
+      ],
+      "pin": "correct"
+    },
+    "expected": {
+      "recovered": true,
+      "contacted": 2
+    }
+  },
+  {
+    "rule": "PV-12",
+    "description": "one realm lost: the other two still recover, and the client re-registers on a replacement realm",
+    "input": {
+      "op": "recover",
+      "reachable": [
+        "a",
+        "c"
+      ],
+      "lost": [
+        "b"
+      ],
+      "pin": "correct"
+    },
+    "expected": {
+      "recovered": true,
+      "reregister": true
+    }
+  },
+  {
+    "rule": "PV-12",
+    "description": "two realms unreachable: recovery is unavailable and no guess is counted",
+    "input": {
+      "op": "recover",
+      "reachable": [
+        "c"
+      ],
+      "pin": "correct"
+    },
+    "expected": {
+      "recovered": false,
+      "reason": "unavailable",
+      "guesses_counted": 0
+    }
+  },
+  {
+    "rule": "PV-12",
+    "description": "one broken realm is not enough to test PINs offline: its share and OPRF key share alone open nothing",
+    "input": {
+      "op": "compromise",
+      "realms": [
+        "a"
+      ]
+    },
+    "expected": {
+      "offline_guessing": false
+    }
+  },
+  {
+    "rule": "PV-12",
+    "description": "realms disagree on the version: the version held by at least the threshold wins and the minority record is ignored",
+    "input": {
+      "op": "recover",
+      "versions": {
+        "a": "v2",
+        "b": "v2",
+        "c": "v1"
+      }
+    },
+    "expected": {
+      "version": "v2",
+      "use": [
+        "a",
+        "b"
+      ]
+    }
+  },
+  {
+    "rule": "PV-14",
+    "description": "guess limit exhausted: every realm deletes the record; the Access method becomes unusable and the remaining paths are shown",
+    "input": {
+      "op": "recover",
+      "pin": "wrong",
+      "guesses_remaining": {
+        "a": 1,
+        "b": 1,
+        "c": 1
+      }
+    },
+    "expected": {
+      "recovered": false,
+      "deleted": [
+        "a",
+        "b",
+        "c"
+      ],
+      "access_method": "unusable",
+      "show_remaining_paths": true
+    }
+  },
+  {
+    "rule": "PV-15",
+    "description": "shred deletes the record in every realm; an unreachable realm keeps the erasure log entry open",
+    "input": {
+      "op": "shred",
+      "reachable": [
+        "a",
+        "b"
+      ]
+    },
+    "expected": {
+      "deleted": [
+        "a",
+        "b"
+      ],
+      "erasure_log": {
+        "scope": "recovery_vault",
+        "open_copies": [
+          {
+            "holder": "vault_realm",
+            "ref": "c"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "rule": "PV-61",
+    "description": "no realm and no operator holds a key that opens the record without the PIN",
+    "input": {
+      "op": "operator_open"
+    },
+    "expected": {
+      "possible": false
+    }
+  },
+  {
+    "rule": "PV-12",
+    "description": "a realm never returns its share before a correct unlock key tag",
+    "input": {
+      "op": "recover3",
+      "unlock_key_tag": "wrong"
+    },
+    "expected": {
+      "status": "bad_unlock_key_tag",
+      "share_returned": false
+    }
+  }
+]

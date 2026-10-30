@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://suiss.app/schemas/one/keys/key-permission-exercised/v1.json",
+  "title": "KeyPermissionExercised",
+  "description": "Payload of the content-free Access record of a time-bound key permission: the signed permission body and the fields Access lists to the user. No key, DEK or data. PV-65 (3), Access E59.",
+  "type": "object",
+  "required": ["permission_id", "instance", "purpose", "classes", "not_before", "expires_at", "tee_measurement", "job_key_digest", "body_digest", "cose_sign1"],
+  "additionalProperties": false,
+  "properties": {
+    "permission_id": { "$ref": "https://suiss.app/schemas/one/keys/erasure-log/v1.json#/$defs/uuid" },
+    "instance": { "$ref": "https://suiss.app/schemas/one/ontology/reference/v1.json#/$defs/InstanceRef" },
+    "purpose": { "enum": ["personal_training", "consolidation", "reembedding", "trigger", "one_to_one_reply", "subject_request", "mls_membership"] },
+    "classes": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "$ref": "https://suiss.app/schemas/one/memory/retention-class/v1.json" }
+    },
+    "not_before": { "$ref": "#/$defs/instant" },
+    "expires_at": { "$ref": "#/$defs/instant" },
+    "tee_measurement": { "type": "string", "pattern": "^[0-9a-f]{96}$" },
+    "job_key_digest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "body_digest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "mandate": { "$ref": "https://suiss.app/schemas/one/ontology/reference/v1.json#/$defs/MandateRef" },
+    "cose_sign1": {
+      "description": "The COSE_Sign1 of the deterministic CBOR permission body, base64url without padding.",
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_-]+$"
+    }
+  },
+  "if": { "properties": { "purpose": { "enum": ["trigger", "one_to_one_reply", "subject_request", "mls_membership"] } } },
+  "then": { "required": ["mandate"] },
+  "else": { "not": { "required": ["mandate"] } },
+  "$defs": {
+    "instant": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+    }
+  }
+}

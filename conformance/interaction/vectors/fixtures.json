@@ -30,6 +30,7 @@
       },
       "id": "int_01m613f347ez599hafz0435mnd",
       "version": 1,
+      "promise_version": 1,
       "kind": "approval",
       "subject": {
         "title": {
@@ -207,6 +208,7 @@
       },
       "id": "int_01m61rjc37ej3ver53fv5vbbsk",
       "version": 1,
+      "promise_version": 1,
       "kind": "approval",
       "subject": {
         "title": {
@@ -346,6 +348,7 @@
       },
       "id": "int_01m4yhptxafc0a9x76pt9z33md",
       "version": 1,
+      "promise_version": 1,
       "kind": "choice",
       "subject": {
         "title": {
@@ -508,6 +511,7 @@
       },
       "id": "int_01m5qhyzf0fw7b50naj4hyfqrj",
       "version": 1,
+      "promise_version": 1,
       "kind": "question",
       "subject": {
         "title": {
@@ -633,6 +637,7 @@
       },
       "id": "int_01m52aa7n1etf8ane4bq5r9h1v",
       "version": 1,
+      "promise_version": 1,
       "kind": "info",
       "subject": {
         "title": {
@@ -759,6 +764,7 @@
       },
       "id": "int_01m4xsfjxbfx9v4f6nz4r491n6",
       "version": 1,
+      "promise_version": 1,
       "kind": "progress",
       "subject": {
         "title": {
@@ -900,6 +906,7 @@
       },
       "id": "int_01m5fpac9je618cpwntqz6j3j1",
       "version": 1,
+      "promise_version": 1,
       "kind": "receipt",
       "subject": {
         "title": {
@@ -1042,6 +1049,7 @@
       },
       "id": "int_01m62r7cjjez6v7pdy7z5e33fx",
       "version": 1,
+      "promise_version": 1,
       "kind": "comparison",
       "subject": {
         "title": {
@@ -1220,6 +1228,7 @@
       },
       "id": "int_01m62m2hkve50s3x5g4pegzee7",
       "version": 1,
+      "promise_version": 1,
       "kind": "form",
       "subject": {
         "title": {
@@ -1370,6 +1379,7 @@
       },
       "id": "int_01m5q7mas8fseahg0ykdqj89ct",
       "version": 1,
+      "promise_version": 1,
       "kind": "digest_item",
       "subject": {
         "title": {
