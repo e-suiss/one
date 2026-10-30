@@ -222,6 +222,26 @@ impl RetentionClass {
         Self::OneTrainingLineage,
     ];
 
+    /// The wire name.
+    #[must_use]
+    pub const fn as_str(self) -> &'static str {
+        match self {
+            Self::OneMemory => "one_memory",
+            Self::OneModel => "one_model",
+            Self::OneObservation => "one_observation",
+            Self::OneSensitive => "one_sensitive",
+            Self::OneProviderTrace => "one_provider_trace",
+            Self::OneBrowserProfile => "one_browser_profile",
+            Self::OneTrainingLineage => "one_training_lineage",
+        }
+    }
+
+    /// The class with this wire name.
+    #[must_use]
+    pub fn from_name(name: &str) -> Option<Self> {
+        Self::ALL.into_iter().find(|c| c.as_str() == name)
+    }
+
     /// The class a canonical record must carry: a stored raw Observation stays in `one_observation`; otherwise a PV-20 code means `one_sensitive` and anything else `one_memory` (C-19, PV-16).
     #[must_use]
     pub fn for_record(concept: Concept, data_class: &DataClass, raw_stored: bool) -> Self {

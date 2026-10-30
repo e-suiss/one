@@ -1,0 +1,23 @@
+[package]
+name = "one-tee"
+description = "TEE boundary: Sealed and Unsealed types, the in-TEE job frame and attestation claim checks against pinned vendor roots; crypto and report parsing plug in through ports (T-6, T-27 (3, 10), SEC-27, PV-11)."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish = false
+
+# T-26 (6)
+[dependencies]
+one-proto.workspace = true
+one-runtime.workspace = true
+serde = { workspace = true, features = ["derive", "std"] }
+
+[dev-dependencies]
+one-testkit.workspace = true
+serde_json = { workspace = true, features = ["std"] }
+toml = { workspace = true, features = ["std", "parse", "serde"] }
+
+[lints]
+workspace = true

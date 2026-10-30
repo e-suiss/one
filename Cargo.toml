@@ -18,6 +18,8 @@ one-runtime = { path = "crates/runtime" }
 one-telemetry = { path = "crates/telemetry" }
 one-config = { path = "crates/config" }
 one-http = { path = "crates/http" }
+one-keys = { path = "crates/keys" }
+one-tee = { path = "crates/tee" }
 one-store = { path = "crates/store" }
 one-proto = { path = "crates/proto" }
 one-provenance = { path = "crates/provenance", default-features = false }

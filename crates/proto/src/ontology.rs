@@ -39,4 +39,4 @@ pub use reference::{
 };
 pub use relation::{RelationEdge, RelationKind, RelationTarget};
 pub use routine::Routine;
-pub use time::Instant;
+pub use time::{CalendarDuration, Instant};

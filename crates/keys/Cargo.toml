@@ -1,0 +1,24 @@
+[package]
+name = "one-keys"
+description = "Key layer: time-bound key permissions, PIN vault guess rules and recovery coordination, retention expiry; key operations plug in through ports (OP-4, PV-12, PV-16, PV-65, T-26)."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish = false
+
+# T-26 (6)
+[dependencies]
+one-proto.workspace = true
+one-runtime.workspace = true
+sha2.workspace = true
+
+[dev-dependencies]
+one-parse.workspace = true
+one-provenance.workspace = true
+one-testkit.workspace = true
+serde_json = { workspace = true, features = ["std"] }
+
+[lints]
+workspace = true

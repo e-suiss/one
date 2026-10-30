@@ -268,6 +268,7 @@ const RULE_DEFINITION_FILES: &[&str] = &[
     "xtask/src/rules_source.rs",
     "xtask/src/rules_switches.rs",
     "xtask/src/one_migrations.rs",
+    "xtask/src/one_plain_columns.rs",
 ];
 
 pub(crate) fn check_sql(root: &Path) -> Result<Vec<Violation>, String> {

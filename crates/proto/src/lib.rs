@@ -5,16 +5,20 @@ extern crate alloc;
 
 pub mod attention;
 pub mod capability;
+pub mod cbor;
 pub mod data_class;
 pub mod federation;
 
 pub mod id;
 pub mod interaction_types;
+pub mod key_permission;
 pub mod masked;
 pub mod memory;
 pub mod model;
 pub mod money;
 pub mod ontology;
+pub mod privacy;
+pub mod recovery;
 pub mod task;
 pub mod verdict;
 

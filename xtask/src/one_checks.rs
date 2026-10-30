@@ -1,4 +1,4 @@
-//! Checks specific to One: clock and randomness ports, comment policy, trusted-label callers, claims language, catalogs, data inventory, platform policy, model files, migrations, the Python boundary, sibling-product code and commit trailers.
+//! Checks specific to One: clock and randomness ports, comment policy, trusted-label callers, the TEE boundary and release trust store, plain columns, claims language, catalogs, data inventory, platform policy, model files, migrations, the Python boundary, sibling-product code and commit trailers.
 
 #[path = "one_boundaries.rs"]
 mod boundaries;
@@ -22,10 +22,14 @@ mod migrations;
 mod models;
 #[path = "one_open.rs"]
 mod open;
+#[path = "one_plain_columns.rs"]
+mod plain_columns;
 #[path = "one_platform.rs"]
 mod platform;
 #[path = "one_registry.rs"]
 mod registry;
+#[path = "one_tee.rs"]
+mod tee;
 #[path = "one_types.rs"]
 mod types;
 #[path = "one_vectors.rs"]
@@ -74,6 +78,10 @@ pub(crate) fn checks() -> Vec<Check> {
             run: migrations::check,
         },
         Check {
+            name: "plain-columns",
+            run: plain_columns::check,
+        },
+        Check {
             name: "python-boundary",
             run: boundaries::check_python,
         },
@@ -104,6 +112,14 @@ pub(crate) fn checks() -> Vec<Check> {
         Check {
             name: "trusted-label-callers",
             run: labels::check,
+        },
+        Check {
+            name: "unsealed-constructor",
+            run: tee::check_constructor,
+        },
+        Check {
+            name: "release-trust-store",
+            run: tee::check_roots,
         },
         Check {
             name: "model-registry",

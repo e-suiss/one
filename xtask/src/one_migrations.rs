@@ -7,7 +7,7 @@ use super::{read_opt, v};
 use crate::Violation;
 use crate::rules::files::read;
 
-const DIR: &str = "crates/store/migrations";
+pub(crate) const DIR: &str = "crates/store/migrations";
 const LOCK: &str = "crates/store/migrations/lock.toml";
 
 /// Problems with a migration file name: `NNNN_slug.expand.sql` or `NNNN_slug.contract.sql`.

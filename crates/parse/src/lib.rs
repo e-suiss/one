@@ -10,6 +10,7 @@ pub mod document;
 pub mod email;
 pub mod json;
 pub mod jsonrpc;
+pub mod key_permission;
 pub mod limits;
 pub mod mcp;
 mod text;
