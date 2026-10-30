@@ -29,6 +29,10 @@ one-parse = { path = "crates/parse", default-features = false }
 one-testkit = { path = "crates/testkit" }
 one-rpc = { path = "crates/rpc" }
 one-core = { path = "core" }
+# Access OP-76
+suiss-crypto = { package = "esuiss-crypto", version = "=0.2.2", default-features = false }
+suiss-ledger = { package = "esuiss-ledger", version = "=0.2.2", default-features = false }
+suiss-restriction = { package = "esuiss-restriction", version = "=0.2.2", default-features = false }
 
 thiserror = { version = "2.0.21", default-features = false }
 serde = { version = "1.0.229", default-features = false }
@@ -50,7 +54,7 @@ proptest = { version = "1.11.0", default-features = false }
 regex = { version = "1.13.1", default-features = false }
 getrandom = { version = "0.4.3", default-features = false }
 utoipa = { version = "6.0.0", default-features = false }
-sha2 = { version = "=0.11.0", default-features = false }
+sha2 = { version = "=0.11.1", default-features = false }
 boon = { version = "=0.6.1", default-features = false }
 # T-45, Access OP-72
 gungraun = { version = "=0.20.0", default-features = false }

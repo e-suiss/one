@@ -315,10 +315,12 @@ fn m_25_acceptance_vectors() {
             let mut stored = to(&skeleton);
             let fields = stored.as_object_mut().unwrap();
             fields.remove("type");
+            let mut keys: Vec<&String> = fields.keys().collect();
+            keys.sort();
             json!({
                 "status": fields["status"],
                 "id": fields["id"],
-                "fields": fields.keys().collect::<Vec<_>>(),
+                "fields": keys,
             })
         };
         assert_subset(&v["expected"], &actual, v["description"].as_str().unwrap());

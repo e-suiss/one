@@ -1,0 +1,19 @@
+# T-39 (1), Access OP-76
+
+[[exception]]
+crate = "esuiss-crypto"
+version = "0.2.2"
+first_party = true
+reason = "first-party Suiss release published by e-suiss/access trusted publishing from tag 0.2.2 (595e1e8); its third-party dependencies keep the full cooldown"
+
+[[exception]]
+crate = "esuiss-ledger"
+version = "0.2.2"
+first_party = true
+reason = "first-party Suiss release published by e-suiss/access trusted publishing from tag 0.2.2 (595e1e8); its third-party dependencies keep the full cooldown"
+
+[[exception]]
+crate = "esuiss-restriction"
+version = "0.2.2"
+first_party = true
+reason = "first-party Suiss release published by e-suiss/access trusted publishing from tag 0.2.2 (595e1e8); its third-party dependencies keep the full cooldown"

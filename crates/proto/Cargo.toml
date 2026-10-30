@@ -16,6 +16,9 @@ sha2.workspace = true
 gungraun = { workspace = true, features = ["default"] }
 proptest = { workspace = true, features = ["std"] }
 serde_json = { workspace = true, features = ["std"] }
+suiss-crypto = { workspace = true, features = ["verify"] }
+suiss-ledger = { workspace = true }
+suiss-restriction = { workspace = true }
 
 # T-45
 [[bench]]
