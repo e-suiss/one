@@ -1,6 +1,6 @@
 # Contributing to One
 
-One is proprietary. Only Suiss team members contribute, and maintainers push signed commits directly to `main`. These rules are binding.
+One is proprietary. The source is public so anyone can read it, but only Suiss team members contribute: issues and pull requests from outside the team are not accepted, and maintainers push signed commits directly to `main`. These rules are binding.
 
 ## First day
 

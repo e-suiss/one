@@ -147,7 +147,7 @@ family = "MD"
 section = "1"
 status = "central"
 stage = 0
-title = "Closed source, operated only by Suiss; open reader, extensions and SDK"
+title = "Proprietary source-available code, operated only by Suiss; open reader, extensions and SDK"
 
 [[rule]]
 id = "MD-19"
@@ -5644,7 +5644,7 @@ family = "T"
 section = "17"
 status = "central"
 stage = 0
-title = "Closed code in a private repo, operated only by Suiss, no self-host"
+title = "Proprietary code in a public repo, operated only by Suiss, no self-host"
 
 [[rule]]
 id = "T-4"
@@ -5842,7 +5842,7 @@ section = "17"
 status = "frozen-technical"
 stage = 0
 bound_stage = 0
-title = "Single private repo with enforced dependency direction; shared crates pinned from crates.io"
+title = "Single repo with enforced dependency direction; shared crates pinned from crates.io"
 
 [[rule]]
 id = "T-27"
