@@ -1,0 +1,15 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "WITH r AS (UPDATE one.record SET status = 'deleted', deleted_at = now()\n                         WHERE owner = $1 AND retention_class = $2 AND deleted_at IS NULL),\n                  m AS (UPDATE one.memory_record SET status = 'deleted', deleted_at = now()\n                         WHERE owner = $1 AND retention_class = $2 AND deleted_at IS NULL),\n                  e AS (UPDATE one.memory_edge SET status = 'deleted', deleted_at = now()\n                         WHERE owner = $1 AND retention_class = $2 AND deleted_at IS NULL),\n                  p AS (UPDATE one.episode SET status = 'deleted', deleted_at = now()\n                         WHERE owner = $1 AND retention_class = $2 AND deleted_at IS NULL),\n                  i AS (UPDATE one.index_part SET status = 'deleted', deleted_at = now()\n                         WHERE owner = $1 AND retention_class = $2 AND deleted_at IS NULL),\n                  o AS (UPDATE one.object SET status = 'deleted', deleted_at = now()\n                         WHERE owner = $1 AND retention_class = $2 AND deleted_at IS NULL),\n                  k AS (UPDATE one.record_key k SET wrapped_record_key = NULL, deleted_at = now()\n                          FROM one.class_dek d\n                         WHERE k.owner = $1 AND d.owner = k.owner AND d.dek_id = k.dek_id\n                           AND d.retention_class = $2 AND k.deleted_at IS NULL)\n             UPDATE one.class_dek SET wrapped_dek = NULL, deleted_at = now()\n              WHERE owner = $1 AND retention_class = $2 AND deleted_at IS NULL",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Text"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "4ec43a29ae1a7f717fa83c69947798087aab83d2bc03629ffb7b2e191ae4760d"
+}

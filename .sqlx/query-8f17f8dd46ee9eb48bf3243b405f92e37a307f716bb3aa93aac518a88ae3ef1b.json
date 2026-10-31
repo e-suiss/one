@@ -1,0 +1,17 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "INSERT INTO one.derivation (owner, id, source_id, source_version) VALUES ($1, $2, $3, $4)\n             ON CONFLICT (owner, id, source_id, source_version) DO NOTHING",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Uuid",
+        "Uuid",
+        "Int4"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "8f17f8dd46ee9eb48bf3243b405f92e37a307f716bb3aa93aac518a88ae3ef1b"
+}

@@ -1,0 +1,24 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "WITH RECURSIVE d(id) AS (\n                 SELECT id FROM one.derivation WHERE owner = $1 AND source_id = $2\n                 UNION\n                 SELECT x.id FROM one.derivation x JOIN d ON x.source_id = d.id WHERE x.owner = $1\n               ), k(record_key_id) AS (\n                 SELECT record_key_id FROM one.memory_record WHERE owner = $1 AND id IN (SELECT id FROM d)\n                 UNION SELECT record_key_id FROM one.memory_edge WHERE owner = $1 AND id IN (SELECT id FROM d)\n                 UNION SELECT record_key_id FROM one.episode WHERE owner = $1 AND id IN (SELECT id FROM d)\n                 UNION SELECT record_key_id FROM one.index_part WHERE owner = $1 AND id IN (SELECT id FROM d)\n               )\n               SELECT k.record_key_id AS \"record_key_id!\" FROM k\n                 JOIN one.record_key r ON r.owner = $1 AND r.record_key_id = k.record_key_id\n                WHERE r.deleted_at IS NULL\n                ORDER BY 1",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "record_key_id!",
+        "type_info": "Uuid",
+        "origin": "Expression"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Uuid"
+      ]
+    },
+    "nullable": [
+      null
+    ]
+  },
+  "hash": "f6ea4b1385884c1ddb5253dd6cc65248b3d73d8705e1c035e5a108ce01003848"
+}

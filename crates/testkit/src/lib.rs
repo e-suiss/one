@@ -1,4 +1,6 @@
-//! Virtual clock and fixed-seed generator behind the runtime ports, for tests and deterministic simulation only (T-27 (2), T-38 (5)).
+//! Virtual clock, fixed-seed generator and the deterministic simulation scheduler behind the runtime ports, for tests and simulation only (T-27 (2), T-38 (5)).
+
+pub mod sim;
 
 use std::sync::{Mutex, PoisonError};
 use std::time::Duration;

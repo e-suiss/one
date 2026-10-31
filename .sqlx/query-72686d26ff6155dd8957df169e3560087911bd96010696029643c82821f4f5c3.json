@@ -1,0 +1,15 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "WITH r AS (UPDATE one.record SET status = 'deleted', deleted_at = now()\n                         WHERE owner = $1 AND dek_id = $2 AND deleted_at IS NULL),\n                  m AS (UPDATE one.memory_record SET status = 'deleted', deleted_at = now()\n                         WHERE owner = $1 AND dek_id = $2 AND deleted_at IS NULL),\n                  e AS (UPDATE one.memory_edge SET status = 'deleted', deleted_at = now()\n                         WHERE owner = $1 AND dek_id = $2 AND deleted_at IS NULL),\n                  p AS (UPDATE one.episode SET status = 'deleted', deleted_at = now()\n                         WHERE owner = $1 AND dek_id = $2 AND deleted_at IS NULL),\n                  i AS (UPDATE one.index_part SET status = 'deleted', deleted_at = now()\n                         WHERE owner = $1 AND dek_id = $2 AND deleted_at IS NULL),\n                  o AS (UPDATE one.object SET status = 'deleted', deleted_at = now()\n                         WHERE owner = $1 AND dek_id = $2 AND deleted_at IS NULL),\n                  k AS (UPDATE one.record_key SET wrapped_record_key = NULL, deleted_at = now()\n                         WHERE owner = $1 AND dek_id = $2 AND deleted_at IS NULL)\n             UPDATE one.class_dek SET wrapped_dek = NULL, deleted_at = now()\n              WHERE owner = $1 AND dek_id = $2 AND deleted_at IS NULL",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Uuid"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "72686d26ff6155dd8957df169e3560087911bd96010696029643c82821f4f5c3"
+}
