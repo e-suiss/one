@@ -58,7 +58,7 @@ impl World {
         if fault == Some(Fault::Offline) {
             return;
         }
-        self.deliveries += 1;
+        self.deliveries = self.deliveries.saturating_add(1);
         self.effects.insert(key);
         if fault != Some(Fault::Crash) {
             self.outbox.insert(key, true);
@@ -73,7 +73,7 @@ impl World {
         else {
             return;
         };
-        job.attempts += 1;
+        job.attempts = job.attempts.saturating_add(1);
         let lease = (worker, job.attempts);
         job.holder = Some(lease);
         let attested = fault != Some(Fault::AttestationFailure);
@@ -84,12 +84,13 @@ impl World {
             }
             None => {
                 if !attested {
-                    self.unattested_sends += 1;
+                    self.unattested_sends = self.unattested_sends.saturating_add(1);
                 }
                 if job.holder == Some(lease) {
                     job.done = true;
                     job.holder = None;
-                    *self.finished.entry(id).or_default() += 1;
+                    let n = self.finished.entry(id).or_default();
+                    *n = n.saturating_add(1);
                 }
             }
         }
@@ -135,7 +136,7 @@ fn run(seed: u64) -> (World, Vec<(Event, Option<Fault>)>) {
     let mut trace = Vec::new();
     for i in 0..40 {
         round(&mut sim, i);
-        while let Some((_, event)) = sim.next() {
+        while let Some((_, event)) = sim.step() {
             let fault = sim.fault();
             trace.push((event, fault));
             world.apply(event, fault);
@@ -147,7 +148,7 @@ fn run(seed: u64) -> (World, Vec<(Event, Option<Fault>)>) {
         }
         round(&mut sim, i);
         sim.schedule(Duration::from_millis(5), Event::Expire);
-        while let Some((_, event)) = sim.next() {
+        while let Some((_, event)) = sim.step() {
             trace.push((event, None));
             world.apply(event, None);
         }

@@ -83,7 +83,7 @@ impl<E> Sim<E> {
     }
 
     /// The next event with the time it happens, moving the clock there; `None` when nothing is scheduled.
-    pub fn next(&mut self) -> Option<(UnixNanos, E)> {
+    pub fn step(&mut self) -> Option<(UnixNanos, E)> {
         loop {
             let Reverse((at, _, index)) = self.queue.pop()?;
             let slot = usize::try_from(index)
@@ -126,7 +126,7 @@ mod tests {
             }
             let mut out = Vec::new();
             let mut last = UnixNanos(0);
-            while let Some((at, e)) = sim.next() {
+            while let Some((at, e)) = sim.step() {
                 assert!(at >= last);
                 assert_eq!(sim.clock().now(), at);
                 last = at;

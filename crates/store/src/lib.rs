@@ -1,5 +1,6 @@
 //! PostgreSQL access for One: migrations, owner-scoped transactions under forced row-level security, the outbox, idempotency, the job queue, legal holds and crypto-shred; all cloud SQL lives in this crate (T-32 (1, 2, 3), OP-3, OP-27).
 
+pub mod connect;
 pub mod derivation;
 pub mod hold;
 pub mod idempotency;
@@ -47,6 +48,9 @@ pub enum StoreError {
     /// A stored row does not match the model.
     #[error("stored row is malformed")]
     Corrupt,
+    /// The server is not safe to use; the process does not start.
+    #[error("unsafe database: {0}")]
+    Unsafe(#[from] connect::ConnectError),
 }
 
 /// Runs the migrations as a member of `one_owner`, from the separate migration step and never at application start (OP-27).

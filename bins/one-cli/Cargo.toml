@@ -10,6 +10,8 @@ publish = false
 
 [dependencies]
 one-config.workspace = true
+one-store.workspace = true
+tokio = { workspace = true, features = ["rt"] }
 
 [lints]
 workspace = true

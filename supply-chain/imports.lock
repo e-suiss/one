@@ -460,6 +460,24 @@ criteria = "safe-to-deploy"
 delta = "1.0.4 -> 1.0.11"
 notes = "Standard root updates"
 
+[[audits.bytecode-alliance.audits.webpki-roots]]
+who = "Alex Crichton <alex@alexcrichton.com>"
+criteria = "safe-to-deploy"
+delta = "0.26.1 -> 1.0.7"
+notes = "Minor changes, new certs, etc. Nothing major"
+
+[[audits.bytecode-alliance.audits.webpki-roots]]
+who = "Alex Crichton <alex@alexcrichton.com>"
+criteria = "safe-to-deploy"
+delta = "1.0.7 -> 1.0.10"
+notes = "Only contains updated certs"
+
+[[audits.bytecode-alliance.audits.webpki-roots]]
+who = "Alex Crichton <alex@alexcrichton.com>"
+criteria = "safe-to-deploy"
+delta = "1.0.10 -> 1.0.11"
+notes = "Removing two more anchors"
+
 [[audits.bytecode-alliance.audits.zeroize]]
 who = "Pat Hickey <p.hickey@f5.com>"
 criteria = "safe-to-deploy"
