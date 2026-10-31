@@ -214,7 +214,7 @@ pub enum Kind {
     Answer,
 }
 
-/// A rejection reason; mirrors the Work decline reasons (OD-63 #8).
+/// A rejection reason; mirrors the Work decline reasons.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, Serialize, Deserialize)]
 #[serde(rename_all = "kebab-case")]
 pub enum DeclineReason {

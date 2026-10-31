@@ -1,4 +1,4 @@
-//! The numeric surface budget table (`surfaces/budgets.toml`), the projection outcomes and the fixed rule order (X-13, X-4, X-6, X-10, X-19, X-20, X-36, X-45, X-46, OD-63).
+//! The numeric surface budget table (`surfaces/budgets.toml`), the projection outcomes and the fixed rule order (X-13, X-4, X-6, X-10, X-19, X-20, X-36, X-45, X-46).
 
 use serde::{Deserialize, Serialize};
 

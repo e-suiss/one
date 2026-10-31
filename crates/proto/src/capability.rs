@@ -38,7 +38,7 @@ pub use trigger::{
     TriggerRun, check_trigger_bounds,
 };
 
-/// The first-level categories of the initial taxonomy (OD-63).
+/// The first-level categories of the initial taxonomy.
 pub const CATEGORIES: &[&str] = &[
     "communication",
     "calendar",
@@ -55,7 +55,7 @@ pub const CATEGORIES: &[&str] = &[
     "assistant",
 ];
 
-/// The capabilities of the initial taxonomy (OD-63).
+/// The capabilities of the initial taxonomy.
 pub const TAXONOMY: &[&str] = &[
     "app.suiss.communication.message.send",
     "app.suiss.communication.email.draft",

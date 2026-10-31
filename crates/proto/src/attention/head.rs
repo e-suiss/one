@@ -1,4 +1,4 @@
-//! The decision head route: the calibrated probability against two adjustable thresholds, the cloud estimate between them, hard constraints to the digest, and the user's critical Grant above every constraint including mute (AT-1, AT-2, AT-8, AT-9, AT-10, AT-12; OD-63 #3).
+//! The decision head route: the calibrated probability against two adjustable thresholds, the cloud estimate between them, hard constraints to the digest, and the user's critical Grant above every constraint including mute (AT-1, AT-2, AT-8, AT-9, AT-10, AT-12).
 
 use super::record::{Arm, Probability, Thresholds};
 use crate::interaction_types::Interruption;

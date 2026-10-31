@@ -139,7 +139,7 @@ use Interruption::{Active, Passive, TimeSensitive};
 use MuteScope::{Task, Type, TypeAndCapability};
 use RowId::{ApprovalRequest, OwnWorkInfo, ProgressUpdate};
 
-/// The output types (`output-types.toml`; OD-63 #4 and #5).
+/// The output types (`output-types.toml`).
 pub const OUTPUT_TYPES: &[OutputType] = &[
     relay(
         "app.suiss.one.output.approval.request",

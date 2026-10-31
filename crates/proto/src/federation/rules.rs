@@ -129,7 +129,7 @@ pub struct KindRow {
     pub task_state_after: Option<TaskState>,
 }
 
-/// The kind table (OO-15); the creditor's rejection of a counter has no row (OD-63 #7).
+/// The kind table (OO-15); the creditor's rejection of a counter has no row.
 pub const KIND_TABLE: &[KindRow] = &[
     KindRow {
         kind: Kind::Offer,

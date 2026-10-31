@@ -1,4 +1,4 @@
-//! The suspended-negotiation handle: protected header and claims types and the issuer's checks over decoded claims in contract order — missing, malformed, tampered, expired, binding, digest, replayed — with single use consumed only when the reply is accepted (OO-5; OD-63 #9).
+//! The suspended-negotiation handle: protected header and claims types and the issuer's checks over decoded claims in contract order — missing, malformed, tampered, expired, binding, digest, replayed — with single use consumed only when the reply is accepted (OO-5).
 
 use serde::{Deserialize, Serialize};
 
@@ -121,7 +121,7 @@ pub struct HandleClaims {
     pub st: Option<JsonObject>,
 }
 
-/// The longest handle lifetime: the message's own, at most 7 days (OD-63 #9).
+/// The longest handle lifetime: the message's own, at most 7 days.
 pub const MAX_HANDLE_LIFETIME_SECONDS: u64 = 604_800;
 
 /// The most members of the issuer state.

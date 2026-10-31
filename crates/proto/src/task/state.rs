@@ -463,7 +463,7 @@ pub fn derive_events(history: &[TaskEvent]) -> Result<Derived, Rejection> {
 }
 
 wire_enum!(
-    /// What a user's "stop" does in each state (INV-32, OD-63, OD-64).
+    /// What a user's "stop" does in each state (INV-32).
     StopCommand {
         /// Running: record `pause_requested`; the task is paused only when the Executor confirms.
         RequestPause = "request_pause",

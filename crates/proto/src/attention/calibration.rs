@@ -1,4 +1,4 @@
-//! Calibration of the decision head: the reliability curve over 10 equal-width bins (the last bin closed) and the expected calibration error gate ECE ≤ 0.05 (AT-1, AT-24; OD-63 #2).
+//! Calibration of the decision head: the reliability curve over 10 equal-width bins (the last bin closed) and the expected calibration error gate ECE ≤ 0.05 (AT-1, AT-24).
 
 use alloc::vec::Vec;
 
@@ -7,7 +7,7 @@ use super::record::Probability;
 /// The number of equal-width bins.
 pub const BINS: usize = 10;
 
-/// The highest expected calibration error that passes the gate (OD-63 #2).
+/// The highest expected calibration error that passes the gate.
 pub const ECE_GATE: f64 = 0.05;
 
 /// A recorded prediction and whether the output turned out worth it.
