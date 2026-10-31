@@ -1,0 +1,21 @@
+[package]
+name = "one-objects"
+description = "S3-compatible object store access for One: encrypted bytes only, written once under the owner's prefix and never overwritten or deleted; erasure is key destruction (T-5, T-32 (6), OP-6)."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish = false
+
+# T-26 (6)
+[dependencies]
+one-proto.workspace = true
+object_store = { workspace = true, features = ["aws"] }
+thiserror.workspace = true
+
+[dev-dependencies]
+tokio = { workspace = true, features = ["macros", "rt-multi-thread"] }
+
+[lints]
+workspace = true

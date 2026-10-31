@@ -312,7 +312,7 @@ async fn seed_key(db: &TestDb, owner: &str, n: u8, dek_n: u8) {
 }
 
 async fn seed_memory(db: &TestDb, owner: &str) {
-    for n in [31, 32, 33, 34, 35] {
+    for n in [31, 32, 33, 34, 35, 37] {
         seed_key(db, owner, n, 1).await;
     }
     sqlx::query(
@@ -357,6 +357,17 @@ async fn seed_memory(db: &TestDb, owner: &str) {
     )
     .bind(owner)
     .bind(id(35))
+    .bind(id(1))
+    .execute(&db.owner)
+    .await
+    .unwrap();
+    sqlx::query(
+        "INSERT INTO one.object (owner, id, status, retention_class, region, record_key_id, dek_id,
+                                 ciphertext_len, promise_version)
+         VALUES ($1, $2, 'active', 'one_memory', 'tr', $2, $3, 4096, 1)",
+    )
+    .bind(owner)
+    .bind(id(37))
     .bind(id(1))
     .execute(&db.owner)
     .await
@@ -434,6 +445,7 @@ async fn op_5_a_class_shred_reaches_memory_episodes_and_index_parts() {
         ("memory_edge", 33),
         ("episode", 34),
         ("index_part", 35),
+        ("object", 37),
     ] {
         assert_eq!(status_in(&db, table, n).await, "deleted", "{table}");
         assert!(!key_live(&db, "party:a", n).await, "{table}");

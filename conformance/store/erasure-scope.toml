@@ -87,3 +87,14 @@ shred = "each part version has its own record key; a rebuilt part supersedes the
 name = "derivation"
 personal = false
 reason = "row ids and source versions only; it lets forgetting reach every derivative"
+
+[[table]]
+name = "object"
+personal = true
+key = "record_key"
+shred = "status becomes deleted; the object bytes stay in the store without a key"
+
+[[object_prefix]]
+prefix = "one/<owner>/"
+key = "record_key"
+meaning = "every object of an owner, sealed under its own record key; the object store grants no delete"

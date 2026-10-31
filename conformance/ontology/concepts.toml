@@ -112,6 +112,11 @@ id_type = "IndexPartId"
 rule = "OP-5"
 
 [[operational_prefix]]
+id_prefix = "obj"
+id_type = "ObjectId"
+rule = "T-5"
+
+[[operational_prefix]]
 id_prefix = "hold"
 id_type = "LegalHoldId"
 rule = "OP-30"

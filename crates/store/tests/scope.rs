@@ -201,6 +201,7 @@ async fn t_32_the_queue_role_cannot_read_personal_tables() {
         "episode",
         "derivation",
         "index_part",
+        "object",
     ] {
         let e = sqlx::query(AssertSqlSafe(format!("SELECT count(*) FROM one.{table}")))
             .fetch_one(&db.queue)

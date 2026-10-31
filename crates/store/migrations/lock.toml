@@ -14,3 +14,5 @@
 "0013_index_derivation_by_source.expand.sql" = "64fcb28fc5d9ec3c48da0bbcf53d2f22992b1d74"
 "0014_index_class_dek_single.expand.sql" = "bb7b2eae37a5f971ea68364a6a32fee42a525d91"
 "0015_drop_class_dek_live.contract.sql" = "57d6d394762261b8a2ebdd81737824cf3a03f9ed"
+"0016_object.expand.sql" = "ccbb587898717a76d3cb407b7fa3a707f046823d"
+"0017_index_object_by_key.expand.sql" = "8cbc235e1e558d9755c07862c7fdc4f857070d86"

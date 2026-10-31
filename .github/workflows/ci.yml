@@ -64,6 +64,10 @@ jobs:
     env:
       DATABASE_URL: postgres://postgres:ci-only-not-a-secret@localhost:5432/one_compile
       PGPASSWORD: ci-only-not-a-secret
+      ONE_TEST_S3_ENDPOINT: http://127.0.0.1:8333
+      ONE_TEST_S3_BUCKET: one-dev
+      ONE_TEST_S3_ACCESS_KEY: one-dev-access
+      ONE_TEST_S3_SECRET_KEY: local-only-not-a-secret
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -75,6 +79,16 @@ jobs:
           tools: nextest
       - name: Committed query metadata is current
         run: just sqlx-check "$RUNNER_TEMP/sqlx"
+      - name: Object store
+        run: |
+          docker run --detach --name objects --publish 127.0.0.1:8333:8333 \
+            --volume "$PWD/deploy/compose/seaweedfs/s3.json:/etc/seaweedfs/s3.json:ro" \
+            chrislusf/seaweedfs@sha256:4e61d15fd35994cb1e43e1e553dff106794841fd9a99ade2fc8c8bfce4d7872d \
+            mini -ip=127.0.0.1 -ip.bind=0.0.0.0 -bucket=one-dev -s3.config=/etc/seaweedfs/s3.json \
+            -s3.autoCreateBucket=false -s3.iam=false -s3.port.iceberg=0 -s3.port.lance=0 -webdav=false \
+            -admin.ui=false -master.telemetry=false
+          for _ in $(seq 60); do curl -fsS http://127.0.0.1:8333/healthz >/dev/null 2>&1 && exit 0; sleep 1; done
+          docker logs objects; exit 1
       - name: Tests
         run: |
           cargo nextest run --workspace --locked --no-tests=pass --profile ci

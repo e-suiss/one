@@ -35,6 +35,11 @@ unused-allowed-license = "allow"
 ignore = true
 registries = []
 
+# T-5, Access F-1: Mozilla's CA bundle as data, pulled in by the object store's TLS stack
+[[licenses.exceptions]]
+allow = ["CDLA-Permissive-2.0"]
+crate = "webpki-root-certs"
+
 # T-16 (1)
 [[licenses.exceptions]]
 allow = ["MPL-2.0"]

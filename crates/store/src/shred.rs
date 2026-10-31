@@ -63,6 +63,8 @@ impl OwnerTx {
                   p AS (UPDATE one.episode SET status = 'deleted', deleted_at = now()
                          WHERE owner = $1 AND record_key_id = $2 AND deleted_at IS NULL),
                   i AS (UPDATE one.index_part SET status = 'deleted', deleted_at = now()
+                         WHERE owner = $1 AND record_key_id = $2 AND deleted_at IS NULL),
+                  o AS (UPDATE one.object SET status = 'deleted', deleted_at = now()
                          WHERE owner = $1 AND record_key_id = $2 AND deleted_at IS NULL)
              UPDATE one.record_key SET wrapped_record_key = NULL, deleted_at = now()
               WHERE owner = $1 AND record_key_id = $2 AND deleted_at IS NULL",
@@ -105,6 +107,8 @@ impl OwnerTx {
                          WHERE owner = $1 AND dek_id = $2 AND deleted_at IS NULL),
                   i AS (UPDATE one.index_part SET status = 'deleted', deleted_at = now()
                          WHERE owner = $1 AND dek_id = $2 AND deleted_at IS NULL),
+                  o AS (UPDATE one.object SET status = 'deleted', deleted_at = now()
+                         WHERE owner = $1 AND dek_id = $2 AND deleted_at IS NULL),
                   k AS (UPDATE one.record_key SET wrapped_record_key = NULL, deleted_at = now()
                          WHERE owner = $1 AND dek_id = $2 AND deleted_at IS NULL)
              UPDATE one.class_dek SET wrapped_dek = NULL, deleted_at = now()
@@ -136,6 +140,8 @@ impl OwnerTx {
                   p AS (UPDATE one.episode SET status = 'deleted', deleted_at = now()
                          WHERE owner = $1 AND retention_class = $2 AND deleted_at IS NULL),
                   i AS (UPDATE one.index_part SET status = 'deleted', deleted_at = now()
+                         WHERE owner = $1 AND retention_class = $2 AND deleted_at IS NULL),
+                  o AS (UPDATE one.object SET status = 'deleted', deleted_at = now()
                          WHERE owner = $1 AND retention_class = $2 AND deleted_at IS NULL),
                   k AS (UPDATE one.record_key k SET wrapped_record_key = NULL, deleted_at = now()
                           FROM one.class_dek d

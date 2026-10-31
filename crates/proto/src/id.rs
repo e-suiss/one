@@ -294,6 +294,11 @@ typed_id!(
     "ipt"
 );
 typed_id!(
+    /// An encrypted object in the object store (T-5).
+    ObjectId,
+    "obj"
+);
+typed_id!(
     /// A legal hold order (OP-30).
     LegalHoldId,
     "hold"
