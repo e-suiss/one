@@ -273,6 +273,11 @@ typed_id!(
     AttentionDecisionId,
     "atd"
 );
+typed_id!(
+    /// A job queue row (T-27 (7)).
+    JobId,
+    "job"
+);
 
 #[cfg(test)]
 mod tests {

@@ -1,0 +1,17 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "UPDATE one.job\n            SET state = CASE WHEN $4::float8 IS NULL THEN 'failed' ELSE 'pending' END,\n                lease_until = NULL,\n                run_after = CASE WHEN $4::float8 IS NULL THEN run_after\n                                 ELSE now() + make_interval(secs => $4::float8) END\n          WHERE owner = $1 AND job_id = $2 AND state = 'running' AND attempts = $3",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Uuid",
+        "Int4",
+        "Float8"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "a933db94ea81c36526bff9f1ba8e0c1dd99c087882290f69f0eb92b3b626cb3d"
+}

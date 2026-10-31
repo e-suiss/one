@@ -1,0 +1,15 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "INSERT INTO one.account (owner, region) VALUES ($1, $2) ON CONFLICT (owner) DO NOTHING",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Text"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "5f757e88fbe1aefb87c105f40ca52e2fe3bcd70a17df679bcf0f23861d735696"
+}

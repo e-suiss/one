@@ -1,0 +1,29 @@
+[package]
+name = "one-store"
+description = "PostgreSQL access for One: migrations, owner-scoped transactions under forced row-level security, the outbox, idempotency and the job queue (T-32, OP-3, OP-27)."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish = false
+
+[features]
+# T-32 (9)
+testing = []
+
+# T-26 (6)
+[dependencies]
+one-proto.workspace = true
+sqlx = { workspace = true, features = ["postgres", "runtime-tokio", "macros", "migrate", "uuid"] }
+thiserror.workspace = true
+uuid.workspace = true
+
+[dev-dependencies]
+one-store = { path = ".", features = ["testing"] }
+serde = { workspace = true, features = ["derive", "std"] }
+tokio = { workspace = true, features = ["macros", "rt-multi-thread"] }
+toml = { workspace = true, features = ["std", "parse", "serde"] }
+
+[lints]
+workspace = true

@@ -3,8 +3,10 @@ ahash
 anyhow
 bincode-next
 camino
+crossbeam-utils
 figment
 fs-err
+generic-array
 getrandom
 gungraun
 gungraun-common
@@ -13,7 +15,9 @@ httparse
 icu_normalizer_data
 icu_properties_data
 libc
+libsqlite3-sys
 num-traits
+parking_lot_core
 prettyplease
 proc-macro2
 proc-macro2-diagnostics

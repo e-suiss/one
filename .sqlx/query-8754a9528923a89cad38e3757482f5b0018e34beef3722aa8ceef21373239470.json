@@ -1,0 +1,41 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "SELECT request_digest, ciphertext FROM one.idempotency WHERE owner = $1 AND idempotency_key = $2",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "request_digest",
+        "type_info": "Bytea",
+        "origin": {
+          "Table": {
+            "table": "one.idempotency",
+            "name": "request_digest"
+          }
+        }
+      },
+      {
+        "ordinal": 1,
+        "name": "ciphertext",
+        "type_info": "Bytea",
+        "origin": {
+          "Table": {
+            "table": "one.idempotency",
+            "name": "ciphertext"
+          }
+        }
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Bytea"
+      ]
+    },
+    "nullable": [
+      false,
+      true
+    ]
+  },
+  "hash": "8754a9528923a89cad38e3757482f5b0018e34beef3722aa8ceef21373239470"
+}

@@ -1,0 +1,16 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "UPDATE one.outbox\n                SET attempts = attempts + 1, run_after = now() + make_interval(secs => $3)\n              WHERE owner = $1 AND id = $2 AND state = 'pending'",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Uuid",
+        "Float8"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "6367ef2c2ea804b81f729f0eb68dd812359dd463ad596114e210d0fe03c25fcf"
+}

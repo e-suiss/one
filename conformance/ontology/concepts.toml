@@ -91,6 +91,11 @@ id_prefix = "adp"
 id_type = "AdapterId"
 rule = "C-9"
 
+[[operational_prefix]]
+id_prefix = "job"
+id_type = "JobId"
+rule = "T-27 (7)"
+
 [id_grammar]
 form = "<prefix>_<26 Crockford base32 digits>"
 alphabet = "0123456789abcdefghjkmnpqrstvwxyz"

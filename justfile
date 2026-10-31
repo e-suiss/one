@@ -89,7 +89,7 @@ web-audit:
 
 deps:
     {{compose}} up --detach --wait
-    @echo "PostgreSQL     postgres://one_app@127.0.0.1:${ONE_DEV_PG_PORT:-5433}/one"
+    @echo "PostgreSQL     postgres://one_api@127.0.0.1:${ONE_DEV_PG_PORT:-5433}/one"
     @echo "Object store   http://127.0.0.1:${ONE_DEV_S3_PORT:-8334}  bucket one-dev"
     @echo "Grafana        http://127.0.0.1:${ONE_DEV_GRAFANA_PORT:-3301}"
     @echo "Jaeger         http://127.0.0.1:${ONE_DEV_JAEGER_UI_PORT:-16687}   Prometheus http://127.0.0.1:${ONE_DEV_PROMETHEUS_PORT:-9091}"
@@ -120,8 +120,12 @@ db-reset:
     docker volume rm --force one-dev_pgdata
     {{compose}} up --detach --wait postgres
 
+# T-32 (1)
+sqlx-check out:
+    scripts/sqlx-check.sh "{{out}}"
+
 psql:
-    {{compose}} exec -e PGPASSWORD={{dev_db_password}} postgres psql -h 127.0.0.1 -U one_app -d one
+    {{compose}} exec -e PGPASSWORD={{dev_db_password}} postgres psql -h 127.0.0.1 -U one_api -d one
 
 serve:
     cargo run --locked -p one-server

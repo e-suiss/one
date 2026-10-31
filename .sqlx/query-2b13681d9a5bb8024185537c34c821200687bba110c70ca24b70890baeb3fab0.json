@@ -1,0 +1,20 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "INSERT INTO one.job (owner, job_id, job_kind, idempotency_key, permission_id, run_after, ciphertext)\n             VALUES ($1, $2, $3, $4, $5, now() + make_interval(secs => $6), $7)\n             ON CONFLICT (owner, idempotency_key) DO NOTHING",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Uuid",
+        "Text",
+        "Bytea",
+        "Uuid",
+        "Float8",
+        "Bytea"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "2b13681d9a5bb8024185537c34c821200687bba110c70ca24b70890baeb3fab0"
+}

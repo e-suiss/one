@@ -1,0 +1,16 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "UPDATE one.idempotency SET ciphertext = $3 WHERE owner = $1 AND idempotency_key = $2",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Bytea",
+        "Bytea"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "928734c38536a5aa8690ca54c152a95b7f5dac4c2d4ed98be1e3367adb127d69"
+}

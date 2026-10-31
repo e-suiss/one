@@ -1,0 +1,16 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "UPDATE one.job SET state = 'done', lease_until = NULL\n          WHERE owner = $1 AND job_id = $2 AND state = 'running' AND attempts = $3",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Uuid",
+        "Int4"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "200a7f763125c0dd0e0d3e9c564876c184615c8e99bfc8adb87e0c9358e6510f"
+}

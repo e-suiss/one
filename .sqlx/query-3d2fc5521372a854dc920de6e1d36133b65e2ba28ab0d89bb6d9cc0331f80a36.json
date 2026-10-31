@@ -1,0 +1,88 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "SELECT owner, id, event_type, idempotency_key, ciphertext AS payload, attempts\n               FROM one.outbox\n              WHERE state = 'pending' AND run_after <= now()\n              ORDER BY run_after, id\n              LIMIT $1\n                FOR UPDATE SKIP LOCKED",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "owner",
+        "type_info": "Text",
+        "origin": {
+          "Table": {
+            "table": "one.outbox",
+            "name": "owner"
+          }
+        }
+      },
+      {
+        "ordinal": 1,
+        "name": "id",
+        "type_info": "Uuid",
+        "origin": {
+          "Table": {
+            "table": "one.outbox",
+            "name": "id"
+          }
+        }
+      },
+      {
+        "ordinal": 2,
+        "name": "event_type",
+        "type_info": "Text",
+        "origin": {
+          "Table": {
+            "table": "one.outbox",
+            "name": "event_type"
+          }
+        }
+      },
+      {
+        "ordinal": 3,
+        "name": "idempotency_key",
+        "type_info": "Bytea",
+        "origin": {
+          "Table": {
+            "table": "one.outbox",
+            "name": "idempotency_key"
+          }
+        }
+      },
+      {
+        "ordinal": 4,
+        "name": "payload",
+        "type_info": "Bytea",
+        "origin": {
+          "Table": {
+            "table": "one.outbox",
+            "name": "ciphertext"
+          }
+        }
+      },
+      {
+        "ordinal": 5,
+        "name": "attempts",
+        "type_info": "Int4",
+        "origin": {
+          "Table": {
+            "table": "one.outbox",
+            "name": "attempts"
+          }
+        }
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Int8"
+      ]
+    },
+    "nullable": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  "hash": "3d2fc5521372a854dc920de6e1d36133b65e2ba28ab0d89bb6d9cc0331f80a36"
+}

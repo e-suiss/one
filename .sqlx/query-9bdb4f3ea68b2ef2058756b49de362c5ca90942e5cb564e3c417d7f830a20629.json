@@ -1,0 +1,15 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "UPDATE one.outbox SET state = 'sent' WHERE owner = $1 AND id = $2 AND state = 'pending'",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Uuid"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "9bdb4f3ea68b2ef2058756b49de362c5ca90942e5cb564e3c417d7f830a20629"
+}

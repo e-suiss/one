@@ -1,0 +1,89 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "UPDATE one.job j\n              SET state = 'running', attempts = j.attempts + 1,\n                  lease_until = now() + make_interval(secs => $2)\n             FROM (SELECT owner, job_id FROM one.job\n                    WHERE (state = 'pending' AND run_after <= now())\n                       OR (state = 'running' AND lease_until < now())\n                    ORDER BY run_after, job_id\n                    LIMIT $1\n                      FOR UPDATE SKIP LOCKED) due\n            WHERE j.owner = due.owner AND j.job_id = due.job_id\n        RETURNING j.owner AS \"owner!\", j.job_id AS \"job_id!\", j.job_kind AS \"job_kind!\",\n                  j.permission_id AS \"permission_id?\", j.attempts AS \"attempts!\", j.ciphertext AS \"payload?\"",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "owner!",
+        "type_info": "Text",
+        "origin": {
+          "Table": {
+            "table": "one.job",
+            "name": "owner"
+          }
+        }
+      },
+      {
+        "ordinal": 1,
+        "name": "job_id!",
+        "type_info": "Uuid",
+        "origin": {
+          "Table": {
+            "table": "one.job",
+            "name": "job_id"
+          }
+        }
+      },
+      {
+        "ordinal": 2,
+        "name": "job_kind!",
+        "type_info": "Text",
+        "origin": {
+          "Table": {
+            "table": "one.job",
+            "name": "job_kind"
+          }
+        }
+      },
+      {
+        "ordinal": 3,
+        "name": "permission_id?",
+        "type_info": "Uuid",
+        "origin": {
+          "Table": {
+            "table": "one.job",
+            "name": "permission_id"
+          }
+        }
+      },
+      {
+        "ordinal": 4,
+        "name": "attempts!",
+        "type_info": "Int4",
+        "origin": {
+          "Table": {
+            "table": "one.job",
+            "name": "attempts"
+          }
+        }
+      },
+      {
+        "ordinal": 5,
+        "name": "payload?",
+        "type_info": "Bytea",
+        "origin": {
+          "Table": {
+            "table": "one.job",
+            "name": "ciphertext"
+          }
+        }
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Int8",
+        "Float8"
+      ]
+    },
+    "nullable": [
+      false,
+      false,
+      false,
+      true,
+      false,
+      true
+    ]
+  },
+  "hash": "6a509c60c8043eafeb54c3d056241646a75ae3962a1ac1470be11a3891fecc23"
+}

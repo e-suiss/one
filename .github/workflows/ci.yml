@@ -43,9 +43,27 @@ jobs:
   test:
     name: test
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
+    timeout-minutes: 15
     permissions:
       contents: read
+    # T-32 (1, 9)
+    services:
+      postgres:
+        image: postgres@sha256:74935e72241653ca55e0414067e6d8763aceb8a810eb51b452253ec3dcfc4336 # 18.6-trixie
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: ci-only-not-a-secret
+          POSTGRES_INITDB_ARGS: --auth=scram-sha-256 --data-checksums
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 2s
+          --health-timeout 5s
+          --health-retries 30
+    env:
+      DATABASE_URL: postgres://postgres:ci-only-not-a-secret@localhost:5432/one_compile
+      PGPASSWORD: ci-only-not-a-secret
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -55,10 +73,18 @@ jobs:
         with:
           cache-key: test
           tools: nextest
+      - name: Committed query metadata is current
+        run: just sqlx-check "$RUNNER_TEMP/sqlx"
       - name: Tests
         run: |
           cargo nextest run --workspace --locked --no-tests=pass --profile ci
           cargo test --workspace --locked --doc
+      - if: failure()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: sqlx
+          path: ${{ runner.temp }}/sqlx
+          if-no-files-found: ignore
 
   cross:
     name: cross

@@ -1,2 +1,6 @@
 [alias]
 xtask = "run --locked --quiet --package xtask --"
+
+# T-32 (1)
+[env]
+SQLX_OFFLINE = "true"
