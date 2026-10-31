@@ -1,0 +1,15 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "UPDATE one.record_key k SET wrapped_record_key = NULL, deleted_at = now()\n               FROM one.class_dek d\n              WHERE k.owner = $1 AND d.owner = k.owner AND d.dek_id = k.dek_id\n                AND d.retention_class = $2 AND k.deleted_at IS NULL",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Text"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "a3678f08e208114e4cf5c1e26176df77ee23d958ab8219d9320cd0e67cff3da9"
+}

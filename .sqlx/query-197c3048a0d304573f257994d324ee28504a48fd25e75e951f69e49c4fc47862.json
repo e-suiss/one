@@ -1,0 +1,28 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "SELECT owner AS \"owner!\" FROM one.account WHERE owner = $1 FOR SHARE",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "owner!",
+        "type_info": "Text",
+        "origin": {
+          "Table": {
+            "table": "one.account",
+            "name": "owner"
+          }
+        }
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Text"
+      ]
+    },
+    "nullable": [
+      false
+    ]
+  },
+  "hash": "197c3048a0d304573f257994d324ee28504a48fd25e75e951f69e49c4fc47862"
+}

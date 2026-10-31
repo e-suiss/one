@@ -1,0 +1,60 @@
+# OP-7 (3), OP-9 (1), OP-30, T-37 (4)
+version = 1
+
+[[key]]
+name = "record_key"
+meaning = "the record's own key; its shred makes the record and every part sealed under it unreadable (M-25)"
+
+[[key]]
+name = "class_dek"
+meaning = "the person × class DEK; its shred makes every record key it wraps, and so every record of the class, unreadable"
+
+[[key]]
+name = "user_kek"
+meaning = "the user's KEK on devices and passkeys; it wraps the class DEKs and never reaches Suiss (PV-5)"
+
+[[table]]
+name = "account"
+personal = false
+reason = "owner identifier, region and times only; deletion shreds every class through class_dek"
+
+[[table]]
+name = "class_dek"
+personal = true
+key = "user_kek"
+shred = "wrapped_dek is cleared and deleted_at set"
+
+[[table]]
+name = "record_key"
+personal = true
+key = "class_dek"
+shred = "wrapped_record_key is cleared and deleted_at set"
+
+[[table]]
+name = "record"
+personal = true
+key = "record_key"
+shred = "status becomes deleted; the ciphertext stays without a key"
+
+[[table]]
+name = "outbox"
+personal = true
+key = "class_dek"
+shred = "event bodies are sealed under the sender's class DEK and become unreadable with it"
+
+[[table]]
+name = "idempotency"
+personal = true
+key = "class_dek"
+shred = "stored responses are sealed under the owner's class DEK and become unreadable with it"
+
+[[table]]
+name = "job"
+personal = true
+key = "class_dek"
+shred = "job parameters are sealed under the owner's class DEK and become unreadable with it"
+
+[[table]]
+name = "legal_hold"
+personal = false
+reason = "order id, class and times only"

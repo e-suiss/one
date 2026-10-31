@@ -1,4 +1,4 @@
-//! Schema safety read from the catalog of a migrated database, so every future table is covered without being listed here: forced row-level security, the owner scope prefix, the table owner, no physical delete, pinned search paths, valid indexes and the closed plain-column list (T-32 (3, 4, 6, 8), OP-4 (2)).
+//! Schema safety read from the catalog of a migrated database, so every future table is covered without being listed here: forced row-level security, the owner scope prefix, the table owner, no physical delete, pinned search paths, valid indexes, the closed plain-column list and the erasure scope list (T-32 (3, 4, 6, 8), OP-4 (2), OP-7 (3)).
 
 #![allow(clippy::unwrap_used, clippy::panic, reason = "T-38")]
 
@@ -7,6 +7,7 @@ use serde::Deserialize;
 use sqlx::{Connection, PgConnection, Row};
 
 const PLAIN_COLUMNS: &str = include_str!("../../../conformance/store/plain-columns.toml");
+const ERASURE_SCOPE: &str = include_str!("../../../conformance/store/erasure-scope.toml");
 
 #[derive(Deserialize)]
 struct List {
@@ -24,6 +25,19 @@ struct Listed {
 #[derive(Deserialize)]
 struct Named {
     name: String,
+}
+
+#[derive(Deserialize)]
+struct Scope {
+    key: Vec<Named>,
+    table: Vec<ScopedTable>,
+}
+
+#[derive(Deserialize)]
+struct ScopedTable {
+    name: String,
+    personal: bool,
+    key: Option<String>,
 }
 
 async fn admin() -> PgConnection {
@@ -179,6 +193,49 @@ async fn t_32_columns_are_on_the_plain_list_or_encrypted_bytes() {
         };
         if !ok {
             bad.push(format!("{table}.{column} {ty}"));
+        }
+    }
+    assert!(bad.is_empty(), "{bad:?}");
+}
+
+#[tokio::test]
+async fn op_7_every_table_is_on_the_erasure_scope_list() {
+    let scope: Scope = toml::from_str(ERASURE_SCOPE).unwrap();
+    let mut c = admin().await;
+    let tables = strings(
+        &mut c,
+        "SELECT c.relname::text FROM pg_class c JOIN pg_namespace n ON n.oid = c.relnamespace
+          WHERE n.nspname = 'one' AND c.relkind IN ('r', 'p') ORDER BY 1",
+    )
+    .await;
+    let encrypted = strings(
+        &mut c,
+        "SELECT DISTINCT table_name::text FROM information_schema.columns
+          WHERE table_schema = 'one' AND data_type = 'bytea'",
+    )
+    .await;
+    let mut bad = Vec::new();
+    for t in &tables {
+        match scope.table.iter().find(|s| &s.name == t) {
+            None => bad.push(format!("{t} is not on the list")),
+            Some(s) if s.personal => {
+                if !s
+                    .key
+                    .as_ref()
+                    .is_some_and(|k| scope.key.iter().any(|n| &n.name == k))
+                {
+                    bad.push(format!("{t} names no known key"));
+                }
+            }
+            Some(_) if encrypted.contains(t) => {
+                bad.push(format!("{t} holds encrypted bytes but is not personal"));
+            }
+            Some(_) => {}
+        }
+    }
+    for s in &scope.table {
+        if !tables.contains(&s.name) {
+            bad.push(format!("{} is listed but missing", s.name));
         }
     }
     assert!(bad.is_empty(), "{bad:?}");

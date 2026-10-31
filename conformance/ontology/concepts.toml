@@ -96,6 +96,21 @@ id_prefix = "job"
 id_type = "JobId"
 rule = "T-27 (7)"
 
+[[operational_prefix]]
+id_prefix = "dek"
+id_type = "DekId"
+rule = "OP-4"
+
+[[operational_prefix]]
+id_prefix = "rkey"
+id_type = "RecordKeyId"
+rule = "OP-4"
+
+[[operational_prefix]]
+id_prefix = "hold"
+id_type = "LegalHoldId"
+rule = "OP-30"
+
 [id_grammar]
 form = "<prefix>_<26 Crockford base32 digits>"
 alphabet = "0123456789abcdefghjkmnpqrstvwxyz"

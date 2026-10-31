@@ -1,0 +1,15 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "UPDATE one.legal_hold SET deleted_at = now()\n              WHERE owner = $1 AND id = $2 AND deleted_at IS NULL",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Uuid"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "3a49f2fc0c059e0342b73a014d281a1cf0c6402ac8390f26ed89c511ab2d605e"
+}

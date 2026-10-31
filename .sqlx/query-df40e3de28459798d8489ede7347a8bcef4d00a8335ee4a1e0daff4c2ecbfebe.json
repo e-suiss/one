@@ -1,0 +1,14 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "UPDATE one.job SET state = 'pending', run_after = now()\n              WHERE owner = $1 AND job_kind = 'shred' AND state = 'held'",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Text"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "df40e3de28459798d8489ede7347a8bcef4d00a8335ee4a1e0daff4c2ecbfebe"
+}

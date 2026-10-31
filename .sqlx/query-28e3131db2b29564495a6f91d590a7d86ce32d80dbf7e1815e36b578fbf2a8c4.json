@@ -1,0 +1,29 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "SELECT d.retention_class AS \"retention_class!\" FROM one.record_key k\n               JOIN one.class_dek d ON d.owner = k.owner AND d.dek_id = k.dek_id\n              WHERE k.owner = $1 AND k.record_key_id = $2",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "retention_class!",
+        "type_info": "Text",
+        "origin": {
+          "Table": {
+            "table": "one.class_dek",
+            "name": "retention_class"
+          }
+        }
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Uuid"
+      ]
+    },
+    "nullable": [
+      false
+    ]
+  },
+  "hash": "28e3131db2b29564495a6f91d590a7d86ce32d80dbf7e1815e36b578fbf2a8c4"
+}

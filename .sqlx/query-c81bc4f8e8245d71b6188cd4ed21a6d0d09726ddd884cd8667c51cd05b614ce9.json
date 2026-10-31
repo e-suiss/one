@@ -1,0 +1,28 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "SELECT owner AS \"owner!\" FROM one.account WHERE owner = $1 FOR UPDATE",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "owner!",
+        "type_info": "Text",
+        "origin": {
+          "Table": {
+            "table": "one.account",
+            "name": "owner"
+          }
+        }
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Text"
+      ]
+    },
+    "nullable": [
+      false
+    ]
+  },
+  "hash": "c81bc4f8e8245d71b6188cd4ed21a6d0d09726ddd884cd8667c51cd05b614ce9"
+}

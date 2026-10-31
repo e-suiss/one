@@ -8,3 +8,7 @@ rules = ["OP-4 (2)", "OP-5", "T-32 (4)", "T-32 (8)", "PV-6", "PV-19", "SEC-30"]
 path = "vectors/plain-columns.json"
 kind = "behaviour"
 rules = ["OP-4 (2)", "T-32 (4)", "T-32 (8)", "T-27 (7)", "PV-19", "SEC-30"]
+
+[[table]]
+path = "erasure-scope.toml"
+rules = ["OP-7 (3)", "OP-9 (1)", "OP-30", "T-37 (4)"]

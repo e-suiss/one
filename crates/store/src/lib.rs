@@ -1,9 +1,11 @@
-//! PostgreSQL access for One: migrations, owner-scoped transactions under forced row-level security, the outbox, idempotency and the job queue; all cloud SQL lives in this crate (T-32 (1, 2, 3), OP-3, OP-27).
+//! PostgreSQL access for One: migrations, owner-scoped transactions under forced row-level security, the outbox, idempotency, the job queue, legal holds and crypto-shred; all cloud SQL lives in this crate (T-32 (1, 2, 3), OP-3, OP-27).
 
+pub mod hold;
 pub mod idempotency;
 pub mod jobs;
 pub mod outbox;
 pub mod scope;
+pub mod shred;
 
 #[cfg(feature = "testing")]
 pub mod testing;
@@ -32,9 +34,12 @@ pub enum StoreError {
     /// The migrations could not be applied.
     #[error("migrations: {0}")]
     Migrate(#[from] sqlx::migrate::MigrateError),
-    /// An owner identifier is not a valid scope.
+    /// An owner identifier is not a valid scope, or a lease belongs to another owner.
     #[error("invalid owner identifier")]
     Owner,
+    /// The owner has no account row.
+    #[error("no account for this owner")]
+    NoAccount,
     /// The same idempotency key was used with different content (OP-3).
     #[error("idempotency key reused with different content")]
     Conflict,

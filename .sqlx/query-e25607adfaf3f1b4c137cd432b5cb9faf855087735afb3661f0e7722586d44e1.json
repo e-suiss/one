@@ -1,0 +1,29 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "SELECT retention_class AS \"retention_class!\" FROM one.class_dek WHERE owner = $1 AND dek_id = $2",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "retention_class!",
+        "type_info": "Text",
+        "origin": {
+          "Table": {
+            "table": "one.class_dek",
+            "name": "retention_class"
+          }
+        }
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Uuid"
+      ]
+    },
+    "nullable": [
+      false
+    ]
+  },
+  "hash": "e25607adfaf3f1b4c137cd432b5cb9faf855087735afb3661f0e7722586d44e1"
+}

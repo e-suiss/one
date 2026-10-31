@@ -1,0 +1,15 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "UPDATE one.record SET status = 'deleted', deleted_at = now()\n              WHERE owner = $1 AND record_key_id = $2 AND deleted_at IS NULL",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Uuid"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "858157d882779bbeb8c5771e7e26f60659e7fe2039979441313049fd6d093c95"
+}

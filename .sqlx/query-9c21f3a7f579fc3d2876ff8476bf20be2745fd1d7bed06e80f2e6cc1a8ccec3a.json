@@ -1,0 +1,28 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "SELECT DISTINCT retention_class AS \"retention_class!\" FROM one.legal_hold\n              WHERE owner = $1 AND deleted_at IS NULL ORDER BY 1",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "retention_class!",
+        "type_info": "Text",
+        "origin": {
+          "Table": {
+            "table": "one.legal_hold",
+            "name": "retention_class"
+          }
+        }
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Text"
+      ]
+    },
+    "nullable": [
+      false
+    ]
+  },
+  "hash": "9c21f3a7f579fc3d2876ff8476bf20be2745fd1d7bed06e80f2e6cc1a8ccec3a"
+}

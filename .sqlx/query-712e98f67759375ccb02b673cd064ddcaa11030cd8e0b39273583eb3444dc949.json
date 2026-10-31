@@ -1,0 +1,16 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "INSERT INTO one.legal_hold (owner, id, retention_class) VALUES ($1, $2, $3)\n             ON CONFLICT (owner, id) DO NOTHING",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Uuid",
+        "Text"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "712e98f67759375ccb02b673cd064ddcaa11030cd8e0b39273583eb3444dc949"
+}

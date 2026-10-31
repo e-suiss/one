@@ -1,4 +1,4 @@
-//! The job queue (T-27 (7), OP-12, OP-16): owners enqueue idempotent jobs in their own transaction; workers in `one_queue` lease due or expired jobs with `FOR UPDATE SKIP LOCKED`, and only the lease holder, identified by the attempt count it leased, can finish or release a job. Rows are never deleted.
+//! The job queue (T-27 (7), OP-12, OP-16): owners enqueue idempotent jobs in their own transaction; workers in `one_queue` lease due or expired jobs with `FOR UPDATE SKIP LOCKED`, and only the lease holder, identified by the attempt count it leased, can finish or release a job. A shred job under a legal hold is parked as `held`. Rows are never deleted.
 
 use one_proto::JobId;
 use one_proto::key_permission::PermissionId;
@@ -166,6 +166,42 @@ pub async fn finish(queue: &PgPool, lease: &Lease) -> Result<bool, StoreError> {
     .await?
     .rows_affected();
     Ok(done == 1)
+}
+
+impl OwnerTx {
+    /// Marks the owner's leased job done in the transaction that did its work, so the work and the job state commit together; returns `false` when the lease is no longer held.
+    ///
+    /// # Errors
+    /// [`StoreError::Owner`] for another owner's lease, [`StoreError::Db`].
+    pub async fn finish_job(&mut self, lease: &Lease) -> Result<bool, StoreError> {
+        self.settle(lease, "done").await
+    }
+
+    /// Parks the owner's leased shred job under a legal hold until [`OwnerTx::lift_hold`] (OP-30 (1)); returns `false` when the lease is no longer held.
+    ///
+    /// # Errors
+    /// [`StoreError::Owner`] for another owner's lease, [`StoreError::Db`].
+    pub async fn hold_job(&mut self, lease: &Lease) -> Result<bool, StoreError> {
+        self.settle(lease, "held").await
+    }
+
+    async fn settle(&mut self, lease: &Lease, state: &str) -> Result<bool, StoreError> {
+        if lease.owner != self.owner.as_str() {
+            return Err(StoreError::Owner);
+        }
+        let settled = sqlx::query!(
+            "UPDATE one.job SET state = $4, lease_until = NULL
+              WHERE owner = $1 AND job_id = $2 AND state = 'running' AND attempts = $3",
+            self.owner.as_str(),
+            Uuid::from_bytes(lease.job_id.to_bytes()),
+            lease.attempt,
+            state
+        )
+        .execute(&mut *self.tx)
+        .await?
+        .rows_affected();
+        Ok(settled == 1)
+    }
 }
 
 /// Gives a leased job back: due again after `retry_after_secs`, or `failed` when `None`; returns `false` when the lease is no longer held.

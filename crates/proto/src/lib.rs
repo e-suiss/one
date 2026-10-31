@@ -23,9 +23,9 @@ pub mod task;
 pub mod verdict;
 
 pub use id::{
-    AdapterId, AttentionDecisionId, CapabilityId, DeviceId, EpisodeId, EventId, GoalId, IdError,
-    InteractionId, JobId, MemoryRecordId, ModelRequestId, ModelVersionId, ObservationId, ProjectId,
-    RequestId, RoutineId, SurfaceCapabilityId, TaskId,
+    AdapterId, AttentionDecisionId, CapabilityId, DekId, DeviceId, EpisodeId, EventId, GoalId,
+    IdError, InteractionId, JobId, LegalHoldId, MemoryRecordId, ModelRequestId, ModelVersionId,
+    ObservationId, ProjectId, RecordKeyId, RequestId, RoutineId, SurfaceCapabilityId, TaskId,
 };
 pub use masked::Masked;
 pub use verdict::Verdict;

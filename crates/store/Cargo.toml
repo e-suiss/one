@@ -1,6 +1,6 @@
 [package]
 name = "one-store"
-description = "PostgreSQL access for One: migrations, owner-scoped transactions under forced row-level security, the outbox, idempotency and the job queue (T-32, OP-3, OP-27)."
+description = "PostgreSQL access for One: migrations, owner-scoped transactions under forced row-level security, the outbox, idempotency, the job queue, legal holds and crypto-shred (T-32, OP-3, OP-27, OP-30)."
 version.workspace = true
 edition.workspace = true
 rust-version.workspace = true

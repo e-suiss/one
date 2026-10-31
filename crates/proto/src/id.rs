@@ -278,6 +278,21 @@ typed_id!(
     JobId,
     "job"
 );
+typed_id!(
+    /// A class data encryption key, one per person × retention class (OP-4 (1)).
+    DekId,
+    "dek"
+);
+typed_id!(
+    /// A record key, wrapped by its class DEK (OP-4 (1), M-25).
+    RecordKeyId,
+    "rkey"
+);
+typed_id!(
+    /// A legal hold order (OP-30).
+    LegalHoldId,
+    "hold"
+);
 
 #[cfg(test)]
 mod tests {
