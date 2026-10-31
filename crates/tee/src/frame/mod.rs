@@ -2,10 +2,12 @@
 
 use core::fmt;
 
+use zeroize::Zeroize;
+
 use crate::ports::{OpenError, Opener};
 use crate::sealed::Sealed;
 
-/// Decrypted personal content: made only in this frame; it does not serialize, clone or display, its `Debug` is `[unsealed]`, and no outside-TEE port takes it.
+/// Decrypted personal content: made only in this frame; it does not serialize, clone or display, its `Debug` is `[unsealed]`, no outside-TEE port takes it, and dropping it zeroes the content.
 ///
 /// Serializing it does not compile:
 ///
@@ -52,11 +54,11 @@ use crate::sealed::Sealed;
 ///     let _ = outbox.enqueue("one.memory.updated", s);
 /// }
 /// ```
-pub struct Unsealed<T> {
+pub struct Unsealed<T: Zeroize> {
     value: T,
 }
 
-impl<T> Unsealed<T> {
+impl<T: Zeroize> Unsealed<T> {
     pub(crate) const fn new(value: T) -> Self {
         Self { value }
     }
@@ -67,14 +69,20 @@ impl<T> Unsealed<T> {
         &self.value
     }
 
-    /// A value computed from the content; it stays unsealed.
+    /// A value computed from the content; it stays unsealed, and the content is zeroed.
     #[must_use]
-    pub fn map<U>(self, f: impl FnOnce(T) -> U) -> Unsealed<U> {
-        Unsealed::new(f(self.value))
+    pub fn map<U: Zeroize>(self, f: impl FnOnce(&T) -> U) -> Unsealed<U> {
+        Unsealed::new(f(&self.value))
     }
 }
 
-impl<T> fmt::Debug for Unsealed<T> {
+impl<T: Zeroize> Drop for Unsealed<T> {
+    fn drop(&mut self) {
+        self.value.zeroize();
+    }
+}
+
+impl<T: Zeroize> fmt::Debug for Unsealed<T> {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         f.write_str("[unsealed]")
     }
@@ -89,11 +97,11 @@ pub enum UnsealError {
     Decode,
 }
 
-/// Opens `sealed` through the key port and decodes it; the plaintext buffer is cleared before returning.
+/// Opens `sealed` through the key port and decodes it; the plaintext buffer is zeroed before returning.
 ///
 /// # Errors
 /// [`UnsealError::Open`] when the port refuses, [`UnsealError::Decode`] when the plaintext does not decode.
-pub fn unseal<T, O: Opener + ?Sized>(
+pub fn unseal<T: Zeroize, O: Opener + ?Sized>(
     opener: &O,
     sealed: &Sealed<T>,
     decode: impl FnOnce(&[u8]) -> Option<T>,
@@ -108,7 +116,6 @@ pub fn unseal<T, O: Opener + ?Sized>(
         )
         .map_err(UnsealError::Open);
     let decoded = result.and_then(|()| decode(&plaintext).ok_or(UnsealError::Decode));
-    plaintext.fill(0);
-    plaintext.clear();
+    plaintext.zeroize();
     decoded.map(Unsealed::new)
 }

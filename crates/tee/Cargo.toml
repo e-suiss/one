@@ -13,6 +13,7 @@ publish = false
 one-proto.workspace = true
 one-runtime.workspace = true
 serde = { workspace = true, features = ["derive", "std"] }
+zeroize = { workspace = true, features = ["alloc"] }
 
 [dev-dependencies]
 one-testkit.workspace = true

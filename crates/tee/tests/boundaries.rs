@@ -45,7 +45,7 @@ fn t_27_unsealed_debug_is_masked_and_content_stays_inside() {
     let u: Unsealed<String> = unseal(&opener, &sealed(1, b"a private note"), text).unwrap();
     assert_eq!(format!("{u:?}"), "[unsealed]");
     assert_eq!(u.expose(), "a private note");
-    let len = u.map(|s| s.len());
+    let len = u.map(String::len);
     assert_eq!(format!("{len:?}"), "[unsealed]");
     assert_eq!(*len.expose(), 14);
 }
