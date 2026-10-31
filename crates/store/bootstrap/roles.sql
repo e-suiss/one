@@ -1,0 +1,12 @@
+-- T-32 (3, 6, 8)
+DO $$
+DECLARE
+  r text;
+BEGIN
+  FOREACH r IN ARRAY ARRAY['one_owner', 'one_app', 'one_queue'] LOOP
+    IF NOT EXISTS (SELECT FROM pg_roles WHERE rolname = r) THEN
+      EXECUTE format('CREATE ROLE %I NOLOGIN NOSUPERUSER NOCREATEDB NOCREATEROLE NOBYPASSRLS NOREPLICATION', r);
+    END IF;
+  END LOOP;
+END
+$$;

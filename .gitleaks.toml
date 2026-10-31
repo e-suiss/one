@@ -13,6 +13,7 @@ paths = [
     '''(^|/)package-lock\.json$''',
     '''(^|/)uv\.lock$''',
     '''^supply-chain/imports\.lock$''',
+    '''^crates/store/migrations/lock\.toml$''',
 ]
 
 [[allowlists]]

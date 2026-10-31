@@ -44,10 +44,10 @@ x-model-server: &model-server
     start_period: 15m
 
 services:
-  # T-32 (6), T-32 (8)
+  # T-32 (3, 6, 8)
   postgres:
     <<: *hardening
-    image: pgvector/pgvector@sha256:9d9c930220cb9bf2f956d10a8f909cf9973d9672ca0278aef2c1e6facccad2e0 # 0.8.7-pg18-trixie
+    image: postgres@sha256:74935e72241653ca55e0414067e6d8763aceb8a810eb51b452253ec3dcfc4336 # 18.6-trixie
     user: "999:999"
     read_only: true
     tmpfs:
@@ -58,11 +58,13 @@ services:
       POSTGRES_PASSWORD: local-only-not-a-secret
       POSTGRES_INITDB_ARGS: --auth=scram-sha-256 --data-checksums
       ONE_DB_NAME: one
-      ONE_OWNER_PASSWORD: local-only-not-a-secret
+      ONE_MIGRATE_PASSWORD: local-only-not-a-secret
       ONE_APP_PASSWORD: local-only-not-a-secret
+      ONE_QUEUE_PASSWORD: local-only-not-a-secret
     volumes:
       - pgdata:/var/lib/postgresql
       - ./postgres/initdb:/docker-entrypoint-initdb.d:ro
+      - ../../crates/store/bootstrap:/one-bootstrap:ro
     ports:
       - "127.0.0.1:${ONE_DEV_PG_PORT:-5433}:5432"
     healthcheck:

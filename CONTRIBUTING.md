@@ -8,7 +8,7 @@ One is proprietary. The source is public so anyone can read it, but only Suiss t
 git clone git@github.com:e-suiss/one.git && cd one
 git submodule update --init           # the open contracts from e-suiss/one-open
 git config core.hooksPath .githooks   # formatting and secret scan before each commit
-just deps                             # PostgreSQL + pgvector, object store, monitoring
+just deps                             # PostgreSQL, object store, monitoring
 just test                             # the same tests CI runs on every push
 just check                            # the same checks CI runs on every push
 ```

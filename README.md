@@ -50,7 +50,7 @@ flowchart LR
 
 ## Stack
 
-Rust (cloud services and a shared client core), PostgreSQL with pgvector, encrypted object storage, Suiss-operated open models (Qwen3.5 4B and 27B, EmbeddingGemma 2) with per-user adapters, native iOS/Android/desktop surfaces and a shared TypeScript workspace. Languages: Turkish and English.
+Rust (cloud services and a shared client core), PostgreSQL, encrypted object storage, Suiss-operated open models (Qwen3.5 4B and 27B, EmbeddingGemma 2) with per-user adapters, native iOS/Android/desktop surfaces and a shared TypeScript workspace. Languages: Turkish and English.
 
 ## Repository
 
@@ -68,7 +68,7 @@ Rust (cloud services and a shared client core), PostgreSQL with pgvector, encryp
 ## Development
 
 ```sh
-just deps     # PostgreSQL + pgvector, object store, monitoring
+just deps     # PostgreSQL, object store, monitoring
 just test     # the tests CI runs on every push
 just check    # the checks CI runs on every push
 just dev      # adds local Access, Relay, Work and Executor once their images are pinned

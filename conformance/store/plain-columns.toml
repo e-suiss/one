@@ -164,7 +164,7 @@ sql_type = "text"
 kind = "queue"
 basis = "T-27 (7)"
 meaning = "job kind"
-values = ["consolidation", "personal_training", "reembedding", "export"]
+values = ["consolidation", "personal_training", "reembedding", "export", "shred"]
 
 [[column]]
 name = "state"

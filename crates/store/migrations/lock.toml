@@ -1,0 +1,8 @@
+# T-32 (7), OP-27
+"0001_foundation.expand.sql" = "e111a883d76826e3782208c3c0970afde391259a"
+"0002_index_class_dek_live.expand.sql" = "1797b3de266497ed08ff7c6033613cf9f116cb4a"
+"0003_index_record_head.expand.sql" = "ec60ee807b4b94082f833158154d1317144e61bf"
+"0004_index_record_by_key.expand.sql" = "14aaf16b0d1fb704fde46d4e00290757c3140665"
+"0005_index_outbox_due.expand.sql" = "f24aa9250e4815d51faf20ce3fba03f197b2a9ce"
+"0006_index_job_due.expand.sql" = "ad14450c18aecbb7844110915e80fec6cdc848a7"
+"0007_index_job_lease.expand.sql" = "e15bad48f779f76555b73d9db5d337e34817e4a2"
