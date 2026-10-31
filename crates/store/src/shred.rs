@@ -1,4 +1,4 @@
-//! Crypto-shred in the database (OP-6, OP-9 (1), M-25, OP-30): a shred clears the wrapped key copies and marks the records it made unreadable as deleted skeletons; no row is removed and the ciphertext stays, now without a key. A class under a legal hold is not shredded; the caller keeps the request as a held job.
+//! Crypto-shred in the database (OP-6, OP-9 (1), M-25, OP-30): a shred clears the wrapped key copies and marks every row it made unreadable, in every record-bearing table, as a deleted skeleton in one statement; no row is removed and the ciphertext stays, now without a key. A class under a legal hold is not shredded; the caller keeps the request as a held job.
 
 use one_proto::data_class::RetentionClass;
 use one_proto::{DekId, RecordKeyId};
@@ -54,15 +54,17 @@ impl OwnerTx {
             return Ok(Shred::Held);
         }
         sqlx::query!(
-            "UPDATE one.record_key SET wrapped_record_key = NULL, deleted_at = now()
-              WHERE owner = $1 AND record_key_id = $2 AND deleted_at IS NULL",
-            self.owner.as_str(),
-            key
-        )
-        .execute(&mut *self.tx)
-        .await?;
-        sqlx::query!(
-            "UPDATE one.record SET status = 'deleted', deleted_at = now()
+            "WITH r AS (UPDATE one.record SET status = 'deleted', deleted_at = now()
+                         WHERE owner = $1 AND record_key_id = $2 AND deleted_at IS NULL),
+                  m AS (UPDATE one.memory_record SET status = 'deleted', deleted_at = now()
+                         WHERE owner = $1 AND record_key_id = $2 AND deleted_at IS NULL),
+                  e AS (UPDATE one.memory_edge SET status = 'deleted', deleted_at = now()
+                         WHERE owner = $1 AND record_key_id = $2 AND deleted_at IS NULL),
+                  p AS (UPDATE one.episode SET status = 'deleted', deleted_at = now()
+                         WHERE owner = $1 AND record_key_id = $2 AND deleted_at IS NULL),
+                  i AS (UPDATE one.index_part SET status = 'deleted', deleted_at = now()
+                         WHERE owner = $1 AND record_key_id = $2 AND deleted_at IS NULL)
+             UPDATE one.record_key SET wrapped_record_key = NULL, deleted_at = now()
               WHERE owner = $1 AND record_key_id = $2 AND deleted_at IS NULL",
             self.owner.as_str(),
             key
@@ -93,23 +95,19 @@ impl OwnerTx {
             return Ok(Shred::Held);
         }
         sqlx::query!(
-            "UPDATE one.record SET status = 'deleted', deleted_at = now()
-              WHERE owner = $1 AND dek_id = $2 AND deleted_at IS NULL",
-            self.owner.as_str(),
-            dek
-        )
-        .execute(&mut *self.tx)
-        .await?;
-        sqlx::query!(
-            "UPDATE one.record_key SET wrapped_record_key = NULL, deleted_at = now()
-              WHERE owner = $1 AND dek_id = $2 AND deleted_at IS NULL",
-            self.owner.as_str(),
-            dek
-        )
-        .execute(&mut *self.tx)
-        .await?;
-        sqlx::query!(
-            "UPDATE one.class_dek SET wrapped_dek = NULL, deleted_at = now()
+            "WITH r AS (UPDATE one.record SET status = 'deleted', deleted_at = now()
+                         WHERE owner = $1 AND dek_id = $2 AND deleted_at IS NULL),
+                  m AS (UPDATE one.memory_record SET status = 'deleted', deleted_at = now()
+                         WHERE owner = $1 AND dek_id = $2 AND deleted_at IS NULL),
+                  e AS (UPDATE one.memory_edge SET status = 'deleted', deleted_at = now()
+                         WHERE owner = $1 AND dek_id = $2 AND deleted_at IS NULL),
+                  p AS (UPDATE one.episode SET status = 'deleted', deleted_at = now()
+                         WHERE owner = $1 AND dek_id = $2 AND deleted_at IS NULL),
+                  i AS (UPDATE one.index_part SET status = 'deleted', deleted_at = now()
+                         WHERE owner = $1 AND dek_id = $2 AND deleted_at IS NULL),
+                  k AS (UPDATE one.record_key SET wrapped_record_key = NULL, deleted_at = now()
+                         WHERE owner = $1 AND dek_id = $2 AND deleted_at IS NULL)
+             UPDATE one.class_dek SET wrapped_dek = NULL, deleted_at = now()
               WHERE owner = $1 AND dek_id = $2 AND deleted_at IS NULL",
             self.owner.as_str(),
             dek
@@ -129,25 +127,21 @@ impl OwnerTx {
             return Ok(Shred::Held);
         }
         sqlx::query!(
-            "UPDATE one.record SET status = 'deleted', deleted_at = now()
-              WHERE owner = $1 AND retention_class = $2 AND deleted_at IS NULL",
-            self.owner.as_str(),
-            class.as_str()
-        )
-        .execute(&mut *self.tx)
-        .await?;
-        sqlx::query!(
-            "UPDATE one.record_key k SET wrapped_record_key = NULL, deleted_at = now()
-               FROM one.class_dek d
-              WHERE k.owner = $1 AND d.owner = k.owner AND d.dek_id = k.dek_id
-                AND d.retention_class = $2 AND k.deleted_at IS NULL",
-            self.owner.as_str(),
-            class.as_str()
-        )
-        .execute(&mut *self.tx)
-        .await?;
-        sqlx::query!(
-            "UPDATE one.class_dek SET wrapped_dek = NULL, deleted_at = now()
+            "WITH r AS (UPDATE one.record SET status = 'deleted', deleted_at = now()
+                         WHERE owner = $1 AND retention_class = $2 AND deleted_at IS NULL),
+                  m AS (UPDATE one.memory_record SET status = 'deleted', deleted_at = now()
+                         WHERE owner = $1 AND retention_class = $2 AND deleted_at IS NULL),
+                  e AS (UPDATE one.memory_edge SET status = 'deleted', deleted_at = now()
+                         WHERE owner = $1 AND retention_class = $2 AND deleted_at IS NULL),
+                  p AS (UPDATE one.episode SET status = 'deleted', deleted_at = now()
+                         WHERE owner = $1 AND retention_class = $2 AND deleted_at IS NULL),
+                  i AS (UPDATE one.index_part SET status = 'deleted', deleted_at = now()
+                         WHERE owner = $1 AND retention_class = $2 AND deleted_at IS NULL),
+                  k AS (UPDATE one.record_key k SET wrapped_record_key = NULL, deleted_at = now()
+                          FROM one.class_dek d
+                         WHERE k.owner = $1 AND d.owner = k.owner AND d.dek_id = k.dek_id
+                           AND d.retention_class = $2 AND k.deleted_at IS NULL)
+             UPDATE one.class_dek SET wrapped_dek = NULL, deleted_at = now()
               WHERE owner = $1 AND retention_class = $2 AND deleted_at IS NULL",
             self.owner.as_str(),
             class.as_str()

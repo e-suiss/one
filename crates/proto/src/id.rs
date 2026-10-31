@@ -289,6 +289,11 @@ typed_id!(
     "rkey"
 );
 typed_id!(
+    /// An encrypted search index part (OP-5).
+    IndexPartId,
+    "ipt"
+);
+typed_id!(
     /// A legal hold order (OP-30).
     LegalHoldId,
     "hold"

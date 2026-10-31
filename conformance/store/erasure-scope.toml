@@ -58,3 +58,32 @@ shred = "job parameters are sealed under the owner's class DEK and become unread
 name = "legal_hold"
 personal = false
 reason = "order id, class and times only"
+
+[[table]]
+name = "memory_record"
+personal = true
+key = "record_key"
+shred = "status becomes deleted; the ciphertext stays without a key"
+
+[[table]]
+name = "memory_edge"
+personal = true
+key = "record_key"
+shred = "status becomes deleted; the ciphertext stays without a key"
+
+[[table]]
+name = "episode"
+personal = true
+key = "record_key"
+shred = "status becomes deleted; the ciphertext stays without a key"
+
+[[table]]
+name = "index_part"
+personal = true
+key = "record_key"
+shred = "each part version has its own record key; a rebuilt part supersedes the old one, whose key is shredded"
+
+[[table]]
+name = "derivation"
+personal = false
+reason = "row ids and source versions only; it lets forgetting reach every derivative"

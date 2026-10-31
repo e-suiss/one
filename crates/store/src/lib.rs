@@ -1,5 +1,6 @@
 //! PostgreSQL access for One: migrations, owner-scoped transactions under forced row-level security, the outbox, idempotency, the job queue, legal holds and crypto-shred; all cloud SQL lives in this crate (T-32 (1, 2, 3), OP-3, OP-27).
 
+pub mod derivation;
 pub mod hold;
 pub mod idempotency;
 pub mod jobs;

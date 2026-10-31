@@ -8,8 +8,9 @@
 )]
 
 use one_proto::data_class::RetentionClass;
-use one_proto::{DekId, JobId, LegalHoldId, RecordKeyId};
+use one_proto::{DekId, EpisodeId, IndexPartId, JobId, LegalHoldId, MemoryRecordId, RecordKeyId};
 use one_store::Uuid;
+use one_store::derivation::Row;
 use one_store::jobs::{self, JobKind, NewJob};
 use one_store::scope::{Owner, OwnerTx};
 use one_store::shred::Shred;
@@ -295,4 +296,180 @@ async fn t_27_a_lease_settles_only_in_its_owners_transaction() {
         other.finish_job(&leased[0]).await,
         Err(one_store::StoreError::Owner)
     ));
+}
+
+async fn seed_key(db: &TestDb, owner: &str, n: u8, dek_n: u8) {
+    sqlx::query(
+        "INSERT INTO one.record_key (owner, record_key_id, dek_id, wrapped_record_key) VALUES ($1, $2, $3, $4)",
+    )
+    .bind(owner)
+    .bind(id(n))
+    .bind(id(dek_n))
+    .bind(vec![n; 40])
+    .execute(&db.owner)
+    .await
+    .unwrap();
+}
+
+async fn seed_memory(db: &TestDb, owner: &str) {
+    for n in [31, 32, 33, 34, 35] {
+        seed_key(db, owner, n, 1).await;
+    }
+    sqlx::query(
+        "INSERT INTO one.memory_record (owner, id, version, status, retention_class, region, record_key_id, dek_id,
+                                        ciphertext, ciphertext_len, promise_version)
+         VALUES ($1, $2, 1, 'active', 'one_memory', 'tr', $2, $3, '\\x0102', 2, 1),
+                ($1, $4, 1, 'active', 'one_memory', 'tr', $4, $3, '\\x0102', 2, 1)",
+    )
+    .bind(owner)
+    .bind(id(31))
+    .bind(id(1))
+    .bind(id(32))
+    .execute(&db.owner)
+    .await
+    .unwrap();
+    sqlx::query(
+        "INSERT INTO one.memory_edge (owner, id, version, status, retention_class, region, record_key_id, dek_id,
+                                      ciphertext, ciphertext_len, promise_version)
+         VALUES ($1, $2, 1, 'active', 'one_memory', 'tr', $2, $3, '\\x01', 1, 1)",
+    )
+    .bind(owner)
+    .bind(id(33))
+    .bind(id(1))
+    .execute(&db.owner)
+    .await
+    .unwrap();
+    sqlx::query(
+        "INSERT INTO one.episode (owner, id, status, retention_class, region, record_key_id, dek_id,
+                                  ciphertext, ciphertext_len, promise_version)
+         VALUES ($1, $2, 'active', 'one_memory', 'tr', $2, $3, '\\x01', 1, 1)",
+    )
+    .bind(owner)
+    .bind(id(34))
+    .bind(id(1))
+    .execute(&db.owner)
+    .await
+    .unwrap();
+    sqlx::query(
+        "INSERT INTO one.index_part (owner, id, version, status, retention_class, index_part_no, embedding_model,
+                                     embedding_model_version, record_key_id, dek_id, ciphertext, ciphertext_len)
+         VALUES ($1, $2, 1, 'active', 'one_memory', 0, 'embeddinggemma', '2', $2, $3, '\\x01', 1)",
+    )
+    .bind(owner)
+    .bind(id(35))
+    .bind(id(1))
+    .execute(&db.owner)
+    .await
+    .unwrap();
+}
+
+async fn status_in(db: &TestDb, table: &str, n: u8) -> String {
+    sqlx::query_scalar(sqlx::AssertSqlSafe(format!(
+        "SELECT status FROM one.{table} WHERE id = $1"
+    )))
+    .bind(id(n))
+    .fetch_one(&db.owner)
+    .await
+    .unwrap()
+}
+
+fn mem(n: u8) -> MemoryRecordId {
+    MemoryRecordId::from_bytes(id(n).into_bytes()).unwrap()
+}
+
+#[tokio::test]
+async fn c_21_forgetting_follows_derivations_to_every_derivative() {
+    let db = fresh().await.unwrap();
+    seeded(&db, "party:a").await;
+    seed_memory(&db, "party:a").await;
+    let episode = Row::Episode(EpisodeId::from_bytes(id(34).into_bytes()).unwrap());
+    let mut tx = scoped(&db, "party:a").await;
+    tx.link_derivation(Row::Memory(mem(31)), episode, 1)
+        .await
+        .unwrap();
+    tx.link_derivation(Row::Memory(mem(33)), Row::Memory(mem(31)), 1)
+        .await
+        .unwrap();
+    tx.link_derivation(
+        Row::IndexPart(IndexPartId::from_bytes(id(35).into_bytes()).unwrap()),
+        Row::Memory(mem(33)),
+        1,
+    )
+    .await
+    .unwrap();
+    tx.link_derivation(Row::Memory(mem(31)), episode, 1)
+        .await
+        .unwrap();
+    let keys = tx.derived_keys(episode).await.unwrap();
+    assert_eq!(keys, [record_key(31), record_key(33), record_key(35)]);
+    for k in &keys {
+        assert_eq!(tx.shred_record_key(*k).await.unwrap(), Shred::Done);
+    }
+    assert_eq!(
+        tx.derived_keys(episode).await.unwrap(),
+        [] as [RecordKeyId; 0]
+    );
+    tx.commit().await.unwrap();
+    assert_eq!(status_in(&db, "memory_record", 31).await, "deleted");
+    assert_eq!(status_in(&db, "memory_edge", 33).await, "deleted");
+    assert_eq!(status_in(&db, "index_part", 35).await, "deleted");
+    assert_eq!(status_in(&db, "memory_record", 32).await, "active");
+    assert_eq!(status_in(&db, "episode", 34).await, "active");
+}
+
+#[tokio::test]
+async fn op_5_a_class_shred_reaches_memory_episodes_and_index_parts() {
+    let db = fresh().await.unwrap();
+    seeded(&db, "party:a").await;
+    seed_memory(&db, "party:a").await;
+    let mut tx = scoped(&db, "party:a").await;
+    assert_eq!(
+        tx.shred_class(RetentionClass::OneMemory).await.unwrap(),
+        Shred::Done
+    );
+    tx.commit().await.unwrap();
+    for (table, n) in [
+        ("memory_record", 31),
+        ("memory_record", 32),
+        ("memory_edge", 33),
+        ("episode", 34),
+        ("index_part", 35),
+    ] {
+        assert_eq!(status_in(&db, table, n).await, "deleted", "{table}");
+        assert!(!key_live(&db, "party:a", n).await, "{table}");
+    }
+}
+
+#[tokio::test]
+async fn pv_22_sensitive_fields_keep_one_live_dek_each() {
+    let db = fresh().await.unwrap();
+    seeded(&db, "party:a").await;
+    seed_dek(&db, "party:a", 3, "one_sensitive").await;
+    seed_dek(&db, "party:a", 4, "one_sensitive").await;
+    let second_memory_dek = sqlx::query(
+        "INSERT INTO one.class_dek (owner, dek_id, retention_class, kek_id, wrapped_dek)
+         VALUES ('party:a', $1, 'one_memory', 'kek-1', $2)",
+    )
+    .bind(id(5))
+    .bind(vec![5_u8; 40])
+    .execute(&db.owner)
+    .await;
+    assert!(second_memory_dek.is_err());
+}
+
+#[tokio::test]
+async fn m_12_a_vector_part_names_its_model_and_version() {
+    let db = fresh().await.unwrap();
+    seeded(&db, "party:a").await;
+    seed_key(&db, "party:a", 36, 1).await;
+    let half = sqlx::query(
+        "INSERT INTO one.index_part (owner, id, version, status, retention_class, index_part_no, embedding_model,
+                                     record_key_id, dek_id, ciphertext, ciphertext_len)
+         VALUES ('party:a', $1, 1, 'active', 'one_memory', 0, 'embeddinggemma', $1, $2, '\\x01', 1)",
+    )
+    .bind(id(36))
+    .bind(id(1))
+    .execute(&db.owner)
+    .await;
+    assert!(half.is_err());
 }

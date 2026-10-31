@@ -14,7 +14,7 @@ const QUEUE: [&str; 2] = [
       ORDER BY run_after, id LIMIT 10 FOR UPDATE SKIP LOCKED",
 ];
 
-const OWNER: [&str; 6] = [
+const OWNER: [&str; 8] = [
     "SELECT d.retention_class FROM one.record_key k
        JOIN one.class_dek d ON d.owner = k.owner AND d.dek_id = k.dek_id
       WHERE k.owner = 'party:a' AND k.record_key_id = '019a0000-0000-7001-8000-000000000001'",
@@ -25,6 +25,18 @@ const OWNER: [&str; 6] = [
     "SELECT dek_id FROM one.class_dek WHERE owner = 'party:a' AND retention_class = 'one_memory' AND deleted_at IS NULL",
     "UPDATE one.job SET state = 'pending', run_after = now()
       WHERE owner = 'party:a' AND job_kind = 'shred' AND state = 'held'",
+    "WITH m AS (UPDATE one.memory_record SET status = 'deleted', deleted_at = now()
+                 WHERE owner = 'party:a' AND record_key_id = '019a0000-0000-7001-8000-000000000001' AND deleted_at IS NULL),
+          i AS (UPDATE one.index_part SET status = 'deleted', deleted_at = now()
+                 WHERE owner = 'party:a' AND record_key_id = '019a0000-0000-7001-8000-000000000001' AND deleted_at IS NULL)
+     UPDATE one.episode SET status = 'deleted', deleted_at = now()
+      WHERE owner = 'party:a' AND record_key_id = '019a0000-0000-7001-8000-000000000001' AND deleted_at IS NULL",
+    "WITH RECURSIVE d(id) AS (
+       SELECT id FROM one.derivation WHERE owner = 'party:a' AND source_id = '019a0000-0000-7001-8000-000000000001'
+       UNION
+       SELECT x.id FROM one.derivation x JOIN d ON x.source_id = d.id WHERE x.owner = 'party:a'
+     )
+     SELECT record_key_id FROM one.memory_record WHERE owner = 'party:a' AND id IN (SELECT id FROM d)",
 ];
 
 async fn seq_scans(pool: &PgPool, owner: Option<&str>, sql: &str) -> Vec<String> {
