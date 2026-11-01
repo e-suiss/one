@@ -363,9 +363,9 @@ async fn m_25_a_forgotten_record_and_every_derivative_no_longer_open() {
     assert_eq!(w.read_object(11, memory).await, None);
     assert_eq!(w.read_memory(20, memory).await, None);
     assert_eq!(w.read_index_part(30, memory).await, None);
-    assert!(!w.raw_ciphertext("memory_record", 10).await.is_empty());
+    assert_ne!(w.raw_ciphertext("memory_record", 10).await, [] as [u8; 0]);
     let id = ObjectId::from_bytes(bytes(11)).unwrap();
-    assert!(!w.objects.get(OWNER, id).await.unwrap().is_empty());
+    assert_ne!(w.objects.get(OWNER, id).await.unwrap(), [] as [u8; 0]);
     assert_eq!(w.read_memory(40, memory).await.unwrap(), b"buy bread");
 }
 
