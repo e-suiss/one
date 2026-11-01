@@ -50,6 +50,10 @@ criteria = "safe-to-deploy"
 version = "0.5.3"
 criteria = "safe-to-run"
 
+[[exemptions.argon2]]
+version = "0.6.0"
+criteria = "safe-to-deploy"
+
 [[exemptions.arrayvec]]
 version = "0.5.2"
 criteria = "safe-to-run"
@@ -114,12 +118,20 @@ criteria = "safe-to-deploy"
 version = "0.23.1"
 criteria = "safe-to-deploy"
 
+[[exemptions.base64ct]]
+version = "1.8.3"
+criteria = "safe-to-deploy"
+
 [[exemptions.bincode-next]]
 version = "3.1.1"
 criteria = "safe-to-run"
 
 [[exemptions.bitflags]]
 version = "2.13.2"
+criteria = "safe-to-deploy"
+
+[[exemptions.blake2]]
+version = "0.11.0"
 criteria = "safe-to-deploy"
 
 [[exemptions.block-buffer]]
