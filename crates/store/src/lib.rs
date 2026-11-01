@@ -5,6 +5,7 @@ pub mod derivation;
 pub mod hold;
 pub mod idempotency;
 pub mod jobs;
+pub mod keyring;
 pub mod outbox;
 pub mod scope;
 pub mod shred;

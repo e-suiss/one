@@ -2632,8 +2632,12 @@ dependencies = [
 name = "one-store"
 version = "0.0.0"
 dependencies = [
+ "esuiss-crypto",
+ "one-keys",
+ "one-objects",
  "one-proto",
  "one-store",
+ "one-tee",
  "serde",
  "sqlx",
  "thiserror",

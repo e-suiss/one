@@ -6,6 +6,7 @@ use uuid::Uuid;
 
 use crate::StoreError;
 use crate::scope::OwnerTx;
+use crate::shred::Shred;
 
 /// A row that can be a source or a derivative.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -125,5 +126,55 @@ impl OwnerTx {
         keys.into_iter()
             .map(|k| RecordKeyId::from_bytes(k.into_bytes()).map_err(|_| StoreError::Corrupt))
             .collect()
+    }
+
+    async fn key_of(&mut self, row: Row) -> Result<Option<RecordKeyId>, StoreError> {
+        let key = sqlx::query_scalar!(
+            r#"SELECT record_key_id AS "record_key_id!" FROM one.memory_record WHERE owner = $1 AND id = $2
+               UNION SELECT record_key_id FROM one.memory_edge WHERE owner = $1 AND id = $2
+               UNION SELECT record_key_id FROM one.episode WHERE owner = $1 AND id = $2
+               UNION SELECT record_key_id FROM one.index_part WHERE owner = $1 AND id = $2
+               LIMIT 1"#,
+            self.owner.as_str(),
+            row.uuid()
+        )
+        .fetch_optional(&mut *self.tx)
+        .await?;
+        key.map(|k| RecordKeyId::from_bytes(k.into_bytes()).map_err(|_| StoreError::Corrupt))
+            .transpose()
+    }
+
+    /// Permanent forgetting (M-25, C-21): destroys the record key of `row` and of every row derived from it, however deep; the skeletons stay and the class DEKs and other records are untouched. Nothing changes when a legal hold covers the class of any of those keys (OP-30 (1)).
+    ///
+    /// # Errors
+    /// [`StoreError::NoAccount`], [`StoreError::Corrupt`], [`StoreError::Db`].
+    pub async fn forget(&mut self, row: Row) -> Result<Shred, StoreError> {
+        self.lock_account(false).await?;
+        let Some(own) = self.key_of(row).await? else {
+            return Ok(Shred::Missing);
+        };
+        let mut keys = self.derived_keys(row).await?;
+        keys.push(own);
+        let ids: Vec<Uuid> = keys
+            .iter()
+            .map(|k| Uuid::from_bytes(k.to_bytes()))
+            .collect();
+        let held = sqlx::query_scalar!(
+            r#"SELECT EXISTS (SELECT FROM one.record_key k
+                                JOIN one.class_dek d ON d.owner = k.owner AND d.dek_id = k.dek_id
+                                JOIN one.legal_hold h ON h.owner = k.owner AND h.retention_class = d.retention_class
+                               WHERE k.owner = $1 AND k.record_key_id = ANY($2) AND h.deleted_at IS NULL) AS "held!""#,
+            self.owner.as_str(),
+            &ids
+        )
+        .fetch_one(&mut *self.tx)
+        .await?;
+        if held {
+            return Ok(Shred::Held);
+        }
+        for key in keys {
+            self.shred_record_key(key).await?;
+        }
+        Ok(Shred::Done)
     }
 }

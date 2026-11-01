@@ -20,8 +20,12 @@ thiserror.workspace = true
 uuid.workspace = true
 
 [dev-dependencies]
+one-keys.workspace = true
+one-objects.workspace = true
 one-store = { path = ".", features = ["testing"] }
+one-tee.workspace = true
 serde = { workspace = true, features = ["derive", "std"] }
+suiss-crypto = { workspace = true, features = ["aead", "pkcs11"] }
 tokio = { workspace = true, features = ["macros", "rt-multi-thread"] }
 toml = { workspace = true, features = ["std", "parse", "serde"] }
 
