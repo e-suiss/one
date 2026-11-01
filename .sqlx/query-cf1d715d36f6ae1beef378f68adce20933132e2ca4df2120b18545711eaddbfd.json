@@ -1,0 +1,29 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "SELECT retention_class FROM one.index_part WHERE owner = $1 AND id = $2 LIMIT 1",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "retention_class",
+        "type_info": "Text",
+        "origin": {
+          "Table": {
+            "table": "one.index_part",
+            "name": "retention_class"
+          }
+        }
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Uuid"
+      ]
+    },
+    "nullable": [
+      false
+    ]
+  },
+  "hash": "cf1d715d36f6ae1beef378f68adce20933132e2ca4df2120b18545711eaddbfd"
+}

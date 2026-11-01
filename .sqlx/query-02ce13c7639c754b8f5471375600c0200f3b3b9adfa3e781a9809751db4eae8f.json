@@ -1,0 +1,14 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "UPDATE one.account SET deleted_at = now() WHERE owner = $1 AND deleted_at IS NULL",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Text"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "02ce13c7639c754b8f5471375600c0200f3b3b9adfa3e781a9809751db4eae8f"
+}

@@ -1,0 +1,29 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "SELECT retention_class FROM one.episode WHERE owner = $1 AND id = $2",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "retention_class",
+        "type_info": "Text",
+        "origin": {
+          "Table": {
+            "table": "one.episode",
+            "name": "retention_class"
+          }
+        }
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Uuid"
+      ]
+    },
+    "nullable": [
+      false
+    ]
+  },
+  "hash": "0d5982c0df9af9fd63319deca36be7a88af5db3737eb8a22d0b05395d0c42ce3"
+}
