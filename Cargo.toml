@@ -29,6 +29,8 @@ one-interaction = { path = "crates/interaction", default-features = false }
 one-parse = { path = "crates/parse", default-features = false }
 one-testkit = { path = "crates/testkit" }
 one-rpc = { path = "crates/rpc" }
+one-access-client = { path = "crates/access-client" }
+one-task = { path = "crates/task" }
 one-core = { path = "core" }
 # Access OP-76
 suiss-crypto = { package = "esuiss-crypto", version = "=0.2.3", default-features = false }

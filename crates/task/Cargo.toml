@@ -1,0 +1,18 @@
+[package]
+name = "one-task"
+description = "Task component: the plan, decide and execute gate between a typed intent, the Access decision and the Executor port (CP-5, SEC-1, A-2, A-6, E-14)."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish = false
+
+# T-26 (6)
+[dependencies]
+one-access-client.workspace = true
+one-provenance.workspace = true
+suiss-crypto.workspace = true
+
+[lints]
+workspace = true

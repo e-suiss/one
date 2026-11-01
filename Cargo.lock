@@ -2671,6 +2671,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "one-task"
+version = "0.0.0"
+dependencies = [
+ "esuiss-crypto",
+ "one-access-client",
+ "one-provenance",
+]
+
+[[package]]
 name = "one-tee"
 version = "0.0.0"
 dependencies = [
