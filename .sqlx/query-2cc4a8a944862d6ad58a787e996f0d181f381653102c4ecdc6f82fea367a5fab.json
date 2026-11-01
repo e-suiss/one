@@ -1,0 +1,23 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "INSERT INTO one.index_part (owner, id, version, status, retention_class, index_part_no, embedding_model,\n                                         embedding_model_version, record_key_id, dek_id, ciphertext, ciphertext_len)\n             VALUES ($1, $2, 1, 'active', $3, $4, $5, $6, $7, $8, $9, $10)",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Uuid",
+        "Text",
+        "Int4",
+        "Text",
+        "Text",
+        "Uuid",
+        "Uuid",
+        "Bytea",
+        "Int4"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "2cc4a8a944862d6ad58a787e996f0d181f381653102c4ecdc6f82fea367a5fab"
+}

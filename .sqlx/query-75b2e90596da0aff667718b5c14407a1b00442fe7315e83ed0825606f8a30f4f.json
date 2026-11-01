@@ -1,0 +1,41 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "SELECT record_key_id, ciphertext FROM one.index_part\n              WHERE owner = $1 AND id = $2 AND deleted_at IS NULL",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "record_key_id",
+        "type_info": "Uuid",
+        "origin": {
+          "Table": {
+            "table": "one.index_part",
+            "name": "record_key_id"
+          }
+        }
+      },
+      {
+        "ordinal": 1,
+        "name": "ciphertext",
+        "type_info": "Bytea",
+        "origin": {
+          "Table": {
+            "table": "one.index_part",
+            "name": "ciphertext"
+          }
+        }
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Uuid"
+      ]
+    },
+    "nullable": [
+      false,
+      false
+    ]
+  },
+  "hash": "75b2e90596da0aff667718b5c14407a1b00442fe7315e83ed0825606f8a30f4f"
+}

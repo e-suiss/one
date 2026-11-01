@@ -1,0 +1,17 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "INSERT INTO one.record_key (owner, record_key_id, dek_id, wrapped_record_key)\n             VALUES ($1, $2, $3, $4)",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Uuid",
+        "Uuid",
+        "Bytea"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "bf612b531b42edbab6dd1c778d9dd453339404b24818bb94a2b52cab0ec9871c"
+}

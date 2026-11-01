@@ -1,0 +1,20 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "INSERT INTO one.object (owner, id, status, retention_class, region, record_key_id, dek_id,\n                                     ciphertext_len, promise_version)\n             SELECT $1, $2, 'active', $3, a.region, $4, $5, $6, $7\n               FROM one.account a WHERE a.owner = $1",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Uuid",
+        "Text",
+        "Uuid",
+        "Uuid",
+        "Int4",
+        "Int4"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "dd8031c6395308c022c6005bbeae4b3bd8ef95c51df7c75376a489985e12f16c"
+}

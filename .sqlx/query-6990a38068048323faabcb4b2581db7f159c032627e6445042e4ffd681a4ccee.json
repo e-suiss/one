@@ -1,0 +1,21 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "INSERT INTO one.memory_record (owner, id, version, status, retention_class, region, record_key_id,\n                                            dek_id, ciphertext, ciphertext_len, promise_version)\n             SELECT $1, $2, 1, 'active', $3, a.region, $4, $5, $6, $7, $8\n               FROM one.account a WHERE a.owner = $1",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Uuid",
+        "Text",
+        "Uuid",
+        "Uuid",
+        "Bytea",
+        "Int4",
+        "Int4"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "6990a38068048323faabcb4b2581db7f159c032627e6445042e4ffd681a4ccee"
+}

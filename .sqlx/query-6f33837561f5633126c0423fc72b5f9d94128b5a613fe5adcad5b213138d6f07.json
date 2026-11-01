@@ -1,0 +1,24 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "SELECT EXISTS (SELECT FROM one.record_key k\n                                JOIN one.class_dek d ON d.owner = k.owner AND d.dek_id = k.dek_id\n                                JOIN one.legal_hold h ON h.owner = k.owner AND h.retention_class = d.retention_class\n                               WHERE k.owner = $1 AND k.record_key_id = ANY($2) AND h.deleted_at IS NULL) AS \"held!\"",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "held!",
+        "type_info": "Bool",
+        "origin": "Expression"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Text",
+        "UuidArray"
+      ]
+    },
+    "nullable": [
+      null
+    ]
+  },
+  "hash": "6f33837561f5633126c0423fc72b5f9d94128b5a613fe5adcad5b213138d6f07"
+}
