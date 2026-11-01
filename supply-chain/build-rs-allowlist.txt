@@ -9,6 +9,7 @@ camino
 cedar-policy
 cedar-policy-core
 crossbeam-utils
+cryptoki-sys
 curve25519-dalek
 defmt
 defmt-macros

@@ -68,6 +68,9 @@ jobs:
       ONE_TEST_S3_BUCKET: one-dev
       ONE_TEST_S3_ACCESS_KEY: one-dev-access
       ONE_TEST_S3_SECRET_KEY: local-only-not-a-secret
+      ONE_TEST_PKCS11_MODULE: /usr/lib/softhsm/libsofthsm2.so
+      ONE_TEST_PKCS11_TOKEN: one-test
+      ONE_TEST_PKCS11_PIN: ci-only-not-a-secret
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -89,6 +92,16 @@ jobs:
             -admin.ui=false -master.telemetry=false
           for _ in $(seq 60); do curl -fsS http://127.0.0.1:8333/healthz >/dev/null 2>&1 && exit 0; sleep 1; done
           docker logs objects; exit 1
+      - name: SoftHSM token
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends softhsm2
+          mkdir -p "$RUNNER_TEMP/softhsm/tokens"
+          printf 'directories.tokendir = %s\nobjectstore.backend = file\n' "$RUNNER_TEMP/softhsm/tokens" \
+            > "$RUNNER_TEMP/softhsm/softhsm2.conf"
+          echo "SOFTHSM2_CONF=$RUNNER_TEMP/softhsm/softhsm2.conf" >> "$GITHUB_ENV"
+          SOFTHSM2_CONF="$RUNNER_TEMP/softhsm/softhsm2.conf" softhsm2-util --init-token --free \
+            --label one-test --pin "$ONE_TEST_PKCS11_PIN" --so-pin ci-only-so-pin
       - name: Tests
         run: |
           cargo nextest run --workspace --locked --no-tests=pass --profile ci

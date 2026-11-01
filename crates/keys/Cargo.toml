@@ -15,7 +15,7 @@ one-hpke.workspace = true
 one-proto.workspace = true
 one-runtime.workspace = true
 sha2.workspace = true
-suiss-crypto = { workspace = true, features = ["aead"] }
+suiss-crypto = { workspace = true, features = ["aead", "pkcs11"] }
 zeroize = { workspace = true, features = ["alloc"] }
 
 [dev-dependencies]
