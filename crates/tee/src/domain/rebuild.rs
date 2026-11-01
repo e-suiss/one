@@ -8,7 +8,7 @@ pub struct Entry {
     /// The derived row's id.
     pub id: [u8; 16],
     /// The source rows and versions it was built from, in any order.
-    pub sources: Vec<([u8; 16], u32)>,
+    pub sources: Sources,
     /// The SHA-256 of its plaintext.
     pub digest: [u8; 32],
 }
@@ -32,7 +32,9 @@ impl Diff {
     }
 }
 
-fn index(entries: &[Entry]) -> BTreeMap<[u8; 16], (Vec<([u8; 16], u32)>, [u8; 32])> {
+type Sources = Vec<([u8; 16], u32)>;
+
+fn index(entries: &[Entry]) -> BTreeMap<[u8; 16], (Sources, [u8; 32])> {
     entries
         .iter()
         .map(|e| {
