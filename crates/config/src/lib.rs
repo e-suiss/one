@@ -64,6 +64,51 @@ pub struct ServerConfig {
     pub log: String,
     /// Module roles this process runs.
     pub roles: Vec<Role>,
+    /// The sibling products One does not start without (E-2).
+    pub siblings: Siblings,
+}
+
+/// The base addresses of Access, Relay and Work (E-2, E-3): Access endpoints come from its discovery document, Relay and Work are checked before serving. There is no Pay entry until Pay is ready (A-48).
+#[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct Siblings {
+    /// The Access issuer.
+    pub access: String,
+    /// The Relay base URL.
+    pub relay: String,
+    /// The Work base URL.
+    pub work: String,
+}
+
+impl Siblings {
+    /// Each sibling with its configured base URL.
+    #[must_use]
+    pub fn all(&self) -> [(&'static str, &str); 3] {
+        [
+            ("access", &self.access),
+            ("relay", &self.relay),
+            ("work", &self.work),
+        ]
+    }
+}
+
+fn authority(rest: &str) -> &str {
+    let end = rest.find('/').unwrap_or(rest.len());
+    rest.get(..end).unwrap_or_default()
+}
+
+/// Whether `url` is an HTTPS base URL with a host, or plain HTTP to a loopback host for the local siblings (T-42 (1)).
+#[must_use]
+pub fn sibling_url_ok(url: &str) -> bool {
+    if let Some(rest) = url.strip_prefix("https://") {
+        let host = authority(rest);
+        return !host.is_empty() && !host.contains('@');
+    }
+    url.strip_prefix("http://").is_some_and(|rest| {
+        let host = authority(rest);
+        let name = host.rsplit_once(':').map_or(host, |(n, _)| n);
+        matches!(name, "127.0.0.1" | "localhost" | "[::1]")
+    })
 }
 
 impl Default for ServerConfig {
@@ -73,6 +118,7 @@ impl Default for ServerConfig {
             internal_listen: SocketAddr::from((Ipv4Addr::LOCALHOST, 8091)),
             log: "info".to_owned(),
             roles: vec![Role::Api],
+            siblings: Siblings::default(),
         }
     }
 }
@@ -95,6 +141,12 @@ pub enum ConfigError {
     /// Public and internal listeners share an address.
     #[error("listen and internal_listen must differ")]
     SharedListener,
+    /// A sibling has no base URL (E-2).
+    #[error("`siblings.{0}` must be set: One does not start without Access, Relay and Work")]
+    SiblingMissing(&'static str),
+    /// A sibling base URL is neither HTTPS nor loopback HTTP.
+    #[error("`siblings.{0}` must be an https URL, or http to a loopback host")]
+    SiblingUrl(&'static str),
 }
 
 impl ServerConfig {
@@ -149,6 +201,14 @@ impl ServerConfig {
         if self.listen == self.internal_listen {
             return Err(ConfigError::SharedListener);
         }
+        for (name, url) in self.siblings.all() {
+            if url.is_empty() {
+                return Err(ConfigError::SiblingMissing(name));
+            }
+            if !sibling_url_ok(url) {
+                return Err(ConfigError::SiblingUrl(name));
+            }
+        }
         Ok(())
     }
 }
@@ -157,12 +217,66 @@ impl ServerConfig {
 mod tests {
     use super::*;
 
+    const SIBLINGS: &str = "[siblings]\naccess = \"https://access.example\"\nrelay = \"http://127.0.0.1:8200\"\nwork = \"http://localhost:8300\"\n";
+
+    fn with_siblings(toml: &str) -> Result<ServerConfig, ConfigError> {
+        ServerConfig::from_toml(&format!("{toml}\n{SIBLINGS}"))
+    }
+
     #[test]
-    fn t_27_defaults_are_valid_and_loopback() {
-        let config = ServerConfig::default();
-        assert!(config.validate().is_ok());
+    fn t_27_defaults_are_loopback_and_valid_once_the_siblings_are_set() {
+        let config = with_siblings("").unwrap();
         assert!(config.listen.ip().is_loopback());
         assert!(config.internal_listen.ip().is_loopback());
+    }
+
+    #[test]
+    fn e_2_one_does_not_start_without_access_relay_and_work() {
+        assert!(matches!(
+            ServerConfig::default().validate(),
+            Err(ConfigError::SiblingMissing("access"))
+        ));
+        assert!(matches!(
+            ServerConfig::from_toml(
+                "[siblings]\naccess = \"https://a.example\"\nwork = \"https://w.example\""
+            ),
+            Err(ConfigError::SiblingMissing("relay"))
+        ));
+        assert!(matches!(
+            ServerConfig::from_toml(
+                "[siblings]\naccess = \"https://a.example\"\nrelay = \"https://r.example\"\nwork = \"https://w.example\"\npay = \"https://p.example\""
+            ),
+            Err(ConfigError::Parse(_))
+        ));
+    }
+
+    #[test]
+    fn e_2_a_sibling_is_https_or_loopback_http() {
+        for ok in [
+            "https://access.example",
+            "https://access.example:8443/base",
+            "http://127.0.0.1:8180",
+            "http://localhost:8200",
+            "http://[::1]:8300",
+        ] {
+            assert!(sibling_url_ok(ok), "{ok}");
+        }
+        for bad in [
+            "http://access.example",
+            "http://127.0.0.1.evil.example",
+            "https://",
+            "https://user@access.example",
+            "ftp://access.example",
+            "access.example",
+        ] {
+            assert!(!sibling_url_ok(bad), "{bad}");
+        }
+        assert!(matches!(
+            ServerConfig::from_toml(
+                "[siblings]\naccess = \"http://access.example\"\nrelay = \"https://r.example\"\nwork = \"https://w.example\""
+            ),
+            Err(ConfigError::SiblingUrl("access"))
+        ));
     }
 
     #[test]

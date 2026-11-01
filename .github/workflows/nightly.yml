@@ -156,6 +156,7 @@ jobs:
       - name: Open-loop load against a local server
         run: |
           cargo build --locked --release -p one-server -p one-load
-          target/release/one-server &
+          printf '[siblings]\naccess = "http://127.0.0.1:8180"\nrelay = "http://127.0.0.1:8200"\nwork = "http://127.0.0.1:8300"\n' > "$RUNNER_TEMP/one.toml"
+          ONE_CONFIG="$RUNNER_TEMP/one.toml" target/release/one-server &
           for _ in $(seq 50); do curl -fs http://127.0.0.1:8091/livez && break; sleep 0.2; done
           target/release/one-load --addr 127.0.0.1:8091 --path /livez --rate 500 --seconds 30

@@ -1,4 +1,4 @@
-//! The evaluation request of L1-ADP-5 to L1-ADP-8: the AuthZEN carriers mirror the intent's action and first resource, and every Access member travels in `context` with binaries in unpadded base64url (L1-ADP-6); the intent digest is never sent, Access computes it (L1-ADP-8).
+//! The evaluation request of L1-ADP-5 to L1-ADP-8: the `AuthZEN` carriers mirror the intent's action and first resource, and every Access member travels in `context` with binaries in unpadded base64url (L1-ADP-6); the intent digest is never sent, Access computes it (L1-ADP-8).
 
 use std::collections::BTreeMap;
 
@@ -33,7 +33,7 @@ pub enum AdpError {
 /// One evaluation request.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Evaluation<'a> {
-    /// The DomainID addressed.
+    /// The `DomainID` addressed.
     pub domain: Digest,
     /// The mode.
     pub mode: Mode,

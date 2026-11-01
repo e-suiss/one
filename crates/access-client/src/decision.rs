@@ -10,7 +10,7 @@ use suiss_crypto::digest::Digest;
 pub enum Decision {
     /// Access allowed the Exercise.
     Allow {
-        /// The ExerciseID, for `commit` and `continue`; `None` only in `check`.
+        /// The `ExerciseID`, for `commit` and `continue`; `None` only in `check`.
         exercise: Option<Digest>,
         /// Whether the decision is advisory (`check`): never a promise.
         advisory: bool,
