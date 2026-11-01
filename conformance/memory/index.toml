@@ -1,4 +1,4 @@
-# M-6, M-7, M-8, M-9, M-10, M-13, M-20, MD-7 (1, 2), INV-14, C-19, PV-16, PV-20
+# M-6, M-7, M-8, M-9, M-10, M-13, M-20, MD-7 (1, 2), INV-14, C-19, PV-16, PV-20, M-38
 
 [[schema]]
 path = "../open/schemas/memory/common.json"
@@ -135,3 +135,8 @@ rules = ["M-25"]
 path = "vectors/acceptance-m-36.json"
 kind = "behaviour"
 rules = ["M-36", "M-37"]
+
+[[vectors]]
+path = "vectors/derivative-class.json"
+kind = "behaviour"
+rules = ["M-38", "OP-5"]

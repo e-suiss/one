@@ -242,6 +242,31 @@ impl RetentionClass {
         Self::ALL.into_iter().find(|c| c.as_str() == name)
     }
 
+    /// The class of a derivative built from `sources` (M-38, OP-5): the strictest source class, `one_sensitive` over `one_observation` over `one_memory`; `None` without a source or when a source is in a class that feeds no memory derivative.
+    #[must_use]
+    pub fn for_derivative(sources: impl IntoIterator<Item = Self>) -> Option<Self> {
+        let mut out: Option<Self> = None;
+        for class in sources {
+            let rank = class.derivative_rank()?;
+            if out.is_none_or(|o| o.derivative_rank() < Some(rank)) {
+                out = Some(class);
+            }
+        }
+        out
+    }
+
+    const fn derivative_rank(self) -> Option<u8> {
+        match self {
+            Self::OneMemory => Some(0),
+            Self::OneObservation => Some(1),
+            Self::OneSensitive => Some(2),
+            Self::OneModel
+            | Self::OneProviderTrace
+            | Self::OneBrowserProfile
+            | Self::OneTrainingLineage => None,
+        }
+    }
+
     /// The class a canonical record must carry: a stored raw Observation stays in `one_observation`; otherwise a PV-20 code means `one_sensitive` and anything else `one_memory` (C-19, PV-16).
     #[must_use]
     pub fn for_record(concept: Concept, data_class: &DataClass, raw_stored: bool) -> Self {

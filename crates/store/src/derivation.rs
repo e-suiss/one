@@ -1,5 +1,6 @@
-//! Derivation links (C-21, OP-5): every derived row (a consolidated record, a summary record, an index part) is linked to each source row and the source version it was built from, so permanent forgetting can follow the links to every derivative, however deep.
+//! Derivation links (C-21, OP-5): every derived row (a consolidated record, a summary record, an index part) is linked to each source row and the source version it was built from, so permanent forgetting can follow the links to every derivative, however deep; a derivative is never in a less strict class than a source (M-38).
 
+use one_proto::data_class::RetentionClass;
 use one_proto::{EpisodeId, IndexPartId, MemoryRecordId, RecordKeyId};
 use uuid::Uuid;
 
@@ -28,16 +29,61 @@ impl Row {
 }
 
 impl OwnerTx {
+    async fn class_of(&mut self, row: Row) -> Result<Option<RetentionClass>, StoreError> {
+        let id = row.uuid();
+        let owner = self.owner.as_str();
+        let name = match row {
+            Row::Memory(_) => {
+                sqlx::query_scalar!(
+                    r#"SELECT retention_class AS "retention_class!" FROM one.memory_record WHERE owner = $1 AND id = $2
+                       UNION SELECT retention_class FROM one.memory_edge WHERE owner = $1 AND id = $2
+                       LIMIT 1"#,
+                    owner,
+                    id
+                )
+                .fetch_optional(&mut *self.tx)
+                .await?
+            }
+            Row::Episode(_) => {
+                sqlx::query_scalar!(
+                    "SELECT retention_class FROM one.episode WHERE owner = $1 AND id = $2",
+                    owner,
+                    id
+                )
+                .fetch_optional(&mut *self.tx)
+                .await?
+            }
+            Row::IndexPart(_) => {
+                sqlx::query_scalar!(
+                    "SELECT retention_class FROM one.index_part WHERE owner = $1 AND id = $2 LIMIT 1",
+                    owner,
+                    id
+                )
+                .fetch_optional(&mut *self.tx)
+                .await?
+            }
+        };
+        name.map(|n| RetentionClass::from_name(&n).ok_or(StoreError::Corrupt))
+            .transpose()
+    }
+
     /// Records that `derived` was built from version `source_version` of `source`.
     ///
     /// # Errors
-    /// [`StoreError::Db`].
+    /// [`StoreError::NoRow`] when either row is missing, [`StoreError::Class`] when `derived` is in a less strict class than `source`, [`StoreError::Db`].
     pub async fn link_derivation(
         &mut self,
         derived: Row,
         source: Row,
         source_version: i32,
     ) -> Result<(), StoreError> {
+        let (Some(to), Some(from)) = (self.class_of(derived).await?, self.class_of(source).await?)
+        else {
+            return Err(StoreError::NoRow);
+        };
+        if RetentionClass::for_derivative([to, from]) != Some(to) {
+            return Err(StoreError::Class);
+        }
         sqlx::query!(
             "INSERT INTO one.derivation (owner, id, source_id, source_version) VALUES ($1, $2, $3, $4)
              ON CONFLICT (owner, id, source_id, source_version) DO NOTHING",

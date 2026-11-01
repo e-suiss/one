@@ -1,4 +1,4 @@
-//! Data class, sensitive class, retention class, life area and provenance label vectors against the one-proto types (PV-16, PV-20, M-28, SEC-14).
+//! Data class, sensitive class, retention class, life area and provenance label vectors against the one-proto types and the derivative class (PV-16, PV-20, M-28, M-38, SEC-14).
 
 #![allow(
     clippy::unwrap_used,
@@ -127,4 +127,29 @@ fn pv_20_combined_data_takes_the_union() {
         ]
     );
     assert_eq!(general.union(&general).kinds(), &[DataKind::General]);
+}
+
+#[test]
+fn m_38_a_derivative_takes_its_strictest_source_class() {
+    let path = format!(
+        "{}/../../conformance/memory/vectors/derivative-class.json",
+        env!("CARGO_MANIFEST_DIR")
+    );
+    let all: Vec<serde_json::Value> =
+        serde_json::from_str(&std::fs::read_to_string(path).unwrap()).unwrap();
+    for v in &all {
+        let description = v["description"].as_str().unwrap();
+        let sources: Vec<RetentionClass> = v["input"]["sources"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .map(|c| RetentionClass::from_name(c.as_str().unwrap()).unwrap())
+            .collect();
+        assert_eq!(
+            RetentionClass::for_derivative(sources).map(RetentionClass::as_str),
+            v["expected"]["retention_class"].as_str(),
+            "{description}"
+        );
+    }
+    assert_eq!(all.len(), 9);
 }

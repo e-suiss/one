@@ -1,0 +1,114 @@
+[
+  {
+    "rule": "M-38",
+    "description": "A derivative of one memory record stays in one_memory",
+    "input": {
+      "sources": [
+        "one_memory"
+      ]
+    },
+    "expected": {
+      "retention_class": "one_memory"
+    }
+  },
+  {
+    "rule": "M-38",
+    "description": "A summary of a sensitive record and a normal one takes one_sensitive",
+    "input": {
+      "sources": [
+        "one_memory",
+        "one_sensitive"
+      ]
+    },
+    "expected": {
+      "retention_class": "one_sensitive"
+    }
+  },
+  {
+    "rule": "M-38",
+    "description": "A derivative of a stored observation and a memory record takes one_observation",
+    "input": {
+      "sources": [
+        "one_observation",
+        "one_memory"
+      ]
+    },
+    "expected": {
+      "retention_class": "one_observation"
+    }
+  },
+  {
+    "rule": "M-38",
+    "description": "one_sensitive is stricter than one_observation",
+    "input": {
+      "sources": [
+        "one_observation",
+        "one_sensitive",
+        "one_memory"
+      ]
+    },
+    "expected": {
+      "retention_class": "one_sensitive"
+    }
+  },
+  {
+    "rule": "M-38",
+    "description": "No source, no class",
+    "input": {
+      "sources": []
+    },
+    "expected": {
+      "retention_class": null
+    }
+  },
+  {
+    "rule": "M-38",
+    "description": "A personal model is not a memory derivative source",
+    "input": {
+      "sources": [
+        "one_memory",
+        "one_model"
+      ]
+    },
+    "expected": {
+      "retention_class": null
+    }
+  },
+  {
+    "rule": "M-38",
+    "description": "Content-less trace classes feed no derivative",
+    "input": {
+      "sources": [
+        "one_provider_trace"
+      ]
+    },
+    "expected": {
+      "retention_class": null
+    }
+  },
+  {
+    "rule": "M-38",
+    "description": "Training lineage feeds no derivative",
+    "input": {
+      "sources": [
+        "one_training_lineage"
+      ]
+    },
+    "expected": {
+      "retention_class": null
+    }
+  },
+  {
+    "rule": "M-38",
+    "description": "A browser profile feeds no memory derivative",
+    "input": {
+      "sources": [
+        "one_browser_profile",
+        "one_memory"
+      ]
+    },
+    "expected": {
+      "retention_class": null
+    }
+  }
+]

@@ -1,4 +1,4 @@
-//! Crypto-shred and legal holds against a real database: a record key shred leaves the class DEK and other records, a class shred clears every key of the class, another owner's keys are out of reach, and a hold parks the request as a job that runs once the last order lifts, the retention sweep takes only keys past their end, and account deletion shreds every class but the training lineage (M-25, OP-9 (1), OP-11, OP-12, OP-30).
+//! Crypto-shred and legal holds against a real database: a record key shred leaves the class DEK and other records, a class shred clears every key of the class, another owner's keys are out of reach, and a hold parks the request as a job that runs once the last order lifts, the retention sweep takes only keys past their end, account deletion shreds every class but the training lineage, and a derivative never sits in a less strict class than its source (M-25, M-38, OP-9 (1), OP-11, OP-12, OP-30).
 
 #![allow(
     clippy::unwrap_used,
@@ -10,12 +10,12 @@
 use one_proto::data_class::RetentionClass;
 use one_proto::ontology::CalendarDuration;
 use one_proto::{DekId, EpisodeId, IndexPartId, JobId, LegalHoldId, MemoryRecordId, RecordKeyId};
-use one_store::Uuid;
 use one_store::derivation::Row;
 use one_store::jobs::{self, JobKind, NewJob};
 use one_store::scope::{Owner, OwnerTx};
 use one_store::shred::{Expiry, Shred};
 use one_store::testing::{TestDb, fresh};
+use one_store::{StoreError, Uuid};
 
 fn id(n: u8) -> Uuid {
     Uuid::from_bytes([0x01, 0x9a, 0, 0, 0, 0, 0x70, n, 0x80, 0, 0, 0, 0, 0, 0, n])
@@ -593,4 +593,39 @@ async fn op_12_the_sweep_shreds_only_keys_past_their_retention_end() {
     assert!(key_live(&db, "party:a", 12).await);
     assert!(dek_live(&db, "party:a", 1).await);
     assert!(key_live(&db, "party:a", 21).await);
+}
+
+#[tokio::test]
+async fn m_38_a_derivative_is_never_in_a_less_strict_class_than_its_source() {
+    let db = fresh().await.unwrap();
+    seeded(&db, "party:a").await;
+    seed_memory(&db, "party:a").await;
+    seed_dek(&db, "party:a", 4, "one_sensitive").await;
+    seed_key(&db, "party:a", 38, 4).await;
+    sqlx::query(
+        "INSERT INTO one.memory_record (owner, id, version, status, retention_class, region, record_key_id, dek_id,
+                                        ciphertext, ciphertext_len, promise_version)
+         VALUES ($1, $2, 1, 'active', 'one_sensitive', 'tr', $2, $3, '\\x0102', 2, 1)",
+    )
+    .bind("party:a")
+    .bind(id(38))
+    .bind(id(4))
+    .execute(&db.owner)
+    .await
+    .unwrap();
+    let mut tx = scoped(&db, "party:a").await;
+    assert!(matches!(
+        tx.link_derivation(Row::Memory(mem(32)), Row::Memory(mem(38)), 1)
+            .await,
+        Err(StoreError::Class)
+    ));
+    assert!(matches!(
+        tx.link_derivation(Row::Memory(mem(99)), Row::Memory(mem(32)), 1)
+            .await,
+        Err(StoreError::NoRow)
+    ));
+    tx.link_derivation(Row::Memory(mem(38)), Row::Memory(mem(32)), 1)
+        .await
+        .unwrap();
+    tx.commit().await.unwrap();
 }

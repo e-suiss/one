@@ -45,6 +45,12 @@ pub enum StoreError {
     /// The same idempotency key was used with different content (OP-3).
     #[error("idempotency key reused with different content")]
     Conflict,
+    /// A row the request names does not exist.
+    #[error("no such row")]
+    NoRow,
+    /// A derivative would be in a less strict retention class than its source (M-38).
+    #[error("derivative class is less strict than its source")]
+    Class,
     /// A value is outside what the database takes.
     #[error("value out of range")]
     Range,
