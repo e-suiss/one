@@ -11,6 +11,7 @@ publish = false
 # T-26 (6)
 [dependencies]
 aws-lc-rs.workspace = true
+one-hpke.workspace = true
 one-proto.workspace = true
 one-runtime.workspace = true
 sha2.workspace = true
