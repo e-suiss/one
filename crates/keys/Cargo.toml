@@ -1,6 +1,6 @@
 [package]
 name = "one-keys"
-description = "Key layer: time-bound key permissions, PIN vault guess rules and recovery coordination, retention expiry; key operations plug in through ports (OP-4, PV-12, PV-16, PV-65, T-26)."
+description = "Key layer: the OP-4 key hierarchy, time-bound key permissions, PIN vault guess rules and recovery coordination, retention expiry (OP-4, PV-12, PV-16, PV-65, T-26)."
 version.workspace = true
 edition.workspace = true
 rust-version.workspace = true
@@ -10,9 +10,12 @@ publish = false
 
 # T-26 (6)
 [dependencies]
+aws-lc-rs.workspace = true
 one-proto.workspace = true
 one-runtime.workspace = true
 sha2.workspace = true
+suiss-crypto = { workspace = true, features = ["aead"] }
+zeroize = { workspace = true, features = ["alloc"] }
 
 [dev-dependencies]
 one-parse.workspace = true
