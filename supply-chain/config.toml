@@ -398,16 +398,20 @@ criteria = "safe-to-run"
 version = "4.4.2"
 criteria = "safe-to-run"
 
+[[exemptions.esuiss-access-kernel]]
+version = "0.2.3"
+criteria = "safe-to-deploy"
+
 [[exemptions.esuiss-crypto]]
-version = "0.2.2"
+version = "0.2.3"
 criteria = "safe-to-deploy"
 
 [[exemptions.esuiss-ledger]]
-version = "0.2.2"
+version = "0.2.3"
 criteria = "safe-to-run"
 
 [[exemptions.esuiss-restriction]]
-version = "0.2.2"
+version = "0.2.3"
 criteria = "safe-to-run"
 
 [[exemptions.etcetera]]

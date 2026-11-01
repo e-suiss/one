@@ -1,0 +1,18 @@
+[package]
+name = "one-access-client"
+description = "Access public API client: the Access Decision Profile over OpenID AuthZEN, its discovery document and the Actor Intent Statement One's Instance signs; a decision is allow only when Access says allow (T-14, E-4, E-14, A-2, SEC-1)."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish = false
+
+# T-26 (6)
+[dependencies]
+access-kernel.workspace = true
+serde_json = { workspace = true, features = ["std"] }
+suiss-crypto = { workspace = true, features = ["signer"] }
+
+[lints]
+workspace = true

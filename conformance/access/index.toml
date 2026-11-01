@@ -1,0 +1,11 @@
+# T-14, E-2, E-3, E-14, A-2, SEC-1, E-36
+
+[[vectors]]
+path = "vectors/adp-decision.json"
+kind = "behaviour"
+rules = ["E-14", "A-2", "SEC-1", "E-36"]
+
+[[vectors]]
+path = "vectors/discovery.json"
+kind = "behaviour"
+rules = ["E-2", "E-3"]

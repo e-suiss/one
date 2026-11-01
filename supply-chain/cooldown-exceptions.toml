@@ -2,18 +2,24 @@
 
 [[exception]]
 crate = "esuiss-crypto"
-version = "0.2.2"
+version = "0.2.3"
 first_party = true
-reason = "first-party Suiss release published by e-suiss/access trusted publishing from tag 0.2.2 (595e1e8); its third-party dependencies keep the full cooldown"
+reason = "first-party Suiss release published by e-suiss/access trusted publishing from tag 0.2.3 (b6d3919); its third-party dependencies keep the full cooldown"
 
 [[exception]]
 crate = "esuiss-ledger"
-version = "0.2.2"
+version = "0.2.3"
 first_party = true
-reason = "first-party Suiss release published by e-suiss/access trusted publishing from tag 0.2.2 (595e1e8); its third-party dependencies keep the full cooldown"
+reason = "first-party Suiss release published by e-suiss/access trusted publishing from tag 0.2.3 (b6d3919); its third-party dependencies keep the full cooldown"
 
 [[exception]]
 crate = "esuiss-restriction"
-version = "0.2.2"
+version = "0.2.3"
 first_party = true
-reason = "first-party Suiss release published by e-suiss/access trusted publishing from tag 0.2.2 (595e1e8); its third-party dependencies keep the full cooldown"
+reason = "first-party Suiss release published by e-suiss/access trusted publishing from tag 0.2.3 (b6d3919); its third-party dependencies keep the full cooldown"
+
+[[exception]]
+crate = "esuiss-access-kernel"
+version = "0.2.3"
+first_party = true
+reason = "first-party Suiss release published by e-suiss/access trusted publishing from tag 0.2.3 (b6d3919); its third-party dependencies keep the full cooldown"

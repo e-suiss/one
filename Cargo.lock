@@ -1175,10 +1175,24 @@ dependencies = [
 ]
 
 [[package]]
-name = "esuiss-crypto"
-version = "0.2.2"
+name = "esuiss-access-kernel"
+version = "0.2.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c0858a3f5d7c4fa7496e0f2ec50f35cdcc653c6defcdc330e67a8a60f995ec58"
+checksum = "fc59218fe3d9c15638b919e064146f8e047a7852f9160a65381d66b1ce898b10"
+dependencies = [
+ "curve25519-dalek",
+ "ed25519-dalek",
+ "esuiss-crypto",
+ "p256",
+ "sha2 0.11.1",
+ "thiserror",
+]
+
+[[package]]
+name = "esuiss-crypto"
+version = "0.2.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "567f50b52d48a960973a1e5093029dd17a8a598f70cd0f472008e2e0d95dc491"
 dependencies = [
  "aws-lc-rs",
  "cryptoki",
@@ -1194,9 +1208,9 @@ dependencies = [
 
 [[package]]
 name = "esuiss-ledger"
-version = "0.2.2"
+version = "0.2.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6b8d173de13858a156e6a877ca3783ba9cd2dd9224b083ba6177c4c16be93fdd"
+checksum = "e9b786b6fa2b156dd2e6b42ef79c18ca82eead377276636c00a3075249a2368b"
 dependencies = [
  "esuiss-crypto",
  "sha2 0.11.1",
@@ -1205,9 +1219,9 @@ dependencies = [
 
 [[package]]
 name = "esuiss-restriction"
-version = "0.2.2"
+version = "0.2.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b2a139a8bee51a0a4758ee11eab2c9af3df66be7a6d4c11739ffd76d1eac4eff"
+checksum = "bdff36f6f4edb5343844fe3cb5bcfafc8c220ada80a8211cd92cf76d2448dbe3"
 dependencies = [
  "cedar-policy",
  "serde_json",
@@ -2435,6 +2449,15 @@ name = "once_cell"
 version = "1.21.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9f7c3e4beb33f85d45ae3e3a1792185706c8e16d043238c593331cc7cd313b50"
+
+[[package]]
+name = "one-access-client"
+version = "0.0.0"
+dependencies = [
+ "esuiss-access-kernel",
+ "esuiss-crypto",
+ "serde_json",
+]
 
 [[package]]
 name = "one-cli"

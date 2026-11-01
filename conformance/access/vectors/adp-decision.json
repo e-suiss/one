@@ -1,0 +1,383 @@
+[
+  {
+    "rule": "E-14",
+    "description": "an allow in commit mode with its Exercise lets One go on",
+    "input": {
+      "mode": "commit",
+      "status": 200,
+      "body": {
+        "decision": true,
+        "context": {
+          "outcome": "allow",
+          "versions": {
+            "core": 1,
+            "meta_schema": 1
+          },
+          "exercise": "AAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8",
+          "basis_ref": "r1",
+          "consistency_token": "t1"
+        }
+      }
+    },
+    "expected": {
+      "decision": "allow",
+      "allows": true
+    }
+  },
+  {
+    "rule": "E-14",
+    "description": "an allow in continue mode with its Exercise lets One go on",
+    "input": {
+      "mode": "continue",
+      "status": 200,
+      "body": {
+        "decision": true,
+        "context": {
+          "outcome": "allow",
+          "versions": {
+            "core": 1,
+            "meta_schema": 1
+          },
+          "exercise": "AAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8",
+          "consistency_token": "t1"
+        }
+      }
+    },
+    "expected": {
+      "decision": "allow",
+      "allows": true
+    }
+  },
+  {
+    "rule": "A-2",
+    "description": "an advisory allow in check mode is never a go",
+    "input": {
+      "mode": "check",
+      "status": 200,
+      "body": {
+        "decision": true,
+        "context": {
+          "outcome": "allow",
+          "versions": {
+            "core": 1,
+            "meta_schema": 1
+          },
+          "advisory": true,
+          "consistency_token": "t1"
+        }
+      }
+    },
+    "expected": {
+      "decision": "allow",
+      "allows": false
+    }
+  },
+  {
+    "rule": "A-2",
+    "description": "an allow in commit mode without its Exercise is malformed, not an allow",
+    "input": {
+      "mode": "commit",
+      "status": 200,
+      "body": {
+        "decision": true,
+        "context": {
+          "outcome": "allow",
+          "versions": {
+            "core": 1,
+            "meta_schema": 1
+          }
+        }
+      }
+    },
+    "expected": {
+      "decision": "no_allow",
+      "reason": "malformed",
+      "allows": false
+    }
+  },
+  {
+    "rule": "A-2",
+    "description": "decision true with outcome deny is malformed, not an allow",
+    "input": {
+      "mode": "commit",
+      "status": 200,
+      "body": {
+        "decision": true,
+        "context": {
+          "outcome": "deny",
+          "versions": {
+            "core": 1,
+            "meta_schema": 1
+          }
+        }
+      }
+    },
+    "expected": {
+      "decision": "no_allow",
+      "reason": "malformed",
+      "allows": false
+    }
+  },
+  {
+    "rule": "A-2",
+    "description": "outcome allow with decision false is malformed, not an allow",
+    "input": {
+      "mode": "commit",
+      "status": 200,
+      "body": {
+        "decision": false,
+        "context": {
+          "outcome": "allow",
+          "versions": {
+            "core": 1,
+            "meta_schema": 1
+          },
+          "exercise": "AAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8"
+        }
+      }
+    },
+    "expected": {
+      "decision": "no_allow",
+      "reason": "malformed",
+      "allows": false
+    }
+  },
+  {
+    "rule": "A-2",
+    "description": "an advisory answer to a commit request is malformed",
+    "input": {
+      "mode": "commit",
+      "status": 200,
+      "body": {
+        "decision": true,
+        "context": {
+          "outcome": "allow",
+          "versions": {
+            "core": 1,
+            "meta_schema": 1
+          },
+          "exercise": "AAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8",
+          "advisory": true
+        }
+      }
+    },
+    "expected": {
+      "decision": "no_allow",
+      "reason": "malformed",
+      "allows": false
+    }
+  },
+  {
+    "rule": "A-2",
+    "description": "a recorded answer to a check request is malformed",
+    "input": {
+      "mode": "check",
+      "status": 200,
+      "body": {
+        "decision": true,
+        "context": {
+          "outcome": "allow",
+          "versions": {
+            "core": 1,
+            "meta_schema": 1
+          },
+          "exercise": "AAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8"
+        }
+      }
+    },
+    "expected": {
+      "decision": "no_allow",
+      "reason": "malformed",
+      "allows": false
+    }
+  },
+  {
+    "rule": "SEC-1",
+    "description": "a deny carries its blockers and stops",
+    "input": {
+      "mode": "commit",
+      "status": 200,
+      "body": {
+        "decision": false,
+        "context": {
+          "outcome": "deny",
+          "versions": {
+            "core": 1,
+            "meta_schema": 1
+          },
+          "blockers": [
+            {
+              "code": "not-covered"
+            }
+          ]
+        }
+      }
+    },
+    "expected": {
+      "decision": "deny",
+      "blockers": 1,
+      "allows": false
+    }
+  },
+  {
+    "rule": "A-2",
+    "description": "require_action carries blockers and unmet requirements and stops",
+    "input": {
+      "mode": "commit",
+      "status": 200,
+      "body": {
+        "decision": false,
+        "context": {
+          "outcome": "require_action",
+          "versions": {
+            "core": 1,
+            "meta_schema": 1
+          },
+          "blockers": [
+            {
+              "code": "approval"
+            }
+          ],
+          "unmet": [
+            {
+              "kind": "approval"
+            },
+            {
+              "kind": "step-up"
+            }
+          ]
+        }
+      }
+    },
+    "expected": {
+      "decision": "require_action",
+      "blockers": 1,
+      "unmet": 2,
+      "allows": false
+    }
+  },
+  {
+    "rule": "E-14",
+    "description": "a protocol error is no allow and keeps its code",
+    "input": {
+      "mode": "commit",
+      "status": 400,
+      "body": {
+        "type": "about:blank",
+        "code": "carrier"
+      }
+    },
+    "expected": {
+      "decision": "no_allow",
+      "reason": "status",
+      "status": 400,
+      "code": "carrier",
+      "allows": false
+    }
+  },
+  {
+    "rule": "E-14",
+    "description": "a rate limit is no allow",
+    "input": {
+      "mode": "commit",
+      "status": 429,
+      "body": {
+        "code": "rate-limited"
+      }
+    },
+    "expected": {
+      "decision": "no_allow",
+      "reason": "status",
+      "status": 429,
+      "code": "rate-limited",
+      "allows": false
+    }
+  },
+  {
+    "rule": "E-36",
+    "description": "an unavailable domain is no allow, whatever the body says",
+    "input": {
+      "mode": "commit",
+      "status": 503,
+      "body": {
+        "decision": true,
+        "context": {
+          "outcome": "allow",
+          "versions": {
+            "core": 1,
+            "meta_schema": 1
+          },
+          "exercise": "AAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8"
+        }
+      }
+    },
+    "expected": {
+      "decision": "no_allow",
+      "reason": "status",
+      "status": 503,
+      "allows": false
+    }
+  },
+  {
+    "rule": "A-2",
+    "description": "a body that is not JSON is malformed",
+    "input": {
+      "mode": "commit",
+      "status": 200,
+      "raw": "allow"
+    },
+    "expected": {
+      "decision": "no_allow",
+      "reason": "malformed",
+      "allows": false
+    }
+  },
+  {
+    "rule": "A-2",
+    "description": "an unknown outcome is malformed",
+    "input": {
+      "mode": "commit",
+      "status": 200,
+      "body": {
+        "decision": true,
+        "context": {
+          "outcome": "permit",
+          "versions": {
+            "core": 1,
+            "meta_schema": 1
+          },
+          "exercise": "AAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8"
+        }
+      }
+    },
+    "expected": {
+      "decision": "no_allow",
+      "reason": "malformed",
+      "allows": false
+    }
+  },
+  {
+    "rule": "A-2",
+    "description": "an Exercise that is not 32 bytes is malformed",
+    "input": {
+      "mode": "commit",
+      "status": 200,
+      "body": {
+        "decision": true,
+        "context": {
+          "outcome": "allow",
+          "versions": {
+            "core": 1,
+            "meta_schema": 1
+          },
+          "exercise": "AAAA"
+        }
+      }
+    },
+    "expected": {
+      "decision": "no_allow",
+      "reason": "malformed",
+      "allows": false
+    }
+  }
+]

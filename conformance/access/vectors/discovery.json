@@ -1,0 +1,136 @@
+[
+  {
+    "rule": "E-3",
+    "description": "a document from its issuer with the ADP capability is read",
+    "input": {
+      "issuer": "https://access.example",
+      "body": {
+        "policy_decision_point": "https://access.example",
+        "access_evaluation_endpoint": "https://access.example/access/v1/evaluation",
+        "access_evaluations_endpoint": "https://access.example/access/v1/evaluations",
+        "capabilities": [
+          "urn:esuiss:access:adp:1",
+          "urn:esuiss:access:explain:1",
+          "urn:esuiss:access:consistency-token:1"
+        ]
+      }
+    },
+    "expected": {
+      "ok": true,
+      "evaluation": "https://access.example/access/v1/evaluation"
+    }
+  },
+  {
+    "rule": "E-3",
+    "description": "another issuer is refused",
+    "input": {
+      "issuer": "https://access.example",
+      "body": {
+        "policy_decision_point": "https://evil.example",
+        "access_evaluation_endpoint": "https://access.example/access/v1/evaluation",
+        "access_evaluations_endpoint": "https://access.example/access/v1/evaluations",
+        "capabilities": [
+          "urn:esuiss:access:adp:1",
+          "urn:esuiss:access:explain:1",
+          "urn:esuiss:access:consistency-token:1"
+        ]
+      }
+    },
+    "expected": {
+      "error": "issuer"
+    }
+  },
+  {
+    "rule": "E-3",
+    "description": "an evaluation endpoint on another origin is refused",
+    "input": {
+      "issuer": "https://access.example",
+      "body": {
+        "policy_decision_point": "https://access.example",
+        "access_evaluation_endpoint": "https://evil.example/access/v1/evaluation",
+        "access_evaluations_endpoint": "https://access.example/access/v1/evaluations",
+        "capabilities": [
+          "urn:esuiss:access:adp:1",
+          "urn:esuiss:access:explain:1",
+          "urn:esuiss:access:consistency-token:1"
+        ]
+      }
+    },
+    "expected": {
+      "error": "origin"
+    }
+  },
+  {
+    "rule": "E-3",
+    "description": "a plain HTTP endpoint is refused",
+    "input": {
+      "issuer": "https://access.example",
+      "body": {
+        "policy_decision_point": "https://access.example",
+        "access_evaluation_endpoint": "http://access.example/access/v1/evaluation",
+        "access_evaluations_endpoint": "https://access.example/access/v1/evaluations",
+        "capabilities": [
+          "urn:esuiss:access:adp:1",
+          "urn:esuiss:access:explain:1",
+          "urn:esuiss:access:consistency-token:1"
+        ]
+      }
+    },
+    "expected": {
+      "error": "origin"
+    }
+  },
+  {
+    "rule": "E-3",
+    "description": "a host that only starts like the issuer is another origin",
+    "input": {
+      "issuer": "https://access.example",
+      "body": {
+        "policy_decision_point": "https://access.example",
+        "access_evaluation_endpoint": "https://access.example/access/v1/evaluation",
+        "access_evaluations_endpoint": "https://access.example.evil/access/v1/evaluations",
+        "capabilities": [
+          "urn:esuiss:access:adp:1",
+          "urn:esuiss:access:explain:1",
+          "urn:esuiss:access:consistency-token:1"
+        ]
+      }
+    },
+    "expected": {
+      "error": "origin"
+    }
+  },
+  {
+    "rule": "E-2",
+    "description": "a domain without the ADP capability is refused",
+    "input": {
+      "issuer": "https://access.example",
+      "body": {
+        "policy_decision_point": "https://access.example",
+        "access_evaluation_endpoint": "https://access.example/access/v1/evaluation",
+        "access_evaluations_endpoint": "https://access.example/access/v1/evaluations",
+        "capabilities": [
+          "urn:esuiss:access:explain:1"
+        ]
+      }
+    },
+    "expected": {
+      "error": "capability"
+    }
+  },
+  {
+    "rule": "E-2",
+    "description": "a document without capabilities is malformed",
+    "input": {
+      "issuer": "https://access.example",
+      "body": {
+        "policy_decision_point": "https://access.example",
+        "access_evaluation_endpoint": "https://access.example/access/v1/evaluation",
+        "access_evaluations_endpoint": "https://access.example/access/v1/evaluations"
+      }
+    },
+    "expected": {
+      "error": "malformed"
+    }
+  }
+]

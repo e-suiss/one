@@ -118,7 +118,7 @@ deny = [
     { crate = "serde_stacker", reason = "OP-5, §14.6: unbounded JSON depth" },
     { crate = "unshare", reason = "OP-5: unmaintained" },
     { crate = "cap", reason = "OP-5: aborts when the limit is exceeded" },
-        { crate = "p256", wrappers = ["esuiss-crypto"], reason = "OP-5: aws-lc-rs is 7.6x/4.9x faster; Access OP-140 m.2: verify-only in the shared verify feature" },
+        { crate = "p256", wrappers = ["esuiss-crypto", "esuiss-access-kernel"], reason = "OP-5: aws-lc-rs is 7.6x/4.9x faster; Access OP-140 m.2: verify-only in the shared verify feature" },
     { crate = "diesel@<2.3.8", reason = "OP-5: RUSTSEC-2026-0136" },
         { crate = "io-uring", reason = "SA-22" },
     { crate = "tokio-uring", reason = "SA-22" },
