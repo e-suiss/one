@@ -1,4 +1,4 @@
-//! Every vector of `conformance/keys/vectors/kek-device.json` and `permission-wrap.json`, and the attestation binding of `conformance/tee/vectors/hpke.json`: Secure Enclave, StrongBox and passkey copies of the KEK, the refusal of an operator-held wrap, and a DEK sealed only to an attested job key for one permission body and one class (PV-5, PV-61, PV-65, SEC-27).
+//! Every vector of `conformance/keys/vectors/kek-device.json` and `permission-wrap.json`, and the attestation binding of `conformance/tee/vectors/hpke.json`: Secure Enclave, `StrongBox` and passkey copies of the KEK, the refusal of an operator-held wrap, and a DEK sealed only to an attested job key for one permission body and one class (PV-5, PV-61, PV-65, SEC-27).
 
 #![allow(
     clippy::unwrap_used,

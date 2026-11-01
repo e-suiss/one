@@ -1,4 +1,4 @@
-//! The PKCS#11 store against a real SoftHSM token: a KEK generated or imported inside the token wraps and unwraps DEKs with the same RFC 3394 bytes as the software path, a wrap under another KEK does not unwrap, and a P-256 signing key signs inside the token (T-51, T-27 (9), OP-4).
+//! The PKCS#11 store against a real `SoftHSM` token: a KEK generated or imported inside the token wraps and unwraps DEKs with the same RFC 3394 bytes as the software path, a wrap under another KEK does not unwrap, and a P-256 signing key signs inside the token (T-51, T-27 (9), OP-4).
 
 #![allow(
     clippy::unwrap_used,

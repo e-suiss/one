@@ -1,4 +1,4 @@
-//! The user KEK's copies (PV-5, PV-61): on a device it is sealed with HPKE DHKEM(P-256) to the Secure Enclave key or wrapped with AES-256 Key Wrap under the StrongBox or TPM key, on a passkey it is wrapped under a key stretched from the WebAuthn PRF output; no copy is ever wrapped by a key an operator holds.
+//! The user KEK's copies (PV-5, PV-61): on a device it is sealed with HPKE DHKEM(P-256) to the Secure Enclave key or wrapped with AES-256 Key Wrap under the `StrongBox` or TPM key, on a passkey it is wrapped under a key stretched from the `WebAuthn` PRF output; no copy is ever wrapped by a key an operator holds.
 
 use aws_lc_rs::hkdf::{HKDF_SHA256, Salt};
 use one_hpke::{HpkeError, Kem, KeyPair, setup_receiver, setup_sender, setup_sender_with};
@@ -22,11 +22,11 @@ pub const PRF_LABEL: &[u8] = b"one/kek/passkey/v1";
 pub enum Holder {
     /// An Apple device's Secure Enclave (P-256 only).
     SecureEnclave,
-    /// An Android StrongBox.
+    /// An Android `StrongBox`.
     StrongBox,
     /// A TPM.
     Tpm,
-    /// A passkey through the WebAuthn PRF extension.
+    /// A passkey through the `WebAuthn` PRF extension.
     Passkey,
     /// A recovery path (PV-12).
     Recovery,
@@ -159,7 +159,7 @@ pub fn open_enclave_copy(
     Ok(key_from_slice(&kek)?)
 }
 
-/// Wraps `kek` under a StrongBox or TPM AES key.
+/// Wraps `kek` under a `StrongBox` or TPM AES key.
 ///
 /// # Errors
 /// [`DeviceError::Key`].
