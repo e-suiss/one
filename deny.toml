@@ -137,6 +137,13 @@ deny = [
     { crate = "mini-moka", reason = "T-7: no cache without a measurement" },
     { crate = "quick_cache", reason = "T-7: no cache without a measurement" },
     { crate = "cached", reason = "T-7: no cache without a measurement" },
+        { crate = "aws-sdk-kms", reason = "T-51: keys only through PKCS#11, no cloud KMS" },
+    { crate = "rusoto_kms", reason = "T-51: keys only through PKCS#11, no cloud KMS" },
+    { crate = "google-cloud-kms", reason = "T-51: keys only through PKCS#11, no cloud KMS" },
+    { crate = "google-cloudkms1", reason = "T-51: keys only through PKCS#11, no cloud KMS" },
+    { crate = "azure_security_keyvault", reason = "T-51: keys only through PKCS#11, no cloud KMS" },
+    { crate = "azure_security_keyvault_keys", reason = "T-51: keys only through PKCS#11, no cloud KMS" },
+    { crate = "vaultrs", reason = "T-51: keys only through PKCS#11, no cloud KMS" },
 ]
 
 [[bans.features]]
