@@ -1,4 +1,4 @@
-//! Checks specific to One: clock and randomness ports, comment policy, trusted-label callers, the TEE boundary and release trust store, plain columns, claims language, catalogs, data inventory, platform policy, model files, migrations, the Python boundary, sibling-product code and commit trailers.
+//! Checks specific to One: clock and randomness ports, comment policy, trusted-label callers, the TEE boundary and release trust store, plain columns and their published list, claims language, catalogs, data inventory, platform policy, model files, migrations, the Python boundary, sibling-product code and commit trailers.
 
 #[path = "one_boundaries.rs"]
 mod boundaries;
@@ -28,6 +28,8 @@ mod plain_columns;
 mod platform;
 #[path = "one_registry.rs"]
 mod registry;
+#[path = "one_security_design.rs"]
+pub(crate) mod security_design;
 #[path = "one_tee.rs"]
 mod tee;
 #[path = "one_types.rs"]
@@ -80,6 +82,10 @@ pub(crate) fn checks() -> Vec<Check> {
         Check {
             name: "plain-columns",
             run: plain_columns::check,
+        },
+        Check {
+            name: "security-design",
+            run: security_design::check,
         },
         Check {
             name: "python-boundary",

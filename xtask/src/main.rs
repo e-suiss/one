@@ -86,6 +86,7 @@ fn usage() -> ExitCode {
     eprintln!("  check [NAME]        run all rule checks, or only NAME");
     eprintln!("  list                list check names");
     eprintln!("  catalog             regenerate conformance/catalog from the local spec (T-55)");
+    eprintln!("  security-design     regenerate the published plain-metadata list (SEC-30)");
     eprintln!("  coverage            print the rule coverage report (T-38 (1))");
     eprintln!("  commits BASE HEAD   check commit trailers on BASE..HEAD (T-44 (3))");
     eprintln!("  asyncapi-breaking BASE  fail on breaking event catalog changes since BASE (T-31)");
@@ -109,6 +110,7 @@ fn main() -> ExitCode {
         }
         Some("catalog") => catalog::generate(&root),
         Some("coverage") => catalog::report(&root),
+        Some("security-design") => one_checks::security_design::generate(&root),
         Some("sibling-refs") => {
             devtools::sibling_refs(&root, args.get(1).map(String::as_str) == Some("--update"))
         }

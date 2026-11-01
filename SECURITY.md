@@ -13,3 +13,7 @@ Include what is affected, how to reproduce it and the impact you expect.
 - A leaked secret is revoked or rotated first, then removed from history; it stays compromised once it has been public.
 - Fixes ship under their own heading in the changelog. When users need to do something, the product and the release notes say so in plain language.
 - Confirmed vulnerabilities are published as GitHub security advisories once a fix has shipped.
+
+## Published design
+
+- [Plain metadata](security/plain-metadata.en.md) ([Türkçe](security/plain-metadata.tr.md)): the only columns stored without encryption, generated from `conformance/store/plain-columns.toml`.

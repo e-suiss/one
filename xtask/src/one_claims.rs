@@ -10,7 +10,13 @@ use crate::Violation;
 
 pub(crate) const CLAIMS_FILE: &str = "conformance/catalog/forbidden-claims.toml";
 const CATALOG_DIR: &str = "packages/i18n/messages";
-const DOCUMENTS: &[&str] = &["README.md", "CONTRIBUTING.md", "SECURITY.md"];
+const DOCUMENTS: &[&str] = &[
+    "README.md",
+    "CONTRIBUTING.md",
+    "SECURITY.md",
+    "security/plain-metadata.en.md",
+    "security/plain-metadata.tr.md",
+];
 
 #[derive(Debug, Deserialize)]
 #[serde(deny_unknown_fields)]
