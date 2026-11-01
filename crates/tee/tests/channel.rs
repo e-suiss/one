@@ -4,6 +4,8 @@
     clippy::unwrap_used,
     clippy::panic,
     clippy::indexing_slicing,
+    clippy::arithmetic_side_effects,
+    clippy::format_collect,
     reason = "T-38"
 )]
 
@@ -50,10 +52,7 @@ fn bytes(v: &Value) -> Vec<u8> {
 }
 
 fn hex(b: &[u8]) -> String {
-    b.iter().fold(String::new(), |mut s, x| {
-        s.push_str(&format!("{x:02x}"));
-        s
-    })
+    b.iter().map(|x| format!("{x:02x}")).collect()
 }
 
 fn evidence(report: [u8; 64]) -> Evidence {
