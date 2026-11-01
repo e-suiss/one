@@ -15,6 +15,7 @@ one-hpke.workspace = true
 one-proto.workspace = true
 one-runtime.workspace = true
 serde = { workspace = true, features = ["derive", "std"] }
+suiss-crypto = { workspace = true, features = ["aws-lc"] }
 zeroize = { workspace = true, features = ["alloc"] }
 
 [dev-dependencies]

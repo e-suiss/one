@@ -82,7 +82,7 @@ pub const VENDOR_ROOTS: &[TrustRoot] = &[
 pub const LOCAL_ROOTS: &[TrustRoot] = &[TrustRoot {
     name: "one-tee-simulator",
     platform: "simulator",
-    sha256: "pending",
+    sha256: "0fe10d552b9ad6f6b6b396352c5a9a5924f6acef697845d10f60f255438974fc",
     profiles: &[Profile::Dev],
 }];
 

@@ -6,6 +6,8 @@ pub mod domain;
 pub mod frame;
 pub mod ports;
 pub mod sealed;
+#[cfg(debug_assertions)]
+pub mod simulator;
 
 pub use frame::Unsealed;
 pub use sealed::{LeavesTee, RecordKeyId, Sealed};

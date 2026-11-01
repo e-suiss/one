@@ -2651,6 +2651,7 @@ name = "one-tee"
 version = "0.0.0"
 dependencies = [
  "aws-lc-rs",
+ "esuiss-crypto",
  "one-hpke",
  "one-proto",
  "one-runtime",
