@@ -58,10 +58,12 @@ impl Kem {
     }
 
     fn hpke_suite(self) -> [u8; 10] {
-        let [a, b] = self.id().to_be_bytes();
-        let [c, d] = KDF_ID.to_be_bytes();
-        let [e, f] = AEAD_ID.to_be_bytes();
-        [b'H', b'P', b'K', b'E', a, b, c, d, e, f]
+        let [kem_hi, kem_lo] = self.id().to_be_bytes();
+        let [kdf_hi, kdf_lo] = KDF_ID.to_be_bytes();
+        let [aead_hi, aead_lo] = AEAD_ID.to_be_bytes();
+        [
+            b'H', b'P', b'K', b'E', kem_hi, kem_lo, kdf_hi, kdf_lo, aead_hi, aead_lo,
+        ]
     }
 }
 
@@ -189,7 +191,7 @@ impl KeyPair {
     fn dh(&self, public: &[u8]) -> Result<Zeroizing<Vec<u8>>, HpkeError> {
         agreement::agree(
             &self.key,
-            &UnparsedPublicKey::new(self.kem.algorithm(), public),
+            UnparsedPublicKey::new(self.kem.algorithm(), public),
             HpkeError::Key,
             |secret| Ok(Zeroizing::new(secret.to_vec())),
         )
