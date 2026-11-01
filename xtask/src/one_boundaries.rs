@@ -142,6 +142,36 @@ pub(crate) const SIBLING_CRATES: &[(&str, &str)] = &[
     ),
 ];
 
+/// Sibling-owned crates One may use only through the listed dependents: the recovery PIN is stretched on the device (PV-12).
+pub(crate) const SIBLING_SCOPED: &[(&str, &[&str])] =
+    &[("argon2", &["one-core"]), ("password-hash", &["argon2"])];
+
+fn dependents(lock: &str, name: &str) -> Result<Vec<String>, String> {
+    let table: toml::Table = lock.parse().map_err(|e| format!("Cargo.lock: {e}"))?;
+    let packages = table
+        .get("package")
+        .and_then(toml::Value::as_array)
+        .cloned()
+        .unwrap_or_default();
+    Ok(packages
+        .iter()
+        .filter(|p| {
+            p.get("dependencies")
+                .and_then(toml::Value::as_array)
+                .is_some_and(|deps| {
+                    deps.iter()
+                        .filter_map(toml::Value::as_str)
+                        .any(|d| d == name || d.split_once(' ').is_some_and(|(n, _)| n == name))
+                })
+        })
+        .filter_map(|p| {
+            p.get("name")
+                .and_then(toml::Value::as_str)
+                .map(str::to_owned)
+        })
+        .collect())
+}
+
 pub(crate) const SIBLING_NPM: &[(&str, &str)] = &[
     ("firebase-admin", "push delivery belongs to Relay"),
     ("web-push", "push delivery belongs to Relay"),
@@ -173,6 +203,12 @@ pub(crate) fn check_siblings(root: &Path) -> Result<Vec<Violation>, String> {
     let lock = read(&root.join("Cargo.lock"))?;
     for pkg in cooldown_lock(&lock)? {
         if let Some((_, why)) = SIBLING_CRATES.iter().find(|(n, _)| *n == pkg.name) {
+            if let Some((_, allowed)) = SIBLING_SCOPED.iter().find(|(n, _)| *n == pkg.name) {
+                let users = dependents(&lock, &pkg.name)?;
+                if !users.is_empty() && users.iter().all(|u| allowed.contains(&u.as_str())) {
+                    continue;
+                }
+            }
             out.push(v(
                 "INV-37",
                 "Cargo.lock",

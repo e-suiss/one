@@ -20,6 +20,7 @@ use one_keys::job_key::{
 };
 use one_keys::seal::key_from_slice;
 use one_proto::data_class::RetentionClass;
+use one_proto::recovery::KekId;
 use serde_json::Value;
 use suiss_crypto::secret::Secret;
 
@@ -43,7 +44,7 @@ fn pv_5_kek_device_vectors() {
                 Ok(Holder::SecureEnclave) => {
                     let h = &input["hpke"];
                     let ephemeral = KeyPair::from_private(Kem::P256, &bytes(&h["skEm"])).unwrap();
-                    let kek_id = input["kek_id"].as_str().unwrap();
+                    let kek_id = &KekId::parse(input["kek_id"].as_str().unwrap()).unwrap();
                     let kek = secret(&input["kek"]);
                     let copy =
                         seal_to_enclave_with(&ephemeral, kek_id, &kek, &bytes(&h["pkRm"])).unwrap();
@@ -53,7 +54,8 @@ fn pv_5_kek_device_vectors() {
                     let back = open_enclave_copy(&device, kek_id, &copy).unwrap();
                     assert!(back.ct_eq(&kek), "{d}");
                     assert!(
-                        open_enclave_copy(&device, "kek_other", &copy).is_err(),
+                        open_enclave_copy(&device, &KekId::parse("kek_other").unwrap(), &copy)
+                            .is_err(),
                         "{d}"
                     );
                 }
@@ -73,7 +75,7 @@ fn pv_5_kek_device_vectors() {
                     "{d}"
                 );
                 let prf = secret(&input["prf_output"]);
-                let kek_id = input["kek_id"].as_str().unwrap();
+                let kek_id = &KekId::parse(input["kek_id"].as_str().unwrap()).unwrap();
                 let key = passkey_wrapping_key(&prf, kek_id).unwrap();
                 assert_eq!(
                     hex(key.expose()),
@@ -89,7 +91,8 @@ fn pv_5_kek_device_vectors() {
                         .ct_eq(&kek)
                 );
                 assert!(
-                    unwrap_passkey_copy(&prf, "kek_other", &wrapped).is_err(),
+                    unwrap_passkey_copy(&prf, &KekId::parse("kek_other").unwrap(), &wrapped)
+                        .is_err(),
                     "{d}"
                 );
             }
@@ -111,13 +114,18 @@ fn pv_5_a_fresh_enclave_copy_opens_only_on_its_device() {
     let device = KeyPair::generate(Kem::P256).unwrap();
     let other = KeyPair::generate(Kem::P256).unwrap();
     let kek = Secret::new([5_u8; 32]);
-    let copy: EnclaveCopy = seal_to_enclave("kek_1", &kek, &device.public_key().unwrap()).unwrap();
+    let copy: EnclaveCopy = seal_to_enclave(
+        &KekId::parse("kek_1").unwrap(),
+        &kek,
+        &device.public_key().unwrap(),
+    )
+    .unwrap();
     assert!(
-        open_enclave_copy(&device, "kek_1", &copy)
+        open_enclave_copy(&device, &KekId::parse("kek_1").unwrap(), &copy)
             .unwrap()
             .ct_eq(&kek)
     );
-    assert!(open_enclave_copy(&other, "kek_1", &copy).is_err());
+    assert!(open_enclave_copy(&other, &KekId::parse("kek_1").unwrap(), &copy).is_err());
 }
 
 fn class(v: &Value) -> RetentionClass {

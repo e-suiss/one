@@ -2,6 +2,7 @@
 
 use aws_lc_rs::hkdf::{HKDF_SHA256, Salt};
 use one_hpke::{HpkeError, Kem, KeyPair, setup_receiver, setup_sender, setup_sender_with};
+use one_proto::recovery::KekId;
 use sha2::{Digest as _, Sha256};
 use suiss_crypto::secret::Secret;
 use zeroize::Zeroizing;
@@ -110,9 +111,9 @@ pub struct EnclaveCopy {
     pub ct: Vec<u8>,
 }
 
-fn device_info(kek_id: &str) -> Vec<u8> {
+fn device_info(kek_id: &KekId) -> Vec<u8> {
     let mut info = DEVICE_INFO.to_vec();
-    info.extend_from_slice(kek_id.as_bytes());
+    info.extend_from_slice(kek_id.as_str().as_bytes());
     info
 }
 
@@ -121,7 +122,7 @@ fn device_info(kek_id: &str) -> Vec<u8> {
 /// # Errors
 /// [`DeviceError::Hpke`].
 pub fn seal_to_enclave(
-    kek_id: &str,
+    kek_id: &KekId,
     kek: &Secret<[u8; 32]>,
     device_key: &[u8],
 ) -> Result<EnclaveCopy, DeviceError> {
@@ -136,7 +137,7 @@ pub fn seal_to_enclave(
 /// [`DeviceError::Hpke`].
 pub fn seal_to_enclave_with(
     ephemeral: &KeyPair,
-    kek_id: &str,
+    kek_id: &KekId,
     kek: &Secret<[u8; 32]>,
     device_key: &[u8],
 ) -> Result<EnclaveCopy, DeviceError> {
@@ -151,7 +152,7 @@ pub fn seal_to_enclave_with(
 /// [`DeviceError::Hpke`], [`DeviceError::Key`].
 pub fn open_enclave_copy(
     device: &KeyPair,
-    kek_id: &str,
+    kek_id: &KekId,
     copy: &EnclaveCopy,
 ) -> Result<Secret<[u8; 32]>, DeviceError> {
     let mut ctx = setup_receiver(device, &copy.enc, &device_info(kek_id))?;
@@ -182,10 +183,10 @@ pub fn prf_input() -> [u8; 32] {
 /// [`DeviceError::Key`].
 pub fn passkey_wrapping_key(
     prf_output: &Secret<[u8; 32]>,
-    kek_id: &str,
+    kek_id: &KekId,
 ) -> Result<Secret<[u8; 32]>, DeviceError> {
     let mut info = PASSKEY_INFO.to_vec();
-    info.extend_from_slice(kek_id.as_bytes());
+    info.extend_from_slice(kek_id.as_str().as_bytes());
     let prk = Salt::new(HKDF_SHA256, &[]).extract(prf_output.expose());
     let parts = [info.as_slice()];
     let okm = prk
@@ -202,7 +203,7 @@ pub fn passkey_wrapping_key(
 /// [`DeviceError::Key`].
 pub fn wrap_for_passkey(
     prf_output: &Secret<[u8; 32]>,
-    kek_id: &str,
+    kek_id: &KekId,
     kek: &Secret<[u8; 32]>,
 ) -> Result<[u8; WRAPPED_LEN], DeviceError> {
     Ok(wrap(&passkey_wrapping_key(prf_output, kek_id)?, kek)?)
@@ -214,7 +215,7 @@ pub fn wrap_for_passkey(
 /// [`DeviceError::Key`] for another passkey or a modified copy.
 pub fn unwrap_passkey_copy(
     prf_output: &Secret<[u8; 32]>,
-    kek_id: &str,
+    kek_id: &KekId,
     wrapped: &[u8],
 ) -> Result<Secret<[u8; 32]>, DeviceError> {
     Ok(unwrap(&passkey_wrapping_key(prf_output, kek_id)?, wrapped)?)
