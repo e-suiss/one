@@ -223,12 +223,12 @@ fn e_14_a_malformed_request_is_never_sent() {
     assert_eq!(cont.to_json(), Err(AdpError::Exercise));
     let mut empty = intent.clone();
     empty.resources.clear();
-    let none = Evaluation {
+    let resourceless = Evaluation {
         nonce: &nonce,
         intent: &empty,
         ..base
     };
-    assert_eq!(none.to_json(), Err(AdpError::NoResource));
+    assert_eq!(resourceless.to_json(), Err(AdpError::NoResource));
 }
 
 #[test]
