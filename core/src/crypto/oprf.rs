@@ -99,10 +99,10 @@ pub struct Blinded {
 ///
 /// # Errors
 /// [`OprfError::InvalidElement`], [`OprfError::InputLength`].
-pub fn blind(input: &[u8], blind: Blind) -> Result<Blinded, OprfError> {
+pub fn blind(input: &[u8], blind: &Blind) -> Result<Blinded, OprfError> {
     let r = match blind {
-        Blind::Wide(bytes) => Scalar::from_bytes_mod_order_wide(&bytes),
-        Blind::Canonical(bytes) => scalar(bytes)?,
+        Blind::Wide(bytes) => Scalar::from_bytes_mod_order_wide(bytes),
+        Blind::Canonical(bytes) => scalar(*bytes)?,
     };
     if r == Scalar::ZERO {
         return Err(OprfError::InvalidElement);

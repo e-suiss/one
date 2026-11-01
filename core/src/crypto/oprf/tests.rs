@@ -49,7 +49,7 @@ fn pv_12_oprf_vectors() {
         match input["op"].as_str().unwrap() {
             "rfc9497" => {
                 let msg = unhex(input["input"].as_str().unwrap());
-                let b = blind(&msg, Blind::Canonical(fixed(&input["blind"]))).unwrap();
+                let b = blind(&msg, &Blind::Canonical(fixed(&input["blind"]))).unwrap();
                 assert_eq!(
                     hex(&b.element),
                     expected["blinded_element"].as_str().unwrap(),
@@ -80,14 +80,14 @@ fn pv_12_oprf_vectors() {
                 rfc += 1;
             }
             "blind" => {
-                let b = blind(&[7; 32], Blind::Wide([9; 64])).unwrap();
+                let b = blind(&[7; 32], &Blind::Wide([9; 64])).unwrap();
                 assert_ne!(b.element.as_slice(), [7_u8; 32].as_slice(), "{d}");
                 assert_eq!(expected["realm_sees_pin"], false, "{d}");
             }
             "combine" => {
                 let key = Scalar::from(42_u64);
                 let realms = shares(key, &[1, 2, 3]);
-                let b = blind(b"access key", Blind::Wide([3; 64])).unwrap();
+                let b = blind(b"access key", &Blind::Wide([3; 64])).unwrap();
                 let names = ["a", "b", "c"];
                 let evals: Vec<Evaluation> = input["answered"]
                     .as_array()
@@ -114,7 +114,7 @@ fn pv_12_oprf_vectors() {
                 }
             }
             "finalize" => {
-                let b = blind(b"access key", Blind::Wide([5; 64])).unwrap();
+                let b = blind(b"access key", &Blind::Wide([5; 64])).unwrap();
                 let identity = RistrettoPoint::identity().compress().to_bytes();
                 assert_eq!(
                     finalize(&b, &identity).map(|_| ()).unwrap_err().as_str(),
@@ -130,7 +130,7 @@ fn pv_12_oprf_vectors() {
 
 #[test]
 fn pv_12_a_repeated_realm_does_not_combine() {
-    let b = blind(b"k", Blind::Wide([1; 64])).unwrap();
+    let b = blind(b"k", &Blind::Wide([1; 64])).unwrap();
     let e = evaluate(Scalar::from(5_u64).to_bytes(), &b.element).unwrap();
     let twice = [
         Evaluation { x: 1, element: e },
