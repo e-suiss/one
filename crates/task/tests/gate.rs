@@ -7,7 +7,9 @@ use std::cell::RefCell;
 use one_access_client::access_kernel::combinator::Mode;
 use one_access_client::decision::{Decision, NoAllow, decide};
 use one_provenance::intent::Rejection;
-use one_task::gate::{Executor, Permit, Stop, gate};
+use one_task::app::{Submit, submit};
+use one_task::domain::gate::{Permit, Stop, gate};
+use one_task::ports::Executor;
 use suiss_crypto::digest::Digest;
 
 fn allow() -> Decision {
@@ -38,6 +40,18 @@ fn cp_5_only_an_allowed_accepted_intent_reaches_the_executor() {
     assert_eq!(*permit.intent(), "order");
     executor.execute(&permit).unwrap();
     assert_eq!(*executor.0.borrow(), [Digest([7; 32])]);
+    assert_eq!(submit(&executor, Ok("order"), &allow()), Ok(()));
+    assert_eq!(
+        submit(
+            &executor,
+            Ok("order"),
+            &Decision::Deny {
+                blockers: Vec::new()
+            }
+        ),
+        Err(Submit::Stopped(Stop::Denied))
+    );
+    assert_eq!(executor.0.borrow().len(), 2);
 }
 
 #[test]

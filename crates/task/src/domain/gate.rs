@@ -1,16 +1,16 @@
 //! The plan, decide and execute gate (CP-5, SEC-1, A-2, A-6, E-14): an intent reaches the Executor port only as a [`Permit`], and a permit is made only from an accepted typed intent with an Access allow outside `check` mode; an intent that fails acceptance is dropped and the user is asked, the model is not retried, and a deny, a `require_action`, an advisory allow or any no-allow stops the step. No One signal, confidence or chat "yes" enters the gate.
-//!
-//! A permit cannot be made outside this module:
-//!
-//! ```compile_fail,E0451
-//! let permit = one_task::gate::Permit { intent: 1_u8, exercise: suiss_crypto::digest::Digest([0; 32]) };
-//! ```
 
 use one_access_client::decision::{Decision, NoAllow};
 use one_provenance::intent::Rejection;
 use suiss_crypto::digest::Digest;
 
 /// An intent Access allowed: the only thing the Executor port takes.
+///
+/// It cannot be made outside the gate:
+///
+/// ```compile_fail,E0451
+/// let permit = one_task::domain::gate::Permit { intent: 1_u8, exercise: suiss_crypto::digest::Digest([0; 32]) };
+/// ```
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Permit<T> {
     intent: T,
@@ -66,16 +66,4 @@ pub fn gate<T>(intent: Result<T, Rejection>, decision: &Decision) -> Result<Perm
         Decision::RequireAction { .. } => Err(Stop::ActionRequired),
         Decision::NoAllow(reason) => Err(Stop::NoAllow(reason.clone())),
     }
-}
-
-/// The Executor port: it takes only a permit, so nothing reaches it without an Access allow (E-14, CP-7).
-pub trait Executor<T> {
-    /// Why the Executor did not take the step.
-    type Error;
-
-    /// Hands the allowed step to the Executor.
-    ///
-    /// # Errors
-    /// The Executor did not take it; its outcome is unknown until it reports (E-18).
-    fn execute(&self, permit: &Permit<T>) -> Result<(), Self::Error>;
 }

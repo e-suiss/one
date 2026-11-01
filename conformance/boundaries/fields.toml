@@ -1,9 +1,6 @@
 # E-37, E-9, INV-23, INV-16, §7.10
-# The fields each outgoing boundary may carry. A boundary whose sibling has published no contract
-# yet lists no fields: nothing is sent over it until the contract and this list are written.
 version = 1
 
-# No boundary ever carries these, at any depth of a payload.
 forbidden = [
   "memory", "memories", "conversation", "transcript", "episode", "rationale", "reasoning",
   "inference", "profile", "plan", "prompt", "password", "cookie", "card_number", "pan", "cvv",
@@ -13,7 +10,6 @@ forbidden = [
 [[boundary]]
 id = "access"
 contract = "access/protocol/l1/adp.md"
-# AuthZEN carriers and the ADP context members (L1-ADP-5, L1-ADP-7) and intent object members (L1-ADP-8).
 fields = [
   "subject", "action", "resource", "type", "id", "name", "context",
   "domain", "mode", "nonce", "ais", "basis", "anchor", "public", "holding", "grant", "holder",
