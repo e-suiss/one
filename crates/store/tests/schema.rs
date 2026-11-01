@@ -1,4 +1,4 @@
-//! Schema safety read from the catalog of a migrated database, so every future table is covered without being listed here: forced row-level security, the owner scope prefix, the table owner, no physical delete, pinned search paths, valid indexes, the closed plain-column list and the erasure scope list (T-32 (3, 4, 6, 8), OP-4 (2), OP-7 (3)).
+//! Schema safety read from the catalog of a migrated database, so every future table is covered without being listed here: forced row-level security, the owner scope prefix, the table owner, no physical delete, pinned search paths, valid indexes, the closed plain-column list, the erasure scope list and the store inventory (T-32 (3, 4, 6, 8), OP-2, OP-4 (2), OP-7 (3)).
 
 #![allow(clippy::unwrap_used, clippy::panic, reason = "T-38")]
 
@@ -8,6 +8,7 @@ use sqlx::{Connection, PgConnection, Row};
 
 const PLAIN_COLUMNS: &str = include_str!("../../../conformance/store/plain-columns.toml");
 const ERASURE_SCOPE: &str = include_str!("../../../conformance/store/erasure-scope.toml");
+const INVENTORY: &str = include_str!("../../../conformance/store/inventory.toml");
 
 #[derive(Deserialize)]
 struct List {
@@ -38,6 +39,24 @@ struct ScopedTable {
     name: String,
     personal: bool,
     key: Option<String>,
+}
+
+#[derive(Deserialize)]
+struct Inventory {
+    store: Vec<Store>,
+    table: Vec<StoredTable>,
+}
+
+#[derive(Deserialize)]
+struct Store {
+    name: String,
+    label: String,
+}
+
+#[derive(Deserialize)]
+struct StoredTable {
+    name: String,
+    store: String,
 }
 
 async fn admin() -> PgConnection {
@@ -236,6 +255,100 @@ async fn op_7_every_table_is_on_the_erasure_scope_list() {
     for s in &scope.table {
         if !tables.contains(&s.name) {
             bad.push(format!("{} is listed but missing", s.name));
+        }
+    }
+    assert!(bad.is_empty(), "{bad:?}");
+}
+
+#[tokio::test]
+async fn op_2_every_table_names_one_labelled_store_and_only_one_roles_reach_it() {
+    let inventory: Inventory = toml::from_str(INVENTORY).unwrap();
+    let labels = [
+        "CANONICAL",
+        "DERIVED",
+        "SYNC-DERIVED",
+        "OPERATIONAL",
+        "EXECUTOR",
+    ];
+    let mut bad = Vec::new();
+    for s in &inventory.store {
+        if !labels.contains(&s.label.as_str()) {
+            bad.push(format!("{} has label {}", s.name, s.label));
+        }
+    }
+    let mut c = admin().await;
+    let tables = strings(
+        &mut c,
+        "SELECT c.relname::text FROM pg_class c JOIN pg_namespace n ON n.oid = c.relnamespace
+          WHERE n.nspname = 'one' AND c.relkind IN ('r', 'p') ORDER BY 1",
+    )
+    .await;
+    for t in &tables {
+        let stores: Vec<&StoredTable> = inventory.table.iter().filter(|s| &s.name == t).collect();
+        match stores.as_slice() {
+            [one] if inventory.store.iter().any(|s| s.name == one.store) => {}
+            [one] => bad.push(format!("{t} names unknown store {}", one.store)),
+            _ => bad.push(format!("{t} names {} stores", stores.len())),
+        }
+    }
+    for s in &inventory.table {
+        if !tables.contains(&s.name) {
+            bad.push(format!("{} is listed but missing", s.name));
+        }
+    }
+    let reach = strings(
+        &mut c,
+        "SELECT DISTINCT r::text FROM (
+           SELECT pg_get_userbyid(c.relowner) AS r FROM pg_class c
+             JOIN pg_namespace n ON n.oid = c.relnamespace WHERE n.nspname = 'one'
+           UNION
+           SELECT CASE a.grantee WHEN 0 THEN 'PUBLIC' ELSE pg_get_userbyid(a.grantee) END
+             FROM pg_class c JOIN pg_namespace n ON n.oid = c.relnamespace,
+                  aclexplode(c.relacl) a WHERE n.nspname = 'one'
+           UNION
+           SELECT CASE a.grantee WHEN 0 THEN 'PUBLIC' ELSE pg_get_userbyid(a.grantee) END
+             FROM pg_attribute t JOIN pg_class c ON c.oid = t.attrelid
+             JOIN pg_namespace n ON n.oid = c.relnamespace,
+                  aclexplode(t.attacl) a WHERE n.nspname = 'one'
+         ) x ORDER BY 1",
+    )
+    .await;
+    for r in reach {
+        if !["one_owner", "one_app", "one_queue"].contains(&r.as_str()) {
+            bad.push(format!("{r} reaches the one schema"));
+        }
+    }
+    assert!(bad.is_empty(), "{bad:?}");
+}
+
+#[tokio::test]
+async fn pv_19_every_canonical_record_names_its_privacy_promise_version() {
+    let inventory: Inventory = toml::from_str(INVENTORY).unwrap();
+    let canonical: Vec<&str> = inventory
+        .store
+        .iter()
+        .filter(|s| s.label == "CANONICAL")
+        .map(|s| s.name.as_str())
+        .collect();
+    let mut c = admin().await;
+    let sealed = strings(
+        &mut c,
+        "SELECT table_name::text FROM information_schema.columns
+          WHERE table_schema = 'one' AND column_name = 'ciphertext' ORDER BY 1",
+    )
+    .await;
+    let promised = strings(
+        &mut c,
+        "SELECT table_name::text FROM information_schema.columns
+          WHERE table_schema = 'one' AND column_name = 'promise_version'
+            AND data_type = 'integer' AND is_nullable = 'NO' ORDER BY 1",
+    )
+    .await;
+    let mut bad = Vec::new();
+    for t in &sealed {
+        let store = inventory.table.iter().find(|s| &s.name == t);
+        if store.is_some_and(|s| canonical.contains(&s.store.as_str())) && !promised.contains(t) {
+            bad.push(t.clone());
         }
     }
     assert!(bad.is_empty(), "{bad:?}");

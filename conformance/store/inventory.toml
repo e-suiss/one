@@ -1,0 +1,129 @@
+# OP-1, OP-2
+version = 1
+
+[[store]]
+name = "canonical_records"
+content = "OP-1 (1) records, their keys and legal holds"
+label = "CANONICAL"
+place = "postgresql"
+rebuildable = "no"
+
+[[store]]
+name = "object_store"
+content = "voice, screenshots, personal adapters and small personal models, export packages"
+label = "CANONICAL"
+place = "s3"
+rebuildable = "partly"
+
+[[store]]
+name = "derived_search"
+content = "full-text, vector and relation index parts, attention features"
+label = "DERIVED"
+place = "postgresql"
+rebuildable = "yes"
+
+[[store]]
+name = "outbox_and_queue"
+content = "outgoing requests, stored idempotent responses, consolidation, training and re-embedding jobs"
+label = "SYNC-DERIVED"
+place = "postgresql"
+rebuildable = "yes"
+
+[[store]]
+name = "model_registry"
+content = "OP-20"
+label = "OPERATIONAL"
+place = "postgresql and s3"
+rebuildable = "no"
+
+[[store]]
+name = "base_models"
+content = "weights, quantized forms, device models; signed and hashed"
+label = "OPERATIONAL"
+place = "s3"
+rebuildable = "from source"
+
+[[store]]
+name = "executor_history"
+content = "long task history, microVM and browser snapshots"
+label = "EXECUTOR"
+place = "executor"
+rebuildable = "not a One store"
+
+[[store]]
+name = "client_store"
+content = "SQLite cache, offline subset, signed pending queue"
+label = "DERIVED"
+place = "device"
+rebuildable = "cache yes"
+
+[[store]]
+name = "telemetry"
+content = "metrics, traces, logs"
+label = "OPERATIONAL"
+place = "opentelemetry"
+rebuildable = "not needed"
+
+[[table]]
+name = "account"
+store = "canonical_records"
+
+[[table]]
+name = "class_dek"
+store = "canonical_records"
+
+[[table]]
+name = "record_key"
+store = "canonical_records"
+
+[[table]]
+name = "record"
+store = "canonical_records"
+
+[[table]]
+name = "legal_hold"
+store = "canonical_records"
+
+[[table]]
+name = "memory_record"
+store = "canonical_records"
+
+[[table]]
+name = "memory_edge"
+store = "canonical_records"
+
+[[table]]
+name = "episode"
+store = "canonical_records"
+
+[[table]]
+name = "derivation"
+store = "canonical_records"
+
+[[table]]
+name = "object"
+store = "object_store"
+
+[[table]]
+name = "index_part"
+store = "derived_search"
+
+[[table]]
+name = "outbox"
+store = "outbox_and_queue"
+
+[[table]]
+name = "idempotency"
+store = "outbox_and_queue"
+
+[[table]]
+name = "job"
+store = "outbox_and_queue"
+
+[[rule]]
+id = "every-table"
+meaning = "Every table of the one schema names exactly one store of this list."
+
+[[rule]]
+id = "not-shared"
+meaning = "Every table, owner and grantee of the one schema is One's own; no table, database role, key or operator role is shared with Access, Relay or Work."

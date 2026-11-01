@@ -45,6 +45,9 @@ pub enum StoreError {
     /// The same idempotency key was used with different content (OP-3).
     #[error("idempotency key reused with different content")]
     Conflict,
+    /// A value is outside what the database takes.
+    #[error("value out of range")]
+    Range,
     /// A stored row does not match the model.
     #[error("stored row is malformed")]
     Corrupt,

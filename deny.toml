@@ -130,6 +130,13 @@ deny = [
     { crate = "pcre2-sys", reason = "SA-32: backtracking" },
     { crate = "onig", reason = "SA-32: backtracking" },
     { crate = "onig_sys", reason = "SA-32: backtracking" },
+        { crate = "redis", reason = "T-7: no cache without a measurement" },
+    { crate = "fred", reason = "T-7: no cache without a measurement" },
+    { crate = "memcache", reason = "T-7: no cache without a measurement" },
+    { crate = "moka", reason = "T-7: no cache without a measurement" },
+    { crate = "mini-moka", reason = "T-7: no cache without a measurement" },
+    { crate = "quick_cache", reason = "T-7: no cache without a measurement" },
+    { crate = "cached", reason = "T-7: no cache without a measurement" },
 ]
 
 [[bans.features]]

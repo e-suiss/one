@@ -1,4 +1,4 @@
-//! Crypto-shred and legal holds against a real database: a record key shred leaves the class DEK and other records, a class shred clears every key of the class, another owner's keys are out of reach, and a hold parks the request as a job that runs once the last order lifts (M-25, OP-9 (1), OP-12, OP-30).
+//! Crypto-shred and legal holds against a real database: a record key shred leaves the class DEK and other records, a class shred clears every key of the class, another owner's keys are out of reach, and a hold parks the request as a job that runs once the last order lifts, the retention sweep takes only keys past their end, and account deletion shreds every class but the training lineage (M-25, OP-9 (1), OP-11, OP-12, OP-30).
 
 #![allow(
     clippy::unwrap_used,
@@ -8,12 +8,13 @@
 )]
 
 use one_proto::data_class::RetentionClass;
+use one_proto::ontology::CalendarDuration;
 use one_proto::{DekId, EpisodeId, IndexPartId, JobId, LegalHoldId, MemoryRecordId, RecordKeyId};
 use one_store::Uuid;
 use one_store::derivation::Row;
 use one_store::jobs::{self, JobKind, NewJob};
 use one_store::scope::{Owner, OwnerTx};
-use one_store::shred::Shred;
+use one_store::shred::{Expiry, Shred};
 use one_store::testing::{TestDb, fresh};
 
 fn id(n: u8) -> Uuid {
@@ -484,4 +485,112 @@ async fn m_12_a_vector_part_names_its_model_and_version() {
     .execute(&db.owner)
     .await;
     assert!(half.is_err());
+}
+
+async fn account_deleted(db: &TestDb, owner: &str) -> bool {
+    sqlx::query_scalar("SELECT deleted_at IS NOT NULL FROM one.account WHERE owner = $1")
+        .bind(owner)
+        .fetch_one(&db.owner)
+        .await
+        .unwrap()
+}
+
+#[tokio::test]
+async fn op_11_account_deletion_shreds_every_class_but_the_training_lineage() {
+    let db = fresh().await.unwrap();
+    seeded(&db, "party:a").await;
+    seeded(&db, "party:b").await;
+    seed_dek(&db, "party:a", 3, "one_training_lineage").await;
+    seed_record(&db, "party:a", 31, 3, "one_training_lineage").await;
+    let mut tx = scoped(&db, "party:a").await;
+    let outcome = tx.shred_account().await.unwrap();
+    tx.commit().await.unwrap();
+    assert_eq!(outcome.len(), 6);
+    assert!(outcome.iter().all(|(_, s)| *s == Shred::Done));
+    assert!(
+        outcome
+            .iter()
+            .all(|(c, _)| *c != RetentionClass::OneTrainingLineage)
+    );
+    assert!(!dek_live(&db, "party:a", 1).await);
+    assert!(!dek_live(&db, "party:a", 2).await);
+    assert!(!key_live(&db, "party:a", 11).await);
+    assert!(!key_live(&db, "party:a", 21).await);
+    assert_eq!(record_status(&db, "party:a", 12).await, "deleted");
+    assert!(dek_live(&db, "party:a", 3).await);
+    assert!(key_live(&db, "party:a", 31).await);
+    assert!(account_deleted(&db, "party:a").await);
+    assert!(dek_live(&db, "party:b", 1).await);
+    assert!(!account_deleted(&db, "party:b").await);
+}
+
+#[tokio::test]
+async fn op_30_a_held_class_keeps_the_account_open() {
+    let db = fresh().await.unwrap();
+    seeded(&db, "party:a").await;
+    let mut tx = scoped(&db, "party:a").await;
+    tx.place_hold(hold(1), RetentionClass::OneMemory)
+        .await
+        .unwrap();
+    let outcome = tx.shred_account().await.unwrap();
+    tx.commit().await.unwrap();
+    assert!(outcome.contains(&(RetentionClass::OneMemory, Shred::Held)));
+    assert!(outcome.contains(&(RetentionClass::OneModel, Shred::Done)));
+    assert!(dek_live(&db, "party:a", 1).await);
+    assert!(!dek_live(&db, "party:a", 2).await);
+    assert!(!account_deleted(&db, "party:a").await);
+}
+
+async fn backdate(db: &TestDb, owner: &str, n: u8, days: i32) {
+    sqlx::query(
+        "UPDATE one.record_key SET recorded_at = now() - make_interval(days => $3)
+          WHERE owner = $1 AND record_key_id = $2",
+    )
+    .bind(owner)
+    .bind(id(n))
+    .bind(days)
+    .execute(&db.owner)
+    .await
+    .unwrap();
+}
+
+#[tokio::test]
+async fn op_12_the_sweep_shreds_only_keys_past_their_retention_end() {
+    let db = fresh().await.unwrap();
+    seeded(&db, "party:a").await;
+    backdate(&db, "party:a", 11, 40).await;
+    backdate(&db, "party:a", 21, 40).await;
+    let month = CalendarDuration {
+        months: 1,
+        days: 0,
+        seconds: 0,
+    };
+    let mut tx = scoped(&db, "party:a").await;
+    assert_eq!(
+        tx.shred_expired(RetentionClass::OneMemory, month)
+            .await
+            .unwrap(),
+        Expiry::Shredded(1)
+    );
+    assert_eq!(
+        tx.shred_expired(RetentionClass::OneMemory, month)
+            .await
+            .unwrap(),
+        Expiry::Shredded(0)
+    );
+    tx.place_hold(hold(1), RetentionClass::OneModel)
+        .await
+        .unwrap();
+    assert_eq!(
+        tx.shred_expired(RetentionClass::OneModel, month)
+            .await
+            .unwrap(),
+        Expiry::Held
+    );
+    tx.commit().await.unwrap();
+    assert!(!key_live(&db, "party:a", 11).await);
+    assert_eq!(record_status(&db, "party:a", 11).await, "deleted");
+    assert!(key_live(&db, "party:a", 12).await);
+    assert!(dek_live(&db, "party:a", 1).await);
+    assert!(key_live(&db, "party:a", 21).await);
 }
