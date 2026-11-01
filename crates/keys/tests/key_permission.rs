@@ -213,3 +213,25 @@ fn pv_65_signed_permission_is_checked_through_the_ports() {
         Err(CheckError::Refused(Refusal::Expired))
     );
 }
+
+#[test]
+fn pv_65_the_instance_signature_verifies_with_es256() {
+    let v = &load(PATH)[0];
+    let kid = unhex(v["input"]["kid"].as_str().unwrap());
+    let sig_structure = unhex(v["expected"]["sig_structure"].as_str().unwrap());
+    let signature: [u8; 64] = fixed(v["expected"]["signature"].as_str().unwrap());
+    let mut keys = one_keys::instance::InstanceKeys::new();
+    assert!(!keys.verify(&kid, &sig_structure, &signature));
+    keys.insert(
+        &kid,
+        &unhex(v["input"]["signer_public_key"].as_str().unwrap()),
+    );
+    assert!(keys.verify(&kid, &sig_structure, &signature));
+    assert!(!keys.verify(b"another-instance", &sig_structure, &signature));
+    let mut tampered = sig_structure.clone();
+    tampered.push(0);
+    assert!(!keys.verify(&kid, &tampered, &signature));
+    let mut bad = signature;
+    bad[63] ^= 1;
+    assert!(!keys.verify(&kid, &sig_structure, &bad));
+}
