@@ -2580,6 +2580,8 @@ dependencies = [
 name = "one-tee"
 version = "0.0.0"
 dependencies = [
+ "aws-lc-rs",
+ "one-hpke",
  "one-proto",
  "one-runtime",
  "one-testkit",

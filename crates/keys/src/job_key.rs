@@ -1,5 +1,6 @@
 //! Handing a class DEK to a TEE job (PV-65, PV-61, SEC-27): the DEK is sealed with HPKE DHKEM(X25519) to a job key only after the attestation report carries that key's digest, with `info` the SHA-256 of the permission body and the class name as additional data, so it opens only for that permission and that class.
 
+pub use one_hpke::report_data;
 use one_hpke::{HpkeError, Kem, KeyPair, setup_receiver, setup_sender, setup_sender_with};
 use one_proto::data_class::RetentionClass;
 use sha2::{Digest as _, Sha256};
@@ -31,16 +32,6 @@ impl From<HpkeError> for JobKeyError {
     fn from(e: HpkeError) -> Self {
         Self::Hpke(e)
     }
-}
-
-/// The `report_data` an attestation report carries for `public_key`: its SHA-256 followed by 32 zero bytes.
-#[must_use]
-pub fn report_data(public_key: &[u8]) -> [u8; 64] {
-    let mut out = [0_u8; 64];
-    for (o, d) in out.iter_mut().zip(Sha256::digest(public_key)) {
-        *o = d;
-    }
-    out
 }
 
 /// A TEE job key bound to a verified attestation report.

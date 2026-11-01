@@ -2,6 +2,7 @@
 
 use aws_lc_rs::aead::{AES_256_GCM, Aad, LessSafeKey, NONCE_LEN, Nonce, UnboundKey};
 use aws_lc_rs::agreement::{self, ECDH_P256, PrivateKey, UnparsedPublicKey, X25519};
+use aws_lc_rs::digest::{SHA256, digest};
 use aws_lc_rs::hmac;
 use zeroize::Zeroizing;
 
@@ -295,6 +296,16 @@ impl Context {
     ) -> Result<Zeroizing<Vec<u8>>, HpkeError> {
         labeled_expand(&self.suite, &self.exporter, b"sec", exporter_context, len)
     }
+}
+
+/// The `report_data` an attestation report carries for a recipient key: the SHA-256 of the serialized public key followed by 32 zero bytes (SEC-27).
+#[must_use]
+pub fn report_data(public_key: &[u8]) -> [u8; 64] {
+    let mut out = [0_u8; 64];
+    for (o, d) in out.iter_mut().zip(digest(&SHA256, public_key).as_ref()) {
+        *o = *d;
+    }
+    out
 }
 
 /// Encapsulates to `pk_r` with a fresh ephemeral key; returns `enc` and the sender context.
