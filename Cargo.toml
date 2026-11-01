@@ -20,6 +20,7 @@ one-config = { path = "crates/config" }
 one-http = { path = "crates/http" }
 one-keys = { path = "crates/keys" }
 one-tee = { path = "crates/tee" }
+one-hpke = { path = "crates/hpke" }
 one-store = { path = "crates/store" }
 one-objects = { path = "crates/objects" }
 one-proto = { path = "crates/proto" }

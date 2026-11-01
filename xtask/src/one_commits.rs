@@ -10,6 +10,7 @@ const TYPES: &[&str] = &[
 pub(crate) const SENSITIVE: &[&str] = &[
     "crates/keys/",
     "crates/tee/",
+    "crates/hpke/",
     "core/src/crypto/",
     "crates/memory/",
     "crates/provenance/",

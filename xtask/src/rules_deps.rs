@@ -15,6 +15,7 @@ pub(crate) enum Class {
     NoStdCore,
     Parse,
     KeyLayer,
+    Crypto,
     Storage,
     Rpc,
     Client,
@@ -70,6 +71,7 @@ pub(crate) fn classify(dir: &str) -> Option<Class> {
         ("crates", "provenance" | "interaction") => Class::NoStdCore,
         ("crates", "parse") => Class::Parse,
         ("crates", "keys" | "tee") => Class::KeyLayer,
+        ("crates", "hpke") => Class::Crypto,
         ("crates", "store" | "objects") => Class::Storage,
         ("crates", "rpc") => Class::Rpc,
         ("crates", "http") => Class::Http,
@@ -88,19 +90,21 @@ pub(crate) fn classify(dir: &str) -> Option<Class> {
 /// The T-26 (6) table: the internal classes a crate of class `from` may depend on; `None` means every class.
 fn allowed_targets(from: Class) -> Option<&'static [Class]> {
     use Class::{
-        Bin, Client, Component, Config, Core, CoreBinding, Http, KeyLayer, NoStdCore, Parse, Proto,
-        Rpc, Runtime, Storage, Telemetry, Testkit, Tooling,
+        Bin, Client, Component, Config, Core, CoreBinding, Crypto, Http, KeyLayer, NoStdCore,
+        Parse, Proto, Rpc, Runtime, Storage, Telemetry, Testkit, Tooling,
     };
     let targets: &'static [Class] = match from {
         Bin => return None,
-        Proto | Telemetry | Runtime | Config | Tooling => &[],
+        Proto | Crypto | Telemetry | Runtime | Config | Tooling => &[],
         Testkit => &[Runtime],
-        NoStdCore | KeyLayer | Rpc => &[Proto],
+        NoStdCore | Rpc => &[Proto],
+        KeyLayer => &[Proto, Crypto],
         Parse => &[Proto, NoStdCore],
         Storage => &[Proto, KeyLayer],
         Client => &[Proto, NoStdCore, Rpc, Telemetry],
         Component => &[
-            Proto, NoStdCore, Parse, KeyLayer, Storage, Rpc, Client, Telemetry, Runtime, Config,
+            Proto, NoStdCore, Parse, KeyLayer, Crypto, Storage, Rpc, Client, Telemetry, Runtime,
+            Config,
         ],
         Http => &[Component, Proto, Telemetry, Runtime, Config],
         Core => &[Proto, NoStdCore, Parse],

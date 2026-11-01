@@ -3,6 +3,7 @@
 
 /crates/keys/                       @ademceper
 /crates/tee/                        @ademceper
+/crates/hpke/                       @ademceper
 /core/src/crypto/                   @ademceper
 /crates/memory/                     @ademceper
 /crates/provenance/                 @ademceper

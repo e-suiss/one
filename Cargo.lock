@@ -2421,6 +2421,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "one-hpke"
+version = "0.0.0"
+dependencies = [
+ "aws-lc-rs",
+ "serde_json",
+ "zeroize",
+]
+
+[[package]]
 name = "one-http"
 version = "0.0.0"
 dependencies = [
