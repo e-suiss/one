@@ -14,5 +14,8 @@ access-kernel.workspace = true
 serde_json = { workspace = true, features = ["std"] }
 suiss-crypto = { workspace = true, features = ["signer"] }
 
+[dev-dependencies]
+toml = { workspace = true, features = ["std", "parse", "serde"] }
+
 [lints]
 workspace = true

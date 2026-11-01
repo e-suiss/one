@@ -285,3 +285,73 @@ fn e_14_access_accepts_the_statement_one_signs_and_only_for_that_request() {
         ));
     }
 }
+
+fn boundary(id: &str) -> (Vec<String>, Vec<String>) {
+    let path = format!(
+        "{}/../../conformance/boundaries/fields.toml",
+        env!("CARGO_MANIFEST_DIR")
+    );
+    let t: toml::Table = std::fs::read_to_string(path).unwrap().parse().unwrap();
+    let strings = |v: &toml::Value| -> Vec<String> {
+        v.as_array()
+            .unwrap()
+            .iter()
+            .map(|s| s.as_str().unwrap().to_owned())
+            .collect()
+    };
+    let b = t["boundary"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .find(|b| b["id"].as_str() == Some(id))
+        .unwrap();
+    (strings(&b["fields"]), strings(&t["forbidden"]))
+}
+
+fn walk(v: &Value, named_by_schema: bool, allowed: &[String], forbidden: &[String]) {
+    match v {
+        Value::Object(m) => {
+            for (k, inner) in m {
+                assert!(!forbidden.contains(k), "forbidden field {k}");
+                assert!(
+                    named_by_schema || allowed.contains(k),
+                    "field {k} is not in the access boundary"
+                );
+                walk(inner, k == "params" || k == "opaque", allowed, forbidden);
+            }
+        }
+        Value::Array(items) => {
+            for item in items {
+                walk(item, false, allowed, forbidden);
+            }
+        }
+        _ => {}
+    }
+}
+
+#[test]
+fn e_37_the_request_carries_only_access_boundary_fields() {
+    let (allowed, forbidden) = boundary("access");
+    let mut intent = intent();
+    intent.recipient = Some(Id([8; 16]));
+    intent.purpose = Some(access_kernel::model::PurposeRef::Code("order".to_owned()));
+    intent.opaque.insert("note".to_owned(), Digest([7; 32]));
+    let nonce = [5_u8; 16];
+    for (mode, exercise) in [
+        (Mode::Commit, None),
+        (Mode::Continue, Some(Digest([1; 32]))),
+        (Mode::Check, None),
+    ] {
+        let request = Evaluation {
+            domain: Digest([4; 32]),
+            mode,
+            nonce: &nonce,
+            ais: Some(b"sign1"),
+            basis: basis(),
+            capacity: Capacity::For(Id([3; 16])),
+            intent: &intent,
+            exercise,
+        };
+        walk(&request.to_json().unwrap(), false, &allowed, &forbidden);
+    }
+}

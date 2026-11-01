@@ -1,0 +1,5 @@
+# E-37, E-9, INV-23, INV-16
+
+[[table]]
+path = "fields.toml"
+rules = ["E-37", "E-9", "INV-23", "INV-16"]
