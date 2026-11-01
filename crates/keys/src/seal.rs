@@ -13,6 +13,9 @@ pub const RECORD_CONTEXT: &[u8] = b"one/record/v1\0";
 /// The HKDF `info` prefix of a part key.
 pub const PART_INFO: &[u8] = b"one/record/v1/part\0";
 
+/// The format value every stored ciphertext starts with; a new format gets a new value and old values stay readable until re-encrypted (OP-27, T-32 (7)).
+pub const FORMAT_V1: u8 = 1;
+
 /// The length of a wrapped 256-bit key.
 pub const WRAPPED_LEN: usize = 40;
 
@@ -27,6 +30,8 @@ pub enum KeyError {
     Open,
     /// Sealing failed.
     Seal,
+    /// A stored ciphertext has an unknown format value or is too short.
+    Format,
 }
 
 impl KeyError {
@@ -38,6 +43,7 @@ impl KeyError {
             Self::Integrity => "integrity",
             Self::Open => "open",
             Self::Seal => "seal",
+            Self::Format => "format",
         }
     }
 }
@@ -217,4 +223,33 @@ pub fn open_part(
 ) -> Result<Zeroizing<Vec<u8>>, KeyError> {
     let key = part_key(record_key, part)?;
     envelope::open_body(&key, &part.context(), sealed).map_err(|_| KeyError::Open)
+}
+
+/// The stored form of a sealed part: the format value, the nonce, then ciphertext and tag.
+#[must_use]
+pub fn to_stored(sealed: &Sealed) -> Vec<u8> {
+    let mut out = Vec::with_capacity(sealed.ciphertext.len().saturating_add(13));
+    out.push(FORMAT_V1);
+    out.extend_from_slice(&sealed.nonce);
+    out.extend_from_slice(&sealed.ciphertext);
+    out
+}
+
+/// A sealed part from its stored form.
+///
+/// # Errors
+/// [`KeyError::Format`] for an unknown format value or a truncated value.
+pub fn from_stored(stored: &[u8]) -> Result<Sealed, KeyError> {
+    let (&format, rest) = stored.split_first().ok_or(KeyError::Format)?;
+    if format != FORMAT_V1 {
+        return Err(KeyError::Format);
+    }
+    let (nonce, ciphertext) = rest.split_at_checked(12).ok_or(KeyError::Format)?;
+    if ciphertext.len() < 16 {
+        return Err(KeyError::Format);
+    }
+    Ok(Sealed {
+        nonce: nonce.try_into().map_err(|_| KeyError::Format)?,
+        ciphertext: ciphertext.to_vec(),
+    })
 }

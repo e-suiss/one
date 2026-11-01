@@ -13,8 +13,8 @@ use std::collections::BTreeMap;
 
 use common::{fixed, hex, load, unhex};
 use one_keys::seal::{
-    KeyError, Part, PartRef, WRAPPED_LEN, key_from_slice, open_part, part_key, seal_part, unwrap,
-    wrap,
+    FORMAT_V1, KeyError, Part, PartRef, WRAPPED_LEN, from_stored, key_from_slice, open_part,
+    part_key, seal_part, to_stored, unwrap, wrap,
 };
 use one_proto::data_class::RetentionClass;
 use serde_json::Value;
@@ -351,4 +351,30 @@ fn op_4_a_part_opens_only_in_its_own_place() {
         open_part(&fresh(8), &at, &s).map(|_| ()),
         Err(KeyError::Open)
     );
+}
+
+#[test]
+fn t_32_a_stored_part_names_its_format() {
+    let key = fresh(3);
+    let at = PartRef {
+        owner: OWNER,
+        record: "mem_01k742vmbgez2rfct5dmnr31vp",
+        class: RetentionClass::OneMemory,
+        part: Part::Content,
+        version: 1,
+    };
+    let stored = to_stored(&seal_part(&key, &at, b"x").unwrap());
+    assert_eq!(stored[0], FORMAT_V1);
+    assert_eq!(
+        *open_part(&key, &at, &from_stored(&stored).unwrap()).unwrap(),
+        b"x"
+    );
+    let mut future = stored.clone();
+    future[0] = 2;
+    assert_eq!(from_stored(&future).map(|_| ()), Err(KeyError::Format));
+    assert_eq!(
+        from_stored(&stored[..20]).map(|_| ()),
+        Err(KeyError::Format)
+    );
+    assert_eq!(from_stored(&[]).map(|_| ()), Err(KeyError::Format));
 }
