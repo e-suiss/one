@@ -1,0 +1,224 @@
+[
+  {
+    "rule": "Access TN-136",
+    "description": "a v1a signature under the sender's key verifies",
+    "input": {
+      "webhook_id": "msg_2KWPBgLlAfxdpx2AI54pPJ85f4W",
+      "webhook_timestamp": "1793491200",
+      "webhook_signature": "v1a,fOI+gzpQwPS0zWF+/Qfr68H2CM+9hTB4Bu352xPlB94UvmMyIxXRszcwFpVigSUBOgPsIbxMxZLo1nHPQfRfAQ==",
+      "body": "{\"specversion\":\"1.0\",\"type\":\"app.suiss.access.agent.suspended\",\"id\":\"msg_2KWPBgLlAfxdpx2AI54pPJ85f4W\"}",
+      "now": 1793491200,
+      "keys": [
+        "cdCb4elfPUQhsLccHXTk2N10xCjBrinzStXQ+zVRUfc="
+      ]
+    },
+    "expected": {
+      "valid": true
+    }
+  },
+  {
+    "rule": "Access TN-136",
+    "description": "the timestamp may be five minutes old",
+    "input": {
+      "webhook_id": "msg_2KWPBgLlAfxdpx2AI54pPJ85f4W",
+      "webhook_timestamp": "1793490900",
+      "webhook_signature": "v1a,m9+dexQgLDwEcjerz26nTkkJOjG/XvexkSNNrxlaaYPKDy2aLHBfDUIOnMBqddSN52AoMagpD25zGLtd+XFYBg==",
+      "body": "{\"specversion\":\"1.0\",\"type\":\"app.suiss.access.agent.suspended\",\"id\":\"msg_2KWPBgLlAfxdpx2AI54pPJ85f4W\"}",
+      "now": 1793491200,
+      "keys": [
+        "cdCb4elfPUQhsLccHXTk2N10xCjBrinzStXQ+zVRUfc="
+      ]
+    },
+    "expected": {
+      "valid": true
+    }
+  },
+  {
+    "rule": "Access TN-136",
+    "description": "a timestamp more than five minutes old is refused",
+    "input": {
+      "webhook_id": "msg_2KWPBgLlAfxdpx2AI54pPJ85f4W",
+      "webhook_timestamp": "1793490899",
+      "webhook_signature": "v1a,Q1dCayhFQ3Dl0yMp1d7PrENWT7cVLEFpVk6hmBfiNS39tOuhzG1IxXEexQyiWEFkKRSzh8m7mxOikSGY3wXAAw==",
+      "body": "{\"specversion\":\"1.0\",\"type\":\"app.suiss.access.agent.suspended\",\"id\":\"msg_2KWPBgLlAfxdpx2AI54pPJ85f4W\"}",
+      "now": 1793491200,
+      "keys": [
+        "cdCb4elfPUQhsLccHXTk2N10xCjBrinzStXQ+zVRUfc="
+      ]
+    },
+    "expected": {
+      "valid": false
+    }
+  },
+  {
+    "rule": "Access TN-136",
+    "description": "a timestamp more than five minutes ahead is refused",
+    "input": {
+      "webhook_id": "msg_2KWPBgLlAfxdpx2AI54pPJ85f4W",
+      "webhook_timestamp": "1793491501",
+      "webhook_signature": "v1a,Xp5qanRRQn2e+vSQNVC98jb/FdLl9DJUgzZguShKLQhnyBjbhXg44nF5ViGiBDmdu6B00MPLuRSWKm63nK0FDA==",
+      "body": "{\"specversion\":\"1.0\",\"type\":\"app.suiss.access.agent.suspended\",\"id\":\"msg_2KWPBgLlAfxdpx2AI54pPJ85f4W\"}",
+      "now": 1793491200,
+      "keys": [
+        "cdCb4elfPUQhsLccHXTk2N10xCjBrinzStXQ+zVRUfc="
+      ]
+    },
+    "expected": {
+      "valid": false
+    }
+  },
+  {
+    "rule": "Access TN-136",
+    "description": "a changed body does not verify",
+    "input": {
+      "webhook_id": "msg_2KWPBgLlAfxdpx2AI54pPJ85f4W",
+      "webhook_timestamp": "1793491200",
+      "webhook_signature": "v1a,33LwWnRvlGk8ORkV+IHk0p9rdSm0bjP6xAMJsfd+8c4ThqxOaSlQgxdQZF1rAPgO4uPoP6YdFmyz3hVG9poqAQ==",
+      "body": "{\"specversion\":\"1.0\",\"type\":\"app.suiss.access.agent.suspended\",\"id\":\"msg_2KWPBgLlAfxdpx2AI54pPJ85f4W\"}",
+      "now": 1793491200,
+      "keys": [
+        "cdCb4elfPUQhsLccHXTk2N10xCjBrinzStXQ+zVRUfc="
+      ]
+    },
+    "expected": {
+      "valid": false
+    }
+  },
+  {
+    "rule": "Access TN-136",
+    "description": "another webhook id does not verify",
+    "input": {
+      "webhook_id": "msg_2KWPBgLlAfxdpx2AI54pPJ85f4W",
+      "webhook_timestamp": "1793491200",
+      "webhook_signature": "v1a,MCf9b6xPNZwErZAGApnAoiFhMDU+uYXvxnrH54T/bjWabNYeoQ20To4SIgBQMTB/NKsYD22UIx8TrmsFKF3KDg==",
+      "body": "{\"specversion\":\"1.0\",\"type\":\"app.suiss.access.agent.suspended\",\"id\":\"msg_2KWPBgLlAfxdpx2AI54pPJ85f4W\"}",
+      "now": 1793491200,
+      "keys": [
+        "cdCb4elfPUQhsLccHXTk2N10xCjBrinzStXQ+zVRUfc="
+      ]
+    },
+    "expected": {
+      "valid": false
+    }
+  },
+  {
+    "rule": "Access TN-136",
+    "description": "a key that is not the sender's does not verify",
+    "input": {
+      "webhook_id": "msg_2KWPBgLlAfxdpx2AI54pPJ85f4W",
+      "webhook_timestamp": "1793491200",
+      "webhook_signature": "v1a,U0xDhgbirNPyuEqSiXoOsHnPC1pkey1nE9Rn8Z6kJuVhEYMenSwhp9/xTnMb4KqsVikHficbyKzUJQuieO0GBg==",
+      "body": "{\"specversion\":\"1.0\",\"type\":\"app.suiss.access.agent.suspended\",\"id\":\"msg_2KWPBgLlAfxdpx2AI54pPJ85f4W\"}",
+      "now": 1793491200,
+      "keys": [
+        "cdCb4elfPUQhsLccHXTk2N10xCjBrinzStXQ+zVRUfc="
+      ]
+    },
+    "expected": {
+      "valid": false
+    }
+  },
+  {
+    "rule": "Access TN-136",
+    "description": "during rotation a signature under either listed key verifies",
+    "input": {
+      "webhook_id": "msg_2KWPBgLlAfxdpx2AI54pPJ85f4W",
+      "webhook_timestamp": "1793491200",
+      "webhook_signature": "v1a,lxlnsADyb8tiefAMJeRZoTsN1Rsy0kSEcBZHow7UntW6d430DfV3Z/QmfO0P9rnMzlHckxCiMlKf9X9CqAeVBA==",
+      "body": "{\"specversion\":\"1.0\",\"type\":\"app.suiss.access.agent.suspended\",\"id\":\"msg_2KWPBgLlAfxdpx2AI54pPJ85f4W\"}",
+      "now": 1793491200,
+      "keys": [
+        "cdCb4elfPUQhsLccHXTk2N10xCjBrinzStXQ+zVRUfc=",
+        "ysMhJzVaNKkePKubYLxxpZgyjrRmT1nwayHeku9WRd0="
+      ]
+    },
+    "expected": {
+      "valid": true
+    }
+  },
+  {
+    "rule": "Access TN-136",
+    "description": "several signatures verify when one of them is valid",
+    "input": {
+      "webhook_id": "msg_2KWPBgLlAfxdpx2AI54pPJ85f4W",
+      "webhook_timestamp": "1793491200",
+      "webhook_signature": "v1,b4gqdX9CQ5H+71UsW/plFrY9+e1PpILSQCLI05JzBiY= v1a,fOI+gzpQwPS0zWF+/Qfr68H2CM+9hTB4Bu352xPlB94UvmMyIxXRszcwFpVigSUBOgPsIbxMxZLo1nHPQfRfAQ==",
+      "body": "{\"specversion\":\"1.0\",\"type\":\"app.suiss.access.agent.suspended\",\"id\":\"msg_2KWPBgLlAfxdpx2AI54pPJ85f4W\"}",
+      "now": 1793491200,
+      "keys": [
+        "cdCb4elfPUQhsLccHXTk2N10xCjBrinzStXQ+zVRUfc="
+      ]
+    },
+    "expected": {
+      "valid": true
+    }
+  },
+  {
+    "rule": "Access TN-136",
+    "description": "a v1 HMAC signature alone never verifies: no secret is shared",
+    "input": {
+      "webhook_id": "msg_2KWPBgLlAfxdpx2AI54pPJ85f4W",
+      "webhook_timestamp": "1793491200",
+      "webhook_signature": "v1,b4gqdX9CQ5H+71UsW/plFrY9+e1PpILSQCLI05JzBiY=",
+      "body": "{\"specversion\":\"1.0\",\"type\":\"app.suiss.access.agent.suspended\",\"id\":\"msg_2KWPBgLlAfxdpx2AI54pPJ85f4W\"}",
+      "now": 1793491200,
+      "keys": [
+        "cdCb4elfPUQhsLccHXTk2N10xCjBrinzStXQ+zVRUfc="
+      ]
+    },
+    "expected": {
+      "valid": false
+    }
+  },
+  {
+    "rule": "Access TN-136",
+    "description": "a signature that is not base64 is ignored",
+    "input": {
+      "webhook_id": "msg_2KWPBgLlAfxdpx2AI54pPJ85f4W",
+      "webhook_timestamp": "1793491200",
+      "webhook_signature": "v1a,not*base64",
+      "body": "{\"specversion\":\"1.0\",\"type\":\"app.suiss.access.agent.suspended\",\"id\":\"msg_2KWPBgLlAfxdpx2AI54pPJ85f4W\"}",
+      "now": 1793491200,
+      "keys": [
+        "cdCb4elfPUQhsLccHXTk2N10xCjBrinzStXQ+zVRUfc="
+      ]
+    },
+    "expected": {
+      "valid": false
+    }
+  },
+  {
+    "rule": "Access TN-136",
+    "description": "a timestamp that is not a number is refused",
+    "input": {
+      "webhook_id": "msg_2KWPBgLlAfxdpx2AI54pPJ85f4W",
+      "webhook_timestamp": "1793491200.0",
+      "webhook_signature": "v1a,BfM6l3P4Dt6tHJ69oR9hFpq+J5MVFmt8GxNZ/4dqrJMVv9Bn0FWI+ATVUQ9hykBoX60RYKuDJIw+f7Ch36ukDg==",
+      "body": "{\"specversion\":\"1.0\",\"type\":\"app.suiss.access.agent.suspended\",\"id\":\"msg_2KWPBgLlAfxdpx2AI54pPJ85f4W\"}",
+      "now": 1793491200,
+      "keys": [
+        "cdCb4elfPUQhsLccHXTk2N10xCjBrinzStXQ+zVRUfc="
+      ]
+    },
+    "expected": {
+      "valid": false
+    }
+  },
+  {
+    "rule": "Access TN-136",
+    "description": "an empty signature header is refused",
+    "input": {
+      "webhook_id": "msg_2KWPBgLlAfxdpx2AI54pPJ85f4W",
+      "webhook_timestamp": "1793491200",
+      "webhook_signature": "",
+      "body": "{\"specversion\":\"1.0\",\"type\":\"app.suiss.access.agent.suspended\",\"id\":\"msg_2KWPBgLlAfxdpx2AI54pPJ85f4W\"}",
+      "now": 1793491200,
+      "keys": [
+        "cdCb4elfPUQhsLccHXTk2N10xCjBrinzStXQ+zVRUfc="
+      ]
+    },
+    "expected": {
+      "valid": false
+    }
+  }
+]

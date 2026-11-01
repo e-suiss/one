@@ -1,0 +1,6 @@
+# Access TN-136, E-3, INV-24
+
+[[vectors]]
+path = "vectors/webhook.json"
+kind = "behaviour"
+rules = ["Access TN-136", "E-3"]

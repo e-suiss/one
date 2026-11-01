@@ -3,6 +3,7 @@
 pub mod openapi;
 mod problem;
 pub mod rules;
+pub mod webhook;
 
 use std::future::Future;
 use std::pin::Pin;

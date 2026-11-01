@@ -2523,7 +2523,9 @@ dependencies = [
 name = "one-http"
 version = "0.0.0"
 dependencies = [
+ "aws-lc-rs",
  "axum",
+ "base64 0.22.1",
  "http-body-util",
  "one-proto",
  "one-runtime",
