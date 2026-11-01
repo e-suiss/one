@@ -1,4 +1,4 @@
-# PV-11, SEC-27, T-6, T-27 (3), T-27 (10), T-57
+# PV-11, SEC-27, T-6, T-27 (3), T-27 (10), T-57, OP-1 (2), OP-18
 
 [[table]]
 path = "attestation-evidence.cddl"
@@ -30,3 +30,8 @@ rules = ["SEC-27", "PV-11"]
 path = "vectors/privacy-pass.json"
 kind = "behaviour"
 rules = ["SEC-27", "PV-11"]
+
+[[vectors]]
+path = "vectors/rebuild-diff.json"
+kind = "behaviour"
+rules = ["OP-1 (2)", "OP-18"]
