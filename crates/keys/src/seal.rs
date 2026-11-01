@@ -20,7 +20,7 @@ pub const FORMAT_V1: u8 = 1;
 pub const WRAPPED_LEN: usize = 40;
 
 /// Why a key operation failed.
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash)]
 pub enum KeyError {
     /// A key is not 256 bits.
     KeyLength,
@@ -45,6 +45,12 @@ impl KeyError {
             Self::Seal => "seal",
             Self::Format => "format",
         }
+    }
+}
+
+impl core::fmt::Debug for KeyError {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        f.write_str(self.as_str())
     }
 }
 

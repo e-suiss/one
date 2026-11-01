@@ -9,7 +9,7 @@ use crate::StoreError;
 use crate::scope::OwnerTx;
 
 /// The wrapped keys above one record key, as the key layer unwraps them: KEK → class DEK → record key.
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Clone, PartialEq, Eq)]
 pub struct KeyChain {
     /// The class DEK the record key is wrapped to.
     pub dek: DekId,
@@ -21,6 +21,16 @@ pub struct KeyChain {
     pub wrapped_dek: Vec<u8>,
     /// The record key wrapped to the DEK.
     pub wrapped_record_key: Vec<u8>,
+}
+
+impl core::fmt::Debug for KeyChain {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        f.debug_struct("KeyChain")
+            .field("dek", &self.dek)
+            .field("class", &self.class)
+            .field("kek", &self.kek)
+            .finish_non_exhaustive()
+    }
 }
 
 /// Where an encrypted row's ciphertext and keys belong.

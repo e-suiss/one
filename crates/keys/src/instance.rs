@@ -8,7 +8,7 @@ use suiss_crypto::sig;
 use crate::ports::PermissionSignature;
 
 /// The P-256 public keys of the user's device Instances, by `kid`.
-#[derive(Debug, Clone, Default, PartialEq, Eq)]
+#[derive(Clone, Default, PartialEq, Eq)]
 pub struct InstanceKeys {
     keys: BTreeMap<Vec<u8>, Vec<u8>>,
 }
@@ -25,6 +25,14 @@ impl InstanceKeys {
     /// Adds the SEC1 public key of the Instance named `kid`, as Access reports it.
     pub fn insert(&mut self, kid: &[u8], public_key_sec1: &[u8]) {
         self.keys.insert(kid.to_vec(), public_key_sec1.to_vec());
+    }
+}
+
+impl core::fmt::Debug for InstanceKeys {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        f.debug_struct("InstanceKeys")
+            .field("keys", &self.keys.len())
+            .finish()
     }
 }
 

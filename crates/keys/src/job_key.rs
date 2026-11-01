@@ -9,7 +9,7 @@ use suiss_crypto::secret::Secret;
 use crate::seal::key_from_slice;
 
 /// Why a DEK is not handed over.
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash)]
 pub enum JobKeyError {
     /// The key's digest is not the verified report's `report_data`: a fleet key or any key outside the attested TEE.
     RecipientNotAttested,
@@ -28,6 +28,12 @@ impl JobKeyError {
     }
 }
 
+impl core::fmt::Debug for JobKeyError {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        f.write_str(self.as_str())
+    }
+}
+
 impl From<HpkeError> for JobKeyError {
     fn from(e: HpkeError) -> Self {
         Self::Hpke(e)
@@ -35,7 +41,7 @@ impl From<HpkeError> for JobKeyError {
 }
 
 /// A TEE job key bound to a verified attestation report.
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Clone, PartialEq, Eq)]
 pub struct AttestedJobKey {
     public: Vec<u8>,
 }
@@ -63,12 +69,29 @@ impl AttestedJobKey {
 }
 
 /// A DEK sealed to a job key.
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Clone, PartialEq, Eq)]
 pub struct SealedDek {
     /// The HPKE encapsulation.
     pub enc: Vec<u8>,
     /// The sealed DEK with its tag.
     pub ct: Vec<u8>,
+}
+
+impl core::fmt::Debug for AttestedJobKey {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        f.debug_struct("AttestedJobKey")
+            .field("public_len", &self.public.len())
+            .finish()
+    }
+}
+
+impl core::fmt::Debug for SealedDek {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        f.debug_struct("SealedDek")
+            .field("enc_len", &self.enc.len())
+            .field("ct_len", &self.ct.len())
+            .finish()
+    }
 }
 
 fn info(permission_body: &[u8]) -> [u8; 32] {

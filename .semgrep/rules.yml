@@ -66,6 +66,7 @@ rules:
     paths:
       exclude:
         - "**/tests/**"
+        - "**/tests.rs"
         - "**/benches/**"
         - "xtask/**"
         - "load/**"
