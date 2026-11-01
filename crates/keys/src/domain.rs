@@ -4,4 +4,5 @@ pub mod cose;
 pub mod permission;
 pub mod recovery;
 pub mod retention;
+pub mod shamir;
 pub mod vault;

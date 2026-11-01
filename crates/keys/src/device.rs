@@ -187,8 +187,9 @@ pub fn passkey_wrapping_key(
     let mut info = PASSKEY_INFO.to_vec();
     info.extend_from_slice(kek_id.as_bytes());
     let prk = Salt::new(HKDF_SHA256, &[]).extract(prf_output.expose());
+    let parts = [info.as_slice()];
     let okm = prk
-        .expand(&[info.as_slice()], HKDF_SHA256)
+        .expand(&parts, HKDF_SHA256)
         .map_err(|_| KeyError::Seal)?;
     let mut key = Zeroizing::new([0_u8; 32]);
     okm.fill(key.as_mut_slice()).map_err(|_| KeyError::Seal)?;

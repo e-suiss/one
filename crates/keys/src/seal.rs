@@ -181,8 +181,9 @@ pub fn unwrap(kek: &Secret<[u8; 32]>, wrapped: &[u8]) -> Result<Secret<[u8; 32]>
 pub fn part_key(record_key: &Secret<[u8; 32]>, part: &PartRef<'_>) -> Result<Dek, KeyError> {
     let info = part.info();
     let prk = Salt::new(HKDF_SHA256, &[]).extract(record_key.expose());
+    let parts = [info.as_slice()];
     let okm = prk
-        .expand(&[info.as_slice()], HKDF_SHA256)
+        .expand(&parts, HKDF_SHA256)
         .map_err(|_| KeyError::Seal)?;
     let mut key = Zeroizing::new([0_u8; 32]);
     okm.fill(key.as_mut_slice()).map_err(|_| KeyError::Seal)?;
