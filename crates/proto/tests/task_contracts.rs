@@ -1,4 +1,4 @@
-//! Every schema and behaviour vector of `conformance/task` through the typed task record, outcomes, step results, state derivation, projections, batches and budgets (CP-3, CP-4, CP-6, INV-30, C-27).
+//! Every schema and behaviour vector of `conformance/task` through the typed task record, outcomes, step results, state derivation, projections, batches, budgets and step idempotency keys (CP-3, CP-4, CP-6, INV-30, INV-31, T-27 (6), C-27).
 
 #![allow(
     clippy::unwrap_used,
@@ -10,13 +10,14 @@
 
 use core::num::NonZeroU32;
 
+use one_proto::id::TaskId;
 use one_proto::money::Currency;
 use one_proto::money::Decimal;
 use one_proto::money::Money;
 use one_proto::task::{
-    BatchRejection, BudgetRejection, HistoryEntry, Outcome, Reported, StepId, StepResult, Task,
-    TaskEvent, TaskState, WaitReason, batch, derive, effective_amount, effective_steps, project,
-    refused_submission, stop_command,
+    BatchRejection, BudgetRejection, HistoryEntry, IdempotencyKey, Outcome, Reported, StepId,
+    StepResult, Task, TaskEvent, TaskState, WaitReason, batch, derive, effective_amount,
+    effective_steps, project, refused_submission, stop_command,
 };
 use serde::Serialize;
 use serde::de::DeserializeOwned;
@@ -302,4 +303,27 @@ fn cp_4_amount_budget_in_two_currencies_is_rejected() {
         Ok(small.clone())
     );
     assert_eq!(effective_amount(Some(&small), Some(&try_)), Ok(small));
+}
+
+#[test]
+fn t_27_6_step_idempotency_key_vectors() {
+    let all = load("vectors/idempotency-key.json");
+    let mut keys = Vec::new();
+    for v in &all {
+        let description = v["description"].as_str().unwrap();
+        let task = TaskId::parse(v["input"]["task_id"].as_str().unwrap()).unwrap();
+        let step = StepId::parse(v["input"]["step_id"].as_str().unwrap()).unwrap();
+        let key = IdempotencyKey::for_step(task, &step);
+        assert_eq!(
+            key.as_str(),
+            v["expected"]["idempotency_key"].as_str().unwrap(),
+            "{description}"
+        );
+        assert_eq!(IdempotencyKey::parse(key.as_str()), Ok(key.clone()));
+        assert_eq!(IdempotencyKey::for_step(task, &step), key, "{description}");
+        keys.push(key);
+    }
+    keys.sort();
+    keys.dedup();
+    assert_eq!(keys.len(), all.len());
 }

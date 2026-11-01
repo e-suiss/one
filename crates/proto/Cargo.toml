@@ -10,6 +10,7 @@ publish = false
 
 [dependencies]
 serde = { workspace = true, features = ["derive", "alloc"] }
+sha2.workspace = true
 
 [dev-dependencies]
 gungraun = { workspace = true, features = ["default"] }

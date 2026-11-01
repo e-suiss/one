@@ -1,9 +1,12 @@
 //! The task record: One's single-person work record with the C-19 header; the task state is never a field (CP-1, CP-2, CP-4, CP-9, CP-43, C-19, C-20, SEC-14, SEC-19).
 
+use alloc::string::{String, ToString as _};
 use alloc::vec::Vec;
+use core::fmt::Write as _;
 use core::num::NonZeroU32;
 
 use serde::{Deserialize, Serialize};
+use sha2::{Digest as _, Sha256};
 
 use super::common::{ExecutorEvidence, SnakeName, check_header, checked_record, wire_enum};
 use super::outcome::{StepResult, StepStatus};
@@ -94,6 +97,23 @@ crate::ontology::validate::checked_string!(
     "idempotency key",
     is_idempotency_key
 );
+
+impl IdempotencyKey {
+    /// The key every outgoing request of step `step` of `task` carries, so a replay of the step sends the same key (T-27 (6), INV-31): `one-` and the lowercase hex SHA-256 of `one/step-idempotency/v1\0`, the task id text, `\0` and the step id.
+    #[must_use]
+    pub fn for_step(task: TaskId, step: &StepId) -> Self {
+        let mut hash = Sha256::new();
+        hash.update(b"one/step-idempotency/v1\0");
+        hash.update(task.to_string().as_bytes());
+        hash.update(b"\0");
+        hash.update(step.as_str().as_bytes());
+        let mut text = String::from("one-");
+        for b in hash.finalize() {
+            let _ = write!(text, "{b:02x}");
+        }
+        Self(text)
+    }
+}
 crate::ontology::validate::checked_string!(
     /// Why a route was chosen.
     RouteReason,

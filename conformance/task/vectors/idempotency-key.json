@@ -1,0 +1,35 @@
+[
+  {
+    "rule": "T-27 (6)",
+    "description": "An outgoing request's key derives from its task and step",
+    "input": {
+      "task_id": "task_01k7n51z01e40r200000000000",
+      "step_id": "send-form"
+    },
+    "expected": {
+      "idempotency_key": "one-f588461e691496dc8c1ce8ca2b3dffd273196e3c26a4b89594d929da2b6407b4"
+    }
+  },
+  {
+    "rule": "INV-31",
+    "description": "Another step of the same task gets another key",
+    "input": {
+      "task_id": "task_01k7n51z01e40r200000000000",
+      "step_id": "pay"
+    },
+    "expected": {
+      "idempotency_key": "one-58da500922d3c143422048542ac478a8598e147f2e942b5e9932ca167039f5c5"
+    }
+  },
+  {
+    "rule": "INV-31",
+    "description": "The same step id in another task gets another key",
+    "input": {
+      "task_id": "task_01k7n51z01e40r200000000001",
+      "step_id": "send-form"
+    },
+    "expected": {
+      "idempotency_key": "one-fa6d508d62eccaa75068799bb1b89236a03bc5aead53c77d14ca03def6fb9ac4"
+    }
+  }
+]

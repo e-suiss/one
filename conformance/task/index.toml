@@ -1,4 +1,4 @@
-# CP-1, CP-2, CP-3, CP-4, CP-5, CP-6, CP-7, CP-9, CP-11, CP-36, CP-42, CP-43, CP-44, CP-45, C-6, C-15, C-19, C-20, C-27, INV-30, INV-32, SEC-14, SEC-19
+# CP-1, CP-2, CP-3, CP-4, CP-5, CP-6, CP-7, CP-9, CP-11, CP-36, CP-42, CP-43, CP-44, CP-45, C-6, C-15, C-19, C-20, C-27, INV-30, INV-31, INV-32, SEC-14, SEC-19, T-27 (6)
 
 [[schema]]
 path = "../open/schemas/task/common.json"
@@ -70,3 +70,8 @@ rules = ["CP-3", "CP-42", "CP-44", "CP-11", "INV-30", "INV-32"]
 [[table]]
 path = "projections.toml"
 rules = ["CP-3", "C-6", "C-27", "CP-24", "CP-28", "CP-29"]
+
+[[vectors]]
+path = "vectors/idempotency-key.json"
+kind = "behaviour"
+rules = ["T-27 (6)", "CP-43", "INV-31"]
