@@ -1,6 +1,7 @@
 //! Write admission (M-15, M-16, M-18, M-33, PV-21): an explicit "remember" is active and stated at once, background inference is active and inferred except a sensitive record or a behaviour rule, which waits as a candidate, and external content or an import is always a candidate that can never become a behaviour rule; during a conversation only an explicit "remember" writes, and an ephemeral session writes nothing.
 
 use one_proto::memory::fields::{EpistemicState, Layer, LiveStatus};
+use one_proto::ontology::time::Instant;
 
 /// How a record reaches memory.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -90,4 +91,17 @@ pub fn admit(
         status,
         epistemic_state,
     })
+}
+
+/// How long a `current` record is expected to hold when nobody said, in days (M-22).
+pub const CURRENT_DAYS: i64 = 90;
+
+/// The default expected end of a `current` record that starts at `valid_from` (M-22).
+#[must_use]
+pub fn default_expected_end(valid_from: &Instant) -> Instant {
+    Instant::from_unix(
+        valid_from
+            .unix_secs()
+            .saturating_add(CURRENT_DAYS.saturating_mul(86_400)),
+    )
 }

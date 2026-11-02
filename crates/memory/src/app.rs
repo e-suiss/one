@@ -8,7 +8,7 @@ use one_proto::memory::export::{
     ExcludedSection, ExportDocument, ExportFormat, Generator, MemorySection, PersonalityExport,
     ProfileExport, SCHEMA_VERSION,
 };
-use one_proto::memory::fields::{EpistemicState, Layer, LiveStatus};
+use one_proto::memory::fields::{EpistemicState, Layer, LiveStatus, TimeKind};
 use one_proto::memory::forget::{
     Confirmation, EpisodeUse, ForgetDecision, ForgetEffects, ForgetError, ForgetPermanently,
     ForgetRequest, ForgetScope, Initiator, ScopedRecord, forget as decide_forget,
@@ -28,7 +28,7 @@ use crate::domain::classes::trust_class;
 use crate::domain::decay::{DecayInput, priority};
 use crate::domain::rank::{Ranked, smallest_subset};
 use crate::domain::retrieval::{Query, in_area, passes_opinion_filter, usable};
-use crate::domain::write::{Moment, Session, WriteError, WritePath, admit};
+use crate::domain::write::{Moment, Session, WriteError, WritePath, admit, default_expected_end};
 use crate::ports::{Forgot, Policy, Projections, Row, Search, SearchError, Vault, VaultError};
 
 /// Why a use case failed.
@@ -107,6 +107,9 @@ pub async fn remember<V: Vault>(
     record.header.version = NonZeroU32::MIN;
     record.header.recorded_at = now;
     record.header.deleted_at = None;
+    if record.time_kind == TimeKind::Current && record.expected_end.is_none() {
+        record.expected_end = Some(default_expected_end(&record.valid_from));
+    }
     check_write(&record.source_episodes, None).map_err(MemoryAppError::Memory)?;
     if !vault.episodes_exist(&record.source_episodes).await? {
         return Err(MemoryAppError::Memory(MemoryError::UnknownSourceEpisode));

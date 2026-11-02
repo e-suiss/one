@@ -12,7 +12,9 @@ use one_memory::domain::classes::trust_class;
 use one_memory::domain::decay::{DecayError, DecayInput, priority};
 use one_memory::domain::rank::{Ranked, score, smallest_subset};
 use one_memory::domain::retrieval::{ORDER, QueryKind, Step, opinion_allowed};
-use one_memory::domain::write::{Admitted, Moment, Session, WriteError, WritePath, admit};
+use one_memory::domain::write::{
+    Admitted, Moment, Session, WriteError, WritePath, admit, default_expected_end,
+};
 use one_proto::memory::fields::{EpistemicState, Layer, LiveStatus, SourceKind, TimeKind};
 use one_proto::ontology::time::Instant;
 use serde_json::Value;
@@ -202,4 +204,13 @@ fn m_30_m_32_the_order_is_fixed_and_opinions_stay_out_of_factual_questions() {
     ] {
         assert!(opinion_allowed(kind));
     }
+}
+
+#[test]
+fn m_22_a_current_record_is_expected_to_end_after_ninety_days() {
+    let from = Instant::parse("2026-11-03T08:00:00Z").unwrap();
+    assert_eq!(
+        default_expected_end(&from).unix_secs(),
+        Instant::parse("2027-02-01T08:00:00Z").unwrap().unix_secs()
+    );
 }
