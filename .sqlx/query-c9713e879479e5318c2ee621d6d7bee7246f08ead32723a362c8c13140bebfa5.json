@@ -1,0 +1,41 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "SELECT dek_id, wrapped_dek AS \"wrapped_dek!\" FROM one.class_dek\n                WHERE owner = $1 AND retention_class = $2 AND wrapped_dek IS NOT NULL\n                ORDER BY recorded_at DESC LIMIT 1",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "dek_id",
+        "type_info": "Uuid",
+        "origin": {
+          "Table": {
+            "table": "one.class_dek",
+            "name": "dek_id"
+          }
+        }
+      },
+      {
+        "ordinal": 1,
+        "name": "wrapped_dek!",
+        "type_info": "Bytea",
+        "origin": {
+          "Table": {
+            "table": "one.class_dek",
+            "name": "wrapped_dek"
+          }
+        }
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Text"
+      ]
+    },
+    "nullable": [
+      false,
+      true
+    ]
+  },
+  "hash": "c9713e879479e5318c2ee621d6d7bee7246f08ead32723a362c8c13140bebfa5"
+}

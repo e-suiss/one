@@ -1,0 +1,32 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "WITH old AS (UPDATE one.memory_record SET status = 'superseded'\n                           WHERE owner = $1 AND id = $2 AND status = 'active'\n                       RETURNING owner, version, retention_class, region, record_key_id, dek_id, promise_version)\n             INSERT INTO one.memory_record (owner, id, version, supersedes, status, retention_class, region,\n                                            record_key_id, dek_id, ciphertext, ciphertext_len, promise_version)\n             SELECT owner, $3, version + 1, $2, 'active', retention_class, region, record_key_id, dek_id, $4, $5,\n                    promise_version\n               FROM old\n             RETURNING version",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "version",
+        "type_info": "Int4",
+        "origin": {
+          "Table": {
+            "table": "one.memory_record",
+            "name": "version"
+          }
+        }
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Uuid",
+        "Uuid",
+        "Bytea",
+        "Int4"
+      ]
+    },
+    "nullable": [
+      false
+    ]
+  },
+  "hash": "84c68406b951400e413b8853d35509888ab6fec733ae483d3936a6fb1741559b"
+}

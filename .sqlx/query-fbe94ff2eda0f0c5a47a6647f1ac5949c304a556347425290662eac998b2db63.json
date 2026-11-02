@@ -1,0 +1,109 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "SELECT id, version, supersedes, status, retention_class, record_key_id,\n                      CASE WHEN deleted_at IS NULL THEN ciphertext END AS ciphertext,\n                      (extract(epoch FROM recorded_at) * 1000)::bigint AS \"recorded_at_ms!\",\n                      (extract(epoch FROM deleted_at) * 1000)::bigint AS deleted_at_ms\n                 FROM one.memory_record WHERE owner = $1\n                ORDER BY recorded_at, id",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Uuid",
+        "origin": {
+          "Table": {
+            "table": "one.memory_record",
+            "name": "id"
+          }
+        }
+      },
+      {
+        "ordinal": 1,
+        "name": "version",
+        "type_info": "Int4",
+        "origin": {
+          "Table": {
+            "table": "one.memory_record",
+            "name": "version"
+          }
+        }
+      },
+      {
+        "ordinal": 2,
+        "name": "supersedes",
+        "type_info": "Uuid",
+        "origin": {
+          "Table": {
+            "table": "one.memory_record",
+            "name": "supersedes"
+          }
+        }
+      },
+      {
+        "ordinal": 3,
+        "name": "status",
+        "type_info": "Text",
+        "origin": {
+          "Table": {
+            "table": "one.memory_record",
+            "name": "status"
+          }
+        }
+      },
+      {
+        "ordinal": 4,
+        "name": "retention_class",
+        "type_info": "Text",
+        "origin": {
+          "Table": {
+            "table": "one.memory_record",
+            "name": "retention_class"
+          }
+        }
+      },
+      {
+        "ordinal": 5,
+        "name": "record_key_id",
+        "type_info": "Uuid",
+        "origin": {
+          "Table": {
+            "table": "one.memory_record",
+            "name": "record_key_id"
+          }
+        }
+      },
+      {
+        "ordinal": 6,
+        "name": "ciphertext",
+        "type_info": "Bytea",
+        "origin": "Expression"
+      },
+      {
+        "ordinal": 7,
+        "name": "recorded_at_ms!",
+        "type_info": "Int8",
+        "origin": "Expression"
+      },
+      {
+        "ordinal": 8,
+        "name": "deleted_at_ms",
+        "type_info": "Int8",
+        "origin": "Expression"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Text"
+      ]
+    },
+    "nullable": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+      null,
+      null,
+      null
+    ]
+  },
+  "hash": "fbe94ff2eda0f0c5a47a6647f1ac5949c304a556347425290662eac998b2db63"
+}
