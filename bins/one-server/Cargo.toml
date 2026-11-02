@@ -11,11 +11,15 @@ publish = false
 [dependencies]
 axum = { workspace = true, features = ["http1", "http2", "tokio"] }
 getrandom = { workspace = true, features = ["std"] }
+one-access-client = { workspace = true, features = ["fetch"] }
 one-config.workspace = true
+one-relay-client.workspace = true
 one-runtime.workspace = true
 one-http.workspace = true
 one-telemetry.workspace = true
-tokio = { workspace = true, features = ["macros", "net", "rt-multi-thread", "signal"] }
+one-work-client.workspace = true
+reqwest = { workspace = true, features = ["rustls"] }
+tokio = { workspace = true, features = ["macros", "net", "rt-multi-thread", "signal", "time"] }
 tracing = { workspace = true, features = ["std"] }
 
 [lints]

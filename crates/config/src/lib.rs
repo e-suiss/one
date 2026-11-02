@@ -68,7 +68,7 @@ pub struct ServerConfig {
     pub siblings: Siblings,
 }
 
-/// The base addresses of Access, Relay and Work (E-2, E-3): Access endpoints come from its discovery document, Relay and Work are checked before serving. There is no Pay entry until Pay is ready (A-48).
+/// The base addresses of Access, Relay and Work (E-2, E-3): One does not start without all three; Access endpoints come from its discovery document, and the server watches each sibling and raises an alarm when one is unreachable without becoming unready (T-23, T-40 (7)). There is no Pay entry until Pay is ready (A-48).
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct Siblings {

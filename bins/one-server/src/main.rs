@@ -6,6 +6,7 @@ use std::sync::Arc;
 use std::sync::atomic::{AtomicU64, Ordering};
 
 use one_config::ServerConfig;
+mod siblings;
 mod system;
 
 use one_http::{Limits, Sources, internal_router, public_router};
@@ -68,6 +69,7 @@ async fn serve(config: &ServerConfig) -> std::io::Result<()> {
         clock: Arc::new(system::SystemClock::new()),
         rng: Arc::new(system::OsRng),
     };
+    let watch = siblings::watch(config.siblings.clone()).map_err(std::io::Error::other)?;
     let public = tokio::net::TcpListener::bind(config.listen).await?;
     let internal = tokio::net::TcpListener::bind(config.internal_listen).await?;
     let roles: Vec<&str> = config.roles.iter().map(|r| r.as_str()).collect();
@@ -82,7 +84,9 @@ async fn serve(config: &ServerConfig) -> std::io::Result<()> {
         .with_graceful_shutdown(shutdown());
     let internal = axum::serve(internal, internal_router(Vec::new(), limits, sources))
         .with_graceful_shutdown(shutdown());
+    let watch = tokio::spawn(watch);
     let (a, b) = tokio::join!(public.into_future(), internal.into_future());
+    watch.abort();
     a.and(b)
 }
 
