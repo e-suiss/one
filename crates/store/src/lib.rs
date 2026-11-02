@@ -6,6 +6,7 @@ pub mod hold;
 pub mod idempotency;
 pub mod jobs;
 pub mod keyring;
+pub mod memory;
 pub mod outbox;
 pub mod scope;
 pub mod shred;
