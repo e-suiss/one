@@ -48,7 +48,7 @@ pub(crate) fn watch(siblings: Siblings) -> Result<impl Future<Output = ()>, reqw
                 *slot = Some(result.is_ok());
                 match result {
                     Ok(()) => {
-                        tracing::info!(event = "sibling.reachable", outcome = "ok", sibling = name)
+                        tracing::info!(event = "sibling.reachable", outcome = "ok", sibling = name);
                     }
                     Err(reason) => tracing::error!(
                         event = "sibling.unreachable",
