@@ -1,4 +1,4 @@
-//! Ranking and the smallest subset (M-30 steps 6 and 7, M-20, M-31, `conformance/memory/rank-v1.toml`): a score from hybrid relevance, trust, decayed priority and the query's life area; the model sees at most twelve records scoring 0.35 or more, and a record contradicting a kept one always travels with it.
+//! Ranking and the smallest subset (M-30 steps 6 and 7, M-20, M-31, `conformance/memory/rank-v1.toml`): a score from hybrid relevance, trust, decayed priority and the query's life area; the model sees at most twelve records scoring 0.35 or more, and a record contradicting a kept one, or contradicted by it, always travels with it.
 
 use std::collections::BTreeMap;
 
@@ -62,11 +62,13 @@ pub fn smallest_subset<K: Ord + Clone>(records: &[Ranked<K>]) -> Vec<K> {
     let by_id: BTreeMap<&K, &Ranked<K>> = records.iter().map(|r| (&r.id, r)).collect();
     let mut i = 0;
     while let Some(id) = kept.get(i).cloned() {
-        if let Some(r) = by_id.get(&id) {
-            for other in &r.contradicts {
-                if by_id.contains_key(other) && !kept.contains(other) {
-                    kept.push(other.clone());
-                }
+        for r in records {
+            let linked = r.contradicts.contains(&id)
+                || by_id
+                    .get(&id)
+                    .is_some_and(|k| k.contradicts.contains(&r.id));
+            if linked && !kept.contains(&r.id) {
+                kept.push(r.id.clone());
             }
         }
         i = i.saturating_add(1);

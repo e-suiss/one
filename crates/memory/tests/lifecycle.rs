@@ -20,7 +20,7 @@ use one_memory::ports::Projections;
 use one_proto::MemoryRecordId;
 use one_proto::id::uuid_v7;
 use one_proto::memory::export::{AccessE65, AccessProjection, ExportDocument, Generator, import};
-use one_proto::memory::fields::LiveStatus;
+use one_proto::memory::fields::{EpistemicState, LiveStatus};
 use one_proto::memory::forget::{Confirmation, ForgetError, Initiator};
 use one_proto::memory::record::{LiveMemoryRecord, MemoryRecord};
 use one_proto::ontology::episode::Episode;
@@ -335,8 +335,16 @@ async fn m_25_only_the_user_forgets_and_the_whole_chain_stops_opening() {
 #[tokio::test]
 async fn m_39_the_full_package_is_written_read_back_and_imported() {
     let w = World::new("memory-export").await;
-    let kept = remembered(&w, 1, "Kahveyi sütsüz içerim.").await;
+    let old = remembered(&w, 1, "Kahveyi sütlü içerim.").await;
     let mut v = w.vault().await;
+    let kept = correct(
+        &mut v,
+        at("2026-11-03T08:01:30Z"),
+        old,
+        record(id(3), "Kahveyi sütsüz içerim."),
+    )
+    .await
+    .unwrap();
     let gone = remember(
         &mut v,
         at("2026-11-03T08:02:00Z"),
@@ -400,11 +408,21 @@ async fn m_39_the_full_package_is_written_read_back_and_imported() {
         read.memory.records.iter().find(|r| r.id() == gone),
         Some(MemoryRecord::Forgotten(_))
     ));
+    let superseded = read
+        .memory
+        .records
+        .iter()
+        .find(|r| r.id() == old)
+        .and_then(MemoryRecord::live)
+        .unwrap();
+    assert_eq!(superseded.epistemic_state, EpistemicState::Invalidated);
+    assert!(superseded.superseded_at.is_some());
+    assert!(!read.text_view.contains("sütlü"));
     assert_eq!(read.memory.episodes.len(), 1);
 
     let imported = import(&read);
     assert!(!imported.training_eligible);
-    assert_eq!(imported.imported.len(), 1);
+    assert_eq!(imported.imported.len(), 2);
     assert!(
         imported
             .imported

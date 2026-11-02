@@ -209,6 +209,13 @@ pub async fn correct<V: Vault>(
     replacement.status = LiveStatus::Active;
     replacement.epistemic_state = EpistemicState::Stated;
     replacement.superseded_at = None;
+    if replacement.time_kind == TimeKind::Current && replacement.expected_end.is_none() {
+        replacement.expected_end = Some(default_expected_end(&replacement.valid_from));
+    }
+    check_write(&replacement.source_episodes, None).map_err(MemoryAppError::Memory)?;
+    if !vault.episodes_exist(&replacement.source_episodes).await? {
+        return Err(MemoryAppError::Memory(MemoryError::UnknownSourceEpisode));
+    }
     next_version(vault, now, &old, replacement).await
 }
 
@@ -258,13 +265,17 @@ pub async fn forget<V: Vault>(
     confirmation: Option<Confirmation>,
 ) -> Result<ForgetEffects, MemoryAppError> {
     let rows = vault.rows().await?;
+    let heads = chain_heads(&rows);
     let mut records = BTreeMap::new();
-    let mut uses: BTreeMap<EpisodeId, Vec<MemoryRecordId>> = BTreeMap::new();
-    for row in rows.iter().filter(|r| r.head) {
-        if let Some(r) = decode(row)? {
-            for e in &r.source_episodes {
-                uses.entry(*e).or_default().push(r.id);
-            }
+    let mut uses: BTreeMap<EpisodeId, BTreeSet<MemoryRecordId>> = BTreeMap::new();
+    for row in &rows {
+        let (Some(r), Some(head)) = (decode(row)?, heads.get(&row.id)) else {
+            continue;
+        };
+        for e in &r.source_episodes {
+            uses.entry(*e).or_default().insert(*head);
+        }
+        if row.head {
             records.insert(
                 r.id,
                 ScopedRecord {
@@ -286,7 +297,10 @@ pub async fn forget<V: Vault>(
         derivatives: Vec::new(),
         episodes: uses
             .into_iter()
-            .map(|(id, used_by)| EpisodeUse { id, used_by })
+            .map(|(id, used_by)| EpisodeUse {
+                id,
+                used_by: used_by.into_iter().collect(),
+            })
             .collect(),
         devices: Vec::new(),
         adapter: None,
@@ -302,6 +316,14 @@ pub async fn forget<V: Vault>(
             Forgot::Held => return Err(MemoryAppError::Held),
             Forgot::Missing => return Err(MemoryAppError::NotFound),
         }
+        for older in rows
+            .iter()
+            .filter(|r| r.id != *record && heads.get(&r.id) == Some(record))
+        {
+            if vault.forget(older.id).await? == Forgot::Held {
+                return Err(MemoryAppError::Held);
+            }
+        }
     }
     for episode in &effects.shredded_episodes {
         if vault.forget_episode(*episode).await? == Forgot::Held {
@@ -309,6 +331,28 @@ pub async fn forget<V: Vault>(
         }
     }
     Ok(effects)
+}
+
+/// The head of the chain each row belongs to.
+fn chain_heads(rows: &[Row]) -> BTreeMap<MemoryRecordId, MemoryRecordId> {
+    let next: BTreeMap<MemoryRecordId, MemoryRecordId> = rows
+        .iter()
+        .filter_map(|r| r.supersedes.map(|old| (old, r.id)))
+        .collect();
+    rows.iter()
+        .map(|r| {
+            let mut head = r.id;
+            let mut steps = 0_usize;
+            while let Some(n) = next.get(&head) {
+                head = *n;
+                steps = steps.saturating_add(1);
+                if steps > rows.len() {
+                    break;
+                }
+            }
+            (r.id, head)
+        })
+        .collect()
 }
 
 fn skeleton(owner: &PartyRef, row: &Row) -> MemoryRecord {
@@ -461,12 +505,22 @@ fn section(
     sensitive: bool,
 ) -> Result<MemorySection, MemoryAppError> {
     let wanted = |class: RetentionClass| (class == RetentionClass::OneSensitive) == sensitive;
+    let successor: BTreeMap<MemoryRecordId, Instant> = rows
+        .iter()
+        .filter_map(|r| r.supersedes.map(|old| (old, r.recorded_at)))
+        .collect();
     let records = rows
         .iter()
         .filter(|r| wanted(r.class))
         .map(|r| {
             Ok(match decode(r)? {
-                Some(live) => MemoryRecord::Live(Box::new(live)),
+                Some(mut live) => {
+                    if let Some(at) = successor.get(&r.id) {
+                        live.epistemic_state = EpistemicState::Invalidated;
+                        live.superseded_at = Some(*at);
+                    }
+                    MemoryRecord::Live(Box::new(live))
+                }
                 None => skeleton(owner, r),
             })
         })
@@ -522,13 +576,21 @@ pub async fn export<V: Vault, A: Projections>(
         .then(|| section(owner, &rows, &episodes, true))
         .transpose()?;
     let heads = records(vault, owner).await?;
-    let rules = heads
+    let included: Vec<&LiveMemoryRecord> = heads
         .iter()
         .filter_map(MemoryRecord::live)
-        .filter(|r| r.layer == Layer::BehaviourRule && shown(r))
+        .filter(|r| {
+            shown(r)
+                && (include_sensitive || r.header.retention_class != RetentionClass::OneSensitive)
+        })
+        .collect();
+    let rules = included
+        .iter()
+        .filter(|r| r.layer == Layer::BehaviourRule)
         .map(|r| r.id)
         .collect();
-    let text_view = view(vault, owner, now).await?.text;
+    let entries: Vec<TextViewEntry> = included.iter().map(|r| entry(r, now)).collect();
+    let text_view = render(&entries).map_err(MemoryAppError::View)?.text;
     let document = ExportDocument {
         format: ExportFormat,
         schema_version: SCHEMA_VERSION,
