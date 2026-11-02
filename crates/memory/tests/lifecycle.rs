@@ -90,7 +90,7 @@ fn record(id: MemoryRecordId, text: &str) -> LiveMemoryRecord {
         "evidence": { "observation_count": 1, "supporting_count": 1,
                       "first_observed_at": "2026-11-03T08:00:00Z", "last_observed_at": "2026-11-03T08:00:00Z",
                       "contradicting_records": [], "user_confirmed_at": null },
-        "trust": { "value": 0.954545, "formula": "trust/v1", "computed_at": "2026-11-03T08:01:00Z" },
+        "trust": { "value": 0.954_545, "formula": "trust/v1", "computed_at": "2026-11-03T08:01:00Z" },
         "alternative_explanations": [], "usage_restriction": null,
         "statement": { "text": text, "lang": "tr" }
     }))
@@ -102,15 +102,20 @@ fn record(id: MemoryRecordId, text: &str) -> LiveMemoryRecord {
 struct Access(bool);
 
 impl Projections for Access {
-    async fn read(&mut self, at: Instant) -> Option<(AccessProjection, AccessProjection)> {
+    fn read(
+        &mut self,
+        at: Instant,
+    ) -> impl Future<Output = Option<(AccessProjection, AccessProjection)>> {
         let projection = |schema: &str| AccessProjection {
             source: AccessE65,
             read_at: at,
             schema: schema.to_owned(),
             items: Vec::new(),
         };
-        self.0
-            .then(|| (projection("grants/v1"), projection("connections/v1")))
+        std::future::ready(
+            self.0
+                .then(|| (projection("grants/v1"), projection("connections/v1"))),
+        )
     }
 }
 
