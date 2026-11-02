@@ -8,14 +8,25 @@ license.workspace = true
 repository.workspace = true
 publish = false
 
+[features]
+# E-3
+fetch = ["dep:reqwest"]
+
 # T-26 (6)
 [dependencies]
 access-kernel.workspace = true
+reqwest = { workspace = true, optional = true, features = ["rustls"] }
 serde_json = { workspace = true, features = ["std"] }
 suiss-crypto = { workspace = true, features = ["signer"] }
 
 [dev-dependencies]
+axum = { workspace = true, features = ["http1", "tokio"] }
+tokio = { workspace = true, features = ["macros", "net", "rt-multi-thread"] }
 toml = { workspace = true, features = ["std", "parse", "serde"] }
+
+[[test]]
+name = "fetch"
+required-features = ["fetch"]
 
 [lints]
 workspace = true

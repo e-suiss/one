@@ -2454,9 +2454,12 @@ checksum = "9f7c3e4beb33f85d45ae3e3a1792185706c8e16d043238c593331cc7cd313b50"
 name = "one-access-client"
 version = "0.0.0"
 dependencies = [
+ "axum",
  "esuiss-access-kernel",
  "esuiss-crypto",
+ "reqwest",
  "serde_json",
+ "tokio",
  "toml 1.1.8+spec-1.1.0",
 ]
 
@@ -2622,6 +2625,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "one-relay-client"
+version = "0.0.0"
+dependencies = [
+ "axum",
+ "reqwest",
+ "tokio",
+]
+
+[[package]]
 name = "one-rpc"
 version = "0.0.0"
 dependencies = [
@@ -2646,10 +2658,14 @@ version = "0.0.0"
 dependencies = [
  "axum",
  "getrandom 0.4.3",
+ "one-access-client",
  "one-config",
  "one-http",
+ "one-relay-client",
  "one-runtime",
  "one-telemetry",
+ "one-work-client",
+ "reqwest",
  "tokio",
  "tracing",
 ]
@@ -2718,6 +2734,15 @@ name = "one-uniffi-bindgen"
 version = "0.0.0"
 dependencies = [
  "uniffi",
+]
+
+[[package]]
+name = "one-work-client"
+version = "0.0.0"
+dependencies = [
+ "axum",
+ "reqwest",
+ "tokio",
 ]
 
 [[package]]

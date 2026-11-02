@@ -31,6 +31,8 @@ one-testkit = { path = "crates/testkit" }
 one-rpc = { path = "crates/rpc" }
 one-access-client = { path = "crates/access-client" }
 one-task = { path = "crates/task" }
+one-relay-client = { path = "crates/relay-client" }
+one-work-client = { path = "crates/work-client" }
 one-core = { path = "core" }
 # Access OP-76
 suiss-crypto = { package = "esuiss-crypto", version = "=0.2.3", default-features = false }
@@ -52,6 +54,7 @@ figment = { version = "0.10.19", default-features = false }
 http-body-util = { version = "0.1.3", default-features = false }
 sqlx = { version = "0.9.0", default-features = false }
 object_store = { version = "0.14.2", default-features = false }
+reqwest = { version = "0.13.5", default-features = false }
 uuid = { version = "1.29.0", default-features = false }
 zeroize = { version = "1.9.1", default-features = false }
 argon2 = { version = "=0.6.0", default-features = false, features = ["alloc"] }

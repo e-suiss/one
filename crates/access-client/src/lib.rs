@@ -4,5 +4,7 @@ pub mod adp;
 pub mod ais;
 pub mod decision;
 pub mod discovery;
+#[cfg(feature = "fetch")]
+pub mod fetch;
 
 pub use access_kernel;
