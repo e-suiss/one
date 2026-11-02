@@ -1,0 +1,23 @@
+# M-30, M-20, M-31
+version = "rank/v1"
+vectors = "vectors/rank-v1.json"
+arithmetic = "ieee754-binary64"
+rounding = "nearest-ties-to-even on the exact binary64 value"
+decimals = 6
+
+steps = [
+  "relevance = lexical_share * lexical + (1 - lexical_share) * similarity",
+  "area = 1 if the record is in the query's life area else 0",
+  "score = round(relevance_weight * relevance + trust_weight * trust + priority_weight * priority + area_weight * area, decimals)",
+  "order by score descending, then record id ascending",
+  "keep records whose score >= min_score, at most max_records",
+  "add every eligible record that contradicts a kept record, after the limit",
+]
+
+lexical_share = 0.5
+relevance_weight = 0.55
+trust_weight = 0.2
+priority_weight = 0.15
+area_weight = 0.1
+min_score = 0.35
+max_records = 12

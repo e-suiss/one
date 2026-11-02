@@ -1,0 +1,98 @@
+[
+  {
+    "rule": "M-14",
+    "description": "user statement",
+    "input": {
+      "source_kind": "user_statement",
+      "user_confirmed": false,
+      "trust": 0.954545
+    },
+    "expected": {
+      "trust_class": "you_said"
+    }
+  },
+  {
+    "rule": "M-14",
+    "description": "behaviour confirmed by the user",
+    "input": {
+      "source_kind": "user_behaviour",
+      "user_confirmed": true,
+      "trust": 0.5
+    },
+    "expected": {
+      "trust_class": "you_said"
+    }
+  },
+  {
+    "rule": "M-14",
+    "description": "external content unconfirmed",
+    "input": {
+      "source_kind": "external_content",
+      "user_confirmed": false,
+      "trust": 0.6
+    },
+    "expected": {
+      "trust_class": "seen_unverified"
+    }
+  },
+  {
+    "rule": "M-14",
+    "description": "external content confirmed",
+    "input": {
+      "source_kind": "external_content",
+      "user_confirmed": true,
+      "trust": 0.6
+    },
+    "expected": {
+      "trust_class": "you_said"
+    }
+  },
+  {
+    "rule": "M-14",
+    "description": "import unconfirmed",
+    "input": {
+      "source_kind": "import",
+      "user_confirmed": false,
+      "trust": 0.6
+    },
+    "expected": {
+      "trust_class": "imported_unverified"
+    }
+  },
+  {
+    "rule": "M-14",
+    "description": "behaviour at the threshold",
+    "input": {
+      "source_kind": "user_behaviour",
+      "user_confirmed": false,
+      "trust": 0.7
+    },
+    "expected": {
+      "trust_class": "i_think"
+    }
+  },
+  {
+    "rule": "M-14",
+    "description": "behaviour just below the threshold",
+    "input": {
+      "source_kind": "user_behaviour",
+      "user_confirmed": false,
+      "trust": 0.699999
+    },
+    "expected": {
+      "trust_class": "not_sure"
+    }
+  },
+  {
+    "rule": "M-14",
+    "description": "connected source high trust",
+    "input": {
+      "source_kind": "connected_source",
+      "user_confirmed": false,
+      "trust": 0.95
+    },
+    "expected": {
+      "trust_class": "i_think"
+    }
+  }
+]

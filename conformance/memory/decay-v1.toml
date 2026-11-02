@@ -1,0 +1,29 @@
+# M-23
+version = "decay/v1"
+vectors = "vectors/decay-v1.json"
+arithmetic = "ieee754-binary64"
+rounding = "nearest-ties-to-even on the exact binary64 value"
+decimals = 6
+seconds_per_day = 86400
+
+steps = [
+  "reject when last_used_at or last_confirmed_at is after as_of",
+  "h = use_half_life_days[time_kind]",
+  "recency = 2 ^ (-(as_of - last_used_at) / (h * seconds_per_day))",
+  "frequency = min(1, log2(1 + use_count) / frequency_saturation)",
+  "confirmation = 0 if last_confirmed_at is null else 2 ^ (-(as_of - last_confirmed_at) / (confirmation_half_life_days * seconds_per_day))",
+  "priority = round(recency_weight * recency + frequency_weight * frequency + confirmation_weight * confirmation, decimals)",
+]
+
+recency_weight = 0.6
+frequency_weight = 0.25
+confirmation_weight = 0.15
+frequency_saturation = 5.0
+confirmation_half_life_days = 365.0
+
+[use_half_life_days]
+permanent = 180.0
+current = 30.0
+seasonal = 365.0
+one_off = 14.0
+past = 90.0

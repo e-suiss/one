@@ -1,0 +1,290 @@
+[
+  {
+    "rule": "M-30",
+    "description": "relevance dominates, area breaks the tie",
+    "input": {
+      "candidates": [
+        {
+          "id": "r01",
+          "lexical": 0.9,
+          "similarity": 0.8,
+          "trust": 0.7,
+          "priority": 0.5,
+          "in_area": true,
+          "contradicts": []
+        },
+        {
+          "id": "r02",
+          "lexical": 0.9,
+          "similarity": 0.8,
+          "trust": 0.7,
+          "priority": 0.5,
+          "in_area": false,
+          "contradicts": []
+        },
+        {
+          "id": "r03",
+          "lexical": 0.1,
+          "similarity": 0.2,
+          "trust": 0.9,
+          "priority": 0.9,
+          "in_area": true,
+          "contradicts": []
+        }
+      ]
+    },
+    "expected": {
+      "scores": {
+        "r01": 0.7825,
+        "r02": 0.6825,
+        "r03": 0.4975
+      },
+      "kept": [
+        "r01",
+        "r02",
+        "r03"
+      ]
+    }
+  },
+  {
+    "rule": "M-30",
+    "description": "below the minimum score is left out",
+    "input": {
+      "candidates": [
+        {
+          "id": "r01",
+          "lexical": 0.0,
+          "similarity": 0.0,
+          "trust": 0.6,
+          "priority": 0.2,
+          "in_area": false,
+          "contradicts": []
+        },
+        {
+          "id": "r02",
+          "lexical": 0.6,
+          "similarity": 0.6,
+          "trust": 0.6,
+          "priority": 0.6,
+          "in_area": false,
+          "contradicts": []
+        }
+      ]
+    },
+    "expected": {
+      "scores": {
+        "r01": 0.15,
+        "r02": 0.54
+      },
+      "kept": [
+        "r02"
+      ]
+    }
+  },
+  {
+    "rule": "M-30",
+    "description": "a contradicting record travels with the one it contradicts",
+    "input": {
+      "candidates": [
+        {
+          "id": "r01",
+          "lexical": 0.9,
+          "similarity": 0.9,
+          "trust": 0.8,
+          "priority": 0.8,
+          "in_area": true,
+          "contradicts": [
+            "r02"
+          ]
+        },
+        {
+          "id": "r02",
+          "lexical": 0.0,
+          "similarity": 0.0,
+          "trust": 0.3,
+          "priority": 0.1,
+          "in_area": false,
+          "contradicts": [
+            "r01"
+          ]
+        }
+      ]
+    },
+    "expected": {
+      "scores": {
+        "r01": 0.875,
+        "r02": 0.075
+      },
+      "kept": [
+        "r01",
+        "r02"
+      ]
+    }
+  },
+  {
+    "rule": "M-30",
+    "description": "at most twelve records",
+    "input": {
+      "candidates": [
+        {
+          "id": "r01",
+          "lexical": 0.8,
+          "similarity": 0.8,
+          "trust": 0.8,
+          "priority": 0.8,
+          "in_area": true,
+          "contradicts": []
+        },
+        {
+          "id": "r02",
+          "lexical": 0.8,
+          "similarity": 0.8,
+          "trust": 0.8,
+          "priority": 0.8,
+          "in_area": true,
+          "contradicts": []
+        },
+        {
+          "id": "r03",
+          "lexical": 0.8,
+          "similarity": 0.8,
+          "trust": 0.8,
+          "priority": 0.8,
+          "in_area": true,
+          "contradicts": []
+        },
+        {
+          "id": "r04",
+          "lexical": 0.8,
+          "similarity": 0.8,
+          "trust": 0.8,
+          "priority": 0.8,
+          "in_area": true,
+          "contradicts": []
+        },
+        {
+          "id": "r05",
+          "lexical": 0.8,
+          "similarity": 0.8,
+          "trust": 0.8,
+          "priority": 0.8,
+          "in_area": true,
+          "contradicts": []
+        },
+        {
+          "id": "r06",
+          "lexical": 0.8,
+          "similarity": 0.8,
+          "trust": 0.8,
+          "priority": 0.8,
+          "in_area": true,
+          "contradicts": []
+        },
+        {
+          "id": "r07",
+          "lexical": 0.8,
+          "similarity": 0.8,
+          "trust": 0.8,
+          "priority": 0.8,
+          "in_area": true,
+          "contradicts": []
+        },
+        {
+          "id": "r08",
+          "lexical": 0.8,
+          "similarity": 0.8,
+          "trust": 0.8,
+          "priority": 0.8,
+          "in_area": true,
+          "contradicts": []
+        },
+        {
+          "id": "r09",
+          "lexical": 0.8,
+          "similarity": 0.8,
+          "trust": 0.8,
+          "priority": 0.8,
+          "in_area": true,
+          "contradicts": []
+        },
+        {
+          "id": "r10",
+          "lexical": 0.8,
+          "similarity": 0.8,
+          "trust": 0.8,
+          "priority": 0.8,
+          "in_area": true,
+          "contradicts": []
+        },
+        {
+          "id": "r11",
+          "lexical": 0.8,
+          "similarity": 0.8,
+          "trust": 0.8,
+          "priority": 0.8,
+          "in_area": true,
+          "contradicts": []
+        },
+        {
+          "id": "r12",
+          "lexical": 0.8,
+          "similarity": 0.8,
+          "trust": 0.8,
+          "priority": 0.8,
+          "in_area": true,
+          "contradicts": []
+        },
+        {
+          "id": "r13",
+          "lexical": 0.8,
+          "similarity": 0.8,
+          "trust": 0.8,
+          "priority": 0.8,
+          "in_area": true,
+          "contradicts": []
+        },
+        {
+          "id": "r14",
+          "lexical": 0.8,
+          "similarity": 0.8,
+          "trust": 0.8,
+          "priority": 0.8,
+          "in_area": true,
+          "contradicts": []
+        }
+      ]
+    },
+    "expected": {
+      "scores": {
+        "r01": 0.82,
+        "r02": 0.82,
+        "r03": 0.82,
+        "r04": 0.82,
+        "r05": 0.82,
+        "r06": 0.82,
+        "r07": 0.82,
+        "r08": 0.82,
+        "r09": 0.82,
+        "r10": 0.82,
+        "r11": 0.82,
+        "r12": 0.82,
+        "r13": 0.82,
+        "r14": 0.82
+      },
+      "kept": [
+        "r01",
+        "r02",
+        "r03",
+        "r04",
+        "r05",
+        "r06",
+        "r07",
+        "r08",
+        "r09",
+        "r10",
+        "r11",
+        "r12"
+      ]
+    }
+  }
+]

@@ -54,6 +54,18 @@ rules = ["M-13"]
 path = "trust-v1.toml"
 rules = ["M-13", "M-14", "M-8"]
 
+[[table]]
+path = "trust-class-v1.toml"
+rules = ["M-14", "M-8"]
+
+[[table]]
+path = "decay-v1.toml"
+rules = ["M-23"]
+
+[[table]]
+path = "rank-v1.toml"
+rules = ["M-30", "M-20", "M-31"]
+
 [[vectors]]
 path = "vectors/memory-record.json"
 kind = "schema"
@@ -140,3 +152,18 @@ rules = ["M-36", "M-37"]
 path = "vectors/derivative-class.json"
 kind = "behaviour"
 rules = ["M-38", "OP-5"]
+
+[[vectors]]
+path = "vectors/trust-class-v1.json"
+kind = "behaviour"
+rules = ["M-14"]
+
+[[vectors]]
+path = "vectors/decay-v1.json"
+kind = "behaviour"
+rules = ["M-23"]
+
+[[vectors]]
+path = "vectors/rank-v1.json"
+kind = "behaviour"
+rules = ["M-30", "M-20"]

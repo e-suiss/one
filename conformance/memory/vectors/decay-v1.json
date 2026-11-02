@@ -1,0 +1,100 @@
+[
+  {
+    "rule": "M-23",
+    "description": "used now, never confirmed, used once",
+    "input": {
+      "time_kind": "permanent",
+      "as_of": "2026-11-03T00:00:00Z",
+      "last_used_at": "2026-11-03T00:00:00Z",
+      "use_count": 1,
+      "last_confirmed_at": null
+    },
+    "expected": {
+      "priority": 0.65
+    }
+  },
+  {
+    "rule": "M-23",
+    "description": "permanent, used 180 days ago, 3 uses",
+    "input": {
+      "time_kind": "permanent",
+      "as_of": "2026-11-03T00:00:00Z",
+      "last_used_at": "2026-05-07T00:00:00Z",
+      "use_count": 3,
+      "last_confirmed_at": null
+    },
+    "expected": {
+      "priority": 0.4
+    }
+  },
+  {
+    "rule": "M-23",
+    "description": "current, used 30 days ago, 3 uses",
+    "input": {
+      "time_kind": "current",
+      "as_of": "2026-11-03T00:00:00Z",
+      "last_used_at": "2026-10-04T00:00:00Z",
+      "use_count": 3,
+      "last_confirmed_at": null
+    },
+    "expected": {
+      "priority": 0.4
+    }
+  },
+  {
+    "rule": "M-23",
+    "description": "one-off, used 14 days ago, confirmed now",
+    "input": {
+      "time_kind": "one_off",
+      "as_of": "2026-11-03T00:00:00Z",
+      "last_used_at": "2026-10-20T00:00:00Z",
+      "use_count": 0,
+      "last_confirmed_at": "2026-11-03T00:00:00Z"
+    },
+    "expected": {
+      "priority": 0.45
+    }
+  },
+  {
+    "rule": "M-23",
+    "description": "seasonal, frequency saturated, confirmed a year ago",
+    "input": {
+      "time_kind": "seasonal",
+      "as_of": "2026-11-03T00:00:00Z",
+      "last_used_at": "2026-08-05T00:00:00Z",
+      "use_count": 40,
+      "last_confirmed_at": "2025-11-03T00:00:00Z"
+    },
+    "expected": {
+      "priority": 0.830737
+    }
+  },
+  {
+    "rule": "M-23",
+    "description": "past, never used since recorded 90 days ago",
+    "input": {
+      "time_kind": "past",
+      "as_of": "2026-11-03T00:00:00Z",
+      "last_used_at": "2026-08-05T00:00:00Z",
+      "use_count": 0,
+      "last_confirmed_at": null
+    },
+    "expected": {
+      "priority": 0.3
+    }
+  },
+  {
+    "rule": "M-23",
+    "description": "use after as_of is refused",
+    "input": {
+      "time_kind": "permanent",
+      "as_of": "2026-11-03T00:00:00Z",
+      "last_used_at": "2026-11-04T00:00:00Z",
+      "use_count": 1,
+      "last_confirmed_at": null
+    },
+    "expected": {
+      "error": "future_evidence"
+    }
+  }
+]

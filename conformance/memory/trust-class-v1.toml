@@ -1,0 +1,13 @@
+# M-14, M-8
+version = "trust-class/v1"
+vectors = "vectors/trust-class-v1.json"
+
+steps = [
+  "you_said if user_confirmed_at is set or source_kind is user_statement",
+  "seen_unverified if source_kind is external_content",
+  "imported_unverified if source_kind is import",
+  "i_think if trust >= i_think_min",
+  "not_sure otherwise",
+]
+
+i_think_min = 0.7
