@@ -1,0 +1,27 @@
+[package]
+name = "one-memory"
+description = "Memory component: write paths, the three forgetting verbs, trust classes, decay, ranking, the fixed retrieval pipeline and the export package over sealed, versioned rows (M-6, M-15, M-23, M-24, M-25, M-30, M-39)."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish = false
+
+# T-26 (6)
+[dependencies]
+one-keys.workspace = true
+one-proto.workspace = true
+one-store.workspace = true
+one-tee.workspace = true
+serde_json = { workspace = true, features = ["std"] }
+suiss-crypto = { workspace = true, features = ["aead", "pkcs11"] }
+thiserror.workspace = true
+
+[dev-dependencies]
+one-store = { workspace = true, features = ["testing"] }
+serde = { workspace = true, features = ["derive", "std"] }
+tokio = { workspace = true, features = ["macros", "rt-multi-thread"] }
+
+[lints]
+workspace = true

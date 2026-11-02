@@ -31,6 +31,7 @@ one-testkit = { path = "crates/testkit" }
 one-rpc = { path = "crates/rpc" }
 one-access-client = { path = "crates/access-client" }
 one-task = { path = "crates/task" }
+one-memory = { path = "crates/memory" }
 one-relay-client = { path = "crates/relay-client" }
 one-work-client = { path = "crates/work-client" }
 one-core = { path = "core" }

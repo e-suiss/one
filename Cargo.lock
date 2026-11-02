@@ -2578,6 +2578,21 @@ dependencies = [
 ]
 
 [[package]]
+name = "one-memory"
+version = "0.0.0"
+dependencies = [
+ "esuiss-crypto",
+ "one-keys",
+ "one-proto",
+ "one-store",
+ "one-tee",
+ "serde",
+ "serde_json",
+ "thiserror",
+ "tokio",
+]
+
+[[package]]
 name = "one-objects"
 version = "0.0.0"
 dependencies = [
