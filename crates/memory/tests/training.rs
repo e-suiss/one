@@ -40,7 +40,7 @@ fn profile(v: &Value) -> Profile {
 #[test]
 fn mf_33_training_filter_vectors() {
     let all = vectors("training-filter-v1.json");
-    assert!(!all.is_empty());
+    assert_eq!(all.len(), 45);
     for v in all {
         let i = &v["input"];
         let r = record(&i["record"]);
