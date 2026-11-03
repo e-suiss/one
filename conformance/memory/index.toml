@@ -66,6 +66,10 @@ rules = ["M-23"]
 path = "rank-v1.toml"
 rules = ["M-30", "M-20", "M-31"]
 
+[[table]]
+path = "training-filter-v1.toml"
+rules = ["MF-33", "T-35", "MF-32", "MF-37"]
+
 [[vectors]]
 path = "vectors/memory-record.json"
 kind = "schema"
@@ -167,3 +171,8 @@ rules = ["M-23"]
 path = "vectors/rank-v1.json"
 kind = "behaviour"
 rules = ["M-30", "M-20"]
+
+[[vectors]]
+path = "vectors/training-filter-v1.json"
+kind = "behaviour"
+rules = ["MF-33", "MF-32", "MF-36", "MF-37", "T-35"]

@@ -1,0 +1,191 @@
+[
+  {
+    "rule": "MF-48",
+    "description": "first adapter above the floor passes",
+    "input": {
+      "candidate": {
+        "address": 0.95,
+        "tone": 0.93,
+        "length": 0.91,
+        "rules": 0.97,
+        "bilingual": 0.92
+      }
+    },
+    "expected": {
+      "passes": true,
+      "significant": false
+    }
+  },
+  {
+    "rule": "MF-48",
+    "description": "first adapter below the floor fails",
+    "input": {
+      "candidate": {
+        "address": 0.95,
+        "tone": 0.89,
+        "length": 0.91,
+        "rules": 0.97,
+        "bilingual": 0.92
+      }
+    },
+    "expected": {
+      "passes": false,
+      "significant": false
+    }
+  },
+  {
+    "rule": "MF-48",
+    "description": "small improvement passes quietly",
+    "input": {
+      "candidate": {
+        "address": 0.96,
+        "tone": 0.94,
+        "length": 0.92,
+        "rules": 0.97,
+        "bilingual": 0.93
+      },
+      "active": {
+        "address": 0.95,
+        "tone": 0.93,
+        "length": 0.91,
+        "rules": 0.97,
+        "bilingual": 0.92
+      }
+    },
+    "expected": {
+      "passes": true,
+      "significant": false,
+      "delta": {
+        "address": 0.01,
+        "tone": 0.01,
+        "length": 0.01,
+        "rules": 0.0,
+        "bilingual": 0.01
+      }
+    }
+  },
+  {
+    "rule": "MF-48",
+    "description": "a drop of exactly 0.02 passes",
+    "input": {
+      "candidate": {
+        "address": 0.93,
+        "tone": 0.93,
+        "length": 0.91,
+        "rules": 0.97,
+        "bilingual": 0.92
+      },
+      "active": {
+        "address": 0.95,
+        "tone": 0.93,
+        "length": 0.91,
+        "rules": 0.97,
+        "bilingual": 0.92
+      }
+    },
+    "expected": {
+      "passes": true,
+      "significant": false,
+      "delta": {
+        "address": -0.02,
+        "tone": 0.0,
+        "length": 0.0,
+        "rules": 0.0,
+        "bilingual": 0.0
+      }
+    }
+  },
+  {
+    "rule": "MF-48",
+    "description": "a drop over 0.02 fails",
+    "input": {
+      "candidate": {
+        "address": 0.92,
+        "tone": 0.93,
+        "length": 0.91,
+        "rules": 0.97,
+        "bilingual": 0.92
+      },
+      "active": {
+        "address": 0.95,
+        "tone": 0.93,
+        "length": 0.91,
+        "rules": 0.97,
+        "bilingual": 0.92
+      }
+    },
+    "expected": {
+      "passes": false,
+      "significant": false,
+      "delta": {
+        "address": -0.03,
+        "tone": 0.0,
+        "length": 0.0,
+        "rules": 0.0,
+        "bilingual": 0.0
+      }
+    }
+  },
+  {
+    "rule": "MF-48",
+    "description": "a large rise passes and is announced",
+    "input": {
+      "candidate": {
+        "address": 0.95,
+        "tone": 0.93,
+        "length": 0.91,
+        "rules": 0.97,
+        "bilingual": 0.92
+      },
+      "active": {
+        "address": 0.95,
+        "tone": 0.93,
+        "length": 0.81,
+        "rules": 0.97,
+        "bilingual": 0.92
+      }
+    },
+    "expected": {
+      "passes": true,
+      "significant": true,
+      "delta": {
+        "address": 0.0,
+        "tone": 0.0,
+        "length": 0.1,
+        "rules": 0.0,
+        "bilingual": 0.0
+      }
+    }
+  },
+  {
+    "rule": "MF-48",
+    "description": "a large drop fails and is announced",
+    "input": {
+      "candidate": {
+        "address": 0.95,
+        "tone": 0.93,
+        "length": 0.91,
+        "rules": 0.97,
+        "bilingual": 0.9
+      },
+      "active": {
+        "address": 0.95,
+        "tone": 0.93,
+        "length": 0.91,
+        "rules": 0.97,
+        "bilingual": 1.0
+      }
+    },
+    "expected": {
+      "passes": false,
+      "significant": true,
+      "delta": {
+        "address": 0.0,
+        "tone": 0.0,
+        "length": 0.0,
+        "rules": 0.0,
+        "bilingual": -0.1
+      }
+    }
+  }
+]

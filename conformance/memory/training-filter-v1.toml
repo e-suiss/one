@@ -1,0 +1,32 @@
+# MF-33, T-35, MF-32, MF-37
+version = "training-filter/v1"
+vectors = "vectors/training-filter-v1.json"
+
+checks = [
+  "child_profile: the profile is a child profile",
+  "not_active: status is not active",
+  "imported: source_kind is import, confirmed or not",
+  "external: source_kind is external_content, confirmed or not",
+  "unconfirmed: source_kind is not user_statement and epistemic_state is neither stated nor verified",
+  "fact: layer is not behaviour_rule",
+  "sensitive: data_class has a sensitive code",
+  "third_party: about names anything but the owner's own PartyRef",
+  "restricted: usage_restriction is not null",
+  "suspicious: the masked statement text is suspicious",
+]
+
+masks = [
+  "split the text at whitespace; strip leading quotes and opening brackets and trailing punctuation, quotes and closing brackets from each chunk",
+  "a stripped chunk starting with http://, https:// or www. (ASCII case-insensitive) and longer than that prefix becomes ⟨url⟩, keeping what was stripped",
+  "else a stripped chunk with one @, a non-empty part before it and a dotted domain with no empty label after it becomes ⟨email⟩, keeping what was stripped",
+  "then a run of ASCII digits, joined by one or more of space, '-', '.' or '/' only between digits, with 4 or more digits becomes ⟨number⟩, absorbing a '+' right before it",
+  "shorter digit runs stay as they are",
+]
+
+suspicious = [
+  "the masked text holds an ASCII digit",
+  "a word that is not sentence-initial starts with an uppercase letter (char::is_uppercase, so İ, Ç, Ş, Ğ, Ö, Ü count)",
+  "a word is a whitespace chunk after stripping leading non-alphanumeric characters; a mask token is not a capitalised word",
+  "sentence-initial: the first word, or a word whose previous chunk, after trailing quotes and closing brackets, ends with '.', '!', '?' or ':'",
+  "the English pronoun I (alone or followed by a non-alphanumeric, as in I'm) is not a name",
+]

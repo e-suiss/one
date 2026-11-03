@@ -34,6 +34,8 @@ one-task = { path = "crates/task" }
 one-memory = { path = "crates/memory" }
 one-relay-client = { path = "crates/relay-client" }
 one-work-client = { path = "crates/work-client" }
+one-model-client = { path = "crates/model-client" }
+one-router = { path = "crates/router" }
 one-core = { path = "core" }
 # Access OP-76
 suiss-crypto = { package = "esuiss-crypto", version = "=0.2.3", default-features = false }

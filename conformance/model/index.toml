@@ -69,3 +69,30 @@ path = "vectors/routing-record.json"
 kind = "schema"
 schema = "https://suiss.app/schemas/one/model/routing-record/v1.json"
 rules = ["MF-22", "MF-3", "MF-20", "MF-21", "MF-23", "MF-24", "MF-26"]
+
+[[table]]
+path = "difficulty-v1.toml"
+rules = ["MF-21", "T-10", "MF-23"]
+
+[[table]]
+path = "personality-regression-v1.toml"
+rules = ["MF-48", "MF-34", "MD-9"]
+
+[[table]]
+path = "adapter-v1.toml"
+rules = ["MF-31", "MF-34", "MF-35"]
+
+[[vectors]]
+path = "vectors/difficulty-v1.json"
+kind = "behaviour"
+rules = ["MF-21", "MF-23"]
+
+[[vectors]]
+path = "vectors/personality-regression-v1.json"
+kind = "behaviour"
+rules = ["MF-48"]
+
+[[vectors]]
+path = "vectors/adapter-v1.json"
+kind = "behaviour"
+rules = ["MF-31", "MF-34", "MF-35"]

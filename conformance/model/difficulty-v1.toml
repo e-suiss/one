@@ -1,0 +1,39 @@
+# MF-21, T-10, MF-23
+version = "difficulty/v1"
+vectors = "vectors/difficulty-v1.json"
+estimator_version = "difficulty-v1"
+arithmetic = "ieee754-binary64"
+rounding = "nearest-ties-to-even on the exact binary64 value"
+decimals = 6
+
+steps = [
+  "tools = hints.tool_count if present else the number of offered tools",
+  "p = base",
+  "p -= planning_penalty if capabilities contain multi_step_planning",
+  "p -= long_context_penalty if capabilities contain long_context",
+  "p -= min(tool_penalty_cap, tool_penalty * max(0, tools - 1))",
+  "p -= min(depth_penalty_cap, depth_penalty * max(0, hints.plan_depth - 1)) when plan_depth is present",
+  "p -= long_output_penalty if expected_output_tokens > very_long_output_tokens else medium_output_penalty if expected_output_tokens > long_output_tokens",
+  "p += small_kind_bonus if task_kind is in small_kinds; p -= large_kind_penalty if task_kind is in large_kinds",
+  "small_sufficient = round(clamp(p, 0, 1), decimals)",
+  "small_lm when small_sufficient >= small_min, else large_lm",
+  "short-answer fallback only when small_sufficient >= short_answer_min and capabilities lack multi_step_planning",
+]
+
+base = 0.85
+planning_penalty = 0.3
+long_context_penalty = 0.2
+tool_penalty = 0.05
+tool_penalty_cap = 0.2
+depth_penalty = 0.1
+depth_penalty_cap = 0.3
+long_output_tokens = 800
+very_long_output_tokens = 2000
+medium_output_penalty = 0.15
+long_output_penalty = 0.3
+small_kind_bonus = 0.1
+large_kind_penalty = 0.25
+small_kinds = ["intent", "classify", "short_answer", "memory_extraction", "consolidation", "summary", "short_message"]
+large_kinds = ["planning", "long_text", "browser_step", "orchestration"]
+small_min = 0.5
+short_answer_min = 0.35

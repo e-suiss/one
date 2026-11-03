@@ -1,0 +1,252 @@
+[
+  {
+    "rule": "MF-21",
+    "description": "a short answer stays small",
+    "input": {
+      "capabilities": [
+        "text_generation"
+      ],
+      "tool_count": 0,
+      "expected_output_tokens": 120,
+      "task_kind": "short_answer"
+    },
+    "expected": {
+      "small_sufficient": 0.95,
+      "role": "small_lm",
+      "short_answer_allowed": true
+    }
+  },
+  {
+    "rule": "MF-21",
+    "description": "no hints is the base",
+    "input": {
+      "capabilities": [
+        "text_generation"
+      ],
+      "tool_count": 0
+    },
+    "expected": {
+      "small_sufficient": 0.85,
+      "role": "small_lm",
+      "short_answer_allowed": true
+    }
+  },
+  {
+    "rule": "MF-21",
+    "description": "multi-step planning goes large",
+    "input": {
+      "capabilities": [
+        "text_generation",
+        "multi_step_planning",
+        "tool_calling"
+      ],
+      "tool_count": 4,
+      "plan_depth": 4,
+      "expected_output_tokens": 1500,
+      "task_kind": "planning"
+    },
+    "expected": {
+      "small_sufficient": 0.0,
+      "role": "large_lm",
+      "short_answer_allowed": false
+    }
+  },
+  {
+    "rule": "MF-21",
+    "description": "long context alone stays small",
+    "input": {
+      "capabilities": [
+        "text_generation",
+        "long_context"
+      ],
+      "tool_count": 0
+    },
+    "expected": {
+      "small_sufficient": 0.65,
+      "role": "small_lm",
+      "short_answer_allowed": true
+    }
+  },
+  {
+    "rule": "MF-21",
+    "description": "long context and long output go large",
+    "input": {
+      "capabilities": [
+        "text_generation",
+        "long_context"
+      ],
+      "tool_count": 0,
+      "expected_output_tokens": 2500
+    },
+    "expected": {
+      "small_sufficient": 0.35,
+      "role": "large_lm",
+      "short_answer_allowed": true
+    }
+  },
+  {
+    "rule": "MF-21",
+    "description": "three tools cost 0.1",
+    "input": {
+      "capabilities": [
+        "text_generation",
+        "tool_calling"
+      ],
+      "tool_count": 3
+    },
+    "expected": {
+      "small_sufficient": 0.75,
+      "role": "small_lm",
+      "short_answer_allowed": true
+    }
+  },
+  {
+    "rule": "MF-21",
+    "description": "tool penalty is capped",
+    "input": {
+      "capabilities": [
+        "text_generation",
+        "tool_calling"
+      ],
+      "tool_count": 12
+    },
+    "expected": {
+      "small_sufficient": 0.65,
+      "role": "small_lm",
+      "short_answer_allowed": true
+    }
+  },
+  {
+    "rule": "MF-21",
+    "description": "depth penalty is capped",
+    "input": {
+      "capabilities": [
+        "text_generation"
+      ],
+      "tool_count": 0,
+      "plan_depth": 9
+    },
+    "expected": {
+      "small_sufficient": 0.55,
+      "role": "small_lm",
+      "short_answer_allowed": true
+    }
+  },
+  {
+    "rule": "MF-21",
+    "description": "medium output",
+    "input": {
+      "capabilities": [
+        "text_generation"
+      ],
+      "tool_count": 0,
+      "expected_output_tokens": 801
+    },
+    "expected": {
+      "small_sufficient": 0.7,
+      "role": "small_lm",
+      "short_answer_allowed": true
+    }
+  },
+  {
+    "rule": "MF-21",
+    "description": "exactly 800 tokens is not long",
+    "input": {
+      "capabilities": [
+        "text_generation"
+      ],
+      "tool_count": 0,
+      "expected_output_tokens": 800
+    },
+    "expected": {
+      "small_sufficient": 0.85,
+      "role": "small_lm",
+      "short_answer_allowed": true
+    }
+  },
+  {
+    "rule": "MF-21",
+    "description": "small kind bonus clamps at one",
+    "input": {
+      "capabilities": [
+        "text_generation"
+      ],
+      "tool_count": 0,
+      "task_kind": "classify"
+    },
+    "expected": {
+      "small_sufficient": 0.95,
+      "role": "small_lm",
+      "short_answer_allowed": true
+    }
+  },
+  {
+    "rule": "MF-21",
+    "description": "large kind",
+    "input": {
+      "capabilities": [
+        "text_generation"
+      ],
+      "tool_count": 0,
+      "task_kind": "long_text"
+    },
+    "expected": {
+      "small_sufficient": 0.6,
+      "role": "small_lm",
+      "short_answer_allowed": true
+    }
+  },
+  {
+    "rule": "MF-21",
+    "description": "unknown kind has no effect",
+    "input": {
+      "capabilities": [
+        "text_generation"
+      ],
+      "tool_count": 0,
+      "task_kind": "weather"
+    },
+    "expected": {
+      "small_sufficient": 0.85,
+      "role": "small_lm",
+      "short_answer_allowed": true
+    }
+  },
+  {
+    "rule": "MF-21",
+    "description": "everything heavy clamps at zero",
+    "input": {
+      "capabilities": [
+        "text_generation",
+        "multi_step_planning",
+        "long_context",
+        "tool_calling"
+      ],
+      "tool_count": 10,
+      "plan_depth": 10,
+      "expected_output_tokens": 5000,
+      "task_kind": "orchestration"
+    },
+    "expected": {
+      "small_sufficient": 0.0,
+      "role": "large_lm",
+      "short_answer_allowed": false
+    }
+  },
+  {
+    "rule": "MF-21",
+    "description": "planning alone allows no short answer",
+    "input": {
+      "capabilities": [
+        "text_generation",
+        "multi_step_planning"
+      ],
+      "tool_count": 0
+    },
+    "expected": {
+      "small_sufficient": 0.55,
+      "role": "small_lm",
+      "short_answer_allowed": false
+    }
+  }
+]

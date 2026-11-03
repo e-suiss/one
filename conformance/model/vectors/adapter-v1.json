@@ -1,0 +1,248 @@
+[
+  {
+    "rule": "MF-34",
+    "description": "the first passing candidate becomes active",
+    "input": {
+      "state": {
+        "active": null,
+        "previous": null
+      },
+      "event": "candidate",
+      "version": "a1",
+      "gates": {
+        "personality": true,
+        "held_out": true,
+        "safety": true
+      }
+    },
+    "expected": {
+      "active": "a1",
+      "previous": null,
+      "shredded": [],
+      "outcome": "activated"
+    }
+  },
+  {
+    "rule": "MF-34",
+    "description": "a passing candidate keeps one previous and shreds the older",
+    "input": {
+      "state": {
+        "active": "a2",
+        "previous": "a1"
+      },
+      "event": "candidate",
+      "version": "a3",
+      "gates": {
+        "personality": true,
+        "held_out": true,
+        "safety": true
+      }
+    },
+    "expected": {
+      "active": "a3",
+      "previous": "a2",
+      "shredded": [
+        "a1"
+      ],
+      "outcome": "activated"
+    }
+  },
+  {
+    "rule": "MF-34",
+    "description": "a failed personality gate is rejected",
+    "input": {
+      "state": {
+        "active": "a2",
+        "previous": "a1"
+      },
+      "event": "candidate",
+      "version": "a3",
+      "gates": {
+        "personality": false,
+        "held_out": true,
+        "safety": true
+      }
+    },
+    "expected": {
+      "active": "a2",
+      "previous": "a1",
+      "shredded": [
+        "a3"
+      ],
+      "outcome": "rejected"
+    }
+  },
+  {
+    "rule": "MF-34",
+    "description": "a failed held-out gate is rejected",
+    "input": {
+      "state": {
+        "active": "a1",
+        "previous": null
+      },
+      "event": "candidate",
+      "version": "a2",
+      "gates": {
+        "personality": true,
+        "held_out": false,
+        "safety": true
+      }
+    },
+    "expected": {
+      "active": "a1",
+      "previous": null,
+      "shredded": [
+        "a2"
+      ],
+      "outcome": "rejected"
+    }
+  },
+  {
+    "rule": "MF-34",
+    "description": "a missing safety result is rejected",
+    "input": {
+      "state": {
+        "active": null,
+        "previous": null
+      },
+      "event": "candidate",
+      "version": "a1",
+      "gates": {
+        "personality": true,
+        "held_out": true
+      }
+    },
+    "expected": {
+      "active": null,
+      "previous": null,
+      "shredded": [
+        "a1"
+      ],
+      "outcome": "rejected"
+    }
+  },
+  {
+    "rule": "MF-34",
+    "description": "revert brings back the previous",
+    "input": {
+      "state": {
+        "active": "a3",
+        "previous": "a2"
+      },
+      "event": "revert"
+    },
+    "expected": {
+      "active": "a2",
+      "previous": null,
+      "shredded": [
+        "a3"
+      ],
+      "outcome": "reverted"
+    }
+  },
+  {
+    "rule": "MF-34",
+    "description": "revert without a previous changes nothing",
+    "input": {
+      "state": {
+        "active": "a1",
+        "previous": null
+      },
+      "event": "revert"
+    },
+    "expected": {
+      "active": "a1",
+      "previous": null,
+      "shredded": [],
+      "outcome": "unchanged"
+    }
+  },
+  {
+    "rule": "MF-35",
+    "description": "forget shreds every version and asks for retraining",
+    "input": {
+      "state": {
+        "active": "a3",
+        "previous": "a2"
+      },
+      "event": "forget"
+    },
+    "expected": {
+      "active": null,
+      "previous": null,
+      "shredded": [
+        "a3",
+        "a2"
+      ],
+      "outcome": "retrain"
+    }
+  },
+  {
+    "rule": "MF-35",
+    "description": "reset shreds every version",
+    "input": {
+      "state": {
+        "active": "a3",
+        "previous": "a2"
+      },
+      "event": "reset"
+    },
+    "expected": {
+      "active": null,
+      "previous": null,
+      "shredded": [
+        "a3",
+        "a2"
+      ],
+      "outcome": "reset"
+    }
+  },
+  {
+    "rule": "MF-31",
+    "description": "499 examples over 30 days",
+    "input": {
+      "event": "first_training",
+      "examples": 499,
+      "days": 30
+    },
+    "expected": {
+      "due": false
+    }
+  },
+  {
+    "rule": "MF-31",
+    "description": "500 examples over 13 days",
+    "input": {
+      "event": "first_training",
+      "examples": 500,
+      "days": 13
+    },
+    "expected": {
+      "due": false
+    }
+  },
+  {
+    "rule": "MF-31",
+    "description": "500 examples over 14 days",
+    "input": {
+      "event": "first_training",
+      "examples": 500,
+      "days": 14
+    },
+    "expected": {
+      "due": true
+    }
+  },
+  {
+    "rule": "MF-31",
+    "description": "2000 examples over 90 days",
+    "input": {
+      "event": "first_training",
+      "examples": 2000,
+      "days": 90
+    },
+    "expected": {
+      "due": true
+    }
+  }
+]

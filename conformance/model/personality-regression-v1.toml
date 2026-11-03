@@ -1,0 +1,19 @@
+# MF-48, MF-34, MD-9
+version = "personality-regression/v1"
+vectors = "vectors/personality-regression-v1.json"
+arithmetic = "ieee754-binary64"
+decimals = 6
+
+dimensions = ["address", "tone", "length", "rules", "bilingual"]
+
+steps = [
+  "each dimension is the share of profile checks the configuration satisfies, in 0..=1",
+  "delta = round(candidate - active, decimals) per dimension; no active version means no delta",
+  "passes when every dimension >= floor and no delta < -max_drop",
+  "significant when any |delta| >= significant; a significant difference is announced",
+]
+
+floor = 0.9
+max_drop = 0.02
+significant = 0.1
+held_out_tolerance = -0.01

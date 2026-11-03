@@ -1,0 +1,3485 @@
+[
+  {
+    "rule": "MF-33",
+    "description": "an active behaviour rule the user stated, about the user, becomes an example unchanged",
+    "input": {
+      "record": {
+        "type": "MemoryRecord",
+        "id": "mem_01k742szm0fcqs2ar1rjs1vtzx",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_class": "one_memory",
+        "provenance": "user.memory",
+        "recorded_at": "2026-10-02T03:00:00Z",
+        "version": 1,
+        "promise_version": 1,
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "user"
+        },
+        "content_type": "constraint",
+        "epistemic_state": "stated",
+        "layer": "behaviour_rule",
+        "time_kind": "permanent",
+        "valid_from": "2026-09-01T00:00:00Z",
+        "valid_to": null,
+        "superseded_at": null,
+        "source_episodes": [
+          "epi_01k742sgz8fpbvee16bvnbpem8"
+        ],
+        "source_kind": "user_statement",
+        "evidence": {
+          "observation_count": 1,
+          "supporting_count": 1,
+          "first_observed_at": "2026-10-01T08:10:00Z",
+          "last_observed_at": "2026-10-01T08:10:00Z",
+          "contradicting_records": [],
+          "user_confirmed_at": null
+        },
+        "trust": {
+          "value": 0.95442,
+          "formula": "trust/v1",
+          "computed_at": "2026-10-02T03:00:00Z"
+        },
+        "alternative_explanations": [],
+        "usage_restriction": null,
+        "about": [
+          {
+            "ref": "PartyRef",
+            "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+          }
+        ],
+        "statement": {
+          "text": "Keep replies short in the morning.",
+          "lang": "en"
+        }
+      },
+      "child": false
+    },
+    "expected": {
+      "text": "Keep replies short in the morning."
+    }
+  },
+  {
+    "rule": "MF-33",
+    "description": "a rule about nobody in particular becomes an example",
+    "input": {
+      "record": {
+        "type": "MemoryRecord",
+        "id": "mem_01k742szm0fcqs2ar1rjs1vtzx",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_class": "one_memory",
+        "provenance": "user.memory",
+        "recorded_at": "2026-10-02T03:00:00Z",
+        "version": 1,
+        "promise_version": 1,
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "user"
+        },
+        "content_type": "constraint",
+        "epistemic_state": "stated",
+        "layer": "behaviour_rule",
+        "time_kind": "permanent",
+        "valid_from": "2026-09-01T00:00:00Z",
+        "valid_to": null,
+        "superseded_at": null,
+        "source_episodes": [
+          "epi_01k742sgz8fpbvee16bvnbpem8"
+        ],
+        "source_kind": "user_statement",
+        "evidence": {
+          "observation_count": 1,
+          "supporting_count": 1,
+          "first_observed_at": "2026-10-01T08:10:00Z",
+          "last_observed_at": "2026-10-01T08:10:00Z",
+          "contradicting_records": [],
+          "user_confirmed_at": null
+        },
+        "trust": {
+          "value": 0.95442,
+          "formula": "trust/v1",
+          "computed_at": "2026-10-02T03:00:00Z"
+        },
+        "alternative_explanations": [],
+        "usage_restriction": null,
+        "statement": {
+          "text": "Keep replies short in the morning.",
+          "lang": "en"
+        }
+      },
+      "child": false
+    },
+    "expected": {
+      "text": "Keep replies short in the morning."
+    }
+  },
+  {
+    "rule": "MF-33",
+    "description": "a behaviour rule from behaviour the user confirmed becomes an example",
+    "input": {
+      "record": {
+        "type": "MemoryRecord",
+        "id": "mem_01k742szm0fcqs2ar1rjs1vtzx",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_class": "one_memory",
+        "provenance": "user.memory",
+        "recorded_at": "2026-10-02T03:00:00Z",
+        "version": 1,
+        "promise_version": 1,
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "user"
+        },
+        "content_type": "constraint",
+        "epistemic_state": "verified",
+        "layer": "behaviour_rule",
+        "time_kind": "permanent",
+        "valid_from": "2026-09-01T00:00:00Z",
+        "valid_to": null,
+        "superseded_at": null,
+        "source_episodes": [
+          "epi_01k742sgz8fpbvee16bvnbpem8"
+        ],
+        "source_kind": "user_behaviour",
+        "evidence": {
+          "observation_count": 1,
+          "supporting_count": 1,
+          "first_observed_at": "2026-10-01T08:10:00Z",
+          "last_observed_at": "2026-10-01T08:10:00Z",
+          "contradicting_records": [],
+          "user_confirmed_at": null
+        },
+        "trust": {
+          "value": 0.95442,
+          "formula": "trust/v1",
+          "computed_at": "2026-10-02T03:00:00Z"
+        },
+        "alternative_explanations": [],
+        "usage_restriction": null,
+        "about": [
+          {
+            "ref": "PartyRef",
+            "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+          }
+        ],
+        "statement": {
+          "text": "Keep replies short in the morning.",
+          "lang": "en"
+        }
+      },
+      "child": false
+    },
+    "expected": {
+      "text": "Keep replies short in the morning."
+    }
+  },
+  {
+    "rule": "MF-37",
+    "description": "a child profile never trains",
+    "input": {
+      "record": {
+        "type": "MemoryRecord",
+        "id": "mem_01k742szm0fcqs2ar1rjs1vtzx",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_class": "one_memory",
+        "provenance": "user.memory",
+        "recorded_at": "2026-10-02T03:00:00Z",
+        "version": 1,
+        "promise_version": 1,
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "user"
+        },
+        "content_type": "constraint",
+        "epistemic_state": "stated",
+        "layer": "behaviour_rule",
+        "time_kind": "permanent",
+        "valid_from": "2026-09-01T00:00:00Z",
+        "valid_to": null,
+        "superseded_at": null,
+        "source_episodes": [
+          "epi_01k742sgz8fpbvee16bvnbpem8"
+        ],
+        "source_kind": "user_statement",
+        "evidence": {
+          "observation_count": 1,
+          "supporting_count": 1,
+          "first_observed_at": "2026-10-01T08:10:00Z",
+          "last_observed_at": "2026-10-01T08:10:00Z",
+          "contradicting_records": [],
+          "user_confirmed_at": null
+        },
+        "trust": {
+          "value": 0.95442,
+          "formula": "trust/v1",
+          "computed_at": "2026-10-02T03:00:00Z"
+        },
+        "alternative_explanations": [],
+        "usage_restriction": null,
+        "about": [
+          {
+            "ref": "PartyRef",
+            "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+          }
+        ],
+        "statement": {
+          "text": "Keep replies short in the morning.",
+          "lang": "en"
+        }
+      },
+      "child": true
+    },
+    "expected": {
+      "excluded": "child_profile"
+    }
+  },
+  {
+    "rule": "MF-37",
+    "description": "a child profile is refused before every other check",
+    "input": {
+      "record": {
+        "type": "MemoryRecord",
+        "id": "mem_01k742szm0fcqs2ar1rjs1vtzx",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_class": "one_memory",
+        "provenance": "external.import",
+        "recorded_at": "2026-10-02T03:00:00Z",
+        "version": 1,
+        "promise_version": 1,
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "user"
+        },
+        "content_type": "constraint",
+        "epistemic_state": "hypothesis",
+        "layer": "consolidated_fact",
+        "time_kind": "permanent",
+        "valid_from": "2026-09-01T00:00:00Z",
+        "valid_to": null,
+        "superseded_at": null,
+        "source_episodes": [
+          "epi_01k742sgz8fpbvee16bvnbpem8"
+        ],
+        "source_kind": "import",
+        "evidence": {
+          "observation_count": 1,
+          "supporting_count": 1,
+          "first_observed_at": "2026-10-01T08:10:00Z",
+          "last_observed_at": "2026-10-01T08:10:00Z",
+          "contradicting_records": [],
+          "user_confirmed_at": null
+        },
+        "trust": {
+          "value": 0.95442,
+          "formula": "trust/v1",
+          "computed_at": "2026-10-02T03:00:00Z"
+        },
+        "alternative_explanations": [],
+        "usage_restriction": null,
+        "about": [
+          {
+            "ref": "PartyRef",
+            "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+          }
+        ],
+        "statement": {
+          "text": "Keep replies short in the morning.",
+          "lang": "en"
+        }
+      },
+      "child": true
+    },
+    "expected": {
+      "excluded": "child_profile"
+    }
+  },
+  {
+    "rule": "MF-33",
+    "description": "a candidate is not learned",
+    "input": {
+      "record": {
+        "type": "MemoryRecord",
+        "id": "mem_01k742szm0fcqs2ar1rjs1vtzx",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_class": "one_memory",
+        "provenance": "user.memory",
+        "recorded_at": "2026-10-02T03:00:00Z",
+        "version": 1,
+        "promise_version": 1,
+        "supersedes": null,
+        "status": "candidate",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "user"
+        },
+        "content_type": "constraint",
+        "epistemic_state": "stated",
+        "layer": "behaviour_rule",
+        "time_kind": "permanent",
+        "valid_from": "2026-09-01T00:00:00Z",
+        "valid_to": null,
+        "superseded_at": null,
+        "source_episodes": [
+          "epi_01k742sgz8fpbvee16bvnbpem8"
+        ],
+        "source_kind": "user_statement",
+        "evidence": {
+          "observation_count": 1,
+          "supporting_count": 1,
+          "first_observed_at": "2026-10-01T08:10:00Z",
+          "last_observed_at": "2026-10-01T08:10:00Z",
+          "contradicting_records": [],
+          "user_confirmed_at": null
+        },
+        "trust": {
+          "value": 0.95442,
+          "formula": "trust/v1",
+          "computed_at": "2026-10-02T03:00:00Z"
+        },
+        "alternative_explanations": [],
+        "usage_restriction": null,
+        "about": [
+          {
+            "ref": "PartyRef",
+            "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+          }
+        ],
+        "statement": {
+          "text": "Keep replies short in the morning.",
+          "lang": "en"
+        }
+      },
+      "child": false
+    },
+    "expected": {
+      "excluded": "not_active"
+    }
+  },
+  {
+    "rule": "MF-33",
+    "description": "a set-aside record is not learned",
+    "input": {
+      "record": {
+        "type": "MemoryRecord",
+        "id": "mem_01k742szm0fcqs2ar1rjs1vtzx",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_class": "one_memory",
+        "provenance": "user.memory",
+        "recorded_at": "2026-10-02T03:00:00Z",
+        "version": 1,
+        "promise_version": 1,
+        "supersedes": null,
+        "status": "suppressed",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "user"
+        },
+        "content_type": "constraint",
+        "epistemic_state": "stated",
+        "layer": "behaviour_rule",
+        "time_kind": "permanent",
+        "valid_from": "2026-09-01T00:00:00Z",
+        "valid_to": null,
+        "superseded_at": null,
+        "source_episodes": [
+          "epi_01k742sgz8fpbvee16bvnbpem8"
+        ],
+        "source_kind": "user_statement",
+        "evidence": {
+          "observation_count": 1,
+          "supporting_count": 1,
+          "first_observed_at": "2026-10-01T08:10:00Z",
+          "last_observed_at": "2026-10-01T08:10:00Z",
+          "contradicting_records": [],
+          "user_confirmed_at": null
+        },
+        "trust": {
+          "value": 0.95442,
+          "formula": "trust/v1",
+          "computed_at": "2026-10-02T03:00:00Z"
+        },
+        "alternative_explanations": [],
+        "usage_restriction": null,
+        "about": [
+          {
+            "ref": "PartyRef",
+            "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+          }
+        ],
+        "statement": {
+          "text": "Keep replies short in the morning.",
+          "lang": "en"
+        }
+      },
+      "child": false
+    },
+    "expected": {
+      "excluded": "not_active"
+    }
+  },
+  {
+    "rule": "MF-33",
+    "description": "an inactive import fails on status first",
+    "input": {
+      "record": {
+        "type": "MemoryRecord",
+        "id": "mem_01k742szm0fcqs2ar1rjs1vtzx",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_class": "one_memory",
+        "provenance": "external.import",
+        "recorded_at": "2026-10-02T03:00:00Z",
+        "version": 1,
+        "promise_version": 1,
+        "supersedes": null,
+        "status": "candidate",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "user"
+        },
+        "content_type": "constraint",
+        "epistemic_state": "hypothesis",
+        "layer": "consolidated_fact",
+        "time_kind": "permanent",
+        "valid_from": "2026-09-01T00:00:00Z",
+        "valid_to": null,
+        "superseded_at": null,
+        "source_episodes": [
+          "epi_01k742sgz8fpbvee16bvnbpem8"
+        ],
+        "source_kind": "import",
+        "evidence": {
+          "observation_count": 1,
+          "supporting_count": 1,
+          "first_observed_at": "2026-10-01T08:10:00Z",
+          "last_observed_at": "2026-10-01T08:10:00Z",
+          "contradicting_records": [],
+          "user_confirmed_at": null
+        },
+        "trust": {
+          "value": 0.95442,
+          "formula": "trust/v1",
+          "computed_at": "2026-10-02T03:00:00Z"
+        },
+        "alternative_explanations": [],
+        "usage_restriction": null,
+        "about": [
+          {
+            "ref": "PartyRef",
+            "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+          }
+        ],
+        "statement": {
+          "text": "Keep replies short in the morning.",
+          "lang": "en"
+        }
+      },
+      "child": false
+    },
+    "expected": {
+      "excluded": "not_active"
+    }
+  },
+  {
+    "rule": "MF-36",
+    "description": "an imported record never trains",
+    "input": {
+      "record": {
+        "type": "MemoryRecord",
+        "id": "mem_01k742szm0fcqs2ar1rjs1vtzx",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_class": "one_memory",
+        "provenance": "external.import",
+        "recorded_at": "2026-10-02T03:00:00Z",
+        "version": 1,
+        "promise_version": 1,
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "user"
+        },
+        "content_type": "constraint",
+        "epistemic_state": "hypothesis",
+        "layer": "consolidated_fact",
+        "time_kind": "permanent",
+        "valid_from": "2026-09-01T00:00:00Z",
+        "valid_to": null,
+        "superseded_at": null,
+        "source_episodes": [
+          "epi_01k742sgz8fpbvee16bvnbpem8"
+        ],
+        "source_kind": "import",
+        "evidence": {
+          "observation_count": 1,
+          "supporting_count": 1,
+          "first_observed_at": "2026-10-01T08:10:00Z",
+          "last_observed_at": "2026-10-01T08:10:00Z",
+          "contradicting_records": [],
+          "user_confirmed_at": null
+        },
+        "trust": {
+          "value": 0.95442,
+          "formula": "trust/v1",
+          "computed_at": "2026-10-02T03:00:00Z"
+        },
+        "alternative_explanations": [],
+        "usage_restriction": null,
+        "about": [
+          {
+            "ref": "PartyRef",
+            "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+          }
+        ],
+        "statement": {
+          "text": "Keep replies short in the morning.",
+          "lang": "en"
+        }
+      },
+      "child": false
+    },
+    "expected": {
+      "excluded": "imported"
+    }
+  },
+  {
+    "rule": "MF-36",
+    "description": "an imported record never trains even once verified",
+    "input": {
+      "record": {
+        "type": "MemoryRecord",
+        "id": "mem_01k742szm0fcqs2ar1rjs1vtzx",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_class": "one_memory",
+        "provenance": "user.memory",
+        "recorded_at": "2026-10-02T03:00:00Z",
+        "version": 1,
+        "promise_version": 1,
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "user"
+        },
+        "content_type": "constraint",
+        "epistemic_state": "verified",
+        "layer": "consolidated_fact",
+        "time_kind": "permanent",
+        "valid_from": "2026-09-01T00:00:00Z",
+        "valid_to": null,
+        "superseded_at": null,
+        "source_episodes": [
+          "epi_01k742sgz8fpbvee16bvnbpem8"
+        ],
+        "source_kind": "import",
+        "evidence": {
+          "observation_count": 1,
+          "supporting_count": 1,
+          "first_observed_at": "2026-10-01T08:10:00Z",
+          "last_observed_at": "2026-10-01T08:10:00Z",
+          "contradicting_records": [],
+          "user_confirmed_at": null
+        },
+        "trust": {
+          "value": 0.95442,
+          "formula": "trust/v1",
+          "computed_at": "2026-10-02T03:00:00Z"
+        },
+        "alternative_explanations": [],
+        "usage_restriction": null,
+        "about": [
+          {
+            "ref": "PartyRef",
+            "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+          }
+        ],
+        "statement": {
+          "text": "Keep replies short in the morning.",
+          "lang": "en"
+        }
+      },
+      "child": false
+    },
+    "expected": {
+      "excluded": "imported"
+    }
+  },
+  {
+    "rule": "T-35",
+    "description": "external content never trains",
+    "input": {
+      "record": {
+        "type": "MemoryRecord",
+        "id": "mem_01k742szm0fcqs2ar1rjs1vtzx",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_class": "one_memory",
+        "provenance": "external.web",
+        "recorded_at": "2026-10-02T03:00:00Z",
+        "version": 1,
+        "promise_version": 1,
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "user"
+        },
+        "content_type": "constraint",
+        "epistemic_state": "hypothesis",
+        "layer": "consolidated_fact",
+        "time_kind": "permanent",
+        "valid_from": "2026-09-01T00:00:00Z",
+        "valid_to": null,
+        "superseded_at": null,
+        "source_episodes": [
+          "epi_01k742sgz8fpbvee16bvnbpem8"
+        ],
+        "source_kind": "external_content",
+        "evidence": {
+          "observation_count": 1,
+          "supporting_count": 1,
+          "first_observed_at": "2026-10-01T08:10:00Z",
+          "last_observed_at": "2026-10-01T08:10:00Z",
+          "contradicting_records": [],
+          "user_confirmed_at": null
+        },
+        "trust": {
+          "value": 0.95442,
+          "formula": "trust/v1",
+          "computed_at": "2026-10-02T03:00:00Z"
+        },
+        "alternative_explanations": [],
+        "usage_restriction": null,
+        "about": [
+          {
+            "ref": "PartyRef",
+            "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+          }
+        ],
+        "statement": {
+          "text": "Keep replies short in the morning.",
+          "lang": "en"
+        }
+      },
+      "child": false
+    },
+    "expected": {
+      "excluded": "external"
+    }
+  },
+  {
+    "rule": "T-35",
+    "description": "external content never trains even once verified",
+    "input": {
+      "record": {
+        "type": "MemoryRecord",
+        "id": "mem_01k742szm0fcqs2ar1rjs1vtzx",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_class": "one_memory",
+        "provenance": "user.memory",
+        "recorded_at": "2026-10-02T03:00:00Z",
+        "version": 1,
+        "promise_version": 1,
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "user"
+        },
+        "content_type": "constraint",
+        "epistemic_state": "verified",
+        "layer": "consolidated_fact",
+        "time_kind": "permanent",
+        "valid_from": "2026-09-01T00:00:00Z",
+        "valid_to": null,
+        "superseded_at": null,
+        "source_episodes": [
+          "epi_01k742sgz8fpbvee16bvnbpem8"
+        ],
+        "source_kind": "external_content",
+        "evidence": {
+          "observation_count": 1,
+          "supporting_count": 1,
+          "first_observed_at": "2026-10-01T08:10:00Z",
+          "last_observed_at": "2026-10-01T08:10:00Z",
+          "contradicting_records": [],
+          "user_confirmed_at": null
+        },
+        "trust": {
+          "value": 0.95442,
+          "formula": "trust/v1",
+          "computed_at": "2026-10-02T03:00:00Z"
+        },
+        "alternative_explanations": [],
+        "usage_restriction": null,
+        "about": [
+          {
+            "ref": "PartyRef",
+            "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+          }
+        ],
+        "statement": {
+          "text": "Keep replies short in the morning.",
+          "lang": "en"
+        }
+      },
+      "child": false
+    },
+    "expected": {
+      "excluded": "external"
+    }
+  },
+  {
+    "rule": "MF-33",
+    "description": "an inferred behaviour rule is not learned",
+    "input": {
+      "record": {
+        "type": "MemoryRecord",
+        "id": "mem_01k742szm0fcqs2ar1rjs1vtzx",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_class": "one_memory",
+        "provenance": "one.inferred",
+        "recorded_at": "2026-10-02T03:00:00Z",
+        "version": 1,
+        "promise_version": 1,
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "user"
+        },
+        "content_type": "constraint",
+        "epistemic_state": "inferred",
+        "layer": "behaviour_rule",
+        "time_kind": "permanent",
+        "valid_from": "2026-09-01T00:00:00Z",
+        "valid_to": null,
+        "superseded_at": null,
+        "source_episodes": [
+          "epi_01k742sgz8fpbvee16bvnbpem8"
+        ],
+        "source_kind": "user_behaviour",
+        "evidence": {
+          "observation_count": 1,
+          "supporting_count": 1,
+          "first_observed_at": "2026-10-01T08:10:00Z",
+          "last_observed_at": "2026-10-01T08:10:00Z",
+          "contradicting_records": [],
+          "user_confirmed_at": null
+        },
+        "trust": {
+          "value": 0.95442,
+          "formula": "trust/v1",
+          "computed_at": "2026-10-02T03:00:00Z"
+        },
+        "alternative_explanations": [],
+        "usage_restriction": null,
+        "about": [
+          {
+            "ref": "PartyRef",
+            "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+          }
+        ],
+        "statement": {
+          "text": "Keep replies short in the morning.",
+          "lang": "en"
+        }
+      },
+      "child": false
+    },
+    "expected": {
+      "excluded": "unconfirmed"
+    }
+  },
+  {
+    "rule": "MF-33",
+    "description": "an observed rule from a connected source is not learned",
+    "input": {
+      "record": {
+        "type": "MemoryRecord",
+        "id": "mem_01k742szm0fcqs2ar1rjs1vtzx",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_class": "one_memory",
+        "provenance": "one.inferred",
+        "recorded_at": "2026-10-02T03:00:00Z",
+        "version": 1,
+        "promise_version": 1,
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "user"
+        },
+        "content_type": "constraint",
+        "epistemic_state": "observed",
+        "layer": "behaviour_rule",
+        "time_kind": "permanent",
+        "valid_from": "2026-09-01T00:00:00Z",
+        "valid_to": null,
+        "superseded_at": null,
+        "source_episodes": [
+          "epi_01k742sgz8fpbvee16bvnbpem8"
+        ],
+        "source_kind": "connected_source",
+        "evidence": {
+          "observation_count": 1,
+          "supporting_count": 1,
+          "first_observed_at": "2026-10-01T08:10:00Z",
+          "last_observed_at": "2026-10-01T08:10:00Z",
+          "contradicting_records": [],
+          "user_confirmed_at": null
+        },
+        "trust": {
+          "value": 0.95442,
+          "formula": "trust/v1",
+          "computed_at": "2026-10-02T03:00:00Z"
+        },
+        "alternative_explanations": [],
+        "usage_restriction": null,
+        "about": [
+          {
+            "ref": "PartyRef",
+            "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+          }
+        ],
+        "statement": {
+          "text": "Keep replies short in the morning.",
+          "lang": "en"
+        }
+      },
+      "child": false
+    },
+    "expected": {
+      "excluded": "unconfirmed"
+    }
+  },
+  {
+    "rule": "MF-32",
+    "description": "a consolidated fact is never learned",
+    "input": {
+      "record": {
+        "type": "MemoryRecord",
+        "id": "mem_01k742szm0fcqs2ar1rjs1vtzx",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_class": "one_memory",
+        "provenance": "user.memory",
+        "recorded_at": "2026-10-02T03:00:00Z",
+        "version": 1,
+        "promise_version": 1,
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "user"
+        },
+        "content_type": "preference",
+        "epistemic_state": "stated",
+        "layer": "consolidated_fact",
+        "time_kind": "permanent",
+        "valid_from": "2026-09-01T00:00:00Z",
+        "valid_to": null,
+        "superseded_at": null,
+        "source_episodes": [
+          "epi_01k742sgz8fpbvee16bvnbpem8"
+        ],
+        "source_kind": "user_statement",
+        "evidence": {
+          "observation_count": 1,
+          "supporting_count": 1,
+          "first_observed_at": "2026-10-01T08:10:00Z",
+          "last_observed_at": "2026-10-01T08:10:00Z",
+          "contradicting_records": [],
+          "user_confirmed_at": null
+        },
+        "trust": {
+          "value": 0.95442,
+          "formula": "trust/v1",
+          "computed_at": "2026-10-02T03:00:00Z"
+        },
+        "alternative_explanations": [],
+        "usage_restriction": null,
+        "about": [
+          {
+            "ref": "PartyRef",
+            "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+          }
+        ],
+        "statement": {
+          "text": "Keep replies short in the morning.",
+          "lang": "en"
+        }
+      },
+      "child": false
+    },
+    "expected": {
+      "excluded": "fact"
+    }
+  },
+  {
+    "rule": "MF-32",
+    "description": "an event is never learned",
+    "input": {
+      "record": {
+        "type": "MemoryRecord",
+        "id": "mem_01k742szm0fcqs2ar1rjs1vtzx",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_class": "one_memory",
+        "provenance": "user.memory",
+        "recorded_at": "2026-10-02T03:00:00Z",
+        "version": 1,
+        "promise_version": 1,
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "user"
+        },
+        "content_type": "event",
+        "epistemic_state": "stated",
+        "layer": "event",
+        "time_kind": "one_off",
+        "valid_from": "2026-09-01T00:00:00Z",
+        "valid_to": "2026-09-02T00:00:00Z",
+        "superseded_at": null,
+        "source_episodes": [
+          "epi_01k742sgz8fpbvee16bvnbpem8"
+        ],
+        "source_kind": "user_statement",
+        "evidence": {
+          "observation_count": 1,
+          "supporting_count": 1,
+          "first_observed_at": "2026-10-01T08:10:00Z",
+          "last_observed_at": "2026-10-01T08:10:00Z",
+          "contradicting_records": [],
+          "user_confirmed_at": null
+        },
+        "trust": {
+          "value": 0.95442,
+          "formula": "trust/v1",
+          "computed_at": "2026-10-02T03:00:00Z"
+        },
+        "alternative_explanations": [],
+        "usage_restriction": null,
+        "about": [
+          {
+            "ref": "PartyRef",
+            "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+          }
+        ],
+        "statement": {
+          "text": "Keep replies short in the morning.",
+          "lang": "en"
+        }
+      },
+      "child": false
+    },
+    "expected": {
+      "excluded": "fact"
+    }
+  },
+  {
+    "rule": "MF-32",
+    "description": "a fact in a sensitive class fails as a fact first",
+    "input": {
+      "record": {
+        "type": "MemoryRecord",
+        "id": "mem_01k742szm0fcqs2ar1rjs1vtzx",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": [
+            "health"
+          ]
+        },
+        "retention_class": "one_sensitive",
+        "provenance": "user.memory",
+        "recorded_at": "2026-10-02T03:00:00Z",
+        "version": 1,
+        "promise_version": 1,
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "user"
+        },
+        "content_type": "constraint",
+        "epistemic_state": "stated",
+        "layer": "consolidated_fact",
+        "time_kind": "permanent",
+        "valid_from": "2026-09-01T00:00:00Z",
+        "valid_to": null,
+        "superseded_at": null,
+        "source_episodes": [
+          "epi_01k742sgz8fpbvee16bvnbpem8"
+        ],
+        "source_kind": "user_statement",
+        "evidence": {
+          "observation_count": 1,
+          "supporting_count": 1,
+          "first_observed_at": "2026-10-01T08:10:00Z",
+          "last_observed_at": "2026-10-01T08:10:00Z",
+          "contradicting_records": [],
+          "user_confirmed_at": null
+        },
+        "trust": {
+          "value": 0.95442,
+          "formula": "trust/v1",
+          "computed_at": "2026-10-02T03:00:00Z"
+        },
+        "alternative_explanations": [],
+        "usage_restriction": null,
+        "about": [
+          {
+            "ref": "PartyRef",
+            "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+          }
+        ],
+        "statement": {
+          "text": "Keep replies short in the morning.",
+          "lang": "en"
+        }
+      },
+      "child": false
+    },
+    "expected": {
+      "excluded": "fact"
+    }
+  },
+  {
+    "rule": "MF-33",
+    "description": "a sensitive class is never learned",
+    "input": {
+      "record": {
+        "type": "MemoryRecord",
+        "id": "mem_01k742szm0fcqs2ar1rjs1vtzx",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": [
+            "health"
+          ]
+        },
+        "retention_class": "one_sensitive",
+        "provenance": "user.memory",
+        "recorded_at": "2026-10-02T03:00:00Z",
+        "version": 1,
+        "promise_version": 1,
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "user"
+        },
+        "content_type": "constraint",
+        "epistemic_state": "stated",
+        "layer": "behaviour_rule",
+        "time_kind": "permanent",
+        "valid_from": "2026-09-01T00:00:00Z",
+        "valid_to": null,
+        "superseded_at": null,
+        "source_episodes": [
+          "epi_01k742sgz8fpbvee16bvnbpem8"
+        ],
+        "source_kind": "user_statement",
+        "evidence": {
+          "observation_count": 1,
+          "supporting_count": 1,
+          "first_observed_at": "2026-10-01T08:10:00Z",
+          "last_observed_at": "2026-10-01T08:10:00Z",
+          "contradicting_records": [],
+          "user_confirmed_at": null
+        },
+        "trust": {
+          "value": 0.95442,
+          "formula": "trust/v1",
+          "computed_at": "2026-10-02T03:00:00Z"
+        },
+        "alternative_explanations": [],
+        "usage_restriction": null,
+        "about": [
+          {
+            "ref": "PartyRef",
+            "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+          }
+        ],
+        "statement": {
+          "text": "Keep replies short in the morning.",
+          "lang": "en"
+        }
+      },
+      "child": false
+    },
+    "expected": {
+      "excluded": "sensitive"
+    }
+  },
+  {
+    "rule": "MF-33",
+    "description": "a sensitive rule about another person fails as sensitive first",
+    "input": {
+      "record": {
+        "type": "MemoryRecord",
+        "id": "mem_01k742szm0fcqs2ar1rjs1vtzx",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": [
+            "health"
+          ]
+        },
+        "retention_class": "one_sensitive",
+        "provenance": "user.memory",
+        "recorded_at": "2026-10-02T03:00:00Z",
+        "version": 1,
+        "promise_version": 1,
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "user"
+        },
+        "content_type": "constraint",
+        "epistemic_state": "stated",
+        "layer": "behaviour_rule",
+        "time_kind": "permanent",
+        "valid_from": "2026-09-01T00:00:00Z",
+        "valid_to": null,
+        "superseded_at": null,
+        "source_episodes": [
+          "epi_01k742sgz8fpbvee16bvnbpem8"
+        ],
+        "source_kind": "user_statement",
+        "evidence": {
+          "observation_count": 1,
+          "supporting_count": 1,
+          "first_observed_at": "2026-10-01T08:10:00Z",
+          "last_observed_at": "2026-10-01T08:10:00Z",
+          "contradicting_records": [],
+          "user_confirmed_at": null
+        },
+        "trust": {
+          "value": 0.95442,
+          "formula": "trust/v1",
+          "computed_at": "2026-10-02T03:00:00Z"
+        },
+        "alternative_explanations": [],
+        "usage_restriction": null,
+        "about": [
+          {
+            "ref": "ExternalPersonRef",
+            "system": "contacts",
+            "locator": "synthetic-colleague"
+          }
+        ],
+        "statement": {
+          "text": "Keep replies short in the morning.",
+          "lang": "en"
+        }
+      },
+      "child": false
+    },
+    "expected": {
+      "excluded": "sensitive"
+    }
+  },
+  {
+    "rule": "MF-33",
+    "description": "a rule about a person outside Suiss is not learned",
+    "input": {
+      "record": {
+        "type": "MemoryRecord",
+        "id": "mem_01k742szm0fcqs2ar1rjs1vtzx",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_class": "one_memory",
+        "provenance": "user.memory",
+        "recorded_at": "2026-10-02T03:00:00Z",
+        "version": 1,
+        "promise_version": 1,
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "user"
+        },
+        "content_type": "constraint",
+        "epistemic_state": "stated",
+        "layer": "behaviour_rule",
+        "time_kind": "permanent",
+        "valid_from": "2026-09-01T00:00:00Z",
+        "valid_to": null,
+        "superseded_at": null,
+        "source_episodes": [
+          "epi_01k742sgz8fpbvee16bvnbpem8"
+        ],
+        "source_kind": "user_statement",
+        "evidence": {
+          "observation_count": 1,
+          "supporting_count": 1,
+          "first_observed_at": "2026-10-01T08:10:00Z",
+          "last_observed_at": "2026-10-01T08:10:00Z",
+          "contradicting_records": [],
+          "user_confirmed_at": null
+        },
+        "trust": {
+          "value": 0.95442,
+          "formula": "trust/v1",
+          "computed_at": "2026-10-02T03:00:00Z"
+        },
+        "alternative_explanations": [],
+        "usage_restriction": null,
+        "about": [
+          {
+            "ref": "ExternalPersonRef",
+            "system": "contacts",
+            "locator": "synthetic-colleague"
+          }
+        ],
+        "statement": {
+          "text": "Keep replies short in the morning.",
+          "lang": "en"
+        }
+      },
+      "child": false
+    },
+    "expected": {
+      "excluded": "third_party"
+    }
+  },
+  {
+    "rule": "MF-33",
+    "description": "a rule about another Suiss person is not learned",
+    "input": {
+      "record": {
+        "type": "MemoryRecord",
+        "id": "mem_01k742szm0fcqs2ar1rjs1vtzx",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_class": "one_memory",
+        "provenance": "user.memory",
+        "recorded_at": "2026-10-02T03:00:00Z",
+        "version": 1,
+        "promise_version": 1,
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "user"
+        },
+        "content_type": "constraint",
+        "epistemic_state": "stated",
+        "layer": "behaviour_rule",
+        "time_kind": "permanent",
+        "valid_from": "2026-09-01T00:00:00Z",
+        "valid_to": null,
+        "superseded_at": null,
+        "source_episodes": [
+          "epi_01k742sgz8fpbvee16bvnbpem8"
+        ],
+        "source_kind": "user_statement",
+        "evidence": {
+          "observation_count": 1,
+          "supporting_count": 1,
+          "first_observed_at": "2026-10-01T08:10:00Z",
+          "last_observed_at": "2026-10-01T08:10:00Z",
+          "contradicting_records": [],
+          "user_confirmed_at": null
+        },
+        "trust": {
+          "value": 0.95442,
+          "formula": "trust/v1",
+          "computed_at": "2026-10-02T03:00:00Z"
+        },
+        "alternative_explanations": [],
+        "usage_restriction": null,
+        "about": [
+          {
+            "ref": "PartyRef",
+            "id": "pty_01k742sgz8fpbvee16bvnbpem9"
+          }
+        ],
+        "statement": {
+          "text": "Keep replies short in the morning.",
+          "lang": "en"
+        }
+      },
+      "child": false
+    },
+    "expected": {
+      "excluded": "third_party"
+    }
+  },
+  {
+    "rule": "MF-33",
+    "description": "a rule about the user and someone else is not learned",
+    "input": {
+      "record": {
+        "type": "MemoryRecord",
+        "id": "mem_01k742szm0fcqs2ar1rjs1vtzx",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_class": "one_memory",
+        "provenance": "user.memory",
+        "recorded_at": "2026-10-02T03:00:00Z",
+        "version": 1,
+        "promise_version": 1,
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "user"
+        },
+        "content_type": "constraint",
+        "epistemic_state": "stated",
+        "layer": "behaviour_rule",
+        "time_kind": "permanent",
+        "valid_from": "2026-09-01T00:00:00Z",
+        "valid_to": null,
+        "superseded_at": null,
+        "source_episodes": [
+          "epi_01k742sgz8fpbvee16bvnbpem8"
+        ],
+        "source_kind": "user_statement",
+        "evidence": {
+          "observation_count": 1,
+          "supporting_count": 1,
+          "first_observed_at": "2026-10-01T08:10:00Z",
+          "last_observed_at": "2026-10-01T08:10:00Z",
+          "contradicting_records": [],
+          "user_confirmed_at": null
+        },
+        "trust": {
+          "value": 0.95442,
+          "formula": "trust/v1",
+          "computed_at": "2026-10-02T03:00:00Z"
+        },
+        "alternative_explanations": [],
+        "usage_restriction": null,
+        "about": [
+          {
+            "ref": "PartyRef",
+            "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+          },
+          {
+            "ref": "ExternalPersonRef",
+            "system": "contacts",
+            "locator": "synthetic-colleague"
+          }
+        ],
+        "statement": {
+          "text": "Keep replies short in the morning.",
+          "lang": "en"
+        }
+      },
+      "child": false
+    },
+    "expected": {
+      "excluded": "third_party"
+    }
+  },
+  {
+    "rule": "MF-33",
+    "description": "a restricted third-party rule fails as third party first",
+    "input": {
+      "record": {
+        "type": "MemoryRecord",
+        "id": "mem_01k742szm0fcqs2ar1rjs1vtzx",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_class": "one_memory",
+        "provenance": "user.memory",
+        "recorded_at": "2026-10-02T03:00:00Z",
+        "version": 1,
+        "promise_version": 1,
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "user"
+        },
+        "content_type": "constraint",
+        "epistemic_state": "stated",
+        "layer": "behaviour_rule",
+        "time_kind": "permanent",
+        "valid_from": "2026-09-01T00:00:00Z",
+        "valid_to": null,
+        "superseded_at": null,
+        "source_episodes": [
+          "epi_01k742sgz8fpbvee16bvnbpem8"
+        ],
+        "source_kind": "user_statement",
+        "evidence": {
+          "observation_count": 1,
+          "supporting_count": 1,
+          "first_observed_at": "2026-10-01T08:10:00Z",
+          "last_observed_at": "2026-10-01T08:10:00Z",
+          "contradicting_records": [],
+          "user_confirmed_at": null
+        },
+        "trust": {
+          "value": 0.95442,
+          "formula": "trust/v1",
+          "computed_at": "2026-10-02T03:00:00Z"
+        },
+        "alternative_explanations": [],
+        "usage_restriction": {
+          "areas": [
+            "work"
+          ],
+          "projects": []
+        },
+        "about": [
+          {
+            "ref": "ExternalPersonRef",
+            "system": "contacts",
+            "locator": "synthetic-colleague"
+          }
+        ],
+        "statement": {
+          "text": "Keep replies short in the morning.",
+          "lang": "en"
+        }
+      },
+      "child": false
+    },
+    "expected": {
+      "excluded": "third_party"
+    }
+  },
+  {
+    "rule": "MF-33",
+    "description": "a record restricted to some areas is not learned",
+    "input": {
+      "record": {
+        "type": "MemoryRecord",
+        "id": "mem_01k742szm0fcqs2ar1rjs1vtzx",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_class": "one_memory",
+        "provenance": "user.memory",
+        "recorded_at": "2026-10-02T03:00:00Z",
+        "version": 1,
+        "promise_version": 1,
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "user"
+        },
+        "content_type": "constraint",
+        "epistemic_state": "stated",
+        "layer": "behaviour_rule",
+        "time_kind": "permanent",
+        "valid_from": "2026-09-01T00:00:00Z",
+        "valid_to": null,
+        "superseded_at": null,
+        "source_episodes": [
+          "epi_01k742sgz8fpbvee16bvnbpem8"
+        ],
+        "source_kind": "user_statement",
+        "evidence": {
+          "observation_count": 1,
+          "supporting_count": 1,
+          "first_observed_at": "2026-10-01T08:10:00Z",
+          "last_observed_at": "2026-10-01T08:10:00Z",
+          "contradicting_records": [],
+          "user_confirmed_at": null
+        },
+        "trust": {
+          "value": 0.95442,
+          "formula": "trust/v1",
+          "computed_at": "2026-10-02T03:00:00Z"
+        },
+        "alternative_explanations": [],
+        "usage_restriction": {
+          "areas": [
+            "work"
+          ],
+          "projects": []
+        },
+        "about": [
+          {
+            "ref": "PartyRef",
+            "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+          }
+        ],
+        "statement": {
+          "text": "Keep replies short in the morning.",
+          "lang": "en"
+        }
+      },
+      "child": false
+    },
+    "expected": {
+      "excluded": "restricted"
+    }
+  },
+  {
+    "rule": "MF-33",
+    "description": "an e-mail address is masked",
+    "input": {
+      "record": {
+        "type": "MemoryRecord",
+        "id": "mem_01k742szm0fcqs2ar1rjs1vtzx",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_class": "one_memory",
+        "provenance": "user.memory",
+        "recorded_at": "2026-10-02T03:00:00Z",
+        "version": 1,
+        "promise_version": 1,
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "user"
+        },
+        "content_type": "constraint",
+        "epistemic_state": "stated",
+        "layer": "behaviour_rule",
+        "time_kind": "permanent",
+        "valid_from": "2026-09-01T00:00:00Z",
+        "valid_to": null,
+        "superseded_at": null,
+        "source_episodes": [
+          "epi_01k742sgz8fpbvee16bvnbpem8"
+        ],
+        "source_kind": "user_statement",
+        "evidence": {
+          "observation_count": 1,
+          "supporting_count": 1,
+          "first_observed_at": "2026-10-01T08:10:00Z",
+          "last_observed_at": "2026-10-01T08:10:00Z",
+          "contradicting_records": [],
+          "user_confirmed_at": null
+        },
+        "trust": {
+          "value": 0.95442,
+          "formula": "trust/v1",
+          "computed_at": "2026-10-02T03:00:00Z"
+        },
+        "alternative_explanations": [],
+        "usage_restriction": null,
+        "about": [
+          {
+            "ref": "PartyRef",
+            "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+          }
+        ],
+        "statement": {
+          "text": "Send summaries to me at sabah.notlari@example.com every evening.",
+          "lang": "en"
+        }
+      },
+      "child": false
+    },
+    "expected": {
+      "text": "Send summaries to me at ⟨email⟩ every evening."
+    }
+  },
+  {
+    "rule": "MF-33",
+    "description": "an e-mail address in parentheses keeps the parentheses",
+    "input": {
+      "record": {
+        "type": "MemoryRecord",
+        "id": "mem_01k742szm0fcqs2ar1rjs1vtzx",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_class": "one_memory",
+        "provenance": "user.memory",
+        "recorded_at": "2026-10-02T03:00:00Z",
+        "version": 1,
+        "promise_version": 1,
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "user"
+        },
+        "content_type": "constraint",
+        "epistemic_state": "stated",
+        "layer": "behaviour_rule",
+        "time_kind": "permanent",
+        "valid_from": "2026-09-01T00:00:00Z",
+        "valid_to": null,
+        "superseded_at": null,
+        "source_episodes": [
+          "epi_01k742sgz8fpbvee16bvnbpem8"
+        ],
+        "source_kind": "user_statement",
+        "evidence": {
+          "observation_count": 1,
+          "supporting_count": 1,
+          "first_observed_at": "2026-10-01T08:10:00Z",
+          "last_observed_at": "2026-10-01T08:10:00Z",
+          "contradicting_records": [],
+          "user_confirmed_at": null
+        },
+        "trust": {
+          "value": 0.95442,
+          "formula": "trust/v1",
+          "computed_at": "2026-10-02T03:00:00Z"
+        },
+        "alternative_explanations": [],
+        "usage_restriction": null,
+        "about": [
+          {
+            "ref": "PartyRef",
+            "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+          }
+        ],
+        "statement": {
+          "text": "Reply from the shared inbox (inbox@example.org) only.",
+          "lang": "en"
+        }
+      },
+      "child": false
+    },
+    "expected": {
+      "text": "Reply from the shared inbox (⟨email⟩) only."
+    }
+  },
+  {
+    "rule": "MF-33",
+    "description": "an https link is masked",
+    "input": {
+      "record": {
+        "type": "MemoryRecord",
+        "id": "mem_01k742szm0fcqs2ar1rjs1vtzx",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_class": "one_memory",
+        "provenance": "user.memory",
+        "recorded_at": "2026-10-02T03:00:00Z",
+        "version": 1,
+        "promise_version": 1,
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "user"
+        },
+        "content_type": "constraint",
+        "epistemic_state": "stated",
+        "layer": "behaviour_rule",
+        "time_kind": "permanent",
+        "valid_from": "2026-09-01T00:00:00Z",
+        "valid_to": null,
+        "superseded_at": null,
+        "source_episodes": [
+          "epi_01k742sgz8fpbvee16bvnbpem8"
+        ],
+        "source_kind": "user_statement",
+        "evidence": {
+          "observation_count": 1,
+          "supporting_count": 1,
+          "first_observed_at": "2026-10-01T08:10:00Z",
+          "last_observed_at": "2026-10-01T08:10:00Z",
+          "contradicting_records": [],
+          "user_confirmed_at": null
+        },
+        "trust": {
+          "value": 0.95442,
+          "formula": "trust/v1",
+          "computed_at": "2026-10-02T03:00:00Z"
+        },
+        "alternative_explanations": [],
+        "usage_restriction": null,
+        "about": [
+          {
+            "ref": "PartyRef",
+            "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+          }
+        ],
+        "statement": {
+          "text": "Check https://example.com/status?x=1 before suggesting a time.",
+          "lang": "en"
+        }
+      },
+      "child": false
+    },
+    "expected": {
+      "text": "Check ⟨url⟩ before suggesting a time."
+    }
+  },
+  {
+    "rule": "MF-33",
+    "description": "an http link is masked",
+    "input": {
+      "record": {
+        "type": "MemoryRecord",
+        "id": "mem_01k742szm0fcqs2ar1rjs1vtzx",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_class": "one_memory",
+        "provenance": "user.memory",
+        "recorded_at": "2026-10-02T03:00:00Z",
+        "version": 1,
+        "promise_version": 1,
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "user"
+        },
+        "content_type": "constraint",
+        "epistemic_state": "stated",
+        "layer": "behaviour_rule",
+        "time_kind": "permanent",
+        "valid_from": "2026-09-01T00:00:00Z",
+        "valid_to": null,
+        "superseded_at": null,
+        "source_episodes": [
+          "epi_01k742sgz8fpbvee16bvnbpem8"
+        ],
+        "source_kind": "user_statement",
+        "evidence": {
+          "observation_count": 1,
+          "supporting_count": 1,
+          "first_observed_at": "2026-10-01T08:10:00Z",
+          "last_observed_at": "2026-10-01T08:10:00Z",
+          "contradicting_records": [],
+          "user_confirmed_at": null
+        },
+        "trust": {
+          "value": 0.95442,
+          "formula": "trust/v1",
+          "computed_at": "2026-10-02T03:00:00Z"
+        },
+        "alternative_explanations": [],
+        "usage_restriction": null,
+        "about": [
+          {
+            "ref": "PartyRef",
+            "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+          }
+        ],
+        "statement": {
+          "text": "Prefer links like http://example.org/docs.",
+          "lang": "en"
+        }
+      },
+      "child": false
+    },
+    "expected": {
+      "text": "Prefer links like ⟨url⟩."
+    }
+  },
+  {
+    "rule": "MF-33",
+    "description": "a www link is masked and the full stop kept",
+    "input": {
+      "record": {
+        "type": "MemoryRecord",
+        "id": "mem_01k742szm0fcqs2ar1rjs1vtzx",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_class": "one_memory",
+        "provenance": "user.memory",
+        "recorded_at": "2026-10-02T03:00:00Z",
+        "version": 1,
+        "promise_version": 1,
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "user"
+        },
+        "content_type": "constraint",
+        "epistemic_state": "stated",
+        "layer": "behaviour_rule",
+        "time_kind": "permanent",
+        "valid_from": "2026-09-01T00:00:00Z",
+        "valid_to": null,
+        "superseded_at": null,
+        "source_episodes": [
+          "epi_01k742sgz8fpbvee16bvnbpem8"
+        ],
+        "source_kind": "user_statement",
+        "evidence": {
+          "observation_count": 1,
+          "supporting_count": 1,
+          "first_observed_at": "2026-10-01T08:10:00Z",
+          "last_observed_at": "2026-10-01T08:10:00Z",
+          "contradicting_records": [],
+          "user_confirmed_at": null
+        },
+        "trust": {
+          "value": 0.95442,
+          "formula": "trust/v1",
+          "computed_at": "2026-10-02T03:00:00Z"
+        },
+        "alternative_explanations": [],
+        "usage_restriction": null,
+        "about": [
+          {
+            "ref": "PartyRef",
+            "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+          }
+        ],
+        "statement": {
+          "text": "Never open www.example.net/login.",
+          "lang": "en"
+        }
+      },
+      "child": false
+    },
+    "expected": {
+      "text": "Never open ⟨url⟩."
+    }
+  },
+  {
+    "rule": "MF-33",
+    "description": "a phone number with a plus and spaces is one number mask",
+    "input": {
+      "record": {
+        "type": "MemoryRecord",
+        "id": "mem_01k742szm0fcqs2ar1rjs1vtzx",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_class": "one_memory",
+        "provenance": "user.memory",
+        "recorded_at": "2026-10-02T03:00:00Z",
+        "version": 1,
+        "promise_version": 1,
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "user"
+        },
+        "content_type": "constraint",
+        "epistemic_state": "stated",
+        "layer": "behaviour_rule",
+        "time_kind": "permanent",
+        "valid_from": "2026-09-01T00:00:00Z",
+        "valid_to": null,
+        "superseded_at": null,
+        "source_episodes": [
+          "epi_01k742sgz8fpbvee16bvnbpem8"
+        ],
+        "source_kind": "user_statement",
+        "evidence": {
+          "observation_count": 1,
+          "supporting_count": 1,
+          "first_observed_at": "2026-10-01T08:10:00Z",
+          "last_observed_at": "2026-10-01T08:10:00Z",
+          "contradicting_records": [],
+          "user_confirmed_at": null
+        },
+        "trust": {
+          "value": 0.95442,
+          "formula": "trust/v1",
+          "computed_at": "2026-10-02T03:00:00Z"
+        },
+        "alternative_explanations": [],
+        "usage_restriction": null,
+        "about": [
+          {
+            "ref": "PartyRef",
+            "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+          }
+        ],
+        "statement": {
+          "text": "Bana yalnızca +90 532 123 45 67 numarasından ulaşılsın.",
+          "lang": "tr"
+        }
+      },
+      "child": false
+    },
+    "expected": {
+      "text": "Bana yalnızca ⟨number⟩ numarasından ulaşılsın."
+    }
+  },
+  {
+    "rule": "MF-33",
+    "description": "a date with slashes is a number mask",
+    "input": {
+      "record": {
+        "type": "MemoryRecord",
+        "id": "mem_01k742szm0fcqs2ar1rjs1vtzx",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_class": "one_memory",
+        "provenance": "user.memory",
+        "recorded_at": "2026-10-02T03:00:00Z",
+        "version": 1,
+        "promise_version": 1,
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "user"
+        },
+        "content_type": "constraint",
+        "epistemic_state": "stated",
+        "layer": "behaviour_rule",
+        "time_kind": "permanent",
+        "valid_from": "2026-09-01T00:00:00Z",
+        "valid_to": null,
+        "superseded_at": null,
+        "source_episodes": [
+          "epi_01k742sgz8fpbvee16bvnbpem8"
+        ],
+        "source_kind": "user_statement",
+        "evidence": {
+          "observation_count": 1,
+          "supporting_count": 1,
+          "first_observed_at": "2026-10-01T08:10:00Z",
+          "last_observed_at": "2026-10-01T08:10:00Z",
+          "contradicting_records": [],
+          "user_confirmed_at": null
+        },
+        "trust": {
+          "value": 0.95442,
+          "formula": "trust/v1",
+          "computed_at": "2026-10-02T03:00:00Z"
+        },
+        "alternative_explanations": [],
+        "usage_restriction": null,
+        "about": [
+          {
+            "ref": "PartyRef",
+            "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+          }
+        ],
+        "statement": {
+          "text": "Do not plan anything before 12/05/2026.",
+          "lang": "en"
+        }
+      },
+      "child": false
+    },
+    "expected": {
+      "text": "Do not plan anything before ⟨number⟩."
+    }
+  },
+  {
+    "rule": "MF-33",
+    "description": "a run of four digits is a number mask",
+    "input": {
+      "record": {
+        "type": "MemoryRecord",
+        "id": "mem_01k742szm0fcqs2ar1rjs1vtzx",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_class": "one_memory",
+        "provenance": "user.memory",
+        "recorded_at": "2026-10-02T03:00:00Z",
+        "version": 1,
+        "promise_version": 1,
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "user"
+        },
+        "content_type": "constraint",
+        "epistemic_state": "stated",
+        "layer": "behaviour_rule",
+        "time_kind": "permanent",
+        "valid_from": "2026-09-01T00:00:00Z",
+        "valid_to": null,
+        "superseded_at": null,
+        "source_episodes": [
+          "epi_01k742sgz8fpbvee16bvnbpem8"
+        ],
+        "source_kind": "user_statement",
+        "evidence": {
+          "observation_count": 1,
+          "supporting_count": 1,
+          "first_observed_at": "2026-10-01T08:10:00Z",
+          "last_observed_at": "2026-10-01T08:10:00Z",
+          "contradicting_records": [],
+          "user_confirmed_at": null
+        },
+        "trust": {
+          "value": 0.95442,
+          "formula": "trust/v1",
+          "computed_at": "2026-10-02T03:00:00Z"
+        },
+        "alternative_explanations": [],
+        "usage_restriction": null,
+        "about": [
+          {
+            "ref": "PartyRef",
+            "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+          }
+        ],
+        "statement": {
+          "text": "Kısa yanıt ver, en fazla 1500 karakter.",
+          "lang": "tr"
+        }
+      },
+      "child": false
+    },
+    "expected": {
+      "text": "Kısa yanıt ver, en fazla ⟨number⟩ karakter."
+    }
+  },
+  {
+    "rule": "MF-33",
+    "description": "digits joined by dashes and dots are one number mask",
+    "input": {
+      "record": {
+        "type": "MemoryRecord",
+        "id": "mem_01k742szm0fcqs2ar1rjs1vtzx",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_class": "one_memory",
+        "provenance": "user.memory",
+        "recorded_at": "2026-10-02T03:00:00Z",
+        "version": 1,
+        "promise_version": 1,
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "user"
+        },
+        "content_type": "constraint",
+        "epistemic_state": "stated",
+        "layer": "behaviour_rule",
+        "time_kind": "permanent",
+        "valid_from": "2026-09-01T00:00:00Z",
+        "valid_to": null,
+        "superseded_at": null,
+        "source_episodes": [
+          "epi_01k742sgz8fpbvee16bvnbpem8"
+        ],
+        "source_kind": "user_statement",
+        "evidence": {
+          "observation_count": 1,
+          "supporting_count": 1,
+          "first_observed_at": "2026-10-01T08:10:00Z",
+          "last_observed_at": "2026-10-01T08:10:00Z",
+          "contradicting_records": [],
+          "user_confirmed_at": null
+        },
+        "trust": {
+          "value": 0.95442,
+          "formula": "trust/v1",
+          "computed_at": "2026-10-02T03:00:00Z"
+        },
+        "alternative_explanations": [],
+        "usage_restriction": null,
+        "about": [
+          {
+            "ref": "PartyRef",
+            "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+          }
+        ],
+        "statement": {
+          "text": "Use the code 12-34.56 only on request.",
+          "lang": "en"
+        }
+      },
+      "child": false
+    },
+    "expected": {
+      "text": "Use the code ⟨number⟩ only on request."
+    }
+  },
+  {
+    "rule": "MF-33",
+    "description": "a run of three digits stays and makes the example suspicious",
+    "input": {
+      "record": {
+        "type": "MemoryRecord",
+        "id": "mem_01k742szm0fcqs2ar1rjs1vtzx",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_class": "one_memory",
+        "provenance": "user.memory",
+        "recorded_at": "2026-10-02T03:00:00Z",
+        "version": 1,
+        "promise_version": 1,
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "user"
+        },
+        "content_type": "constraint",
+        "epistemic_state": "stated",
+        "layer": "behaviour_rule",
+        "time_kind": "permanent",
+        "valid_from": "2026-09-01T00:00:00Z",
+        "valid_to": null,
+        "superseded_at": null,
+        "source_episodes": [
+          "epi_01k742sgz8fpbvee16bvnbpem8"
+        ],
+        "source_kind": "user_statement",
+        "evidence": {
+          "observation_count": 1,
+          "supporting_count": 1,
+          "first_observed_at": "2026-10-01T08:10:00Z",
+          "last_observed_at": "2026-10-01T08:10:00Z",
+          "contradicting_records": [],
+          "user_confirmed_at": null
+        },
+        "trust": {
+          "value": 0.95442,
+          "formula": "trust/v1",
+          "computed_at": "2026-10-02T03:00:00Z"
+        },
+        "alternative_explanations": [],
+        "usage_restriction": null,
+        "about": [
+          {
+            "ref": "PartyRef",
+            "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+          }
+        ],
+        "statement": {
+          "text": "Answer in at most 3 sentences.",
+          "lang": "en"
+        }
+      },
+      "child": false
+    },
+    "expected": {
+      "excluded": "suspicious"
+    }
+  },
+  {
+    "rule": "MF-33",
+    "description": "two short numbers apart stay and make the example suspicious",
+    "input": {
+      "record": {
+        "type": "MemoryRecord",
+        "id": "mem_01k742szm0fcqs2ar1rjs1vtzx",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_class": "one_memory",
+        "provenance": "user.memory",
+        "recorded_at": "2026-10-02T03:00:00Z",
+        "version": 1,
+        "promise_version": 1,
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "user"
+        },
+        "content_type": "constraint",
+        "epistemic_state": "stated",
+        "layer": "behaviour_rule",
+        "time_kind": "permanent",
+        "valid_from": "2026-09-01T00:00:00Z",
+        "valid_to": null,
+        "superseded_at": null,
+        "source_episodes": [
+          "epi_01k742sgz8fpbvee16bvnbpem8"
+        ],
+        "source_kind": "user_statement",
+        "evidence": {
+          "observation_count": 1,
+          "supporting_count": 1,
+          "first_observed_at": "2026-10-01T08:10:00Z",
+          "last_observed_at": "2026-10-01T08:10:00Z",
+          "contradicting_records": [],
+          "user_confirmed_at": null
+        },
+        "trust": {
+          "value": 0.95442,
+          "formula": "trust/v1",
+          "computed_at": "2026-10-02T03:00:00Z"
+        },
+        "alternative_explanations": [],
+        "usage_restriction": null,
+        "about": [
+          {
+            "ref": "PartyRef",
+            "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+          }
+        ],
+        "statement": {
+          "text": "Wake me at 7 and again at 9.",
+          "lang": "en"
+        }
+      },
+      "child": false
+    },
+    "expected": {
+      "excluded": "suspicious"
+    }
+  },
+  {
+    "rule": "MF-33",
+    "description": "a capitalised word inside a sentence is a likely name",
+    "input": {
+      "record": {
+        "type": "MemoryRecord",
+        "id": "mem_01k742szm0fcqs2ar1rjs1vtzx",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_class": "one_memory",
+        "provenance": "user.memory",
+        "recorded_at": "2026-10-02T03:00:00Z",
+        "version": 1,
+        "promise_version": 1,
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "user"
+        },
+        "content_type": "constraint",
+        "epistemic_state": "stated",
+        "layer": "behaviour_rule",
+        "time_kind": "permanent",
+        "valid_from": "2026-09-01T00:00:00Z",
+        "valid_to": null,
+        "superseded_at": null,
+        "source_episodes": [
+          "epi_01k742sgz8fpbvee16bvnbpem8"
+        ],
+        "source_kind": "user_statement",
+        "evidence": {
+          "observation_count": 1,
+          "supporting_count": 1,
+          "first_observed_at": "2026-10-01T08:10:00Z",
+          "last_observed_at": "2026-10-01T08:10:00Z",
+          "contradicting_records": [],
+          "user_confirmed_at": null
+        },
+        "trust": {
+          "value": 0.95442,
+          "formula": "trust/v1",
+          "computed_at": "2026-10-02T03:00:00Z"
+        },
+        "alternative_explanations": [],
+        "usage_restriction": null,
+        "about": [
+          {
+            "ref": "PartyRef",
+            "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+          }
+        ],
+        "statement": {
+          "text": "Always ask Ayşe before booking a table.",
+          "lang": "tr"
+        }
+      },
+      "child": false
+    },
+    "expected": {
+      "excluded": "suspicious"
+    }
+  },
+  {
+    "rule": "MF-33",
+    "description": "a Turkish capital letter inside a sentence is a likely name",
+    "input": {
+      "record": {
+        "type": "MemoryRecord",
+        "id": "mem_01k742szm0fcqs2ar1rjs1vtzx",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_class": "one_memory",
+        "provenance": "user.memory",
+        "recorded_at": "2026-10-02T03:00:00Z",
+        "version": 1,
+        "promise_version": 1,
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "user"
+        },
+        "content_type": "constraint",
+        "epistemic_state": "stated",
+        "layer": "behaviour_rule",
+        "time_kind": "permanent",
+        "valid_from": "2026-09-01T00:00:00Z",
+        "valid_to": null,
+        "superseded_at": null,
+        "source_episodes": [
+          "epi_01k742sgz8fpbvee16bvnbpem8"
+        ],
+        "source_kind": "user_statement",
+        "evidence": {
+          "observation_count": 1,
+          "supporting_count": 1,
+          "first_observed_at": "2026-10-01T08:10:00Z",
+          "last_observed_at": "2026-10-01T08:10:00Z",
+          "contradicting_records": [],
+          "user_confirmed_at": null
+        },
+        "trust": {
+          "value": 0.95442,
+          "formula": "trust/v1",
+          "computed_at": "2026-10-02T03:00:00Z"
+        },
+        "alternative_explanations": [],
+        "usage_restriction": null,
+        "about": [
+          {
+            "ref": "PartyRef",
+            "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+          }
+        ],
+        "statement": {
+          "text": "Toplantıları İstanbul saatine göre planla.",
+          "lang": "tr"
+        }
+      },
+      "child": false
+    },
+    "expected": {
+      "excluded": "suspicious"
+    }
+  },
+  {
+    "rule": "MF-33",
+    "description": "a Turkish capital Ş inside a sentence is a likely name",
+    "input": {
+      "record": {
+        "type": "MemoryRecord",
+        "id": "mem_01k742szm0fcqs2ar1rjs1vtzx",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_class": "one_memory",
+        "provenance": "user.memory",
+        "recorded_at": "2026-10-02T03:00:00Z",
+        "version": 1,
+        "promise_version": 1,
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "user"
+        },
+        "content_type": "constraint",
+        "epistemic_state": "stated",
+        "layer": "behaviour_rule",
+        "time_kind": "permanent",
+        "valid_from": "2026-09-01T00:00:00Z",
+        "valid_to": null,
+        "superseded_at": null,
+        "source_episodes": [
+          "epi_01k742sgz8fpbvee16bvnbpem8"
+        ],
+        "source_kind": "user_statement",
+        "evidence": {
+          "observation_count": 1,
+          "supporting_count": 1,
+          "first_observed_at": "2026-10-01T08:10:00Z",
+          "last_observed_at": "2026-10-01T08:10:00Z",
+          "contradicting_records": [],
+          "user_confirmed_at": null
+        },
+        "trust": {
+          "value": 0.95442,
+          "formula": "trust/v1",
+          "computed_at": "2026-10-02T03:00:00Z"
+        },
+        "alternative_explanations": [],
+        "usage_restriction": null,
+        "about": [
+          {
+            "ref": "PartyRef",
+            "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+          }
+        ],
+        "statement": {
+          "text": "Sabah kahvesini Şule ile içmeyi önerme.",
+          "lang": "tr"
+        }
+      },
+      "child": false
+    },
+    "expected": {
+      "excluded": "suspicious"
+    }
+  },
+  {
+    "rule": "MF-33",
+    "description": "a capital at the start of each sentence is allowed",
+    "input": {
+      "record": {
+        "type": "MemoryRecord",
+        "id": "mem_01k742szm0fcqs2ar1rjs1vtzx",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_class": "one_memory",
+        "provenance": "user.memory",
+        "recorded_at": "2026-10-02T03:00:00Z",
+        "version": 1,
+        "promise_version": 1,
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "user"
+        },
+        "content_type": "constraint",
+        "epistemic_state": "stated",
+        "layer": "behaviour_rule",
+        "time_kind": "permanent",
+        "valid_from": "2026-09-01T00:00:00Z",
+        "valid_to": null,
+        "superseded_at": null,
+        "source_episodes": [
+          "epi_01k742sgz8fpbvee16bvnbpem8"
+        ],
+        "source_kind": "user_statement",
+        "evidence": {
+          "observation_count": 1,
+          "supporting_count": 1,
+          "first_observed_at": "2026-10-01T08:10:00Z",
+          "last_observed_at": "2026-10-01T08:10:00Z",
+          "contradicting_records": [],
+          "user_confirmed_at": null
+        },
+        "trust": {
+          "value": 0.95442,
+          "formula": "trust/v1",
+          "computed_at": "2026-10-02T03:00:00Z"
+        },
+        "alternative_explanations": [],
+        "usage_restriction": null,
+        "about": [
+          {
+            "ref": "PartyRef",
+            "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+          }
+        ],
+        "statement": {
+          "text": "Keep it short. Use bullet points! Ask? Fine.",
+          "lang": "en"
+        }
+      },
+      "child": false
+    },
+    "expected": {
+      "text": "Keep it short. Use bullet points! Ask? Fine."
+    }
+  },
+  {
+    "rule": "MF-33",
+    "description": "a capital after a colon is allowed",
+    "input": {
+      "record": {
+        "type": "MemoryRecord",
+        "id": "mem_01k742szm0fcqs2ar1rjs1vtzx",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_class": "one_memory",
+        "provenance": "user.memory",
+        "recorded_at": "2026-10-02T03:00:00Z",
+        "version": 1,
+        "promise_version": 1,
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "user"
+        },
+        "content_type": "constraint",
+        "epistemic_state": "stated",
+        "layer": "behaviour_rule",
+        "time_kind": "permanent",
+        "valid_from": "2026-09-01T00:00:00Z",
+        "valid_to": null,
+        "superseded_at": null,
+        "source_episodes": [
+          "epi_01k742sgz8fpbvee16bvnbpem8"
+        ],
+        "source_kind": "user_statement",
+        "evidence": {
+          "observation_count": 1,
+          "supporting_count": 1,
+          "first_observed_at": "2026-10-01T08:10:00Z",
+          "last_observed_at": "2026-10-01T08:10:00Z",
+          "contradicting_records": [],
+          "user_confirmed_at": null
+        },
+        "trust": {
+          "value": 0.95442,
+          "formula": "trust/v1",
+          "computed_at": "2026-10-02T03:00:00Z"
+        },
+        "alternative_explanations": [],
+        "usage_restriction": null,
+        "about": [
+          {
+            "ref": "PartyRef",
+            "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+          }
+        ],
+        "statement": {
+          "text": "Rule: Never schedule calls on weekends.",
+          "lang": "en"
+        }
+      },
+      "child": false
+    },
+    "expected": {
+      "text": "Rule: Never schedule calls on weekends."
+    }
+  },
+  {
+    "rule": "MF-33",
+    "description": "a capital after a closing quote and full stop is allowed",
+    "input": {
+      "record": {
+        "type": "MemoryRecord",
+        "id": "mem_01k742szm0fcqs2ar1rjs1vtzx",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_class": "one_memory",
+        "provenance": "user.memory",
+        "recorded_at": "2026-10-02T03:00:00Z",
+        "version": 1,
+        "promise_version": 1,
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "user"
+        },
+        "content_type": "constraint",
+        "epistemic_state": "stated",
+        "layer": "behaviour_rule",
+        "time_kind": "permanent",
+        "valid_from": "2026-09-01T00:00:00Z",
+        "valid_to": null,
+        "superseded_at": null,
+        "source_episodes": [
+          "epi_01k742sgz8fpbvee16bvnbpem8"
+        ],
+        "source_kind": "user_statement",
+        "evidence": {
+          "observation_count": 1,
+          "supporting_count": 1,
+          "first_observed_at": "2026-10-01T08:10:00Z",
+          "last_observed_at": "2026-10-01T08:10:00Z",
+          "contradicting_records": [],
+          "user_confirmed_at": null
+        },
+        "trust": {
+          "value": 0.95442,
+          "formula": "trust/v1",
+          "computed_at": "2026-10-02T03:00:00Z"
+        },
+        "alternative_explanations": [],
+        "usage_restriction": null,
+        "about": [
+          {
+            "ref": "PartyRef",
+            "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+          }
+        ],
+        "statement": {
+          "text": "Say \"no.\" Then stop.",
+          "lang": "en"
+        }
+      },
+      "child": false
+    },
+    "expected": {
+      "text": "Say \"no.\" Then stop."
+    }
+  },
+  {
+    "rule": "MF-33",
+    "description": "the pronoun I is not a name",
+    "input": {
+      "record": {
+        "type": "MemoryRecord",
+        "id": "mem_01k742szm0fcqs2ar1rjs1vtzx",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_class": "one_memory",
+        "provenance": "user.memory",
+        "recorded_at": "2026-10-02T03:00:00Z",
+        "version": 1,
+        "promise_version": 1,
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "user"
+        },
+        "content_type": "constraint",
+        "epistemic_state": "stated",
+        "layer": "behaviour_rule",
+        "time_kind": "permanent",
+        "valid_from": "2026-09-01T00:00:00Z",
+        "valid_to": null,
+        "superseded_at": null,
+        "source_episodes": [
+          "epi_01k742sgz8fpbvee16bvnbpem8"
+        ],
+        "source_kind": "user_statement",
+        "evidence": {
+          "observation_count": 1,
+          "supporting_count": 1,
+          "first_observed_at": "2026-10-01T08:10:00Z",
+          "last_observed_at": "2026-10-01T08:10:00Z",
+          "contradicting_records": [],
+          "user_confirmed_at": null
+        },
+        "trust": {
+          "value": 0.95442,
+          "formula": "trust/v1",
+          "computed_at": "2026-10-02T03:00:00Z"
+        },
+        "alternative_explanations": [],
+        "usage_restriction": null,
+        "about": [
+          {
+            "ref": "PartyRef",
+            "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+          }
+        ],
+        "statement": {
+          "text": "Remind me when I'm running late and when I forget.",
+          "lang": "en"
+        }
+      },
+      "child": false
+    },
+    "expected": {
+      "text": "Remind me when I'm running late and when I forget."
+    }
+  },
+  {
+    "rule": "MF-33",
+    "description": "a capital after a mask is still inside the sentence",
+    "input": {
+      "record": {
+        "type": "MemoryRecord",
+        "id": "mem_01k742szm0fcqs2ar1rjs1vtzx",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_class": "one_memory",
+        "provenance": "user.memory",
+        "recorded_at": "2026-10-02T03:00:00Z",
+        "version": 1,
+        "promise_version": 1,
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "user"
+        },
+        "content_type": "constraint",
+        "epistemic_state": "stated",
+        "layer": "behaviour_rule",
+        "time_kind": "permanent",
+        "valid_from": "2026-09-01T00:00:00Z",
+        "valid_to": null,
+        "superseded_at": null,
+        "source_episodes": [
+          "epi_01k742sgz8fpbvee16bvnbpem8"
+        ],
+        "source_kind": "user_statement",
+        "evidence": {
+          "observation_count": 1,
+          "supporting_count": 1,
+          "first_observed_at": "2026-10-01T08:10:00Z",
+          "last_observed_at": "2026-10-01T08:10:00Z",
+          "contradicting_records": [],
+          "user_confirmed_at": null
+        },
+        "trust": {
+          "value": 0.95442,
+          "formula": "trust/v1",
+          "computed_at": "2026-10-02T03:00:00Z"
+        },
+        "alternative_explanations": [],
+        "usage_restriction": null,
+        "about": [
+          {
+            "ref": "PartyRef",
+            "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+          }
+        ],
+        "statement": {
+          "text": "Write to team@example.com Monday mornings.",
+          "lang": "en"
+        }
+      },
+      "child": false
+    },
+    "expected": {
+      "excluded": "suspicious"
+    }
+  },
+  {
+    "rule": "MF-33",
+    "description": "Turkish text without names or numbers is learned unchanged",
+    "input": {
+      "record": {
+        "type": "MemoryRecord",
+        "id": "mem_01k742szm0fcqs2ar1rjs1vtzx",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_class": "one_memory",
+        "provenance": "user.memory",
+        "recorded_at": "2026-10-02T03:00:00Z",
+        "version": 1,
+        "promise_version": 1,
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "user"
+        },
+        "content_type": "constraint",
+        "epistemic_state": "stated",
+        "layer": "behaviour_rule",
+        "time_kind": "permanent",
+        "valid_from": "2026-09-01T00:00:00Z",
+        "valid_to": null,
+        "superseded_at": null,
+        "source_episodes": [
+          "epi_01k742sgz8fpbvee16bvnbpem8"
+        ],
+        "source_kind": "user_statement",
+        "evidence": {
+          "observation_count": 1,
+          "supporting_count": 1,
+          "first_observed_at": "2026-10-01T08:10:00Z",
+          "last_observed_at": "2026-10-01T08:10:00Z",
+          "contradicting_records": [],
+          "user_confirmed_at": null
+        },
+        "trust": {
+          "value": 0.95442,
+          "formula": "trust/v1",
+          "computed_at": "2026-10-02T03:00:00Z"
+        },
+        "alternative_explanations": [],
+        "usage_restriction": null,
+        "about": [
+          {
+            "ref": "PartyRef",
+            "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+          }
+        ],
+        "statement": {
+          "text": "Yanıtlarını kısa tut, önce özeti ver.",
+          "lang": "tr"
+        }
+      },
+      "child": false
+    },
+    "expected": {
+      "text": "Yanıtlarını kısa tut, önce özeti ver."
+    }
+  },
+  {
+    "rule": "MF-33",
+    "description": "a dash between words does not start a sentence",
+    "input": {
+      "record": {
+        "type": "MemoryRecord",
+        "id": "mem_01k742szm0fcqs2ar1rjs1vtzx",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_class": "one_memory",
+        "provenance": "user.memory",
+        "recorded_at": "2026-10-02T03:00:00Z",
+        "version": 1,
+        "promise_version": 1,
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "user"
+        },
+        "content_type": "constraint",
+        "epistemic_state": "stated",
+        "layer": "behaviour_rule",
+        "time_kind": "permanent",
+        "valid_from": "2026-09-01T00:00:00Z",
+        "valid_to": null,
+        "superseded_at": null,
+        "source_episodes": [
+          "epi_01k742sgz8fpbvee16bvnbpem8"
+        ],
+        "source_kind": "user_statement",
+        "evidence": {
+          "observation_count": 1,
+          "supporting_count": 1,
+          "first_observed_at": "2026-10-01T08:10:00Z",
+          "last_observed_at": "2026-10-01T08:10:00Z",
+          "contradicting_records": [],
+          "user_confirmed_at": null
+        },
+        "trust": {
+          "value": 0.95442,
+          "formula": "trust/v1",
+          "computed_at": "2026-10-02T03:00:00Z"
+        },
+        "alternative_explanations": [],
+        "usage_restriction": null,
+        "about": [
+          {
+            "ref": "PartyRef",
+            "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+          }
+        ],
+        "statement": {
+          "text": "Be direct - Keep it brief.",
+          "lang": "en"
+        }
+      },
+      "child": false
+    },
+    "expected": {
+      "excluded": "suspicious"
+    }
+  }
+]

@@ -2593,6 +2593,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "one-model-client"
+version = "0.0.0"
+dependencies = [
+ "one-proto",
+ "serde_json",
+ "thiserror",
+]
+
+[[package]]
 name = "one-objects"
 version = "0.0.0"
 dependencies = [
@@ -2646,6 +2655,14 @@ dependencies = [
  "axum",
  "reqwest",
  "tokio",
+]
+
+[[package]]
+name = "one-router"
+version = "0.0.0"
+dependencies = [
+ "one-proto",
+ "serde_json",
 ]
 
 [[package]]

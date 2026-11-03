@@ -1,0 +1,16 @@
+# MF-31, MF-34, MF-35
+version = "adapter/v1"
+vectors = "vectors/adapter-v1.json"
+
+first_training_min_examples = 500
+first_training_min_days = 14
+kept_previous = 1
+gates = ["personality", "held_out", "safety"]
+
+transitions = [
+  "candidate -> active when every gate passed; the active version becomes previous; the old previous is shredded",
+  "candidate -> rejected when any gate failed or is missing; active and previous stay",
+  "revert: previous -> active, the reverted-from active is shredded",
+  "forget: every version is shredded and a retraining is due",
+  "reset: every version is shredded, no retraining is due",
+]
