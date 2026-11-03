@@ -13,7 +13,8 @@ use one_memory::domain::decay::{DecayError, DecayInput, priority};
 use one_memory::domain::rank::{Ranked, score, smallest_subset};
 use one_memory::domain::retrieval::{ORDER, QueryKind, Step, opinion_allowed};
 use one_memory::domain::write::{
-    Admitted, Moment, Session, WriteError, WritePath, admit, default_expected_end,
+    Admitted, Moment, Session, WriteError, WritePath, admit, default_expected_end, path_fits,
+    writable,
 };
 use one_proto::memory::fields::{EpistemicState, Layer, LiveStatus, SourceKind, TimeKind};
 use one_proto::ontology::time::Instant;
@@ -213,4 +214,27 @@ fn m_22_a_current_record_is_expected_to_end_after_ninety_days() {
         default_expected_end(&from).unix_secs(),
         Instant::parse("2027-02-01T08:00:00Z").unwrap().unix_secs()
     );
+}
+
+#[test]
+fn m_18_the_write_path_matches_the_source_kind() {
+    use SourceKind::{ConnectedSource, ExternalContent, Import, UserBehaviour, UserStatement};
+    let all = [
+        UserStatement,
+        UserBehaviour,
+        ConnectedSource,
+        ExternalContent,
+        Import,
+    ];
+    let fits =
+        |path| -> Vec<SourceKind> { all.into_iter().filter(|s| path_fits(path, *s)).collect() };
+    assert_eq!(fits(WritePath::ExplicitRemember), vec![UserStatement]);
+    assert_eq!(fits(WritePath::ExternalContent), vec![ExternalContent]);
+    assert_eq!(fits(WritePath::Import), vec![Import]);
+    assert_eq!(
+        fits(WritePath::BackgroundInference),
+        vec![UserStatement, UserBehaviour, ConnectedSource]
+    );
+    assert_eq!(writable(Session::Ephemeral), Err(WriteError::Ephemeral));
+    assert_eq!(writable(Session::Normal), Ok(()));
 }

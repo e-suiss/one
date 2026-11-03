@@ -40,7 +40,7 @@ fn profile(v: &Value) -> Profile {
 #[test]
 fn mf_33_training_filter_vectors() {
     let all = vectors("training-filter-v1.json");
-    assert_eq!(all.len(), 45);
+    assert_eq!(all.len(), 55);
     for v in all {
         let i = &v["input"];
         let r = record(&i["record"]);
@@ -76,10 +76,13 @@ fn mf_33_masking_is_idempotent_and_leaves_no_digit() {
         "Call +90 532 123 45 67 or write to a.b@example.com.",
         "See https://example.com/1234 and www.example.org.",
         "Between 2026-11-03 and 2026/12/06.",
+        "Call ٠٥٣٢ ١٢٣ ٤٥ ٦٧ or ０５３２１２３.",
+        "Open suiss.app/abc, t.me/foo and example.org:8080/x.",
     ] {
         let once = mask(text);
         assert_eq!(mask(&once), once);
-        assert!(!once.chars().any(|c| c.is_ascii_digit()), "{once}");
+        assert!(!once.chars().any(char::is_numeric), "{once}");
+        assert_eq!(once.matches('.').count(), 1, "{once}");
     }
     assert!(suspicious("Ask Ali first."));
     assert!(!suspicious("Ask first. Then wait."));

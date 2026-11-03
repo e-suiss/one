@@ -1,4 +1,4 @@
-//! The second-stage difficulty heuristic `difficulty/v1` (MF-21, T-10): the probability that the small model suffices, from the needed capabilities, the tool count, the plan depth, the expected output length and the task kind, until a learned estimator passes the release gate.
+//! The second-stage difficulty heuristic `difficulty/v1` (MF-21, T-10): the probability that the small model suffices, from the needed capabilities, the tool count, the plan depth, the expected output length and the task kind, until a learned estimator passes the release gate; a large model's job (multi-step planning or a large task kind) never goes to the small model unlabelled, whatever the estimate.
 
 use one_proto::memory::trust::round6;
 use one_proto::model::request::{ModelRequest, RequiredCapability};
@@ -116,13 +116,25 @@ pub fn small_sufficient(s: &Signals) -> f64 {
     round6(p.clamp(0.0, 1.0))
 }
 
-/// Whether the estimate `p` picks the small model.
-#[must_use]
-pub fn small_enough(p: f64) -> bool {
-    p >= SMALL_MIN
+impl Signals {
+    /// Whether the request is a large model's job: it needs multi-step planning or its task kind is a large kind (MF-23).
+    #[must_use]
+    pub fn large_job(&self) -> bool {
+        self.planning
+            || self
+                .task_kind
+                .as_deref()
+                .is_some_and(|k| LARGE_KINDS.contains(&k))
+    }
 }
 
-/// Whether the small model may give a labelled short answer when no large model is left (MF-23).
+/// Whether the estimate `p` picks the small model for a request with signals `s`.
+#[must_use]
+pub fn small_enough(s: &Signals, p: f64) -> bool {
+    p >= SMALL_MIN && !s.large_job()
+}
+
+/// Whether the small model may give a labelled short answer when no large model is left (MF-23); a plan cannot be shortened, so never for multi-step planning.
 #[must_use]
 pub fn short_answer_allowed(s: &Signals, p: f64) -> bool {
     p >= SHORT_ANSWER_MIN && !s.planning

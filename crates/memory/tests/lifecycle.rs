@@ -12,7 +12,7 @@ use std::path::PathBuf;
 use one_keys::hsm::{HsmKek, KeyStore};
 use one_memory::adapters::PgVault;
 use one_memory::app::{
-    Export, MemoryAppError, Use, correct, export, forget, record_episode, records, remember,
+    Export, MemoryAppError, Reach, Use, correct, export, forget, record_episode, records, remember,
     set_use, view,
 };
 use one_memory::domain::write::{Moment, Session, WritePath};
@@ -21,7 +21,7 @@ use one_proto::MemoryRecordId;
 use one_proto::id::uuid_v7;
 use one_proto::memory::export::{AccessE65, AccessProjection, ExportDocument, Generator, import};
 use one_proto::memory::fields::{EpistemicState, LiveStatus};
-use one_proto::memory::forget::{Confirmation, ForgetError, Initiator};
+use one_proto::memory::forget::{AdapterLineage, Confirmation, ForgetError, Initiator};
 use one_proto::memory::record::{LiveMemoryRecord, MemoryRecord};
 use one_proto::ontology::episode::Episode;
 use one_proto::ontology::reference::PartyRef;
@@ -169,7 +169,9 @@ impl World {
 
 async fn remembered(w: &World, tag: u8, text: &str) -> MemoryRecordId {
     let mut v = w.vault().await;
-    record_episode(&mut v, &episode()).await.unwrap();
+    record_episode(&mut v, &episode(), Session::Normal)
+        .await
+        .unwrap();
     let rid = remember(
         &mut v,
         at("2026-11-03T08:01:00Z"),
@@ -298,7 +300,15 @@ async fn m_25_only_the_user_forgets_and_the_whole_chain_stops_opening() {
     ] {
         let mut v = w.vault().await;
         assert!(matches!(
-            forget(&mut v, at("2026-11-03T10:00:00Z"), head, initiator, confirmation).await,
+            forget(
+                &mut v,
+                at("2026-11-03T10:00:00Z"),
+                head,
+                initiator,
+                confirmation,
+                Reach::default()
+            )
+            .await,
             Err(MemoryAppError::Forget(e)) if e == error
         ));
     }
@@ -311,11 +321,18 @@ async fn m_25_only_the_user_forgets_and_the_whole_chain_stops_opening() {
         head,
         Initiator::User,
         Some(Confirmation::InApp),
+        Reach {
+            adapter: Some(AdapterLineage {
+                trained_on: vec![head],
+            }),
+            ..Reach::default()
+        },
     )
     .await
     .unwrap();
     v.commit().await.unwrap();
     assert_eq!(effects.shredded_record_keys, vec![head]);
+    assert!(effects.adapter.is_some());
     assert!(effects.user_notice.tr.contains("okunamaz"));
     assert!(!w.view_text().await.contains("randevum"));
 
@@ -361,6 +378,7 @@ async fn m_39_the_full_package_is_written_read_back_and_imported() {
         gone,
         Initiator::User,
         Some(Confirmation::InApp),
+        Reach::default(),
     )
     .await
     .unwrap();

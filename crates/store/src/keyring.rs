@@ -42,7 +42,7 @@ pub struct Sealing {
     pub record_key: RecordKeyId,
     /// The class DEK that wraps the record key.
     pub dek: DekId,
-    /// The privacy promise version the row was written under (OD-68).
+    /// The privacy promise version the row was written under.
     pub promise_version: i32,
 }
 

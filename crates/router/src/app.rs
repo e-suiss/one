@@ -10,6 +10,7 @@ use one_proto::ontology::Instant;
 use one_proto::ontology::tags::{OneMemoryClass, OneProviderTraceClass};
 use one_proto::ontology::validate::ContractViolation;
 
+use crate::domain::adapter::Versions;
 use crate::domain::difficulty::{
     ESTIMATOR_VERSION, Signals, short_answer_allowed, small_enough, small_sufficient,
 };
@@ -61,9 +62,9 @@ fn target(request: &ModelRequest, purpose: Purpose, instances: &[Instance], g: &
     let signals = Signals::of(request);
     let p = small_sufficient(&signals);
     match (small, large) {
-        (true, true) if small_enough(p) => Target::Role(ModelRole::SmallLm, Some(p)),
+        (true, true) if small_enough(&signals, p) => Target::Role(ModelRole::SmallLm, Some(p)),
         (true, true) => Target::Role(ModelRole::LargeLm, Some(p)),
-        (true, false) if small_enough(p) => Target::Role(ModelRole::SmallLm, None),
+        (true, false) if small_enough(&signals, p) => Target::Role(ModelRole::SmallLm, None),
         (true, false) if short_answer_allowed(&signals, p) => Target::Short,
         (true, false) => Target::Wait,
         _ => Target::Role(ModelRole::LargeLm, None),
@@ -93,17 +94,16 @@ fn fallback(chosen: Candidate, facts: &Facts, instances: &[Instance], short: boo
     if at.family == Family::Backup {
         return Fallback::BackupFamily;
     }
-    let primary = instances
-        .iter()
-        .position(|i| i.role == at.role && i.family == Family::Default && i.region == facts.region);
-    if primary == Some(chosen.instance) {
-        Fallback::None
-    } else {
-        Fallback::OtherInstance
+    let primary = instances.iter().enumerate().find(|(_, i)| {
+        i.role == at.role && i.family == Family::Default && i.region == facts.region
+    });
+    match primary {
+        Some((index, i)) if index != chosen.instance && !i.available => Fallback::OtherInstance,
+        _ => Fallback::None,
     }
 }
 
-/// Routes `request` for `purpose` over `instances`, attaching `adapter` only where the gate allows it, and records the decision at `at`.
+/// Routes `request` for `purpose` over `instances`, attaching the active version of `adapters` (the one that passed its activation gates) only where the gate allows it, and records the decision at `at`; another instance counts as a fallback only when the primary one does not answer (MF-23).
 ///
 /// # Errors
 /// [`ContractViolation`] when the request or the record breaks its contract.
@@ -112,11 +112,11 @@ pub fn route(
     purpose: Purpose,
     facts: &Facts,
     instances: &[Instance],
-    adapter: Option<&ActiveAdapter>,
+    adapters: &Versions<ActiveAdapter>,
     at: Instant,
 ) -> Result<Route, ContractViolation> {
     request.validate()?;
-    let g = gate(request, purpose, facts, instances, adapter);
+    let g = gate(request, purpose, facts, instances, adapters.active.as_ref());
     let mut result = g.result;
     let mut estimate = None;
     let mut serve = None;

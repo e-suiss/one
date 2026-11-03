@@ -11,7 +11,7 @@ steps = [
   "score = round(relevance_weight * relevance + trust_weight * trust + priority_weight * priority + area_weight * area, decimals)",
   "order by score descending, then record id ascending",
   "keep records whose score >= min_score, at most max_records",
-  "add every eligible record that contradicts a kept record, after the limit",
+  "add every eligible record that contradicts a kept record or that a kept record contradicts, repeated for each added record, after the limit",
 ]
 
 lexical_share = 0.5

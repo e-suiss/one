@@ -7,7 +7,7 @@ checks = [
   "not_active: status is not active",
   "imported: source_kind is import, confirmed or not",
   "external: source_kind is external_content, confirmed or not",
-  "unconfirmed: source_kind is not user_statement and epistemic_state is neither stated nor verified",
+  "unconfirmed: epistemic_state is neither stated nor verified with evidence.user_confirmed_at set, whatever the source_kind",
   "fact: layer is not behaviour_rule",
   "sensitive: data_class has a sensitive code",
   "third_party: about names anything but the owner's own PartyRef",
@@ -17,14 +17,15 @@ checks = [
 
 masks = [
   "split the text at whitespace; strip leading quotes and opening brackets and trailing punctuation, quotes and closing brackets from each chunk",
-  "a stripped chunk starting with http://, https:// or www. (ASCII case-insensitive) and longer than that prefix becomes ⟨url⟩, keeping what was stripped",
+  "a stripped chunk that holds ://, or starts with http://, https:// or www. (ASCII case-insensitive) and is longer than that prefix, becomes ⟨url⟩, keeping what was stripped",
+  "else a stripped chunk with no @ whose host (the part before the first /, ? or #, without a :port) is two or more dot-separated non-empty labels of alphanumerics and hyphens, the last of 2 or more ASCII letters, becomes ⟨url⟩",
   "else a stripped chunk with one @, a non-empty part before it and a dotted domain with no empty label after it becomes ⟨email⟩, keeping what was stripped",
-  "then a run of ASCII digits, joined by one or more of space, '-', '.' or '/' only between digits, with 4 or more digits becomes ⟨number⟩, absorbing a '+' right before it",
+  "then a run of digits of any script (char::is_numeric), joined by one or more of space, '-', '.' or '/' only between digits, with 4 or more digits becomes ⟨number⟩, absorbing a '+' right before it",
   "shorter digit runs stay as they are",
 ]
 
 suspicious = [
-  "the masked text holds an ASCII digit",
+  "the masked text holds a digit of any script (char::is_numeric)",
   "a word that is not sentence-initial starts with an uppercase letter (char::is_uppercase, so İ, Ç, Ş, Ğ, Ö, Ü count)",
   "a word is a whitespace chunk after stripping leading non-alphanumeric characters; a mask token is not a capitalised word",
   "sentence-initial: the first word, or a word whose previous chunk, after trailing quotes and closing brackets, ends with '.', '!', '?' or ':'",

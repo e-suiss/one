@@ -10,7 +10,7 @@ pub const MAX_DROP: f64 = 0.02;
 pub const SIGNIFICANT: f64 = 0.1;
 
 /// Rounds a difference in `-1..=1` to six decimals, symmetric around zero.
-fn signed6(d: f64) -> f64 {
+pub(crate) fn signed6(d: f64) -> f64 {
     if d < 0.0 { -round6(-d) } else { round6(d) }
 }
 

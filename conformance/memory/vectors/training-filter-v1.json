@@ -149,7 +149,7 @@
   },
   {
     "rule": "MF-33",
-    "description": "a behaviour rule from behaviour the user confirmed becomes an example",
+    "description": "a behaviour rule from behaviour the user confirmed, with the confirmation recorded, becomes an example",
     "input": {
       "record": {
         "type": "MemoryRecord",
@@ -198,7 +198,7 @@
           "first_observed_at": "2026-10-01T08:10:00Z",
           "last_observed_at": "2026-10-01T08:10:00Z",
           "contradicting_records": [],
-          "user_confirmed_at": null
+          "user_confirmed_at": "2026-10-01T09:00:00Z"
         },
         "trust": {
           "value": 0.95442,
@@ -3473,6 +3473,776 @@
         ],
         "statement": {
           "text": "Be direct - Keep it brief.",
+          "lang": "en"
+        }
+      },
+      "child": false
+    },
+    "expected": {
+      "excluded": "suspicious"
+    }
+  },
+  {
+    "rule": "MF-33",
+    "description": "a verified rule without a recorded user confirmation is not learned",
+    "input": {
+      "record": {
+        "type": "MemoryRecord",
+        "id": "mem_01k742szm0fcqs2ar1rjs1vt01",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_class": "one_memory",
+        "provenance": "user.memory",
+        "recorded_at": "2026-10-02T03:00:00Z",
+        "version": 1,
+        "promise_version": 1,
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "user"
+        },
+        "content_type": "constraint",
+        "epistemic_state": "verified",
+        "layer": "behaviour_rule",
+        "time_kind": "permanent",
+        "valid_from": "2026-09-01T00:00:00Z",
+        "valid_to": null,
+        "superseded_at": null,
+        "source_episodes": [
+          "epi_01k742sgz8fpbvee16bvnbpem8"
+        ],
+        "source_kind": "user_behaviour",
+        "evidence": {
+          "observation_count": 1,
+          "supporting_count": 1,
+          "first_observed_at": "2026-10-01T08:10:00Z",
+          "last_observed_at": "2026-10-01T08:10:00Z",
+          "contradicting_records": [],
+          "user_confirmed_at": null
+        },
+        "trust": {
+          "value": 0.95442,
+          "formula": "trust/v1",
+          "computed_at": "2026-10-02T03:00:00Z"
+        },
+        "alternative_explanations": [],
+        "usage_restriction": null,
+        "about": [
+          {
+            "ref": "PartyRef",
+            "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+          }
+        ],
+        "statement": {
+          "text": "Keep replies short in the morning.",
+          "lang": "en"
+        }
+      },
+      "child": false
+    },
+    "expected": {
+      "excluded": "unconfirmed"
+    }
+  },
+  {
+    "rule": "MF-33",
+    "description": "a user statement that is only inferred is not learned",
+    "input": {
+      "record": {
+        "type": "MemoryRecord",
+        "id": "mem_01k742szm0fcqs2ar1rjs1vt02",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_class": "one_memory",
+        "provenance": "user.memory",
+        "recorded_at": "2026-10-02T03:00:00Z",
+        "version": 1,
+        "promise_version": 1,
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "user"
+        },
+        "content_type": "constraint",
+        "epistemic_state": "inferred",
+        "layer": "behaviour_rule",
+        "time_kind": "permanent",
+        "valid_from": "2026-09-01T00:00:00Z",
+        "valid_to": null,
+        "superseded_at": null,
+        "source_episodes": [
+          "epi_01k742sgz8fpbvee16bvnbpem8"
+        ],
+        "source_kind": "user_statement",
+        "evidence": {
+          "observation_count": 1,
+          "supporting_count": 1,
+          "first_observed_at": "2026-10-01T08:10:00Z",
+          "last_observed_at": "2026-10-01T08:10:00Z",
+          "contradicting_records": [],
+          "user_confirmed_at": null
+        },
+        "trust": {
+          "value": 0.95442,
+          "formula": "trust/v1",
+          "computed_at": "2026-10-02T03:00:00Z"
+        },
+        "alternative_explanations": [],
+        "usage_restriction": null,
+        "about": [
+          {
+            "ref": "PartyRef",
+            "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+          }
+        ],
+        "statement": {
+          "text": "Keep replies short in the morning.",
+          "lang": "en"
+        }
+      },
+      "child": false
+    },
+    "expected": {
+      "excluded": "unconfirmed"
+    }
+  },
+  {
+    "rule": "MF-33",
+    "description": "a user statement verified with a recorded confirmation is learned",
+    "input": {
+      "record": {
+        "type": "MemoryRecord",
+        "id": "mem_01k742szm0fcqs2ar1rjs1vt03",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_class": "one_memory",
+        "provenance": "user.memory",
+        "recorded_at": "2026-10-02T03:00:00Z",
+        "version": 1,
+        "promise_version": 1,
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "user"
+        },
+        "content_type": "constraint",
+        "epistemic_state": "verified",
+        "layer": "behaviour_rule",
+        "time_kind": "permanent",
+        "valid_from": "2026-09-01T00:00:00Z",
+        "valid_to": null,
+        "superseded_at": null,
+        "source_episodes": [
+          "epi_01k742sgz8fpbvee16bvnbpem8"
+        ],
+        "source_kind": "user_statement",
+        "evidence": {
+          "observation_count": 1,
+          "supporting_count": 1,
+          "first_observed_at": "2026-10-01T08:10:00Z",
+          "last_observed_at": "2026-10-01T08:10:00Z",
+          "contradicting_records": [],
+          "user_confirmed_at": "2026-10-01T09:00:00Z"
+        },
+        "trust": {
+          "value": 0.95442,
+          "formula": "trust/v1",
+          "computed_at": "2026-10-02T03:00:00Z"
+        },
+        "alternative_explanations": [],
+        "usage_restriction": null,
+        "about": [
+          {
+            "ref": "PartyRef",
+            "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+          }
+        ],
+        "statement": {
+          "text": "Keep replies short in the morning.",
+          "lang": "en"
+        }
+      },
+      "child": false
+    },
+    "expected": {
+      "text": "Keep replies short in the morning."
+    }
+  },
+  {
+    "rule": "T-35",
+    "description": "a bare domain with a path is masked as a link",
+    "input": {
+      "record": {
+        "type": "MemoryRecord",
+        "id": "mem_01k742szm0fcqs2ar1rjs1vt04",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_class": "one_memory",
+        "provenance": "user.memory",
+        "recorded_at": "2026-10-02T03:00:00Z",
+        "version": 1,
+        "promise_version": 1,
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "user"
+        },
+        "content_type": "constraint",
+        "epistemic_state": "stated",
+        "layer": "behaviour_rule",
+        "time_kind": "permanent",
+        "valid_from": "2026-09-01T00:00:00Z",
+        "valid_to": null,
+        "superseded_at": null,
+        "source_episodes": [
+          "epi_01k742sgz8fpbvee16bvnbpem8"
+        ],
+        "source_kind": "user_statement",
+        "evidence": {
+          "observation_count": 1,
+          "supporting_count": 1,
+          "first_observed_at": "2026-10-01T08:10:00Z",
+          "last_observed_at": "2026-10-01T08:10:00Z",
+          "contradicting_records": [],
+          "user_confirmed_at": null
+        },
+        "trust": {
+          "value": 0.95442,
+          "formula": "trust/v1",
+          "computed_at": "2026-10-02T03:00:00Z"
+        },
+        "alternative_explanations": [],
+        "usage_restriction": null,
+        "about": [
+          {
+            "ref": "PartyRef",
+            "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+          }
+        ],
+        "statement": {
+          "text": "Never open suiss.app/abc today.",
+          "lang": "en"
+        }
+      },
+      "child": false
+    },
+    "expected": {
+      "text": "Never open ⟨url⟩ today."
+    }
+  },
+  {
+    "rule": "T-35",
+    "description": "a short domain with a path is masked as a link",
+    "input": {
+      "record": {
+        "type": "MemoryRecord",
+        "id": "mem_01k742szm0fcqs2ar1rjs1vt05",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_class": "one_memory",
+        "provenance": "user.memory",
+        "recorded_at": "2026-10-02T03:00:00Z",
+        "version": 1,
+        "promise_version": 1,
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "user"
+        },
+        "content_type": "constraint",
+        "epistemic_state": "stated",
+        "layer": "behaviour_rule",
+        "time_kind": "permanent",
+        "valid_from": "2026-09-01T00:00:00Z",
+        "valid_to": null,
+        "superseded_at": null,
+        "source_episodes": [
+          "epi_01k742sgz8fpbvee16bvnbpem8"
+        ],
+        "source_kind": "user_statement",
+        "evidence": {
+          "observation_count": 1,
+          "supporting_count": 1,
+          "first_observed_at": "2026-10-01T08:10:00Z",
+          "last_observed_at": "2026-10-01T08:10:00Z",
+          "contradicting_records": [],
+          "user_confirmed_at": null
+        },
+        "trust": {
+          "value": 0.95442,
+          "formula": "trust/v1",
+          "computed_at": "2026-10-02T03:00:00Z"
+        },
+        "alternative_explanations": [],
+        "usage_restriction": null,
+        "about": [
+          {
+            "ref": "PartyRef",
+            "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+          }
+        ],
+        "statement": {
+          "text": "Do not follow t.me/foo links.",
+          "lang": "en"
+        }
+      },
+      "child": false
+    },
+    "expected": {
+      "text": "Do not follow ⟨url⟩ links."
+    }
+  },
+  {
+    "rule": "T-35",
+    "description": "a bare domain is masked as a link and the full stop kept",
+    "input": {
+      "record": {
+        "type": "MemoryRecord",
+        "id": "mem_01k742szm0fcqs2ar1rjs1vt06",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_class": "one_memory",
+        "provenance": "user.memory",
+        "recorded_at": "2026-10-02T03:00:00Z",
+        "version": 1,
+        "promise_version": 1,
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "user"
+        },
+        "content_type": "constraint",
+        "epistemic_state": "stated",
+        "layer": "behaviour_rule",
+        "time_kind": "permanent",
+        "valid_from": "2026-09-01T00:00:00Z",
+        "valid_to": null,
+        "superseded_at": null,
+        "source_episodes": [
+          "epi_01k742sgz8fpbvee16bvnbpem8"
+        ],
+        "source_kind": "user_statement",
+        "evidence": {
+          "observation_count": 1,
+          "supporting_count": 1,
+          "first_observed_at": "2026-10-01T08:10:00Z",
+          "last_observed_at": "2026-10-01T08:10:00Z",
+          "contradicting_records": [],
+          "user_confirmed_at": null
+        },
+        "trust": {
+          "value": 0.95442,
+          "formula": "trust/v1",
+          "computed_at": "2026-10-02T03:00:00Z"
+        },
+        "alternative_explanations": [],
+        "usage_restriction": null,
+        "about": [
+          {
+            "ref": "PartyRef",
+            "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+          }
+        ],
+        "statement": {
+          "text": "Never buy from example.org.",
+          "lang": "en"
+        }
+      },
+      "child": false
+    },
+    "expected": {
+      "text": "Never buy from ⟨url⟩."
+    }
+  },
+  {
+    "rule": "T-35",
+    "description": "a link with any scheme is masked",
+    "input": {
+      "record": {
+        "type": "MemoryRecord",
+        "id": "mem_01k742szm0fcqs2ar1rjs1vt07",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_class": "one_memory",
+        "provenance": "user.memory",
+        "recorded_at": "2026-10-02T03:00:00Z",
+        "version": 1,
+        "promise_version": 1,
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "user"
+        },
+        "content_type": "constraint",
+        "epistemic_state": "stated",
+        "layer": "behaviour_rule",
+        "time_kind": "permanent",
+        "valid_from": "2026-09-01T00:00:00Z",
+        "valid_to": null,
+        "superseded_at": null,
+        "source_episodes": [
+          "epi_01k742sgz8fpbvee16bvnbpem8"
+        ],
+        "source_kind": "user_statement",
+        "evidence": {
+          "observation_count": 1,
+          "supporting_count": 1,
+          "first_observed_at": "2026-10-01T08:10:00Z",
+          "last_observed_at": "2026-10-01T08:10:00Z",
+          "contradicting_records": [],
+          "user_confirmed_at": null
+        },
+        "trust": {
+          "value": 0.95442,
+          "formula": "trust/v1",
+          "computed_at": "2026-10-02T03:00:00Z"
+        },
+        "alternative_explanations": [],
+        "usage_restriction": null,
+        "about": [
+          {
+            "ref": "PartyRef",
+            "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+          }
+        ],
+        "statement": {
+          "text": "Ignore ftp://files.example.net/x always.",
+          "lang": "en"
+        }
+      },
+      "child": false
+    },
+    "expected": {
+      "text": "Ignore ⟨url⟩ always."
+    }
+  },
+  {
+    "rule": "T-35",
+    "description": "Arabic-Indic digits are a number mask",
+    "input": {
+      "record": {
+        "type": "MemoryRecord",
+        "id": "mem_01k742szm0fcqs2ar1rjs1vt08",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_class": "one_memory",
+        "provenance": "user.memory",
+        "recorded_at": "2026-10-02T03:00:00Z",
+        "version": 1,
+        "promise_version": 1,
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "user"
+        },
+        "content_type": "constraint",
+        "epistemic_state": "stated",
+        "layer": "behaviour_rule",
+        "time_kind": "permanent",
+        "valid_from": "2026-09-01T00:00:00Z",
+        "valid_to": null,
+        "superseded_at": null,
+        "source_episodes": [
+          "epi_01k742sgz8fpbvee16bvnbpem8"
+        ],
+        "source_kind": "user_statement",
+        "evidence": {
+          "observation_count": 1,
+          "supporting_count": 1,
+          "first_observed_at": "2026-10-01T08:10:00Z",
+          "last_observed_at": "2026-10-01T08:10:00Z",
+          "contradicting_records": [],
+          "user_confirmed_at": null
+        },
+        "trust": {
+          "value": 0.95442,
+          "formula": "trust/v1",
+          "computed_at": "2026-10-02T03:00:00Z"
+        },
+        "alternative_explanations": [],
+        "usage_restriction": null,
+        "about": [
+          {
+            "ref": "PartyRef",
+            "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+          }
+        ],
+        "statement": {
+          "text": "Never call ٠٥٣٢١٢٣٤٥٦٧ at night.",
+          "lang": "en"
+        }
+      },
+      "child": false
+    },
+    "expected": {
+      "text": "Never call ⟨number⟩ at night."
+    }
+  },
+  {
+    "rule": "T-35",
+    "description": "fullwidth digits are a number mask",
+    "input": {
+      "record": {
+        "type": "MemoryRecord",
+        "id": "mem_01k742szm0fcqs2ar1rjs1vt09",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_class": "one_memory",
+        "provenance": "user.memory",
+        "recorded_at": "2026-10-02T03:00:00Z",
+        "version": 1,
+        "promise_version": 1,
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "user"
+        },
+        "content_type": "constraint",
+        "epistemic_state": "stated",
+        "layer": "behaviour_rule",
+        "time_kind": "permanent",
+        "valid_from": "2026-09-01T00:00:00Z",
+        "valid_to": null,
+        "superseded_at": null,
+        "source_episodes": [
+          "epi_01k742sgz8fpbvee16bvnbpem8"
+        ],
+        "source_kind": "user_statement",
+        "evidence": {
+          "observation_count": 1,
+          "supporting_count": 1,
+          "first_observed_at": "2026-10-01T08:10:00Z",
+          "last_observed_at": "2026-10-01T08:10:00Z",
+          "contradicting_records": [],
+          "user_confirmed_at": null
+        },
+        "trust": {
+          "value": 0.95442,
+          "formula": "trust/v1",
+          "computed_at": "2026-10-02T03:00:00Z"
+        },
+        "alternative_explanations": [],
+        "usage_restriction": null,
+        "about": [
+          {
+            "ref": "PartyRef",
+            "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+          }
+        ],
+        "statement": {
+          "text": "Never share ２０２６１１ with anyone.",
+          "lang": "en"
+        }
+      },
+      "child": false
+    },
+    "expected": {
+      "text": "Never share ⟨number⟩ with anyone."
+    }
+  },
+  {
+    "rule": "T-35",
+    "description": "three Arabic-Indic digits stay and make the example suspicious",
+    "input": {
+      "record": {
+        "type": "MemoryRecord",
+        "id": "mem_01k742szm0fcqs2ar1rjs1vt0a",
+        "owner": {
+          "ref": "PartyRef",
+          "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+        },
+        "domain": {
+          "areas": [
+            "general"
+          ],
+          "project": null
+        },
+        "data_class": {
+          "kinds": [
+            "personal"
+          ],
+          "sensitive": []
+        },
+        "retention_class": "one_memory",
+        "provenance": "user.memory",
+        "recorded_at": "2026-10-02T03:00:00Z",
+        "version": 1,
+        "promise_version": 1,
+        "supersedes": null,
+        "status": "active",
+        "deleted_at": null,
+        "produced_by": {
+          "actor": "user"
+        },
+        "content_type": "constraint",
+        "epistemic_state": "stated",
+        "layer": "behaviour_rule",
+        "time_kind": "permanent",
+        "valid_from": "2026-09-01T00:00:00Z",
+        "valid_to": null,
+        "superseded_at": null,
+        "source_episodes": [
+          "epi_01k742sgz8fpbvee16bvnbpem8"
+        ],
+        "source_kind": "user_statement",
+        "evidence": {
+          "observation_count": 1,
+          "supporting_count": 1,
+          "first_observed_at": "2026-10-01T08:10:00Z",
+          "last_observed_at": "2026-10-01T08:10:00Z",
+          "contradicting_records": [],
+          "user_confirmed_at": null
+        },
+        "trust": {
+          "value": 0.95442,
+          "formula": "trust/v1",
+          "computed_at": "2026-10-02T03:00:00Z"
+        },
+        "alternative_explanations": [],
+        "usage_restriction": null,
+        "about": [
+          {
+            "ref": "PartyRef",
+            "id": "pty_01k742sgz8ea9tc04vraj0cqss"
+          }
+        ],
+        "statement": {
+          "text": "Wake me at ٧٣٠ always.",
           "lang": "en"
         }
       },

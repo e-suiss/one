@@ -10,8 +10,9 @@ use one_proto::memory::export::{
 };
 use one_proto::memory::fields::{EpistemicState, Layer, LiveStatus, TimeKind};
 use one_proto::memory::forget::{
-    Confirmation, EpisodeUse, ForgetDecision, ForgetEffects, ForgetError, ForgetPermanently,
-    ForgetRequest, ForgetScope, Initiator, ScopedRecord, forget as decide_forget,
+    AdapterLineage, Confirmation, Derivative, DeviceCache, EpisodeUse, ForgetDecision,
+    ForgetEffects, ForgetError, ForgetPermanently, ForgetRequest, ForgetScope, Initiator,
+    ScopedRecord, forget as decide_forget,
 };
 use one_proto::memory::ops::{MemoryError, check_write};
 use one_proto::memory::record::{LiveMemoryRecord, MemoryRecord, MemorySkeleton};
@@ -27,8 +28,10 @@ use one_proto::{EpisodeId, MemoryRecordId};
 use crate::domain::classes::trust_class;
 use crate::domain::decay::{DecayInput, priority};
 use crate::domain::rank::{Ranked, smallest_subset};
-use crate::domain::retrieval::{Query, in_area, passes_opinion_filter, usable};
-use crate::domain::write::{Moment, Session, WriteError, WritePath, admit, default_expected_end};
+use crate::domain::retrieval::{Query, holds_at, in_area, passes_opinion_filter, usable};
+use crate::domain::write::{
+    Moment, Session, WriteError, WritePath, admit, default_expected_end, path_fits, writable,
+};
 use crate::ports::{Forgot, Policy, Projections, Row, Search, SearchError, Vault, VaultError};
 
 /// Why a use case failed.
@@ -81,7 +84,7 @@ fn encode(record: &LiveMemoryRecord) -> Result<Vec<u8>, MemoryAppError> {
     serde_json::to_vec(record).map_err(|_| MemoryAppError::Decode)
 }
 
-/// Remembers `record` along `path`; the write path sets its lifecycle and epistemic state and the server sets its time and version.
+/// Remembers `record` along `path`; the path must match its source kind, the write path sets its lifecycle and epistemic state, a confirmation the caller supplied is dropped (only [`confirm`] sets one) and the server sets its time and version.
 ///
 /// # Errors
 /// [`MemoryAppError`].
@@ -93,6 +96,9 @@ pub async fn remember<V: Vault>(
     moment: Moment,
     session: Session,
 ) -> Result<MemoryRecordId, MemoryAppError> {
+    if !path_fits(path, record.source_kind) {
+        return Err(MemoryAppError::Write(WriteError::SourceMismatch));
+    }
     let admitted = admit(
         session,
         moment,
@@ -102,6 +108,7 @@ pub async fn remember<V: Vault>(
     )?;
     record.status = admitted.status;
     record.epistemic_state = admitted.epistemic_state;
+    record.evidence.user_confirmed_at = None;
     record.supersedes = None;
     record.superseded_at = None;
     record.header.version = NonZeroU32::MIN;
@@ -121,14 +128,16 @@ pub async fn remember<V: Vault>(
     Ok(record.id)
 }
 
-/// Writes episode `episode`, which records cite as their source (M-6).
+/// Writes episode `episode`, which records cite as their source (M-6); an ephemeral session writes none (M-33).
 ///
 /// # Errors
 /// [`MemoryAppError`].
 pub async fn record_episode<V: Vault>(
     vault: &mut V,
     episode: &Episode,
+    session: Session,
 ) -> Result<EpisodeId, MemoryAppError> {
+    writable(session)?;
     let Episode::Live(live) = episode else {
         return Err(MemoryAppError::State);
     };
@@ -253,7 +262,18 @@ pub async fn set_use<V: Vault>(
     next_version(vault, now, &old, next).await
 }
 
-/// Permanently forgets `id`, asked by `initiator` with `confirmation`: only the user, with explicit confirmation, and the chain's key and the keys of every derivative and every episode used only by it are destroyed; a legal hold changes nothing (M-25, OP-30 (1)).
+/// What a permanent forget reaches beyond the vault: derivatives, device caches and the personal adapter's lineage, read by the caller from their owners.
+#[derive(Debug, Clone, Default, PartialEq, Eq)]
+pub struct Reach {
+    /// Derivatives of memory records.
+    pub derivatives: Vec<Derivative>,
+    /// The user's device caches.
+    pub devices: Vec<DeviceCache>,
+    /// The records the active personal adapter was trained on.
+    pub adapter: Option<AdapterLineage>,
+}
+
+/// Permanently forgets `id`, asked by `initiator` with `confirmation`: only the user, with explicit confirmation, and the chain's key and the keys of every derivative and every episode used only by it are destroyed; a legal hold changes nothing ; the effects name the device caches to erase and whether the adapter is retrained (M-25, MF-35, OP-30 (1)).
 ///
 /// # Errors
 /// [`MemoryAppError`].
@@ -263,6 +283,7 @@ pub async fn forget<V: Vault>(
     id: MemoryRecordId,
     initiator: Initiator,
     confirmation: Option<Confirmation>,
+    reach: Reach,
 ) -> Result<ForgetEffects, MemoryAppError> {
     let rows = vault.rows().await?;
     let heads = chain_heads(&rows);
@@ -294,7 +315,7 @@ pub async fn forget<V: Vault>(
         initiator,
         confirmation,
         records,
-        derivatives: Vec::new(),
+        derivatives: reach.derivatives,
         episodes: uses
             .into_iter()
             .map(|(id, used_by)| EpisodeUse {
@@ -302,8 +323,8 @@ pub async fn forget<V: Vault>(
                 used_by: used_by.into_iter().collect(),
             })
             .collect(),
-        devices: Vec::new(),
-        adapter: None,
+        devices: reach.devices,
+        adapter: reach.adapter,
         at: now,
     };
     let effects = match decide_forget(&request) {
@@ -401,7 +422,7 @@ fn entry(record: &LiveMemoryRecord, at: Instant) -> TextViewEntry {
             record.evidence.user_confirmed_at.is_some(),
             record.trust.value,
         ),
-        currently_valid: record.valid_from <= at && record.valid_to.is_none_or(|t| at < t),
+        currently_valid: holds_at(record, at),
         record: MemoryRecord::Live(Box::new(record.clone())),
     }
 }
@@ -461,12 +482,17 @@ pub async fn retrieve<V: Vault, P: Policy, S: Search>(
         let Some(record) = by_id.get(&hit.id) else {
             continue;
         };
+        let last_confirmed_at = record.evidence.user_confirmed_at;
+        let as_of = [Some(record.evidence.last_observed_at), last_confirmed_at]
+            .into_iter()
+            .flatten()
+            .fold(query.valid_at, Instant::max);
         let decayed = priority(&DecayInput {
             time_kind: record.time_kind,
-            as_of: query.valid_at,
+            as_of,
             last_used_at: record.evidence.last_observed_at,
             use_count: 0,
-            last_confirmed_at: record.evidence.user_confirmed_at,
+            last_confirmed_at,
         })
         .unwrap_or(0.0);
         ranked.push(Ranked {

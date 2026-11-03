@@ -99,10 +99,18 @@ impl AuditVerdict {
     }
 }
 
-/// A built auditor request.
-#[derive(Debug, Clone, PartialEq)]
+/// A built auditor request; its debug output never shows the metadata.
+#[derive(Clone, PartialEq)]
 pub struct AuditorCall {
     request: ModelRequest,
+}
+
+impl core::fmt::Debug for AuditorCall {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        f.debug_struct("AuditorCall")
+            .field("request_id", &self.request.request_id)
+            .finish_non_exhaustive()
+    }
 }
 
 impl AuditorCall {

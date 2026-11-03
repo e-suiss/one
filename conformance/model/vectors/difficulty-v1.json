@@ -182,7 +182,7 @@
   },
   {
     "rule": "MF-21",
-    "description": "large kind",
+    "description": "a large kind goes large whatever the estimate",
     "input": {
       "capabilities": [
         "text_generation"
@@ -192,7 +192,7 @@
     },
     "expected": {
       "small_sufficient": 0.6,
-      "role": "small_lm",
+      "role": "large_lm",
       "short_answer_allowed": true
     }
   },
@@ -235,7 +235,7 @@
   },
   {
     "rule": "MF-21",
-    "description": "planning alone allows no short answer",
+    "description": "planning alone goes large and allows no short answer",
     "input": {
       "capabilities": [
         "text_generation",
@@ -245,8 +245,25 @@
     },
     "expected": {
       "small_sufficient": 0.55,
-      "role": "small_lm",
+      "role": "large_lm",
       "short_answer_allowed": false
+    }
+  },
+  {
+    "rule": "MF-23",
+    "description": "an orchestration job goes large; its labelled short answer stays allowed",
+    "input": {
+      "capabilities": [
+        "text_generation"
+      ],
+      "tool_count": 0,
+      "expected_output_tokens": 120,
+      "task_kind": "orchestration"
+    },
+    "expected": {
+      "small_sufficient": 0.6,
+      "role": "large_lm",
+      "short_answer_allowed": true
     }
   }
 ]

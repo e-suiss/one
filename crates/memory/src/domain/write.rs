@@ -1,6 +1,6 @@
-//! Write admission (M-15, M-16, M-18, M-33, PV-21): an explicit "remember" is active and stated at once, background inference is active and inferred except a sensitive record or a behaviour rule, which waits as a candidate, and external content or an import is always a candidate that can never become a behaviour rule; during a conversation only an explicit "remember" writes, and an ephemeral session writes nothing.
+//! Write admission (M-15, M-16, M-18, M-33, PV-21): an explicit "remember" is active and stated at once, background inference is active and inferred except a sensitive record or a behaviour rule, which waits as a candidate, and external content or an import is always a candidate that can never become a behaviour rule; the path must match the record's source kind, so external content or an import cannot come in as a remember or an inference; during a conversation only an explicit "remember" writes, and an ephemeral session writes nothing.
 
-use one_proto::memory::fields::{EpistemicState, Layer, LiveStatus};
+use one_proto::memory::fields::{EpistemicState, Layer, LiveStatus, SourceKind};
 use one_proto::ontology::time::Instant;
 
 /// How a record reaches memory.
@@ -46,6 +46,34 @@ pub enum WriteError {
     /// External content and imports never become behaviour rules.
     #[error("external content never becomes a behaviour rule")]
     OutsideRule,
+    /// The write path does not match the record's source kind.
+    #[error("the write path does not match the source kind")]
+    SourceMismatch,
+}
+
+/// Whether `path` may carry a record whose source kind is `source`: an explicit remember is a user statement, external content and imports come only along their own path, and an inference is from anything else.
+#[must_use]
+pub const fn path_fits(path: WritePath, source: SourceKind) -> bool {
+    match path {
+        WritePath::ExplicitRemember => matches!(source, SourceKind::UserStatement),
+        WritePath::ExternalContent => matches!(source, SourceKind::ExternalContent),
+        WritePath::Import => matches!(source, SourceKind::Import),
+        WritePath::BackgroundInference => {
+            !matches!(source, SourceKind::ExternalContent | SourceKind::Import)
+        }
+    }
+}
+
+/// Refuses a write from an ephemeral session (M-33).
+///
+/// # Errors
+/// [`WriteError::Ephemeral`].
+pub fn writable(session: Session) -> Result<(), WriteError> {
+    if session == Session::Ephemeral {
+        Err(WriteError::Ephemeral)
+    } else {
+        Ok(())
+    }
 }
 
 /// The lifecycle and epistemic state a new record starts in.
@@ -68,9 +96,7 @@ pub fn admit(
     layer: Layer,
     sensitive: bool,
 ) -> Result<Admitted, WriteError> {
-    if session == Session::Ephemeral {
-        return Err(WriteError::Ephemeral);
-    }
+    writable(session)?;
     if moment == Moment::Conversation && path != WritePath::ExplicitRemember {
         return Err(WriteError::HotPath);
     }

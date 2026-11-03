@@ -1,4 +1,4 @@
-//! The training-data filter of the personal adapter (MF-33, MF-32, MF-36, MF-37, T-35 (2), `conformance/memory/training-filter-v1.toml`): only an active, user-stated or user-confirmed behaviour rule of an adult profile, outside every sensitive class, about nobody but the user and with no usage restriction becomes an example; e-mail addresses, links and long numbers are masked, and a text that still holds a digit or a likely proper name is dropped as suspicious.
+//! The training-data filter of the personal adapter (MF-33, MF-32, MF-36, MF-37, T-35 (2), `conformance/memory/training-filter-v1.toml`): only an active behaviour rule the user stated, or one verified with a recorded user confirmation, of an adult profile, outside every sensitive class, about nobody but the user and with no usage restriction becomes an example; e-mail addresses, links (with or without a scheme) and long numbers in any script are masked, and a text that still holds a digit of any script or a likely proper name is dropped as suspicious.
 
 use one_proto::id::MemoryRecordId;
 use one_proto::memory::fields::{EpistemicState, Layer, LiveStatus, SourceKind};
@@ -18,6 +18,9 @@ pub const NUMBER: &str = "⟨number⟩";
 pub const NUMBER_MIN_DIGITS: usize = 4;
 
 const URL_PREFIXES: [&str; 3] = ["http://", "https://", "www."];
+
+/// The shortest top-level label a bare domain needs to be masked as a link.
+const TLD_MIN: usize = 2;
 
 /// The profile whose memory is filtered (MF-37).
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -43,7 +46,7 @@ pub enum Excluded {
     /// External content.
     #[error("external content never trains")]
     External,
-    /// Neither said nor confirmed by the user.
+    /// Neither stated by the user nor verified with a recorded user confirmation.
     #[error("only what the user said or confirmed is learned")]
     Unconfirmed,
     /// An event or a consolidated fact (MF-32).
@@ -139,15 +142,15 @@ pub fn eligible(record: &LiveMemoryRecord, profile: Profile) -> Result<(), Exclu
     match record.source_kind {
         SourceKind::Import => return Err(Excluded::Imported),
         SourceKind::ExternalContent => return Err(Excluded::External),
-        SourceKind::UserStatement => {}
-        SourceKind::UserBehaviour | SourceKind::ConnectedSource => {
-            if !matches!(
-                record.epistemic_state,
-                EpistemicState::Stated | EpistemicState::Verified
-            ) {
-                return Err(Excluded::Unconfirmed);
-            }
-        }
+        SourceKind::UserStatement | SourceKind::UserBehaviour | SourceKind::ConnectedSource => {}
+    }
+    let confirmed = match record.epistemic_state {
+        EpistemicState::Stated => true,
+        EpistemicState::Verified => record.evidence.user_confirmed_at.is_some(),
+        _ => false,
+    };
+    if !confirmed {
+        return Err(Excluded::Unconfirmed);
     }
     if record.layer != Layer::BehaviourRule {
         return Err(Excluded::Fact);
@@ -208,13 +211,32 @@ fn is_closer(c: char) -> bool {
 }
 
 fn is_url(core: &str) -> bool {
-    URL_PREFIXES.iter().any(|p| {
-        core.len() > p.len()
-            && core
-                .as_bytes()
-                .get(..p.len())
-                .is_some_and(|b| b.eq_ignore_ascii_case(p.as_bytes()))
-    })
+    core.contains("://")
+        || URL_PREFIXES.iter().any(|p| {
+            core.len() > p.len()
+                && core
+                    .as_bytes()
+                    .get(..p.len())
+                    .is_some_and(|b| b.eq_ignore_ascii_case(p.as_bytes()))
+        })
+        || is_bare_domain(core)
+}
+
+/// `name.tld`, `a.b.tld` or either followed by a port or a path: dot-separated labels of letters, digits and hyphens whose last label is two or more ASCII letters.
+fn is_bare_domain(core: &str) -> bool {
+    if core.contains('@') {
+        return false;
+    }
+    let host = core.split(['/', '?', '#']).next().unwrap_or_default();
+    let host = host.split_once(':').map_or(host, |(h, _)| h);
+    let labels: Vec<&str> = host.split('.').collect();
+    labels.len() >= 2
+        && labels
+            .iter()
+            .all(|l| !l.is_empty() && l.chars().all(|c| c.is_alphanumeric() || c == '-'))
+        && labels
+            .last()
+            .is_some_and(|tld| tld.len() >= TLD_MIN && tld.chars().all(|c| c.is_ascii_alphabetic()))
 }
 
 fn is_email(core: &str) -> bool {
@@ -272,7 +294,7 @@ fn mask_numbers(text: &str) -> String {
     let mut out = String::with_capacity(text.len());
     let mut i = 0usize;
     while let Some(&c) = chars.get(i) {
-        if !c.is_ascii_digit() {
+        if !c.is_numeric() {
             out.push(c);
             i = i.saturating_add(1);
             continue;
@@ -282,7 +304,7 @@ fn mask_numbers(text: &str) -> String {
         let mut digits = 0usize;
         let mut j = i;
         while let Some(&d) = chars.get(j) {
-            if d.is_ascii_digit() {
+            if d.is_numeric() {
                 digits = digits.saturating_add(1);
                 j = j.saturating_add(1);
                 end = j;
@@ -291,7 +313,7 @@ fn mask_numbers(text: &str) -> String {
                 while chars.get(k).copied().is_some_and(is_separator) {
                     k = k.saturating_add(1);
                 }
-                if chars.get(k).is_some_and(char::is_ascii_digit) {
+                if chars.get(k).is_some_and(|n| n.is_numeric()) {
                     j = k;
                 } else {
                     break;
@@ -313,10 +335,10 @@ fn mask_numbers(text: &str) -> String {
     out
 }
 
-/// A masked `text` that still holds an ASCII digit, or a word not at the start of a sentence that begins with a capital letter other than the pronoun "I".
+/// A masked `text` that still holds a digit of any script, or a word not at the start of a sentence that begins with a capital letter other than the pronoun "I".
 #[must_use]
 pub fn suspicious(text: &str) -> bool {
-    if text.chars().any(|c| c.is_ascii_digit()) {
+    if text.chars().any(char::is_numeric) {
         return true;
     }
     let mut initial = true;

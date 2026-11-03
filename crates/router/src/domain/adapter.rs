@@ -1,9 +1,16 @@
-//! The personal adapter's versions `adapter/v1` (MF-31, MF-34, MF-35): a candidate becomes active only when the personality regression, the user's held-out examples and the One behaviour safety set all passed; one previous version is kept for "back to the earlier style", older ones are shredded; forgetting and reset shred every version.
+//! The personal adapter's versions `adapter/v1` (MF-31, MF-34, MF-35): a candidate becomes active only when the personality regression, the user's held-out examples (no drop beyond the tolerance) and the One behaviour safety set all passed; one previous version is kept for "back to the earlier style", older ones are shredded; forgetting and reset shred every version.
+
+use crate::domain::personality::{Regression, signed6};
 
 /// The first training needs at least this many eligible examples.
 pub const FIRST_TRAINING_MIN_EXAMPLES: u64 = 500;
 /// The first training needs at least this many days since the first eligible example.
 pub const FIRST_TRAINING_MIN_DAYS: u64 = 14;
+
+/// The held-out score may drop at most this much from the active version (MF-34).
+pub const HELD_OUT_TOLERANCE: f64 = -0.01;
+/// How many earlier versions are kept for going back.
+pub const KEPT_PREVIOUS: usize = 1;
 
 /// Whether the first adapter training is due (MF-31).
 #[must_use]
@@ -23,6 +30,16 @@ pub struct Gates {
 }
 
 impl Gates {
+    /// The gates from the personality regression, the held-out score difference (candidate minus active, `None` while not measured) and the safety set result.
+    #[must_use]
+    pub fn of(personality: &Regression, held_out: Option<f64>, safety: Option<bool>) -> Self {
+        Self {
+            personality: Some(personality.passes),
+            held_out: held_out.map(held_out_passes),
+            safety,
+        }
+    }
+
     /// Whether every gate passed.
     #[must_use]
     pub const fn passed(&self) -> bool {
@@ -31,6 +48,12 @@ impl Gates {
             (Some(true), Some(true), Some(true))
         )
     }
+}
+
+/// Whether a held-out difference (candidate minus active), rounded to six decimals, stays within the tolerance.
+#[must_use]
+pub fn held_out_passes(delta: f64) -> bool {
+    signed6(delta) >= HELD_OUT_TOLERANCE
 }
 
 /// The adapter versions in use.

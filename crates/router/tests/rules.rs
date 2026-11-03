@@ -9,11 +9,14 @@
     reason = "T-38"
 )]
 
-use one_router::domain::adapter::{Gates, Outcome, Versions, first_training_due};
-use one_router::domain::difficulty::{
-    Signals, short_answer_allowed, small_enough, small_sufficient,
+use one_router::domain::adapter::{
+    FIRST_TRAINING_MIN_DAYS, FIRST_TRAINING_MIN_EXAMPLES, Gates, HELD_OUT_TOLERANCE, KEPT_PREVIOUS,
+    Outcome, Versions, first_training_due, held_out_passes,
 };
-use one_router::domain::personality::{Scores, compare};
+use one_router::domain::difficulty::{
+    SHORT_ANSWER_MIN, SMALL_MIN, Signals, short_answer_allowed, small_enough, small_sufficient,
+};
+use one_router::domain::personality::{FLOOR, MAX_DROP, SIGNIFICANT, Scores, compare};
 use serde_json::Value;
 
 fn vectors(name: &str) -> Vec<Value> {
@@ -53,7 +56,7 @@ fn mf_21_difficulty_vectors() {
         let p = small_sufficient(&s);
         let e = &v["expected"];
         assert_eq!(p, e["small_sufficient"].as_f64().unwrap(), "{d}");
-        let role = if small_enough(p) {
+        let role = if small_enough(&s, p) {
             "small_lm"
         } else {
             "large_lm"
@@ -145,4 +148,54 @@ fn mf_34_mf_35_adapter_vectors() {
         };
         assert_eq!(step.outcome, outcome, "{d}");
     }
+}
+
+fn table(name: &str, key: &str) -> f64 {
+    let path = format!(
+        "{}/../../conformance/model/{name}",
+        env!("CARGO_MANIFEST_DIR")
+    );
+    let text = std::fs::read_to_string(path).unwrap();
+    let line = text
+        .lines()
+        .find(|l| l.split('=').next().map(str::trim) == Some(key))
+        .unwrap_or_else(|| panic!("{name}: no {key}"));
+    line.split('=').nth(1).unwrap().trim().parse().unwrap()
+}
+
+#[test]
+fn mf_21_mf_34_mf_48_the_tables_hold_the_code_values() {
+    let d = "difficulty-v1.toml";
+    assert_eq!(table(d, "small_min"), SMALL_MIN);
+    assert_eq!(table(d, "short_answer_min"), SHORT_ANSWER_MIN);
+    let p = "personality-regression-v1.toml";
+    assert_eq!(table(p, "floor"), FLOOR);
+    assert_eq!(table(p, "max_drop"), MAX_DROP);
+    assert_eq!(table(p, "significant"), SIGNIFICANT);
+    assert_eq!(table(p, "held_out_tolerance"), HELD_OUT_TOLERANCE);
+    let a = "adapter-v1.toml";
+    assert_eq!(table(a, "first_training_min_examples"), 500.0);
+    assert_eq!(FIRST_TRAINING_MIN_EXAMPLES, 500);
+    assert_eq!(table(a, "first_training_min_days"), 14.0);
+    assert_eq!(FIRST_TRAINING_MIN_DAYS, 14);
+    assert_eq!(table(a, "kept_previous"), 1.0);
+    assert_eq!(KEPT_PREVIOUS, 1);
+}
+
+#[test]
+fn mf_34_the_held_out_gate_allows_a_drop_up_to_the_tolerance() {
+    assert!(held_out_passes(0.0));
+    assert!(held_out_passes(0.89 - 0.9));
+    assert!(!held_out_passes(0.88 - 0.9));
+    let active = Scores {
+        address: 0.95,
+        tone: 0.95,
+        length: 0.95,
+        rules: 0.95,
+        bilingual: 0.95,
+    };
+    let g = Gates::of(&compare(&active, Some(&active)), Some(-0.01), Some(true));
+    assert!(g.passed());
+    let g = Gates::of(&compare(&active, Some(&active)), None, Some(true));
+    assert!(!g.passed());
 }

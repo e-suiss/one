@@ -1,4 +1,4 @@
-//! Routing end to end over the pure gate: a request passes the rule gate and reaches the right role, eliminated options never serve, the fallback order holds, a large model's job never silently goes to the small model, and every record satisfies its contract (MF-19, MF-20, MF-21, MF-22, MF-23, MF-24, MF-32, MF-37, MF-38).
+//! Routing end to end over the pure gate: a request passes the rule gate and reaches the right role, eliminated options never serve, the fallback order holds, a large model's job never silently goes to the small model, only an adapter that passed its activation gates is attached, and every record satisfies its contract (MF-19, MF-20, MF-21, MF-22, MF-23, MF-24, MF-32, MF-34, MF-37, MF-38, MF-48).
 
 #![allow(
     clippy::unwrap_used,
@@ -17,9 +17,11 @@ use one_proto::ontology::Instant;
 use one_proto::{AdapterId, ModelVersionId};
 use one_router::adapters::{Deployment, instances};
 use one_router::app::{Route, route};
+use one_router::domain::adapter::{Gates, Outcome, Versions};
 use one_router::domain::gate::{
     ActiveAdapter, Connectivity, Facts, Family, Grant, Instance, Purpose,
 };
+use one_router::domain::personality::{Scores, compare};
 use serde_json::{Value, json};
 
 const SMALL: &str = "mdl_01m4ezb900f9at0tvpg669f8nd";
@@ -107,8 +109,15 @@ fn at() -> Instant {
     Instant::parse("2026-11-03T08:00:00Z").unwrap()
 }
 
+fn versions(a: Option<&ActiveAdapter>) -> Versions<ActiveAdapter> {
+    Versions {
+        active: a.copied(),
+        previous: None,
+    }
+}
+
 fn go(req: &ModelRequest, facts: &Facts, pool: &[Instance], a: Option<&ActiveAdapter>) -> Route {
-    let r = route(req, Purpose::Answer, facts, pool, a, at()).unwrap();
+    let r = route(req, Purpose::Answer, facts, pool, &versions(a), at()).unwrap();
     r.record.validate().unwrap();
     let json = serde_json::to_value(&r.record).unwrap();
     assert!(json.get("content").is_none());
@@ -206,7 +215,7 @@ fn mf_24_sensitive_data_reaches_only_an_attested_tee() {
     let r = go(&sensitive, &facts(), &p, None);
     let serve = r.serve.clone().unwrap();
     assert_eq!(serve.instance, 1);
-    assert_eq!(r.record.memory_part.fallback, Fallback::OtherInstance);
+    assert_eq!(r.record.memory_part.fallback, Fallback::None);
     assert!(rules(&r).contains(&EliminationRule::DataClass));
     assert_eq!(
         r.record.provider_trace_part.hops[0].attested_tee,
@@ -325,7 +334,7 @@ fn mf_11_the_quarantine_purpose_reaches_only_the_quarantine_role() {
         Purpose::Quarantine,
         &facts(),
         &pool(),
-        Some(&a),
+        &versions(Some(&a)),
         at(),
     )
     .unwrap();
@@ -369,4 +378,105 @@ fn sec_26_only_registry_versions_are_loaded_and_only_released_ones_serve() {
     assert!(!got[1].released);
     let r = go(&request(|_| ()), &facts(), &got[1..], None);
     assert_eq!(r.record.memory_part.gate.result, GateResult::WaitingNoModel);
+}
+
+#[test]
+fn mf_21_offered_tools_count_when_there_is_no_tool_count_hint() {
+    let tools = |n: usize| {
+        request(move |v| {
+            v["capabilities"] = json!(["text_generation", "tool_calling"]);
+            v["hints"] = json!({});
+            v["tools"] = json!(
+                ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine"][..n]
+                    .iter()
+                    .map(|w| json!({"name": format!("app.suiss.test.{w}"), "version": "2026-10-01", "input_schema": {}}))
+                    .collect::<Vec<_>>()
+            );
+        })
+    };
+    let one = go(&tools(1), &facts(), &pool(), None);
+    let many = go(&tools(9), &facts(), &pool(), None);
+    let p = |r: &Route| {
+        r.record
+            .memory_part
+            .estimate
+            .as_ref()
+            .unwrap()
+            .small_sufficient
+    };
+    assert_eq!(p(&one), 0.85);
+    assert_eq!(p(&many), 0.65);
+}
+
+#[test]
+fn mf_23_a_large_kind_never_goes_to_the_small_model_unlabelled() {
+    let r = go(
+        &request(|v| v["hints"] = json!({"task_kind": "orchestration"})),
+        &facts(),
+        &pool(),
+        None,
+    );
+    let serve = r.serve.clone().unwrap();
+    assert_eq!(serve.model.model_role, ModelRole::LargeLm);
+    assert!(!serve.short_answer);
+    let p = r
+        .record
+        .memory_part
+        .estimate
+        .as_ref()
+        .unwrap()
+        .small_sufficient;
+    assert!(p >= 0.5);
+}
+
+#[test]
+fn mf_34_mf_48_only_an_adapter_past_its_gates_is_attached() {
+    let a = adapter(SMALL);
+    let fine = Scores {
+        address: 0.95,
+        tone: 0.95,
+        length: 0.95,
+        rules: 0.95,
+        bilingual: 0.95,
+    };
+    let worse = Scores { tone: 0.91, ..fine };
+    let short = request(|_| ());
+    let attached = |v: &Versions<ActiveAdapter>| {
+        route(&short, Purpose::Answer, &facts(), &pool(), v, at())
+            .unwrap()
+            .serve
+            .unwrap()
+            .model
+            .adapter_id
+    };
+
+    let start = Versions::default();
+    let failed = start
+        .clone()
+        .offer(a, Gates::of(&compare(&fine, None), Some(-0.02), Some(true)));
+    assert_eq!(failed.outcome, Outcome::Rejected);
+    assert_eq!(attached(&failed.versions), None);
+    let pending = start
+        .clone()
+        .offer(a, Gates::of(&compare(&fine, None), None, Some(true)));
+    assert_eq!(pending.outcome, Outcome::Rejected);
+
+    let first = start.offer(a, Gates::of(&compare(&fine, None), Some(-0.01), Some(true)));
+    assert_eq!(first.outcome, Outcome::Activated);
+    assert_eq!(attached(&first.versions), Some(a.id));
+
+    let next = ActiveAdapter {
+        id: AdapterId::parse("adp_01m4ezb900fvmv9zra2mg2pdj1").unwrap(),
+        base: id(SMALL),
+    };
+    let regressed = first.versions.clone().offer(
+        next,
+        Gates::of(&compare(&worse, Some(&fine)), Some(0.0), Some(true)),
+    );
+    assert_eq!(regressed.outcome, Outcome::Rejected);
+    assert_eq!(attached(&regressed.versions), Some(a.id));
+
+    let forgotten = first.versions.forget();
+    assert_eq!(forgotten.outcome, Outcome::Retrain);
+    assert_eq!(attached(&forgotten.versions), None);
 }

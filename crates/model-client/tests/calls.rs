@@ -301,3 +301,20 @@ fn auditor_malformed_verdict_is_refused() {
         assert_eq!(checked.unwrap_err(), ResponseError::Verdict);
     }
 }
+
+#[test]
+fn t_37_debug_never_shows_content_fields_or_metadata() {
+    let q = quarantine();
+    let shown = format!("{q:?}");
+    assert!(!shown.contains("Friday"), "{shown}");
+    let out = q
+        .check(&response(
+            &quarantine_model(),
+            &json!({ "structured": { "date": "2026-11-06" } }),
+        ))
+        .unwrap();
+    let shown = format!("{out:?}");
+    assert!(!shown.contains("2026-11-06"), "{shown}");
+    let shown = format!("{:?}", auditor());
+    assert!(!shown.contains("calendar"), "{shown}");
+}

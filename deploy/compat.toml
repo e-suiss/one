@@ -5,9 +5,10 @@ client_compatibility_window = ""
 work_spec_version = ""
 
 [shared_crates]
-esuiss-crypto = ""
-esuiss-ledger = ""
-esuiss-restriction = ""
+esuiss-crypto = "=0.2.3"
+esuiss-ledger = "=0.2.3"
+esuiss-restriction = "=0.2.3"
+esuiss-access-kernel = "=0.2.3"
 
 [siblings.access]
 image = "ghcr.io/e-suiss/access@sha256:d92918789fcb59d03a5496a9f1b8b5e2953cfa5979a7f6e206e6b067729bd0a9"

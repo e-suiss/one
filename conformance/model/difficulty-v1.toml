@@ -16,7 +16,8 @@ steps = [
   "p -= long_output_penalty if expected_output_tokens > very_long_output_tokens else medium_output_penalty if expected_output_tokens > long_output_tokens",
   "p += small_kind_bonus if task_kind is in small_kinds; p -= large_kind_penalty if task_kind is in large_kinds",
   "small_sufficient = round(clamp(p, 0, 1), decimals)",
-  "small_lm when small_sufficient >= small_min, else large_lm",
+  "large_job = capabilities contain multi_step_planning or task_kind is in large_kinds",
+  "small_lm when small_sufficient >= small_min and not large_job, else large_lm",
   "short-answer fallback only when small_sufficient >= short_answer_min and capabilities lack multi_step_planning",
 ]
 
