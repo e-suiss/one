@@ -1,6 +1,6 @@
 [package]
 name = "one-router"
-description = "Router component: the rule gate no option bypasses, the second-stage small-or-large estimate, the fixed fallback order, content-free routing records and the personal adapter's activation gate (MF-19, MF-20, MF-21, MF-22, MF-23, MF-34, T-10)."
+description = "Router component: the rule gate every option passes first, the second-stage small-or-large estimate, the fixed fallback order, content-free routing records and the personal adapter's activation gate (MF-19, MF-20, MF-21, MF-22, MF-23, MF-34, T-10)."
 version.workspace = true
 edition.workspace = true
 rust-version.workspace = true
