@@ -3583,7 +3583,7 @@
           "sensitive": []
         },
         "retention_class": "one_memory",
-        "provenance": "user.memory",
+        "provenance": "one.inferred",
         "recorded_at": "2026-10-02T03:00:00Z",
         "version": 1,
         "promise_version": 1,
