@@ -224,7 +224,7 @@ fn mf_24_device_only_content_is_refused_and_reaches_no_processor() {
     assert_eq!(r.serve, None);
     assert_eq!(r.record.memory_part.gate.result, GateResult::Refused);
     assert!(rules(&r).iter().all(|x| *x == EliminationRule::DataClass));
-    assert!(r.record.provider_trace_part.hops.is_empty());
+    assert_eq!(r.record.provider_trace_part.hops, Vec::new());
 }
 
 #[test]

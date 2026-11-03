@@ -9,6 +9,11 @@ pub const MAX_DROP: f64 = 0.02;
 /// A change this large in any dimension is announced.
 pub const SIGNIFICANT: f64 = 0.1;
 
+/// Rounds a difference in `-1..=1` to six decimals, symmetric around zero.
+fn signed6(d: f64) -> f64 {
+    if d < 0.0 { -round6(-d) } else { round6(d) }
+}
+
 /// The share of profile checks a configuration satisfies, per dimension.
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub struct Scores {
@@ -37,11 +42,11 @@ impl Scores {
 
     fn minus(&self, other: &Self) -> Self {
         Self {
-            address: round6(self.address - other.address),
-            tone: round6(self.tone - other.tone),
-            length: round6(self.length - other.length),
-            rules: round6(self.rules - other.rules),
-            bilingual: round6(self.bilingual - other.bilingual),
+            address: signed6(self.address - other.address),
+            tone: signed6(self.tone - other.tone),
+            length: signed6(self.length - other.length),
+            rules: signed6(self.rules - other.rules),
+            bilingual: signed6(self.bilingual - other.bilingual),
         }
     }
 }
