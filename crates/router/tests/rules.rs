@@ -5,6 +5,7 @@
     clippy::panic,
     clippy::indexing_slicing,
     clippy::float_cmp,
+    clippy::many_single_char_names,
     reason = "T-38"
 )]
 
