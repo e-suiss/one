@@ -17,8 +17,8 @@ use one_provenance::{ExternalSource, Label, LabelKind, ProposedInput, VarRef};
 use one_task::domain::budget::{DEFAULT_STEPS, Spend, budget, next};
 use one_task::domain::effect::{Check, Replay, Seen, after_check, key, replay};
 use one_task::domain::handoff::{
-    Block, DEFAULT_WAIT_SECS, MAX_WAIT_SECS, MIN_WAIT_SECS, WHILE_HELD, on_block, on_expiry,
-    wait_secs,
+    Block, DEFAULT_WAIT_SECS, MAX_WAIT_SECS, MIN_WAIT_SECS, WHILE_HELD, WhileHeld, on_block,
+    on_expiry, wait_secs,
 };
 use one_task::domain::origins::{Use, Widen, allows, derive, widen};
 use one_task::domain::path::{Choice, Handoff, Offer, Platform, Site, Situation, choose};
@@ -308,7 +308,13 @@ fn cp_32_a_block_waits_for_the_user_and_an_expired_wait_stops_with_its_reason() 
         on_expiry(Block::Login),
         (StepReason::WaitExpired, FailureReason::CriterionUnreachable)
     );
-    assert!(!WHILE_HELD.screenshots && !WHILE_HELD.model_context);
+    assert_eq!(
+        WHILE_HELD,
+        WhileHeld {
+            screenshots: false,
+            model_context: false
+        }
+    );
 }
 
 #[test]

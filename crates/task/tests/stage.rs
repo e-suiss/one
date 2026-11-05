@@ -19,7 +19,7 @@ use one_proto::task::{
 };
 use one_task::app::{Before, Prepared, Submit, prepare, submit};
 use one_task::domain::gate::{Permit, Stop};
-use one_task::domain::handoff::{Block, DEFAULT_WAIT_SECS, WHILE_HELD, on_block};
+use one_task::domain::handoff::{Block, DEFAULT_WAIT_SECS, WHILE_HELD, WhileHeld, on_block};
 use one_task::domain::path::{Offer, Platform, Site, Situation};
 use one_task::domain::resume::{Resume, resume};
 use one_task::ports::Executor;
@@ -168,7 +168,13 @@ fn cp_5_cp_11_cp_32_a_multi_step_task_picks_its_path_asks_access_each_step_is_st
                 "waitpoint_ref": { "ref": "WaitpointRef", "id": "wp-captcha" } }),
     );
     assert_eq!(history.state(), (TaskState::WaitingUser, false));
-    assert!(!WHILE_HELD.model_context && !WHILE_HELD.screenshots);
+    assert_eq!(
+        WHILE_HELD,
+        WhileHeld {
+            screenshots: false,
+            model_context: false
+        }
+    );
     history.push(
         "relay",
         "wait_resolved",
