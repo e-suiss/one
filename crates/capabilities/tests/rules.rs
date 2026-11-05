@@ -8,6 +8,7 @@
 )]
 
 use std::collections::BTreeSet;
+use std::future::{Future, ready};
 
 use aws_lc_rs::signature::{Ed25519KeyPair, KeyPair as _};
 use one_capabilities::app::planner_candidates;
@@ -42,6 +43,9 @@ use serde_json::{Value, json};
 use suiss_crypto::cose::{Algorithm, to_be_signed};
 use suiss_crypto::dcbor::{self, Limits, Value as Cbor};
 use suiss_crypto::digest::sha256;
+
+type EntryEdit = fn(&mut Entry);
+type TransferEdit = fn(&mut Transfer);
 
 const DEFINITIONS: &str =
     include_str!("../../../conformance/open/capability/vectors/definition.json");
@@ -97,7 +101,7 @@ fn name(text: &str) -> CapabilityName {
 fn cp_19_cp_21_only_a_working_admitted_pinned_fresh_healthy_capability_is_shown() {
     let ok = entry("app.suiss.transport.ride.request");
     assert_eq!(working(&ok, now()), Ok(()));
-    let cases: [(fn(&mut Entry), NotWorking); 8] = [
+    let cases: [(EntryEdit, NotWorking); 8] = [
         (
             |e| e.source = Source::Curated { admitted: false },
             NotWorking::NotAdmitted,
@@ -243,7 +247,10 @@ fn cp_17_only_working_capabilities_inside_grant_and_mandate_are_candidates() {
         names(&eligible(&entries, &narrowed, now())),
         ["app.suiss.transport.ride.cancel"]
     );
-    assert!(eligible(&entries, &Authority::default(), now()).is_empty());
+    assert_eq!(
+        eligible(&entries, &Authority::default(), now()),
+        Vec::<&Entry>::new()
+    );
     assert_eq!(
         can(
             &entries,
@@ -345,15 +352,17 @@ fn cp_15_a_provider_follows_the_path_order_then_the_user_preference_never_a_comm
 struct Scores(Vec<CapabilityName>, Option<f64>);
 
 impl Search for Scores {
-    async fn scores(
+    fn scores(
         &mut self,
         _: &str,
         eligible: &[CapabilityName],
-    ) -> Result<Vec<(CapabilityName, f64)>, SearchError> {
+    ) -> impl Future<Output = Result<Vec<(CapabilityName, f64)>, SearchError>> {
         self.0 = eligible.to_vec();
-        self.1
-            .map(|s| eligible.iter().map(|n| (n.clone(), s)).collect())
-            .ok_or(SearchError::Unavailable)
+        ready(
+            self.1
+                .map(|s| eligible.iter().map(|n| (n.clone(), s)).collect())
+                .ok_or(SearchError::Unavailable),
+        )
     }
 }
 
@@ -409,7 +418,7 @@ fn cp_21_any_change_to_a_pinned_tool_stops_it() {
         |t| t.annotations = Some(serde_json::from_value(json!({ "readOnlyHint": true })).unwrap()),
         |t| {
             t.declaration =
-                serde_json::from_value(json!({ "origins": [], "writes": true })).unwrap()
+                serde_json::from_value(json!({ "origins": [], "writes": true })).unwrap();
         },
     ];
     for edit in edits {
@@ -511,7 +520,7 @@ fn transfer() -> Transfer {
 #[test]
 fn cp_22_cp_20_servers_exchange_only_typed_fields_and_a_custom_server_stays_sandboxed() {
     assert_eq!(flow::check(&transfer()), Ok(()));
-    let cases: [(fn(&mut Transfer), FlowRefused); 5] = [
+    let cases: [(TransferEdit, FlowRefused); 5] = [
         (|t| t.secret = true, FlowRefused::Secret),
         (|t| t.typed = false, FlowRefused::Untyped),
         (|t| t.from_custom = true, FlowRefused::FromCustom),
@@ -614,7 +623,7 @@ fn class(sensitive: bool) -> DataClass {
 
 #[test]
 fn cp_28_cp_29_mf_25_personal_context_only_under_a_grant_and_zero_retention_never_sensitive() {
-    assert!(VERIFIED_ZERO_RETENTION.is_empty());
+    assert_eq!(VERIFIED_ZERO_RETENTION, &[] as &[&str]);
     let caller = Caller {
         granted: true,
         write_grant: false,
