@@ -36,6 +36,7 @@ one-relay-client = { path = "crates/relay-client" }
 one-work-client = { path = "crates/work-client" }
 one-model-client = { path = "crates/model-client" }
 one-router = { path = "crates/router" }
+one-capabilities = { path = "crates/capabilities" }
 one-core = { path = "core" }
 # Access OP-76
 suiss-crypto = { package = "esuiss-crypto", version = "=0.2.3", default-features = false }

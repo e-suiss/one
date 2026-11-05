@@ -1,6 +1,6 @@
 [package]
 name = "one-task"
-description = "Task component: the plan, decide and execute gate between a typed intent, the Access decision and the Executor port (CP-5, SEC-1, A-2, A-6, E-14)."
+description = "Task component: the plan, decide and execute gate between a typed intent, the Access decision and the Executor port, with the path and place of a step, its origin set, the Rule of Two, the step budget, the handover at a block, effect replay, resuming, sub-agent narrowing and the planner's control fields (CP-5, CP-9, CP-12, CP-32, CP-36, CP-43, CP-45, CP-46, SEC-1, SEC-12, SEC-18, SEC-19, E-14)."
 version.workspace = true
 edition.workspace = true
 rust-version.workspace = true
@@ -11,8 +11,12 @@ publish = false
 # T-26 (6)
 [dependencies]
 one-access-client.workspace = true
+one-proto.workspace = true
 one-provenance.workspace = true
 suiss-crypto.workspace = true
+
+[dev-dependencies]
+serde_json = { workspace = true, features = ["std"] }
 
 [lints]
 workspace = true

@@ -1,0 +1,23 @@
+[package]
+name = "one-capabilities"
+description = "Capabilities component: the registry and what the planner may see, the evaluation gate, permission-aware candidates and provider choice, tool pins and signed packages, flows between servers and the custom-server sandbox, MCP version and token rules, One's exposure to other assistants, narrow elicitation, inbound channels, the Annex III exclusion and the coding bridge (CP-15 to CP-30, CP-37 to CP-41, MF-25, MF-27, PV-3, SEC-24, SEC-25)."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish = false
+
+# T-26 (6)
+[dependencies]
+one-proto.workspace = true
+one-provenance.workspace = true
+suiss-crypto = { workspace = true, features = ["aws-lc"] }
+
+[dev-dependencies]
+aws-lc-rs.workspace = true
+serde_json = { workspace = true, features = ["std"] }
+tokio = { workspace = true, features = ["macros", "rt"] }
+
+[lints]
+workspace = true

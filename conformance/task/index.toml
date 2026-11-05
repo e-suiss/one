@@ -75,3 +75,7 @@ rules = ["CP-3", "C-6", "C-27", "CP-24", "CP-28", "CP-29"]
 path = "vectors/idempotency-key.json"
 kind = "behaviour"
 rules = ["T-27 (6)", "CP-43", "INV-31"]
+
+[[table]]
+path = "execution-v1.toml"
+rules = ["CP-9", "CP-12", "CP-13", "CP-14", "CP-32", "CP-36", "CP-43"]

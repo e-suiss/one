@@ -1,0 +1,33 @@
+# CP-17, CP-19, CP-21, CP-24, CP-29, CP-30, PV-3, MF-25
+version = "selection/v1"
+
+candidates = 5
+candidate_order = "score descending, then name ascending; a NaN score is no candidate"
+provider_order = "path order, then the user's preference, then provider reference; no commission or paid placement"
+
+eval_version = "capability-eval/v1"
+min_cases = 20
+min_per_language = 5
+pass_percent = 95
+max_age_secs = 2592000
+eval_rules = [
+  "only real task cases count; a vendor benchmark never does",
+  "data access and surface declarations must be verified",
+  "an unverified reversibility is recorded as irreversible",
+]
+
+tool_pin = "tool-pin/v1"
+tool_pin_fields = ["v", "name", "description", "input_schema", "output_schema", "annotations", "declaration"]
+package_content_type = "application/one-capability-package+json"
+package_signature = "detached COSE_Sign1, Ed25519, Suiss catalog key; kid = SHA-256 of the public key"
+package_reviewers = 2
+
+mcp_versions = ["2025-06-18", "2025-11-25", "2026-07-28"]
+mcp_latest = "2026-07-28"
+mcp_never = ["sampling", "roots", "logging"]
+
+low_sensitivity_fields = ["display_name", "preferred_language", "time_zone"]
+verified_zero_retention = []
+task_only = ["app.suiss.assistant.task.submit", "app.suiss.assistant.task.status"]
+
+annex_iii_segments = ["hiring", "recruitment", "candidate", "applicant", "credit", "creditworthiness", "scoring", "insurance", "underwriting", "benefits", "welfare", "grading", "exam", "admission"]

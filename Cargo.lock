@@ -2464,6 +2464,18 @@ dependencies = [
 ]
 
 [[package]]
+name = "one-capabilities"
+version = "0.0.0"
+dependencies = [
+ "aws-lc-rs",
+ "esuiss-crypto",
+ "one-proto",
+ "one-provenance",
+ "serde_json",
+ "tokio",
+]
+
+[[package]]
 name = "one-cli"
 version = "0.0.0"
 dependencies = [
@@ -2726,7 +2738,9 @@ version = "0.0.0"
 dependencies = [
  "esuiss-crypto",
  "one-access-client",
+ "one-proto",
  "one-provenance",
+ "serde_json",
 ]
 
 [[package]]

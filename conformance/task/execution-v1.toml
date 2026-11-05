@@ -1,0 +1,29 @@
+# CP-9, CP-12, CP-13, CP-14, CP-32, CP-36, CP-43
+version = "execution/v1"
+
+path_order = ["api | mcp | commerce_protocol", "os_intent", "cloud_browser", "handoff"]
+os_intent_platforms = ["android"]
+app_function_needs_allowlist = true
+browser_handoff = ["terms_forbid_agents", "blocks_agents"]
+
+places = [
+  "api, mcp, commerce_protocol: cloud_executor",
+  "os_intent: local_executor; the user away: waiting_user",
+  "cloud_browser needing the user's session: local_executor; the user away: waiting_user",
+  "cloud_browser otherwise: cloud_microvm",
+  "handoff: user",
+]
+
+default_steps = 50
+default_wait_secs = 86400
+min_wait_secs = 900
+max_wait_secs = 604800
+
+replay = [
+  "not sent: send",
+  "recorded: keep, send nothing",
+  "sent, not recorded: check first",
+  "checked, occurred: keep",
+  "checked, did not occur: send again with the same idempotency key under a new continuation",
+  "checked, unverifiable: unknown, the user decides",
+]
