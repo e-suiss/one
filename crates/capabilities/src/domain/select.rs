@@ -44,7 +44,7 @@ pub fn eligible<'a>(entries: &'a [Entry], authority: &Authority, now: Instant) -
 /// The candidates among `eligible` by retrieval `scores`; a score for anything else, or a score that is not a number, is ignored.
 #[must_use]
 pub fn candidates<'a>(eligible: &[&'a Entry], scores: &[(CapabilityName, f64)]) -> Vec<&'a Entry> {
-    let mut scored: Vec<(f64, &'a Entry)> = eligible
+    let mut ranked: Vec<(f64, &'a Entry)> = eligible
         .iter()
         .filter_map(|e| {
             scores
@@ -53,11 +53,11 @@ pub fn candidates<'a>(eligible: &[&'a Entry], scores: &[(CapabilityName, f64)]) 
                 .map(|(_, s)| (*s, *e))
         })
         .collect();
-    scored.sort_by(|(a, x), (b, y)| {
+    ranked.sort_by(|(a, x), (b, y)| {
         b.total_cmp(a)
             .then_with(|| x.definition.name.cmp(&y.definition.name))
     });
-    scored
+    ranked
         .into_iter()
         .take(CANDIDATES)
         .map(|(_, e)| e)
