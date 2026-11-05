@@ -26,9 +26,9 @@ pub enum Refused {
 
 /// The Suiss catalog keys, Ed25519 only.
 #[derive(Debug, Clone)]
-pub struct CatalogKeys(KeySet);
+pub struct CatalogSigners(KeySet);
 
-impl CatalogKeys {
+impl CatalogSigners {
     /// The key set holding `keys`, each under the SHA-256 of its public key as its `kid`.
     ///
     /// # Errors
@@ -58,7 +58,7 @@ pub struct Admitted {
 /// # Errors
 /// [`Refused`] with the first check that failed: the reviewers, the manifest form, then the signature.
 pub fn admit(
-    keys: &CatalogKeys,
+    keys: &CatalogSigners,
     manifest: &JsonValue,
     signature: &[u8],
     reviewers: [&str; 2],

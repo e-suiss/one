@@ -32,9 +32,9 @@ pub fn negotiate(offered: &[&str]) -> Option<&'static str> {
         .find(|v| offered.contains(v))
 }
 
-/// The token a request carries.
+/// The authorization a request carries.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub enum Token<'a> {
+pub enum Authorization<'a> {
     /// None.
     None,
     /// An Access-issued token bound to this audience.
@@ -53,8 +53,8 @@ pub struct Request<'a> {
     pub version: &'a str,
     /// The client features it declares.
     pub features: &'a [Feature],
-    /// Its token.
-    pub token: Token<'a>,
+    /// Its authorization.
+    pub authorization: Authorization<'a>,
 }
 
 /// Why a request is refused.
@@ -81,9 +81,9 @@ pub fn check(resource: &str, request: &Request<'_>) -> Result<(), Refused> {
     if let Some(f) = request.features.iter().find(|f| NEVER.contains(f)) {
         return Err(Refused::Feature(*f));
     }
-    match request.token {
-        Token::Upstream => Err(Refused::Passthrough),
-        Token::Access { audience } if audience != resource => Err(Refused::Audience),
-        Token::None | Token::Access { .. } => Ok(()),
+    match request.authorization {
+        Authorization::Upstream => Err(Refused::Passthrough),
+        Authorization::Access { audience } if audience != resource => Err(Refused::Audience),
+        Authorization::None | Authorization::Access { .. } => Ok(()),
     }
 }

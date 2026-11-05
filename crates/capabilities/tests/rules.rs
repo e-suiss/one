@@ -21,9 +21,9 @@ use one_capabilities::domain::exposure::{
     Caller, Offer, VERIFIED_ZERO_RETENTION, offer, opens, shares,
 };
 use one_capabilities::domain::flow::{self, Refused as FlowRefused, Transfer, needs_approval};
-use one_capabilities::domain::mcp::{self, Feature, LATEST, Refused as McpRefused, Token};
+use one_capabilities::domain::mcp::{self, Authorization, Feature, LATEST, Refused as McpRefused};
 use one_capabilities::domain::package::{
-    Behaviour, CONTENT_TYPE, CatalogKeys, Declaration, Refused as PackageRefused, admit, within,
+    Behaviour, CONTENT_TYPE, CatalogSigners, Declaration, Refused as PackageRefused, admit, within,
 };
 use one_capabilities::domain::pin::{Pinned, Tool as McpTool, check, pin};
 use one_capabilities::domain::registry::{Entry, NotWorking, Source, working};
@@ -460,7 +460,7 @@ fn sign(key: &Ed25519KeyPair, content_type: &str, payload: &[u8]) -> Vec<u8> {
 #[test]
 fn cp_21_a_package_enters_the_catalog_only_signed_and_reviewed_twice() {
     let key = seed();
-    let catalog = CatalogKeys::new([public(&key)]).unwrap();
+    let catalog = CatalogSigners::new([public(&key)]).unwrap();
     let manifest: JsonValue = serde_json::from_value(
         json!({ "name": "ride", "version": "2026-10-01", "tools": ["create_ride"] }),
     )
@@ -574,18 +574,18 @@ fn cp_24_sec_25_every_version_keeps_the_audience_and_passthrough_rules() {
         let ok = mcp::Request {
             version,
             features: &[Feature::Elicitation],
-            token: Token::Access { audience: resource },
+            authorization: Authorization::Access { audience: resource },
         };
         assert_eq!(mcp::check(resource, &ok), Ok(()));
         let other = mcp::Request {
-            token: Token::Access {
+            authorization: Authorization::Access {
                 audience: "https://mcp.other.example",
             },
             ..ok
         };
         assert_eq!(mcp::check(resource, &other), Err(McpRefused::Audience));
         let passthrough = mcp::Request {
-            token: Token::Upstream,
+            authorization: Authorization::Upstream,
             ..ok
         };
         assert_eq!(
@@ -607,7 +607,7 @@ fn cp_24_sec_25_every_version_keeps_the_audience_and_passthrough_rules() {
     let old = mcp::Request {
         version: "2024-11-05",
         features: &[],
-        token: Token::None,
+        authorization: Authorization::None,
     };
     assert_eq!(mcp::check(resource, &old), Err(McpRefused::Version));
 }
